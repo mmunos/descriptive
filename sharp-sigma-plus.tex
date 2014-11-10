@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm} 
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+
+\def\A{{\frak A}}
+
+\newtheorem{theo}{Theorem}
+\newtheorem{lemma}[theo]{Lemma}
+\newtheorem{claim}[theo]{Claim}
+\newtheorem{coro}[theo]{Corollary}
+
+\begin{document}
+
+\begin{flushleft}
+{\footnotesize Pontificia Universidad Cat\'olica de Chile - Facultad de Ingenier\'ia\\
+Departamento de Ciencias de la Computaci\'on\\
+Proyecto de Investigaci\'on\\
+Profesor Gu\'ia: Marcelo Arenas\\
+}
+\end{flushleft}
+\begin{center}
+{ \LARGE \bf
+  Some properties of $\#\Sigma_1^{+}$
+}
+\end{center}
+
+The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which adds the possibility of adding arbitrarily quantified sub-formulas that don't include counted predicates.
+
+Formally, let $\vec{P}$ be a sequence of predicates and $\vec{x},\vec{z}$ sequences of variables. Let $\varphi(\vec{S},\vec{x},\vec{z})$ be a formula where the variables in $\vec{P}$ are not in a quantified sub-formula. Note that sub-formulas that include any other predicate are not restricted at all. A counting problem $F \in \#\Sigma_1^{+}$ if given a structure $\A$
+$$
+F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+$$ 
+Some of its properties are:
+
+\begin{theo}
+The decision version of a counting problem in $\#\Sigma_1^{+}$ is in \text{P}.
+\end{theo}
+\begin{proof}
+Let $F$ be a function in $\#\Sigma_1^{+}$. Then there is a formula $\varphi$ such that:
+$$
+F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+$$ 
+where $\A$ is a finite ordered structure and $\vec{z}$ is an $m$-tuple. For each $\vec{z} \in A^m$, every arbitrarily quantified sub-formula which does not include $\vec{P}$ can be evaluated in polynomial time. Let $\varphi'$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula by a contradiction. Note that $\varphi'$ is quantifier-free.
+
+Then, we compute a similar counting function:
+$$
+F'(\A) = \vert \{ <\!\!\vec{P},(\vec{z},\vec{x})\!\!> :\A \models \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+$$ 
+which is in $\#\Sigma_0$. Note that for every $\A$, $F(\A) > 0$ iff $F'(\A) > 0$, so computing $F'$ is enough to solve the decision version of $F$. However, Saluja and Subrahmanyam showed that any counting problem in $\#\Sigma_0$ is computable in polynomial time \footnote[1]{(paper)}, therefore, the decision version of $F$ is in P.
+\end{proof}
+
+\begin{theo}
+$\#\Sigma_1$ is closed under substraction $\Rightarrow$ P = NP.
+\end{theo}
+\begin{proof}
+\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. Then we can compute in polynomial time whether an arbitrary #3DNF formula is a tautology or not, a problem that is co-NP-complete.
+\end{proof}
+
+\begin{theo}
+$\#\Sigma_1 \subsetneq \#\Sigma_1^{+}$
+\end{theo}
+\begin{proof}
+We will show that the $\#\Sigma_1^{+}$ function defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall x_2 S(x_2)$ is not in $\#\Sigma_1$.
+\end{proof}
+
+\end{document}
