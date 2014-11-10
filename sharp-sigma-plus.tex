@@ -56,7 +56,7 @@ which is in $\#\Sigma_0$. Note that for every $\A$, $F(\A) > 0$ iff $F'(\A) > 0$
 $\#\Sigma_1$ is closed under substraction $\Rightarrow$ P = NP.
 \end{theo}
 \begin{proof}
-\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. Then we can compute in polynomial time whether an arbitrary #3DNF formula is a tautology or not, a problem that is co-NP-complete.
+\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously (Theorem 1), it's also in P. Then, co-NP $\subseteq$ P.
 \end{proof}
 
 \begin{theo}
