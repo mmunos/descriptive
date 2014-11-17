@@ -108,14 +108,24 @@ $$
 $$
 will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. If $\varphi'_i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next, and so on. Therefore:
 \begin{multline*}
-F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models 
+F_{-1}(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models 
 \exists \vec{x} \left( \varphi_1(\vec{x},\vec{P}) \wedge \psi_1(\vec{x}) \right) \vee
 \exists \vec{x} \left( \varphi_2(\vec{x},\vec{P}) \wedge \left( (\forall \vec{x'} \neg \varphi'_1(\vec{x'})) \rightarrow \psi_2(\vec{x}) \right)\right) \vee \\
 ... \vee
 \exists \vec{x} \left( \varphi_k(\vec{x},\vec{P}) \wedge \left( (\forall \vec{x'} (\neg \varphi'_1(\vec{x'}) \wedge \neg \varphi'_2(\vec{x'}) \wedge ... \wedge \neg \varphi'_{k-1}(\vec{x'})) ) \rightarrow \psi_k(\vec{x}) \right)\right)
  \} \vert
 \end{multline}
+eliminates exactly one predicate of $F(\A)$.
 \end{enumerate}
+\item The counting set is:
+$$
+F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x}, \vec{P},\vec{z}) \} \vert
+$$
+Then, we going to isolate the minimal predicate $\vec{P}$ that holds the formula true and eliminate the lexicographically smallest $\vec{z}$ that satisfies it. We mix both previous strategies. For each DNF disjunct $\varphi_i(\vec{x}, \vec{z})$ we add:
+$$
+\psi_i(\vec{x}, \vec{z}) = \exists x' (x' \neq x \wedge P_1(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x)) \vee \exists z'(\varphi_i(\vec{x}, \vec{z}) \wedge \varphi_{\lneq}(z',z))
+$$
+and proceed analogously.
 \end{proof}
 
 \end{document}
