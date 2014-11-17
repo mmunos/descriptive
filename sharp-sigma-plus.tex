@@ -27,7 +27,7 @@ Departamento de Ciencias de la Computaci\'on\\
 }
 \end{center}
 
-The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which adds the possibility of adding arbitrarily quantified sub-formulas that don't include counted predicates.
+The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which includes the possibility of adding arbitrarily quantified sub-formulas that don't include counted predicates.
 
 Formally, let $\vec{P}$ be a sequence of predicates and $\vec{x},\vec{z}$ sequences of variables. Let $\varphi(\vec{S},\vec{x},\vec{z})$ be a formula where the variables in $\vec{P}$ are not in a quantified sub-formula. Note that sub-formulas that include any other predicate are not restricted at all. A counting problem $F \in \#\Sigma_1^{+}$ if given a structure $\A$
 $$
@@ -64,6 +64,50 @@ $\#\Sigma_1 \subsetneq \#\Sigma_1^{+}$
 \end{theo}
 \begin{proof}
 We will show that the $\#\Sigma_1^{+}$ function defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall x_2 S(x_2)$ is not in $\#\Sigma_1$.
+\end{proof}
+
+\begin{theo}
+$\#\Sigma_1$ is closed under substraction of 1 element.
+\end{theo}
+\begin{proof}
+The counting set has three possible ways of counting. Counting only variables, only predicates, and predicates with variables. This separates the proof in three cases:
+\begin{enumerate}
+\item The counting set is:
+$$
+F(\A) = \vert \{ <\!\!\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x},\vec{z}) \} \vert
+$$
+our goal here is to eliminate the lexicographically smallest sequence of variables, which we can do easily. Let $F'$ be:
+$$
+F'(\A) = \vert \{ <\!\!\vec{z}\!\!> :\A \models \exists \vec{x}\left( \varphi(\vec{x},\vec{z}) \wedge \exists \vec{z'} (\varphi(\vec{x},\vec{z'}) \wedge \varphi_{\lneq}(\vec{z'},\vec{z} ) ) \right) \} \vert
+$$
+where $\varphi_{\lneq}(\vec{z'},\vec{z})$ is a formula that indicates that $\vec{z'}$ is lexicographically smaller than $\vec{z}$. Thus, $F'(\A)$ will count exactly one element less than $F(\A)$ if $F(\A)>0$.
+\item The counting set is:
+$$
+F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x},\vec{P}) \} \vert
+$$
+similarly, we would like to eliminate the lexicographically smallest predicate $P$ that holds the formula true with the exact number of tuples. First we treat quantified sub-formulas as literals, and take a DNF formula that's equivalent to $\varphi$. Then
+$$
+F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models 
+\exists \vec{x} \varphi_1(\vec{x},\vec{P}) \vee
+\exists \vec{x} \varphi_2(\vec{x},\vec{P}) \vee
+... \vee
+\exists \vec{x} \varphi_k(\vec{x},\vec{P})
+ \} \vert
+$$
+Note that
+$$
+\varphi_i(\vec{x},\vec{P}) = \vec{P_1}(\vec{x}) \wedge \neg \vec{P_0}(\vec{x}) \wedge \varphi'_i(\vec{x})
+$$
+where $\vec{P_0},\vec{P_1}$ are subsequences of $\vec{P}$ and $\varphi'_i$ is arbitrarily quantified. We can assume every predicate in $\vec{P},$ uses all variables in $\vec{x}$ and they are not permutated(?). Let $\psi_i(x)$ be:
+$$
+\psi_i(\vec{x}) = \exists x' (x' \neq x \wedge P_1(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x))
+$$
+then 
+$$
+\exists \vec{x} \left( \varphi_i(\vec{x},\vec{P}) \wedge \psi_i(\vec{x}) \right)
+$$
+will have exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$.
+\end{enumerate}
 \end{proof}
 
 \end{document}
