@@ -31,7 +31,7 @@ The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which incl
 
 Formally, let $\vec{P}$ be a sequence of predicates and $\vec{x},\vec{z}$ sequences of variables. Let $\varphi(\vec{S},\vec{x},\vec{z})$ be a formula where the variables in $\vec{P}$ are not in a quantified sub-formula. Note that sub-formulas that include any other predicate are not restricted at all. A counting problem $F \in \#\Sigma_1^{+}$ if given a structure $\A$
 $$
-F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+F(\A) = \vert \{ \langle\vec{P},\vec{z}\rangle :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
 $$ 
 Some of its properties are:
 
@@ -41,13 +41,13 @@ The decision version of a counting problem in $\#\Sigma_1^{+}$ is in \text{P}.
 \begin{proof}
 Let $F$ be a function in $\#\Sigma_1^{+}$. Then there is a formula $\varphi$ such that:
 $$
-F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+F(\A) = \vert \{ \langle\vec{P},\vec{z}\rangle :\A \models \exists \vec{x} \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
 $$ 
 where $\A$ is a finite ordered structure and $\vec{z}$ is an $m$-tuple. For each $\vec{z} \in A^m$, every arbitrarily quantified sub-formula which does not include $\vec{P}$ can be evaluated in polynomial time. Let $\varphi'$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula by a contradiction. Note that $\varphi'$ is quantifier-free.
 
 Then, we compute a similar counting function:
 $$
-F'(\A) = \vert \{ <\!\!\vec{P},(\vec{z},\vec{x})\!\!> :\A \models \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
+F'(\A) = \vert \{ \langle\vec{P},(\vec{z},\vec{x})\rangle :\A \models \varphi(\vec{S},\vec{x},\vec{z}) \} \vert
 $$ 
 which is in $\#\Sigma_0$. Note that for every $\A$, $F(\A) > 0$ iff $F'(\A) > 0$, so computing $F'$ is enough to solve the decision version of $F$. However, Saluja and Subrahmanyam showed that any counting problem in $\#\Sigma_0$ is computable in polynomial time \footnote[1]{(paper)}, therefore, the decision version of $F$ is in P.
 \end{proof}
@@ -74,20 +74,20 @@ The counting set has three possible ways of counting. Counting only variables, o
 \begin{enumerate}
 \item The counting set is:
 $$
-F(\A) = \vert \{ <\!\!\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x},\vec{z}) \} \vert
+F(\A) = \vert \{ \langle\vec{z}\rangle :\A \models \exists \vec{x} \ \varphi(\vec{x},\vec{z}) \} \vert
 $$
 our goal here is to eliminate the lexicographically smallest sequence of variables, which we can do easily. Let $F'$ be:
 $$
-F'(\A) = \vert \{ <\!\!\vec{z}\!\!> :\A \models \exists \vec{x}\left( \varphi(\vec{x},\vec{z}) \wedge \exists \vec{z'} (\varphi(\vec{x},\vec{z'}) \wedge \varphi_{\lneq}(\vec{z'},\vec{z} ) ) \right) \} \vert
+F'(\A) = \vert \{ \langle\vec{z}\rangle :\A \models \exists \vec{x}\left( \varphi(\vec{x},\vec{z}) \wedge \exists \vec{z'} (\varphi(\vec{x},\vec{z'}) \wedge \varphi_{\lneq}(\vec{z'},\vec{z} ) ) \right) \} \vert
 $$
 where $\varphi_{\lneq}(\vec{z'},\vec{z})$ is a formula that indicates that $\vec{z'}$ is lexicographically smaller than $\vec{z}$. Thus, $F'(\A)$ will count exactly one element less than $F(\A)$ if $F(\A)>0$.
 \item The counting set is:
 $$
-F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x},\vec{P}) \} \vert
+F(\A) = \vert \{ \langle\vec{P}\rangle :\A \models \exists \vec{x} \ \varphi(\vec{x},\vec{P}) \} \vert
 $$
 similarly, we would like to eliminate the lexicographically smallest predicate $P$ that holds the formula true with the exact number of tuples. First we treat sub-formulas without $\vec{P}$ as literals, and take a DNF formula that's equivalent to $\varphi$. Then
 $$
-F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models 
+F(\A) = \vert \{ \langle\vec{P}\rangle :\A \models 
 \exists \vec{x} \varphi_1(\vec{x},\vec{P}) \vee
 \exists \vec{x} \varphi_2(\vec{x},\vec{P}) \vee
 ... \vee
@@ -96,19 +96,19 @@ F(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models
 $$
 Note that
 $$
-\varphi_i(\vec{x},\vec{P}) = \vec{P_1}(\vec{x}) \wedge \neg \vec{P_0}(\vec{x}) \wedge \varphi'_i(\vec{x})
+\varphi_i(\vec{x},\vec{P}) = \vec{Q}(\vec{x}) \wedge \neg \vec{R}(\vec{x}) \wedge \varphi'_i(\vec{x})
 $$
-where $\vec{P_0},\vec{P_1}$ are disjunct subsequences of $\vec{P}$ and $\varphi'_i$ is arbitrarily quantified. We can assume every predicate in $\vec{P}$ uses all variables in $\vec{x}$ and they are not permutated \footnote[1]{revisar esto}. Hence, if there is at least one assignation to $\vec{x}$ that satisfies $\varphi'_i(\vec{x})$, there is a predicate that has exactly one tuple that is lexicographically minimal. Thus, if
+where $\vec{Q},\vec{R}$ are subsequences of $\vec{P}$ and $\varphi'_i$ is arbitrarily quantified. We can assume that variables in $\vec{x}$ appear in at most one predicate since we can replace common variables with new ones and add appropriate equals in $\varphi'_i$. Hence, if there is at least one assignment to $\vec{x}$ that satisfies $\varphi'_i(\vec{x})$, there is a predicate that has exactly one tuple that is lexicographically minimal. Thus, if
 $$
-\psi_i(\vec{x}) = \exists x' (x' \neq x \wedge P_1(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x))
+\psi_i(\vec{x}) = \exists x' (x' \neq x \wedge Q(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x))
 $$
 then 
 $$
 \exists \vec{x} \left( \varphi_i(\vec{x},\vec{P}) \wedge \psi_i(\vec{x}) \right)
 $$
-will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. If $\varphi'_i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next, and so on. Therefore:
+will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. If $\varphi'_i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next one, and so on. Therefore:
 \begin{multline*}
-F_{-1}(\A) = \vert \{ <\!\!\vec{P}\!\!> :\A \models 
+F_{-1}(\A) = \vert \{ \langle\vec{P}\rangle :\A \models 
 \exists \vec{x} \left( \varphi_1(\vec{x},\vec{P}) \wedge \psi_1(\vec{x}) \right) \vee
 \exists \vec{x} \left( \varphi_2(\vec{x},\vec{P}) \wedge \left( (\forall \vec{x'} \neg \varphi'_1(\vec{x'})) \rightarrow \psi_2(\vec{x}) \right)\right) \vee \\
 ... \vee
@@ -119,11 +119,11 @@ eliminates exactly one predicate of $F(\A)$.
 \end{enumerate}
 \item The counting set is:
 $$
-F(\A) = \vert \{ <\!\!\vec{P},\vec{z}\!\!> :\A \models \exists \vec{x} \varphi(\vec{x}, \vec{P},\vec{z}) \} \vert
+F(\A) = \vert \{ \langle\vec{P},\vec{z}\rangle :\A \models \exists \vec{x} \ \varphi(\vec{x}, \vec{P},\vec{z}) \} \vert
 $$
 Then, we going to isolate the minimal predicate $\vec{P}$ that holds the formula true and eliminate the lexicographically smallest $\vec{z}$ that satisfies it. We mix both previous strategies. For each DNF disjunct $\varphi_i(\vec{x}, \vec{z})$ we add:
 $$
-\psi_i(\vec{x}, \vec{z}) = \exists x' (x' \neq x \wedge P_1(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x)) \vee \exists z'(\varphi_i(\vec{x}, \vec{z}) \wedge \varphi_{\lneq}(z',z))
+\psi_i(\vec{x}, \vec{z}) = \exists x' (x' \neq x \wedge Q(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x)) \vee \exists z'(\varphi_i(\vec{x}, \vec{z}) \wedge \varphi_{\lneq}(z',z))
 $$
 and proceed analogously.
 \end{proof}
