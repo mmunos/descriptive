@@ -94,28 +94,23 @@ F(\A) = \vert \{ \langle\vec{P}\rangle :\A \models
 \exists \vec{x} \varphi_k(\vec{x},\vec{P})
  \} \vert
 $$
-Note that
+We can also suppose that all of this formulas are satisfied by a single total order for $\vec{x}$. Therefore
 $$
-\varphi_i(\vec{x},\vec{P}) = \vec{Q}(\vec{x}) \wedge \neg \vec{R}(\vec{x}) \wedge \varphi'_i(\vec{x})
+\varphi_i(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})
 $$
-where $\vec{Q},\vec{R}$ are subsequences of $\vec{P}$ and $\varphi'_i$ is arbitrarily quantified. We can assume that variables in $\vec{x}$ appear in at most one predicate since we can replace common variables with new ones and add appropriate equals in $\varphi'_i$. Hence, if there is at least one assignment to $\vec{x}$ that satisfies $\varphi'_i(\vec{x})$, there is a predicate that has exactly one tuple that is lexicographically minimal. Thus, if
-$$
-\psi_i(\vec{x}) = \exists x' (x' \neq x \wedge Q(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x))
-$$
-then 
-$$
-\exists \vec{x} \left( \varphi_i(\vec{x},\vec{P}) \wedge \psi_i(\vec{x}) \right)
-$$
-will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. If $\varphi'_i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next one, and so on. Therefore:
+where $P_i$ and $\overline{P}$ are subsequences of $\vec{P}$, $\vec{x_i}$ and $\vec{y}$ are subsequences of $\vec{x}$, $\theta$ defines a total order for $\vec{x}$, and $\varphi_{\vec{S}}$ involves only closed predicates in $\vec{S}$. We now define
 \begin{multline*}
-F_{-1}(\A) = \vert \{ \langle\vec{P}\rangle :\A \models 
-\exists \vec{x} \left( \varphi_1(\vec{x},\vec{P}) \wedge \psi_1(\vec{x}) \right) \vee
-\exists \vec{x} \left( \varphi_2(\vec{x},\vec{P}) \wedge \left( (\forall \vec{x'} \neg \varphi'_1(\vec{x'})) \rightarrow \psi_2(\vec{x}) \right)\right) \vee \\
-... \vee
-\exists \vec{x} \left( \varphi_k(\vec{x},\vec{P}) \wedge \left( (\forall \vec{x'} (\neg \varphi'_1(\vec{x'}) \wedge \neg \varphi'_2(\vec{x'}) \wedge ... \wedge \neg \varphi'_{k-1}(\vec{x'})) ) \rightarrow \psi_k(\vec{x}) \right)\right)
- \} \vert
+\alpha_{\min}^i(\vec{x_1}',...,\vec{x_n}') = \\ \exists\vec{y}\left( \alpha(\vec{x_1}',...,\vec{x_n}',\vec{y})\wedge \forall\vec{x_1}''...\vec{x_n}''\vec{y}'(\alpha(\vec{x_1}'',...,\vec{x_n}'',\vec{y}')\rightarrow (\vec{x_1}',...,\vec{x_n}') \leq (\vec{x_1}'',...,\vec{x_n}'')\right)
 \end{multline}
-eliminates exactly one predicate of $F(\A)$.
+Where $\alpha(\vec{x}) = \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})$. Our new formula would be
+\begin{multline*}
+\varphi_i(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})\wedge\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\left(\bigvee_{P\in\overline{P}}\bigvee_{P_i = P}\neg P(\vec{x_i}') \vee \bigvee_{P\in\overline{P}} \exists \vec{x}''\left(P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\right)\right)
+\end{multline}
+and $\vec{x_1}',...,\vec{x_n}'$ are added to the existential quantifier. This will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$.
+
+If $\alpha^i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next one, and so on. Therefore:
+
 \end{enumerate}
 \item The counting set is:
 $$
