@@ -94,33 +94,51 @@ F(\A) = \vert \{ \langle\vec{P}\rangle :\A \models
 \exists \vec{x} \varphi_k(\vec{x},\vec{P})
  \} \vert
 $$
-We can also suppose that all of this formulas are satisfied by a single total order for $\vec{x}$. Therefore
+We can also suppose that all of this formulas are satisfied by a single total order for $\vec{x}$. We can manually eliminate unsatisfiable sub-formulas such as
 $$
-\varphi_i(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})
+\exists x,y(P(x,y) \wedge \neg P(x,x) \wedge x = y)
 $$
-where $P_i$ and $\overline{P}$ are subsequences of $\vec{P}$, $\vec{x_i}$ and $\vec{y}$ are subsequences of $\vec{x}$, $\theta$ defines a total order for $\vec{x}$, and $\varphi_{\vec{S}}$ involves only closed predicates in $\vec{S}$. We now define
+Therefore,
+$$
+\varphi_1(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_j(\vec{x_j}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})
+$$
+where $P_i$ and $\overline{P}$ are subsequences of $\vec{P}$, $P_i$ is of arity $a_i$ and $\vec{x_i}$ is an $a_i$-tuple of variables in $\vec{x}$, $\vec{y}$ is also a subsequence of $\vec{x}$, $\theta(\vec{x})$ defines a total order for $\vec{x}$, and $\varphi_{\vec{S}}(\vec{x})$ involves only closed predicates. Without unsatisfiable formulas, we can assure that if there is an assignation $\vec{x}$ that satisfies $\alpha(\vec{x}) = \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})$, there is at least one possible assignation to $\vec{P}$. We now define
 \begin{multline*}
 \alpha_{\min}^i(\vec{x_1}',...,\vec{x_n}') = \\ \exists\vec{y}\left( \alpha(\vec{x_1}',...,\vec{x_n}',\vec{y})\wedge \forall\vec{x_1}''...\vec{x_n}''\vec{y}'(\alpha(\vec{x_1}'',...,\vec{x_n}'',\vec{y}')\rightarrow (\vec{x_1}',...,\vec{x_n}') \leq (\vec{x_1}'',...,\vec{x_n}'')\right)
 \end{multline}
-Where $\alpha(\vec{x}) = \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})$. Our new formula would be
+Note that $\alpha_{\min}^i$ is satisfied only by the lexicographically smallest assignation $\vec{x}^*$ to $\vec{x}$ that satisfies both $\theta(\vec{x})$ and $\varphi_{\vec{S}}(\vec{x})$. Our new formula is
 \begin{multline*}
-\varphi_i(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})\wedge\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
-\left(\bigvee_{P\in\overline{P}}\bigvee_{P_i = P}\neg P(\vec{x_i}') \vee \bigvee_{P\in\overline{P}} \exists \vec{x}''\left(P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\right)\right)
+\varphi_1'(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x})\wedge\exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\bigg(\bigvee_{P\in\vec{P}}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\vec{P}} \exists \vec{x}''\Big( P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
 \end{multline}
-and $\vec{x_1}',...,\vec{x_n}'$ are added to the existential quantifier. This will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$.
+where $\vec{x_i}'$ is a an $a_i$-tuple of variables in $\vec{x}$. If there is an assignation to satisfy $\alpha^j(\vec{x})$, this formula will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. Let $\vec{P}^*$ be the excluded assignation to $\vec{P}$. Suppose there is another assignation $\vec{P}^*'$ to $\vec{P}$ that is also excluded by the new sub-formula. Then, $\vec{x}^*$ is such that every tuple $\vec{x}_i^*$ is in $\vec{P}_i^*'$ and $\vec{x}^*$ includes every tuple in $\vec{P}^*'$. If that's the case, $\vec{P}^*'$ contains exactly the same tuples as $\vec{P}^*$, and are thus the same. Now we need to exclude that assignation to the next disjuncts, which we do by adding the same sub-formula. We also need to include the case where there are no possible assignations to $\vec{x}$ for the first disjunct, so we add this sub-formula:
+\begin{multline*}
+\forall\vec{x}\left(\neg\alpha^1_{\min}(\vec{x})\right) \to \exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\bigg(\bigvee_{P\in\vec{P}}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\vec{P}} \exists \vec{x}''\Big( P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
+\end{multline}
+The full disjunct is as follows:
+\begin{multline*}
+\varphi_j'(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x}) \wedge \Bigg(\Big(\forall\vec{x}\left(\neg\alpha^1_{\min}(\vec{x})\right)\wedge ... \wedge \forall\vec{x}\left(\neg\alpha^{j-1}_{\min}(\vec{x})\right)\Big) \to \\ 
+\exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha^j_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge
+\bigg(\bigvee_{P\in\vec{P}}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\vec{P}} \exists \vec{x}''\Big( P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\Big) \bigg) \Bigg) \Bigg)
+\end{multline}
+which, if all of the previous disjuncts have no possible assignations, eliminates the least assignation to $\vec{P}$ in that disjunct. Finally, the counting set
+$$
+F'(\A) = \vert \{ \langle\vec{P}\rangle :\A \models 
+\exists \vec{x} \varphi'_1(\vec{x},\vec{P}) \vee
+\exists \vec{x} \varphi'_2(\vec{x},\vec{P}) \vee
+... \vee
+\exists \vec{x} \varphi'_k(\vec{x},\vec{P})
+ \} \vert
+$$
+counts exactly one assignation to $\vec{P}$ less than $F(\A)$.
 
-If $\alpha^i(\vec{x})$ is unsatisfiable, we eliminate one predicate on the next $\varphi_i$. If this sub-formula is also unsatisfiable, we move to the next one, and so on. Therefore:
-
-\end{enumerate}
 \item The counting set is:
 $$
 F(\A) = \vert \{ \langle\vec{P},\vec{z}\rangle :\A \models \exists \vec{x} \ \varphi(\vec{x}, \vec{P},\vec{z}) \} \vert
 $$
-Then, we going to isolate the minimal predicate $\vec{P}$ that holds the formula true and eliminate the lexicographically smallest $\vec{z}$ that satisfies it. We mix both previous strategies. For each DNF disjunct $\varphi_i(\vec{x}, \vec{z})$ we add:
-$$
-\psi_i(\vec{x}, \vec{z}) = \exists x' (x' \neq x \wedge Q(x')) \vee \exists x' (\varphi'_i(x') \wedge \varphi_{\lneq}(x',x)) \vee \exists z'(\varphi_i(\vec{x}, \vec{z}) \wedge \varphi_{\lneq}(z',z))
-$$
-and proceed analogously.
+Then, we going to isolate the minimal predicate $\vec{P}$ that holds the formula true and eliminate the lexicographically smallest $\vec{z}$ that satisfies it. We mix both previous strategies.
+\end{enumerate}
 \end{proof}
 
 \end{document}
