@@ -113,13 +113,13 @@ Note that $\alpha_{\min}^i$ is satisfied only by the lexicographically smallest 
 \end{multline}
 where $\vec{x_i}'$ is a an $a_i$-tuple of variables in $\vec{x}$. If there is an assignation to satisfy $\alpha^j(\vec{x})$, this formula will be satisfied by exactly one predicate less than $\exists \vec{x} \varphi_1(\vec{x},\vec{P})$. Let $\vec{P}^*$ be the excluded assignation to $\vec{P}$. Suppose there is another assignation $\vec{P}^*'$ to $\vec{P}$ that is also excluded by the new sub-formula. Then, $\vec{x}^*$ is such that every tuple $\vec{x}_i^*$ is in $\vec{P}_i^*'$ and $\vec{x}^*$ includes every tuple in $\vec{P}^*'$. If that's the case, $\vec{P}^*'$ contains exactly the same tuples as $\vec{P}^*$, and are thus the same. Now we need to exclude that assignation to the next disjuncts, which we do by adding the same sub-formula. We also need to include the case where there are no possible assignations to $\vec{x}$ for the first disjunct, so we add this sub-formula:
 \begin{multline*}
-\forall\vec{x}\left(\neg\alpha^1_{\min}(\vec{x})\right) \to \exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\forall\vec{x}\left(\neg\alpha^1_{\min}(\vec{x})\right) \to \exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
 \bigg(\bigvee_{P\in\vec{P}}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\vec{P}} \exists \vec{x}''\Big( P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
 \end{multline}
 The full disjunct is as follows:
 \begin{multline*}
 \varphi_j'(\vec{x},\vec{P}) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\vec{x}) \wedge \varphi_{\vec{S}}(\vec{x}) \wedge \Bigg(\Big(\forall\vec{x}\left(\neg\alpha^1_{\min}(\vec{x})\right)\wedge ... \wedge \forall\vec{x}\left(\neg\alpha^{j-1}_{\min}(\vec{x})\right)\Big) \to \\ 
-\exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha^j_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge
+\exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^j_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge
 \bigg(\bigvee_{P\in\vec{P}}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\vec{P}} \exists \vec{x}''\Big( P(\vec{x}'') \bigwedge_{P_i = P} \vec{x}'' \neq \vec{x_i}'\Big) \bigg) \Bigg) \Bigg)
 \end{multline}
 which, if all of the previous disjuncts have no possible assignations, eliminates the least assignation to $\vec{P}$ in that disjunct. Finally, the counting set
