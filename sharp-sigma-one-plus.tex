@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm} 
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+
+\def\A{{\frak A}}
+\def\C{{\cal C}}
+\def\L{{\cal L}}
+\def\Q{{\cal Q}}
+\def\F{{\cal F}}
+\def\P{\vec{P}}
+\def\S{\vec{S}}
+\def\x{\vec{x}}
+\def\z{\vec{z}}
+
+\newtheorem{theo}{Theorem}
+\newtheorem{lemma}[theo]{Lemma}
+\newtheorem{claim}[theo]{Claim}
+\newtheorem{coro}[theo]{Corollary}
+
+\begin{document}
+
+
+\begin{center}
+{ \LARGE \bf
+  Some properties of $\#\Sigma_1^{+}$
+}
+\end{center}
+
+We define the vocabulary $\L = \langle \P, \S, \leq \rangle$, where $\P$ is a $r$-tuple of predicates of arity $a_1,a_2,...,a_r$, and $\S$ is a $t$-tuple of predicates of arity $b_1,b_2,...,b_t$. A counting problem $\Q$ in $\#\Sigma_1$ is defined by a quantifier free $\L$-formula $\varphi(\x,\P,\z)$ where its function $\F_\Q(\A)$ is
+\begin{eqnarray*}
+\F_\Q(\A) &=& \mid \{ \langle \P, \z \rangle \mid \A \models \exists \x \: \varphi(\x,\P,\z) \} \mid
+\end{eqnarray*}
+for every $\L$-structure $\A = \langle A, \S^\A, \leq^\A \rangle$, where $\x = (x_1,x_2,...,x_c)$, $\z = (z_1,z_2,...,z_d)$, and $\leq^\A$ is a total order for $A$. We refer to predicates in $\P$ and variables in $\z$ as "open", and predicates in $\S$ and variables in $\x$ as "closed". The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which includes the possibility of adding arbitrarily quantified $\L$-sub-formulas $\psi(\x,\z)$ which may contain closed predicates but no open ones.
+
+Some properties of the $\#\Sigma_1^{+}$ class are:
+
+\begin{theo}
+The decision version of a counting problem in $\#\Sigma_1^{+}$ is in \text{P}.
+\end{theo}
+\begin{proof}
+Let $F$ be a function in $\#\Sigma_1^{+}$. Then there is a formula $\varphi$ such that
+\begin{eqnarray*}
+F(\A) &=& \mid \{ \langle\P,\z\rangle \mid \A \models \exists \x \varphi(\S,\x,\z) \} \mid,
+\end{eqnarray*}
+where $\A$ is a finite ordered structure and $\z$ is an $m$-tuple. For each $\z \in A^m$, every arbitrarily quantified sub-formula which does not include $\P$ can be evaluated in polynomial time. Let $\varphi'$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula by a contradiction. Note that $\varphi'$ is quantifier-free.
+
+Then, we compute a similar counting function,
+\begin{eqnarray*}
+F'(\A) &=& \mid \{ \langle\P,(\z,\x)\rangle \mid \A \models \varphi(\S,\x,\z) \} \mid
+\end{eqnarray*}
+which is in $\#\Sigma_0$. Note that for every $\A$, $F(\A) > 0$ iff $F'(\A) > 0$, so computing $F'$ is enough to solve the decision version of $F$. However, Saluja and Subrahmanyam showed that any counting problem in $\#\Sigma_0$ is computable in polynomial time \footnote[1]{(paper)}, therefore, the decision version of $F$ is in P.
+\end{proof}
+
+\begin{theo}
+$\#\Sigma_1$ is closed under substraction $\Rightarrow$ P = NP.
+\end{theo}
+\begin{proof}
+\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously (Theorem 1), it's also in P. Then, co-NP $\subseteq$ P.
+\end{proof}
+
+\begin{theo}
+$\#\Sigma_1 \subsetneq \#\Sigma_1^{+}$
+\end{theo}
+\begin{proof}
+We will show that the $\#\Sigma_1^{+}$ function defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall x_2 S(x_2)$ is not in $\#\Sigma_1$.
+\end{proof}
+
+%% F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 
+%% F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 
+
+\begin{theo}
+$\#\Sigma_1^+$ is closed under substraction\footnote[1]{A counting class $\C$ is closed under substraction if given a counting problem $\Q \in \C$ there exists $\Q' \in \C$ where $$
+\F_{\Q'}(\A) =
+\begin{cases}
+\F_\Q(\A)-1, & \text{if }\F_{\Q}(\A) > 0 \\
+0, & \text{if }\F_{\Q}(\A) = 0 
+\end{cases}
+$$ }.
+\end{theo}
+\begin{proof}
+The counting set has three possible ways of counting. Counting only variables, only predicates, and predicates with variables. This separates the proof in three cases:
+\begin{enumerate}
+
+% CASE 1
+
+\item Let $\Q \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\z)$. Its function would be
+\begin{eqnarray*}
+\F_\Q(\A) &=& \mid \{ \langle\z\rangle \mid \A \models \exists \x \ \varphi(\x,\z) \} \mid.
+\end{eqnarray*}
+Our goal here is to eliminate the lexicographically smallest sequence of variables, which we can do easily. Let $\F_{\Q'}$ be
+\begin{eqnarray*}
+\F_{\Q'}(\A) &=& \mid \{ \langle\z\rangle \mid \A \models \exists \x\left( \varphi(\x,\z) \wedge \exists \vec{z'} (\varphi(\x,\vec{z'}) \wedge \varphi_<(\vec{z'},\z ) ) \right) \} \mid,
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+\varphi_<(\vec{z'},\z) &=& \bigvee_{i = 1}^d \left( \bigwedge_{j=1}^{i-1} z_j = z_j' \wedge z_i < z_i' \right).
+\end{eqnarray*}
+This formula is true if $\vec{z'}$ is lexicographically smaller than $\z$. Thus, $\F_{\Q'}(\A)$ will count exactly one element less than $\F_\Q(\A)$ if $\F_\Q(\A)>0$.
+
+%CASE 2
+
+\item Let $\Q \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\P)$. Then
+\begin{eqnarray*}
+\F_\Q(\A) &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid.
+\end{eqnarray*}
+Suppose that
+\begin{eqnarray*}
+\varphi(\x,\P) &=& \bigwedge_{i=1}^n P_j(\vec{x_j}) \wedge \varphi_{\P}^{-}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x)
+\end{eqnarray*}
+where $P_1,P_2,...,P_n$ is a subsequence of $\P$, $P_i$ is of arity $a_i'$ and $\vec{x_i}$ is an $a_i'$-tuple of variables in $\x$ for all $i \in \{1,...,n\}$, $\theta(\x)$ defines a total order for $\x$, and $\varphi_{\S}(\x)$ involves only closed predicates. We can assume $(\vec{x_1},\vec{x_2},...,\vec{x_n},\vec{y}) = \x$ by adding equivalences to $\theta(\x)$. For example, if the function is defined by
+\begin{eqnarray*}
+\exists x,y \left( P(x,y) \wedge \neg P(x,x) \wedge x < y \wedge \forall z\big( S(x,z) \big) \right),
+\end{eqnarray*}
+we can use
+\begin{eqnarray*}
+\exists x_1,x_2,x_3,x_4 \left( P(x_1,x_2) \wedge \neg P(x_3,x_4) \wedge (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 ) \wedge \forall z\big( S(x_1,z) \big) \right).
+\end{eqnarray*}
+Similarly, we would like to eliminate the lexicographically smallest predicate $P$ that satisfies the formula. We now define
+\begin{multline*}
+\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') = \\ \exists\vec{y}\left( \alpha(\vec{x_1}',...,\vec{x_n}',\vec{y})\wedge \forall\vec{x_1}''...\vec{x_n}''\vec{y}'(\alpha(\vec{x_1}'',...,\vec{x_n}'',\vec{y}')\rightarrow \varphi_<((\vec{x_1}',...,\vec{x_n}'),(\vec{x_1}'',...,\vec{x_n}''))\right),
+\end{multline*}
+where $\alpha(\x) = \theta(\x) \wedge \varphi_{\S}(\x)$. Note that $\alpha_{\min}^i$ is satisfied only by the lexicographically smallest assignation $\x^*$ to $\x$ that satisfies both $\theta(\x)$ and $\varphi_{\S}(\x)$. Our new formula is
+
+\begin{multline*}
+\varphi'(\x,\P) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x)\wedge\exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\ \bigg(\bigvee_{i = 1}^{n}\neg P_i(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \wedge \bigwedge_{P_i = P} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
+\end{multline*}
+
+where $\vec{x_i}'$ is a an $a_i$-tuple of variables in $\x$. If there is an assignation to satisfy $\alpha^j(\x)$, this formula will be satisfied by exactly one predicate less than $\exists \x \varphi_1(\x,\P)$. Let $\P^*$ be the excluded assignation to $\P$. Suppose there is another assignation $\P^*'$ to $\P$ that is also excluded by the new sub-formula. Then, $\x^*$ is such that every tuple $\x_i^*$ is in $\P_i^*'$ and $\x^*$ includes every tuple in $\P^*'$. If that's the case, $\P^*'$ contains exactly the same tuples as $\P^*$, and are thus the same.
+
+To use this result for the general case, let
+\begin{eqnarray*}
+\F_\Q(\A) &=& \mid \{ \langle\P\rangle :\A \models 
+\exists \x \varphi_1(\x,\P) \vee
+\exists \x \varphi_2(\x,\P) \vee
+... \vee
+\exists \x \varphi_k(\x,\P)
+ \} \mid
+\end{eqnarray*}
+where $\varphi(\x,\P) \equiv \varphi_1(\x,\P) \vee \varphi_2(\x,\P) \vee ...  \vee \varphi_k(\x,\P) $.
+
+
+Now we need to exclude that assignation to the next disjuncts, which we do by adding the same sub-formula. We also need to include the case where there are no possible assignations to $\x$ for the first disjunct, so we add the sub-formula
+\begin{multline*}
+\forall\x\left(\neg\alpha^1_{\min}(\x)\right) \to \exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\bigg(\bigvee_{P\in\P}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \bigwedge_{P_i = P} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
+\end{multline*}
+The full disjunct is as follows,
+\begin{multline*}
+\varphi_j'(\x,\P) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x) \wedge \Bigg(\Big(\forall\x\left(\neg\alpha^1_{\min}(\x)\right)\wedge ... \wedge \forall\x\left(\neg\alpha^{j-1}_{\min}(\x)\right)\Big) \to \\ 
+\exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^j_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge
+\bigg(\bigvee_{P\in\P}\bigvee_{\substack{i\in\{1,...,n\}\\P_i = P}}\neg P(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \bigwedge_{P_i = P} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg) \Bigg)
+\end{multline*}
+which, if all of the previous disjuncts have no possible assignations, eliminates the least assignation to $\P$ in that disjunct. Finally, the counting set
+\begin{eqnarray*}
+\F_{\Q'}(\A) &=& \mid \{ \langle\P\rangle \mid \A \models 
+\exists \x \varphi'_1(\x,\P) \vee
+\exists \x \varphi'_2(\x,\P) \vee
+... \vee
+\exists \x \varphi'_k(\x,\P)
+ \} \mid
+\end{eqnarray*}
+counts exactly one assignation to $\P$ less than $F(\A)$.
+
+Therefore,
+
+% CASE 3
+
+\item The counting set is:
+\begin{eqnarray*}
+F(\A) &=& \mid \{ \langle\P,\z\rangle \mid \A \models \exists \x \ \varphi(\x, \P,\z) \} \mid
+\end{eqnarray*}
+Then, we going to isolate the minimal predicate $\P$ that holds the formula true and eliminate the lexicographically smallest $\z$ that satisfies it. We mix both previous strategies.
+\end{enumerate}
+\end{proof}
+
+\end{document}
