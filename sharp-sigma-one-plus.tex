@@ -35,7 +35,7 @@ We define the vocabulary $\L = \langle \P, \S, \leq \rangle$, where $\P$ is a $r
 \begin{eqnarray*}
 \F_\Q(\A) &=& \mid \{ \langle \P, \z \rangle \mid \A \models \exists \x \: \varphi(\x,\P,\z) \} \mid
 \end{eqnarray*}
-for every $\L$-structure $\A = \langle A, \S^\A, \leq^\A \rangle$, where $\x = (x_1,x_2,...,x_c)$, $\z = (z_1,z_2,...,z_d)$, and $\leq^\A$ is a total order for $A$. We refer to predicates in $\P$ and variables in $\z$ as "open", and predicates in $\S$ and variables in $\x$ as "closed". The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which includes the possibility of adding arbitrarily quantified $\L$-sub-formulas $\psi(\x,\z)$ which may contain closed predicates but no open ones.
+for every $\L$-structure $\A = \langle A, \S^\A, \leq^\A \rangle$, where $\x = (x_1,x_2,...,x_c)$, $\z = (z_1,z_2,...,z_d)$, and $\leq^\A$ is a total order for $A$. We refer to predicates in $\P$ and variables in $\z$ aa ``open", and predicates in $\S$ and variables in $\x$ as "closed". The $\#\Sigma_1^{+}$ class is defined as an extension of $\#\Sigma_1$ which includes the possibility of adding arbitrarily quantified $\L$-sub-formulas $\psi(\x,\z)$ which may contain closed predicates but no open ones.
 
 Some properties of the $\#\Sigma_1^{+}$ class are:
 
@@ -127,10 +127,10 @@ Similarly, we would like to eliminate the lexicographically smallest predicate $
 where $\alpha(\x) = \theta(\x) \wedge \varphi_{\S}(\x)$. Note that $\alpha_{\min}^i$ is satisfied only by the lexicographically smallest assignation $\x^*$ to $\x$ that satisfies both $\theta(\x)$ and $\varphi_{\S}(\x)$. Our new formula is
 
 \begin{multline*}
-\varphi'(\x,\P) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x)\wedge\exists\vec{x_1}',...,\vec{x_n}'º\Bigg(\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\ \bigg(\bigvee_{i = 1}^{n}\neg P_i(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \wedge \bigwedge_{P_i = P} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
+\varphi'(\x,\P) = \bigwedge_{i=1}^n P_i(\vec{x_i}) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x)\wedge\exists\vec{x_1}',...,\vec{x_n}' \Bigg(\alpha_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\ \bigg(\bigvee_{i = 1}^{n}\neg P_i(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \wedge \bigwedge_{P_i = P} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
 \end{multline*}
 
-where $\vec{x_i}'$ is a an $a_i$-tuple of variables in $\x$. If there is an assignation to satisfy $\alpha^j(\x)$, this formula will be satisfied by exactly one predicate less than $\exists \x \varphi_1(\x,\P)$. Let $\P^*$ be the excluded assignation to $\P$. Suppose there is another assignation $\P^*'$ to $\P$ that is also excluded by the new sub-formula. Then, $\x^*$ is such that every tuple $\x_i^*$ is in $\P_i^*'$ and $\x^*$ includes every tuple in $\P^*'$. If that's the case, $\P^*'$ contains exactly the same tuples as $\P^*$, and are thus the same.
+where $\vec{x_i}'$ is a an $a_i$-tuple of variables in $\x$. If there is an assignation to satisfy $\alpha^j(\x)$, this formula will be satisfied by exactly one predicate less than $\exists \x \varphi_1(\x,\P)$. Let $\P^*$ be the excluded assignation to $\P$. Suppose there is another assignation $\P^{*'}$ to $\P$ that is also excluded by the new sub-formula. Then, $\x^*$ is such that every tuple $\x_i^*$ is in $\P_i^{*'}$ and $\x^*$ includes every tuple in $\P^{*'}$. If that's the case, $\P^{*'}$ contains exactly the same tuples as $\P^*$, and are thus the same.
 
 To use this result for the general case, let
 \begin{eqnarray*}
