@@ -9,11 +9,17 @@
 
 \def\A{{\frak A}}
 \def\C{{\cal C}}
-\def\L{{\cal L}}
 \def\F{{\cal F}}
+\def\L{{\cal L}}
+\def\N{\mathbb{N}}
 \def\P{\vec{P}}
 \def\Q{\vec{Q}}
 \def\S{\vec{S}}
+\def\X{\vec{X}}
+\def\Y{\vec{Y}}
+\def\Z{\vec{Z}}
+\def\d{\vec{d}}
+\def\e{\vec{e}}
 \def\s{\vec{s}}
 \def\u{\vec{u}}
 \def\v{\vec{v}}
@@ -36,51 +42,49 @@
 }
 \end{center}
 
-We define the vocabulary $\L = \{ P_1, ..., P_r, S_1,...,S_t, \leq \}$, where $P_1, ..., P_r$ have arity $a_1,...,a_r$, and $S_1,...,S_t$ have arity $b_1,...,b_t$. Let $\L\prime = \{ S_1,...,S_t, \leq \}$, and let
+We define the vocabulary $\L = \{ S_1,...,S_t, \leq \}$, where $S_1,...,S_t$ have arity $b_1,...,b_t$. Let
 \begin{eqnarray*}
-\textsc{Struct}[\L] &=& \{\A \mid \A \text{ is an } \L\prime \text{-structure with a finite domain } A \text{ such that} \\
+\textsc{Struct}[\L] &=& \{\A \mid \A \text{ is an } \L \text{-structure with a finite domain } A \text{ such that} \\
 && \leq \text{ is interpreted as a total order for } A \}.
 \end{eqnarray*}
-A quantifier-free $\L$-formula is defined by the following grammar:
+We also define a set of second order variables ${\cal X} = \{ X_i \mid i\in\N \}$ where $X_i$ has arity $a_i$. A quantifier-free $\L$-formula is defined by the following grammar:
 \begin{eqnarray*}
-\varphi &::=& x = y \mid S_i(x_1,...,x_{b_i}), i \in \{1,...,t\} \mid x \leq y \mid \\
-&& P_i(x_1,...,x_{a_i}), i \in \{1,...,r\} \mid \\ 
-&& (\neg \varphi) \mid (\varphi \wedge \varphi) \mid (\varphi \vee \varphi),
+\varphi &::=& x = y \ \mid \ S_i(x_1,...,x_{b_i}), i \in \{1,...,t\} \ \mid \ x \leq y \ \mid \\
+&& X_i(x_1,...,x_{a_i}), i\in\N \ \mid \\ 
+&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi),
 \end{eqnarray*}
-where $x, y$ are variables. We now define a quantifier-free$^{+}$ $\L$-formula as such:
+where $y$ and $x_i$ are first order variables for every $i$. We now define an extended quantifier-free $\L$-formula as such:
 \begin{eqnarray*}
-\varphi &::=& \alpha, \alpha \text{ is a FO-formula over } \L\prime  \mid \\
-&& P_i(x_1,...,x_{a_i}), i \in \{1,...,r\} \mid \\
-&& (\neg \varphi) \mid (\varphi \wedge \varphi) \mid (\varphi \vee \varphi).
+\varphi &::=& \alpha, \alpha \text{ is an FO-formula over } \L^\prime  \ \mid \\
+&& X_i(x_1,...,x_{a_i}), i\in\N \ \mid \ \\
+&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
 \end{eqnarray*}
-Let $\P = (P_1, ..., P_r)$ and $\S = (S_1,...,S_t)$. A function $\F:\textsc{Struct[\L]} \to \mathbb{N}$ is in $\#\Sigma_1^+$ if there exists a quantifier-free$^{+}$ $\L$-formula $\varphi(\x,\P,\z)$ such that
+Let $\X = (X_1,...,X_r)$ and $\P = (P_1,...,P_r)$, where $P_i$ is a predicate of arity $a_i$, for every $i$. Let $\z$ be a tuple of variables and $\e$ be a tuple of constants with the same dimension as $\z$. A function $f:\textsc{Struct}[\L] \to \mathbb{N}$ is in $\#\Sigma_1^+$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\X,\z)$ such that
 \begin{eqnarray*}
-\F &=& \mid \{ \langle \P, \z \rangle \mid \A \models \exists \x \: \varphi(\x,\P,\z) \} \mid
+f(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \exists \x \: \varphi(\x,\P,\e) \} \mid,
 \end{eqnarray*}
-for every $\A \in \textsc{Struct[\L]}$. We refer to predicates in $\P$ and variables in $\z$ as ``open", and predicates in $\S$ and variables in $\x$ as ``closed".
+for every $\A \in \textsc{Struct}[\L]$.
 
 \begin{theo}
 The decision version of a function in $\#\Sigma_1^{+}$ is in \text{P}.
 \end{theo}
 \begin{proof}
-Let $F$ be a function in $\#\Sigma_1^{+}$. Then there is a formula $\varphi$ such that
+Let $f$ be a function in $\#\Sigma_1^{+}$. Then there is a formula $\varphi(\x,\X,\z)$ such that
 \begin{eqnarray*}
-F(\A) &=& \mid \{ \langle\P,\z\rangle \mid \A \models \exists \x \varphi(\S,\x,\z) \} \mid,
+f(\A) &=& \mid \{ \langle\P,\z\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\z) \} \mid,
 \end{eqnarray*}
-where $\A$ is a finite ordered structure and $\z$ is an $m$-tuple. For each $\z \in A^m$, every arbitrarily quantified sub-formula which does not include $\P$ can be evaluated in polynomial time. Let $\varphi'$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula by a contradiction. Note that $\varphi'$ is quantifier-free.
-
-Then, we compute a similar function,
+where $\A \in \textsc{Struct}[\L]$ and $\z$ is an $m$-tuple. For each $\z \in A^m$, every arbitrarily quantified first order sub-formula can be evaluated in polynomial time. Let $\varphi^\prime(\x,\P,\z)$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula by a contradiction. Note that $\varphi^\prime(\x,\P,\z)$ is quantifier-free. Then, we compute a similar function,
 \begin{eqnarray*}
-F'(\A) &=& \mid \{ \langle\P,(\z,\x)\rangle \mid \A \models \varphi(\S,\x,\z) \} \mid
+f'(\A) &=& \mid \{ \langle\P,(\z,\x)\rangle \mid \A \models \varphi(\x,\P,\z) \} \mid
 \end{eqnarray*}
-which is in $\#\Sigma_0$. Note that for every $\A$, $F(\A) > 0$ iff $F'(\A) > 0$, so computing $F'$ is enough to solve the decision version of $F$. However, Saluja and Subrahmanyam showed that any counting problem in $\#\Sigma_0$ is computable in polynomial time \footnote[1]{(paper)}, therefore, the decision version of $F$ is in P.
+which is in $\#\Sigma_0$\footnote[1]{(paper)}. Note that for every $\A$, $f(\A) > 0$ iff $f'(\A) > 0$, so computing $f'$ is enough to solve the decision version of $f$. However, it is showed in $^{[1]}$ that any counting problem in $\#\Sigma_0$ is computable in polynomial time, therefore, the decision version of $f$ is in P.
 \end{proof}
 
 \begin{theo}
 $\#\Sigma_1$ is closed under substraction $\Rightarrow$ P = NP.
 \end{theo}
 \begin{proof}
-\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously (Theorem 1), it's also in P. Then, co-NP $\subseteq$ P.
+\#3DNF $\in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment in a \#3DNF instance. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously (Theorem 1), it is also in P. Then, co-NP $\subseteq$ P.
 \end{proof}
 
 \begin{theo}
@@ -92,16 +96,17 @@ We will show that the $\#\Sigma_1^{+}$ function defined by $\varphi(x_1) = (x_1 
 
 %% F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 
 %% F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 F-1 
-A counting class $\C$ is {\em closed under substraction by one} if for every function $\F \in \C$ there exists $\F' \in \C$ where 
+
+A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$ there exists $f' \in \F$ such that 
 \begin{eqnarray*}
-\F'(\A) =
+f'(\A) =
 \begin{cases}
-\F(\A)-1, & \text{if }\F(\A) > 0 \\
-0, & \text{if }\F(\A) = 0.
+f(\A)-1, & \text{if }f(\A) > 0 \\
+0, & \text{if }f(\A) = 0.
 \end{cases}
 \end{eqnarray*}
 \begin{theo}
-$\#\Sigma_1^+$ is closed under substraction by one
+$\#\Sigma_1^+$ is closed under substraction by one.
 \end{theo}
 \begin{proof}
 A function in $\#\Sigma_1^+$ has three possible ways of counting. Counting only variables, only predicates, and predicates with variables. This separates the proof in three cases:
@@ -109,76 +114,81 @@ A function in $\#\Sigma_1^+$ has three possible ways of counting. Counting only 
 
 % CASE 1
 
-\item Let $\F \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,...,z_d)$.:
+\item Let $f \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,...,z_d)$. That is,
 \begin{eqnarray*}
-\F(\A) &=& \mid \{ \langle\z\rangle \mid \A \models \exists \x \ \varphi(\x,\z) \} \mid.
+f(\A) &=& \mid \{ \langle\e\rangle \mid \A \models \exists \x \ \varphi(\x,\e) \} \mid,
 \end{eqnarray*}
-Our goal here is to eliminate the lexicographically smallest sequence of variables, which we can do easily. First, let $\y = (y_1,...,y_k)$, $\y\prime = (y_1\prime,...,y_k\prime)$ and
+for every $A \in \textsc{Struct}[\L]$. Our goal here is to eliminate the lexicographically smallest sequence of variables, which we can do easily. First, let $\y = (y_1,...,y_k)$, $\y\,^\prime = (y_1^\prime,...,y_k^\prime)$ and
 \begin{eqnarray*}
-\varphi_{k,<}(\y\prime,\y) &=& \bigvee_{i = 1}^k \left( \bigwedge_{j=1}^{i-1} y_j = y_j\prime \wedge y_i < y_i\prime \right).
+\varphi_{k,<}(\y\,^\prime,\y) &=& \bigvee_{i = 1}^k \left( \bigwedge_{j=1}^{i-1} y_j = y_j^\prime \wedge y_i < y_i^\prime \right).
 \end{eqnarray*}
-This formula is true if $\y\prime$ is lexicographically smaller than $\y$. Now, let $\F'$ be
+This formula is true if $\y\,^\prime$ is lexicographically smaller than $\y$. Now, let $f'$ be defined by
 \begin{eqnarray*}
-\F'(\A) &=& \mid \{ \langle\z\rangle \mid \A \models \exists \x\left( \varphi(\x,\z) \wedge \exists \z\prime (\varphi(\x,\z\prime) \wedge \varphi_{d,<}(\z\prime,\z ) ) \right) \} \mid.
+\varphi^\prime(\x,\z) &=& \varphi(\x,\z) \wedge \exists \z\,^\prime (\varphi(\x,\z\,^\prime) \wedge \varphi_{d,<}(\z\,^\prime,\z ) ).
 \end{eqnarray*}
-Thus, if $\F>0$, $\F'(\A)$ will count exactly one element less than $\F(\A)$, and if $\F(\A)=0$, $\A \not\models\varphi(\x,\z)$ so $\F'(\A)=0$.
+Therefore, if $f(\A)>0$, $f'(\A)$ will count exactly one element less than $f(\A)$; and if $f(\A)=0$, $\A \not\models\exists x\,\varphi(\x,\e)$ for every tuple $\e$ of elements in $A$, so $\A \not\models\exists x\,\varphi^\prime(\x,\e)$ for every $\e$. Thus, $f'(\A)=0$.
 
 %CASE 2
 
-\item Let $\F \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\P)$ where $\x = (x_1,...,x_d)$. Then
+\item Let $f \in \#\Sigma_1^+$, which is defined by an $\L$-formula $\varphi(\x,\X)$ where $\x = (x_1,...,x_d)$ and $\X = (X_1,...,X_r)$. Then
 \begin{eqnarray*}
-\F &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid.
+f &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid,
 \end{eqnarray*}
-For the time being, suppose that
+for every $\A \in \textsc{Struct}[\L]$. For the time being, suppose that
 \begin{eqnarray*}
-\varphi(\x,\P) &=& \bigwedge_{i=1}^n Q_j(\x_j) \wedge \varphi_{\P}^{-}(\y) \wedge \theta(\x) \wedge \varphi_{\S}(\x)
+\varphi(\x,\X) &=& \left( \bigwedge_{i=1}^n Y_i(\x_i) \right) \wedge \varphi_{\X}^{-}(\y) \wedge \theta(\x) \wedge \beta(\x)
 \end{eqnarray*}
-where $Q_i$ is in $\P$, $Q_i$ is of arity $c_i$ and $\x_i$ is an $c_i$-tuple of variables in $\x$ for all $i \in \{1,...,n\}$, $\y$ is a $k$-tuple of variables in $\x$, $\varphi_{\P}^{-}(\y)$ is a conjunction of negated predicates in $\P$, $\theta(\x)$ defines a total order on a partition of $\x$, and $\varphi_{\S}(\x)$ involves only closed predicates. We also assume that $(\x_1,...,\x_n,\y) = \x$. For example,
+where $Y_i$ is in $\X$, $Y_i$ is of arity $c_i$ and $\x_i$ is an $c_i$-tuple of variables in $\x$ for all $i \in \{1,...,n\}$, $\y$ is a $d$-tuple of variables in $\x$, $\varphi_{\X}^{-}(\y)$ is a conjunction of negated predicates in $\P$, $\theta(\x)$ defines a total order on a partition of $\x$, and $\beta(\x)$ is an FO-formula over $\L$. We also assume that $(\x_1,...,\x_n,\y) = \x$. As an example, we will show that the following formula is of this form:
 \begin{eqnarray*}
-\exists x_1\exists x_2\exists x_3\exists x_4 \left( P(x_1,x_2) \wedge \neg P(x_3,x_4) \wedge (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 ) \wedge \forall z\big( S(x_1,z) \big) \right).
+\varphi^{*}(\x,\X) &=& \left( X_1(x_1,x_2) \wedge \neg X_1(x_3,x_4) \wedge (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 ) \wedge \forall z\big( S_1(x_1,z) \big) \right),
 \end{eqnarray*}
-Similarly, we would like to eliminate the lexicographically smallest predicate $P$ that satisfies the formula. We now define
-\begin{multline*}
-\alpha_{\min}(\u_1,...,\u_n) = \\ \exists\y\left( \alpha(\u_1,...,\u_n,\y)\wedge \forall\v_1...\v_n\y\prime(\alpha(\v_1,...,\v_n,\y\prime)\rightarrow \varphi_{n,<}((\u_1,...,\u_n),(\v_1,...,\v_n))\right),
-\end{multline*}
-where $\alpha(\x) = \theta(\x) \wedge \varphi_{\S}(\x)$. Note that $\alpha_{\min}$ is satisfied only by the lexicographically smallest assignment $\sigma$ to $(\x_1,...,\x_n)$ such that $\theta(\sigma(\x_1),...,\sigma(\x_n),\y)$ and $\varphi_{\S}(\sigma(\x_1),...,\sigma(\x_n),\y)$ are true for some $\y$. Our new formula is
+where $\x = (x_1,x_2,x_3,x_4)$ and $\X = (X_1)$. Here, $n = 1$, $Y_1 = X_1$, $\x_1 = (x_1,x_2)$ and $\y = (x_3,x_4)$. $\varphi_{\X}^{-}(\y) = \neg X_1(x_3,x_4)$, $\theta^*(\x) = (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4)$ which defines a total order on the partition $\{\{x_1,x_3,x_4\},\{x_2\}\}$, and $\beta^*(\x) = \forall z\big( S_1(x_1,z) \big)$.
 
+Similarly to the previous proof, we would like to eliminate the lexicographically smallest tuple of predicates that satisfies the formula. Let $\u_i$ be a $c_i$-tuple of variables for every $i \in \{1,...,n\}$, and let $m = \sum_{i = i}^n c_i$ be the number of variables of $(\x_1,...,\x_n)$. We now define
 \begin{multline*}
-\varphi\prime(\x,\P) = \bigwedge_{i=1}^n Q_i(\x_i) \wedge \varphi^{-}_{\overline{P}}(\y) \wedge \theta(\x) \wedge \varphi_{\S}(\x)\wedge\exists\u_1,...,\u_n\Bigg(\alpha_{\min}(\u_1,...,\u_n) \wedge \\ \bigg(\bigvee_{i = 1}^{n}\neg P_i(\u_i) \vee \bigvee_{P\in\P} \exists \v\Big( P(\v) \wedge \bigwedge_{\substack{i\in\{1,...,n\} \\ P_i = P}} \v \neq \u_i\Big) \bigg) \Bigg)
+\alpha_{\min}(\u_1,...,\u_n) = \\ \exists\y\left( \alpha(\u_1,...,\u_n,\y)\wedge \forall\v_1...\v_n\w(\alpha(\v_1,...,\v_n,\w)\rightarrow \varphi_{m,<}((\u_1,...,\u_n),(\v_1,...,\v_n))\right),
 \end{multline*}
+where $\alpha(\x) = \theta(\x) \wedge \beta(\x)$. Note that $\alpha_{\min}$ is satisfied only by the lexicographically \linebreak smallest assignment $\d$ to $(x_1,...,x_n)$ such that $\exists\y\,(\theta(d_1,...,d_n,\y)\wedge\beta(d_1,...,d_n,\y))$ is true. Our new formula is
+\begin{multline*}
+\varphi^\prime(\x,\X) = \left( \bigwedge_{i=1}^n Y_i(\x_i) \right) \wedge \varphi_{\X}^{-}(\y) \wedge \theta(\x) \wedge \beta(\x)\wedge\exists\u_1,...,\u_n\bigg[\alpha_{\min}(\u_1,...,\u_n) \wedge \\ \bigg(\bigvee_{i = 1}^{n}\neg Y_i(\u_i) \vee \bigvee_{Y\in\X} \exists \v\Big( Y(\v) \wedge \bigwedge_{i\in[1,n]: Y_i = Y} \v \neq \u_i\Big) \bigg) \bigg].
+\end{multline*}
+We will show that if there is an assignment to satisfy $\exists\x\,\varphi(\x,\X)$, this formula will be satisfied by exactly one predicate less than $\exists\x\,\varphi(\x,\X)$. Suppose $\d$ is the lexicographically smallest assignment which satisfies $\alpha(\x)$. Let $\d_i$ be the respective assignment to $x_i$, for every $i\in\{1,...,n\}$. Consider now the tuple $\P = (P_i,...,P_r)$ where $P_i = \{d_j \mid j\in\{1,...,n\} \text{ and } X_i = Y_j \}$. We will now show that this tuple of predicates is such that $\exists\x\,\varphi(\x,\P)$ is true. Suppose that it's not, that is, there is no assignation to $\x$ such that $\varphi(\x,\P)$ is true. Since $\d$ satisfies $\left( \bigwedge_{i=1}^n Y_i(\x_i) \right)$ and $\theta(\x) \wedge \beta(\x)$, then $\varphi_{\X}^{-}(\d)$ must be false. Therefore, there is a negated predicate $Y$ in $\varphi_{\X}^{-}(\x)$ such that its respective variables in $\y$ are equal to an $x_i$ where $Y_i = Y$. Then, since $\theta(\x)$ defines a partition of $\x$, these variables are equal, and thus, $\exists\x\,\varphi(\x,\X)$ is unsatisfiable ($\rightarrow\leftarrow$). $\P$ is excluded by the new formula since every $d_i$ is in its respective predicate, which does not satisfy the first part of the new formula, and does not have any tuples that are not in $\d$. $\P$ is also the only tuple excluded by the new formula since any other tuple that satisfies it would have at least the same tuples as $\P$, and would not have any more, and thus would be equal to $\P$. Therefore, if $\exists\x\,\varphi(\x,\X)$ is satisfiable, $\exists\x\,\varphi^\prime(\x,\X)$ is satisfied by exactly one predicate less. Naturally, if $\varphi(\x,\X)$ is unsatisfiable for every assignment to $\x$ and $\X$, $\varphi^\prime(\x,\X)$ also is.
 
-where $\u_i$ is a an $a_i$-tuple of variables in $\x$. We will show that if there is an assignation to satisfy $\alpha(\x)$, this formula will be satisfied by exactly one predicate less than $\exists \x \: \varphi(\x,\P)$. Suppose $\sigma$ is such an assignation. Let $\pi$ be the excluded assignation to $\P$. Suppose there is another assignation $\pi\prime$ to $\P$ that is also excluded by the new sub-formula. Then, $\sigma(\x)$ is such that every tuple $\s_i = \sigma(x_i)$ is in $\pi\prime(\P)$ and $\sigma(x)$ includes every tuple in $\pi\prime(\P)$. If that is the case, $\pi\prime(\P)$ contains exactly the same tuples as $\pi(\P)$, and are thus the same. Naturally, if $\varphi(\x,\P)$ is unsatisfiable for every assignation to $\x$ and $\P$, $\varphi\prime(\x,\P)$ also is.
+%% Let $\P$ and $\P^\prime$ be tuples of predicates such that $\exists\x\,\varphi(\x,\P)$ and $\exists\x\,\varphi(\x,\P^\prime)$ are true but $\exists\x\,\varphi^\prime(\x,\P)$ and $\exists\x\,\varphi^\prime(\x,\P^\prime)$ are not. Let $Q_i$ and $Q_i^\prime$ be the assignment of $\P$ and $\P^\prime$ to $Y_i$, respectively, for every $i\in\{i,...n\}$. Then, every tuple $\d_i$ is in its respective relation $Q_i$ in both $\P$ and $\P^\prime$ and $(d_1,...,d_n)$ includes every tuple in $P^\prime$. If that is the case, $\P^\prime$ contains exactly the same tuples as $\P$, and are thus the same.
+
+
+
 
 To use this result for the general case, let
 \begin{eqnarray*}
-\F(\A) &=& \mid \{ \langle\P\rangle \mid \A \models 
+f(\A) &=& \mid \{ \langle\P\rangle \mid \A \models 
 \exists \x \varphi_1(\x,\P) \vee
 \exists \x \varphi_2(\x,\P) \vee
 ... \vee
 \exists \x \varphi_k(\x,\P)
  \} \mid
 \end{eqnarray*}
-where $\varphi(\x,\P) \equiv \varphi_1(\x,\P) \vee \varphi_2(\x,\P) \vee ...  \vee \varphi_k(\x,\P) $. Now we need to exclude that assignation to the next disjuncts, which we do by adding the same sub-formula. We also need to include the case where there are no possible assignations to $\x$ for the first disjunct, so we add the sub-formula
+where $\varphi(\x,\P) \equiv \varphi_1(\x,\P) \vee \varphi_2(\x,\P) \vee ...  \vee \varphi_k(\x,\P) $. This is possible if we consider all first order formulas as literals, and find an equivalent DNF formula. Now we need to exclude that assignment to the next disjuncts, which we do by adding the same sub-formula. We also need to include the case where there are no possible assignments to $\x$ for the first disjunct, so we add this sub-formula to $\varphi^2(\x,\X)$:
 \begin{multline*}
-\forall\x\left(\neg\alpha^1_{\min}(\x)\right) \to \exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
-\bigg(\bigvee_{i = 1}^{n}\neg P(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \bigwedge_{\substack{i\in\{1,...,n\} \\ P_i = P}} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg)
+\exists\x\left(\varphi^1(\x,\X)\right) \vee \exists\vec{x_1}',...,\vec{x_n}'\Bigg(\alpha^2_{\min}(\vec{x_1}',...,\vec{x_n}') \wedge \\
+\bigg(\bigvee_{i = 1}^{n}\neg Y^2_i(\vec{x_i}') \vee \bigvee_{P\in\P} \exists \x''\Big( P(\x'') \bigwedge_{\substack{i\in\{1,...,n\} \\ P_i = P}} \x'' \neq \vec{x_i}'\Big) \bigg) \Bigg).
 \end{multline*}
 The full disjunct is as follows,
 \begin{multline*}
-\varphi_j\prime(\x,\P) = \bigwedge_{i=1}^n P_i(\x_i) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x) \wedge \Bigg(\Big(\forall\x\left(\neg\alpha^1_{\min}(\x)\right)\wedge ... \wedge \forall\x\left(\neg\alpha^{j-1}_{\min}(\x)\right)\Big) \to \\ 
+\varphi_j^\prime(\x,\X) = \bigwedge_{i=1}^n Y_i(\x_i) \wedge \varphi_{\overline{P}}(\vec{y}) \wedge \theta(\x) \wedge \varphi_{\S}(\x) \wedge \Bigg(\Big(\forall\x\left(\neg\alpha^1_{\min}(\x)\right)\wedge ... \wedge \forall\x\left(\neg\alpha^{j-1}_{\min}(\x)\right)\Big) \to \\ 
 \exists\u_1,...,\u_n\Bigg(\alpha^j_{\min}(\u_1,...,\u_n) \wedge
 \bigg(\bigvee_{i = 1}^n\neg P(\u_i) \vee \bigvee_{P\in\P} \exists \v\Big( P(\v) \bigwedge_{\substack{i\in\{1,...,n\} \\ P_i = P}} \v \neq \u_i\Big) \bigg) \Bigg) \Bigg)
 \end{multline*}
-which, if all of the previous disjuncts have no possible assignations, eliminates the least assignation to $\P$ in that disjunct. Finally,
+which, if all of the previous disjuncts have no possible assignments, eliminates the least assignment to $\P$ in that disjunct. Finally,
 \begin{eqnarray*}
-\F\prime(\A) &=& \mid \{ \langle\P\rangle \mid \A \models 
-\exists \x \varphi\prime_1(\x,\P) \vee
-\exists \x \varphi\prime_2(\x,\P) \vee
+f^\prime(\A) &=& \mid \{ \langle\P\rangle \mid \A \models 
+\exists \x \varphi^\prime_1(\x,\P) \vee
+\exists \x \varphi^\prime_2(\x,\P) \vee
 ... \vee
-\exists \x \varphi\prime_k(\x,\P)
+\exists \x \varphi^\prime_k(\x,\P)
  \} \mid
 \end{eqnarray*}
-counts exactly one assignation to $\P$ less than $F(\A)$.
+counts exactly one assignment to $\P$ less than $F(\A)$.
 
 Therefore,
 
