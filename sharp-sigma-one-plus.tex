@@ -268,11 +268,16 @@ Second, assume that there is no assignment $\R$ to $\X$ such that $\A\models\exi
 
 % CASE 3
 
-\item The counting set is:
+\item Let $f \in \E1$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X,\z)$, where $\x = (x_1,\dots,x_d), \X = (X_1,\dots,X_r)$ and $\z = (z_1,\dots,z_d)$. That is,
 \begin{eqnarray*}
-F(\A) &=& \mid \{ \langle\P,\z\rangle \mid \A \models \exists \x \ \varphi(\x, \P,\z) \} \mid
+f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \ \varphi(\x,\P,\e) \} \mid,
 \end{eqnarray*}
-Then, we going to isolate the minimal predicate $\P$ that holds the formula true and eliminate the lexicographically smallest $\z$ that satisfies it. We mix both previous strategies.
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_r)$, $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$ and $\e \in A^d$. We define the formulas $\varphi_i(\x,\X,\z)$ for $i\in\{1,\ldots,k\}$ in the same way as case 2:
+\begin{eqnarray*}
+\varphi_i(\x,\X,\z) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j},\z_{i,j}) \right) \wedge \varphi^{-}_i(\X,\y_i,\v_i) \wedge \theta_i(\x,\z) \wedge \beta_i(\x,\z),
+\end{eqnarray*}
+where $n_i$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda:\{1,\ldots,n\}\to\{1,\ldots,r\}$, the tuple $\x_{i,j}$ has $b_{\lambda_i(j)}$ variables and the tuple $\z_{i,j}$ has $c_{\lambda_i(j)}$ for $j\in\{1,\ldots,n_i\}$ (note that $b_i + c_i = a_i$ for $i\in\{1,\ldots,r\}$), $\y_i$ has $p_i$ variables, $v_i$ has $q_i$ variables and are such that $(\x_{i,1},\ldots,\x_{i,n_i},\y) = \x$ and $(\z_{i,1},\ldots,\z_{i,n_i},\v) = \z.$ The formula $\theta(\x,\z)$ defines a total order, analogously to case 2. The formulas $\varphi^{-}_i(\X,\y_i,\v_i)$, $\beta_i(\x,\z)$, are also defined analogously.
+  
 \end{enumerate}
 \end{proof}
 
