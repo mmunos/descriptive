@@ -1,0 +1,23 @@
+Let $f \in \E1$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X)$ where $\x = (x_1,\dots,x_d)$ and $\X = (X_1,\dots,X_r)$. That is,
+\begin{eqnarray*}
+f(\A) &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid \label{f1},
+\end{eqnarray*}
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_r)$ and $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$. For the time being, suppose that
+\begin{eqnarray}
+\varphi(\x,\X) &=& \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)
+\end{eqnarray}
+where $n$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda:\{1,\ldots,n\}\to\{1,\ldots,r\}$, $\y$ is a $p$-tuple of variables in $\x$, $\varphi^{-}(\X,\y)$ is a conjunction of negated predicates in $\X$, $\theta(\x)$ defines a total order on a partition of $\x$, and $\beta(\x)$ is an FO-formula over $\L$ which mentions all variables in $\x$. Note that $\theta(\x)$ also mentions all variables in $\x$. We also assume that $(\x_1,\dots,\x_n,\y) = \x$. As an example, the following formula is of this form:
+\begin{multline*}
+\varphi(\x,\X) =  X_1(x_1,x_2) \wedge X_3(x_3) \wedge X_2(x_4,x_5) \wedge X_3(x_6) \wedge \neg X_1(x_7,x_8) \wedge \\ (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 ) \wedge \\ \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big),
+\end{multline*}
+where $\x = (x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8)$ and $\X = (X_1,X_2,X_3)$. Here, $n = 4$, $\lambda(1) = 1$, $\lambda(2) = \lambda(4) = 3$ and $\lambda(3) = 2$, $\x_1 = (x_1,x_2)$, $\x_2 = (x_3)$, $\x_3 = (x_4,x_5)$, $\x_4 = (x_6)$ and $\y = (x_7,x_8)$. Moreover, $\varphi^{-}(\X,\y) = \neg X_1(x_7,x_8)$, $\theta(\x) = (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 )$, which defines a total order on the partition of $\x$ $\{\{x_1,x_3,x_4\},\{x_2,x_5,x_8\},\{x_6,x_7\}\}$, and $\beta(\x) = \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big)$.
+
+Similarly to the previous proof, we would like to eliminate the {\em lexicographically smallest}\footnote{We consider the lexicographically smallest tuple of predicates as the one in which its predicates contain the lexicographically smallest tuples and do not contain any more tuples than those} tuple of predicates that satisfies the formula \eqref{f1}. Let $\u_i$ be a $a_{\lambda(i)}$-tuple of variables for every $i \in \{1,\dots,n\}$, and let $m = \sum_{i = 1}^n a_{\lambda(i)}$ be the number of variables of $(\x_1,\dots,\x_n)$. We now define
+\begin{multline*}
+\alpha_{\min}(\u_1,\dots,\u_n) = \exists\y\Big[ \alpha(\u_1,\dots,\u_n,\y)\wedge \\ \forall\v_1\cdots\forall\v_n\forall\w\Big(\big(\alpha(\v_1,\dots,\v_n,\w)\wedge\bigvee_{i=1}^n(\u_i\neq\v_i)\big)\to \varphi_{m,<}((\u_1,\dots,\u_n),(\v_1,\dots,\v_n))\Big)\Big],
+\end{multline*}
+where $\alpha(\x) = \theta(\x) \wedge \beta(\x)$. Note that $\alpha_{\min}$ is satisfied only by the lexicographically \linebreak smallest assignment $(\d_1,\dots,\d_n)$ to $(\x_1,\dots,\x_n)$ such that $\A\models\theta(\d_1,\dots,\d_n,\l)$ and $\A\models\beta(\d_1,\dots,\d_n,\l)$ for some $\l \in A^p$. Our new formula is
+\begin{multline}
+\varphi^\prime(\x,\X) = \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)\wedge \\ \exists\u_1\cdots\exists\u_n\bigg[\alpha_{\min}(\u_1,\dots,\u_n) \wedge \bigg(\bigg(\bigvee_{i = 1}^{n}\neg X_{\lambda(i)}(\u_i) \bigg) \vee \bigvee_{i=1}^r \exists \v\Big( X_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \u_j\Big) \bigg) \bigg] \label{f2}.
+\end{multline}
+We now show a result by which the main proof will follow.

@@ -1,0 +1,6 @@
+\begin{theo}
+$\#\Sigma_1 \subsetneq \E1$
+\end{theo}
+\begin{proof}
+We will show that the $\E1$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Since $\#\Sigma_1$ is monotonic under addition of elements, $f(\B) \geq 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
+\end{proof}

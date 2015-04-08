@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm} 
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
+  \mathsurround=0pt$-$}}}
+
+\def\E1{\#\Sigma_1^{+}}
+
+\def\Truc{\textsc{Struct}[\L]}
+
+\def\A{{\frak A}}
+\def\B{{\frak B}}
+\def\C{{\cal C}}
+\def\F{{\cal F}}
+\def\L{{\cal L}}
+\def\N{\mathbb{N}}
+\def\P{\vec{P}}
+\def\Q{\vec{Q}}
+\def\R{\vec{R}}
+\def\S{\vec{S}}
+\def\X{\vec{X}}
+\def\Y{\vec{Y}}
+\def\Z{\vec{Z}}
+%% a - arity of \X / arity of assignments \P to \X
+%% b - arity of predicates in \S
+%% c - arity of auxiliar predicates/variables
+\def\c{\vec{c}} %% super auxiliar elements
+\def\d{\vec{d}} %% counted elements
+\def\e{\vec{e}} %% counted elements
+%% f - counting function
+%% g - other functions
+%% h - other functions
+%% i - index
+%% j - index
+%% k - emergency index / size of tuple
+%% l - emergency index / size of tuple
+\def\l{\vec{\ell}}
+%% m - size of variable tuple
+%% n - size of predicate tuple
+%% o - not used
+%% p - 
+%% q - 
+%% r - size of \X / \P
+\def\s{\vec{s}}
+%% t - size of \S
+\def\t{\vec{t}}
+\def\u{\vec{u}} %% auxiliary variables
+\def\v{\vec{v}} %% auxiliary variables
+\def\w{\vec{w}} %% auxiliary variables
+\def\x{\vec{x}} %% quantified variables
+\def\y{\vec{y}} %% auxiliary variables
+\def\z{\vec{z}} %% open variables
+\def\ep{\vec{o}}
+\def\ga{\vec{p}}
+
+\newtheorem{theo}{Theorem}
+\newtheorem{lemma}{Lemma}[theo]
+\newtheorem{claim}{Claim}[theo]
+\newtheorem{coro}{Corollary}[theo]
+
+\begin{document}
+
+
+\begin{center}
+{ \LARGE \bf
+  Some properties of $\E1$
+}
+\end{center}
+
+We define the vocabulary $\L = \{ S_1,\dots,S_t, \leq \}$, where $S_1,\dots,S_t$ have arity $b_1,\dots,b_t$. Let
+\begin{eqnarray*}
+\Truc &=& \{\A \mid \A \text{ is an } \L \text{-structure with a finite domain } A \text{ such that} \\
+&& \leq \text{ is interpreted as a total order for } A \}.
+\end{eqnarray*}
+We also define a set of second order variables ${\cal X} = \{ X_i \mid i\in\N \}$ where $X_i$ has arity $a_i$, and for every $n \in \N$ there are infinite variables in ${\cal X}$ of arity $n$. A quantifier-free $\L$-formula is defined by the following grammar:
+\begin{eqnarray*}
+\varphi &::=& x = y \ \mid \ S_i(x_1,\dots,x_{b_i}), i \in \{1,\dots,t\} \ \mid \ x \leq y \ \mid \\
+&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \\ 
+&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi),
+\end{eqnarray*}
+where $x,y$ and $x_i$ are first order variables for every $i$. We now define an extended quantifier-free $\L$-formula as follows:
+\begin{eqnarray*}
+\varphi &::=& \alpha, \alpha \text{ is an FO-formula over } \L  \ \mid \\
+&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
+&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
+\end{eqnarray*}
+Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\ldots,c_q$, and let $\y$ be a tuple of first order variables. For every $\L$-formula $\psi(\Y,\y)$, we define the function $f_{\psi(\Y,\y)}:\Truc \to \N$ as follows:
+\begin{eqnarray*}
+f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
+\end{eqnarray*}
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, and $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements in $\A$.
+
+Let $\Y = (Y_1,\dots,Y_r)$, and let $\y$ be a tuple of variables. A function $f:\Truc \to \N$ is in $\E1$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
+
+The {\em decision version} of a function $f$ is defined by the language $L_f = \{\A \mid f(\A) > 0\}$.
+
+\input{th1}
+
+\input{th2}
+
+\input{th3}
+
+For a given function $f$, we define $f \dotminus 1$ as follows:
+\begin{eqnarray*}
+f \dotminus 1(\A) = 
+\begin{cases}
+f(\A)-1, & \text{if }f(\A) > 0 \\
+0, & \text{if }f(\A) = 0.
+\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
+
+\input{th4}
+
+\end{document}

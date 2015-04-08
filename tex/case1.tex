@@ -1,0 +1,13 @@
+Let $f \in \E1$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,\dots,z_d)$. That is,
+\begin{eqnarray*}
+f(\A) &=& \mid \{ \langle\e\rangle \mid \A \models \exists \x \ \varphi(\x,\e) \} \mid,
+\end{eqnarray*}
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^d$. Our goal here is to eliminate the lexicographically smallest sequence of variables, which can be done easily. First, let $\y = (y_1,\dots,y_k)$, $\y\,^\prime = (y_1^\prime,\dots,y_k^\prime)$ and
+\begin{eqnarray*}
+\varphi_{k,<}(\y\,^\prime,\y) &=& \bigvee_{i = 1}^k \left( \bigwedge_{j=1}^{i-1} y_j^\prime = y_j \wedge y_i^\prime < y_i \right).
+\end{eqnarray*}
+This formula is true if $\y\,^\prime$ is lexicographically smaller than $\y$. Now, let $f'$ be defined by
+\begin{eqnarray*}
+\varphi^\prime(\x,\z) &=& \varphi(\x,\z) \wedge \exists \z\,^\prime (\varphi(\x,\z\,^\prime) \wedge \varphi_{d,<}(\z\,^\prime,\z ) ).
+\end{eqnarray*}
+If $f(\A)>0$, then $f'(\A)$ will count exactly one element less than $f(\A)$. Otherwise, if $f(\A)=0$, then $\A \not\models\exists \x\,\varphi(\x,\e)$ for every tuple $\e$ of elements in $A$, so $\A \not\models\exists \x\,\varphi^\prime(\x,\e)$ for every $\e$ and, therefore, $f'(\A)=0$. Hence, $f' = f\dotminus 1,$ from which we conclude that $f\dotminus 1\in\E1.$
