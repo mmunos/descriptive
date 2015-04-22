@@ -6,13 +6,13 @@ Let $f$ be a function in $\E1$. Then there is a formula $\varphi(\x,\X,\z)$ such
 \begin{eqnarray*}
 f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
 \end{eqnarray*}
-where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $\z$ is an $m$-tuple of variables, $\e$ is an $m$-tuple of elements and $\x$ is a $k$-tuple of variables. Let $n = \vert A \vert^m$ and $\e_1,\dots,\e_n \in A^m$ be all possible evaluations for $\z$. Let $\ell = \vert A \vert^k$ and $\d_1,\dots,\d_\ell\in A^k$ be all possible evaluations for $\x$. Let $\varphi_\A(\X)$ be defined as follows:
+where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. Let $n = \vert A \vert^m$ and $\e_1,\dots,\e_n \in A^m$ be all possible assignments for $\z$. Let $\ell = \vert A \vert^k$ and $\d_1,\dots,\d_\ell\in A^k$ be all possible assignations for $\x$. Note that $m$ and $k$ are fixed values, so both $\vert A \vert^k$ and $n=\vert A \vert^m$ are polynomial on the size of $\A$. Let $\varphi_\A(\X)$ be defined as follows:
 \begin{eqnarray*}
 \varphi_\A(\X) = \varphi(\d_1,\X,\e_1) \vee \cdots \vee \varphi(\d_1,\X,\e_n) \vee \varphi(\d_2,\X,\e_1) \vee \cdots \vee \varphi(\d_n,\X,\e_n).
 \end{eqnarray*}
-Note that $\varphi_\A(\X)$ will have at least one assignment $\P$ for $\X$ such that $\A\models\varphi_\A(\P)$ iff $f(\A)>0$. Let $\psi_\A(\X)$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula for a contradiction. Note as well that $\psi_\A(\X)$ is quantifier-free and its size is polynomial to the size of $\varphi(\x,\X,\z)$. Then, let $f'$ be defined as follows:
+Note that $\varphi_\A(\X)$ will have at least one assignment $\P$ for $\X$ such that $\A\models\varphi_\A(\P)$ iff $f(\A)>0$. Let $\psi_\A(\X)$ be the formula that results of changing every satisfied sub-formula for a tautology and every non-satisfied sub-formula for a contradiction. We can do this since checking $\A\models\varphi(\d_i,\X,\e_i)$ can be done in polynomial time for each $i\in\{1,\ldots,n\}$. Note as well that $\varphi_\A(\X)$ is quantifier-free and its size is polynomial to the size of $\varphi(\x,\X,\z)$. Then, let $f'$ be defined as follows:
 \begin{eqnarray*}
 f'(\A) &=& \mid \{ \langle\P\rangle \mid \A \models \psi_\A(\P) \} \mid.
 \end{eqnarray*}
-Clearly $f' \in\#\Sigma_0$. Also, note that for every $\A$, $f(\A) > 0$ iff $f'(\A) > 0$, so computing $f'$ is enough to solve the decision version of $f$. However, it is showed in $^{[1]}$ that any counting problem in $\#\Sigma_0$ is computable in polynomial time. Therefore, the decision version of $f$ is in P.
+Clearly $f' \in\#\Sigma_0$. Also, note that for every $\A$, $f(\A) > 0$ iff $f'(\A) > 0$, so computing $f'$ is enough to solve the decision version of $f$. However, it is showed in \ref{Hem} that any counting problem in $\#\Sigma_0$ is computable in polynomial time. Therefore, the decision version of $f$ is in {\sc P}.
 \end{proof}

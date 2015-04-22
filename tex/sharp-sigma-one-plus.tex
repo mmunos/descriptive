@@ -10,7 +10,7 @@
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
 
-\def\E1{\#\Sigma_1^{+}}
+\def\E1{\#\Sigma_1[\mbox{{\sc FO}}]}
 
 \def\Truc{\textsc{Struct}[\L]}
 
@@ -59,6 +59,8 @@
 \def\ep{\vec{o}}
 \def\ga{\vec{p}}
 
+\def\np{\mbox{{\sc NP}}}
+
 \newtheorem{theo}{Theorem}
 \newtheorem{lemma}{Lemma}[theo]
 \newtheorem{claim}{Claim}[theo]
@@ -96,9 +98,9 @@ f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\
 \end{eqnarray*}
 for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, and $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements in $\A$.
 
-Let $\Y = (Y_1,\dots,Y_r)$, and let $\y$ be a tuple of variables. A function $f:\Truc \to \N$ is in $\E1$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
+A function $f:\Truc \to \N$ is in $\E1$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
 
-The {\em decision version} of a function $f$ is defined by the language $L_f = \{\A \mid f(\A) > 0\}$.
+The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \Truc \mid f(\A) > 0\}$.
 
 \input{th1}
 
@@ -108,7 +110,7 @@ The {\em decision version} of a function $f$ is defined by the language $L_f = \
 
 For a given function $f$, we define $f \dotminus 1$ as follows:
 \begin{eqnarray*}
-f \dotminus 1(\A) = 
+f \dotminus 1(\A) =
 \begin{cases}
 f(\A)-1, & \text{if }f(\A) > 0 \\
 0, & \text{if }f(\A) = 0.

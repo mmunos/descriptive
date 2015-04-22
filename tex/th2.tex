@@ -1,6 +1,6 @@
 \begin{theo}
-$\#\Sigma_1$ is closed under substraction $\Rightarrow$ P = NP.
+If $\#\Sigma_1$ is closed under substraction, then {\sc P} = {\sc NP}.
 \end{theo}
 \begin{proof}
-Let $F_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula. As shown in [1], $F_{\#3DNF} \in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment (satisfying or not) to a 3DNF formula. Suppose that $F_{2^n}-F_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously in Theorem \ref{decisionptime}, it is also in P. Then, co-NP $\subseteq$ P.
+Let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment (satisfying or not) to a 3DNF formula. Suppose that $f_{2^n}-f_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously in Theorem \ref{decisionptime}, it is also in P. Then, co-NP $\subseteq$ P.
 \end{proof}
