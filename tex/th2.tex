@@ -2,5 +2,13 @@
 If $\#\Sigma_1$ is closed under substraction, then {\sc P} = {\sc NP}.
 \end{theo}
 \begin{proof}
-Let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $F_{2^n}$ be a $\#\Sigma_1$ function that counts every possible truth assignment (satisfying or not) to a 3DNF formula. Suppose that $f_{2^n}-f_{\#3DNF} \in \#\Sigma_1$. This function equals 0 only if the instanced formula is a tautology, so the decision version of it is co-NP-complete. However, as we showed previously in Theorem \ref{decisionptime}, it is also in P. Then, co-NP $\subseteq$ P.
+Suppose that $\#\Sigma_1$ is closed under substraction, that is, for each pair of functions $f,g\in\#\Sigma_1,$ there is an $h\in\#\Sigma_1$ such that $f(\A)-g(\A) = h(\A)$ for each $\A\in\Truc$.
+
+Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\psi$, where $S_i$ is a ternary relation such that $(a_1,a_2,a_3) \in S_i$ iff $(\neg a_1 \wedge \cdots \wedge\neg a_i \wedge a_{i+1} \wedge \cdots \wedge a_3)$ appears as a disjunct in $\psi$, for each $i\in\{1,\ldots,4\}$.
+
+Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula $\psi$. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+$$
+\varphi(x,X) = (X(x) = X(x)).
+$$
+Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\#\Sigma_1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ only if $\psi$ is a tautology, so the decision version of $f_{all}-f_{\#3DNF}$ is co-NP-complete. However, as we showed previously in Theorem \ref{decisionptime}, it is also in P. Then, co-NP $\subseteq$ P.
 \end{proof}
