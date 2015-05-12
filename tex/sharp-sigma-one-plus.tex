@@ -6,6 +6,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{natbib}
+\usepackage{subfiles}
 \usepackage{bm}
 
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
@@ -97,13 +98,23 @@ Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\l
 \begin{eqnarray*}
 f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
 \end{eqnarray*}
-for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, and $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements in $\A$.
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements from $\A$.
 
 A function $f:\Truc \to \N$ is in $\E1$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
 
 The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \Truc \mid f(\A) > 0\}$.
 
 \input{th1}
+
+For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
+\begin{eqnarray*}
+(f \dotminus g)(\A) =
+\begin{cases}
+f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
+0, & \text{if }f(\A) \leq g(\A).
+\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
 
 \input{th2}
 
