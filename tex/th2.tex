@@ -1,8 +1,8 @@
 \begin{theo}
-If $\#\Sigma_1$ is closed under substraction, then {\sc P} = {\sc NP}.
+If $\E1$ is closed under substraction, then {\sc P} = {\sc NP}.
 \end{theo}
 \begin{proof}
-Suppose that $\#\Sigma_1$ is closed under substraction, that is, for each pair of functions $f,g\in\#\Sigma_1,$ there is an $h\in\#\Sigma_1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
+Suppose that $\E1$ is closed under substraction, that is, for each pair of functions $f,g\in \E1$, there is an $h\in\E1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
 
 Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
 \begin{eqnarray*}
@@ -15,5 +15,5 @@ Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3
 $$
 \varphi(x,X) = (X(x) \vee \neg X(x)).
 $$
-Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\#\Sigma_1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
+Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
 \end{proof}
