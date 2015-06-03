@@ -1,0 +1,45 @@
+%!TEX root = sharp-sigma-one-plus.tex
+\begin{theo} \label{decisionptime}
+The decision problem associated to a function in $\E1$ is in \textsc{P}.
+\end{theo}
+\begin{proof}
+Let $f$ be a function in $\E1$. Then there is an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ such that
+\begin{eqnarray*}
+f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
+\end{eqnarray*}
+where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. Let $n = \vert A \vert^m$ and $\e_1,\dots,\e_n \in A^m$ be all possible assignments for $\z$. Let $\ell = \vert A \vert^k$ and $\d_1,\dots,\d_\ell\in A^k$ be all possible assignments for $\x$. Note that the values of $m$ and $k$ come from $\varphi(\x,\X,\z)$, so both $\ell = \vert A \vert^k$ and $n=\vert A \vert^m$ are polynomial in the size of $\A$. Slightly abusing notation, let $\varphi_\A(\X)$ be defined as follows:
+\begin{eqnarray*}
+\varphi_\A(\X) = \varphi(\d_1,\X,\e_1) \vee \cdots \vee \varphi(\d_1,\X,\e_n) \vee \varphi(\d_2,\X,\e_1) \vee \cdots \vee \varphi(\d_n,\X,\e_n).
+\end{eqnarray*}
+Note that $\varphi_\A(\X)$ will have at least one assignment $\P$ for $\X$ such that $\A\models\varphi_\A(\P)$ if and only if $f(\A)>0$. Let $\psi_\A(\X)$ be the following formula: For each FO-formula $\beta(\x,\z)$ in $\varphi(\x,\X,\z)$ we check if $\A \models \beta(\d_i,\e_j)$, for every $i\in\{1,\ldots,\ell\}$ and $j\in\{1,\ldots,m\}$. If it is true, then we replace $\beta(\d_i,\e_j)$ with a tautology, and otherwise, with a contradiction. Let us give an example on how this would be done: \\
+
+Let $\varphi(\x,\X,\z) = \exists x_1\exists x_2( X_1(x_2) \wedge ( X_2(z_1,x_1) \wedge \forall y( S_1(y,z_1) )  ))$. In this case, $\x = (x_1,x_2)$, $\X = (X_1,X_2)$ and $\z = (z_1)$. Let $\A = \langle A,S^\A,\leq^\A \rangle$, where $A = \{1,2\}$, $S^\A = \{(1,1),(1,2),(2,2)\}$, and $1 \leq^\A 2$. We generate all the possible assignments for $\x$ and $\z$. And our new formula is:
+\begin{multline*}
+\varphi_\A(\X) = (X_1(1) \wedge ( X_2(1,1) \wedge \forall y( S_1(y,1) )  ) \vee (X_1(1) \wedge ( X_2(2,1) \wedge \forall y( S_1(y,2) )  )\; \vee \\
+(X_1(2) \wedge ( X_2(1,1) \wedge \forall y( S_1(y,1) )  ) \vee (X_1(2) \wedge ( X_2(2,1) \wedge \forall y( S_1(y,2) )  )\; \vee \\
+(X_1(1) \wedge ( X_2(1,2) \wedge \forall y( S_1(y,1) )  ) \vee (X_1(1) \wedge ( X_2(2,2) \wedge \forall y( S_1(y,2) )  )\; \vee \\
+(X_1(2) \wedge ( X_2(1,2) \wedge \forall y( S_1(y,1) )  ) \vee (X_1(2) \wedge ( X_2(2,2) \wedge \forall y( S_1(y,2) )  ).
+\end{multline*}
+Now we replace the satisfied subformulas:
+\begin{multline*}
+\psi_\A(\X) = (X_1(1) \wedge X_2(1,1) \wedge \perp  ) \vee (X_1(1) \wedge  X_2(2,1) \wedge \top  ) \;\vee \\
+(X_1(2) \wedge  X_2(1,1) \wedge \perp  ) \vee (X_1(2) \wedge  X_2(2,1) \wedge \top  ) \;\vee \\
+(X_1(1) \wedge  X_2(1,2) \wedge \perp  ) \vee (X_1(1) \wedge  X_2(2,2) \wedge \top  ) \;\vee \\
+(X_1(2) \wedge  X_2(1,2) \wedge \perp  ) \vee (X_1(2) \wedge  X_2(2,2) \wedge \top  ),
+\end{multline*}
+which can be simplified even further:
+\begin{multline*}
+\psi_\A(\X) = (X_1(1) \wedge X_2(2,1)  ) \vee (X_1(2) \wedge  X_2(2,1) ) \;\vee \\ 
+(X_1(1) \wedge  X_2(2,2)  ) \vee (X_1(2) \wedge  X_2(2,2)  )
+\end{multline*}
+Note that we can do this since checking $\A\models\varphi(\d_i,\X,\e_j)$ can be done in polynomial time for each $i,j$, as $\varphi$ is assumed to be fixed. Note as well that $\psi_\A(\X)$ is quantifier-free and its size is also polynomial to the size of $\A$. However, this still is not a valid $\L-$formula since there are no constants in $\L$. Let $P_a$ be a unary predicate for every $a\in A$. Now let $\zeta_\A(\X,\u)$ be obtained from $\psi_\A(\X)$ by adding the conjunct $P_{a_1}(u_{a_1}) \wedge \cdots \wedge P_{a_{\vert A \vert}}(u_{a_{\vert A \vert}})$, where $u_a$ is a first order variable, and by replacing every constant $a\in A$ by $u_a$. In the example:
+\begin{multline*}
+\zeta_\A(\X,\u) = \big((X_1(u_1) \wedge X_2(u_2,u_1)  ) \vee (X_1(u_2) \wedge  X_2(u_2,u_1) )\; \vee \\ 
+(X_1(u_1) \wedge  X_2(u_2,u_2)  ) \vee (X_1(u_2) \wedge  X_2(u_2,u_2)  )\big) \wedge P_1(u_1) \wedge P_2(u_2),
+\end{multline*}
+where $\u = (u_1,u_2)$. Now, let $\L^\prime = \L \cup \{P_a\mid a\in A\}$ and $\A^\prime = \langle A,S^\A, \P^{\A^\prime}_{a_1},\ldots,\P^{\A^\prime}_{a_{\vert A \vert}}, \leq^\A \rangle$, where $\P^{\A^\prime}_a = \{a\}$ for each $a\in A$. Moreover, let $f^\prime$ be defined as follows:
+\begin{eqnarray*}
+f^\prime(\A^\prime) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \zeta_\A(\P,\e) \} \mid.
+\end{eqnarray*}
+Clearly $f^\prime \in\#\Sigma_0$. Also, note that for every $\A$, $f(\A) > 0$ if and only if $f^\prime(\A^\prime) > 0$, so computing $f^\prime$ with the instance $\A^\prime$ is enough to solve the decision version of $f$. Therefore, given that any counting problem in $\#\Sigma_0$ is computable in polynomial time\cite{DBLP:journals/jcss/SalujaST95}, we conclude that the decision version of $f$ is in {\sc P}.
+\end{proof}
