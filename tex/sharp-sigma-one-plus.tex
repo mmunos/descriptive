@@ -12,6 +12,7 @@
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
 
+\def\Eo{\#\Sigma_0[\mbox{{\sc FO}}]}
 \def\E1{\#\Sigma_1[\mbox{{\sc FO}}]}
 
 \def\Truc{\textsc{Struct}[\L]}
@@ -88,7 +89,7 @@ We also define a set of second order variables ${\cal X} = \{ X_i \mid i\in\N \}
 && X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \\ 
 && (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi),
 \end{eqnarray*}
-where $x,y$ and $x_i$ are first order variables for every $i$. We now define an extended quantifier-free $\L$-formula as follows:
+where $x,y$ and $x_i$ are first order variables for every $i$. We now define an {\sc FO}-extended quantifier-free $\L$-formula as follows:
 \begin{eqnarray*}
 \varphi &::=& \alpha, \alpha \text{ is an FO-formula over } \L  \ \mid \\
 && X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
@@ -98,13 +99,17 @@ Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\l
 \begin{eqnarray*}
 f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
 \end{eqnarray*}
-for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements from $\A$.
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements from $\A$.\\
 
-A function $f:\Truc \to \N$ is in $\E1$ if there exists an extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
+A function $f:\Truc \to \N$ is in $\Eo$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\Y,\y)$ such that $f = f_{\varphi(\Y,\y)}.$
+
+Similarly, a function $f:\Truc \to \N$ is in $\E1$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
+
+\input{th0}
 
 The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \Truc \mid f(\A) > 0\}$.
 
-\input{th1orig}
+\input{th1}
 
 For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
 \begin{eqnarray*}

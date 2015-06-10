@@ -1,0 +1,15 @@
+\begin{theo}
+$\Eo \subseteq$ {\sc FP}.
+\end{theo}
+\begin{proof}
+Let $f \in \Eo$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+\begin{eqnarray*}
+f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
+\end{eqnarray*}
+for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that counting $f(\A)$ can be done in polynomial time.
+
+For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \Truc$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
+
+Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. However, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
+
+\end{proof}

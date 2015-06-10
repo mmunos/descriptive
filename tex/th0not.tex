@@ -1,0 +1,18 @@
+\begin{theo}
+$\Eo \subseteq$ {\sc FP}.
+\end{theo}
+\begin{proof}
+Let $f \in \Eo$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+\begin{eqnarray*}
+f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
+\end{eqnarray*}
+for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\z$ is an $m$-tuple of variables and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. Each $P_i$ has arity $c_i$, for $i \in \{1,\ldots,k\}$. We will now show that counting $f(\A)$ can be done in polynomial time.
+
+Let $\psi_{\d}(\X) = \varphi(\X,\d)$ and $f_\A(\d) = \vert \{ \P \mid \A \models \psi_{\d}(\P) \} \vert$ for each $\d \in A^m$. Note that $f(\A) = \sum\limits_{\d\in A^m}f_\A(\d)$.
+
+Now, let $\theta_{\d}(\X)$ be the following formula: For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ we check if $\A \models \beta(\d)$. If it is true, then we replace $\beta(\d)$ in $\psi_{\d}(\X)$ with a tautology, and otherwise, with a contradiction. Since checking if $\A \models \beta(\d)$ can be done in polynomial time, generating $\theta_{\d}(\X)$ can also be done in polynomial time. Note that for each tuple of predicates $\P$, $\A\models\theta_{\d}(\P)$ if and only if $\A\models\psi_{\d}(\P)$, so $f_\A(\d) = \vert \{ \P \mid \A\models \theta_{\d}(\P) \} \vert$. Also note that $\theta_{\d}(\X)$ has no {\sc FO}-formulas and therefore, counting $\vert \{ \P \mid \A \models \theta_{\d}(\P) \} \vert$ is as hard as counting some function in $\#\Sigma_0$. We will give a more rigorous proof of this statement.
+
+Let $R_{\d}$ be a predicate of arity $m$, and let $\A^\prime = \langle A, \S^{\A}, R_{\d}^{\A^\prime}, \leq^{\A} \rangle \in \Truc$, where $R_{\d}^{\A^\prime} = \{\d\}$. Now let $\gamma_{\d}(\X,\x)$ be obtained by replacing each constant of $\d$ in $\theta_{\d}(\X)$ by its respective variable in $\x$. Let $\zeta(\X,\x) = R_{\d}(\x) \wedge \gamma_{\d}(\X,\x)$ and $g_{\d} = f_{\zeta(\X,\x)}$. Clearly, $g_{\d}(\A^\prime) = f_\A(\d)$. Note that $\zeta(\X,\x)$ is a quantifier-free formula and therefore, $g_{\d} \in \#\Sigma_0$. 
+
+In \cite{DBLP:journals/jcss/SalujaST95} it is shown that $\#\Sigma_0 \subseteq$ {\sc FP}, so counting $g_{\d}(\A^\prime)$ can be done in polynomial time. Therefore, counting $f(\A) = \sum\limits_{\d\in A^m}g_{\d}(\A^\prime)$ can also be done in polynomial time.
+\end{proof}
