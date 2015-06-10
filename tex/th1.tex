@@ -14,5 +14,5 @@ For each $\A \in \Truc$, $f(\A) > 0$ iff $g(\A) > 0$.
 \begin{proof}
 ($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
 \end{proof}
-Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, computing $g$ is enough to solve the decision version of $f$, but as we showed in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time, from which we conclude that the decision version of $f$ is in {\sc P}.
+Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, computing $g$ is enough to solve the decision version of $f$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time, from which we conclude that the decision version of $f$ is in {\sc P}.
 \end{proof}
