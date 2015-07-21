@@ -9,6 +9,14 @@
 \usepackage{subfiles}
 \usepackage{bm}
 
+\usepackage[textwidth=2cm,textsize=small]{todonotes}
+\newcommand{\cristian}[1]{\todo[color=blue!10]{{\bf Cristian:} #1}}
+\newcommand{\icristian}[1]{\todo[inline, color=blue!10]{{\bf Cristian:} #1}}
+\newcommand{\marcelo}[1]{\todo[color=red!10]{{\bf Marcelo:} #1}}
+\newcommand{\imarcelo}[1]{\todo[inline, color=red!10]{{\bf Marcelo:} #1}}
+\newcommand{\martin}[1]{\todo[color=green!10]{{\bf Martin:} #1}}
+\newcommand{\imartin}[1]{\todo[inline, color=green!10]{{\bf Martin:} #1}}
+
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
 
@@ -95,6 +103,7 @@ where $x,y$ and $x_i$ are first order variables for every $i$. We now define an 
 && X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
 && (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
 \end{eqnarray*}
+\icristian{Yo primero definiria la clase de ``$F$-extended quantifier-free $\L$-formula'' para una logica F sobre $\L$ y de ahi hablaria de quantifier free formula y FO-extended. Con esto tambien puedes definir altiro $\#\Sigma_1$, $\#\Sigma_0$ (que no estan definidas) y  $\#\Sigma_1[\mbox{{\sc FO}}]$. Esto tambien nos servira despues para otras logicas que queriamos extender.} 
 Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\ldots,c_q$, and let $\y$ be a tuple of first order variables. For every $\L$-formula $\psi(\Y,\y)$, we define the function $f_{\psi(\Y,\y)}:\Truc \to \N$ as follows:
 \begin{eqnarray*}
 f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
