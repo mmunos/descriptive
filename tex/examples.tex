@@ -3,12 +3,12 @@
 \subsection{{\sc \#3-DNF}}
 A function $f:\Truc \to \N$ is in $\Eone$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\Y,\y)$ such that $f = f_{\varphi(\Y,\y)}$. We will now show that {\sc \#3-DNF} $\in\Eone$.\\
 
-Let $\L = \{S_0,S_1,S_2,S_3,\leq\}$, and $\A = \langle A, S_0^\A, S_1^\A, S_2^\A, S_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-DNF} formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{0,1,2,3\}$:
+Let $\L = \{S_0,S_1,S_2,S_3,\leq\}$, and $\A = \langle A, S_0^\A, S_1^\A, S_2^\A, S_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{0,1,2,3\}$:
 \begin{eqnarray*}
-S_0^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-S_1^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\psi\}.
+S_0^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Psi\},\\
+S_1^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Psi\},\\
+S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Psi\},\\
+S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Psi\}.
 \end{eqnarray*}
 
 Now let $T$ be a unary second order variable, and
@@ -18,19 +18,19 @@ Now let $T$ be a unary second order variable, and
 &\exists x \exists y \exists z \,(S_2(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z))\,\vee \\
 &\exists x \exists y \exists z \,(S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z)).
 \end{align*}
-It is easily seen that each relation $T$ over $\A$ such that $\A\models\varphi(T)$ represents a valid assignment to the variables in $\psi$, and therefore, $f_{\varphi(T)}$ represents {\sc \#3-DNF}.
+It is easily seen that each relation $T$ over $\A$ such that $\A\models\varphi(T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\varphi(T)}$ represents {\sc \#3-DNF}.
 
 \subsection{{\sc \#3-HORN-SAT}}
 A function $f:\Truc \to \N$ is in $\Etwo$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\forall \x\,\varphi(\x,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#3-HORN-SAT} $\in\Etwo$.\\
 
-Let $\L = \{P_1,P_2,P_3,N_1,N_2,N_3,\leq\}$, and $\A = \langle A, P_1^\A,P_2^\A,P_3^\A,N_1^\A,N_2^\A,N_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-HORN-SAT} formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, and the relations in $\L$ are interpreted as follows:
+Let $\L = \{P_1,P_2,P_3,N_1,N_2,N_3,\leq\}$, and $\A = \langle A, P_1^\A,P_2^\A,P_3^\A,N_1^\A,N_2^\A,N_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-HORN-SAT} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, and the relations in $\L$ are interpreted as follows:
 \begin{eqnarray*}
-P_1^\A &=& \{a\mid a \mbox{ appears as a conjunct in }\psi\},\\
-P_2^\A &=& \{(a_1,a_2)\mid (a_1\vee \neg a_2) \mbox{ appears as a conjunct in }\psi\},\\
-P_3^\A &=& \{(a_1,a_2,a_3)\mid (a_1\vee \neg a_2\vee \neg a_3) \mbox{ appears as a conjunct in }\psi\},\\
-N_1^\A &=& \{a\mid (\neg a) \mbox{ appears as a conjunct in }\psi\},\\
-N_2^\A &=& \{(a_1,a_2)\mid (\neg a_1\vee \neg a_2) \mbox{ appears as a conjunct in }\psi\},\\
-N_3^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1\vee \neg a_2\vee \neg a_3) \mbox{ appears as a conjunct in }\psi\}.
+P_1^\A &=& \{a\mid a \mbox{ appears as a conjunct in }\Psi\},\\
+P_2^\A &=& \{(a_1,a_2)\mid (a_1\vee \neg a_2) \mbox{ appears as a conjunct in }\Psi\},\\
+P_3^\A &=& \{(a_1,a_2,a_3)\mid (a_1\vee \neg a_2\vee \neg a_3) \mbox{ appears as a conjunct in }\Psi\},\\
+N_1^\A &=& \{a\mid (\neg a) \mbox{ appears as a conjunct in }\Psi\},\\
+N_2^\A &=& \{(a_1,a_2)\mid (\neg a_1\vee \neg a_2) \mbox{ appears as a conjunct in }\Psi\},\\
+N_3^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1\vee \neg a_2\vee \neg a_3) \mbox{ appears as a conjunct in }\Psi\}.
 \end{eqnarray*}
 
 Now let $T$ be a unary second order variable, and
@@ -43,15 +43,15 @@ Now let $T$ be a unary second order variable, and
 &\forall x\forall y\forall z\, (\neg N_3(x,y,z) \vee \neg T(x) \vee \neg T(y) \vee \neg T(z))\,\wedge
 \end{align*}
 
-We can easily reorder $\varphi(T)$ as $\forall x \forall y \forall z\,\theta(x,y,z,T)$ where $\theta(x,y,z,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models\forall x \forall y \forall z\,\theta(x,y,z,T)$ represents a valid assignment to the variables in $\psi$, and therefore, $f_{\forall x \forall y \forall z\,\theta(x,y,z,T)}$ represents {\sc \#3-HORN-SAT}.
+We can easily reorder $\varphi(T)$ as $\forall x \forall y \forall z\,\theta(x,y,z,T)$ where $\theta(x,y,z,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models\forall x \forall y \forall z\,\theta(x,y,z,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\forall x \forall y \forall z\,\theta(x,y,z,T)}$ represents {\sc \#3-HORN-SAT}.
 
 \subsection{{\sc \#DNF}}
 A function $f:\Truc \to \N$ is in $\Ethree$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x^1,\x^2,\Y,\y)$ such that $f = f_{\exists\x^1\forall \x^2\,\varphi(\x^1,\x^2,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#DNF} $\in\Ethree$.
 
-Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $P$ and $N$ is a binary relations described as follows:
+Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $P$ and $N$ is a binary relations described as follows:
 \begin{eqnarray*}
-P^\A &=& \{(c,\ell)\mid \ell \mbox{ appears in the $c$-th clause in }\psi\},\\
-N^\A &=& \{(c,\ell)\mid \neg \ell \mbox{ appears in the $c$-th clause in }\psi\}.
+P^\A &=& \{(c,\ell)\mid \ell \mbox{ appears in the $c$-th clause in }\Psi\},\\
+N^\A &=& \{(c,\ell)\mid \neg \ell \mbox{ appears in the $c$-th clause in }\Psi\}.
 \end{eqnarray*}
 
 Now let $T$ be a unary second order variable, and
@@ -59,4 +59,31 @@ Now let $T$ be a unary second order variable, and
 \varphi(T) &=& \exists c \,\Big(\forall \ell_1 (\neg P(c,\ell_1) \vee T(\ell_1)) \wedge \forall \ell_2 (\neg N(c,\ell_2) \vee \neg T(\ell_2))\Big). 
 \end{eqnarray*}
 
-We reorder $\varphi(T)$ as $\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ where $\theta(c,\ell_1,\ell_2,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models \exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ represents a valid assignment to the variables in $\psi$, and therefore, $f_{\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)}$ represents {\sc \#DNF}.
+We reorder $\varphi(T)$ as $\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ where $\theta(c,\ell_1,\ell_2,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models \exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)}$ represents {\sc \#DNF}.
+
+\subsection{{\sc \#HORN-SAT}}
+A function $f:\Truc \to \N$ is in $\Efour$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x^1,\x^2,\Y,\y)$ such that $f = f_{\forall\x^1\exists \x^2\,\varphi(\x^1,\x^2,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#DNF} $\in\Ethree$.
+
+Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc HORN-SAT} formula $\Psi$, where $A$, $P$ and $N$ are defined as in the previous case.
+
+Now let $T$ be a unary second-order variable, and
+\begin{eqnarray*}
+	\psi(T) &=& \forall c \forall \ell\, [(P(c,\ell)\wedge\forall\ell'(N(c,\ell')\to T(\ell')))\to T(\ell)] \\
+	&\equiv& \forall c \forall \ell\, [\neg P(c,\ell)\vee \exists\ell'(N(c,\ell')\wedge \neg T(\ell'))\vee T(\ell)].
+\end{eqnarray*}
+Let $\neg X(c,\ell')$ be defined as $N(c,\ell')\wedge \neg T(\ell)$. That is,
+\begin{eqnarray*}
+	&& \forall c \forall \ell'\, [(N(c,\ell') \wedge \neg T(\ell')) \leftrightarrow \neg X(c,\ell')]\\
+	&\equiv& \forall c \forall \ell'\,[(\neg N(c,\ell')\vee T(\ell')\vee \neg X(c,\ell'))\wedge (X(c,\ell')\vee \neg T(\ell'))\wedge (X(c,\ell')\vee N(c,\ell'))].
+\end{eqnarray*}
+Finally, let
+\begin{multline*}
+	\varphi(T,X) = \forall c \forall \ell'\,[(\neg N(c,\ell')\vee T(\ell')\vee \neg X(c,\ell'))\wedge (X(c,\ell')\vee \neg T(\ell'))\wedge (X(c,\ell')\vee N(c,\ell'))]\,\wedge \\
+	\forall c \forall \ell\, [\neg P(c,\ell)\vee \exists\ell'\neg X(c,\ell')\vee T(\ell)]	.
+\end{multline*}
+This can be rewritten as
+\begin{multline*}
+	\varphi'(T,X) = \forall c \forall \ell \exists\ell'\,[(\neg N(c,\ell)\vee T(\ell)\vee \neg X(c,\ell))\wedge (X(c,\ell)\vee \neg T(\ell))\wedge (X(c,\ell)\vee N(c,\ell))\,\wedge \\
+	(\neg P(c,\ell)\vee \neg X(c,\ell')\vee T(\ell))].
+\end{multline*}
+Let $\theta(c,\ell,\ell',T,X)$ be such that $\varphi'(T,X) = \forall c \forall \ell \exists\ell'\,\theta(c,\ell,\ell',T,X)$. Note that $\theta(c,\ell,\ell',T,X)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. First, note that each relation $T$ over $\A$ such that $\A\models \psi(T)$ represents a valid assignment to the variables in $\Psi$, and that in $\theta(c,\ell,\ell',T,X)$, $X$ is completely defined by the assignment to $T$. Therefore $f_{\psi(T)}(\A') = f_{\varphi'(T,X)}(\A')$ for each $\A'\in\Truc$, from which we conclude that $f_{\forall c \forall \ell \exists\ell'\,\theta(c,\ell,\ell',T,X)}$ represents {\sc \#HORN-SAT}. 
