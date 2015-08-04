@@ -1,0 +1,115 @@
+\section{Some properties of $\E1$}
+
+We define the vocabulary $\L = \{ S_1,\dots,S_t, \leq \}$, where $S_1,\dots,S_t$ have arity $b_1,\dots,b_t$. Let
+\begin{eqnarray*}
+	\Truc &=& \{\A \mid \A \text{ is an } \L \text{-structure with a finite domain } A \text{ such that} \\
+	&& \leq \text{ is interpreted as a total order for } A \}.
+\end{eqnarray*}
+We also define a set of second order variables ${\cal X} = \{ X_i \mid i\in\N \}$ where $X_i$ has arity $a_i$, and for every $n \in \N$ there are infinite variables in ${\cal X}$ of arity $n$. A quantifier-free $\L$-formula is defined by the following grammar:
+\begin{eqnarray*}
+	\varphi &::=& x = y \ \mid \ S_i(x_1,\dots,x_{b_i}), i \in \{1,\dots,t\} \ \mid \ x \leq y \ \mid \\
+	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \\ 
+	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi),
+\end{eqnarray*}
+where $x,y$ and $x_i$ are first order variables for every $i$. We now define an {\sc FO}-extended quantifier-free $\L$-formula as follows:
+\begin{eqnarray*}
+	\varphi &::=& \alpha, \alpha \text{ is an FO-formula over } \L  \ \mid \\
+	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
+	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
+\end{eqnarray*}
+Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\ldots,c_q$, and let $\y$ be a tuple of first order variables. For every $\L$-formula $\psi(\Y,\y)$, we define the function $f_{\psi(\Y,\y)}:\Truc \to \N$ as follows:
+\begin{eqnarray*}
+	f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
+\end{eqnarray*}
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements from $\A$.\\
+
+A function $f:\Truc \to \N$ is in $\Eo$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\Y,\y)$ such that $f = f_{\varphi(\Y,\y)}$.
+
+Similarly, a function $f:\Truc \to \N$ is in $\E1$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\exists \x \: \varphi(\x,\Y,\y)}.$\\
+
+\begin{theo} \label{fp1}
+	$\Eo \subseteq$ {\sc FP}.
+\end{theo}
+\begin{proof}
+	Let $f \in \Eo$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+	\begin{eqnarray*}
+		f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
+	\end{eqnarray*}
+	for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that counting $f(\A)$ can be done in polynomial time.
+	
+	For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \Truc$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
+	
+	Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. However, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
+	
+\end{proof}
+
+The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \Truc \mid f(\A) > 0\}$.
+
+\begin{theo} \label{decisionptime}
+	The decision problem associated to a function in $\E1$ is in \textsc{P}.
+\end{theo}
+\begin{proof}
+	Let $f$ be a function in $\E1$. Then there is an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ such that
+	\begin{eqnarray*}
+		f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
+	\end{eqnarray*}
+	where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. As said in \cite{DBLP:journals/jcss/SalujaST95}, a function $h:\Truc \to \N$ is in $\#\Sigma_0$ if there exists a quantifier-free $\L$-formula $\theta(\Y,\y)$ such that $h = f_{\theta(\Y,\y)}$. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
+	\begin{claim}
+		For each $\A \in \Truc$, $f(\A) > 0$ iff $g(\A) > 0$.
+	\end{claim}
+	\begin{proof}
+		($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
+	\end{proof}
+	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in {\sc P}.
+\end{proof}
+
+For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
+\begin{eqnarray*}
+	(f \dotminus g)(\A) =
+	\begin{cases}
+		f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
+		0, & \text{if }f(\A) \leq g(\A).
+	\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
+
+\begin{theo}
+	If $\E1$ is closed under substraction, then {\sc P} = {\sc NP}.
+\end{theo}
+\begin{proof}
+	Suppose that $\E1$ is closed under substraction, that is, for each pair of functions $f,g\in \E1$, there is an $h\in\E1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
+	
+	Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
+	\begin{eqnarray*}
+		S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\psi\}.
+	\end{eqnarray*}
+	Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula $\psi$. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+	$$
+	\varphi(x,X) = (X(x) \vee \neg X(x)).
+	$$
+	Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
+\end{proof}
+
+\begin{theo}
+	$\#\Sigma_1 \subsetneq \E1$
+\end{theo}
+\begin{proof}
+	We will show that the $\E1$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Note that $\A$ is an induced substructure of $\B$.
+	
+	We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\Truc$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{DBLP:journals/jcss/SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
+\end{proof}
+
+For a given function $f$, we define $f \dotminus 1$ as follows:
+\begin{eqnarray*}
+	f \dotminus 1(\A) =
+	\begin{cases}
+		f(\A)-1, & \text{if }f(\A) > 0 \\
+		0, & \text{if }f(\A) = 0.
+	\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
+
+\input{th4}

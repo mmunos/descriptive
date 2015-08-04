@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsthm} 
@@ -9,11 +9,17 @@
 \usepackage{subfiles}
 \usepackage{bm}
 
+\title{Counting complexity classes defined by fragments of second-order logic}
+
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
 
 \def\Eo{\#\Sigma_0[\mbox{{\sc FO}}]}
 \def\E1{\#\Sigma_1[\mbox{{\sc FO}}]}
+\def\Eone{\#\Sigma_1\textsc{[FO]}}
+\def\Etwo{\#\Pi_1\textsc{[FO]-HORN}}
+\def\Ethree{\#\Sigma_2\textsc{[FO]-HORN}}
+\def\Efour{\#\Pi_2\textsc{[FO]-HORN}}
 
 \def\Truc{\textsc{Struct}[\L]}
 
@@ -70,16 +76,14 @@
 \newtheorem{coro}{Corollary}[theo]
 
 \begin{document}
-
-
-\begin{center}
-{ \LARGE \bf
-  Some properties of $\E1$
-}
-\end{center}
-
-
-
-
-
+	
+	\maketitle
+	
+	\input{s-one-fo}
+	
+	\input{examples}
+	
+	\bibliographystyle{plain}
+	\bibliography{SalujaST95}	
+	
 \end{document}
