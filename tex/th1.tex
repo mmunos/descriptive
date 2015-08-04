@@ -2,17 +2,20 @@
 \begin{theo} \label{decisionptime}
 The decision problem associated to a function in $\E1$ is in \textsc{P}.
 \end{theo}
+\icristian{
+Este resultado esta mencionado en el Remark 5 de \cite{DBLP:journals/jcss/SalujaST95}. Yo mantendría esta demostración, pero si colocaría una nota.
+}
 \begin{proof}
-Let $f$ be a function in $\E1$. Then there is an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ such that
+Let $f$ be a function in $\E1$. Then there exists an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ where $\x$ is a $k$-tuple of variables and $\z$ is an $m$-tuple of variables such that
 \begin{eqnarray*}
 f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
 \end{eqnarray*}
-where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. As said in \cite{DBLP:journals/jcss/SalujaST95}, a function $h:\Truc \to \N$ is in $\#\Sigma_0$ if there exists a quantifier-free $\L$-formula $\theta(\Y,\y)$ such that $h = f_{\theta(\Y,\y)}$. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$ and $A = \{a_1,\ldots,a_{\vert A \vert}\}$. As said in \cite{DBLP:journals/jcss/SalujaST95}, a function $h:\Truc \to \N$ is in $\#\Sigma_0$ if there exists a quantifier-free $\L$-formula $\theta(\Y,\y)$ such that $h = f_{\theta(\Y,\y)}$. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
 \begin{claim}
 For each $\A \in \Truc$, $f(\A) > 0$ iff $g(\A) > 0$.
 \end{claim}
 \begin{proof}
-($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
+($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
 \end{proof}
-Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in {\sc P}.
+Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula and $g \in\Eo$. As we showed, for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in {\sc P}.
 \end{proof}

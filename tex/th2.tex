@@ -15,5 +15,5 @@ Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3
 $$
 \varphi(x,X) = (X(x) \vee \neg X(x)).
 $$
-Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
+Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc coNP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{coNP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
 \end{proof}
