@@ -1,0 +1,37 @@
+\section{Extended Horn counting hierarchies}
+
+We define syntactically the classes $\EiE$ and $\EiU$ as following. First we define Horn clauses.
+\begin{eqnarray*}
+PL &::=& X_i(\x),\, i\in\N,\\
+NL &::=& \neg X_i(\x),\, i\in\N,\\
+NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula over } \L \ \mid \ (NC \vee NC),\\
+HC &::=& NC \ \mid \ (NC \vee PL),
+\end{eqnarray*}
+where $\x$ is a tuple with the corresponding number of variables. Now we define the classes' syntaxis inductively.
+\begin{enumerate}
+	\item $\EzeroE$:
+	\begin{eqnarray*}
+	E_0 &::=& HC \ \mid \ E_0 \wedge E_0.
+	\end{eqnarray*}
+	\item $\EzeroU$:
+	\begin{eqnarray*}
+	U_0 &::=& E_0.
+	\end{eqnarray*}
+	\item $\EipE$:
+	\begin{eqnarray*}
+	E_{i+1} &::=& U_i \ \mid \ \exists x \, E_{i+1}.
+	\end{eqnarray*}
+	\item $\EipU$:
+	\begin{eqnarray*}
+		U_{i+1} &::=& E_i \ \mid \ \forall x \, U_{i+1}.
+	\end{eqnarray*}
+\end{enumerate}
+A function $f$ is in $\EiE$ (resp. $\EiU$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
+
+We also define the classes $\EiEE$ and $\EiUE$ with the same grammar, but with the following changes:
+\begin{eqnarray*}
+	PL &::=& X_i(\x),\, i\in\N,\\
+	NL &::=& \neg X_i(\x),\, i\in\N \ \mid \ \exists x\, NL\\
+	NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula over } \L \ \mid \ (NC \vee NC),\\
+	HC &::=& NC \ \mid \ (NC \vee PL),
+\end{eqnarray*}
