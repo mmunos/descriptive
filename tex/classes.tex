@@ -3,7 +3,7 @@
 We define syntactically the classes $\EiE$ and $\EiU$ as following. First we define Horn clauses.
 \begin{eqnarray*}
 PL &::=& X_i(\x),\, i\in\N,\\
-NL &::=& \neg X_i(\x),\, i\in\N,\\
+NL &::=& \neg X_i(\x),\, i\in\N \ \mid \ \exists x\, NL,\\
 NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula over } \L \ \mid \ (NC \vee NC),\\
 HC &::=& NC \ \mid \ (NC \vee PL),
 \end{eqnarray*}
@@ -28,10 +28,17 @@ where $\x$ is a tuple with the corresponding number of variables. Now we define 
 \end{enumerate}
 A function $f$ is in $\EiE$ (resp. $\EiU$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
 
-We also define the classes $\EiEE$ and $\EiUE$ with the same grammar, but with the following changes:
-\begin{eqnarray*}
-	PL &::=& X_i(\x),\, i\in\N,\\
-	NL &::=& \neg X_i(\x),\, i\in\N \ \mid \ \exists x\, NL\\
-	NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula over } \L \ \mid \ (NC \vee NC),\\
-	HC &::=& NC \ \mid \ (NC \vee PL),
-\end{eqnarray*}
+The class $\PE$ is defined in [?] as $\PE = \{f\mid f\in\#P \mbox{ and its decision version } L_{f}\in P\}$.
+
+\begin{theo}
+	$\EtwoE \subseteq \PE$
+\end{theo} 
+\begin{proof}
+	Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{DBLP:journals/jcss/SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\#P$.\\
+	
+	We will now prove that there is a polynomial time algorithm that decides $L_{f}$. This is equivalent to decide, given $\A= \langle A, \S\A, \leq^\A \rangle\in\Truc$, whether there exist assignments $\P,\z$ such that $\A\models\varphi(\P,\z)$. This is the same as $\A\models\exists\X\exists\x\,\varphi(\X,\x)$. Since $\varphi(\X,\x)$ is defined by the grammar $E_2$, there exists $\psi(\X,\x,\y,\u)$ such that $\varphi(\X,\x) = \exists\x\exists\y\forall\u\exists\v\,\psi(\X,\x,\y,\u,\v)$, where every variable in $\v$ appears on a negated second-order literal $\neg X_i$, with $i\in\N$.
+	
+	Given $\A\in\Truc$ we generate an equivalent $\L$-formula $\theta(\X,\x,\y)$ with a series of operations. First, we replace every instance of $\v$ by a disjunction of all $r$-tuples in $A^r$, where $r$ is the number of variables in $\v$. The remainder is still a {\sc Horn}-clause. Second, we replace every instance of $\u$ by a conjunction of all $s$-tulples in $A^s$, where $s$ is the number or variables in $\u$. The remainder is still a conjunction of {\sc Horn}-clauses.
+	
+	Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time.
+\end{proof}

@@ -1,7 +1,7 @@
 \section{Some examples in extended logic counting classes}
 
 \subsection{{\sc \#3-DNF}}
-A function $f:\Truc \to \N$ is in $\EoneE$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\Y,\y)$ such that $f = f_{\varphi(\Y,\y)}$. We will now show that {\sc \#3-DNF} $\in\EoneE$.\\
+We will now show that {\sc \#3-DNF} $\in\EoneE$.\\
 
 Let $\L = \{S_0,S_1,S_2,S_3,\leq\}$, and $\A = \langle A, S_0^\A, S_1^\A, S_2^\A, S_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{0,1,2,3\}$:
 \begin{eqnarray*}
@@ -21,7 +21,7 @@ Now let $T$ be a unary second order variable, and
 It is easily seen that each relation $T$ over $\A$ such that $\A\models\varphi(T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\varphi(T)}$ represents {\sc \#3-DNF}.
 
 \subsection{{\sc \#3-HORN-SAT}}
-A function $f:\Truc \to \N$ is in $\EoneU$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x,\Y,\y)$ such that $f = f_{\forall \x\,\varphi(\x,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#3-HORN-SAT} $\in\EoneU$.\\
+We will now show that {\sc \#3-HORN-SAT} $\in\EoneU$.\\
 
 Let $\L = \{P_1,P_2,P_3,N_1,N_2,N_3,\leq\}$, and $\A = \langle A, P_1^\A,P_2^\A,P_3^\A,N_1^\A,N_2^\A,N_3^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc 3-HORN-SAT} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, and the relations in $\L$ are interpreted as follows:
 \begin{eqnarray*}
@@ -46,7 +46,7 @@ Now let $T$ be a unary second order variable, and
 We can easily reorder $\varphi(T)$ as $\forall x \forall y \forall z\,\theta(x,y,z,T)$ where $\theta(x,y,z,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models\forall x \forall y \forall z\,\theta(x,y,z,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\forall x \forall y \forall z\,\theta(x,y,z,T)}$ represents {\sc \#3-HORN-SAT}.
 
 \subsection{{\sc \#DNF}}
-A function $f:\Truc \to \N$ is in $\EtwoE$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x^1,\x^2,\Y,\y)$ such that $f = f_{\exists\x^1\forall \x^2\,\varphi(\x^1,\x^2,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#DNF} $\in\EtwoE$.
+We will now show that {\sc \#DNF} $\in\EtwoE$.\\
 
 Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $P$ and $N$ is a binary relations described as follows:
 \begin{eqnarray*}
@@ -59,10 +59,12 @@ Now let $T$ be a unary second order variable, and
 \varphi(T) &=& \exists c \,\Big(\forall \ell_1 (\neg P(c,\ell_1) \vee T(\ell_1)) \wedge \forall \ell_2 (\neg N(c,\ell_2) \vee \neg T(\ell_2))\Big). 
 \end{eqnarray*}
 
-We reorder $\varphi(T)$ as $\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ where $\theta(c,\ell_1,\ell_2,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models \exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)}$ represents {\sc \#DNF}.
+We reorder $\varphi(T)$ as $\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ where $\theta(c,\ell_1,\ell_2,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models \exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\ell_1,\ell_2,T)}$ represents {\sc \#DNF}.\\
+
+By extension, {\sc \#3-DNF} $\in\EtwoE$.
 
 \subsection{{\sc \#HORN-SAT}}
-A function $f:\Truc \to \N$ is in $\EtwoU$ if there exists an {\sc FO}-extended quantifier-free $\L$-formula $\varphi(\x^1,\x^2,\Y,\y)$ such that $f = f_{\forall\x^1\exists \x^2\,\varphi(\x^1,\x^2,\Y,\y)}$ and any second order variables only appear in Horn clauses. We will now show that {\sc \#DNF} $\in\EtwoE$.
+We will now show that {\sc \#DNF} $\in\EtwoE$.\\
 
 Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc HORN-SAT} formula $\Psi$, where $A$, $P$ and $N$ are defined as in the previous case.
 
