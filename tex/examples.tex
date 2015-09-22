@@ -50,8 +50,8 @@ We will now show that {\sc \#DNF} $\in\EtwoE$.\\
 
 Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $P$ and $N$ is a binary relations described as follows:
 \begin{eqnarray*}
-P^\A &=& \{(c,\ell)\mid \ell \mbox{ appears in the $c$-th clause in }\Psi\},\\
-N^\A &=& \{(c,\ell)\mid \neg \ell \mbox{ appears in the $c$-th clause in }\Psi\}.
+P^\A &=& \{(c,\ell)\mid \ell \mbox{ appears in the $c$-th clause of }\Psi\},\\
+N^\A &=& \{(c,\ell)\mid \neg \ell \mbox{ appears in the $c$-th clause of }\Psi\}.
 \end{eqnarray*}
 
 Now let $T$ be a unary second order variable, and
@@ -64,7 +64,7 @@ We reorder $\varphi(T)$ as $\exists c \forall \ell_1 \forall \ell_2\, \theta(c,\
 By extension, {\sc \#3-DNF} $\in\EtwoE$.
 
 \subsection{{\sc \#HORN-SAT}}
-We will now show that {\sc \#DNF} $\in\EtwoE$.\\
+We will now show that {\sc \#HORN-SAT} $\in\EoneU$.\\
 
 Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc HORN-SAT} formula $\Psi$, where $A$, $P$ and $N$ are defined as in the previous case.
 
