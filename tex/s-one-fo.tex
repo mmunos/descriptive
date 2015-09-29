@@ -146,19 +146,17 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		
 		As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
 		\[
-		\varphi_{i}(\x,\X,\z) = X_{s_1}(\x_{s_1},\z_{s_1}) \wedge \cdots \wedge X_{s_m}(\x_{s_m},\z_{s_m}) \wedge \neg X_{t_1}(\x_{t_1},\z_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\x_{t_n},\z_{t_1}) \wedge \alpha_i(\x,\z),
+		\varphi_{i}(\x,\X,\z) = X_{s_1}(\y_{s_1}) \wedge \cdots \wedge X_{s_m}(\y_{s_m}) \wedge \neg X_{t_1}(\y_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\y_{t_1}) \wedge \alpha_i(\x,\z),
 		\]
-		where every $\x_{s_i}$, $\z_{s_i}$, $\x_{t_j}$ and $\z_{t_j}$ have the corresponding number of variables, and $\alpha(\x)$ is a FO-formula.
+		where every $\y_{s_i}$ and $\y_{t_j}$ have the corresponding number of variables in $(\x,\z)$, and $\alpha(\x)$ is a FO-formula.
 		
-		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\b\in \bigcup_{j = 1}^{c+d} A^j$, for each $\e\in A^d$, and for each $\ell\in\{1,\ldots,r\}$. Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}(\a)$ be the tuple that results of reordering $\a$ using the reordering of the variables of $(\x,\z)$ in $(\x_{\ell},\z_{\ell})$.
+		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\b\in \bigcup_{j = 1}^{c+d} A^j$, for each $\e\in A^d$, and for each $\ell\in\{1,\ldots,r\}$. We also generate a $t_{\a}$ for each $\a$ Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$
 		
-		For each $\e\in A^d$, we follow the following procedure. Eor each $\varphi_i(\x,\X)$, we generate the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
+		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we generate the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
 		\[
-		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge \beta_{\e},
+		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge t_{\e},
 		\]
 		where $\beta_{\e}$ is defined as
-		\[
-		\beta_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e}} \bigwedge_\bigvee_{\b\in A^(c+d)} \bigwedge_{\ell = 1}^r p^{\e}_{\ell,\b}.	
-		\]
+
 	\end{enumerate}
 \end{proof}
