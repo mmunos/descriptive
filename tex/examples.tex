@@ -48,7 +48,7 @@ We can easily reorder $\varphi(T)$ as $\forall x \forall y \forall z\,\theta(x,y
 \subsection{{\sc \#DNF}}
 We will now show that {\sc \#DNF} $\in\EtwoE$.\\
 
-Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$, where $A$ is the set of variables mentioned in $\Psi$, $P$ and $N$ is a binary relations described as follows:
+Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$ with $n$ variables and $m$ clauses, where $A = \{1\ldots,n+m\}$, $P$ and $N$ is a binary relations described as follows:
 \begin{eqnarray*}
 P^\A &=& \{(c,\ell)\mid \ell \mbox{ appears in the $c$-th clause of }\Psi\},\\
 N^\A &=& \{(c,\ell)\mid \neg \ell \mbox{ appears in the $c$-th clause of }\Psi\}.
@@ -66,13 +66,22 @@ By extension, {\sc \#3-DNF} $\in\EtwoE$.
 \subsection{{\sc \#HORN-SAT}}
 We will now show that {\sc \#HORN-SAT} $\in\EoneU$.\\
 
-Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc HORN-SAT} formula $\Psi$, where $A$, $P$ and $N$ are defined as in the previous case.
+Let $\L = \{P,N,F,\leq\}$, and $\A = \langle A, P^\A, N^\A, F^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc HORN-SAT} formula $\Psi$, where $A$, $P$ and $N$ are defined as in the previous case, and $F$ is defined as
+\[
+	F = \{ c \mid
+		\mbox{all literals in $c$ are negative}
+	\}
+\]
 
 Now let $T$ be a unary second-order variable, and
-\begin{eqnarray*}
-	\psi(T) &=& \forall c \forall \ell\, [(P(c,\ell)\wedge\forall\ell'(N(c,\ell')\to T(\ell')))\to T(\ell)] \\
-	&\equiv& \forall c \forall \ell\, [\neg P(c,\ell)\vee \exists\ell'(N(c,\ell')\wedge \neg T(\ell'))\vee T(\ell)].
-\end{eqnarray*}
+\begin{align*}
+	\psi(T) &=& \forall c\,[ F(c) \to \exists \ell'(N(c,\ell') \wedge \neg T(\ell'))]
+	\,\wedge
+	 \forall c \forall \ell\, [\neg F(c)\to(P(c,\ell)\wedge\forall\ell'(N(c,\ell')\to T(\ell')))\to T(\ell)] \\
+	 &\equiv& \forall c\,[ \neg F(c) \vee \exists \ell'(N(c,\ell') \wedge \neg T(\ell'))]
+	 \,\wedge
+	 \forall c \forall \ell\, [ F(c) \vee \neg P(c,\ell) \vee \exists\ell'(N(c,\ell') \wedge \neg T(\ell'))) \vee T(\ell)]
+\end{align*}
 Let $\neg X(c,\ell')$ be defined as $N(c,\ell')\wedge \neg T(\ell)$. That is,
 \begin{eqnarray*}
 	&& \forall c \forall \ell'\, [(N(c,\ell') \wedge \neg T(\ell')) \leftrightarrow \neg X(c,\ell')]\\
@@ -81,11 +90,27 @@ Let $\neg X(c,\ell')$ be defined as $N(c,\ell')\wedge \neg T(\ell)$. That is,
 Finally, let
 \begin{multline*}
 	\varphi(T,X) = \forall c \forall \ell'\,[(\neg N(c,\ell')\vee T(\ell')\vee \neg X(c,\ell'))\wedge (X(c,\ell')\vee \neg T(\ell'))\wedge (X(c,\ell')\vee N(c,\ell'))]\,\wedge \\
-	\forall c \forall \ell\, [\neg P(c,\ell)\vee \exists\ell'\neg X(c,\ell')\vee T(\ell)]	.
+	\forall c\,[ \neg F(c) \vee \exists \ell'\neg X(c,\ell'))]
+	\wedge
+	\forall c \forall \ell\, [ F(c) \vee \neg P(c,\ell) \vee \exists\ell'\neg X(c,\ell') \vee T(\ell)].
 \end{multline*}
-This can be rewritten as
-\begin{multline*}
-	\varphi'(T,X) = \forall c \forall \ell \exists\ell'\,[(\neg N(c,\ell)\vee T(\ell)\vee \neg X(c,\ell))\wedge (X(c,\ell)\vee \neg T(\ell))\wedge (X(c,\ell)\vee N(c,\ell))\,\wedge \\
-	(\neg P(c,\ell)\vee \neg X(c,\ell')\vee T(\ell))].
-\end{multline*}
-Let $\theta(c,\ell,\ell',T,X)$ be such that $\varphi'(T,X) = \forall c \forall \ell \exists\ell'\,\theta(c,\ell,\ell',T,X)$. Note that $\theta(c,\ell,\ell',T,X)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. First, note that each relation $T$ over $\A$ such that $\A\models \psi(T)$ represents a valid assignment to the variables in $\Psi$, and that in $\theta(c,\ell,\ell',T,X)$, $X$ is completely defined by the assignment to $T$. Therefore $f_{\psi(T)}(\A') = f_{\varphi'(T,X)}(\A')$ for each $\A'\in\Truc$, from which we conclude that $f_{\forall c \forall \ell \exists\ell'\,\theta(c,\ell,\ell',T,X)}$ represents {\sc \#HORN-SAT}. 
+Let $\theta(c,\ell,T,X)$ be such that $\varphi'(T,X) = \forall c \forall \ell\,\theta(c,\ell,T,X)$. Note that $\theta(c,\ell,T,X)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. First, note that each relation $T$ over $\A$ such that $\A\models \psi(T)$ represents a valid assignment to the variables in $\Psi$, and that in $\theta(c,\ell,T,X)$, $X$ is completely defined by the assignment to $T$. Therefore $f_{\psi(T)}(\A') = f_{\varphi'(T,X)}(\A')$ for each $\A'\in\Truc$, from which we conclude that $f_{\forall c \forall \ell\,\theta(c,\ell,T,X)}$ represents {\sc \#HORN-SAT}. 
+
+\subsection{{\sc \#Disj-HORN-SAT}}
+We define the decision problem
+\[
+	\textsc{Disj-HORN-SAT} = \{\Phi \mid \Phi \mbox{ is a disjunction of Horn formulas and $\Phi$ is satisfiable}\},
+\]
+and the counting problem {\sc \#Disj-HORN-SAT} as a function that counts all satisfying assignments to a formula $\Phi$ which is a disjunction of Horn formulas. We will now show that {\sc \#Disj-HORN-SAT} $\in\EtwoE$.
+
+Let $\L = \{P,N,F,B,\leq\}$, and $\A = \langle A, P^\A, N^\A, F^\A, B^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc Disj-HORN-SAT} formula $\Psi$ with $n$ variables, $m$ clauses in total, and $k$ Horn formulas, where $A = \{1,\ldots,n+m+k\}$, $P$, $N$ and $F$ are defined as in the previous case, and $B$ is defined as:
+\[
+	B = \{ (c,f) \mid 
+		\mbox{the clause $c$ is in the Horn formula $f$}
+	\}.
+\]
+Now let $T$ be a unary second order variable, and
+\[
+	\psi(T) = \exists f\forall c\,(B(c,f)\to \forall\ell\,\theta(c,\ell,T,X)),
+\]
+where $\theta$ is defined as in the previous case.
