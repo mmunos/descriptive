@@ -120,12 +120,13 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 \begin{proof}
 	Let $f$ be an arbitrary function in $\E1$ and let $f_{\textsc{DNF}}$ be the function that characterizes {\sc \#DNF}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{DNF}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:
 	\begin{enumerate}
-		\item All free variables in $\psi$ are of first order. Let $\psi = \exists x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = f(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we return is
+		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we return is
 		\[
 		\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
 		\]
 		which has exactly $n$ possible assignments.
-		\item There is only second-order free variables in $\psi$. Let $\psi = \exists x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a DNF-formula $\Phi = f(\A)$ as follows:
+		
+		\item There is only second-order free variables in $\psi$. Let $\psi = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a DNF-formula $\Phi = h(\A)$ as follows:
 		
 		First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
 		\[
@@ -142,7 +143,8 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		and $\Phi = \bigvee_{i = 1}^k \Phi_i$.
 		
 		Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
-		\item Let $\psi = \exists x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\X = (X_1,\ldots,X_r)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a DNF-formula $\Phi = f(\A)$ as follows:
+		
+		\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a DNF-formula $\Phi = h(\A)$ as follows:
 		
 		As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
 		\[
@@ -150,13 +152,24 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		\]
 		where every $\y_{s_i}$ and $\y_{t_j}$ have the corresponding number of variables in $(\x,\z)$, and $\alpha(\x)$ is a FO-formula.
 		
-		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\b\in \bigcup_{j = 1}^{c+d} A^j$, for each $\e\in A^d$, and for each $\ell\in\{1,\ldots,r\}$. We also generate a $t_{\a}$ for each $\a$ Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$
+		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary inyective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
 		
-		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we generate the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
+		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
 		\[
-		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge t_{\e},
+		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge \gamma_{\e} \wedge \theta_{\e}
 		\]
-		where $\beta_{\e}$ is defined as
-
+		where $\gamma_{\e}$ is defined as
+		\[
+			\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\b\in \bigcup_{j = 1}^{c+d} A^j} \bigwedge_{\ell = 1}^r p_{\ell,\b}^{\e'},
+		\]
+		and $\theta_{\e}$ is defined as
+		\[
+			\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
+		\]
+		Finally, we return $f(\A) = \Phi = \bigvee_{i = 1}^k \bigvee_{\e\in A^d} \Phi_i^{\e}$. 
+		
+		We will now show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows:
+		
+		For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
 	\end{enumerate}
 \end{proof}
