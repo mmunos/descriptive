@@ -1,0 +1,189 @@
+\section{Extended Logic Counting Classes}
+
+We define the vocabulary $\L = \{ S_1,\dots,S_t, \leq \}$, where $S_1,\dots,S_t$ have arity $b_1,\dots,b_t$. Let
+\begin{eqnarray*}
+	\Truc &=& \{\A \mid \A \text{ is an } \L \text{-structure with a finite domain } A \text{ such that} \\
+	&& \leq \text{ is interpreted as a total order for } A \}.
+\end{eqnarray*}
+We also define a set of second order variables ${\cal X} = \{ X_i \mid i\in\N \}$ where $X_i$ has arity $a_i$, and for every $n \in \N$ there are infinite variables in ${\cal X}$ of arity $n$. A quantifier-free $\L$-formula is defined by the following grammar:
+\begin{eqnarray*}
+	\varphi &::=& x = y \ \mid \ S_i(x_1,\dots,x_{b_i}), i \in \{1,\dots,t\} \ \mid \ x \leq y \ \mid \\
+	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \\ 
+	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi),
+\end{eqnarray*}
+where $x,y$ and $x_i$ are first order variables for every $i$. For every logic $\mathcal{F}$, we define an $\mathcal{F}$-extended quantifier-free $\L$-formula as follows:
+\begin{eqnarray*}
+	\varphi &::=& \alpha, \alpha \text{ is an $\mathcal{F}$-formula over } \L  \ \mid \\
+	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
+	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
+\end{eqnarray*}
+Let $\Y = (Y_1,\dots,Y_q)$ be a tuple of second-order variables of arity $c_1,\ldots,c_q$, and let $\y$ be a tuple of first order variables. For every $\L$-formula $\psi(\Y,\y)$, we define the function $f_{\psi(\Y,\y)}:\Truc \to \N$ as follows:
+\begin{eqnarray*}
+	f_{\psi(\Y,\y)}(\A) &=& \mid \{ \langle \P, \e \rangle \mid \A \models \psi(\P,\e) \} \mid,
+\end{eqnarray*}
+for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P_1,\ldots,P_q)$ is a tuple of predicates of arity $c_1,\ldots,c_q$, $P_i \subseteq A^{c_i}$ for every $i \in \{1,\ldots,q\}$, and $\e$ is a tuple of elements from $\A$.\\
+
+\subsection{The First {\sc FO}-Extended Counting Hierarchy}
+
+We define syntactically the classes $\Eie$ and $\Eiu$ according to the following grammar:
+\begin{enumerate}
+	\item $\Eezero$:
+	\[
+		E_0 ::= \varphi \mid \varphi \mbox{ is an {\sc FO}-extended quantifier-free $\L$-formula }.
+	\]
+	\item $\Euzero$:
+		\[U_0 ::= E_0.\]
+	\item $\Eipe$:
+	\[	E_{i+1} ::= U_i \ \mid \ \exists x \, E_{i+1}.\]
+	\item $\Eipu$:
+		\[U_{i+1} ::= E_i \ \mid \ \forall x \, U_{i+1}.\]
+\end{enumerate}
+
+A function $f$ is in $\Eie$ (resp. $\Eiu$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
+
+\begin{theo} \label{fp1}
+	$\Eo \subseteq$ {\sc FP}.
+\end{theo}
+\begin{proof}
+	Let $f \in \Eo$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+	\begin{eqnarray*}
+		f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
+	\end{eqnarray*}
+	for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that counting $f(\A)$ can be done in polynomial time.
+	
+	For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \Truc$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
+	
+	Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. However, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
+	
+\end{proof}
+
+The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \Truc \mid f(\A) > 0\}$.
+
+\begin{theo} \label{decisionptime}
+	The decision problem associated to a function in $\E1$ is in \textsc{P}.
+\end{theo}
+\begin{proof}
+	Let $f$ be a function in $\E1$. Then there is an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ such that
+	\begin{eqnarray*}
+		f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
+	\end{eqnarray*}
+	where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. As said in \cite{DBLP:journals/jcss/SalujaST95}, a function $h:\Truc \to \N$ is in $\#\Sigma_0$ if there exists a quantifier-free $\L$-formula $\theta(\Y,\y)$ such that $h = f_{\theta(\Y,\y)}$. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
+	\begin{claim}
+		For each $\A \in \Truc$, $f(\A) > 0$ iff $g(\A) > 0$.
+	\end{claim}
+	\begin{proof}
+		($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
+	\end{proof}
+	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in {\sc P}.
+\end{proof}
+
+For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
+\begin{eqnarray*}
+	(f \dotminus g)(\A) =
+	\begin{cases}
+		f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
+		0, & \text{if }f(\A) \leq g(\A).
+	\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
+
+\begin{theo}
+	If $\E1$ is closed under substraction, then {\sc P} = {\sc NP}.
+\end{theo}
+\begin{proof}
+	Suppose that $\E1$ is closed under substraction, that is, for each pair of functions $f,g\in \E1$, there is an $h\in\E1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
+	
+	Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
+	\begin{eqnarray*}
+		S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
+		S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\psi\}.
+	\end{eqnarray*}
+	Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula $\psi$. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+	$$
+	\varphi(x,X) = (X(x) \vee \neg X(x)).
+	$$
+	Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
+\end{proof}
+
+\begin{theo}
+	$\#\Sigma_1 \subsetneq \E1$
+\end{theo}
+\begin{proof}
+	We will show that the $\E1$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Note that $\A$ is an induced substructure of $\B$.
+	
+	We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\Truc$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{DBLP:journals/jcss/SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
+\end{proof}
+
+For a given function $f$, we define $f \dotminus 1$ as follows:
+\begin{eqnarray*}
+	f \dotminus 1(\A) =
+	\begin{cases}
+		f(\A)-1, & \text{if }f(\A) > 0 \\
+		0, & \text{if }f(\A) = 0.
+	\end{cases}
+\end{eqnarray*}
+for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
+
+\input{th4}
+
+\begin{theo}
+	{\sc \#DNF} is hard for $\E1$ under parsimonious reductions. 
+\end{theo}
+\begin{proof}
+	Let $f$ be an arbitrary function in $\E1$ and let $f_{\textsc{DNF}}$ be the function that characterizes {\sc \#DNF}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{DNF}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:
+	\begin{enumerate}
+		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we return is
+		\[
+		\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
+		\]
+		which has exactly $n$ possible assignments.
+		
+		\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a DNF-formula $\Phi = h(\A)$ as follows:
+		
+		First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
+		\[
+		\varphi_{i}(\x,\X) = X_{s_1}(\x_{s_1}) \wedge \cdots \wedge X_{s_m}(\x_{s_m}) \wedge \neg X_{t_1}(\x_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\x_{t_n}) \wedge \alpha_i(\x),
+		\]
+		where every $\x_{s_i}$ and $\x_{t_j}$ have the corresponding number of variables, and $\alpha(\x)$ is a FO-formula.
+		
+		Then, let $\Gamma_i = \{\a\in A^c\mid \A\models\alpha(\a)\}$. There is exactly $\vert A \vert^c$ tuples to check, and each of those checks can be done in polynomial time, so this set can also be generated in polynomial time. We generate a propositional variable $p^{\ell}_{\a}$ for each $\a\in \bigcup_{j = 1}^c A^j$, and for each $\ell\in\{1,\ldots,r\}$. Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}(\a)$ be the tuple that results of reordering $\a$ using the reordering of the variables of $\x$ in $\x_{\ell}$.
+		
+		Finally, for each $\varphi_i(\x,\X)$ the DNF formula we return is
+		\[
+		\Phi_i = \bigvee_{\a\in\Gamma_i} p^{s_1}_{\rho_{s_1}(\a)} \wedge \cdots \wedge p^{s_m}_{\rho_{s_m}(\a)} \wedge \neg p^{t_1}_{\rho_{t_1}(\a)} \wedge \cdots \wedge \neg p^{t_n}_{\rho_{t_n}(\a)}.
+		\]
+		and $\Phi = \bigvee_{i = 1}^k \Phi_i$.
+		
+		Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
+		
+		\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a DNF-formula $\Phi = h(\A)$ as follows:
+		
+		As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
+		\[
+		\varphi_{i}(\x,\X,\z) = X_{s_1}(\y_{s_1}) \wedge \cdots \wedge X_{s_m}(\y_{s_m}) \wedge \neg X_{t_1}(\y_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\y_{t_1}) \wedge \alpha_i(\x,\z),
+		\]
+		where every $\y_{s_i}$ and $\y_{t_j}$ have the corresponding number of variables in $(\x,\z)$, and $\alpha(\x)$ is a FO-formula.
+		
+		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary inyective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
+		
+		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
+		\[
+		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge \gamma_{\e} \wedge \theta_{\e}
+		\]
+		where $\gamma_{\e}$ is defined as
+		\[
+			\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\b\in \bigcup_{j = 1}^{c+d} A^j} \bigwedge_{\ell = 1}^r p_{\ell,\b}^{\e'},
+		\]
+		and $\theta_{\e}$ is defined as
+		\[
+			\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
+		\]
+		Finally, we return $f(\A) = \Phi = \bigvee_{i = 1}^k \bigvee_{\e\in A^d} \Phi_i^{\e}$. 
+		
+		We will now show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows:
+		
+		For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
+	\end{enumerate}
+\end{proof}
