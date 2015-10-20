@@ -166,7 +166,7 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		\]
 		where every $\y_{s_i}$ and $\y_{t_j}$ have the corresponding number of variables in $(\x,\z)$, and $\alpha(\x)$ is a FO-formula.
 		
-		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary inyective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
+		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
 		
 		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
 		\[
@@ -174,13 +174,13 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		\]
 		where $\gamma_{\e}$ is defined as
 		\[
-			\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\b\in \bigcup_{j = 1}^{c+d} A^j} \bigwedge_{\ell = 1}^r p_{\ell,\b}^{\e'},
+			\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
 		\]
 		and $\theta_{\e}$ is defined as
 		\[
 			\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
 		\]
-		Finally, we return $f(\A) = \Phi = \bigvee_{i = 1}^k \bigvee_{\e\in A^d} \Phi_i^{\e}$. 
+		Finally, we return $f(\A) = \Phi = \bigvee_{\e\in A^d} \bigvee_{i = 1}^k \Phi_i^{\e}$. 
 		
 		We will now show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows:
 		

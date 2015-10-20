@@ -60,7 +60,7 @@ and the counting problem {\sc \#Disj-Horn-Sat} as a function that counts all sat
 		\]
 		which has exactly $n$ possible assignments. Note that each $p_i$ and $\neg p_i$ is a Horn clause itself.
 		
-		\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\forall \y\,\varphi(\x,\y,\X)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a Disj-Horn-Sat-formula $\Phi = h(\A)$ as follows:
+		\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\forall \y\,\varphi(\x,\y,\X)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
 		
 		First, Let $\varphi(\x,\y,\X) = \bigwedge_{i = 1}^k \varphi_{i}(\x,\y,\X)$ where, without loss of generality, each $\varphi_{i}(\x,\y,\X)$ is of the form
 		\[
@@ -81,6 +81,29 @@ and the counting problem {\sc \#Disj-Horn-Sat} as a function that counts all sat
 		
 		Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\forall\y\,\varphi(\x,\y,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(\Phi)$.
 		
-		\item 
+		\item Let $\psi = \exists \x\forall\y\,\varphi(\x,\y,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
+		
+		As in the previous case, let $\varphi(\x,\y,\X,\z) = \bigwedge_{i = 1}^k$ where $\varphi(\x,\y,\X,\z)$ is of the form:
+		\[
+		\varphi_{i}(\x,\y,\X,\z) = X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n}) \vee \alpha_i(\x,\y,\z),
+		\]
+		where $\u_{s}$ and every $\u_{t_j}$ have the corresponding number of variables in $(\x,\y,\z)$, and $\alpha(\x,\y,\z)$ is a FO-formula. For the rest of the proof, $X_s(\u_s)$ can be absent and it does not affect the proof. Note that this formula is equivalent to
+		\[
+		\neg\alpha_i(\x,\y,\z) \to (X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n})).
+		\]
+		
+		For each $\e\in A^d$, we do the following. For each $\a\in A^c$ let $\Gamma^{\e}_{i,\a} = \{\b \in A^b \mid \A\models \neg\alpha_i(\a,\b,\e) \}$. Note that this set can be generated in polynomial time. For each $\ell\in\{1,\ldots,r\}$ we generate a propositional variable $p^{\e}_{\ell,\d}$ for each $\d\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}(\x,\y,\z) = \u_{\ell}$, and $\rho_{\ell}(\d)$ be the tuple that results of reordering $\d$ using the order of the variables in $(\x,\y,\z)$ in $\u_{\ell}$. And so, the Horn formula we generate is
+		\[
+			\Phi^{\e}_{i,\a} = \bigwedge_{\a\in\Gamma^{\e}_i} p^{\e}_{s,\rho_{s}(\a,\b,\e)} \vee p^{\e}_{t_1,\rho_{t_1}(\a,\b,\e)} \vee \cdots \vee p^{\e}_{t_n,\rho_{t_n}(\a,\b,\e)}.
+		\]
+		And finally we return $\Phi = \bigvee_{\e\in A^d}\bigvee_{\a\in A^c} (\bigwedge_{i=1}^k \Phi_{\e}^{i,\a} \wedge \gamma_{\e} \wedge \theta_{\e} )$, where $\gamma_{\e}$ is defined as
+		\[
+		\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
+		\]
+		and $\theta_{\e}$ is defined as
+		\[
+		\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
+		\]
+		
 	\end{enumerate}
 \end{proof}
