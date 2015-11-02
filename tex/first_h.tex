@@ -29,7 +29,7 @@ We define syntactically the classes $\Eie$ and $\Eiu$ according to the following
 \begin{enumerate}
 	\item $\Eezero$:
 	\[
-		E_0 ::= \varphi \mid \varphi \mbox{ is an {\sc FO}-extended quantifier-free $\L$-formula }.
+		E_0 ::= \varphi , \varphi \mbox{ is an {\sc FO}-extended quantifier-free $\L$-formula }.
 	\]
 	\item $\Euzero$:
 		\[U_0 ::= E_0.\]
@@ -49,11 +49,11 @@ A function $f$ is in $\Eie$ (resp. $\Eiu$) if there is an $\L$-formula $\varphi$
 	\begin{eqnarray*}
 		f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
 	\end{eqnarray*}
-	for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that counting $f(\A)$ can be done in polynomial time.
+	for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that computing $f(\A)$ can be done in polynomial time.
 	
 	For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \Truc$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
 	
-	Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. However, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
+	Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. But, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
 	
 \end{proof}
 
@@ -67,14 +67,16 @@ The {\em decision problem} associated to a function $f$ is defined by the langua
 	\begin{eqnarray*}
 		f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \, \varphi(\x,\P,\e) \} \mid,
 	\end{eqnarray*}
-	where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. As said in \cite{DBLP:journals/jcss/SalujaST95}, a function $h:\Truc \to \N$ is in $\#\Sigma_0$ if there exists a quantifier-free $\L$-formula $\theta(\Y,\y)$ such that $h = f_{\theta(\Y,\y)}$. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
-	\begin{claim}
+	where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, $A = \{a_1,\ldots,a_{\vert A \vert}\}$, $\z$ is an $m$-tuple of variables and $\x$ is a $k$-tuple of variables. Let $\y = (\x,\z)$ and let $\psi(\X,\y) = \varphi(\x,\X,\z)$. Moreover, let $g = f_{\psi(\X,\y)}$.
+	\begin{claim} \label{mono}
 		For each $\A \in \Truc$, $f(\A) > 0$ iff $g(\A) > 0$.
 	\end{claim}
 	\begin{proof}
-		($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. ($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Therefore, $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
+		($\Rightarrow$) Suppose $f(\A) > 0$. Let $\P$ and $\e$ be such that $\A \models \exists \x \, \varphi(\x,\P,\e)$. It follows that there is at least one $\d \in A^k$ such that $\A \models \varphi(\d,\P,\e) = \psi(\P,(\d,\e))$. Therefore, $g(\A) > 0$. 
+		
+		($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Then we have that $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
 	\end{proof}
-	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. As we showed, for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$, but as it is shown in Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in {\sc P}.
+	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. It follows from \ref{mono} that for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$. But by Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in $\ptime$.
 \end{proof}
 
 For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
@@ -91,20 +93,24 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 	If $\E1$ is closed under substraction, then {\sc P} = {\sc NP}.
 \end{theo}
 \begin{proof}
-	Suppose that $\E1$ is closed under substraction, that is, for each pair of functions $f,g\in \E1$, there is an $h\in\E1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
+	Suppose that $\E1$ is closed under substraction, that is, for each pair of functions $f,g\in \E1$, there exists $h\in\E1$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\Truc$.
 	
-	Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\psi$, where $A$ is the set of variables mentioned in $\psi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
+	Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\Phi$, where $A$ is the set of variables mentioned in $\Phi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
 	\begin{eqnarray*}
-		S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-		S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-		S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\psi\},\\
-		S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\psi\}.
+		S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+		S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+		S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+		S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
 	\end{eqnarray*}
-	Now let $f_{\#3DNF}$ be a function that counts the satisfying assignments to a 3DNF formula $\psi$. As shown in [1], $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+	Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
+	\begin{multline*}
+	\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
+	\end{multline*}
+	Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
 	$$
-	\varphi(x,X) = (X(x) \vee \neg X(x)).
+	\varphi(x,X) = (T(x) \vee \neg T(x)).
 	$$
-	Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. As we supposed initially, let $h\in\E1$ such that $f_{all}-f_{\#3DNF} = h$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is {\sc co-NP}-complete. However, as we showed previously in Theorem \ref{decisionptime}, $L_h \in \textsc{P}$. Then, $\textsc{co-NP} \subseteq \textsc{P}$, from which we conclude that $\textsc{P} = \textsc{NP}$.
+	Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E1$, we have by our initial assumption that $f_{all}-f_{\#3DNF} \in \E1$. Let $h\in\E1$ be such that $h = f_{all}-f_{\#3DNF}$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is $\conp$-complete. However, as we showed previously in Theorem \ref{decisionptime}, since $h\in\E1$, we have that $L_h \in \ptime$. Then, $\conp \subseteq \ptime$, from which we conclude that $\ptime = \np$.
 \end{proof}
 
 \begin{theo}
@@ -132,45 +138,48 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 	{\sc \#DNF} is hard for $\E1$ under parsimonious reductions. 
 \end{theo}
 \begin{proof}
-	Let $f$ be an arbitrary function in $\E1$ and let $f_{\textsc{DNF}}$ be the function that characterizes {\sc \#DNF}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{DNF}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:
+	Let $f$ be an arbitrary function in $\E1$ and let $f_{\textsc{\#DNF}}$ be the function that defines {\sc \#DNF}. We will now show a function $h:\Truc\to \textsc{Struct}[\L_{\textsc{DNF}}]$, where $\L_{\textsc{DNF}} = \{N,P\}$, such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{\#DNF}}(h(\A))$, and which can be computed in polynomial time. For every DNF formula $\Phi$ we define $\A_{\Phi} \in \textsc{Struct}[\L_{\textsc{DNF}}]$ as stated in \ref{dnfdef}. Let $\psi$ be such that $f = f_{\psi(\X,\z)}$. We separate the proof in three cases:
 	\begin{enumerate}
-		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we return is
+		\item $\X = ()$. Let $\psi(\z) = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we generate is
 		\[
 		\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
 		\]
-		which has exactly $n$ possible assignments.
+		which has exactly $n$ possible assignments. Finally, we return $h(\A) = \A_{\Phi}$.
 		
-		\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a DNF-formula $\Phi = h(\A)$ as follows:
-		
-		First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
+		\item $\z = ()$. Let $\psi(\X) = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a DNF-formula $\Phi = h(\A)$ as follows. First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
 		\[
-		\varphi_{i}(\x,\X) = X_{s_1}(\x_{s_1}) \wedge \cdots \wedge X_{s_m}(\x_{s_m}) \wedge \neg X_{t_1}(\x_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\x_{t_n}) \wedge \alpha_i(\x),
+		\varphi_{i}(\x,\X) = X_{\pi_i(1)}(\x^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\x^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\x^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\x^{\nu}_{i,n_i}) \wedge \alpha_i(\x),
 		\]
-		where every $\x_{s_i}$ and $\x_{t_j}$ have the corresponding number of variables, and $\alpha(\x)$ is a FO-formula.
+		where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$) is the rearrangement of $\x$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x)$ is a FO formula. We also define the tuple $\a^{\pi}_{i,j}$ ($\a^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$), for each $\a\in A^c$.
 		
-		Then, let $\Gamma_i = \{\a\in A^c\mid \A\models\alpha(\a)\}$. There is exactly $\vert A \vert^c$ tuples to check, and each of those checks can be done in polynomial time, so this set can also be generated in polynomial time. We generate a propositional variable $p^{\ell}_{\a}$ for each $\a\in \bigcup_{j = 1}^c A^j$, and for each $\ell\in\{1,\ldots,r\}$. Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}(\a)$ be the tuple that results of reordering $\a$ using the reordering of the variables of $\x$ in $\x_{\ell}$.
+		We generate a propositional variable $p^{\ell}_{\a}$ for each $\a\in A^{c_{\ell}}$, and for each $\ell\in\{1,\ldots,r\}$, which will indicate if the tuple $\a$ is in the assignment to $X_{\ell}$. Let $\p$ be the tuple of all such variables.
 		
-		Finally, for each $\varphi_i(\x,\X)$ the DNF formula we return is
+		Then, let $\Gamma_i = \{\a\in A^c\mid \A\models\alpha_i(\a)\}$. There is exactly $\vert A \vert^c$ tuples to check, and each of those checks can be done in polynomial time, so this set can also be generated in polynomial time.
+		
+		Finally, for each $\varphi_i(\x,\X)$ the DNF formula we generate is
 		\[
-		\Phi_i = \bigvee_{\a\in\Gamma_i} p^{s_1}_{\rho_{s_1}(\a)} \wedge \cdots \wedge p^{s_m}_{\rho_{s_m}(\a)} \wedge \neg p^{t_1}_{\rho_{t_1}(\a)} \wedge \cdots \wedge \neg p^{t_n}_{\rho_{t_n}(\a)}.
+		\Phi_i = \bigvee_{\a\in\Gamma_i} p^{\pi_i(1)}_{\a^{\pi}_{i,1}} \wedge \cdots \wedge p^{\pi_i(m_i)}_{\a^{\pi}_{i,m_i}} \wedge \neg p^{\nu_i(1)}_{\a^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\pi_i(n_i)}_{\a^{\nu}_{i,n_i}}.
 		\]
-		and $\Phi = \bigvee_{i = 1}^k \Phi_i$.
+		and $\Phi = \bigvee_{i = 1}^k \Phi_i \vee \bigvee_{p\in\p} (p\wedge\neg p)$. Finally, we return $h(\A) = \A_{\Phi}$.
+		
+		As an example, let $\psi^{*}(X_1,X_2) = \exists x \exists y\, (X_1(x) \wedge X_2(y,x) \wedge \neg X_1(y) \wedge x < y \wedge \neg\exists z\,(x<z\wedge z<y))$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^1_1,p^1_2,p^1_3) \cup (p^2_{(i,j)})$ for $(i,j)\in \{1,2,3\}\times\{1,2,3\}$. Note that in this procedure we will only have one set $\Gamma_1 = \{(1,2),(2,3)\}$. And so, the DNF formula we generate is 
+		\begin{multline*}
+		\Phi^{*} = (p^1_1\wedge p^2_{(2,1)} \wedge \neg p^1_2)\vee(p^1_2\wedge p^2_{(3,2)} \wedge \neg p^1_3)\, \vee \\ (p^1_1 \wedge \neg p^1_1) \vee(p^1_2 \wedge \neg p^1_2) \vee (p^1_3\wedge \neg p^1_3) \vee \bigvee_{i,j\in\{1,2,3\}}(p^2_{(i,j)}\wedge\neg p^2_{(i,j)})
+		\end{multline*}
 		
 		Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
 		
-		\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a DNF-formula $\Phi = h(\A)$ as follows:
-		
-		As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
+		\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$ we generate a DNF-formula $\Phi = h(\A)$ as follows. As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
 		\[
-		\varphi_{i}(\x,\X,\z) = X_{s_1}(\y_{s_1}) \wedge \cdots \wedge X_{s_m}(\y_{s_m}) \wedge \neg X_{t_1}(\y_{t_1}) \wedge \cdots \wedge \neg X_{t_n}(\y_{t_1}) \wedge \alpha_i(\x,\z),
+		\varphi_{i}(\x,\X,\z) = X_{\pi_i(1)}(\y^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\y^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\y^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\y^{\nu}_{i,n_i}) \wedge \alpha_i(\x,\z),
 		\]
-		where every $\y_{s_i}$ and $\y_{t_j}$ have the corresponding number of variables in $(\x,\z)$, and $\alpha(\x)$ is a FO-formula.
+		where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$) is the rearrangement of $(\x,\z)$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x,\z)$ is a FO formula. We also define the tuple $(\a,\e)^{\pi}_{i,j}$ ($(\a,\e)^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$), for each $(\a,\e)\in A^{c+d}$.
 		
-		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
+		We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. This variable will be true if there is an assignation to $\P$ such that $\b\in P_{\ell}$ and $\A\models\psi(\P,\e)$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
 		
 		For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
 		\[
-		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{s_1,\rho_{s_1}(\a,\e)} \wedge \cdots \wedge p^{\e}_{s_m,\rho_{s_m}(\a,\e)} \wedge \neg p^{\e}_{t_1,\rho_{t_1}(\a,\e)} \wedge \cdots \wedge \neg p^{\e}_{t_n,\rho_{t_n}(\a,\e)} \wedge \gamma_{\e} \wedge \theta_{\e}
+		\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{\pi_i(1),(\a,\e)^{\pi}_{i,1}} \wedge \cdots \wedge p^{\e}_{\pi_i(m_i),(\a,\e)^{\pi}_{i,m_i}} \wedge \neg p^{\e}_{\nu_i(1),(\a,\e)^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\e}_{\pi_i(n_i),(\a,\e)^{\nu}_{i,n_i}} \wedge \gamma_{\e} \wedge \theta_{\e},
 		\]
 		where $\gamma_{\e}$ is defined as
 		\[
@@ -180,10 +189,41 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 		\[
 			\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
 		\]
-		Finally, we return $f(\A) = \Phi = \bigvee_{\e\in A^d} \bigvee_{i = 1}^k \Phi_i^{\e}$. 
+		Finally,$\Phi = \bigvee_{\e\in A^d} \bigvee_{i = 1}^k \Phi_i^{\e} \vee \bigvee_{p\in\p} (p\wedge\neg p)$, and we return $f(\A) = \A_{\Phi}$.
 		
-		We will now show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows:
+		As an example, let $\psi^{*}(X_1,X_2,z) = \exists x\, (X_1(x) \wedge X_2(z) \wedge \neg X_1(z) \wedge x < z)$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^e_{1,1},p^e_{1,2},p^e_{1,3},p^e_{2,1},p^e_{2,2},p^e_{2,3})$, for $e\in \{1,2,3\}$. Here, we consider $L = 2$, $T = \{t_1,t_2\}$, and $\beta$ defined as $\beta(1) = (0,0)$, $\beta(2) = (0,1)$ and $\beta(3) = (1,0)$. In this procedure we generate the sets $\Gamma^1_1 = \emptyset$, $\Gamma^2_1 = \{1\}$, $\Gamma^3_1 = \{1,2\}$. Now we generate $\gamma_e$ for $e\in\{1,2,3\}$,
+		\[
+		\gamma_e = \bigwedge_{d\in\{1,2,3\}\setminus\{e\}} p^d_{1,1} \wedge p^d_{1,2} \wedge p^d_{1,3} \wedge p^d_{2,1} \wedge p^d_{2,2} \wedge p^d_{2,3},
+		\]
+		and $\theta_e$ for $e\in\{1,2,3\}$,
+		\begin{align*}
+		\theta_1 &= \neg t_1 \wedge \neg t_2,\\
+		\theta_2 &= \neg t_1 \wedge t_2,\\
+		\theta_3 &= t_1 \wedge \neg t_2.		
+		\end{align*}
+		Then, we generate the formulas $\Phi^e_1$, for $e\in\{1,2,3\}$,
+		\begin{align*}
+		\Phi^1_1 &= \square\\
+		\Phi^2_1 &= p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2,\\
+		\Phi^3_1 &= (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3),
+		\end{align*}
+		and so, the DNF formula we generate is
+		\begin{multline*}
+		\Phi = (p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2) \vee (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee \\ \bigvee_{e\in\{1,2,3\}}[(p^e_{1,1}\wedge\neg p^e_{1,1})\vee
+		(p^e_{1,2}\wedge\neg p^e_{1,2})\vee
+		(p^e_{1,3}\wedge\neg p^e_{1,3})\vee
+		(p^e_{2,1}\wedge\neg p^e_{2,1})\vee
+		(p^e_{2,2}\wedge\neg p^e_{2,2})\vee
+		(p^e_{2,3}\wedge\neg p^e_{2,3})].
+		\end{multline*}
+		To demonstrate that our reduction is correct, we will show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows. For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. 
 		
-		For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
+		Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{\#DNF}}(\A_{\Phi})$.
 	\end{enumerate}
+\end{proof}
+\begin{theo}
+	$\SUo$ with $n$ open first-order variables is properly contained in $\SUo$ with $n+1$ open first-order variables for $n\in\N$.  
+\end{theo}
+\begin{proof}
+	Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\Truc$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\Truc$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider $\B$ as the induced substructure of $\A$ with domain $A\setminus\{a\}$, and let $\Q$ be the corresponding induced sub-assignment of $\P$. As universal formulae are preserved under substructure, we have that $\A\models\forall\x\,\psi(\x,\Q,\e)$. This implies that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
 \end{proof}

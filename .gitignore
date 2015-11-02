@@ -20,4 +20,6 @@
 *.mtc
 *.mtc1
 *.out
+*.pdf
+tex/*.pdf
 *.synctex.gz

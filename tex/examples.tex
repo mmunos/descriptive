@@ -45,7 +45,7 @@ Now let $T$ be a unary second order variable, and
 
 We can easily reorder $\varphi(T)$ as $\forall x \forall y \forall z\,\theta(x,y,z,T)$ where $\theta(x,y,z,T)$ is an {\sc FO}-extended quantifier-free $\L$-formula such that any second order variable only appears in a Horn clause. It is easily seen that each relation $T$ over $\A$ such that $\A\models\forall x \forall y \forall z\,\theta(x,y,z,T)$ represents a valid assignment to the variables in $\Psi$, and therefore, $f_{\forall x \forall y \forall z\,\theta(x,y,z,T)}$ represents {\sc \#3-Horn-Sat}.
 
-\subsection{{\sc \#DNF}}
+\subsection{{\sc \#DNF}} \label{dnfdef}
 We will now show that {\sc \#DNF} $\in\EtwoE$.\\
 
 Let $\L = \{P,N,\leq\}$, and $\A = \langle A, P^\A, N^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a {\sc DNF} formula $\Psi$ with $n$ variables and $m$ clauses, where $A = \{1\ldots,n+m\}$, $P$ and $N$ is a binary relations described as follows:
