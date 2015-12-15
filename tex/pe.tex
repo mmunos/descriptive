@@ -1,0 +1,30 @@
+\section{Appendix - Problems in $\PE$}
+
+\subsection{\#Clique}
+Counting the number of cliques in a graph is in $\HU{1}$. Let $\L = \{E,\leq\}$, and $\A = \langle A, E^{\A}, \leq^{\A} \rangle$ be an $\L$-structure that represents a graph $G = (A,E^{\A})$.
+
+Let $C$ be a unary second-order variable, and
+\[
+\varphi(C) = \forall x \forall y((C(x)\wedge C(y))\to E(x,y)).
+\]
+Therefore, $f_{\varphi(C)}(\A)$ counts the number of cliques in $G$.
+
+\subsection{Counting the number of matchings in a graph}
+This function (also known as the Hosoya index of the graph) is in $\HU{1}$. Let $\L = \{E,\leq\}$, and $\A = \langle A, E^{\A}, \leq^{\A} \rangle$ be an $\L$-structure that represents a graph $G = (A,E^{\A})$.
+
+Let $M$ be a unary second-order variable, and
+\begin{align*}
+\varphi(M) &= \forall x \forall y (M(x,y)\to E(x,y))\,\wedge \\
+& \forall x \forall y (M(x,y)\to x < y)\,\wedge \\
+& \forall x \forall y \forall z(M(x,y)\wedge M(z,y) \to x = z)\,\wedge \\
+& \forall x \forall y \forall z(M(x,y)\wedge M(x,z) \to y = z)\,\wedge \\
+& \forall x \forall y \forall z(\neg M(x,y)\vee \neg M(y,z)).
+\end{align*}
+Therefore, $f_{\varphi(M)}(\A)$ counts the number of matchings in $G$.
+\subsection{\#2SAT}
+
+\subsection{Counting the number of paths between two given nodes in a graph}
+
+\subsection{Counting the number of Eulerian paths in a graph}
+
+\subsection{Counting the number of perfect matchings in a bipartite graph}

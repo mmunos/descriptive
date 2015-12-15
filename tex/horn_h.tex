@@ -1,37 +1,37 @@
-\section{The Extended Horn Counting Hierarchy}
+\section{The Horn Counting Hierarchy}
 
-We define syntactically the classes $\EiE$ and $\EiU$ as follows. First we define extended Horn clauses.
+We define the syntactic classes $\XE{i}$ and $\XU{i}$ as follows. First we define extended Horn clauses.
 \begin{eqnarray*}
 PL &::=& X_i(\x),\, i\in\N,\\
 NL &::=& \neg X_i(\x),\, i\in\N \ \mid \ \exists x\, NL,\\
 NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula over } \L \ \mid \ (NC \vee NC),\\
-HC &::=& NC \ \mid \ (NC \vee PL),
+HC &::=& NC \ \mid \ (NC \vee PL) \ \mid \ PL,
 \end{eqnarray*}
-where $\x$ is a tuple with the corresponding number of variables. Now we define the syntax of the classes inductively.
+where $PL$ represents a positive literal, $NL$ is an \textit{extended} negative literal, $NC$ is an extended Horn clause, and $HC$ is an extended Horn formula. Now we define the syntax of the classes inductively.\textbf{}
 \begin{enumerate}
-	\item $\EzeroE$:
+	\item $\HE{0}$:
 	\begin{eqnarray*}
 	E_0 &::=& HC \ \mid \ E_0 \wedge E_0.
 	\end{eqnarray*}
-	\item $\EzeroU$:
+	\item $\HU{0}$:
 	\begin{eqnarray*}
 	U_0 &::=& E_0.
 	\end{eqnarray*}
-	\item $\EipE$:
+	\item $\HE{i+1}$:
 	\begin{eqnarray*}
 	E_{i+1} &::=& U_i \ \mid \ \exists x \, E_{i+1}.
 	\end{eqnarray*}
-	\item $\EipU$:
+	\item $\HU{i+1}$:
 	\begin{eqnarray*}
 		U_{i+1} &::=& E_i \ \mid \ \forall x \, U_{i+1}.
 	\end{eqnarray*}
 \end{enumerate}
-A function $f$ is in $\EiE$ (resp. $\EiU$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
+A function $f$ is in $\XE{i}$ (resp. $\XU{i}$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
 
-The class $\PE$ is defined in [?] as $\PE = \{f\mid f\in\#P \mbox{ and its decision version } L_{f}\in P\}$.
+The class $\PE$ is defined in \cite{DBLP:conf/mfcs/PagourtzisZ06} as $\PE = \{f\mid f\in\#P \mbox{ and its decision version } L_{f}\in P\}$.
 
 \begin{theo}
-	$\EtwoE \subseteq \PE$
+	$\HE{2} \subseteq \PE$
 \end{theo} 
 \begin{proof}
 	Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{DBLP:journals/jcss/SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\#P$.\\
@@ -40,7 +40,7 @@ The class $\PE$ is defined in [?] as $\PE = \{f\mid f\in\#P \mbox{ and its decis
 	
 	Given $\A\in\Truc$ we generate an equivalent $\L$-formula $\theta(\X,\x,\y)$ with a series of operations. First, we replace every instance of $\v$ by a disjunction of all $r$-tuples in $A^r$, where $r$ is the number of variables in $\v$. The result is still a Horn clause. Second, we replace every instance of $\u$ by a conjunction of all $s$-tulples in $A^s$, where $s$ is the number or variables in $\u$. The result is still a conjunction of Horn clauses.
 	
-	Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time.
+	Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time \cite{DBLP:conf/stacs/Gradel91}.
 \end{proof}
 
 We define the decision problem
@@ -50,10 +50,10 @@ We define the decision problem
 and the counting problem {\sc \#Disj-Horn-Sat} as a function that counts all satisfying assignments to a formula $\Phi$ which is a disjunction of Horn formulas.
 
 \begin{theo}
-	$\textsc{Disj-Horn-Sat}$ is hard for $\EtwoE$ under parsimonious reductions. 
+	$\textsc{Disj-Horn-Sat}$ is hard for $\XE{2}$ under parsimonious reductions. 
 \end{theo} 
 \begin{proof}
-	Let $f$ be an arbitrary function in $\EtwoE$ and let $f_{\textsc{Disj-Horn-Sat}}$ be the function that characterizes {\sc \#Disj-Horn-Sat}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
+	Let $f$ be an arbitrary function in $\XE{2}$ and let $f_{\textsc{Disj-Horn-Sat}}$ be the function that characterizes {\sc \#Disj-Horn-Sat}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
 		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The Disj-Horn-Sat formula we return is
 		\[
 		\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n

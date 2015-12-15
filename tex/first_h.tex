@@ -25,27 +25,27 @@ for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \Truc$, where $\P = (P
 
 \subsection{The First {\sc FO}-Extended Counting Hierarchy}
 
-We define syntactically the classes $\Eie$ and $\Eiu$ according to the following grammar:
+We define syntactically the classes $\XE{i}$ and $\XU{i}$ according to the following grammar:
 \begin{enumerate}
-	\item $\Eezero$:
+	\item $\XE{0}$:
 	\[
 		E_0 ::= \varphi , \varphi \mbox{ is an {\sc FO}-extended quantifier-free $\L$-formula }.
 	\]
-	\item $\Euzero$:
+	\item $\XU{0}$:
 		\[U_0 ::= E_0.\]
-	\item $\Eipe$:
+	\item $\XE{i+1}$:
 	\[	E_{i+1} ::= U_i \ \mid \ \exists x \, E_{i+1}.\]
-	\item $\Eipu$:
+	\item $\XU{i+1}$:
 		\[U_{i+1} ::= E_i \ \mid \ \forall x \, U_{i+1}.\]
 \end{enumerate}
 
-A function $f$ is in $\Eie$ (resp. $\Eiu$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
+A function $f$ is in $\XE{i}$ (resp. $\XU{i}$) if there is an $\L$-formula $\varphi$ defined by the grammar $E_i$ (resp. $U_i$) such that $f = f_{\varphi}$.
 
 \begin{theo} \label{fp1}
-	$\Eo \subseteq$ {\sc FP}.
+	$\XE{0} \subseteq$ {\sc FP}.
 \end{theo}
 \begin{proof}
-	Let $f \in \Eo$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+	Let $f \in \XE{0}$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
 	\begin{eqnarray*}
 		f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
 	\end{eqnarray*}
@@ -76,7 +76,7 @@ The {\em decision problem} associated to a function $f$ is defined by the langua
 		
 		($\Leftarrow$) Suppose $g(\A) > 0$. Let $\Q$ and $\c = (\c_1,\c_2)$, where $\c_1$ and $\c_2$ have $k$ and $m$ elements respectively, be such that $\A \models \psi(\Q,\c) = \varphi(\c_1,\Q,\c_2)$. Then we have that $\A \models \exists \x \, \varphi(\x,\Q,\c_2)$, from which we conclude that $f(\A) > 0$.
 	\end{proof}
-	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\Eo$. It follows from \ref{mono} that for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$. But by Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in $\ptime$.
+	Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\XE{0}$. It follows from \ref{mono} that for each $\A \in \Truc$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$. But by Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in $\ptime$.
 \end{proof}
 
 For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
@@ -222,8 +222,8 @@ for every $\L$-structure $\A \in \Truc$. A function class $\F$ is {\em closed un
 	\end{enumerate}
 \end{proof}
 \begin{theo}
-	$\SUo$ with $n$ open first-order variables is properly contained in $\SUo$ with $n+1$ open first-order variables for $n\in\N$.  
+	$\U{1}$ with $n$ open first-order variables is properly contained in $\U{1}$ with $n+1$ open first-order variables for $n\in\N$.  
 \end{theo}
 \begin{proof}
-	Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\Truc$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\Truc$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider $\B$ as the induced substructure of $\A$ with domain $A\setminus\{a\}$, and let $\Q$ be the corresponding induced sub-assignment of $\P$. As universal formulae are preserved under substructure, we have that $\A\models\forall\x\,\psi(\x,\Q,\e)$. This implies that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
+	Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\Truc$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\Truc$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider the vocabulary $\L' = \L \cup \{\Q\}$, and let $\A' = \A \cup \langle \Q^{\A'} \rangle$ where $\Q^{\A'} = \P$. Note that $\A\models\varphi(\P,\e)$ if and only if $\A'\models\varphi(\e)$. Consider $\B'$ as the induced substructure of $\A'$ with domain $A\setminus\{a\}$, and let $\Q^{\B'}$ be the induced interpretation of $\Q$. Also let $\B$ be the induced substructure of $\A$ with domain $A\setminus\{a\}$. As universal formulae are preserved under substructure\footnote{Hodges, 1997. P. 183}, we have that $\B'\models\forall\x\,\psi(\x,\e)$, which implies that $\B\models\forall\x\,\psi(\x,\Q^{\B'},\e)$. We conclude that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
 \end{proof}

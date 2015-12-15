@@ -14,34 +14,12 @@
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
 
-\def\SEz{\#\Sigma_0}
-\def\SUz{\#\Pi_0}
-\def\SEo{\#\Sigma_1}
-\def\SUo{\#\Pi_1}
-\def\SEt{\#\Sigma_2}
-\def\SUt{\#\Pi_2}
-
-\def\Eo{\#\Sigma_0[\mbox{{\sc FO}}]}
-\def\Eezero{\#\Sigma_0[\mbox{{\sc FO}}]}
-\def\Euzero{\#\Pi_0[\mbox{{\sc FO}}]}
-\def\E1{\#\Sigma_1[\mbox{{\sc FO}}]}
-\def\Eie{\#\Sigma_{i}\textsc{[FO]}}
-\def\Eiu{\#\Pi_{i}\textsc{[FO]}}
-\def\Eipe{\#\Sigma_{i+1}\textsc{[FO]}}
-\def\Eipu{\#\Pi_{i+1}\textsc{[FO]}}
-\def\EzeroE{\#\Sigma_0\textsc{[FO]-Horn}}
-\def\EzeroU{\#\Pi_0\textsc{[FO]-Horn}}
-\def\EoneE{\#\Sigma_1\textsc{[FO]}}
-\def\EoneU{\#\Pi_1\textsc{[FO]-Horn}}
-\def\EtwoE{\#\Sigma_2\textsc{[FO]-Horn}}
-\def\EtwoU{\#\Pi_2\textsc{[FO]-Horn}}
-\def\EiE{\#\Sigma_{i}\textsc{[FO]-Horn}}
-\def\EiU{\#\Pi_{i}\textsc{[FO]-Horn}}
-\def\EipE{\#\Sigma_{i+1}\textsc{[FO]-Horn}}
-\def\EipU{\#\Pi_{i+1}\textsc{[FO]-Horn}}
-\def\EiEE{\#\Sigma_{i}\textsc{[FO]-Horn-Ext}}
-\def\EiUE{\#\Pi_{i}\textsc{[FO]-Horn-Ext}}
-\def\PE{\textsc{\#PE}}
+\newcommand\E[1]{\#\Sigma_{#1}} %Existential
+\newcommand\U[1]{\#\Pi_{#1}} %Universal
+\newcommand\XE[1]{\#\Sigma_{#1}\textsc{[FO]}} %Extended Existential
+\newcommand\XU[1]{\#\Pi_{#1}\textsc{[FO]}} %Extended Universal
+\newcommand\HE[1]{\#\Sigma_{#1}\textsc{[FO]-Horn}} %Horn Existential
+\newcommand\HU[1]{\#\Pi_{#1}\textsc{[FO]-Horn}} %Horn Universal
 
 \def\Truc{\textsc{Struct}[\L]}
 
@@ -92,6 +70,7 @@
 \def\ep{\bar{o}}
 \def\ga{\bar{p}}
 
+\def\PE{\textsc{\#PE}}
 \def\np{\mbox{{\sc NP}}}
 \def\conp{\mbox{{\sc coNP}}}
 \def\ptime{\mbox{{\sc P}}}
@@ -110,8 +89,10 @@
 	\input{horn_h}
 	\newpage
 	\input{examples}
+	\newpage
+	\input{pe}
 	
 	\bibliographystyle{plain}
-	\bibliography{SalujaST95}	
+	\bibliography{Gradel91,PagourtzisZ06,SalujaST95,Valiant79}
 	
 \end{document}
