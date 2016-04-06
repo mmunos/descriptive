@@ -5,15 +5,19 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{natbib}
 \usepackage{subfiles}
-\usepackage{algorithmicx}
+\usepackage{algorithm,algpseudocode}
 \usepackage{bm}
 
 \title{Counting complexity classes defined by fragments of second-order logic}
 
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
   \mathsurround=0pt$-$}}}
+
+\newcommand{\Break}{\State \textbf{break} }
+\newcommand{\Stop}{\State \textbf{stop} }
+\algblockdefx[Loop]{Loop}{EndLoop}[1][]{\textbf{Loop} #1}{\textbf{End Loop}}
+\algblockdefx[Begin]{Begin}{EndBegin}[1][]{\textbf{begin} #1}{\textbf{end}}
 
 \newcommand\E[1]{\#\Sigma_{#1}} %Existential
 \newcommand\U[1]{\#\Pi_{#1}} %Universal

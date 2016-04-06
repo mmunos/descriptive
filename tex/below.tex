@@ -19,31 +19,38 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine as a non-deterministic algorithm.
 	
 	\begin{algorithm}
-		\caption{Calculate $\sp_M(x)$}
-		\label{alg1}
-		\begin{algorithmic}
-			\REQUIRE $n \geq 0 \vee x \neq 0$
-			\ENSURE $y = x^n$
-			\STATE $y \leftarrow 1$
-			\IF{$n < 0$}
-			\STATE $X \leftarrow 1 / x$
-			\STATE $N \leftarrow -n$
-			\ELSE
-			\STATE $X \leftarrow x$
-			\STATE $N \leftarrow n$
-			\ENDIF
-			\WHILE{$N \neq 0$}
-			\IF{$N$ is even}
-			\STATE $X \leftarrow X \times X$
-			\STATE $N \leftarrow N / 2$
-			\ELSE[$N$ is odd]
-			\STATE $y \leftarrow y \times X$
-			\STATE $N \leftarrow N - 1$
-			\ENDIF
-			\ENDWHILE
-		\end{algorithmic}
-	\end{algorithm}
 		
+	\begin{algorithmic}[]
+		\Begin
+		\If{$f(x) = 0$} stop
+		\Else \text{ choose from}
+		\State stop
+		\State call $\textsc{GenTree}_{f}(x,\{s_0\})$
+		\EndIf
+		\EndBegin
+		\Procedure{$\textsc{GenTree}_{f}(x,S)$}{}
+		\State $S_0 = \emptyset$, $S_1 = \emptyset$
+		\For{$s\in S$}
+		\State do a search in the configuration graph of $M$ with input $x$ from $s$:
+		\If{$s'$ is reached after writing 0 in the output tape} $S_0 \gets s'$
+		\EndIf
+		\If{$s'$ is reached after writing 1 in the output tape} $S_1 \gets s'$
+		\EndIf
+		\EndFor
+		\If{a final state from $M$ is reachable from some $s\in S_0$ and some $s'\in S_1$} choose between:
+		\State call $\textsc{GenTree}_{f}(x,S_0)$
+		\State call $\textsc{GenTree}_{f}(x,S_1)$
+		\ElsIf{a final state from $M$ is reachable from some $s\in S_i$ but not from any $s'\in S_{1-i}$}
+		\State call $\textsc{GenTree}_{f}(x,S_0)$
+		\ElsIf{no final state from $M$ is reachable from any $s\in S_0 \cup S_1$}
+		\State stop
+		\EndIf
+		\EndProcedure
+	\end{algorithmic}
+	
+	\end{algorithm}
+	
+	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)$.
 	
 	
 	
