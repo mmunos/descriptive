@@ -1,0 +1,50 @@
+\section{Counting classes below \#P}
+
+We define $\totp$ using the following function. For each non-deterministic Turing machine $M$,
+\[
+	\tot_M(x) = (\text{\#paths of $M$ on input $x$}) - 1.
+\]
+A function $f:\{0,1\}^*\to\N$ is in $\totp$ if there exists a polynomial-time non-deterministic Turing machine $M$ such that $f = \tot_M$.
+
+We define $\spanl$ using the following function. For each non-deterministic Turing machine $M$,
+\[
+	\sp_M(x) = \vert\{w \mid \text{$w$ is an output of $M$ on input $w$}\}\vert.
+\]
+A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-deterministic Turing machine $M$ such that $f = \sp_M$.
+
+\begin{theo}
+	$\spanl \subseteq \totp$.
+\end{theo}
+\begin{proof}
+	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine as a non-deterministic algorithm.
+	
+	\begin{algorithm}
+		\caption{Calculate $\sp_M(x)$}
+		\label{alg1}
+		\begin{algorithmic}
+			\REQUIRE $n \geq 0 \vee x \neq 0$
+			\ENSURE $y = x^n$
+			\STATE $y \leftarrow 1$
+			\IF{$n < 0$}
+			\STATE $X \leftarrow 1 / x$
+			\STATE $N \leftarrow -n$
+			\ELSE
+			\STATE $X \leftarrow x$
+			\STATE $N \leftarrow n$
+			\ENDIF
+			\WHILE{$N \neq 0$}
+			\IF{$N$ is even}
+			\STATE $X \leftarrow X \times X$
+			\STATE $N \leftarrow N / 2$
+			\ELSE[$N$ is odd]
+			\STATE $y \leftarrow y \times X$
+			\STATE $N \leftarrow N - 1$
+			\ENDIF
+			\ENDWHILE
+		\end{algorithmic}
+	\end{algorithm}
+		
+	
+	
+	
+\end{proof}
