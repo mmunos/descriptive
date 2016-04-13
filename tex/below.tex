@@ -1,12 +1,12 @@
 \section{Counting classes below \#P}
 
-We define $\totp$ using the following function. For each non-deterministic Turing machine $M$,
+We define $\totp$ using the following function. For each non-deterministic Turing machine $M$ and $x\in\{0,1\}^*$,
 \[
 	\tot_M(x) = (\text{\#paths of $M$ on input $x$}) - 1.
 \]
 A function $f:\{0,1\}^*\to\N$ is in $\totp$ if there exists a polynomial-time non-deterministic Turing machine $M$ such that $f = \tot_M$.
 
-We define $\spanl$ using the following function. For each non-deterministic Turing machine $M$,
+We define $\spanl$ using the following function. For each non-deterministic Turing machine $M$ and $x\in\{0,1\}^*$,
 \[
 	\sp_M(x) = \vert\{w \mid \text{$w$ is an output of $M$ on input $w$}\}\vert.
 \]
@@ -16,7 +16,7 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 	$\spanl \subseteq \totp$.
 \end{theo}
 \begin{proof}
-	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine as a non-deterministic algorithm.
+	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine $M'$ as a non-deterministic algorithm.
 	
 	\begin{algorithm}
 		
@@ -25,10 +25,10 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 		\If{$f(x) = 0$} stop
 		\Else \text{ choose from}
 		\State stop
-		\State call $\textsc{GenTree}_{f}(x,\{s_0\})$
+		\State call $\textsc{GenTree}_{f}(x,\{s_0\},\epsilon)$
 		\EndIf
 		\EndBegin
-		\Procedure{$\textsc{GenTree}_{f}(x,S)$}{}
+		\Procedure{$\textsc{GenTree}_{f}(x,S,y)$}{}
 		\State $S_0 = \emptyset$, $S_1 = \emptyset$
 		\For{$s\in S$}
 		\State do a search in the configuration graph of $M$ with input $x$ from $s$:
@@ -38,20 +38,40 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 		\EndIf
 		\EndFor
 		\If{a final state from $M$ is reachable from some $s\in S_0$ and some $s'\in S_1$} choose between:
-		\State call $\textsc{GenTree}_{f}(x,S_0)$
-		\State call $\textsc{GenTree}_{f}(x,S_1)$
+		\State call $\textsc{GenTree}_{f}(x,S_0,y0)$
+		\State call $\textsc{GenTree}_{f}(x,S_1,y1)$
 		\ElsIf{a final state from $M$ is reachable from some $s\in S_i$ but not from any $s'\in S_{1-i}$}
-		\State call $\textsc{GenTree}_{f}(x,S_0)$
+		\State call $\textsc{GenTree}_{f}(x,S_i,yi)$
 		\ElsIf{no final state from $M$ is reachable from any $s\in S_0 \cup S_1$}
-		\State stop
+		\Return $y$
 		\EndIf
 		\EndProcedure
 	\end{algorithmic}
 	
 	\end{algorithm}
 	
-	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)$.
+	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)+1$.
+	
+	For each output $y$ consider some computation path $p$ of $M$ with input $x$ that outputs $y$. Note there is at least one computation path in $M'$ that follows $p$ and outputs $y$. Also, note that each distinct computation path of $M'$ outputs a different $y$, since in each branch the word differs in the last bit. Taking into account the dummy path in line 4, we conclude that the number of computation paths of $M'$ with input $x$ is equal to $\sp_M(x)+1$. 
 	
 	
 	
+\end{proof}
+
+Given a deterministic machine $M$ we define the function $f_M\{0,1\}^*\to\N$ as:
+\[
+	f_M(x) = \text{the output of $M$ on input $w$}
+\]
+for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists a deterministic polynomial-time machine $M$ such that $f = f_M$.
+\begin{theo} \label{diff}
+	For each function $f\in\shp$ there exists functions $g\in \totp$ and $h\in\text{FP}$ such that $f = g - h$.
+\end{theo}
+\begin{proof}
+	Let $f\in\shp$, and let $r:\{0,1\}^*\to\{0,1\}^*$ be such that for each $w\in\{0,1\}^*$ it holds that $f(w) = \shsat(r(w))$, and be computed in polynomial time. Let $\varphi_w = r(w)$.
+	
+	Let $M$ be a non-deterministic machine that on input $w$ does the following: Computes $\varphi_w$. Let $n$ be the number of variables on $\varphi_w$. Then it chooses $x\in\{0,1\}$. If $x = 0$ then stop. Else, choose a valuation $\sigma$ of size $n$. If $\sigma\models\varphi_w$ then stop. Else, choose $y\in\{0,1\}$ then stop. Note that $\tot_M(w) = \shsat(\varphi_w)+2^n+1$. Let $g:\{0,1\}^*\to\N$ defined as $g(x) = \tot_M(x) - 1$. Clearly $g\in\totp$.
+	
+	Let $M'$ be a deterministic machine that on input $w$ computes $\varphi_w$ and returns $2^n$. Let $h\in\{0,1\}^*\to\N$ defined as $f_M$. Since $M'$ runs in polynomial time, $h\in\text{FP}$.
+	
+	Finally, for each $w\in\{0,1\}^*$ we have that $g(w) - h(w) = \shsat(\varphi_w) + 2^n - 2^n = f(w)$.
 \end{proof}

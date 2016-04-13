@@ -28,3 +28,7 @@ Therefore, $f_{\varphi(M)}(\A)$ counts the number of matchings in $G$.
 \subsection{Counting the number of Eulerian paths in a graph}
 
 \subsection{Counting the number of perfect matchings in a bipartite graph}
+
+\subsection{\shsat + $2^n$}
+
+This function takes a propositional formula $\varphi$ as an input and outputs the number of satisfying assignments of $\varphi$ plus $2^n$, where $n$ is the number of variables in $\varphi$. Since the decision version of this function is trivial, it is in $\shp$. We also show using the machine described in Theorem \ref{diff} that this function is in $\totp$.
