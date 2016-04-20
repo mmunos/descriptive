@@ -45,16 +45,16 @@ The class $\PE$ is defined in \cite{DBLP:conf/mfcs/PagourtzisZ06} as $\PE = \{f\
 
 We define the decision problem
 \[
-\textsc{Disj-Horn-Sat} = \{\Phi \mid \Phi \mbox{ is a disjunction of Horn formulas and $\Phi$ is satisfiable}\},
+\shdhsat = \{\Phi \mid \Phi \mbox{ is a disjunction of Horn formulas and $\Phi$ is satisfiable}\},
 \]
-and the counting problem {\sc \#Disj-Horn-Sat} as a function that counts all satisfying assignments to a formula $\Phi$ which is a disjunction of Horn formulas.
+and the counting problem {\shdhsat } as a function that counts all satisfying assignments to a formula $\Phi$ which is a disjunction of Horn formulas.
 
-\begin{theo}
-	$\textsc{Disj-Horn-Sat}$ is hard for $\XE{2}$ under parsimonious reductions. 
+\begin{theo} \label{sigma2hard}
+	$\shdhsat$ is hard for $\XE{2}$ under parsimonious reductions. 
 \end{theo} 
 \begin{proof}
-	Let $f$ be an arbitrary function in $\XE{2}$ and let $f_{\textsc{Disj-Horn-Sat}}$ be the function that characterizes {\sc \#Disj-Horn-Sat}. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
-		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The Disj-Horn-Sat formula we return is
+	Let $f$ be an arbitrary function in $\XE{2}$. We will now show a function $h:\Truc\to L(P)$ such that for every $\A\in\Truc$, it holds that $f(\A) = \shdhsat(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
+		\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\Truc$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The disjunction of Horn formulas we return is
 		\[
 		\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
 		\]

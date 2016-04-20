@@ -110,3 +110,17 @@ Now let $T$ be a unary second order variable, and
 	\psi(T) = \exists f\forall c\,(B(c,f)\to \forall\ell\,\theta(c,\ell,T,X)),
 \]
 where $\theta$ is defined as in the previous case.
+
+\begin{coro}
+	$\textsc{\#Disj-Horn-Sat}$ is $\XE{2}$-Complete.
+\end{coro}
+\begin{proof}
+	Membership is shown above. Hardness is shown in Theorem \ref{sigma2hard}
+\end{proof}
+
+\begin{theo}
+	$\textsc{\#Disj-Horn-Sat} \in \totp$
+\end{theo}
+\begin{proof}
+	Each SAT function is self-reducible and we also have  that $\textsc{Disj-Horn-Sat}\in \textsc{P}$. Following the main proof from  $\cite{DBLP:conf/mfcs/PagourtzisZ06}$ it can be shown that $\textsc{\#Disj-Horn-Sat} \in \totp$.
+\end{proof}

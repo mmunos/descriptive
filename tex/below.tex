@@ -75,3 +75,10 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 	
 	Finally, for each $w\in\{0,1\}^*$ we have that $g(w) - h(w) = \shsat(\varphi_w) + 2^n - 2^n = f(w)$.
 \end{proof}
+
+\begin{theo}
+	$\XE{2} \subseteq \totp$
+\end{theo}
+\begin{proof}
+	Let $f:\Truc\to\N$ be a function in $\XE{2}$. Let $h$ be the function described in Theorem \ref{sigma2hard}. Consider a non-deterministic $M$ machine that on input $\A$ first computes $\varphi = h(\A)$ and then simulates the $\totp$ machine that computes $\shdhsat$. Since $h$ is a parsimonious reduction from $f$ to $\shdhsat$, it holds that $f(\A) = \tot_M(\A)+1$.
+\end{proof}

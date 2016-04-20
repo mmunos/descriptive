@@ -1,5 +1,7 @@
 \section{Appendix - Problems in $\PE$}
 
+In this section we will show some problems that are known to be in $\PE$, a formula that captures the function, if known, and proof that it belongs to $\totp$.
+
 \subsection{\#Clique}
 Counting the number of cliques in a graph is in $\HU{1}$. Let $\L = \{E,\leq\}$, and $\A = \langle A, E^{\A}, \leq^{\A} \rangle$ be an $\L$-structure that represents a graph $G = (A,E^{\A})$.
 
@@ -23,7 +25,36 @@ Let $M$ be a unary second-order variable, and
 Therefore, $f_{\varphi(M)}(\A)$ counts the number of matchings in $G$.
 \subsection{\#2SAT}
 
-\subsection{Counting the number of paths between two given nodes in a graph}
+\subsection{\#PATH}
+
+We define $\textsc{\#PATH}$ as a function such that for each non-directed graph $G$, a pair of its nodes $a,b$ and $k\in\N$, it holds that $\textsc{\#PATH}(G,a,b,k)$ is equal to the numbers of paths from $a$ to $b$ with size at most $k$.
+
+\begin{theo}
+	 $\textsc{\#PATH} \in \shl$
+\end{theo}
+\begin{proof}
+	Let $M$ be a non-deterministic machine that on input $(G,a,b,k)$ does the following: Start on $a$. On each cycle let $u$ be the previous vertex, and $M$ guesses the next vertex $v$, if $(u,v)\not\in E$, $M$ rejects. Else, $v = u$ and this ends the cycle. If it finds $b$, it accepts. If $k$ cycles have been made without finding $b$, it rejects.
+	
+	Clearly, the number of accepting paths of $M$ with input $(G,a,b,k)$ is equal to $\textsc{\#PATH}(G,a,b,k)$. It can be seen that $M$ uses logarithmic space since at each point of the computation it only needs the value of $u$ and a cycle counter.
+\end{proof}
+
+\begin{coro}
+	 $\textsc{\#PATH} \in \totp$
+\end{coro}
+
+\subsection{\#SIMPLEPATH}
+
+We define $\textsc{\#SIMPLEPATH}$ as a function such that $\textsc{\#SIMPLEPATH}(G,a,b)$ counts the number of paths from $a$ to $b$ such that no vertex appears twice or more in the path.
+
+\begin{coro}
+	$\textsc{\#SIMPLEPATH} \in \totp$
+\end{coro}
+\begin{proof}
+	Let $M$ be a non-deterministic machine that on input $(G,a,b)$ does the following: If there is no path from $a$ to $b$, stop. Else, choose $i\in\{0,1\}$ if $i = 0$ stop. Else, start on $a$ and save the path $P=\emptyset$. On each cycle let $S = \emptyset$, let $u$ be the previous vertex and $P$ the current path. If $u = b$, stop. Else for each vertex $v$ such that $(u,v)\in E$, check whether there exists a path $Q$ from $v$ to $b$ such that no vertex of $Q$ appears in $P$. If it exists, add $v$ to $S$. Choose some vertex $v'\in S$, add it to $P$ and do $u = v'$. This ends the cycle.
+	
+	Clearly the number of paths of $M$ on input $(G,a,b)$ is equal to $\textsc{\#SIMPLEPATH}(G,a,b)+1$. It can also be seen that $M$ runs on polynomial time.
+\end{proof}
+
 
 \subsection{Counting the number of Eulerian paths in a graph}
 
