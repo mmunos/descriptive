@@ -18,8 +18,8 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 \begin{proof}
 	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine $M'$ as a non-deterministic algorithm.
 	
-	\begin{algorithm}
-		
+	\begin{algorithm}	
+	\caption{Compute $f(x)+1$ paths}
 	\begin{algorithmic}[]
 		\Begin
 		\If{$f(x) = 0$} stop
@@ -47,10 +47,9 @@ A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-det
 		\EndIf
 		\EndProcedure
 	\end{algorithmic}
-	
 	\end{algorithm}
 	
-	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)+1$.
+	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)-1$.
 	
 	For each output $y$ consider some computation path $p$ of $M$ with input $x$ that outputs $y$. Note there is at least one computation path in $M'$ that follows $p$ and outputs $y$. Also, note that each distinct computation path of $M'$ outputs a different $y$, since in each branch the word differs in the last bit. Taking into account the dummy path in line 4, we conclude that the number of computation paths of $M'$ with input $x$ is equal to $\sp_M(x)+1$. 
 	

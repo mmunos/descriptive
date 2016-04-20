@@ -34,7 +34,7 @@ The class $\PE$ is defined in \cite{DBLP:conf/mfcs/PagourtzisZ06} as $\PE = \{f\
 	$\HE{2} \subseteq \PE$
 \end{theo} 
 \begin{proof}
-	Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{DBLP:journals/jcss/SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\#P$.\\
+	Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{DBLP:journals/jcss/SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\shp$.\\
 	
 	We will now prove that there is a polynomial time algorithm that decides $L_{f}$. This is equivalent to decide, given $\A= \langle A, \S^\A, \leq^\A \rangle\in\Truc$, whether there exist assignments $\P,\z$ such that $\A\models\varphi(\P,\z)$. This is the same as $\A\models\exists\X\exists\x\,\varphi(\X,\x)$. Since $\varphi(\X,\x)$ is defined by the grammar $E_2$, there exists $\psi(\X,\x,\y,\u)$ such that $\varphi(\X,\x) = \exists\x\exists\y\forall\u\exists\v\,\psi(\X,\x,\y,\u,\v)$, where every variable in $\v$ appears on a negated second-order literal $\neg X_i$, with $i\in\N$.
 	

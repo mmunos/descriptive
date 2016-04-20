@@ -11,6 +11,39 @@ Let $C$ be a unary second-order variable, and
 \]
 Therefore, $f_{\varphi(C)}(\A)$ counts the number of cliques in $G$.
 
+We now show that \#Clique belongs to {\totp } with a non-deterministic machine $M$ which we present as a non-deterministic algorithm that takes $G = (V,E)$ as input. We further suppose that $V = \{1,...,n\}$.
+
+	\begin{algorithm}	
+		\caption{Compute $\text{\#Clique}(G)+1$ paths}
+		\begin{algorithmic}[]
+			\Begin
+			\If{$G = \emptyset$} stop
+			\Else \text{ choose} $v\in V\cup\{\perp\}$ 
+			\If{$v = \perp$} stop
+			\Else \text{ call} $\textsc{GenTree}(G,\emptyset)$
+			\EndIf
+			\EndIf
+			\EndBegin
+			\Procedure{$\textsc{GenTree}(G,S)$}{}
+			\State $u \gets$ the last vertex in $S$
+			\State $T = \emptyset$
+			\For{$v \in \{u+1,\dots,n\}$}
+			\If{$v$ is connected to each $u'\in S$}
+			\State $T \gets v$
+			\EndIf
+			\EndFor
+			\If{$T \neq \emptyset$} choose $v'\in T\cup\{\perp\}$
+			\If{$v' = \perp$} stop
+			\Else \text{ call} $\textsc{GenTree}(G,S\cup\{v'\})$
+			\EndIf
+			\Else \text{ stop}
+			\EndIf
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+
+At each point in the computation $S$ contains the vertices of a clique in $G$, and since the computation follows the order of the vertices in $G$, every clique is counted exactly once.
+
 \subsection{Counting the number of matchings in a graph}
 This function (also known as the Hosoya index of the graph) is in $\HU{1}$. Let $\L = \{E,\leq\}$, and $\A = \langle A, E^{\A}, \leq^{\A} \rangle$ be an $\L$-structure that represents a graph $G = (A,E^{\A})$.
 
@@ -23,6 +56,7 @@ Let $M$ be a unary second-order variable, and
 & \forall x \forall y \forall z(\neg M(x,y)\vee \neg M(y,z)).
 \end{align*}
 Therefore, $f_{\varphi(M)}(\A)$ counts the number of matchings in $G$.
+
 \subsection{\#2SAT}
 
 \subsection{\#PATH}
