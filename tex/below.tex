@@ -81,3 +81,10 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 \begin{proof}
 	Let $f:\Truc\to\N$ be a function in $\XE{2}$. Let $h$ be the function described in Theorem \ref{sigma2hard}. Consider a non-deterministic $M$ machine that on input $\A$ first computes $\varphi = h(\A)$ and then simulates the $\totp$ machine that computes $\shdhsat$. Since $h$ is a parsimonious reduction from $f$ to $\shdhsat$, it holds that $f(\A) = \tot_M(\A)+1$.
 \end{proof}
+
+\begin{theo}
+	$\totp$ is closed under substraction of a polynomial on the size of the input.
+\end{theo}
+\begin{proof}
+	Let $f:\Truc\to\N$ be a function in $\totp$ and let $p$ be a polynomial. We will show a function $g\in\totp$ such that for each input $w$ it holds that $g(w) = \max(f(w) - p(\vert w \vert),0)$. Let $M$ be the non-deterministic Turing Machine such that $f(w) = \tot_M(w)+1$. We construct a non-deterministic Turing Machine that first computes $p(\vert w \vert)$. Then it simulates $M$ until it branches $p(\vert w \vert)$ times or finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $p(\vert w \vert)$ and backtracks until the previous branching path and continues repeating this process. After erasing $p(\vert w \vert)$ paths it continues simulating $M$. 	
+\end{proof}
