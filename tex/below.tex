@@ -68,7 +68,7 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 \begin{proof}
 	Let $f\in\shp$, and let $r:\{0,1\}^*\to\{0,1\}^*$ be such that for each $w\in\{0,1\}^*$ it holds that $f(w) = \shsat(r(w))$, and be computed in polynomial time. Let $\varphi_w = r(w)$.
 	
-	Let $M$ be a non-deterministic machine that on input $w$ does the following: Computes $\varphi_w$. Let $n$ be the number of variables on $\varphi_w$. Then it chooses $x\in\{0,1\}$. If $x = 0$ then stop. Else, choose a valuation $\sigma$ of size $n$. If $\sigma\models\varphi_w$ then stop. Else, choose $y\in\{0,1\}$ then stop. Note that $\tot_M(w) = \shsat(\varphi_w)+2^n+1$. Let $g:\{0,1\}^*\to\N$ defined as $g(x) = \tot_M(x) - 1$. Clearly $g\in\totp$.
+	Let $M$ be a non-deterministic machine that on input $w$ does the following: Computes $\varphi_w$. Let $n$ be the number of variables on $\varphi_w$. Then it chooses $x\in\{0,1\}$. If $x = 0$ then stop. Else, choose a valuation $\sigma$ of size $n$. If $\sigma\models\varphi_w$ then stop. Else, choose $y\in\{0,1\}$ then stop. Note that $\tot_M(w) = \shsat(\varphi_w)+2^n$. Let $g:\{0,1\}^*\to\N$ defined as $g(x) = \tot_M(x)$. Clearly $g\in\totp$.
 	
 	Let $M'$ be a deterministic machine that on input $w$ computes $\varphi_w$ and returns $2^n$. Let $h\in\{0,1\}^*\to\N$ defined as $f_M$. Since $M'$ runs in polynomial time, $h\in\text{FP}$.
 	
@@ -79,12 +79,16 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 	$\XE{2} \subseteq \totp$
 \end{theo}
 \begin{proof}
-	Let $f:\Truc\to\N$ be a function in $\XE{2}$. Let $h$ be the function described in Theorem \ref{sigma2hard}. Consider a non-deterministic $M$ machine that on input $\A$ first computes $\varphi = h(\A)$ and then simulates the $\totp$ machine that computes $\shdhsat$. Since $h$ is a parsimonious reduction from $f$ to $\shdhsat$, it holds that $f(\A) = \tot_M(\A)+1$.
+	Let $f:\Truc\to\N$ be a function in $\XE{2}$. Let $h$ be the function described in Theorem \ref{sigma2hard}. Consider a non-deterministic $M$ machine that on input $\A$ first computes $\varphi = h(\A)$ and then simulates the $\totp$ machine that computes $\shdhsat$. Since $h$ is a parsimonious reduction from $f$ to $\shdhsat$, it holds that $f(\A) = \tot_M(\A)$.
 \end{proof}
 
 \begin{theo}
-	$\totp$ is closed under substraction of a polynomial on the size of the input.
+	$\totp$ is closed under subtraction of a polynomial on the size of the input.
 \end{theo}
 \begin{proof}
-	Let $f:\Truc\to\N$ be a function in $\totp$ and let $p$ be a polynomial. We will show a function $g\in\totp$ such that for each input $w$ it holds that $g(w) = \max(f(w) - p(\vert w \vert),0)$. Let $M$ be the non-deterministic Turing Machine such that $f(w) = \tot_M(w)+1$. We construct a non-deterministic Turing Machine that first computes $p(\vert w \vert)$. Then it simulates $M$ until it branches $p(\vert w \vert)$ times or finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $p(\vert w \vert)$ and backtracks until the previous branching path and continues repeating this process. After erasing $p(\vert w \vert)$ paths it continues simulating $M$. 	
+	Let $f:\Truc\to\N$ be a function in $\totp$ and let $p$ be a polynomial. We will show a function $g\in\totp$ such that for each input $w$ it holds that $g(w) = \max(f(w) - p(\vert w \vert),0)$. Let $M$ be the non-deterministic Turing Machine such that $f(w) = \tot_M(w)$. 
+	
+	We construct a non-deterministic Turing Machine $M'$ that first computes $c = p(\vert w \vert)$. Then it deterministically simulates $M$ until it finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $c$ and saves the string of non-deterministic choices that were made. The machine then backtracks until the previous branching path and continues repeating the process. When all choices in a branch have been saved, it erases every path in that branch and saves only the choices until that point. If it happens that there are no more choices to make, and $c > 0$ the machine simply stops. If $c$ reaches 0, $M'$ simulates $M$ with input $w$. Each time the machine is about to do a non-deterministic choice it checks if it corresponds to any of the saved paths. If it is the case, it does not follow the branch.
+	
+	We will now show that $g(w) = \tot_{M'}(w)$. Let $w\in\{0,1\}$. If $\tot_{M}(w) > p(\vert w \vert)$, then clearly $\tot_{M'}(w) = \tot_{M}(w) - p(\vert w \vert)$. If $\tot_{M}(w) \leq p(\vert w \vert)$, then it only computes the first simulation path and $\tot_{M'}(w) = 0$.
 \end{proof}
