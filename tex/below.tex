@@ -12,6 +12,18 @@ We define $\spanl$ using the following function. For each non-deterministic Turi
 \]
 A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-deterministic Turing machine $M$ such that $f = \sp_M$.
 
+Given a language $L$, $\totp^{L}$ is defined by all functions $f:\{0,1\}^*\to\N$ such that $f = tot_{M^L}$.
+\\
+
+By the following result, we note that $\shp$ can be considered an extension of $\totp$.
+
+\begin{theo}
+	$\shp \subseteq \totp^{\textsc{SAT}}$
+\end{theo}
+\begin{proof}
+	Let $f\in\shp$ and let $M$ be the non-deterministic polynomial-time machine such that $f = \acc_M$. We provide a machine $M'^{\textsc{SAT}}$ with an oracle of SAT using the following construction. On input $w$, $M'$ gives the oracle a formula $\varphi$ that can be satisfied if and only if $M$ has at least one accepting path on input $w$. If it answers {\it no}, the computation ends. If it answers {\it yes}, it chooses $x\in\{0,1\}$. If $x = 0$ stops, and if $x = 1$, then it does the following. $M'$ simulates $M$ until a non-deterministic choice has to be taken. Let $S$ be the set of configurations that are reached on each choice. Then, for each $s\in S$, $M'$ constructs a formula $\varphi_s$ that models the machine $M$ on input $w$, starting on configuration $s$, which is satisfiable if and only if $M$ has at least one accepting path. For each $s\in S$, the formula $\varphi_s$ is given to the oracle, and if it answers {\it yes}, the corresponding choice is taken non-deterministically. If it answers {\it no} the choice is ignored. This is repeated until no more choices can be made. It is clear that $\acc_M = \tot_{M'^{\textsc{SAT}}}$. We conclude that $f\in\totp^{\textsc{SAT}}$.
+\end{proof}
+
 \begin{theo}
 	$\spanl \subseteq \totp$.
 \end{theo}
@@ -88,7 +100,13 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 \begin{proof}
 	Let $f:\Truc\to\N$ be a function in $\totp$ and let $p$ be a polynomial. We will show a function $g\in\totp$ such that for each input $w$ it holds that $g(w) = \max(f(w) - p(\vert w \vert),0)$. Let $M$ be the non-deterministic Turing Machine such that $f(w) = \tot_M(w)$. 
 	
-	We construct a non-deterministic Turing Machine $M'$ that first computes $c = p(\vert w \vert)$. Then it deterministically simulates $M$ until it finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $c$ and saves the string of non-deterministic choices that were made. The machine then backtracks until the previous branching path and continues repeating the process. When all choices in a branch have been saved, it erases every path in that branch and saves only the choices until that point. If it happens that there are no more choices to make, and $c > 0$ the machine simply stops. If $c$ reaches 0, $M'$ simulates $M$ with input $w$. Each time the machine is about to do a non-deterministic choice it checks if it corresponds to any of the saved paths. If it is the case, it does not follow the branch.
+	We construct a non-deterministic Turing Machine $M'$ that first computes $c = p(\vert w \vert)$. Then it deterministically simulates $M$ until it finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $c$ and saves the string of non-deterministic choices that were made. The machine then backtracks until the previous branching path and continues repeating the process. When all choices in a branch have been saved, it erases every path in that branch and saves only the choices until that point. If it happens that there are no more choices to make, and $c > 0$ the machine simply stops. If $c$ reaches 0, $M'$ simulates $M$ with input $w$. Each time the machine is about to do a non-deterministic choice $M'$ checks if the it corresponds to any of the saved paths. If it is the case, it does not follow the branch.
 	
 	We will now show that $g(w) = \tot_{M'}(w)$. Let $w\in\{0,1\}$. If $\tot_{M}(w) > p(\vert w \vert)$, then clearly $\tot_{M'}(w) = \tot_{M}(w) - p(\vert w \vert)$. If $\tot_{M}(w) \leq p(\vert w \vert)$, then it only computes the first simulation path and $\tot_{M'}(w) = 0$.
 \end{proof}
+
+Given a polynomial $p$ and a function $f\{0,1\}^*\to\N$ we define the set
+\[
+	polycheck_{p,f} = \{w\mid f(w) \geq p(\vert w \vert) \}.
+\]
+We define $\shpc$ as the class of functions $f\in\shp$ such that for each polynomial $p$ it holds that $polycheck_{p,f}\in \text{PTIME}$.
