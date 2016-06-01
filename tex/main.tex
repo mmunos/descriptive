@@ -7,7 +7,7 @@
 \usepackage{amssymb}
 \usepackage{subfiles}
 \usepackage{algorithm,algpseudocode}
-\usepackage{program}
+\usepackage{tikz}
 \usepackage{bm}
 
 \title{Counting complexity classes defined by fragments of second-order logic}
@@ -18,6 +18,7 @@
 \newcommand{\Break}{\State \textbf{break} }
 \newcommand{\Stop}{\State \textbf{stop} }
 \algblockdefx[Loop]{Loop}{EndLoop}[1][]{\textbf{Loop} #1}{\textbf{End Loop}}
+\algblockdefx[InEach]{InEach}{EndInEach}[1][]{\textbf{In each} #1}{\textbf{end}}
 \algblockdefx[Begin]{Begin}{EndBegin}[1][]{\textbf{begin} #1}{\textbf{end}}
 
 \newcommand\E[1]{\#\Sigma_{#1}} %Existential
@@ -78,17 +79,20 @@
 
 \def\shp{\textsc{\#P}}
 \def\shpc{\textsc{\#PC}}
+\def\shpe{\textsc{\#PE}}
 \def\shl{\textsc{\#L}}
 \def\shsat{\textsc{\#SAT}}
 \def\shdhsat{\textsc{\#Disj-Horn-SAT}}
 \def\sp{\text{span} }
 \def\spanl{\textsc{SpanL} }
 \def\spanp{\textsc{SpanP} }
+\def\stspanp{\textsc{Span!P} }
 \def\tot{\text{tot}}
 \def\acc{\text{acc}}
 \def\totp{\textsc{TotP}}
 \def\PE{\textsc{\#PE}}
 \def\np{\mbox{{\sc NP}}}
+\def\fp{\mbox{{\sc FP}}}
 \def\conp{\mbox{{\sc coNP}}}
 \def\ptime{\mbox{{\sc P}}}
 

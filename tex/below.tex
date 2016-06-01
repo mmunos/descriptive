@@ -18,13 +18,6 @@ Given a language $L$, $\totp^{L}$ is defined by all functions $f:\{0,1\}^*\to\N$
 By the following result, we note that $\shp$ can be considered an extension of $\totp$.
 
 \begin{theo}
-	$\shp \subseteq \totp^{\textsc{SAT}}$
-\end{theo}
-\begin{proof}
-	Let $f\in\shp$ and let $M$ be the non-deterministic polynomial-time machine such that $f = \acc_M$. We provide a machine $M'^{\textsc{SAT}}$ with an oracle of SAT using the following construction. On input $w$, $M'$ gives the oracle a formula $\varphi$ that can be satisfied if and only if $M$ has at least one accepting path on input $w$. If it answers {\it no}, the computation ends. If it answers {\it yes}, it chooses $x\in\{0,1\}$. If $x = 0$ stops, and if $x = 1$, then it does the following. $M'$ simulates $M$ until a non-deterministic choice has to be taken. Let $S$ be the set of configurations that are reached on each choice. Then, for each $s\in S$, $M'$ constructs a formula $\varphi_s$ that models the machine $M$ on input $w$, starting on configuration $s$, which is satisfiable if and only if $M$ has at least one accepting path. For each $s\in S$, the formula $\varphi_s$ is given to the oracle, and if it answers {\it yes}, the corresponding choice is taken non-deterministically. If it answers {\it no} the choice is ignored. This is repeated until no more choices can be made. It is clear that $\acc_M = \tot_{M'^{\textsc{SAT}}}$. We conclude that $f\in\totp^{\textsc{SAT}}$.
-\end{proof}
-
-\begin{theo}
 	$\spanl \subseteq \totp$.
 \end{theo}
 \begin{proof}
@@ -110,3 +103,75 @@ Given a polynomial $p$ and a function $f\{0,1\}^*\to\N$ we define the set
 	polycheck_{p,f} = \{w\mid f(w) \geq p(\vert w \vert) \}.
 \]
 We define $\shpc$ as the class of functions $f\in\shp$ such that for each polynomial $p$ it holds that $polycheck_{p,f}\in \text{PTIME}$.
+
+We present a counting class diagram:
+
+\input{classdiag}
+
+Now we will prove the non-trivial inclusions.
+
+\begin{theo}
+	$\shp \subseteq \totp^{\textsc{SAT}}$
+\end{theo}
+\begin{proof}
+	Let $f\in\shp$ and let $M$ be the non-deterministic polynomial-time machine such that $f = \acc_M$. We provide a machine $M'^{\textsc{SAT}}$ with an oracle of SAT using the following construction. On input $w$, $M'$ gives the oracle a formula $\varphi$ that can be satisfied if and only if $M$ has at least one accepting path on input $w$. If it answers {\it no}, the computation ends. If it answers {\it yes}, it chooses $x\in\{0,1\}$. If $x = 0$ stops, and if $x = 1$, then it does the following. $M'$ simulates $M$ until a non-deterministic choice has to be taken. Let $S$ be the set of configurations that are reached on each choice. Then, for each $s\in S$, $M'$ constructs a formula $\varphi_s$ that models the machine $M$ on input $w$, starting on configuration $s$, which is satisfiable if and only if $M$ has at least one accepting path. For each $s\in S$, the formula $\varphi_s$ is given to the oracle, and if it answers {\it yes}, the corresponding choice is taken non-deterministically. If it answers {\it no} the choice is ignored. This is repeated until no more choices can be made. It is clear that $\acc_M = \tot_{M'^{\textsc{SAT}}}$. We conclude that $f\in\totp^{\textsc{SAT}}$.
+\end{proof}
+
+For a non-deterministic machine with an output tape $M$, we define $\sp!_M:\{0,1\}^*\to\N$ as follows:
+\[
+	\sp!_M(x) = \{w \mid \text{every path of $M$ with input $x$ that returns $w$ is an accepting path.} \}
+\]
+Similarly, we define $\stspanp$ (suggested pronunciation: ``strict span P'') as the class of functions $\sp!_M$ where $M$ is a non-deterministic polynomial time machine.
+
+To prove the inclusion $\spanp \subseteq \shp^{\np}$, we will use a more strong result.
+
+\begin{theo}
+	$\spanp \subseteq \stspanp$.
+\end{theo}
+\begin{proof}
+	Let $f \in \spanp$ and let $M$ be the non-deterministic machine for which $f = \sp_M$ that runs in $p(\vert x \vert)$ time. We construct a non-deterministic machine $M'$ that on input $w$ does the following. It simulates $M(x)$, and when the simulation finishes on a final state of $M$, stops. When it finishes on a non-final state, it appends a dummy sequence of characters, for example $0^{p(\vert x \vert)+1}$, to the output. Clearly $f = \sp!_{M'}$, and since $M'$ runs in polynomial time, we have that $f \in \stspanp$.
+\end{proof}
+
+\begin{theo}
+	$\stspanp = \shp^{\np}$
+\end{theo}
+\begin{proof}
+	To show that $\stspanp \subseteq \shp^{\np}$, consider some $f \in \stspanp$ and some non-deterministic machine $M$ for which $f = \sp!_M$ that runs in $p(\vert x\vert)$. Suppose every output of $M(x)$ has length $p(\vert x\vert)$. Consider the following language in NP:
+	\begin{multline*}
+		L = \{ (i,M,x,w) \mid M \text{ is a non-determinstic polynomial-time machine and,} \\ \text{either $i = 1$ and $w$ is given as output in some accepting path of $M(x)$}, \\ \text{or $i = 0$ and $w$ is given as output in some rejecting path of $M(x)$}\}.
+	\end{multline*}
+	 We construct a non-deterministic machine $M'$ with an oracle on $L$ that on input $x$ does the following. Guess some $w\in\{0,1\}^{p(\vert x\vert)}$ Give $(1,M,x,w)$ to the oracle. If it responds {\tt no}, then $M'$ answers {\tt no}. If the oracle responds {\tt yes}, then it proceeds giving $(0,\overline{M},x,w)$ to the oracle, where $\overline{M}$ is the complement of the machine $M$. If the oracle responds {\tt yes}, then $M'$ answers {\tt no}. If it responds {\tt no}, then $M'$ answers {\tt yes}.
+	 
+	 To show that $\shp^{\np} \subseteq \stspanp$, consider some $f \in \shp^{\np}$, some language $L\in\np$ and some non-deterministic machine $M^L$ for which $f = \acc_{M^L}$. We provide a non-deterministic machine $M'$ as the following non-deterministic procedure. Let $M_L$ the non-deterministic polynomial-time machine machine that computes $L$.
+	 \begin{algorithm}
+	 \caption{Compute $\acc_{M^L}(x)$ outputs that are accepted in each respective path}
+	 \begin{algorithmic}[]
+		 \Begin
+		 \State $w \gets \varepsilon$.
+		 \State Simulate $M^L(x)$:
+		 \While{running $M^L(x)$}
+		 \State $s\gets$ the current configuration of $M^L(x)$.
+		 \State $w \gets w \cdot s$.
+		 \If{$s$ is a call to the oracle with input $y$}
+		 \State Non-det. simulate $M_L(y)$:
+		 \InEach{accepting path} {\bf do} two branches:
+		 \State Continue running $M^L(x)$ on $s$ with the state $q_{\texttt{yes}}$.
+		 \State Continue running $M^L(x)$ on $s$ with the state $q_{\texttt{no}}$, but rejecting at the end
+		 \EndInEach
+		 \InEach{rejecting path}
+		 \State Continue running $M^L(x)$ on $s$ with the state $q_{\texttt{no}}$.
+		 \EndInEach
+		 \ElsIf{$\delta(s) \neq \emptyset$} choose from $\delta(s)$
+		 \State Continue simulating on that choice.
+		 \ElsIf{$s$ corresponds a final state}
+		 \State \Return {\tt yes} with output $w$, unless previously decided to be rejected.
+		 \Else
+		 \State \Return {\tt no} with output $w$.
+		 \EndIf
+		 \EndWhile
+		 \EndBegin
+	 \end{algorithmic}
+ 	 \end{algorithm}
+ 	 
+	 Let $x\in\{0,1\}^*$. To show that $\sp!_{M'}(x) = \acc_{M^L}(x)$, first note that for each strictly accepting output $w$ of $M'(x)$ there exists some accepting path $p$ of $M^L(x)$ such that $p = w$. Now note that for each accepting path $p$ of $M^L(x)$ there exists an output $w$ of $M'(x)$ such that $p = w$. This output is clearly accepted in some branch. To show that this output is not rejected in any branch, by contradiction suppose that it is. This branch cannot correspond to a rejecting path of $M^L(x)$ and then it must be rejected on line 11, from simulating a negative answer of the oracle in one of its accepting paths. This branch corresponds to a path that is never reachable since in $M^L(x)$ the oracle answered {\tt yes}, and we follow to a contradiction. 
+\end{proof}
