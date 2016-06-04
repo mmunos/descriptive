@@ -2,6 +2,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{fullpage}
+\usepackage{bm}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 \def\shgi{\mbox{\#GI}}
 \def\lgi{\mbox{GI}}
@@ -21,7 +26,7 @@
 
 \maketitle
 
-In this document we provide a comprehensive proof of Mathon's result that counting the isomorphisms from a pair of graphs can be done with a PTIME machine with an oracle to the graph isomorphism language.
+In this document we provide a comprehensive proof of Mathon's result that counting the isomorphisms from a pair of graphs can be done with a polynomial-time machine with an oracle to the graph isomorphism language.\cite{DBLP:journals/ipl/Mathon79}
 
 Let us define the language $\lgi$ as:
 \[
@@ -31,41 +36,41 @@ and the function $\shgi$ as:
 \[
 \shgi(G_1,G_2) = \vert \{ f \mid \mbox{$f$ is an isomorphism from $G_1$ to $G_2$}  \} \vert.
 \]
-Before jumping to the main result, we provide some definitions.
+Before going into the proof, we provide some definitions.
 
-For each graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, we define $G_{v_1,\ldots,v_k}$ as a copy of $G$ with distinct labels on $v_1,\ldots,v_k$. This can be done by connecting each $v_i$ with some line of length $n+k$, where $\vert G \vert = n$.
+For each graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, we define $G_{v_1,\ldots,v_k}$ as a copy of $G$ with distinct labels on $v_1,\ldots,v_k$. This can be done by connecting each $v_i$ with some line of length $n+i$, where $\vert G \vert = n$.
 
-For each graph $G$, we define $\aut(G) = \{g\mid \mbox{$g$ is an automorphism of $G$} \}$. Note that $(\aut(G),\circ)$ defines a group, where $(f_1\circ f_2)(x)$ is equal to $f_1(f_2(x))$. For each pair of graphs $G_1,G_2$ we also define $\iso(G_1,G_2) = \{f\vert \mbox{$f$ is an isomorphism from $G_1$ to $G_2$}\}$.
+For each graph $G$, we define $\aut(G) = \{g\mid \mbox{$g$ is an automorphism of $G$} \}$. Note that $(\aut(G),\circ)$ defines a group, where $(f_1\circ f_2)$ represents the composite function of $f_1$ over $f_2$. For each pair of graphs $G_1,G_2$ we also define $\iso(G_1,G_2) = \{f\vert \mbox{$f$ is an isomorphism from $G_1$ to $G_2$}\}$.
+
+Before we proceed to the main theorem, we prove a series of lemma.
 
 \begin{lemma}\label{aut}
 	Let $G_1$ and $G_2$ be isomorphic graphs. We have that $\vert \iso(G_1,G_2) \vert = \vert \aut(G_1) \vert = \vert \aut(G_2) \vert$.
 \end{lemma}
 \begin{proof}
-	Let $\phi:G_1\to G_2$ be some isomorphism from $G_1$ to $G_2$. First we will prove that $\vert \iso(G_1,G_2) \vert  = \vert \aut(G_1) \vert$ by providing a bijection from $\iso(G_1,G_2)$ to $\aut(G_1)$. Let $F:\iso(G_1,G_2)\to\aut(G_1)$ be defined as $F(f) = \phi^{-1}\circ f$. $F(f)$ is clearly an automorphism of $G_1$. Let $f_1,f_2\in\iso(G_1,G_2)$ be such that for some $v\in G_1$, $f_1(v)\neq f_2(v)$. Clearly $\phi^{-1}\circ f_1(v) \neq \phi^{-1}\circ f_2(v)$ so the function is injective. Now consider $G(g) = \phi \circ g$. For each automorphism $g\in\aut(G_1)$, there exists some $f\in\iso(G_1,G_2)$ such that $F(f) = g$, given by $f = G(g)$, so the function is surjection. This directly implies that $\vert \iso(G_2,G_1) \vert  = \vert \aut(G_2) \vert$. Clearly $\vert\iso(G_1,G_2)\vert = \vert\iso(G_2,G_1)\vert$, and this completes the proof.
+	Let $\phi:G_1\to G_2$ be some isomorphism from $G_1$ to $G_2$. First we will prove that $\vert \iso(G_1,G_2) \vert  = \vert \aut(G_1) \vert$ by providing a bijection from $\iso(G_1,G_2)$ to $\aut(G_1)$. Let $F:\iso(G_1,G_2)\to\aut(G_1)$ be defined as $F(f) = \phi^{-1}\circ f$. $F(f)$ is clearly an automorphism of $G_1$. Since $\phi^{-1}\circ f_1 = \phi^{-1}\circ f_2$ implies that $f_1 = f_2$ the function is injective. For each $g\in\aut(G_1)$, there exists some $f\in\iso(G_1,G_2)$ such that $F(f) = g$, given by $f = \phi \circ g$, so the function is surjective. This directly gives us that $\vert \iso(G_2,G_1) \vert  = \vert \aut(G_2) \vert$. Clearly $\vert\iso(G_1,G_2)\vert = \vert\iso(G_2,G_1)\vert$, and this completes the proof.
 \end{proof}
 
-Given a graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, we define the labelled graph $G_{v_1,\ldots,v_k}$ as a copy of $G$ with labels in $v_1,\ldots,v_k$. These labels provide the restriction that each automorphism $g$ in $G_{v_1,\ldots,v_k}$ is such that $g(v_i) = v_i$ for each $v_i$. This can be achieved by connecting each $v_i$ with a line of $n+i$ vertices, where $n = \vert G \vert$. We also have that this construction takes polynomial time. Clearly, $\aut(G_{v_1,\ldots,v_k})\subseteq\aut(G)$.
+Given a graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, we define the labelled graph $G_{v_1,\ldots,v_k}$ as a copy of $G$ with labels in $v_1,\ldots,v_k$. These labels provide the restriction that each automorphism $g$ in $G_{v_1,\ldots,v_k}$ is such that $g(v_i) = v_i$ for $1\leq i\leq k$. This can be achieved by connecting each $v_i$ with a line of $n+i$ vertices, where $n = \vert G \vert$. We also have that this construction takes polynomial time. Furthermore, $\aut(G_{v_1,\ldots,v_k})\subseteq\aut(G)$.
 
-Given a graph $G$, we define 
+Given a graph $G$, we define the orbit of $v$ in $G$ as
 \[
 \pi_{v}^G = \{v'\mid \mbox{there is some automorphism $g$ of $G$ such that $g(v) = v'$}\}.
 \]
 
 \begin{lemma}
-	For a given graph $G$ and some $v$ in $G$, $\pi_v^G$ is an equivalence class of $V$.
+	For a given graph $G$ with a set of vertices $V$ and some $v\in V$, $\pi_v^G$ is an equivalence class of $V$.
 \end{lemma}
 \begin{proof}
-	We define the relation $\sigma\subseteq G\times G$ as $\sigma(u,v)$ if there is some automorphism $g$ in $G$ such that $g(u) = v$. This is clearly an equivalence relation. Let $v_1,\ldots,v_n$ be the vertices in $G$. We have that $\{\pi_{v_1}^G,\ldots,\pi_{v_1}^G\}$ are the equivalence classes of $\sigma$ over $G$.
+	We define the relation $\sigma\subseteq G\times G$ as $\sigma(u,v)$ if there is some automorphism $g$ in $G$ such that $g(u) = v$. This is clearly an equivalence relation. Let $V = \{v_1,\ldots,v_n\}$. We have that $\{\pi_{v_1}^G,\ldots,\pi_{v_1}^G\}$ are the equivalence classes of $\sigma$ over $G$.
 \end{proof}
 
 \begin{lemma}\label{induc}
 	For a graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, $\vert aut(G_{v_1,\ldots,v_{k-1}}) \vert = \vert \pi_{v_k}^{G_{v_1,\ldots,v_{k-1}}} \vert \cdot \vert aut(G_{v_1,\ldots,v_k}) \vert$.
 \end{lemma}
 \begin{proof}
-	For each $v_i\in\pi^{G_{v_1,\ldots,v_{k-1}}}_{v_k}$, let $\phi_i$ be some automorphism of $G_{v_1,\ldots,v_{k-1}}$ such that $\phi_i(v_k) = v_i$. Let $\Phi$ be the set of all such $\phi_i$'s. By definition, $\vert \pi_{v_k}^{G_{v_1,\ldots,v_{k-1}}} \vert = \vert \Phi \vert$. To prove the initial statement, we will provide a bijection $F:aut(G_{v_1,\ldots,v_{k-1}}) \to \Phi\times aut(G_{v_1,\ldots,v_k})$. Consider $F(g) = (\phi_i, \phi_i^{-1}\circ g)$, where $g(v_k) = v_i$. By definition, $\phi_i\in\Phi$. We have that $\phi_i^{-1}\circ g$ is an automorphism of $G_{v_1,\ldots,v_{k-1}}$, and since $\phi_i^{-1}\circ g(v_k) = v_k$, we also have that $\phi_i^{-1}\circ g$ is an automorphism of $G_{v_1,\ldots,v_{k-1}}$. Since $\phi_i^{-1}\circ g_1 = \phi_i^{-1} \circ g_2$ implies that $g_1 = g_2$, this is an injection. To prove that this is a surjection, note that for each pair $(\phi_i,h)\in\Phi\times\aut(G_{v_1,\ldots,v_k})$, there exists $g = \phi_i\circ h$ such that $F(g) = h$. Since the function is a bijection, this completes the proof.
+	For each $v_i\in\pi^{G_{v_1,\ldots,v_{k-1}}}_{v_k}$, let $\phi_i$ be some automorphism of $G_{v_1,\ldots,v_{k-1}}$ such that $\phi_i(v_k) = v_i$. Let $\Phi$ be the set of the chosen $\phi_i$'s. By definition, $\vert \pi_{v_k}^{G_{v_1,\ldots,v_{k-1}}} \vert = \vert \Phi \vert$. To prove the initial statement, we will provide a bijection $F:aut(G_{v_1,\ldots,v_{k-1}}) \to \Phi\times aut(G_{v_1,\ldots,v_k})$. Consider $F(g) = (\phi_i, \phi_i^{-1}\circ g)$, where $g(v_k) = v_i$. By definition, $\phi_i\in\Phi$. We have that $\phi_i^{-1}\circ g$ is an automorphism of $G_{v_1,\ldots,v_{k-1}}$, and since $\phi_i^{-1}\circ g(v_k) = v_k$, we also have that $\phi_i^{-1}\circ g$ is an automorphism of $G_{v_1,\ldots,v_{k-1}}$. Since $\phi_i^{-1}\circ g_1 = \phi_i^{-1} \circ g_2$ implies that $g_1 = g_2$, this is an injection. To prove that this is a surjection, note that for each pair $(\phi_i,h)\in\Phi\times\aut(G_{v_1,\ldots,v_k})$, there exists $g = \phi_i\circ h$ such that $F(g) = h$. Since the function is a bijection, this completes the proof.
 \end{proof}	
-
-Before we proceed to the main theorem, we prove a small lemma.
 
 \begin{lemma}\label{polypi}
 	For a graph $G$ and vertices $v_1,\ldots,v_k$ in $G$, $\delta(G,v_1,\ldots,v_k) = \vert \pi^{G_{v_1,\ldots,v_{k-1}}}_{v_k} \vert$ can be computed by a polynomial-time procedure with an oracle to $\lgi$.
@@ -74,11 +79,16 @@ Before we proceed to the main theorem, we prove a small lemma.
 	For a vertex $v\in G$, let $G^{v}$ be a copy of $G$ with a line of size $2n+1$ attached to $v$, where $\vert G \vert = n$. Let $S$ be the set of vertices in $G\setminus\{v_1,\ldots,v_k\}$. For each $v\in S$, we can check with the oracle in constant time if $G^{v}_{v_1,\ldots,v_{k-1}}$ and $G^{v_k}_{v_1,\ldots,v_{k-1}}$ are isomorphic. We have that this pair of graphs is isomorphic if and only if there is an automorphism $g$ of $G_{v_1,\ldots,v_{k-1}}$ such that $g(v_k) = v$, or equivalently, $v\in \pi^{G_{v_1,\ldots,v_{k-1}}}_{v_k}$. Repeating this call $\vert S \vert$ times gives us the exact value of $\vert \pi^{G_{v_1,\ldots,v_{k-1}}}_{v_k} \vert$.
 \end{proof}
 
+Now we proceed to the main result.
+
 \begin{theo}
 	$\shgi\in\fp^{\lgi}$.
 \end{theo}
 \begin{proof}
 	We will construct a polynomial-time procedure with an oracle to $\lgi$ problem that given a pair of graphs $(G_1,G_2)$ computes $\shgi(G_1,G_2) = \vert \iso(G_1,G_2) \vert$. First, we verify if $G_1$ and $G_2$ are isomorphic with a single call to the oracle. If they are not, return 0. Let $v_1,\ldots,v_n$ be the vertices in $G_1$. From Lemma \ref{induc} We have that $\vert\aut(G_1)\vert = \vert \pi^{v_2}_{v_1} \vert \cdot \vert \pi^{v_3}_{v_1,v_2} \vert \cdots \vert \pi^{v_n}_{v_1,\ldots,v_n} \vert\cdot\vert\aut({G_1}_{v_1,\ldots,v_n}) \vert$. Note that $\vert\aut({G_1}_{v_1,\ldots,v_n}) \vert = 1$. Also note that from the result in Lemma \ref{polypi}, each $\vert\pi^{v_k}_{v_1,\ldots,v_{k-1}}\vert$ can be computed in polynomial time, and therefore, $\vert \aut(G_1) \vert$ can also be computed in polynomial time. From Lemma \ref{aut} we have that $\vert \aut(G_1) \vert = \vert \iso(G_1,G_2) \vert$ and this completes the proof.
 \end{proof}
+ 
+\bibliographystyle{plain}
+\bibliography{Mathon79}
 
 \end{document}
