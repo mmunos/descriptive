@@ -108,13 +108,17 @@ We present a counting class diagram:
 
 \input{classdiag}
 
-Now we will prove the non-trivial inclusions.
+Or new addition to the known diagram is the following inclusion.
 
 \begin{theo}
-	$\shp \subseteq \totp^{\textsc{SAT}}$
+	$\spanp \subseteq \totp^{\np}$
 \end{theo}
 \begin{proof}
-	Let $f\in\shp$ and let $M$ be the non-deterministic polynomial-time machine such that $f = \acc_M$. We provide a machine $M'^{\textsc{SAT}}$ with an oracle of SAT using the following construction. On input $w$, $M'$ gives the oracle a formula $\varphi$ that can be satisfied if and only if $M$ has at least one accepting path on input $w$. If it answers {\it no}, the computation ends. If it answers {\it yes}, it chooses $x\in\{0,1\}$. If $x = 0$ stops, and if $x = 1$, then it does the following. $M'$ simulates $M$ until a non-deterministic choice has to be taken. Let $S$ be the set of configurations that are reached on each choice. Then, for each $s\in S$, $M'$ constructs a formula $\varphi_s$ that models the machine $M$ on input $w$, starting on configuration $s$, which is satisfiable if and only if $M$ has at least one accepting path. For each $s\in S$, the formula $\varphi_s$ is given to the oracle, and if it answers {\it yes}, the corresponding choice is taken non-deterministically. If it answers {\it no} the choice is ignored. This is repeated until no more choices can be made. It is clear that $\acc_M = \tot_{M'^{\textsc{SAT}}}$. We conclude that $f\in\totp^{\textsc{SAT}}$.
+	Let $f\in\spanp$ and let $M$ be the non-deterministic polynomial-time machine for which $f = \sp_M$. We suppose without loss of generality that each output of $M(x)$ has length $p(\vert x \vert)$, where $p$ is a polynomial. We will provide a non-deterministic machine $M'^L$ where $L$ is the following language:
+	\begin{multline*}
+	L = \{(M,x,w_1,w_2) \mid \text{$M$ is a non-deterministic polynomial-time machine and} \\ \text{$M(x)$ gives some output in the lexicographic range $[w_1,w_2]$.} \}
+	\end{multline*}
+	The machine $M$ on input $x$ writes $w_1 = 0^{p(\vert x \vert)}, w_2 = 01^{p(\vert x \vert)-1}$, and asks the oracle $(M,x,w_1,w_2)$. If it answers yes, it generates a new branch and proceeds, if not, just proceeds. Then, write $w_1 = 10^{p(\vert x \vert)-1}, w_2 = 1^{p(\vert x \vert)}$ and asks the oracle $(M,x,w_1,w_2)$. If it answers yes, it generates a new branch and proceeds, if not, stop. TO BE CONTINUED.
 \end{proof}
 
 For a non-deterministic machine with an output tape $M$, we define $\sp!_M:\{0,1\}^*\to\N$ as follows:
@@ -122,15 +126,6 @@ For a non-deterministic machine with an output tape $M$, we define $\sp!_M:\{0,1
 	\sp!_M(x) = \{w \mid \text{every path of $M$ with input $x$ that returns $w$ is an accepting path.} \}
 \]
 Similarly, we define $\stspanp$ (suggested pronunciation: ``strict span P'') as the class of functions $\sp!_M$ where $M$ is a non-deterministic polynomial time machine.
-
-To prove the inclusion $\spanp \subseteq \shp^{\np}$, we will use a more strong result.
-
-\begin{theo}
-	$\spanp \subseteq \stspanp$.
-\end{theo}
-\begin{proof}
-	Let $f \in \spanp$ and let $M$ be the non-deterministic machine for which $f = \sp_M$ that runs in $p(\vert x \vert)$ time. We construct a non-deterministic machine $M'$ that on input $w$ does the following. It simulates $M(x)$, and when the simulation finishes on a final state of $M$, stops. When it finishes on a non-final state, it appends a dummy sequence of characters, for example $0^{p(\vert x \vert)+1}$, to the output. Clearly $f = \sp!_{M'}$, and since $M'$ runs in polynomial time, we have that $f \in \stspanp$.
-\end{proof}
 
 \begin{theo}
 	$\stspanp = \shp^{\np}$
