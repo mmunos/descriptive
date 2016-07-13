@@ -1,33 +1,46 @@
 \begin{center}
-	\begin{tikzpicture}[scale=0.2]
-	\tikzstyle{every node}+=[inner sep=0pt]
-	\draw (13.5,-32.3) node {$\fp$};
-	\draw (13.5,-42.8) node {$\spanl$};
-	\draw (29,-32.3) node {$\totp$};
-	\draw (37.8,-32.3) node {$\shpe$};
-	\draw (46.5,-32.3) node {$\shp$};
-	\draw (61.8,-32.3) node {$\spanp$};
-	\draw (29,-21.3) node {$\fp^{\np}$};
-	\draw (46.5,-21.3) node {$\totp^{\np}$};
-	\draw (61.8,-21.3) node {$\shp^{\np}$};
+	\begin{tikzpicture}[scale=1.0]
 	
-\draw [black] (16.5,-32.3) -- (26,-32.3);
-\fill [black] (26,-32.3) -- (25.2,-31.8) -- (25.2,-32.8);
-\draw [black] (32,-32.3) -- (34.8,-32.3);
-\fill [black] (34.8,-32.3) -- (34,-31.8) -- (34,-32.8);
-\draw [black] (40.8,-32.3) -- (43.5,-32.3);
-\fill [black] (43.5,-32.3) -- (42.7,-31.8) -- (42.7,-32.8);
-\draw [black] (49.5,-32.3) -- (58.8,-32.3);
-\fill [black] (58.8,-32.3) -- (58,-31.8) -- (58,-32.8);
-\draw [black] (15.98,-41.12) -- (26.52,-33.98);
-\fill [black] (26.52,-33.98) -- (25.57,-34.02) -- (26.13,-34.85);
-\draw [black] (59.49,-30.39) -- (50.81,-23.21);
-\fill [black] (50.81,-23.21) -- (51.11,-24.11) -- (51.75,-23.34);
-\draw [black] (15.95,-30.56) -- (26.55,-23.04);
-\fill [black] (26.55,-23.04) -- (25.61,-23.09) -- (26.19,-23.91);
-\draw [black] (32,-21.3) -- (41.4,-21.3);
-\fill [black] (41.4,-21.3) -- (40.6,-20.8) -- (40.6,-21.8);
-\draw [black] (50.4,-21.3) -- (58.8,-21.3);
-\fill [black] (58.8,-21.3) -- (58,-20.8) -- (58,-21.8);
+	[scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
+	\node (nminp) at 	(4,4) {MinP};
+	\node (nmaxp) at 	(4,3) {MaxP};
+	\node (nfpnp) at 	(6,3) {$\fp^{\np}$};
+	\node (ntotpnp) at 	(8,3) {$\totp^{\np}$};
+	\node (nshpnp) at 	(10,3) {$\shnp$};
+	\node (nshl) at 	(0,1) {$\shl$};
+	\node (nfp) at 		(2,1) {$\fp$};
+	\node (nspanl) at 	(2,0) {$\spanl$};
+	\node (ntotp) at 	(4,1) {$\totp$};
+	\node (nshp) at 	(6,1) {$\shp$};
+	\node (nspanp) at 	(8,1) {$\spanp$};
+	
+	\foreach \from/\to in {	
+		nminp/nfpnp,
+		nmaxp/nfpnp,
+		nmaxp/nspanp,
+		nfpnp/ntotpnp,
+		ntotpnp/nshpnp,
+		nshl/nfp,
+		nshl/nspanl,
+		nfp/ntotp,
+		nspanl/ntotp,
+		ntotp/nshp,
+		nshp/nspanp,
+		nfp/nfpnp,
+		nspanp/ntotpnp} {
+		\draw [->] (\from) to (\to);
+	}
+	
+	\foreach \from/\to in {
+		nfp/nspanl,
+		nspanl/nfp,
+		nfpnp/ntotp,
+		ntotp/nfpnp,
+		nshp/ntotp,
+		nspanp/nshp,
+		nshpnp/ntotpnp} {
+		\draw [dashed] [bend left] [red] [->] (\from) to (\to);	
+	}
+	
 	\end{tikzpicture}
 \end{center}

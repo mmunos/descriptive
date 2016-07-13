@@ -1,74 +1,35 @@
 \section{Counting classes below \#P}
 
 We define $\totp$ using the following function. For each non-deterministic Turing machine $M$ and $x\in\{0,1\}^*$,
-\[
+$$
 	\tot_M(x) = (\text{\#paths of $M$ on input $x$}) - 1.
-\]
+$$
 A function $f:\{0,1\}^*\to\N$ is in $\totp$ if there exists a polynomial-time non-deterministic Turing machine $M$ such that $f = \tot_M$.
+
+For a non-deterministic Turing machine $M$ with an output tape, we define $\out_M(x)$ as the set of the outputs of each non-deterministic computation of $M$ on input $x$.
 
 We define $\spanl$ using the following function. For each non-deterministic Turing machine $M$ and $x\in\{0,1\}^*$,
 \[
-	\sp_M(x) = \vert\{w \mid \text{$w$ is an output of $M$ on input $w$}\}\vert.
+	\sp_M(x) = \vert\out_M(x)\vert.
 \]
 A function $f:\{0,1\}^*\to\N$ is in $\spanl$ if there exists a log-space non-deterministic Turing machine $M$ such that $f = \sp_M$.
 
-Given a language $L$, $\totp^{L}$ is defined by all functions $f:\{0,1\}^*\to\N$ such that $f = tot_{M^L}$.
+Similarly, a function  $f:\{0,1\}^*\to\N$ is in $\spanp$ if there exists a polynomial-time non-deterministic Turing machine $M$ such that $f = \sp_M$.
+
+Given a language $L$, $\totp^{L}$ is defined by all functions $f:\{0,1\}^*\to\N$ such that $M$ is a non-deterministic polynomial machine and $f = \tot_{M^L}$.
 \\
 
-By the following result, we note that $\shp$ can be considered an extension of $\totp$.
-
-\begin{theo}
-	$\spanl \subseteq \totp$.
-\end{theo}
-\begin{proof}
-	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine $M'$ as a non-deterministic algorithm.
-	
-	\begin{algorithm}	
-	\caption{Compute $f(x)+1$ paths}
-	\begin{algorithmic}[]
-		\Begin
-		\If{$f(x) = 0$} stop
-		\Else \text{ choose from}
-		\State stop
-		\State call $\textsc{GenTree}_{f}(x,\{s_0\},\epsilon)$
-		\EndIf
-		\EndBegin
-		\Procedure{$\textsc{GenTree}_{f}(x,S,y)$}{}
-		\State $S_0 = \emptyset$, $S_1 = \emptyset$
-		\For{$s\in S$}
-		\State do a search in the configuration graph of $M$ with input $x$ from $s$:
-		\If{$s'$ is reached after writing 0 in the output tape} $S_0 \gets s'$
-		\EndIf
-		\If{$s'$ is reached after writing 1 in the output tape} $S_1 \gets s'$
-		\EndIf
-		\EndFor
-		\If{a final state from $M$ is reachable from some $s\in S_0$ and some $s'\in S_1$} choose between:
-		\State call $\textsc{GenTree}_{f}(x,S_0,y0)$
-		\State call $\textsc{GenTree}_{f}(x,S_1,y1)$
-		\ElsIf{a final state from $M$ is reachable from some $s\in S_i$ but not from any $s'\in S_{1-i}$}
-		\State call $\textsc{GenTree}_{f}(x,S_i,yi)$
-		\ElsIf{no final state from $M$ is reachable from any $s\in S_0 \cup S_1$}
-		\Return $y$
-		\EndIf
-		\EndProcedure
-	\end{algorithmic}
-	\end{algorithm}
-	
-	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)-1$.
-	
-	For each output $y$ consider some computation path $p$ of $M$ with input $x$ that outputs $y$. Note there is at least one computation path in $M'$ that follows $p$ and outputs $y$. Also, note that each distinct computation path of $M'$ outputs a different $y$, since in each branch the word differs in the last bit. Taking into account the dummy path in line 4, we conclude that the number of computation paths of $M'$ with input $x$ is equal to $\sp_M(x)+1$. 
-	
-	
-	
-\end{proof}
+Now we will show some properties of $\totp$.
 
 Given a deterministic machine $M$ we define the function $f_M\{0,1\}^*\to\N$ as:
 \[
 	f_M(x) = \text{the output of $M$ on input $w$}
 \]
 for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists a deterministic polynomial-time machine $M$ such that $f = f_M$.
+
+The following proof is added as a completion of a theorem of Pagourtzis and Zachos \cite{DBLP:conf/mfcs/PagourtzisZ06}.
 \begin{theo} \label{diff}
-	For each function $f\in\shp$ there exists functions $g\in \totp$ and $h\in\text{FP}$ such that $f = g - h$.
+	For each function $f\in\shp$ there exist functions $g\in \totp$ and $h\in\text{FP}$ such that $f = g - h$.
 \end{theo}
 \begin{proof}
 	Let $f\in\shp$, and let $r:\{0,1\}^*\to\{0,1\}^*$ be such that for each $w\in\{0,1\}^*$ it holds that $f(w) = \shsat(r(w))$, and be computed in polynomial time. Let $\varphi_w = r(w)$.
@@ -95,7 +56,7 @@ for each $w\in\{0,1\}^*$. A function $f:\{0,1\}^*\to\N$ is in FP if there exists
 	
 	We construct a non-deterministic Turing Machine $M'$ that first computes $c = p(\vert w \vert)$. Then it deterministically simulates $M$ until it finds the end of a path, following the first path of each branch. Each time it finds the end of a path, it subtracts one from $c$ and saves the string of non-deterministic choices that were made. The machine then backtracks until the previous branching path and continues repeating the process. When all choices in a branch have been saved, it erases every path in that branch and saves only the choices until that point. If it happens that there are no more choices to make, and $c > 0$ the machine simply stops. If $c$ reaches 0, $M'$ simulates $M$ with input $w$. Each time the machine is about to do a non-deterministic choice $M'$ checks if the it corresponds to any of the saved paths. If it is the case, it does not follow the branch.
 	
-	We will now show that $g(w) = \tot_{M'}(w)$. Let $w\in\{0,1\}$. If $\tot_{M}(w) > p(\vert w \vert)$, then clearly $\tot_{M'}(w) = \tot_{M}(w) - p(\vert w \vert)$. If $\tot_{M}(w) \leq p(\vert w \vert)$, then it only computes the first simulation path and $\tot_{M'}(w) = 0$.
+	We will now show that $g(w) = \tot_{M'}(w)$. Let $w\in\{0,1\}^*$. If $\tot_{M}(w) > p(\vert w \vert)$, then clearly $\tot_{M'}(w) = \tot_{M}(w) - p(\vert w \vert)$. If $\tot_{M}(w) \leq p(\vert w \vert)$, then it only computes the first simulation path and $\tot_{M'}(w) = 0$.
 \end{proof}
 
 Given a polynomial $p$ and a function $f\{0,1\}^*\to\N$ we define the set
@@ -104,11 +65,58 @@ Given a polynomial $p$ and a function $f\{0,1\}^*\to\N$ we define the set
 \]
 We define $\shpc$ as the class of functions $f\in\shp$ such that for each polynomial $p$ it holds that $polycheck_{p,f}\in \text{PTIME}$.
 
-We present a counting class diagram:
+We also define the class $\maxp$ (resp. $\minp$) as the class of functions $f:\{0,1\}^* \to \N$ where there exists some non-deterministic polynomial-time machine $M$ such that for each $x\in\{0,1\}^*$ it holds that $f(x) = \max(\out_M(x))$ (resp. $\min(\out_M(x))$).
+
+We present an updated class diagram of the classes surrounding $\totp$.
 
 \input{classdiag}
 
-Or new addition to the known diagram is the following inclusion.
+Inclusions are indicated with arrows. Separation results under complexity assumptions are indicated with dashed arrows.
+
+The inclusion $\shl \subseteq \spanl$ and the fact that $\spanl \subseteq \fp$ implies $\ph = \text{P}^{\np}$ were showed by Àlvarez and Jenner $\cite{DBLP:journals/tcs/AlvarezJ93}$. The inclusions $\fp \subseteq \totp$ and $\totp \subseteq \shp$, and the fact that $\shp \subseteq \totp$ implies $\text{P} = \np$ were showed by Pagourtzis and Zachos in \cite{DBLP:conf/mfcs/PagourtzisZ06}. The inclusions $\fp^{\np} \subseteq \totp^{\np}$ and $\totp^{\np} \subseteq \shnp = \shp^{\np}$ are trivial relativizations. The inclusions $\minp \subseteq \fp^{\np}$, $\maxp \subseteq \fp^{\np}$, $\maxp \subseteq \spanp$ and $\shp \subseteq \spanp$, and the fact that $\spanp \subseteq \shp$ implies that $\np = \up$ were showed by Kobler et. al. in \cite{DBLP:journals/acta/KoblerST89}. The inclusion $\fp \subseteq fp^{\np}$ is trivial. The inclusion $\shl \subseteq \fp$ was showed in [COMPLETE THIS].
+
+\begin{theo}
+	$\spanl \subseteq \totp$.
+\end{theo}
+\begin{proof}
+	Let $f:\{0,1\}^*\to\N$ be a function in $\spanl$ and let $M$ be a non-deterministic log-space Turing machine such that $f = \sp_M$. We will provide a polynomial-time non-deterministic Turing machine $M'$ such that for each $x\in\{0,1\}^*$ it holds that $\sp_M(x) = \tot_{M'}(x)$. First we note that given a configuration $s$ of $M$ on input $x$ checking whether there exists a final state of $M$ which is reachable from $s$ can be done in polynomial time. This implies that checking whether $f(x) > 0$ can also be done in polynomial time. We present this machine $M'$ as a non-deterministic procedure in Algorithm \ref{spanltot}.
+	
+	\begin{algorithm}	
+		\caption{Compute $f(x)+1$ paths} \label{spanltot}
+		\begin{algorithmic}[]
+			\Begin
+			\If{$f(x) = 0$} stop
+			\Else \text{ choose from}
+			\State stop
+			\State call $\textsc{GenTree}_{f}(x,\{s_0\},\epsilon)$
+			\EndIf
+			\EndBegin
+			\Procedure{$\textsc{GenTree}_{f}(x,S,y)$}{}
+			\State $S_0 = \emptyset$, $S_1 = \emptyset$
+			\For{$s\in S$}
+			\State do a search in the configuration graph of $M$ with input $x$ from $s$:
+			\If{$s'$ is reached after writing 0 in the output tape} $S_0 \gets s'$
+			\EndIf
+			\If{$s'$ is reached after writing 1 in the output tape} $S_1 \gets s'$
+			\EndIf
+			\EndFor
+			\If{a final state from $M$ is reachable from some $s\in S_0$ and some $s'\in S_1$} choose between:
+			\State call $\textsc{GenTree}_{f}(x,S_0,y0)$
+			\State call $\textsc{GenTree}_{f}(x,S_1,y1)$
+			\ElsIf{a final state from $M$ is reachable from some $s\in S_i$ but not from any $s'\in S_{1-i}$}
+			\State call $\textsc{GenTree}_{f}(x,S_i,yi)$
+			\ElsIf{no final state from $M$ is reachable from any $s\in S_0 \cup S_1$}
+			\Return $y$
+			\EndIf
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+	
+	We use $s_0$ for the initial state of $M$ with input $x$. The algorithm can be executed in a nondeterministic polynomial-time machine, so we only need to show that the number of computation paths is equal to $\sp_M(x)-1$.
+	
+	For each output $y \in \out_M(x)$ consider some computation path $p$ of $M$ with input $x$ that outputs $y$. Note there is at least one computation path in $M'$ that follows $p$ and outputs $y$. Also, note that each distinct computation path of $M'$ outputs a different $y$, since in each branch the word differs in the last bit. Taking into account the dummy path in line 4, we conclude that the number of computation paths of $M'$ with input $x$ is equal to $\sp_M(x)+1$. 
+\end{proof}
+
 
 \begin{theo}
 	$\spanp \subseteq \totp^{\np}$
@@ -118,7 +126,38 @@ Or new addition to the known diagram is the following inclusion.
 	\begin{multline*}
 	L = \{(M,x,w_1,w_2) \mid \text{$M$ is a non-deterministic polynomial-time machine and} \\ \text{$M(x)$ gives some output in the lexicographic range $[w_1,w_2]$.} \}
 	\end{multline*}
-	The machine $M$ on input $x$ writes $w_1 = 0^{p(\vert x \vert)}, w_2 = 01^{p(\vert x \vert)-1}$, and asks the oracle $(M,x,w_1,w_2)$. If it answers yes, it generates a new branch and proceeds, if not, just proceeds. Then, write $w_1 = 10^{p(\vert x \vert)-1}, w_2 = 1^{p(\vert x \vert)}$ and asks the oracle $(M,x,w_1,w_2)$. If it answers yes, it generates a new branch and proceeds, if not, stop. TO BE CONTINUED.
+	This is presented as a non-deterministic procedure in Algorithm \ref{spanptotnp}.
+	
+		\begin{algorithm}	
+			\caption{Compute $f(x)+1$ paths} \label{spanptotnp}
+			\begin{algorithmic}[]
+				\Begin
+				\If{$f(x) = 0$} stop
+				\Else \text{ choose from}
+				\State stop
+				\State call $\textsc{GenTree}_{f}(x,\varepsilon,0)$
+				\EndIf
+				\EndBegin
+				\Procedure{$\textsc{GenTree}_{f}(x,w,m)$}{}
+				\If{$m = p(\vert x \vert)$}
+				\State stop
+				\Else
+				\State $w_1 = w0^{p(\vert x \vert)-m}$
+				\State $w_2 = w01^{p(\vert x \vert)-m-1}$
+				\If{$(M,x,w_1,w_2)\in L$}
+				\State call $\textsc{GenTree}_{f}(x,w0,m+1)$
+				\EndIf
+				\State $w_1 = w10^{p(\vert x \vert)-m-1}$
+				\State $w_2 = w1^{p(\vert x \vert)-m}$
+				\If{$(M,x,w_1,w_2)\in L$}
+				\State call $\textsc{GenTree}_{f}(x,w1,m+1)$
+				\EndIf
+				\EndIf
+				\EndProcedure
+			\end{algorithmic}
+		\end{algorithm}
+		
+		Note that on input $x$, for each $w \in \out_M(x)$ there exists some branch in the algorithm that calls $\textsc{GenTree}_{f}(x,w,p(\vert x \vert))$ and then stops. Also note that for each branch in the algorithm that is not the dummy path in line 4, there is some $w$ in the last call to $\textsc{GenTree}_{f}$ that belongs to $\out_M(x)$. From this we conclude that $f(x) = \tot_{M'^L}(x)+1$.
 \end{proof}
 
 For a non-deterministic machine with an output tape $M$, we define $\sp!_M:\{0,1\}^*\to\N$ as follows:
@@ -126,6 +165,8 @@ For a non-deterministic machine with an output tape $M$, we define $\sp!_M:\{0,1
 	\sp!_M(x) = \{w \mid \text{every path of $M$ with input $x$ that returns $w$ is an accepting path.} \}
 \]
 Similarly, we define $\stspanp$ (suggested pronunciation: ``strict span P'') as the class of functions $\sp!_M$ where $M$ is a non-deterministic polynomial time machine.
+
+We provide a characterization of $\shnp$ that doesn't use oracles and lets each function in $\shnp$ be defined by a single non-deterministic machine. We contrast this result with the one showed by Kobler et. al. in \cite{DBLP:journals/acta/KoblerST89} that lets define each function in $\shnp$ without oracles using two machines.
 
 \begin{theo}
 	$\stspanp = \shp^{\np}$
