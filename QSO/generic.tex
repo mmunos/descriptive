@@ -1,0 +1,335 @@
+% packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs,latexsym,stmaryrd}
+\usepackage{array}
+\usepackage{url}
+\usepackage{comment}
+\usepackage[newitem,newenum,flushleft,neverdecrease]{paralist}
+\usepackage{epsfig}
+\usepackage{ifpdf}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[colorlinks=true,linkcolor=Blue,citecolor=Blue,urlcolor=Magenta,pdfpagelabels,plainpages=false]{hyperref}
+%\usepackage[all]{hypcap}
+
+% fix for metapost
+\ifpdf
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+  \DeclareGraphicsRule{*}{eps}{*}{}
+\fi
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{invariant}[theorem]{Invariant}
+
+\newenvironment{reptheorem}[1]{\begin{trivlist} \item[ {\textbf{Theorem #1}.}] \it}{\end{trivlist}}
+\newenvironment{replemma}[1]{\begin{trivlist} \item[ {\textbf{Lemma #1}.}] \it}{\end{trivlist}}
+\newenvironment{repproposition}[1]{\begin{trivlist} \item[{\textbf{Proposition #1}.}] \it}{\end{trivlist}}
+
+\newenvironment{runexample}{\begin{example}}{\end{example}}
+\newenvironment{runexamplec}[1]{\begin{trivlist} \item[\hskip 15pt {{\sc Example #1 (continued)}.}] \it}{\end{trivlist}}
+
+% environments
+\def\labelitemi{\textbullet}
+\setlength{\pltopsep}{\smallskipamount}
+\setlength{\plitemsep}{\smallskipamount}
+\newenvironment{dotlist}{\begin{compactitem}}{\end{compactitem}}
+\newenvironment{numlist}{\begin{compactenum}}{\end{compactenum}}
+\newenvironment{romlist}{\begin{compactenum}[i)]}{\end{compactenum}}
+\newenvironment{condlist}{\begin{compactenum}[{(C}1{)}]}{\end{compactenum}}
+\newenvironment{proplist}{\begin{compactenum}[{(P}1{)}]}{\end{compactenum}}
+\newenvironment{axiomlist}{\begin{compactenum}[{(A}1{)}]}{\end{compactenum}}
+\newcommand{\refeq}[1]{\hyperref[#1]{(\ref*{#1})}}
+\newcommand{\refcond}[1]{\hyperref[#1]{C\ref*{#1}}}
+\newcommand{\refprop}[1]{\hyperref[#1]{P\ref*{#1}}}
+\newcommand{\refaxiom}[1]{\hyperref[#1]{A\ref*{#1}}}
+\newcommand{\margincomment}[1]{\marginpar{\small\textit{#1}}}
+
+\providecommand{\qed}{\hfill $\Box$}
+\renewcommand{\qed}{\hfill $\Box$}
+\newcommand{\eproof}{\qed}
+
+% domains
+\newcommand{\bbB}{\mathbb{B}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbJ}{\mathbb{J}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbNp}{\mathbb{N}_{>0}}
+\newcommand{\bbNinf}{\mathbb{N}\cup\{\infty\}}
+\newcommand{\bbNpinf}{\mathbb{N}_{>0}\cup\{\infty\}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbQp}{\mathbb{Q}_{>0}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbRp}{\mathbb{R}_{>0}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbS}{\mathbb{S}}
+
+% classes
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cW}{\mathcal{W}}
+
+% languages
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sI}{\mathscr{I}}
+\newcommand{\sJ}{\mathscr{J}}
+\newcommand{\sK}{\mathscr{K}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\sM}{\mathscr{M}}
+\newcommand{\sN}{\mathscr{N}}
+\newcommand{\sO}{\mathscr{O}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\sQ}{\mathscr{Q}}
+\newcommand{\sR}{\mathscr{R}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sU}{\mathscr{U}}
+\newcommand{\sV}{\mathscr{V}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+\newcommand{\sW}{\mathscr{W}}
+
+% structures
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fD}{\mathfrak{D}}
+\newcommand{\fE}{\mathfrak{E}}
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fH}{\mathfrak{H}}
+\newcommand{\fI}{\mathfrak{I}}
+\newcommand{\fJ}{\mathfrak{J}}
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fQ}{\mathfrak{Q}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fT}{\mathfrak{T}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fV}{\mathfrak{V}}
+\newcommand{\fX}{\mathfrak{X}}
+\newcommand{\fY}{\mathfrak{Y}}
+\newcommand{\fZ}{\mathfrak{Z}}
+\newcommand{\fW}{\mathfrak{W}}
+
+% objects
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+\newcommand{\bW}{\mathbf{W}}
+
+% other objects
+\newcommand{\tA}{\mathtt{A}}
+\newcommand{\tB}{\mathtt{B}}
+\newcommand{\tC}{\mathtt{C}}
+\newcommand{\tD}{\mathtt{D}}
+\newcommand{\tE}{\mathtt{E}}
+\newcommand{\tF}{\mathtt{F}}
+\newcommand{\tG}{\mathtt{G}}
+\newcommand{\tH}{\mathtt{H}}
+\newcommand{\tI}{\mathtt{I}}
+\newcommand{\tJ}{\mathtt{J}}
+\newcommand{\tK}{\mathtt{K}}
+\newcommand{\tL}{\mathtt{L}}
+\newcommand{\tM}{\mathtt{M}}
+\newcommand{\tN}{\mathtt{N}}
+\newcommand{\tO}{\mathtt{O}}
+\newcommand{\tP}{\mathtt{P}}
+\newcommand{\tQ}{\mathtt{Q}}
+\newcommand{\tR}{\mathtt{R}}
+\newcommand{\tS}{\mathtt{S}}
+\newcommand{\tT}{\mathtt{T}}
+\newcommand{\tU}{\mathtt{U}}
+\newcommand{\tV}{\mathtt{V}}
+\newcommand{\tX}{\mathtt{X}}
+\newcommand{\tY}{\mathtt{Y}}
+\newcommand{\tZ}{\mathtt{Z}}
+\newcommand{\tW}{\mathtt{W}}
+
+% shorthands
+\newcommand{\s}[1]{\vspace{#1mm}}
+\newcommand{\proofskip}{\smallskip\noindent}
+
+\providecommand{\mit}{\mathit}
+\renewcommand{\mit}{\mathit}
+\newcommand{\mt}{\operatorname}
+\newcommand{\mtt}{\mathtt}
+\newcommand{\msl}{\mathsl}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\und}{\underline}
+
+% other objects
+\newcommand{\emptystr}{\varepsilon}
+\newcommand{\fil}{\blacksquare}
+\newcommand{\gap}{\square}
+\newcommand{\sep}{\raisebox{0.9pt}{\ensuremath{\mspace{1mu}\wr\mspace{1mu}}}}
+\newcommand{\filsep}{\raisebox{1pt}{\text{$\blacktriangleleft$}}}
+
+% vectors
+\makeatletter
+\def\shortrightarrowfill@{\arrowfill@\relbar\relbar\shortrightarrow}
+\newcommand{\ort}{\mathpalette{\overarrow@\shortrightarrowfill@}}
+\makeatother
+\makeatletter
+\def\shortleftarrowfill@{\arrowfill@\relbar\relbar\shortleftarrow}
+\newcommand{\olft}{\mathpalette{\overarrow@\shortleftarrowfill@}}
+\makeatother
+\makeatletter
+\def\shortleftrightarrowfill@{\arrowfill@\relbar\relbar\leftrightarrow}
+\newcommand{\olftrt}{\mathpalette{\overarrow@\shortleftrightarrowfill@}}
+\makeatother
+\newcommand{\til}[1]{\widetilde{#1}}
+
+% formulas
+\newcommand{\sat}{\vDash}
+\newcommand{\nsat}{\nvDash}
+\newcommand{\et}{\;\wedge\;}
+\newcommand{\vel}{\;\vee\;}
+\newcommand{\then}{\;\rightarrow\;}
+\newcommand{\Then}{\;\Rightarrow\;}
+\renewcommand{\iff}{\;\leftrightarrow\;}
+\newcommand{\Iff}{\;\Leftrightarrow\;}
+\newcommand{\fa}[1]{\forall{#1}.\:}
+\newcommand{\ex}[1]{\exists{#1}.\:}
+\newcommand{\exinfinite}[1]{\exists^{\omega}{\:#1}.\:}
+\newcommand{\exfinite}[1]{\exists^{<\omega}{\:#1}.\:}
+\newcommand{\nex}[1]{\nexists{\:#1}.\:}
+
+% sets, tuples, ...
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\bigset}[1]{{\bigl\{ #1 \bigr\}}}
+\newcommand{\biggset}[1]{{\left\{ #1 \right\}}}
+\newcommand{\settc}[2]{{\{ #1 \,:\, #2 \}}}
+\newcommand{\bigsettc}[2]{{\bigl\{ #1 \,:\,#2 \bigr\}}}
+\newcommand{\biggsettc}[2]{{\left\{ #1 \,:\,#2 \right\}}}
+\newcommand{\ang}[1]{{\langle #1 \rangle}}
+\newcommand{\bigang}[1]{{\bigl\langle #1 \bigr\rangle}}
+\newcommand{\biggang}[1]{{\left\langle #1 \right\rangle}}
+\newcommand{\intr}[1]{{\llbracket #1 \rrbracket}}
+\newcommand{\bigintr}[1]{{\bigl\llbracket #1 \bigr\rrbracket}}
+\newcommand{\biggintr}[1]{{\left\llbracket #1 \right\rrbracket}}
+\newcommand{\len}[1]{{\lvert #1 \rvert}}
+\newcommand{\biglen}[1]{{\bigl\lvert #1 \bigr\rvert}}
+\newcommand{\bigglen}[1]{{\left\lvert #1 \right\rvert}}
+\newcommand{\dlen}[1]{{\lVert #1 \rVert}}
+\newcommand{\bigdlen}[1]{{\bigl\lVert #1 \bigr\rVert}}
+\newcommand{\biggdlen}[1]{{\left\lVert #1 \right\rVert}}
+\newcommand{\occ}[2]{\len{#2}_{#1}}
+\newcommand{\bigocc}[2]{\biglen{#2}_{#1}}
+\newcommand{\biggocc}[2]{\bigglen{#2}_{#1}}
+\newcommand{\prj}[2]{\mspace{2mu}\downarrow_{#1}\mspace{-5mu}{#2}}
+
+% relations
+\newcommand{\trans}[2][]{\raisebox{-1pt}[10pt][0pt]{$\overset{#2}{\underset{^{#1}}{\raisebox{0pt}[3pt][0pt]{$\relbar\mspace{-8mu}\rightarrow$}}}$}}
+\newcommand{\ftrans}[2][]{\raisebox{-1pt}[10pt][0pt]{$\overset{#2}{\underset{^{#1}}{\raisebox{0pt}[3pt][0pt]{$\relbar\mspace{-8mu}\circledcirc\mspace{-7.5mu}\rightarrow$}}}$}}
+\newcommand{\noftrans}[2][]{\raisebox{-1pt}[10pt][0pt]{$\overset{#2}{\underset{^{#1}}{\raisebox{0pt}[3pt][0pt]{$\relbar\mspace{-8mu}\otimes\mspace{-7.5mu}\rightarrow$}}}$}}
+\newcommand{\leads}[1]{\hookrightarrow^{#1}}
+\newcommand{\leadsconst}[2]{\hookrightarrow^{#1}_{^{(#2)}}}
+\newcommand{\groupsinto}{\trianglelefteq}
+\newcommand{\finerthan}{\preceq}
+\newcommand{\subgran}{\sqsubseteq}
+\newcommand{\border}{\dashv}
+\newcommand{\maxborder}{\dashv\!\!\dashv}
+\newcommand{\notborder}{\not\dashv}
+\newcommand{\notmaxborder}{\not\maxborder}
+\newcommand{\dsim}{\approx}
+\newcommand{\quotient}[1]{/\mspace{-4mu}#1}
+\newcommand{\entails}{\rightvdash}
+
+% operators
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\dom}{{\cD\mit{om}}}
+\newcommand{\img}{{\cI\mspace{-2mu}\mit{mg}}}
+\newcommand{\fr}{{\cF\mspace{-2mu}\mit{r}}}
+\newcommand{\bch}{{\cB\mspace{-2mu}\mit{ch}}}
+\newcommand{\infocc}{{\cI\mspace{-2mu}\mit{nf}}}
+\newcommand{\unf}{\cU\mspace{-2mu}\mit{nf}}
+\newcommand{\nop}{\mathtt{nop}}
+\renewcommand{\b}[2]{\bigl(\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\bigr)}
+\newcommand{\bb}[2]{\text{\small $\bigl(\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\bigr)$}}
+\newcommand{\bbb}[2]{\text{\scriptsize $\bigl(\begin{smallmatrix} #1 \\ #2 \end{smallmatrix}\bigr)$}}
+\renewcommand{\t}[3]{\biggl(\begin{smallmatrix} #1 \\ #2 \\ #3 \end{smallmatrix}\biggr)}
+\renewcommand{\tt}[3]{\text{\small $\biggl(\begin{smallmatrix} #1 \\ #2 \\ #3 \end{smallmatrix}\biggr)$}}
+\newcommand{\ttt}[3]{\text{\scriptsize $\biggl(\begin{smallmatrix} #1 \\ #2 \\ #3 \end{smallmatrix}\biggr)$}}
+
+% complexity
+\newcommand{\lowerbound}[1]{\Omega(#1)}
+\newcommand{\biglowerbound}[1]{\Omega\bigl(#1\bigr)}
+\newcommand{\bigglowerbound}[1]{\Omega\left(#1\right)}
+\newcommand{\upperbound}[1]{\cO(#1)}
+\newcommand{\bigupperbound}[1]{\cO\bigl(#1\bigr)}
+\newcommand{\biggupperbound}[1]{\cO\left(#1\right)}
+\newcommand{\comparable}[1]{\Theta(#1)}
+\newcommand{\bigcomparable}[1]{\Theta\bigl(#1\bigr)}
+\newcommand{\biggcomparable}[1]{\Theta\left(#1\right)}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

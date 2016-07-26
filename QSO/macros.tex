@@ -1,0 +1,88 @@
+% commands
+\newcommand{\marcelo}[1]{\todo[size=\scriptsize, color=blue!40]{#1}}
+\newcommand{\cristian}[1]{\todo[size=\scriptsize,color=green!40]{#1}}
+
+%logic
+\newcommand{\fo}{{\rm FO}}
+\newcommand{\so}{{\rm SO}}
+\newcommand{\eso}{\exists\so}
+\newcommand{\first}{\operatorname{first}}
+\newcommand{\last}{\operatorname{last}}
+\newcommand{\succesor}{\operatorname{succ}}
+\newcommand{\partition}{\operatorname{partition}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\all}{\text{\sc All}}
+\newcommand{\allo}{\text{\sc AllOrd}}
+\newcommand{\qso}{{\rm QSO}}
+\newcommand{\eqso}{\Sigma\qso}
+\newcommand{\fv}{\mathbf{FV}}
+\newcommand{\sv}{\mathbf{SV}}
+\newcommand{\arity}{{\rm arity}}
+\newcommand{\shp}{\text{\sc \#P}}
+\newcommand{\spp}{\text{\sc span-P}}
+\newcommand{\gp}{\text{\sc gap-P}}
+\newcommand{\fp}{\text{\sc FP}}
+\newcommand{\CC}{\mathscr{C}}
+\newcommand{\KK}{\mathscr{K}}
+\newcommand{\FF}{\mathscr{F}}
+\newcommand{\GG}{\mathscr{G}}
+\newcommand{\LL}{\mathscr{L}}
+\newcommand{\QQ}{\mathscr{Q}}
+\newcommand{\enc}{{\rm enc}}
+\newcommand{\str}{\text{\sc Struct}}
+\newcommand{\ostr}{\text{\sc OrdStruct}}
+\newcommand{\res}[2]{#1|_{#2}}
+
+%semiring
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\natinf}{\mathbb{N}_\infty}
+\newcommand{\trop}{\mathbb{N}_{\min,+}}
+\newcommand{\integ}{\mathbb{Z}}
+\newcommand{\bln}{\mathbb{B}}
+\newcommand{\pwset}[1]{2^{#1}}
+\newcommand{\true}{\operatorname{true}}
+\newcommand{\false}{\operatorname{false}}
+
+\newcommand{\SR}{\bbS}
+\newcommand{\add}{+}
+\newcommand{\bigadd}{\sum}
+\newcommand{\mult}{\cdot}
+\newcommand{\bigmult}{\prod}
+\newcommand{\adds}{\oplus}
+\newcommand{\bigadds}{\bigoplus}
+\newcommand{\mults}{\odot}
+\newcommand{\bigmults}{\bigodot}
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+
+%quantitative logic
+\newcommand{\QL}{\operatorname{QL}}
+\newcommand{\QMSO}{\operatorname{QMSO}}
+\newcommand{\Op}{\operatorname{O}}
+\newcommand{\sem}[1]{{\lsem{}{#1}\rsem}}
+\newcommand{\pa}[1]{\Pi{#1}\,}
+\newcommand{\pas}{\Pi}
+\newcommand{\paq}[1]{\Pi{#1}}
+\newcommand{\sa}[1]{\Sigma{#1}\,}
+\newcommand{\sas}{\Sigma}
+\newcommand{\saq}[1]{\Sigma{#1}}
+\newcommand{\fpa}[1]{\overrightarrow{\prod}{#1}.\:}
+\newcommand{\lmid}{\;\mid\;}
+
+% equations and quotes skip
+\abovedisplayskip=6pt 
+\belowdisplayskip=6pt
+\newenvironment{myquote}{\begin{quote}\vspace{-0.75mm}}{\end{quote}\vspace{-0.75mm}}
+
+%tikz definition
+\tikzset{
+defaultstyle/.style={>=stealth,semithick, auto,font=\small,
+initial text= {},
+initial distance= {3.5mm},
+accepting distance= {3.5mm}},
+accepting/.style=accepting by arrow,
+nstate/.style={circle, semithick,inner sep=1pt, minimum size=4mm}}
+
+

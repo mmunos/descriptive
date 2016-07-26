@@ -1,0 +1,30 @@
+
+Assume that $\SR = (S, \adds, \mults, \zero, \one)$ is a semiring and $\theta$ is a sentence in $\qso(\SR)$. Then slightly abusing notation, we also use $\theta$ to denote a function from $\R$ to $\SR$ such that for every $\A \in \str[\R] $:
+\begin{eqnarray*}
+\theta(\enc(\A)) & = & \sem{\theta}(\A).
+\end{eqnarray*}
+\begin{definition}
+Let $\SR$ be a semiring, $\FF$ a fragment of $\qso(\SR)$, $\CC$ a function complexity class over $\SR$ and $\KK$ a class of finite structures. Then $\FF$ {\em captures} $\CC$ over $\KK$ if:
+\begin{itemize}
+\item for every $\theta$ in $\FF$, there exists $f \in \CC$ such that $\res{\theta}{\KK} = \res{f}{\KK}$; and
+
+\item for every $f \in \CC$, there exists $\theta$ in $\FF$ such that $\res{f}{\KK} = \res{\theta}{\KK}$.
+\end{itemize}
+\end{definition}
+In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures. 
+\begin{theorem}
+$\eqso(\nat,\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
+\begin{proposition}
+$\eqso(\nat,\fo)$ does not capture $\shp$ over the class of all structures.
+\end{proposition}
+
+\begin{theorem}
+$\eqso(\integ,\fo)$ captures $\gp$ over the class of ordered structures.
+\end{theorem}
+
+
+\begin{theorem}
+$\eqso(\nat,\eso)$ captures $\spp$ over the class of ordered structures.
+\end{theorem}
