@@ -1,32 +1,35 @@
-Fix a semiring $\SR = (S, \adds, \mults, \zero, \one)$. Then given a relational signature $\R$, the set of $\SR$-quantitative second-order logic formulas (or just $\qso(\SR)$-formulas) over $\R$ is given by the following grammar:
+Consider $\bbN$ as the set of non-negative integers. Then given a relational signature $\R$, the set of quantitative second-order logic formulas (or just $\qso$-formulas) over $\R$ is given by the following grammar:
 \begin{eqnarray}
 \label{eq-def-qso}
-  \theta & := & \varphi \ \mid \ s \ \mid \ (\theta \add \theta) \ \mid\ (\theta \mult \theta) \ \mid \ \sa{x} \theta \ \mid \ \pa{x} \theta \ \mid \ \sa{X} \theta \ \mid \ \pa{X} \theta 
+  \alpha & := & \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
 \end{eqnarray}
-where $\varphi$ is an $\so$-formula over $\R$, $s \in S$, $x \in \fv$ and $X \in \sv$.
+where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$.
 
-Let $\R$ be a relational signature, $\A$ be a finite $\R$-structure with domain $A$, $v$ a first-order variable assignment for $\A$ and $V$ a second-order variable assignment for $\A$. Then the \emph{evaluation} of a $\qso(\SR)$-formula $\theta$ over $(\A, v, V)$ is defined as a function $\sem{\theta}$ that on input $(\A, v, V)$ returns a value in the semiring $\SR$. Formally, the function $\sem{\theta}$ is recursively defined as follows:
-\begin{eqnarray*}
+Let $\R$ be a relational signature, $\A$ be a finite $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a non-negative integer in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined as follows:
+$$
+\renewcommand{\arraystretch}{1.7}
+\begin{array}{rcl} 
 \sem{\varphi}(\A, v, V) & = & 
 \begin{cases}
-\one & \mbox{if } (\A, v, V) \models \varphi \\
-\zero & \mbox{otherwise}
+1 & \mbox{if } (\A, v, V) \models \varphi \\
+0 & \mbox{otherwise}
 \end{cases}\\
 \sem{s}(\A, v, V) & = & s \\
-\sem{\theta_1 \add \theta_2}(\A, v, V) & = & \sem{\theta_1}(\A, v, V) \adds \sem{\theta_2}(\A, v, V)\\
-\sem{\theta_1 \mult \theta_2}(\A, v, V) & = & \sem{\theta_1}(\A, v, V) \mults \sem{\theta_2}(\A, v, V)\\ 
-\sem{\sa{x} \theta}(\A, v, V) & = & \bigadds_{a \in A} \sem{\theta}(\A,v[a/x],V)\\
-\sem{\pa{x} \theta}(\A, v, V) & = & \bigmults_{a \in A} \sem{\theta}(\A,v[a/x],V)\\
-\sem{\sa{X} \theta}(\A, v, V) & = & \bigadds_{B \subseteq A^{\arity(X)}} \sem{\theta}(\A, v, V[B/X])\\
-\sem{\pa{X} \theta}(\A, v, V) & = & \bigmults_{B \subseteq A^{\arity(X)}} \sem{\theta}(\A, v, V[B/X])
-\end{eqnarray*}
-A formula in $\qso(\SR)$ can mention the usual quantifiers in $\so$ (that is, $\exists x$ and $\exists X$) and the quantifiers that make use of the two operations in the semiring (that is, $\Sigma x$, $\Pi x$, $\Sigma X$ and $\Pi X$), which are called {\em semiring quantifiers} . A $\qso(\SR)$-formula $\theta$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\theta$ is under the scope of a usual quantifier or a semiring quantifier. It is important to notice that if $\theta$ is a $\qso(\SR)$-sentence over a relational signature $\R$, then for every finite $\R$-structure $\A$, first-order variable assignments $v_1$, $v_2$ for $\A$ and second-order variable assignments $V_1$, $V_2$ for $\A$, it holds that:
+\sem{\alpha_1 \add \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) + \sem{\alpha_2}(\A, v, V)\\
+\sem{\alpha_1 \mult \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) \cdot \sem{\alpha_2}(\A, v, V)\\ 
+\sem{\sa{x} \alpha}(\A, v, V) & = & \displaystyle \sum_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+\sem{\pa{x} \alpha}(\A, v, V) & = & \displaystyle \prod_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+\sem{\sa{X} \alpha}(\A, v, V) & = & \displaystyle \sum_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])\\
+\sem{\pa{X} \alpha}(\A, v, V) & = & \displaystyle \prod_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])
+\end{array}
+$$
+A formula in $\qso$ can mention the usual quantifiers in $\so$ (that is, $\exists x$ and $\exists X$) and the quantifiers that make use of addition and multiplication (that is, $\Sigma x$, $\Pi x$, $\Sigma X$ and $\Pi X$), which are called {\em quantitative quantifiers} . A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a relational signature $\R$, then for every finite $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that:
 \begin{eqnarray*}
-\sem{\theta}(\A, v_1, V_1) & = & \sem{\theta}(\A, v_2, V_2).
+\sem{\alpha}(\A, v_1, V_1) & = & \sem{\alpha}(\A, v_2, V_2).
 \end{eqnarray*}
-Thus, in such a case we use the term $\sem{\theta}(\A)$ to denote $\sem{\theta}(\A, v, V)$, for some arbitrary first-order variable assignment $v$ for $\A$ and some arbitrary second-order variable assignment $V$ for $\A$. 
+Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
 
-In this paper, we consider several fragments of $\qso(\SR)$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the semiring quantifiers. Let $\eqso(\SR)$ be the fragment of $\qso(\SR)$ that is obtained by only allowing the semiring quantifiers $\Sigma x$, $\Pi x$ and $\Sigma X$ in \eqref{eq-def-qso}. Moreover, assuming that $\LL$ is a fragment of $\so$, let $\qso(\SR, \LL)$ be the fragment of $\qso(\SR)$ obtained by restricting $\varphi$ in \eqref{eq-def-qso} to be a formula in $\LL$, and let $\eqso(\SR, \LL)$ be the fragment of $\eqso(\SR)$ obtained by imposing the same restriction. In particular, in this paper we consider the following fragments $\LL$: $\fo$, which is obtained by disallowing the use of the second-order quantifier ($\exists X$) in the formula $\varphi$ in \eqref{eq-def-qso}, and $\eso$, which is obtained by allowing $\varphi$ in \eqref{eq-def-qso} to be a formula of the form $\exists X_1 \cdots \exists X_k \, \psi$, where $\psi$ is an $\fo$-formula. 
+In this paper, we consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the quantitative quantifiers. Let $\eqso$ be the fragment of $\qso$ that is obtained by only allowing the quantitative quantifiers $\Sigma x$, $\Pi x$ and $\Sigma X$ in \eqref{eq-def-qso}. Moreover, assuming that $\LL$ is a fragment of $\so$, let $\qso(\LL)$ be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{eq-def-qso} to be a formula in $\LL$, and let $\eqso(\LL)$ be the fragment of $\eqso$ obtained by imposing the same restriction. In particular, in this paper we consider the following fragments $\LL$: $\fo$, which is obtained by disallowing the use of the second-order quantifier ($\exists X$) in the formula $\varphi$ in \eqref{eq-def-qso}, and $\eso$, which is obtained by allowing $\varphi$ in \eqref{eq-def-qso} to be a formula of the form $\exists X_1 \cdots \exists X_k \, \psi$, where $\psi$ is an $\fo$-formula. 
 
 
 
