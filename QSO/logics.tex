@@ -29,7 +29,33 @@ A formula in $\qso$ can mention the usual quantifiers in $\so$ (that is, $\exist
 \end{eqnarray*}
 Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
 
-In this paper, we consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the quantitative quantifiers. Let $\eqso$ be the fragment of $\qso$ that is obtained by only allowing the quantitative quantifiers $\Sigma x$, $\Pi x$ and $\Sigma X$ in \eqref{eq-def-qso}. Moreover, assuming that $\LL$ is a fragment of $\so$, let $\qso(\LL)$ be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{eq-def-qso} to be a formula in $\LL$, and let $\eqso(\LL)$ be the fragment of $\eqso$ obtained by imposing the same restriction. In particular, in this paper we consider the following fragments $\LL$: $\fo$, which is obtained by disallowing the use of the second-order quantifier ($\exists X$) in the formula $\varphi$ in \eqref{eq-def-qso}, and $\eso$, which is obtained by allowing $\varphi$ in \eqref{eq-def-qso} to be a formula of the form $\exists X_1 \cdots \exists X_k \, \psi$, where $\psi$ is an $\fo$-formula. 
+In this paper, we consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the quantitative quantifiers. Let $\qfo$ be the fragment of $\qso$ obtained by only allowing the quantitative quantifiers $\Sigma x$, $\Pi x$ in \eqref{eq-def-qso}. Let $\eqso$ be a fragment of $\qso$ defined as $\qfo$ but also allowing the quantitative quantifier $\Sigma X$. Moreover, assuming that $\LL$ is a fragment of $\so$, let $\qso(\LL)$ be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{eq-def-qso} to be a formula in $\LL$, and let $\eqso(\LL)$ be the fragment of $\eqso$ obtained by imposing the same restriction. In particular, in this paper we consider the following fragments $\LL$: $\fo$, which is obtained by disallowing the use of the second-order quantifier ($\exists X$ or $\forall X$) in the formula $\varphi$ in \eqref{eq-def-qso}, and $\eso$, which is obtained by allowing $\varphi$ in \eqref{eq-def-qso} to be a formula of the form $\exists X_1 \cdots \exists X_k \, \psi$, where $\psi$ is an $\fo$-formula. 
+
+
+\begin{theorem}
+	Let $\alpha$ be a $\qso$-formula in some fragment of $\qso$. There is a $\qso$ formula $\alpha'$ in the same fragment such that $\alpha'$ does not have any subformula of the form $(\beta_1 \cdot \beta_2)$ and $\sem{\alpha} = \sem{\alpha'}$.
+\end{theorem}
+\begin{proof}
+	Let $\{+, \cdot, \Sigma, \Pi\}$ be the set of {\it algebraic operators} in $\qso$. We will prove by induction over the number of algebraic operators in a $\qso$-formula $\alpha$ that there exists some $\qso$-formula $\alpha'$ that respects the stated condition. Let $\text{op}(\alpha)$ be the number of algebraic operators in $\alpha$. The case $\text{op}(\alpha) = 0$ is trivial. Let $n\in\nat$ be such that for each $\qso$-formula $\beta$ such that $\text{op}(\beta) < n$ there is some $\beta'$ that respects the condition. Let $\alpha$ be a $\qso$-formula such that $\text{op}(\alpha) = n$. Note that if $\alpha$ is of the form $\alpha = (\beta_1 + \beta_2)$, $\alpha = \Sigma x \beta$, $\alpha = \Pi x \beta$, $\alpha = \Sigma X \beta$ or $\alpha = \Pi X \beta$ the proof follows directly. Therefore we assume that $\alpha = (\beta_1 \cdot \beta_2)$. We separate the proof in two main cases:
+	\begin{enumerate}
+		\item At least one of $\beta_1, \beta_2$ is not of the form $\Pi x \gamma$, $\Pi X \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. Without loss of generality, let $\beta_1$ be such one.
+		\begin{enumerate}
+			\item $\beta_1 = s \in \nat$. Then we use $\alpha' = \beta_2 + \cdots + \beta_2$, where $\beta_2$ is repeated $s$ times, and if $s = 0$, take $\alpha' = \perp$. Since each of the formulas paired by $+$ has less than $n$ algebraic operators, the statement holds.
+			\item $\beta_1 = (\gamma_1 + \gamma_2)$. Then, we use $\alpha' = (\gamma_1\cdot\beta_2 + \gamma_2\cdot\beta_2)$ and each of the formulas paired by $+$ have less than $n$ algebraic operators so the statement holds.
+			\item $\beta_1 = \Sigma x \gamma$. Then, we use $\alpha' = \Sigma x (\gamma\cdot\beta_2)$ and as in the previous case the statement holds.
+			\item $\beta_1 = \Sigma X \gamma$, which we treat exactly as the previous one.
+		\end{enumerate}
+		\item Both of $\beta_1$ and $\beta_2$ are of the form $\Pi x \gamma$, $\Pi X \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. This case also separates in further cases:
+		\begin{enumerate}
+			\item $\beta_1 = \Sigma x \gamma_1(x)$ and $\beta_2 = \Sigma y \gamma_2(y)$. Then we use $\alpha' = \Sigma x(\gamma_1(x)\cdot\gamma_2(x))$, and the statement holds.
+			\item $\beta_1 = \Sigma X \gamma_1(X)$ and $\beta_2 = \Sigma Y \gamma_2(Y)$. [something about arities].
+			\item $\beta_1 = \Sigma X \gamma_1(X)$ and $\beta_2 = \Sigma x \gamma_2(x)$ (w.l.o.g.). [use singleton predicates].
+			\item $\beta_1 = \Sigma x \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). Then, we use $\alpha' = \Sigma x (\gamma \cdot \varphi)$, and the statement holds.
+			\item $\beta_1 = \Sigma X \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). We treat this case exactly as the previous one.
+			\item $\beta_1 = \varphi_1$ and $\beta_2 = \varphi_2$ both $\so$-formulas. Then, we use $\alpha' = (\varphi_1 \wedge \varphi_2)$ and the statement holds.
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
 
 
 
