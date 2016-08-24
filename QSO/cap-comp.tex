@@ -15,6 +15,38 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 
 \cristian{Aca hay que definir esto sobre estructuras finitas directamente. No veo el sentido de tener estructuras infinitas.}
 
+\begin{theorem} \label{captfp}
+	$\qfo(\lfp)$ captures $\fp$ over the class of ordered structures.
+\end{theorem}
+\begin{proof}
+	For the first condition, let $\alpha\in\qfo(\lfp)$, $\A\in\ostr$, $v$ and $V$ a first and second order assignment for $\A$, respectively. To evaluate $\sem{\alpha}(\A,v,V)$, we replace each first order sum and first order product by their corresponding expansion. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$, where $A = \{a_1,\ldots,a_n\}$, and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then we replace each logic sub-formula $\varphi$ in $\alpha$ by their evaluated value, 0 or 1. Since each of this formulas is in $\lfp$, this can be done in polynomial time. The resulting formula is an arithmetic expression, which can be evaluated recursively in polynomial time.
+	
+	For the second condition, let $f\in \fp$. Let $k\in\nat$ be such that $\vert f(\A) \vert = \vert A \vert^k$ for each $\A\in\ostr[\R]$. Let $\Phi(x_0,\ldots,x_{k-1})$ be a $\lfp$ formula such that $(\A,a_0,\ldots,a_{k-1})\models\Phi$ if and only if in the string $y = f(\A)$ there is 1 in the $(\vert A \vert^{k-1}m_{k-1} + \cdots + \vert A \vert^2 m_2 + \vert A \vert m_1 + m_0)$-th position from right to left, and where $a_i$ is the (0-indexed) $m_i$-th element of $A$. We use
+	$$
+	\alpha = \Sigma x_0 \cdots \Sigma x_{k-1} \Phi(x_0,\ldots,x_{k-1})\cdot\varphi_{k-1}(x_{k-1})\cdot\,\cdots\,\cdot\varphi_0(x_0).
+	$$
+	where $\varphi_i(x) = \Pi y[(y < x)\mapsto\Pi z_1\cdots\Pi z_i\,2]$ for $i > 0$ and $\varphi_0(x) = \Pi y[(y < x)\mapsto 2]$. Note that if $a$ is the  $m$-th element in $A$, then $\sem{\varphi_i(x)}(\A,a) = 2^{\vert A \vert^i m}$. Therefore, for each $(a_0,\ldots,a_{k-1})\in A^k$, we have that $\sem{\Phi(x_0,\ldots,x_{k-1})\cdot\varphi_{k-1}(x_{k-1})\,\cdots\,\varphi_0(x_0)}(\A,a_0,\ldots,a_{k-1}) = 2^{(\vert A \vert^{k-1}m_{k-1} + \cdots + \vert A \vert^2 m_2 + \vert A \vert m_1 + m_0)}$ if $(\A,a_0,\ldots,a_{k-1})\models\Phi$ and 0 otherwise, and adding these values gives $f(\A)$. 	
+\end{proof}
+
+\begin{theorem}
+	$\qfo(\pfp)$ captures $\nfpspace$ over the class of ordered structures.
+\end{theorem}
+\begin{proof}
+	For the first condition, we use the exact same procedure as in Theorem \ref{captfp}, noting that evaluating each of the $\pfp$ formulas can be done in polynomial space, and that the result is also polynomial on the size of the input.
+	
+	For the second condition, note that for each function $f\in \nfpspace$, $\vert f(\A) \vert$ is polynomial on $\vert A \vert$. Thus, there is a $\pfp$ formula $\Phi$ that models the string $f(\A)$ by the bit. The rest of the proof is analogous to Theorem \ref{captfp}.
+\end{proof}
+
+\begin{theorem}
+	$\qfo(\tc)$ captures $\shl$ over the class of ordered structures.
+\end{theorem}
+\begin{proof}
+	For the first condition, let $\alpha\in\qfo(\tc)$, let $\A\in\ostr$ $v$ and $V$ first and second order assignments of $\A$ respectively. We evaluate $\sem{alpha}(\A,v,V)$ recursively. A logic formula $\varphi$ is evaluated...?
+	
+	For the second condition, note that for each function $f\in \shl$, $\vert f(\A) \vert$ is polynomial on $\vert A \vert$. Thus, there is a $\tc$ formula $\Phi$ that models the string $f(\A)$ by the bit. The rest of the proof is analogous to Theorem \ref{captfp}.
+\end{proof}
+	
+
 \begin{theorem}
 $\eqso(\fo)$ captures $\shp$ over the class of ordered structures.
 \end{theorem}
