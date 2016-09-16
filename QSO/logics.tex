@@ -61,7 +61,7 @@ We define an operator which extends the Least Fixed Point logic to counting. Rec
 
 We extend QSO with the operator $[\textbf{alfp}_{\varphi(y_1,\ldots,y_k,R)}\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. It is defined by a FO-formula $\varphi$ and a QFO-formula $\alpha$ which mentions a placeholder function $\pi$ with domain $\fv^{\ell}$. 
 
-To formally characterize its semantics we define the partial function $\zeta_{\varphi,\alpha}:2^{A^k} \to (A^{\ell}\times\nat)$ for each $\varphi$ and $\alpha$ as follows. Let $\A$ be a structure. For $R = \emptyset$, it holds that $\zeta_{\varphi,\alpha}[\emptyset] = \sem{\alpha\mid_{\pi(\bar{u})\to 0}}$. For each $R \subseteq A^k$ such that $T_{\varphi}(R) \neq R$, let $\beta$ be a virtual $\qfo$ formula such that $\sem{\beta}(\A,v) = \zeta_{\varphi,\alpha}[R](v)$ for each first order assignment $v$, and it holds that $\zeta_{\varphi,\alpha}[T_{\varphi}(R)] = \sem{\alpha\mid_{\pi\to\beta}}$.
+To formally characterize its semantics we define the partial function $\zeta_{\varphi,\alpha}:2^{A^k} \to (A^{\ell}\times\nat)$ for each $\varphi$ and $\alpha$ as follows. Let $\A$ be a structure. For $R = \emptyset$, we define $\zeta_{\varphi,\alpha}[\emptyset] = \sem{\alpha\mid_{\pi(\bar{u})\to 0}}$. For each $R \subseteq A^k$ such that $T_{\varphi}(R) \neq R$, let $\beta$ be a virtual $\qfo$ formula with $\ell$ open variables such that $\sem{\beta}(\A,v) = \zeta_{\varphi,\alpha}[R](v)$ for each first order assignment $v$, and we define $\zeta_{\varphi,\alpha}[T_{\varphi}(R)] = \sem{\alpha\mid_{\pi(\bar{u})\to\beta(\bar{u})}}$.
 
 For a given first order asignment $v$, the operator is evaluated as:
 $$
