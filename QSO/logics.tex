@@ -57,18 +57,26 @@ In this paper, we consider several fragments of $\qso$, which are obtained by re
 	\end{enumerate}
 \end{proof}
 
-We define an operator which extends the Least Fixed Point logic to counting. Recall that a fixed point operator is defined by a formula $\varphi(x_1,\ldots,x_k,R)$ which is positive on $R$ where $R$ is a predicate or arity $k$. The operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ is defined as $T_{\varphi}(X) = \{(a_1,\ldots,a_k)\mid (\A,X)\models \varphi(a_1,\ldots,a_k,R) \}$, for each $X\subseteq A^k$ and $X^*\subseteq A^k$ is a fixed point of $T_{\varphi}$ if $T_{\varphi}(X^*) = X^*$. Then, the formula $[\textbf{lfp}\,\varphi(x_1,\ldots,x_k,R)](y_1,\ldots,y_k)$ is evaluated at the least fixed point of $T_{\varphi}$.
+We define an operator which extends the Least Fixed Point logic to counting. Recall that a fixed point operator is defined by a formula $\varphi(x_1,\ldots,x_k,R)$ which is positive on $R$ where $R$ is a predicate of arity $k$. For a structure $\A$ with domain $A$, the operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ is defined as $T_{\varphi}(X) = \{(a_1,\ldots,a_k)\mid (\A,X)\models \varphi(a_1,\ldots,a_k,R) \}$, for each $X\subseteq A^k$. Let $T_0 = \emptyset$ and $T_{i+1} = T_{\varphi}(T_i)$ for each $i \in \nat$. Note that there exists $n\in \nat$ such that $T_{n+1} = T_n$. Semantically, $[\lfpop\,\varphi(x_1,\ldots,x_k,R)]$ is defined such that for each $(a_1,\ldots,a_k)\in A^k$, it holds that $\A\models[\lfpop\,\varphi(x_1,\ldots,x_k,R)](a_1,\ldots,a_k)$ if and only if $\A\models T_n(a_1,\ldots,a_k)$.
 
-We extend $\qfo$ with the operator $[\textbf{alfp}_{\varphi(y_1,\ldots,y_k,R)}\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. It is defined by a FO-formula $\varphi$ and a QFO-formula $\alpha$ which mentions a placeholder function $\pi$ with domain $\fv^{\ell}$. 
+We extend $\qfo$ with the operator $[\textbf{alfp}\,\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. It is defined by a FO-formula $\varphi$ and a QFO-formula $\alpha$ which mentions a placeholder function $\pi$ with domain $\fv^{\ell}$. Let $\{T_i\}_{i\in\nat}$ and $n\in\nat$ be defined from $\varphi$ as it was for the $\lfp$ operator.
 
-To formally characterize its semantics we define the partial function $\zeta_{\varphi,\alpha}:2^{A^k} \to (A^{\ell}\times\nat)$ for each $\varphi$ and $\alpha$ as follows. Let $\A$ be a structure. For $R = \emptyset$, we define $\zeta_{\varphi,\alpha}[\emptyset] = \sem{\alpha\mid_{\pi(\bar{u})\to 0}}$. For each $R \subseteq A^k$ such that $T_{\varphi}(R) \neq R$, let $\beta$ be a virtual $\qfo$ formula with $\ell$ open variables such that $\sem{\beta}(\A,v) = \zeta_{\varphi,\alpha}[R](v)$ for each first order assignment $v$, and we define $\zeta_{\varphi,\alpha}[T_{\varphi}(R)] = \sem{\alpha\mid_{\pi(\bar{u})\to\beta(\bar{u})}}$.
-
-For a given first order asignment $v$, the operator is evaluated as:
+For each $\qfo$ formulas $\alpha, \beta, \gamma$, where $\beta$ and $\gamma$ have $\ell$ and $m$ first-order open variables respectively, $u_1,\ldots,u_{\ell} \in \fv$, and $v_1,\ldots,v_m \in \{u_1,\ldots,u_{\ell}\}$, we define $\alpha\mid_{\beta(u_1,\ldots,u_{\ell})\to\gamma(v_1,\ldots,v_{m})}$ as $\alpha$ where every instance of the subformula $\beta(u_1,\ldots,u_{\ell})$ is replaced by $\gamma(v_1,\ldots,v_{m})$. Moreover, for each $a\in A$, suppose that $a$ is the $p$-th element in the order $<^{\A}$. Then if $a$ is the first element, we define $\varphi_a(x) = \forall y(x < y \vee x = y)$, and if it is not we define:
 $$
-[\textbf{alfp}_{\varphi(y_1,\ldots,y_k,R)}\alpha(x_1,\ldots,x_{\ell},R,\pi)](\A,v) = \zeta_{\varphi,\alpha}[X^*](v),
+\varphi_a(x) = \exists x_1 \cdots \exists x_{p-1}[\bigwedge_{1\leq i,j < p}x_i\neq x_j \wedge \bigwedge_{i = 1}^p x_i < x \wedge \forall y(y < x \to \bigvee_{i = 1}^p y = x_i)].
 $$
-where $X^*$ is the least fixed point of $\varphi$.
 
+To formally characterize the semantics of $[\textbf{alfp}\,\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. %. 
+We name $\T = \{T_0,\ldots,T_n\}$ and we define the operator $Z:\T \to \{f\mid f:A^{\ell}\to\nat\}$ as follows. For each $T_i \in \T$, we define a $\qfo$ formula $\beta_i$ as follows. If $i = 0$, then $\beta_i(u_1,\ldots,u_{\ell}) = 0$. If $i \geq 1$, then let $f = Z[T_{i-1}]$ and
+$$
+\beta_i(u_1,\ldots,u_{\ell}) = \bigplus_{(a_1,\ldots,a_{\ell})\in A^{\ell}} \varphi_{a_1}(u_1)\cdot\varphi_{a_2}(u_2)\,\cdots\,\varphi_{a_{\ell}}(u_{\ell})\cdot f(a_1,\ldots,a_{\ell}).
+$$
+Then, for each $T_i \in \T$, let $V$ be a second-order assignment for $\A$ that assigns $T_i$ to $R$, let $f: A^{\ell}\to\nat$ be such that for each $(a_1,\ldots,a_{\ell})\in A^{\ell}$ it holds $f(a_1,\ldots,a_{\ell}) = \sem{\alpha\mid_{\pi(u_1,\ldots,u_{\ell})\to \beta_i(u_1,\ldots,u_{\ell})}}(\A,v,V)$, where $v$ is a first-order assignment for $\A$ that satisfies $a_i = v(x_i)$ for each open $x_i$ in $\alpha$. We define $Z[T_i] = f$.
+
+For a given first order asignment $v$, let $a_i = v(x_i)$, let $f = Z[T_n]$, and the operator is evaluated as:
+$$
+[\textbf{alfp}\,\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](\A,v) = f(a_1,\ldots,a_{\ell}).
+$$
 As an example, we will show a formula that counts the number of paths of size $n$ of a structure $\A$ with a binary relation $E$. First we define $\varphi(x,R)$:
 $$
 \varphi(x,R) = \forall y(x < y \vee x = y) \vee \exists z(R(z) \wedge \varphi_{succ}(z,x)),x
