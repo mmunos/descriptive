@@ -54,25 +54,48 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 	$\tqfo(\fo)$ captures $\shl$ over the class of ordered structures.
 \end{theorem}
 \begin{proof}
-	For the second condition, let $f \in \shl$. Let $M$ be a non-deterministic logspace machine such that $f(w) = \acc_M(w)$ Let ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ be the set of states of $M$, where $q_1$ is the initial state, and let $q_{\ell}$ be the only final state of $M$. Let $\Sigma = \{0,1\}$ wlog. and let $w\in\Sigma^n$. Let $w = w_1\cdots w_n$, with $w_i \in \{0,1\}$ and let $\A$ be the ordered structure that represents this word with $A = \{1,\ldots,n\}$ and an unary predicate $P(\cdot)$ where $i\in P$ if and only if $w_i = 1$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$. Suppose that $M$ has a reading tape and a working tape, and the latter uses space $c\cdot\log(n)$.
+	For the second condition, let $f \in \shl$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\A) = \acc_M(\A)$ for each $\A \in \ostr[R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, and $q_{\ell}$ is only final state of $M$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
 	
-	We represent configurations with a tuple of fixed size $k$. The formula $\varphi(\bar{x},\bar{y})$ describes consecutive configurations. The formula $\varphi_I(\bar{x})$ models that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ models that $\bar{x}$ is a accepting (final) configuration of $M(w)$. The formula we construct is:
+	We represent configurations with a tuple of fixed size $k$. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ models that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ models that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
 	$$
 	\alpha = \sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{u},\bar{v})](\bar{x},\bar{y})\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y})).
 	$$
-	Note that there is a total of $m = (n+2)\cdot (c\log(n)+2)\cdot 3^{c\log n} \cdot \ell$ distinct configurations in $M(w)$, so we will represent them in the following way. The first two elements of the tuple represent the position of the head in the reading tape. The next $e$ elements represent the position of the head in the working tape. We choose an appropriate $e$ such that $n^e \geq c\log(n)$ for each $n$. The next $2c$ elements represent the string in the working tape. The last $\ell$ elements represent the state in which the machine is in. To specify, let $\bar{a} = (a_1,\ldots,a_m)$ be a tuple that represents a configuration in $M(w)$.
+	
+	To illustrate our idea, we will show a greatly simplified example. Consider a machine $M$ that works in exactly $\log_2(n)$ space and only allows 0 or 1 in the working tape. Consider an input $\A$ of size 16 (that is, $A = \{0,\ldots,9,A,\ldots,F\}$). Let some configuration $s$ have 0011 in the working tape, the head in the input tape is in position 26, and the head in the input tape is in position 2 (we consider 0-indexed positions). Also, $Q = \{q_1,\ldots,q_5\}$ and the current state is $q_3$.
+	
+	As a first approach, we will use a 9-tuple $\bar{a} = (a_1,\ldots,a_9)$ to represent $s$. That is, $(a_1,a_2) = (1,A)$ represent the position of the head in the input tape, $a_3 = 2$ represents the position of the head in the working tape, $a_4 = C$ (1100b in base 16) represents the content of the working tape, and $(a_5,\ldots,a_9) = (0,0,1,0,0)$ represents the current state. Then $\bar{a} = (1,A,2,C,0,0,1,0,0)$ will represent $s$. It is not possible \martin{no se si ser\'a cierto esto} to find the $i$-th bit of an element $x$, or much less switch the $i$-th bit of an element, solely with $\fo$. So consider the following procedure.
+	
+	\begin{algorithm}
+	\caption{If the $i$-th bit in $x$ is 1 replace it by 0}
+	\begin{algorithmic}
+		\State $b \gets bit(x,i)$
+		\State $\textbf{assert } b = 1$
+		\State $y = pow2(i)$
+		\State $z = substract(x,y)$
+		\State \Return $z$.
+	\end{algorithmic}
+	\end{algorithm}	
+	And the details for $bit$, $pow2$ and $substract$ are left for the reader as an exercise.
+	
+	Note that there is an upper bound of $(n^2+2)\cdot (c\log(n)+2)\cdot 3^{c\log n} \cdot \ell$ distinct configurations in $M(w)$. Given a configuration $s\in M(w)$, we construct a tuple $\bar{a} = (a_0,\ldots,a_{k-1})$ that represents $s$.
 	\begin{itemize}
-	\item $(a_1,a_2)$ represent the position of the head in the reading tape. If $a_1 = 1$, then the head is in position $a_2$ (the $a_2$-th character in the input). If $a_1 = 2$, then $a_2 = 1$ represents that the head is at the beginning of the tape (position 0), and if $a_2 = 2$, then the head is at position $n+1$.
-	\item $(a_3,\ldots,a_{e+2})$ represent the position of the head in the working tape. Specifically, let $h$ be the value of $a_{e+2}a_{e+1}\cdots a_4 a_3$ in base $n$. Then the head is at position $h$ of the working tape.
-	\item $(a_{e+3},\ldots,a_{2+e+2c})$ represents the string that is in the working tape. Specifically, let $h$ be the value of $a_{2+e+2c}a_{1+e+2c}\cdots a_{e+4}a_{e+3}$ in base $n$. Then the string in the working tape is $h$ in base 3, where 2 is interpreted as $\texttt{B}$.
-	\item $(a_{3+e+2c},\ldots,a_{2+e+2c+\ell})$ represents the current state $q_i$. Every value in the tuple is $1$ except the element $a_{3+e+2c+i}$ which is 2.
+	\item $(a_0,a_1,a_2)$ represent the position of the head in the reading tape. If $a_0 = 1$, then the head is in position $a_1a_2$ (the $a_1a_2$-th character in the input). If $a_1 = 2$, then $a_2 = 1$ represents that the head is at the beginning of the tape (position 0), and if $a_2 = 2$, then the head is at position $n+1$.
+	\item $a_3$ represents the position of the head in the working tape.
+	\item $(a_4,\ldots,a_{3+2c})$ represents the string that is in the working tape. Specifically, let $h$ be the value of $a_{3+2c}a_{2+2c}\cdots a_{5}a_{4}$ in base $n$. Then the string in the working tape is $h$ in base 3, where 2 is interpreted as $\texttt{B}$.
+	\item $(a_{4+2c},\ldots,a_{3+2c+\ell})$ represents the current state $q_i$. Every value in the tuple is $1$ except the element $a_{3+2c+i}$ which is 2.	
 	\end{itemize}
+	
+	
 	Now we describe the formulas.
 	\begin{align*}
-	\varphi_I(\bar{x}) &= \varphi_v(\bar{x}) \wedge \exists u(\varphi_1(u) \wedge \varphi_{succ}(u,x_{3+e+2c})) \\
+	\varphi_I(\bar{x}) &= \varphi_v(\bar{x}) \wedge \exists u(\varphi_1(u) \wedge \varphi_{succ}(u,x_{3+e+2c})), \\
 	\varphi_F(\bar{x}) &= \varphi_v(\bar{x}) \wedge \exists u(\varphi_1(u) \wedge \varphi_{succ}(u,x_{2+e+2c+\ell})),
 	\end{align*}
 	where $\varphi_v(\bar{x})$ describes that $\bar{x}$ is a valid configuration of $M(w)$ and $\varphi_1(x)$ describes that $x$ is the first element of $A$.
+	\begin{align*}
+	\varphi_v^1(\bar{x}) &= \exists u(\varphi_1(u) \wedge (x_1 = u \vee \varphi_{succ}(u,x_1)) \wedge \varphi_{succ}(u,x_1) \to (x_2 = u \vee \varphi_{succ}(u,x_2))), \\
+	\varphi_v^4(\bar{x}) &= \exists u(\varphi_1(u) \wedge \bigvee_{i = 1}^{\ell}(\varphi_{succ}(u,x_{2+e+2c+i})  \wedge \bigwedge\limits_{\substack{i = 1\\ j \neq i}}^{\ell} x_{2+e+2c+j} = u)).
+	\end{align*}
 \end{proof}
 
 \begin{theorem}
