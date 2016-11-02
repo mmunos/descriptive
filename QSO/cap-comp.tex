@@ -107,7 +107,28 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 		$(d_{2c+1}\ldots,d_{3c}) \to z$, $(d_{3c+1}\ldots,d_{4c}) \to u$,
 		$(d_{4c+1}\ldots,d_{5c}) \to v$, $d_{5c+1} \to i$ and $d_{5c+2}\to j$.
 	\end{enumerate}
-	For each transition $\delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ we define a formula $\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$, where $\bar{x} = (x_1,\ldots,x_{3+c+\ell})$, $\bar{s} = (s_1,s_2)$, $\bar{w} = (w_1,w_2,w_3)$, $\bar{u} = (u_1,\ldots,u_{5c+2})$, $\bar{y} = (y_1,\ldots,y_{3+c+\ell})$, $\bar{t} = (t_1,t_2)$, $\bar{z} = (z_1,z_2,z_3)$ and $\bar{v} = (v_1,\ldots,v_{5c+2})$ that describes the procedure to compute the values in the configuration and the transition itself. We will describe the formula part by part. Suppose $\delta = (q_i,a,1,q_j,op_1,0,op_2)$, so we have to simulate Algorithm \ref{switch1to0}.
+	For each transition $\delta \in \Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ we define a formula $\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$, where $\bar{x} = (x_1,\ldots,x_{3+c+\ell})$, $\bar{s} = (s_1,s_2)$, $\bar{w} = (w_1,w_2,w_3)$, $\bar{u} = (u_1,\ldots,u_{5c+2})$, $\bar{y} = (y_1,\ldots,y_{3+c+\ell})$, $\bar{t} = (t_1,t_2)$, $\bar{z} = (z_1,z_2,z_3)$ and $\bar{v} = (v_1,\ldots,v_{5c+2})$. The tuples $\bar{x}$ and $\bar{y}$ represent the current and next configuration of $M$ respectively, $\bar{s}$ and $\bar{y}$ indicate which algorithm is being followed, $\bar{w}$ and $\bar{z}$ represent the current and next instruction of the algorithm, $\bar{u}$ and $\bar{v}$ represent the current and next values in memory. We will describe the formula part by part. Suppose $\delta = (q_i,a,1,q_j,op_1,0,op_2)$, so we have to simulate Algorithm \ref{switch1to0}.
+	
+	First we define some auxiliary formulas:
+	\begin{align*}
+	\varphi_0(x) &= \neg\exists y(y < x), \\
+	\varphi_{+1}(x,y) &= x < y \wedge \neg\exists z(x < z \wedge z < y), \\
+	\varphi_{-1}(x,y) &= \varphi_{+1}(y,x), \\
+	\varphi_1(x) &= \exists y(\varphi_0(y) \wedge \varphi_{+1}(y,x)), \\
+\text{for $i,j \in\{0,1\}$, }	\varphi_{i,j}(x,y) &= \varphi_i(x) \wedge \varphi_j(y), \\
+	\text{for each $k \leq 7$, }\varphi^b_k(x_1,x_2,x_3) &= \varphi_{a_1}(x_1) \wedge \varphi_{a_2}(x_2) \wedge \varphi_{a_3}(x_3)\text{, where $a_1a_2a_3$ is the value of $k$ in binary}, \\
+	\mu_{<}(x_1,\ldots,x_c,y_1,\ldots,y_c) &= \bigvee_{i = 1}^c ((\bigwedge_{j = 1}^{i-1} x_j = y_j) \wedge x_i < y_i), \\
+	\mu_{+1}(\bar{x},\bar{y}) &= \mu_{<}(\bar{x},\bar{y}) \wedge \neg\exists \bar{z}(\mu_{<}(\bar{x},\bar{z}) \wedge \mu_{<}(\bar{z},\bar{y})), \\
+	\mu_{+2}(\bar{x},\bar{y}) &= \exists\bar{z}(\mu_{+1}(\bar{x},\bar{z}) \wedge \mu_{+1}(\bar{z},\bar{y})),\\
+	\mu_{-1}(\bar{x},\bar{y}) &= \varphi_{+1}(\bar{y},\bar{x}),\\
+	\mu_{-2}(\bar{x},\bar{y}) &= \varphi_{+2}(\bar{y},\bar{x}),\\
+	\mu_{0}(\bar{x}) &= \neg\exists\bar{y}(\mu_{<}(\bar{y},\bar{x})),\\
+	\mu_{1}(\bar{x}) &= \exists\bar{y}(\mu_{0}(\bar{y})\wedge\mu_{+1}(\bar{y},\bar{x})),\\
+	\varphi^2_{<}(x_1,x_2,y_1,y_2) &= x_1 < y_1 \vee (x_1 = y_1 \wedge x_2 < y_2),\\
+	\varphi^2_{+1}(x_1,x_2,y_1,y_2), \varphi^2_{-1}(x_1,x_2,y_1,y_2) &\text{ defined analogously to $\mu_{+1}$ and $\mu_{-1}$},\\
+	\text{for each } q_i\in Q, \varphi^q_i(x_1,\ldots,x_{\ell}) &= \bigwedge_{\substack{j = 1 \\ j \neq i}}^{\ell} \varphi_0(x_j) \wedge \varphi_1(x_i), \\
+	\varphi^E_0(x_1,x_2) &= \neg E(x_1,x_2),\\		\varphi^E_1(x_1,x_2) &= E(x_1,x_2),\\
+	\end{align*}
 	
 	We start from instruction 0, which means that the procedure has not started yet and every value in the tuple is 0 except for the configuration values. It also initializes all the values in the tuple to 0 except for $x,u,i,j$.
 	\begin{multline*}
@@ -124,33 +145,33 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 	Instruction 2 checks the value of $u$ ($d_{3c+1},\ldots,d_{4c}$ in the tuple). If it is $> 1$ then it substracts 2 from $u$ and adds 1 to $v$ ($d_{4c+1},\ldots,d_{5c}$ in the tuple), then repeats instruction 2. If it is equal to 0 or 1, then moves the value of $v$ to $u$, substracts 1 from $j$ and goes back to instruction 1.
 	\begin{multline*}
 	\varphi^{2,2}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
-	\varphi_{1,0}(s_1,s_2) \wedge \varphi^b_2(\bar{w}) \wedge \neg \varphi^m_0(u_{3c+1},\ldots,u_{4c}) \wedge \neg \varphi^m_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_2(\bar{z})\, \wedge \\
+	\varphi_{1,0}(s_1,s_2) \wedge \varphi^b_2(\bar{w}) \wedge \neg \mu_0(u_{3c+1},\ldots,u_{4c}) \wedge \neg \mu_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_2(\bar{z})\, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
 	\bigwedge_{i = c+1}^{2c} u_i = v_i \wedge
 	\bigwedge_{i = 2c+1}^{3c} u_i = v_i \wedge
-	\varphi^m_{-2}(u_{3c+1},\ldots,u_{4c},v_{3c+1},\ldots,v_{4c})\, \wedge \\
-	\varphi^m_{+1}(u_{4c+1},\ldots,u_{5c},v_{4c+1},\ldots,v_{5c}) \wedge u_{5c+1} = v_{5c+1} \wedge u_{5c+2} = v_{5c+2}. \\
-	\varphi^{2,1}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_2(\bar{w}) \wedge ( \varphi^m_0(u_{3c+1},\ldots,u_{4c}) \vee \varphi^m_1(u_{3c+1},\ldots,u_{4c})) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_1(\bar{z})\, \wedge \\
+	\mu_{-2}(u_{3c+1},\ldots,u_{4c},v_{3c+1},\ldots,v_{4c})\, \wedge \\
+	\mu_{+1}(u_{4c+1},\ldots,u_{5c},v_{4c+1},\ldots,v_{5c}) \wedge u_{5c+1} = v_{5c+1} \wedge u_{5c+2} = v_{5c+2}. \\
+	\varphi^{2,1}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_2(\bar{w}) \wedge ( \mu_0(u_{3c+1},\ldots,u_{4c}) \vee \mu_1(u_{3c+1},\ldots,u_{4c})) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_1(\bar{z})\, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
 	\bigwedge_{i = c+1}^{2c} u_i = v_i \wedge
 	\bigwedge_{i = 2c+1}^{3c} u_i = v_i \wedge
 	\bigwedge_{i = 3c+1}^{4c} u_{c+i} = v_i \wedge
-	\varphi^m_0(v_{4c+1},\ldots,v_{5c}) \wedge
+	\mu_0(v_{4c+1},\ldots,v_{5c}) \wedge
 	u_{5c+1} = v_{5c+1} \wedge \varphi_{-1}(u_{5c+2},v_{5c+2}).	
 	\end{multline*}
 	Instruction 3 calculates the value of $u \mod 2$, that is, it repeats instruction 3 until the value of $u$ is equal to 0 or 1. On each iteration, it substracts 2 from $u$. Moreover, if the value of $u$ at the end of the iterations is not 1 then there is no step defined.
 	\begin{multline*}
-	\varphi^{3,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_3(\bar{w}) \wedge \neg \varphi^m_0(u_{3c+1},\ldots,u_{4c}) \wedge \neg \varphi^m_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_3(\bar{z})\, \wedge \\
+	\varphi^{3,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_3(\bar{w}) \wedge \neg \mu_0(u_{3c+1},\ldots,u_{4c}) \wedge \neg \mu_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_3(\bar{z})\, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
 	\bigwedge_{i = c+1}^{2c} u_i = v_i \wedge
 	\bigwedge_{i = 2c+1}^{3c} u_i = v_i \wedge
-	\varphi^m_{-2}(u_{3c+1},\ldots,u_{4c},v_{3c+1},\ldots,v_{4c}) \wedge
+	\mu_{-2}(u_{3c+1},\ldots,u_{4c},v_{3c+1},\ldots,v_{4c}) \wedge
 	\bigwedge_{i = 4c+1}^{5c} u_i = v_i \wedge
 	u_{5c+1} = v_{5c+1} \wedge u_{5c+2} = v_{5c+2}, \\
 	\varphi^{3,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
-	\varphi_{1,0}(s_1,s_2) \wedge \varphi^b_3(\bar{w}) \wedge \varphi^m_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_4(\bar{z})\, \wedge \\
+	\varphi_{1,0}(s_1,s_2) \wedge \varphi^b_3(\bar{w}) \wedge \mu_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge 	\varphi^b_4(\bar{z})\, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
-	\varphi^m_1(v_{c+1},\ldots,v_{2c}) \wedge
+	\mu_1(v_{c+1},\ldots,v_{2c}) \wedge
 	\bigwedge_{i = 2c+1}^{3c} u_i = v_i \wedge
 	\bigwedge_{i = 3c+1}^{4c} u_i = v_i \wedge
 	\bigwedge_{i = 4c+1}^{5c} u_i = v_i \wedge
@@ -163,34 +184,110 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 	\end{multline*}
 	Instruction 5 checks the value of $y$ ($d_{c+1},\ldots,d_{2c}$ in the tuple.) If it is more than 0 then it adds 2 to $z$ and substracts 1 from $y$, then repeats instruction 2. If it is not, then copies the value of $z$ to $y$ and subtracts 1 from $i$ and returns to instruction 4.
 	\begin{multline*}
-	\varphi^{5,5}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_5(\bar{w}) \wedge \neg \varphi^m_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_5(\bar{z}) \, \wedge \\
+	\varphi^{5,5}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_5(\bar{w}) \wedge \neg \mu_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_5(\bar{z}) \, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
-	\varphi^m_{-1}(u_{c+1},\ldots,u_{2c},v_{c+1},\ldots,v_{2c}) \wedge
-	\varphi^m_{+2}(u_{2c+1},\ldots,u_{3c},v_{2c+1},\ldots,v_{3c})\, \wedge \\
+	\mu_{-1}(u_{c+1},\ldots,u_{2c},v_{c+1},\ldots,v_{2c}) \wedge
+	\mu_{+2}(u_{2c+1},\ldots,u_{3c},v_{2c+1},\ldots,v_{3c})\, \wedge \\
 	\bigwedge_{i = 3c+1}^{4c} u_i = v_i \wedge
 	\bigwedge_{i = 4c+1}^{5c} u_i = v_i \wedge
 	u_{5c+1} = v_{5c+1} \wedge u_{5c+2} = v_{5c+2}, \\
-	\varphi^{5,4}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_5(\bar{w}) \wedge \varphi^m_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_4(\bar{z}) \, \wedge \\
+	\varphi^{5,4}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_5(\bar{w}) \wedge \mu_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_4(\bar{z}) \, \wedge \\
 	\bigwedge_{i = 1}^c u_i = v_i \wedge
 	\bigwedge_{i = c+1}^{2c} u_{c+i} = v_i \wedge
-	\varphi^m_0(v_{2c+1},\ldots,v_{3c}) \wedge
+	\mu_0(v_{2c+1},\ldots,v_{3c}) \wedge
 	\bigwedge_{i = 3c+1}^{4c} u_i = v_i \wedge
 	\bigwedge_{i = 4c+1}^{5c} u_i = v_i \wedge
 	\varphi_{-1}(u_{5c+1},v_{5c+1}) \wedge u_{5c+2} = v_{5c+2}
 	\end{multline*}
 	Instruction 6 checks the value of $y$. If it is more than 0, then subtracts 1 from $x$ and $y$ and repeats instruction 6. If it is not, then goes to instruction 7.
 	\begin{multline*}
-	\varphi^{6,6}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_6(\bar{w}) \wedge \neg \varphi^m_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_6(\bar{z}) \, \wedge \\
-	\varphi^m_{-1}(u_1,\ldots,u_c,v_i,\ldots,v_c) \wedge \varphi^m_{-1}(u_{c+1},\ldots,u_{2c},v_{c+1},\ldots,v_{2c}) \wedge \bigwedge_{i = 3c+1}^{5c+2} u_i = v_i]\,\vee \\
-	\varphi^{6,7}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_6(\bar{w}) \wedge \varphi^m_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_7(\bar{z}) \wedge \bigwedge_{i = 1}^{5c+2} u_i = v_i.
+	\varphi^{6,6}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_6(\bar{w}) \wedge \neg \mu_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_6(\bar{z}) \, \wedge \\
+	\mu_{-1}(u_1,\ldots,u_c,v_i,\ldots,v_c) \wedge \mu_{-1}(u_{c+1},\ldots,u_{2c},v_{c+1},\ldots,v_{2c}) \wedge \bigwedge_{i = 3c+1}^{5c+2} u_i = v_i]\,\vee \\
+	\varphi^{6,7}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_6(\bar{w}) \wedge \mu_0(u_{c+1},\ldots,u_{2c}) \wedge \varphi_{1,0}(t_1,t_2) \wedge \varphi^b_7(\bar{z}) \wedge \bigwedge_{i = 1}^{5c+2} u_i = v_i.
 	\end{multline*}
 	Instruction 7 stores the value of $x$ after the corresponding bit has been switched. Then we can define $\varphi_{\delta}$ which also simulates the actual transition. If $u$ equals 1, then copy what is stored in $x$ to $a_4,\ldots,a_{3+c}$, go from state $q_i$ to state $q_j$, and move the heads to their corresponding positions.
 	\begin{multline*}
 	\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 	[\bigwedge_{i = 1}^{3+c+\ell} x_i = y_i \wedge (\varphi^{0,1}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{1,2}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})\, \vee \\ \varphi^{1,3}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{2,2}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{2,1}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{3,3}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ \varphi^{3,4}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{4,5}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{4,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{5,5}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ \varphi^{5,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{6,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{6,7}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}))] \, \vee \\
-	[\varphi_{1,0}(s_1,s_2) \wedge \varphi^b_7(\bar{w}) \wedge \varphi^m_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{0,0}(t_1,t_2) \wedge \varphi^b_0(\bar{z}) \wedge \bigwedge_{i = 1}^{5c+2} u_i = v_i \,\wedge \\
+	[\varphi^E_a(x_1,x_2) \wedge \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_7(\bar{w}) \wedge \mu_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{0,0}(t_1,t_2) \wedge \varphi^b_0(\bar{z}) \wedge \bigwedge_{i = 1}^{5c+2} u_i = v_i \,\wedge \\
 	\varphi^2_{op_1}(x_1,x_2,y_1,y_2) \wedge \varphi_{op_2}(x_3,y_3) \wedge \bigwedge_{i = 1}^c u_i = x_{3+i} \wedge \varphi^q_i(x_{4+c},\ldots,x_{3+c+\ell}) \wedge \varphi^q_j(y_{4+c},\ldots,y_{3+c+\ell})].
 	\end{multline*}
 	Note that we also need to specify that the program we are following is Algorithm \ref{switch1to0} so we store $1,0$ in $b_1,b_2$ all along the procedure. We now describe the three other algorithms that compute the switches from $0\to 0$, $0\to 1$ and $1\to 1$.
+	\begin{algorithm} \label{switch0to0}
+		\caption{If the $i$-th bit in $x$ is 0 return $x$}
+		\begin{algorithmic}
+			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+			\While{$j > 0$}
+			\State $v \gets 0$
+			\While{$u > 1$}
+			\State $u \gets u-2,\; v \gets v+1$
+			\EndWhile
+			\State $u\gets v,\; j \gets j-1$
+			\EndWhile
+			\While{$u > 1$}
+			\State $u \gets u-2$
+			\EndWhile
+			\State $\textbf{assert } u = 0$ \Comment{If $u \neq 0$ simply stop}	
+			\State \Return $x$.
+		\end{algorithmic}
+	\end{algorithm}
+	\begin{algorithm} \label{switch0to1}
+		\caption{If the $i$-th bit in $x$ is 0 replace it by 1 and return the result}
+		\begin{algorithmic}
+			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+			\While{$j > 0$}
+			\State $v \gets 0$
+			\While{$u > 1$}
+			\State $u \gets u-2,\; v \gets v+1$
+			\EndWhile
+			\State $u\gets v,\; j \gets j-1$
+			\EndWhile
+			\While{$u > 1$}
+			\State $u \gets u-2$
+			\EndWhile
+			\State $\textbf{assert } u = 0$ \Comment{If $u \neq 0$ simply stop}	
+			\State $y \gets 1$ \Comment{Compute $2^i$ and store it in $y$}
+			\While{$i > 0$}
+			\State $z \gets 0$
+			\While{$y > 0$}
+			\State $z \gets z+2,\; y \gets y-1$
+			\EndWhile
+			\State $i \gets i-1,\; y \gets z$
+			\EndWhile
+			\While{$y > 0$} \Comment{Add $y$ to $x$}
+			\State $x \gets x+1,\; y \gets y-1$
+			\EndWhile
+			\State \Return $x$.
+		\end{algorithmic}
+	\end{algorithm}	
+	\begin{algorithm} \label{switch1to1}
+		\caption{If the $i$-th bit in $x$ is 1 return $x$}
+		\begin{algorithmic}
+			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+			\While{$j > 0$}
+			\State $v \gets 0$
+			\While{$u > 1$}
+			\State $u \gets u-2,\; v \gets v+1$
+			\EndWhile
+			\State $u\gets v,\; j \gets j-1$
+			\EndWhile
+			\While{$u > 1$}
+			\State $u \gets u-2$
+			\EndWhile
+			\State $\textbf{assert } u = 1$ \Comment{If $u \neq 0$ simply stop}	
+			\State \Return $x$.
+		\end{algorithmic}
+	\end{algorithm}
+	For the other three cases, where $\delta = (q_i,a,0,q_j,op_1,0,op_2)$, $\delta = (q_i,a,0,q_j,op_1,1,op_2)$ and $\delta = (q_i,a,1,q_j,op_1,1,op_2)$, $\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined analogously. Then, $\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined as:
+	$$
+	\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \bigvee_{\delta \in \Delta} \varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}).
+	$$
+	Finally we define $\varphi_I$ and $\varphi_F$:
+	\begin{align*}
+	\varphi_I(\bar{x},\bar{s},\bar{w},\bar{u}) &= \varphi_0(x_1) \wedge \varphi_0(x_2) \wedge \varphi_0(x_3) \wedge \bigwedge_{i = 4}^{3+c}\varphi_0(x_i) \wedge \varphi_1(x_{4+c}) \wedge \bigwedge_{i = 5+c}^{3+c+\ell} \varphi_0(x_i)\wedge \varphi_{0,0}(s_1,s_2)\ \wedge \varphi^b_0(\bar{w}) \wedge \bigwedge_{i = 1}^{5c+2}\varphi_0(u_i). \\
+	\varphi_F(\bar{x},\bar{s},\bar{w},\bar{u}) &= \varphi^q_{\ell}(x_{4+c},\ldots,x_{3+c+\ell}) \wedge \varphi_{0,0}(s_1,s_2)\ \wedge \varphi^b_0(\bar{w}) \wedge \bigwedge_{i = 1}^{5c+2}\varphi_0(u_i),
+	\end{align*}
+	and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{u},\bar{v})](\bar{x},\bar{y})\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y}))}(\A) = \acc_M(\A)$.
+		
 \end{proof}
 
 \begin{theorem}
