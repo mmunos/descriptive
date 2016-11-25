@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newtheorem{theorem}{Theorem}
+
+\def\pe{\#\text{PE}}
+\def\ptime{\text{P}}
+\def\shp{\#\text{P}}
+\def\acc{\text{acc}}
+\def\Q{\mathcal{Q}}
+\def\M{\mathcal{M}}
+\def\N{\mathbb{N}}
+
+\title{On $\pe$}
+
+\begin{document}
+	\maketitle
+	
+	In this document we describe the combined counting machine model. A combined-counting machine (CCM) is a tuple $(\Q,\Sigma,q_0,\delta,F)$, that follows the following rules. There exist pairwise disjoint sets $V,C,E$ such that $\Q = V\cup C \cup E$, where $q_0\in V$, $V \cap F = \emptyset$ and $C \subseteq F$. For each $q \in Q, a \in \Sigma$:
+	\begin{itemize}
+	\item If $q\in V$ and $\delta(q,a) = \{(q',b,X)\}$, then $q\in V$.
+	\item If $q\in V$ and $\vert\delta(q,a)\vert > 1$, for each $(q',b,X) \in \delta(q,a)$ it holds that $q'\in C \cup E$, and there exists some $(q',c,Y) \in \delta(q,a)$ such that $q'\in C$.
+	\item If $q\in C$, for each $(q',b,X) \in \delta(q,a)$ it holds that $1q'\in C \cup E$, and there exists some $(q',c,Y) \in \delta(q,a)$ such that $q'\in C$.
+	\item If $q\in E$, for each $(q',b,X) \in \delta(q,a)$ it holds that $q'\in E$.
+	\end{itemize}
+	Our hypothesis characterizes $\pe$ using this machines.
+	\begin{theorem}
+		$f\in\pe$ iff there exists a polynomial-time CCM $\M$ such that $\acc_{\M} = f$.
+	\end{theorem}
+	
+	We define the class $\pe^*$ as follows. A function $f:\Sigma^*\to\N$ is in $\pe^*$ if $f\in\shp$ and for each $k\in\N$, then the language $L_{f > k} = \{w\mid f(w) > k \}$ is in $\ptime$
+\end{document}
