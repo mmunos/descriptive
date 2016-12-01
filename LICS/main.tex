@@ -4,13 +4,14 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{wrapfig}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage{thmtools}
 \usepackage{bbold}
 \usepackage{multicol}
-\usepackage{MnSymbol}
+%\usepackage{MnSymbol}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
 \usepackage{calc}
@@ -64,12 +65,26 @@ The abstract goes here.
 \section{Introduction}
 \input{introduction}
 
+\section{Preliminaries}
+\input{preliminaries}
+
+\section{Framework}
+\input{framework}
+
+\section{Counting Under QSO}
+\input{counting}
+
+\section{Syntactic classes of QSO}
+\input{syntactic}
+
+\section{Beyond QSO}
+\input{beyond}
 
 \section{Conclusion}
 \input{conclusions}
 
 
-\section*{Acknowledgment}
+\section*{Acknowledgments}
 The authors would like to thank ~\cite{DrosteG07}
 
 
@@ -81,9 +96,8 @@ The authors would like to thank ~\cite{DrosteG07}
 
 \onecolumn
 \appendix
+\input{appendix}
 
-
-Here start the appendix.
 
 \end{document}
 

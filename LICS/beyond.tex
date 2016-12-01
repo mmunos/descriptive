@@ -1,0 +1,75 @@
+%!TEX root = main.tex
+
+\subsection{Transitive Logics}
+
+We define the operator {\bf path} as follows. Let $\A$ be an ordered structure. Given a formula $\psi(\bar{x},\bar{y})$, where $\vert \bar{x} \vert = \vert \bar{y} \vert = k$ let ${\cal G} = ({\cal V},\cal{E})$ be induced graph over the set of vertices ${\cal V} = A^k$, and for every $\bar{a},\bar{b}\in A^k$ it holds that ${\cal E}(\bar{a},\bar{b})$ if and only if $\A \models \psi(\bar{a},\bar{b})$. To formalize the semantics for this operator, let $n = \vert A^k \vert$.
+For a given first order assignment $v$ and a second order asssignment $V$, let $\bar{a} = v(\bar{x})$ and $\bar{b} = v(\bar{y})$, and $\sem{[\pth\, \psi(\bar{x},\bar{y})]}(\A,v,V)$ will take the value of the number of paths of size less or equal to $n$ from $\bar{a}$ to $\bar{b}$ in the graph ${\cal G}$. This operator lets us define the set of transitive $\qfo$ formulas over $\R$ ($\tqfo$-formulas) using the following grammar:
+\begin{multline*} 
+%	\label{eq-def-tqfo}
+	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \\ \mid \ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ [\pth \varphi]
+\end{multline*}
+where $\varphi$ is an $\fo$-formula over $\R$, $s \in \bbN$ and $x \in \fv$.
+
+We also define the set of transitive $\qso$ formulas ($\tqso$-formulas) using the following grammar:
+\begin{multline*}
+%	\label{eq-def-tqso}
+	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha \ \mid \ [\pth \varphi]
+\end{multline*}
+where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$.
+\begin{theorem}
+	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
+\end{theorem}
+
+\begin{theorem}
+	$\tqfo(\fo)$ captures $\shl$ over the class of ordered structures.
+\end{theorem}
+
+\begin{theorem}
+	$\tqso(\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
+
+\subsection{Recursive Logics}
+
+We define an operator which extends the Least Fixed Point logic to counting. Recall that a fixed point operator is defined by a formula $\varphi(x_1,\ldots,x_k,R)$ which is positive on $R$ where $R$ is a predicate of arity $k$. For a structure $\A$ with domain $A$, the operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ is defined as $T_{\varphi}(X) = \{(a_1,\ldots,a_k)\mid (\A,X)\models \varphi(a_1,\ldots,a_k,R) \}$, for each $X\subseteq A^k$. Let $T_0 = \emptyset$ and $T_{i+1} = T_{\varphi}(T_i)$ for each $i \in \nat$. Note that there exists $n\in \nat$ such that $T_{n+1} = T_n$. Semantically, $[\lfpop\varphi(x_1,\ldots,x_k,R)]$ is defined such that for each $(a_1,\ldots,a_k)\in A^k$, it holds that $\A\models[\lfpop\varphi(x_1,\ldots,x_k,R)](a_1,\ldots,a_k)$ if and only if $\A\models T_n(a_1,\ldots,a_k)$.
+
+We extend $\qfo$ with the operator $[\alfp\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. It is defined by a FO-formula $\varphi$ and a formula $\alpha$ in $\qfo$ without the $\Pi$ operator, which mentions a placeholder function $\pi$ with domain $\fv^{\ell}$. Let $\{T_i\}_{i\in\nat}$ and $n\in\nat$ be defined from $\varphi$ as it was for the $\lfp$ operator.
+
+
+For each $\qfo$ formulas $\alpha, \beta, \gamma$, where $\beta$ and $\gamma$ have $\ell$ and $m$ first-order free variables respectively, $u_1,\ldots,u_{\ell} \in \fv$, and $v_1,\ldots,v_m \in \{u_1,\ldots,u_{\ell}\}$, we define $\alpha\mid_{\beta(u_1,\ldots,u_{\ell})\to\gamma(v_1,\ldots,v_{m})}$ as $\alpha$ where every instance of the subformula $\beta(u_1,\ldots,u_{\ell})$ is replaced by $\gamma(v_1,\ldots,v_{m})$. Moreover, for each $a\in A$, suppose that $a$ is the $p$-th element in the order $<^{\A}$. Then if $a$ is the first element, we define $\varphi_a(x) = \forall y(x < y \vee x = y)$, and if it is not we define:
+\begin{multline*}
+\varphi_a(x) = \exists x_1 \cdots \exists x_{p-1}[\bigwedge_{1\leq i,j < p}x_i\neq x_j \wedge\,\\ \bigwedge_{i = 1}^{p-1} x_i < x  \wedge \forall y(y < x \to \bigvee_{i = 1}^{p-1} y = x_i)].
+\end{multline*}
+
+
+To formally characterize the semantics of $[\alfp\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$. %. 
+We name $\T = \{T_0,\ldots,T_n\}$ and we define a sequence of functions $\zeta_0,\ldots,\zeta_n:A^{\ell}\to\nat$ as follows. For each $T_i \in \T$, we define a $\qfo$ formula $\beta_i$ as follows. If $i = 0$, then $\beta_i(u_1,\ldots,u_{\ell}) = 0$. If $i \geq 1$, then
+\begin{multline*}
+\beta_i(u_1,\ldots,u_{\ell}) = \mathop{+}_{(a_1,\ldots,a_{\ell})\in A^{\ell}} \varphi_{a_1}(u_1)\cdot\varphi_{a_2}(u_2)\,\cdots\,\\ \varphi_{a_{\ell}}(u_{\ell})\cdot \zeta_{i-1}(a_1,\ldots,a_{\ell}).
+\end{multline*}
+Then, for each $T_i \in \T$, let $V$ be a second-order assignment for $\A$ that assigns $T_i$ to $R$, let $\zeta_i: A^{\ell}\to\nat$ be such that for each $(a_1,\ldots,a_{\ell})\in A^{\ell}$ it holds $\zeta_i(a_1,\ldots,a_{\ell}) = \sem{\alpha\mid_{\pi(u_1,\ldots,u_{\ell})\to \beta_i(u_1,\ldots,u_{\ell})}}(\A,v,V)$, where $v$ is a first-order assignment for $\A$ that satisfies $a_i = v(x_i)$ for each free $x_i$ in $\alpha$.
+
+For a given first order asignment $v$ and a second order assignment $V$, let $a_i = v(x_i)$, the operator is then evaluated as:
+\begin{multline*}
+\sem{[\alfp\varphi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)]}(\A,v,V) = \\ \zeta_n(a_1,\ldots,a_{\ell}).
+\end{multline*}
+As an example, we will show a formula that counts the number of paths of size $n$ of a structure $\A$ with a binary relation $E$. First we define $\varphi(x,R)$:
+\begin{multline*}
+\varphi(x,R) = \forall y(x < y \vee x = y) \vee \exists z(R(z) \wedge \varphi_{succ}(z,x)),
+\end{multline*}
+where $\varphi_{succ}(x,y)$ is a formula that is satisfied by pairs $(x,y)$ that are consecutive in the order $<$. That is, $\varphi_{succ}(x,y) = x < y \wedge \forall z((x < z \wedge z < y) \to (x = z \vee z = y) )$. Now we define $\alpha(x,y,R,\pi)$ as:
+$$
+\alpha(x,y,R,\pi) = (\neg \exists zR(z))\cdot(x = y) + \Sigma z[\pi(x,z)\cdot E(z,y)].
+$$
+Then, the formula $[\alfp\varphi(x,R)\mid \alpha(x,y,R,\pi)](x,y)$ when evaluated on $(\A,a,b)$ will count the number of paths of size $n$ from $a$ to $b$.
+This operator lets us define the set of recursive $\qfo$ formulas over $\R$ ($\rqfo$-formulas) using the following grammar:
+\begin{multline*}
+	\label{eq-def-rqfo}
+	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid \\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ [\alfp \varphi \mid \alpha]
+\end{multline*}
+where $\varphi$ is an $\fo$-formula over $\R$, $s \in \bbN$ and $x \in \fv$.
+
+\begin{theorem}
+	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
+\end{theorem}
+

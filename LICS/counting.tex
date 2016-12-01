@@ -1,0 +1,49 @@
+%!TEX root = main.tex
+
+Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we also use $\alpha$ to denote a function from $\R$ to $\bbN$ such that for every $\A \in \str[\R] $:
+\begin{eqnarray*}
+	\alpha(\enc(\A)) & = & \sem{\alpha}(\A).
+\end{eqnarray*}
+\begin{definition}
+	Let $\FF$ a fragment of $\qso$, $\CC$ a function complexity class over $\bbN$ and $\KK$ a class of finite structures. Then $\FF$ {\em captures} $\CC$ over $\KK$ if:
+	\begin{itemize}
+		\item for every $\alpha$ in $\FF$, there exists $f \in \CC$ such that $\res{\alpha}{\KK} = \res{f}{\KK}$; and
+		
+		\item for every $f \in \CC$, there exists $\alpha$ in $\FF$ such that $\res{f}{\KK} = \res{\alpha}{\KK}$.
+	\end{itemize}
+\end{definition}
+In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures.
+
+\begin{theorem} \label{captfp}
+	$\qfo(\lfp)$ captures $\fp$ over the class of ordered structures.
+\end{theorem}
+
+\begin{theorem}
+	$\qfo(\pfp)$ captures $\nfpspace$ over the class of ordered structures.
+\end{theorem}
+
+\begin{theorem}
+	$\tqso(\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
+\begin{theorem}
+	($\qfo(\lfp)$ or $\qfo(\fo)$) with algebraic least fixed point operator captures $\totp$ over the class of ordered structures.
+\end{theorem}
+
+
+\begin{theorem}
+	$\eqso(\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
+\begin{proposition}
+	$\eqso(\fo)$ does not capture $\shp$ over the class of all structures.
+\end{proposition}
+
+\begin{theorem}
+	$\eqso(\integ,\fo)$ captures $\gp$ over the class of ordered structures.
+\end{theorem}
+
+
+\begin{theorem}
+	$\eqso(\eso)$ captures $\spp$ over the class of ordered structures.
+\end{theorem}
