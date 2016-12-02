@@ -38,11 +38,11 @@ For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
 \end{eqnarray*}
 for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
 
-\begin{theorem}
+\begin{theorem} \label{sub-pnp}
 	If $\E1$ is closed under substraction, then {\sc P} = {\sc NP}.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \label{sigma1strict}
 	$\#\Sigma_1 \subsetneq \E1$
 \end{theorem}
 
@@ -56,15 +56,15 @@ For a given function $f$, we define $f \dotminus 1$ as follows:
 \end{eqnarray*}
 for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
 
-\begin{theorem}
+\begin{theorem} \label{sigmafo-minusone}
 	$\XE{1}$ is closed under substraction by one.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \label{dnf-pars}
 	{\sc \#DNF} is hard for $\E1$ under parsimonious reductions. 
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \label{nplusone-strict}
 	$\U{1}$ with $n$ open first-order variables is properly contained in $\U{1}$ with $n+1$ open first-order variables for $n\in\N$.  
 \end{theorem}
 
@@ -100,7 +100,7 @@ A function $f$ is in $\XE{i}$ (resp. $\XU{i}$) if there is an $\L$-formula $\var
 
 The class $\pe$ is defined in \cite{DBLP:conf/mfcs/PagourtzisZ06} as $\pe = \{f\mid f\in\#P \mbox{ and its decision version } L_{f}\in P\}$.
 
-\begin{theorem}
+\begin{theorem} \label{sigma2-pe}
 	$\HE{2} \subseteq \pe$
 \end{theorem}
 
@@ -113,7 +113,3 @@ and the counting problem {\shdhsat } as a function that counts all satisfying as
 \begin{theorem} \label{sigma2hard}
 	$\shdhsat$ is hard for $\XE{2}$ under parsimonious reductions. 
 \end{theorem}
-
-
-
-

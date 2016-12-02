@@ -16,15 +16,15 @@ We also define the set of transitive $\qso$ formulas ($\tqso$-formulas) using th
 	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha \ \mid \ [\pth \varphi]
 \end{multline*}
 where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$.
-\begin{theorem}
+\begin{theorem} \label{so-rec}
 	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \label{tqfo-fo-cap}
 	$\tqfo(\fo)$ captures $\shl$ over the class of ordered structures.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \label{tqso-fo-cap}
 	$\tqso(\fo)$ captures $\shp$ over the class of ordered structures.
 \end{theorem}
 
@@ -69,7 +69,7 @@ This operator lets us define the set of recursive $\qfo$ formulas over $\R$ ($\r
 \end{multline*}
 where $\varphi$ is an $\fo$-formula over $\R$, $s \in \bbN$ and $x \in \fv$.
 
-\begin{theorem}
+\begin{theorem} \label{rqfo-fo-cap}
 	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
 \end{theorem}
 
