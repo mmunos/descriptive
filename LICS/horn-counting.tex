@@ -1,0 +1,27 @@
+We define the fragments $\logeh{i}$ and $\loguh{i}$ as follows. First we define extended Horn clauses.
+\begin{eqnarray*}
+	PL &::=& X_i(\x),\, i\in\N,\\
+	NL &::=& \neg X_i(\x),\, i\in\N \ \mid \ \exists x\, NL,\\
+	NC &::=& NL \ \mid \ \alpha, \alpha \mbox{ is an {\sc FO}-formula} \ \mid \ (NC \vee NC),\\
+	HC &::=& NC \ \mid \ (NC \vee PL) \ \mid \ PL,
+\end{eqnarray*}
+where $PL$ represents a positive literal, $NL$ is an \textit{extended} negative literal, $NC$ is an extended Horn clause, and $HC$ is an extended Horn formula. Now we define the syntax of the classes inductively.
+\begin{align*}
+\logeh{0} &::= HC \ \mid \ \logeh{0} \wedge \logeh{0}, \\
+\loguh{0} &::= \logeh{0}, \\ 
+\logeh{i+1} &::= \loguh{i} \ \mid \ \exists x\, \logeh{i+1}, \\
+\loguh{i+1} &::= \logeh{i} \ \mid \ \forall x\, \loguh{i+1}.
+\end{align*}
+\begin{theorem} \label{sigma2-pe}
+	$\eqso(\loguh{2}) \subseteq \pe$
+\end{theorem}
+
+We define the decision problem
+\begin{multline*}
+\shdhsat = \{\Phi \mid \Phi \text{ is a disjunction of Horn} \\ \text{formulas and $\Phi$ is satisfiable}\},
+\end{multline*}
+and the counting problem {\shdhsat } as a function that counts all satisfying assignments to a formula $\Phi$ which is a disjunction of Horn formulas.
+
+\begin{theorem} \label{sigma2hard}
+	$\shdhsat$ is hard for $\eqso(\loguh{2})$ under parsimonious reductions. 
+\end{theorem}
