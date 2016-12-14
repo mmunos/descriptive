@@ -37,7 +37,7 @@ For the second condition, let $f\in \fp$. Let $k\in\nat$ be such that $\vert f(\
 
 For the first condition, we use the exact same procedure as in Theorem \ref{captfp}, noting that evaluating each of the $\pfp$ formulas can be done in polynomial space, and that the result is also polynomial on the size of the input.
 
-For the second condition, note that for each function $f\in \nfpspace$, $\vert f(\A) \vert$ is polynomial on $\vert A \vert$. Thus, there is a $\pfp$ formula $\Phi$ that models the string $f(\A)$ by the bit. The rest of the proof is analogous to Theorem \ref{captfp}.
+For the second condition, note that for each function $f\in \nfpspace$, $\vert f(\A) \vert$ is polynomial on $\vert A \vert$. Thus, there is a $\pfp$ formula $\Phi$ that models the string $f(\A)$ bitwise. The rest of the proof is analogous to Theorem \ref{captfp}.
 
 \textbf{Proof of Theorem \ref{eqso-fo-cap}}
 
@@ -48,9 +48,17 @@ For the second condition, note that for each function $f\in \nfpspace$, $\vert f
 \textbf{Proof of Theorem \ref{eqso-eso-cap}}
 
 
+\textbf{Proof of Theorem \ref{one-sigma-zero}}
 
-\textbf{Proof of Theorem \ref{saluja-eq}}
+Towards a contradiction, suppose that there exists a constant function $f(\A) = s > 0$ which is expressible in $\E{0}$. This is, there is a formula $\psi(x,X)$ such that $f_{\psi(x,X)}(\A) = \vert \{ \langle e,P\rangle \mid \A\models\psi(e,P) \} \vert = s$ for each $\A\in\ostr$. It can be seen that if $X$ contains more than zero variables, then the function $f_{\psi(x,X)}$ grows exponentially. We have now that $\psi(x)$ contains only first order variables. Consider some $\A \in \ostr$ of size $n$ and let $a_1,\ldots,a_s\in \A$ be the tuples that satisfy $\A \models \psi(a_i)$. Now consider a structure $\A'$ that is obtained by duplicating $\A$. This is, $\A'$ has size $2n$, its first half is isomorphic to its second half, and also to $\A$. We have that there is at least $2s$ tuples $a_i,b_i\in \A'$, $s$ on each half, such that $\A'\models\psi(a_i)$ and $\A'\models\psi(b_i)$, which leads to a contradiction.
 
+\textbf{Proof of Theorem \ref{mult-sigma-zero}}
+
+Let $\alpha \in \sqso(\loge{0})$ with binary product. This is, $\alpha$ is defined by the grammar $\alpha := \sa{x}\varphi \ \mid \ \sa{X}\varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \ (\alpha\mult\alpha)$, where $\varphi \in \loge{0}$. For convenience, we add the expressions $\sa{x}(\varphi\mult\varphi)$ and $\sa{X}(\varphi\mult\varphi)$ to the grammar. Let $k$ be the number of algebraic operators in $\alpha$. We will show by induction on $k$ that $\alpha$ is expressible without multiplication. If $k = 1$, then the possible cases are $\alpha = \sa{x}\varphi$, where $\varphi\in\loge{0}$, which is already product-free. If $k = 2$, then the only that is not two nested summations is $\alpha = \sa{x}(\varphi\mult\psi)$, which can be expressed as $\alpha = \sa{x}(\varphi\wedge\psi)$. Suppose that the hypothesis holds for $k = 1$ through $n-1$. Let $\alpha$ have $n$ algebraic operators. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ where $\beta$ is an algebraic expression, then $\beta$ has $n-1$ algebraic operators and by hypothesis it can be expressed as product-free. If $\alpha = (\beta \mult \gamma)$ there are two cases. If at least one between $\beta$ and $\gamma$ has a product, then by hypothesis it can be expressed as product-free. Moreover, the new expression for $\alpha$ has strictly less than $n$ algebraic operators so by hypothesis it can be expressed as product-free. If there are no products in $\beta$ or $\gamma$, then let $\beta = \sa{x}\delta(x)$. We have that $\alpha$ can be expressed as $\sa{y}(\delta(y)\mult\gamma)$, where $y$ is a first-order variable that does not appear in $\beta$ or $\gamma$. Since $\delta(y)\mult\gamma$ has $n-1$ algebraic operators, it can be expressed as product-free, and then $\alpha$ can be expressed as product-free.
+
+\textbf{Proof of Theorem \ref{fo-prod-sigma-zero}}
+
+The resulting grammar is $\alpha := \sa{x}\varphi \ \mid \ \sa{X} \varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \pa{x}\alpha$. Consider a more restricted grammar that replaces $\pa{x}\alpha$ by $\pa{x}\sa{y}\varphi$. Let $\alpha = \pa{x}\sa{y}(x = y)$. This formula produces a constant function equal to 1, which as shown in Theorem \ref{one-sigma-zero} is not expressible in $\E{0}$. 
 
 \textbf{Proof of Theorem \ref{fp1}}
 

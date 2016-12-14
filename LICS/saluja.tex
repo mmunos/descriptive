@@ -1,16 +1,33 @@
-Saluja et. al \cite{DBLP:journals/jcss/SalujaST95} define a family of counting classes $\#\cL$ for each fragment $\cL$ of $\fo$. For a formula $\varphi(x,X)$, the function $f_{\varphi(x,X)}$ is defined as
+Saluja et. al \cite{DBLP:journals/jcss/SalujaST95} define a family of counting classes $\#\LL$ for each fragment $\LL$ of $\fo$. For a formula $\varphi(x,X)$, the function $f_{\varphi(x,X)}$ is defined as
 \[
 f_{\varphi(x,X)}(\A) = \vert \{\langle e,P\rangle\mid \A\models\varphi(e,P)\}\vert.
 \]
-for each $\A\in\str$. A function $f:\Sigma^*\to\nat$ is in $\#\cL$ if there exists an $\cL$ formula $\varphi(x,X)$ such that $f = f_{\varphi(x,X)}$.
+for each $\A\in\str$. A function $f:\Sigma^*\to\nat$ is in $\#\LL$ if there exists an $\LL$ formula $\varphi(x,X)$ such that $f = f_{\varphi(x,X)}$. Note that for each fragment $\LL$ of $\fo$, we have that $\#\LL \subseteq \eqso(\LL)$. In fact we need a more restricted fragment of $\eqso$. Let $\sqso(\LL)$ be a fragment of $\qso$ defined by the following grammar:
+\[
+\alpha := \sa{x}\varphi \ \mid \ \sa{X} \varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha,
+\]
+where $\varphi$ is an $\LL$-formula. It can be seen that $\sqso(\LL) = \#\LL$. We are interested in, for each $\fo$-fragment $\LL$, the biggest fragment of $\eqso$ that is contained in $\#\LL$.
 
-\begin{theorem} \label{saluja-eq}
-	$\eqso(\cL) = \#\cL$ for each fragment $\L$ of $\fo$.
+Let $\LL = \loge{0}$:
+\begin{theorem} \label{one-sigma-zero}
+	Positive constant functions are not expressible in $\E{0}$
+\end{theorem}
+\begin{corollary}
+	If a fragment of $\eqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow sole constants.
+\end{corollary}
+\begin{proposition}
+	Sum is not expressible in $\E{0}$
+\end{proposition}
+\begin{theorem} \label{mult-sigma-zero}
+	$\sqso(\loge{0})$ with binary product is contained in $\E{0}$.
+\end{theorem}
+\begin{theorem} \label{fo-prod-sigma-zero}
+	If an extension of $\sqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow first-order product.
 \end{theorem}
 
-For every logic $\cL$, we define an $\cL$-extended quantifier-free (QF) formula as follows:
+For every logic $\LL$, we define an $\LL$-extended quantifier-free (QF) formula as follows:
 \begin{eqnarray*}
-	\varphi &::=& \alpha, \alpha \text{ is an $\cL$-formula} \ \mid \\
+	\varphi &::=& \alpha, \alpha \text{ is an $\LL$-formula} \ \mid \\
 	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
 	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
 \end{eqnarray*}
