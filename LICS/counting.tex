@@ -2,18 +2,18 @@
 
 \marcelo{Ahora solo consideramos la idea de capturar sobre estructuras ordenadas}
 
-Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we also use $\alpha$ to denote a function from $\R$ to $\bbN$ such that for every $\A \in \str[\R] $:
+Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we also use $\alpha$ to denote a function defined over $\R$  such that for every $\A \in \ostr[\R] $:
 \begin{eqnarray*}
 	\alpha(\enc(\A)) & = & \sem{\alpha}(\A).
 \end{eqnarray*}
 \begin{definition}
-	Let $\FF$ a fragment of $\qso$ and $\CC$ a function complexity class over $\bbN$. Then $\FF$ {\em captures} $\CC$ over the class of ordered structures if:
+	Let $\FF$ a fragment of $\qso$ and $\CC$ a function complexity class. Then $\FF$ {\em captures} $\CC$ if:
 	\begin{itemize}
 		\item for every $\alpha$ in $\FF$, there exists $f \in \CC$ such that for every 
-		$\A \in \ostr[\R]$:  $\alpha(\enc(\A)) = f(\A)$; and
+		$\A \in \ostr[\R]$:  $\alpha(\enc(\A)) = f(\enc(\A))$; and
 		
 		\item for every $f \in \CC$, there exists $\alpha$ in $\FF$ such that for every 
-		$\A \in \ostr[\R]$:  $f(\A) = \alpha(\enc(\A))$.
+		$\A \in \ostr[\R]$:  $f(\enc(\A)) = \alpha(\enc(\A))$.
 	\end{itemize}
 \end{definition}
 %In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures.
