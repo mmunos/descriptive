@@ -25,7 +25,7 @@ Assume that $\R = \{R_1, \ldots, R_k\}$ is a relational signature and $\A$ is a 
 \begin{eqnarray*}
 	\enc(\A) & = & 0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
 \end{eqnarray*}
-Given a set $\bbD$ and a relational signature $\R$, a function $f$ is said to be from $\R$ to $\bbD$ if $f$ is a total function from $\{\enc(\A) \mid \A \in \str[\R]\}$ to $\bbD$. Moreover, a set $\CC$ of functions over $\bbD$ is said to be a {\em function complexity class over $\bbD$} if every $f \in \CC$ is a function from some relational signature $\R$ to $\bbD$.
+Given a relational signature $\R$,  function $f$ is said to be defined over $\R$ if $f$ is a total function from $\{\enc(\A) \mid \A \in \ostr[\R]\}$ to $\nat$. Moreover, a set $\CC$ of functions is said to be a {\em function complexity class} if every $f \in \CC$ is a function defined over some relational signature $\R$.
 
 \marcelo{Ya no consideramos clases de estructuras, hay que revisar que esta seccion tenga una notacion consistente}
 

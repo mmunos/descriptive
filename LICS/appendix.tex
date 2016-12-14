@@ -1,6 +1,6 @@
 %!TEX root = main.tex
 
-\textbf{Proof of Theorem \ref{no-mult}}
+\subsection{Proof of Theorem \ref{no-mult}}
 
 Let $\{+, \cdot, \Sigma, \Pi\}$ be the set of {\it algebraic operators} in $\qso$. We will prove by induction over the number of algebraic operators in a $\qso$-formula $\alpha$ that there exists some $\qso$-formula $\alpha'$ that respects the stated condition. Let $\text{op}(\alpha)$ be the number of algebraic operators in $\alpha$. The case $\text{op}(\alpha) = 0$ is trivial. Let $n\in\nat$ be such that for each $\qso$-formula $\beta$ such that $\text{op}(\beta) < n$ there is some $\beta'$ that respects the condition. Let $\alpha$ be a $\qso$-formula such that $\text{op}(\alpha) = n$. Note that if $\alpha$ is of the form $\alpha = (\beta_1 + \beta_2)$, $\alpha = \Sigma x \beta$, $\alpha = \Pi x \beta$, $\alpha = \Sigma X \beta$ or $\alpha = \Pi X \beta$ the proof follows directly. Therefore we assume that $\alpha = (\beta_1 \cdot \beta_2)$. We separate the proof in two main cases:
 \begin{enumerate}
@@ -23,7 +23,7 @@ Let $\{+, \cdot, \Sigma, \Pi\}$ be the set of {\it algebraic operators} in $\qso
 \end{enumerate}
 
 
-\textbf{Proof of Theorem \ref{captfp}}
+\subsection{Proof of Theorem \ref{captfp}}
 
 For the first condition, let $\alpha\in\qfo(\lfp)$, $\A\in\ostr$, $v$ and $V$ a first and second order assignment for $\A$, respectively. To evaluate $\sem{\alpha}(\A,v,V)$, we replace each first order sum and first order product by their corresponding expansion. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$, where $A = \{a_1,\ldots,a_n\}$, and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then we replace each logic sub-formula $\varphi$ in $\alpha$ by their evaluated value, 0 or 1. Since each of this formulas is in $\lfp$, this can be done in polynomial time. The resulting formula is an arithmetic expression, which can be evaluated recursively in polynomial time.
 	
