@@ -1,18 +1,22 @@
 %!TEX root = main.tex
 
+\marcelo{Ahora solo consideramos la idea de capturar sobre estructuras ordenadas}
+
 Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we also use $\alpha$ to denote a function from $\R$ to $\bbN$ such that for every $\A \in \str[\R] $:
 \begin{eqnarray*}
 	\alpha(\enc(\A)) & = & \sem{\alpha}(\A).
 \end{eqnarray*}
 \begin{definition}
-	Let $\FF$ a fragment of $\qso$, $\CC$ a function complexity class over $\bbN$ and $\KK$ a class of finite structures. Then $\FF$ {\em captures} $\CC$ over $\KK$ if:
+	Let $\FF$ a fragment of $\qso$ and $\CC$ a function complexity class over $\bbN$. Then $\FF$ {\em captures} $\CC$ over the class of ordered structures if:
 	\begin{itemize}
-		\item for every $\alpha$ in $\FF$, there exists $f \in \CC$ such that $\res{\alpha}{\KK} = \res{f}{\KK}$; and
+		\item for every $\alpha$ in $\FF$, there exists $f \in \CC$ such that for every 
+		$\A \in \ostr[\R]$:  $\alpha(\enc(\A)) = f(\A)$; and
 		
-		\item for every $f \in \CC$, there exists $\alpha$ in $\FF$ such that $\res{f}{\KK} = \res{\alpha}{\KK}$.
+		\item for every $f \in \CC$, there exists $\alpha$ in $\FF$ such that for every 
+		$\A \in \ostr[\R]$:  $f(\A) = \alpha(\enc(\A))$.
 	\end{itemize}
 \end{definition}
-In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures.
+%In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures.
 
 \begin{theorem} \label{captfp}
 	$\qfo(\lfp)$ captures $\fp$ over the class of ordered structures.
@@ -25,10 +29,6 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 \begin{theorem} \label{eqso-fo-cap}
 	$\eqso(\fo)$ captures $\shp$ over the class of ordered structures.
 \end{theorem}
-
-\begin{proposition} \label{eqso-fo-cap-not}
-	$\eqso(\fo)$ does not capture $\shp$ over the class of all structures.
-\end{proposition}
 
 \begin{theorem} \label{eqso-eso-cap}
 	$\eqso(\eso)$ captures $\spp$ over the class of ordered structures.
