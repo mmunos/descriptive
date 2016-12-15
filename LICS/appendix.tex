@@ -25,25 +25,45 @@ Let $\{+, \cdot, \Sigma, \Pi\}$ be the set of {\it algebraic operators} in $\qso
 
 \subsection{Proof of Theorem \ref{captfp}}
 
-For the first condition, let $\alpha\in\qfo(\lfp)$, $\A\in\ostr$, $v$ and $V$ a first and second order assignment for $\A$, respectively. To evaluate $\sem{\alpha}(\A,v,V)$, we replace each first order sum and first order product by their corresponding expansion. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$, where $A = \{a_1,\ldots,a_n\}$, and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then we replace each logic sub-formula $\varphi$ in $\alpha$ by their evaluated value, 0 or 1. Since each of this formulas is in $\lfp$, this can be done in polynomial time. The resulting formula is an arithmetic expression, which can be evaluated recursively in polynomial time.
+For the first condition, let $\alpha\in\qfo(\lfp)$ over some $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 	
-For the second condition, let $f\in \fp$. Let $k\in\nat$ be such that $\vert f(\A) \vert = \vert A \vert^k$ for each $\A\in\ostr[\R]$. Let $\Phi(x_0,\ldots,x_{k-1})$ be a $\lfp$ formula such that $(\A,a_0,\ldots,a_{k-1})\models\Phi$ if and only if in the string $y = f(\A)$ there is 1 in the $(\vert A \vert^{k-1}m_{k-1} + \cdots + \vert A \vert^2 m_2 + \vert A \vert m_1 + m_0)$-th position from right to left, and where $a_i$ is the (0-indexed) $m_i$-th element of $A$. We use
+For the second condition, let $f\in \fp$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a $\lfp$ formula that represents the following. For each $\A \in \ostr[\R]$, for convenience, suppose its domain is $A = \{0,\ldots,n-1\}$ with the usual order. Let $y$ be a string of size $n^{\ell}$ that represents the value of $f(\enc(\A))$ in binary. Then, for each $\ell$-tuple $(a_0,\ldots,a_{\ell-1}) \in A^{\ell}$, it holds that $(\A,a_0,\ldots,a_{\ell-1}) \models \Phi$ if and only if the $(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)$-th bit of $y$, from least to most significant, is 1. We use
 	$$
-	\alpha = \Sigma x_0 \cdots \Sigma x_{k-1} \Phi(x_0,\ldots,x_{k-1})\cdot\varphi_{k-1}(x_{k-1})\cdot\,\cdots\,\cdot\varphi_0(x_0).
+	\alpha = \Sigma x_0 \cdots \Sigma x_{\ell-1} \Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\cdot\,\cdots\,\cdot\varphi_0(x_0).
 	$$
-	where $\varphi_i(x) = \Pi y[(y < x)\mapsto\Pi z_1\cdots\Pi z_i\,2]$ for $i > 0$ and $\varphi_0(x) = \Pi y[(y < x)\mapsto 2]$. Note that if $a$ is the  $m$-th element in $A$, then $\sem{\varphi_i(x)}(\A,a) = 2^{\vert A \vert^i m}$. Therefore, for each $(a_0,\ldots,a_{k-1})\in A^k$, we have that $\sem{\Phi(x_0,\ldots,x_{k-1})\cdot\varphi_{k-1}(x_{k-1})\,\cdots\,\varphi_0(x_0)}(\A,a_0,\ldots,a_{k-1}) = 2^{(\vert A \vert^{k-1}m_{k-1} + \cdots + \vert A \vert^2 m_2 + \vert A \vert m_1 + m_0)}$ if $(\A,a_0,\ldots,a_{k-1})\models\Phi$ and 0 otherwise, and adding these values gives $f(\A)$. 	
+where $\varphi_i(x) = \Pi y[(y < x)\mapsto\Pi z_1\cdots\Pi z_i\,2]$ for $i > 0$ and $\varphi_0(x) = \Pi y[(y < x)\mapsto 2]$. Let $\A$ the previously defined structure. Note that for each $a\in A$, then $\sem{\varphi_i(x)}(\A,a) = 2^{n^i a}$. Therefore, for each $(a_0,\ldots,a_{\ell-1})\in A^\ell$, we have that
+$$
+\sem{\Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\,\cdots\,\varphi_0(x_0)}(\A,a_0,\ldots,a_{\ell-1}) = 
+\begin{cases}
+2^{(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)} &\text{if } (\A,a_0,\ldots,a_{\ell-1})\models\Phi \\
+0 &\text{otherwise.}
+\end{cases}
+$$
+and adding these values gives $f(\enc(\A))$. Then, $\alpha$ is in $\qso(\lfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$.
 
-\textbf{Proof of Theorem \ref{qfo-pfp-cap}}
+\subsection{Proof of Theorem \ref{qfo-pfp-cap}}
 
-For the first condition, we use the exact same procedure as in Theorem \ref{captfp}, noting that evaluating each of the $\pfp$ formulas can be done in polynomial space, and that the result is also polynomial on the size of the input.
+For the first condition, let $\alpha\in\qfo(\pfp)$ over some $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\pfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\nfpspace$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 
-For the second condition, note that for each function $f\in \nfpspace$, $\vert f(\A) \vert$ is polynomial on $\vert A \vert$. Thus, there is a $\pfp$ formula $\Phi$ that models the string $f(\A)$ bitwise. The rest of the proof is analogous to Theorem \ref{captfp}.
+For the second condition, let $f\in \nfpspace$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a $\pfp$ formula that represents the following. For each $\A \in \ostr[\R]$, for convenience, suppose its domain is $A = \{0,\ldots,n-1\}$ with the usual order. Let $y$ be a string of size $n^{\ell}$ that represents the value of $f(\enc(\A))$ in binary. Then, for each $\ell$-tuple $(a_0,\ldots,a_{\ell-1}) \in A^{\ell}$, it holds that $(\A,a_0,\ldots,a_{\ell-1}) \models \Phi$ if and only if the $(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)$-th bit of $y$, from least to most significant, is 1. We use
+$$
+\alpha = \Sigma x_0 \cdots \Sigma x_{\ell-1} \Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\cdot\,\cdots\,\cdot\varphi_0(x_0).
+$$
+where $\varphi_i(x) = \Pi y[(y < x)\mapsto\Pi z_1\cdots\Pi z_i\,2]$ for $i > 0$ and $\varphi_0(x) = \Pi y[(y < x)\mapsto 2]$. Let $\A$ the previously defined structure. Note that for each $a\in A$, then $\sem{\varphi_i(x)}(\A,a) = 2^{n^i a}$. Therefore, for each $(a_0,\ldots,a_{\ell-1})\in A^\ell$, we have that
+$$
+\sem{\Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\,\cdots\,\varphi_0(x_0)}(\A,a_0,\ldots,a_{\ell-1}) = 
+\begin{cases}
+2^{(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)} &\text{if } (\A,a_0,\ldots,a_{\ell-1})\models\Phi \\
+0 &\text{otherwise.}
+\end{cases}
+$$
+and adding these values gives $f(\enc(\A))$. Then, $\alpha$ is in $\qso(\pfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$.
 
 \textbf{Proof of Theorem \ref{eqso-fo-cap}}
 
 
 \textbf{Proof of Theorem \ref{eqso-fo-cap-not}}
-
+		
 
 \textbf{Proof of Theorem \ref{eqso-eso-cap}}
 
