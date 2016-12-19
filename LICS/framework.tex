@@ -1,13 +1,13 @@
 %!TEX root = main.tex
 
-Consider $\bbN$ as the set of non-negative integers. Then given a relational signature $\R$, the set of quantitative second-order logic formulas (or just $\qso$-formulas) over $\R$ is given by the following grammar:
+Given a relational signature $\R$, the set of quantitative second-order logic formulas (or just $\qso$-formulas) over $\R$ is given by the following grammar:
 \begin{multline}
 \label{eq-def-qso}
 \alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \\ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
 \end{multline}
 where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. If $\R$ is not mentioned, $\qso$ refers to the union of the sets of $\qso$ formulas over $\R$, for every relational signature $\R$.
 
-Let $\R$ be a relational signature, $\A$ be an ordered finite $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a non-negative integer in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined as follows:
+Let $\R$ be a relational signature, $\A$ be an ordered finite $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a number in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined as follows:
 $$
 \renewcommand{\arraystretch}{1.7}
 \begin{array}{rcl} 
