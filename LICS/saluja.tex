@@ -1,39 +1,46 @@
-We are interested in, for each $\fo$-fragment $\LL$, the biggest fragment of $\eqso$ that is contained in $\#\LL$.
+% We are interested in, for each $\fo$-fragment $\LL$, the biggest fragment of $\eqso$ that is contained in $\#\LL$.
+%Let $\LL = \loge{0}$:
+%\begin{theorem} \label{one-sigma-zero}
+%	Positive constant functions are not expressible in $\E{0}$
+%\end{theorem}
+%\begin{corollary}
+%	If a fragment of $\eqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow sole constants.
+%\end{corollary}
+%\begin{conjecture}
+%	Sum is not expressible in $\E{0}$
+%\end{conjecture}
+%\begin{theorem} \label{mult-sigma-zero}
+%	$\sqso(\loge{0})$ with binary product is contained in $\E{0}$.
+%\end{theorem}
+%\begin{theorem} \label{fo-prod-sigma-zero}
+%	If an extension of $\sqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow first-order product.
+%\end{theorem}
 
-Let $\LL = \loge{0}$:
-\begin{theorem} \label{one-sigma-zero}
-	Positive constant functions are not expressible in $\E{0}$
-\end{theorem}
-\begin{corollary}
-	If a fragment of $\eqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow sole constants.
-\end{corollary}
-\begin{conjecture}
-	Sum is not expressible in $\E{0}$
-\end{conjecture}
-\begin{theorem} \label{mult-sigma-zero}
-	$\sqso(\loge{0})$ with binary product is contained in $\E{0}$.
-\end{theorem}
-\begin{theorem} \label{fo-prod-sigma-zero}
-	If an extension of $\sqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow first-order product.
+
+%For every logic $\LL$, we define an $\LL$-extended quantifier-free (QF) formula as follows:
+%\begin{eqnarray*}
+%	\varphi &::=& \alpha, \alpha \text{ is an $\LL$-formula} \ \mid \\
+%	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
+%	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
+%\end{eqnarray*}
+%
+%We define syntactically the fragments $\logex{i}$ and $\logux{i}$ according to the following grammar:
+%\begin{align*}
+%\logex{0} = \logux{0} &::= \varphi , \varphi \mbox{ is an $\fo$-extended QF formula,} \\
+%\logex{i+1} &::= \logux{i} \ \mid \ \exists x\, \logex{i+1}, \\
+%\logux{i+1} &::= \logex{i} \ \mid \ \forall x\, \logux{i+1}.
+%\end{align*}
+
+We see that many of the results in Saluja et. al. \cite{DBLP:journals/jcss/SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
+
+\begin{theorem} \label{eqso-sigma-zero-in-fp}
+	For every $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$, the function $f$ over $\R$ defined as $f(\enc(\A)) = \sem{\alpha}(\A)$ is in $\fp$.
 \end{theorem}
 
-For every logic $\LL$, we define an $\LL$-extended quantifier-free (QF) formula as follows:
-\begin{eqnarray*}
-	\varphi &::=& \alpha, \alpha \text{ is an $\LL$-formula} \ \mid \\
-	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
-	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
-\end{eqnarray*}
-
-We define syntactically the fragments $\logex{i}$ and $\logux{i}$ according to the following grammar:
-\begin{align*}
-\logex{0} = \logux{0} &::= \varphi , \varphi \mbox{ is an $\fo$-extended QF formula,} \\
-\logex{i+1} &::= \logux{i} \ \mid \ \exists x\, \logex{i+1}, \\
-\logux{i+1} &::= \logex{i} \ \mid \ \forall x\, \logux{i+1}.
-\end{align*}
-
-\begin{theorem} \label{fp1}
-	$\qfo(\logex{0}) \subseteq$ {\sc FP}.
+\begin{theorem} \label{eqso-sigma-one-in-eqso-pi-one}
+	For every $\eqso(\loge{1})$ formula $\alpha$ over a signature $\R$ there exists a $\eqso(\logu{1})$ formula $\beta$ over $\R$ such that $\sem{\alpha}(\A) = \sem{\beta}(\A)$ for every $\A\in\ostr[\R]$.
 \end{theorem}
+
 
 The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \str \mid f(\A) > 0\}$.
 
