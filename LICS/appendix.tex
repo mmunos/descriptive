@@ -34,19 +34,11 @@ Let $\{+, \cdot, \Sigma, \Pi\}$ be the set of {\it algebraic operators} in $\qso
 
 For the first condition, let $\alpha\in\qfo(\lfp)$ over some $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 	
-For the second condition, let $f\in \fp$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a formula that represents the following. For each $\A \in \ostr[\R]$, for convenience, suppose its domain is $A = \{0,\ldots,n-1\}$ with the usual order. Let $y$ be a string of size $n^{\ell}$ that represents the value of $f(\enc(\A))$ in binary. Then, for each $\ell$-tuple $(a_0,\ldots,a_{\ell-1}) \in A^{\ell}$, it holds that $\A \models \Phi(a_0,\ldots,a_{\ell-1})$ if and only if the $(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)$-th bit of $y$, from least to most significant, is 1. Since this condition can be computed in polynomial time, and $\lfp$ captures $\ptime$, this formula can be expressed in $\lfp$. We use
+For the second condition, let $f\in \fp$ defined over some signature $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a formula that represents the following. Let $\A$ be an ordered structure over $\R$ with domain $A$. Consider a linear order over $A^{\ell}$ given by $\bar{a} < \bar{b}$, for any $\bar{a},\bar{b}\in A^{\ell}$. Let $w$ be a string of size $n^{\ell}$ the represents $f(\enc(\A))$ in binary. Let $(a_1,\ldots,a_{\ell})\in A^{\ell}$ be the $m$-th tuple in the given order (starting from 0). $\A\models\Phi(a_1,\ldots,a_n)$ if an only if the $m$-th bit in $w$ is 1, from least to most significant. Since this condition can be computed in polynomial time, and $\lfp$ captures $\ptime$, this formula can be expressed in $\lfp$. We use
 $$
-\alpha = \sa{x_0} \cdots \sa{x_{\ell-1}} \Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\cdot\,\cdots\,\cdot\varphi_0(x_0).
+\alpha = \sa{x_1} \cdots \sa{x_{\ell}} \Phi(x_1,\ldots,x_{\ell})\cdot\varphi(x_1,\ldots,x_{\ell}),
 $$
-where $\varphi_i(x) = \Pi y[(y < x)\mapsto\Pi z_1\cdots\Pi z_i\,2]$ for $i > 0$ and $\varphi_0(x) = \Pi y[(y < x)\mapsto 2]$. Let $\A$ the previously defined structure. Note that for each $a\in A$, then $\sem{\varphi_i(x)}(\A,a) = 2^{n^i a}$. Therefore, for each $(a_0,\ldots,a_{\ell-1})\in A^\ell$, we have that
-$$
-\sem{\Phi(x_0,\ldots,x_{\ell-1})\cdot\varphi_{\ell-1}(x_{\ell-1})\,\cdots\,\varphi_0(x_0)}(\A,a_0,\ldots,a_{\ell-1}) = 
-\begin{cases}
-2^{(n^{\ell-1}a_{\ell-1} + \cdots + n^2 a_2 + n a_1 + a_0)} &\text{if } \A\models\Phi(a_0,\ldots,a_{\ell-1})\\
-0 &\text{otherwise.}
-\end{cases}
-$$
-and adding these values gives $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$. \qed
+where $\varphi(x_1,\ldots,x_{\ell}) := \pa{y_1}\cdots\pa{y_{\ell}}((y_1,\ldots,y_{\ell}) < (x_1,\ldots,x_{\ell}) \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding this values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$. \qed
 
 \subsection{Proof of Theorem \ref{qfo-pfp-cap}}
 
@@ -89,7 +81,6 @@ Let $B$ be the $p$-th subset with respect to this order and let $w$ be a string 
 $\alpha := \sa{X}(\Phi(X)\mult\varphi(X))$, where $\varphi(X) = \pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$. Note that for each $B\subseteq A^{\ell}$ such that $B$ is the $m$-th element in the given order, $\sem{\varphi(B)}(\A) = 2^m$. Therefore, $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$. \qed
 
 \subsection{Proof of Theorem \ref{one-sigma-zero}}
-
 Towards a contradiction, suppose that there exists a constant function $f(\A) = s > 0$ which is expressible in $\E{0}$. This is, there is a formula $\psi(x,X)$ such that $f_{\psi(x,X)}(\A) = \vert \{ \langle e,P\rangle \mid \A\models\psi(e,P) \} \vert = s$ for each $\A\in\ostr$. It can be seen that if $X$ contains more than zero variables, then the function $f_{\psi(x,X)}$ grows exponentially. We have now that $\psi(x)$ contains only first order variables. Consider some $\A \in \ostr$ of size $n$ and let $a_1,\ldots,a_s\in \A$ be the tuples that satisfy $\A \models \psi(a_i)$. Now consider a structure $\A'$ that is obtained by duplicating $\A$. This is, $\A'$ has size $2n$, its first half is isomorphic to its second half, and also to $\A$. We have that there is at least $2s$ tuples $a_i,b_i\in \A'$, $s$ on each half, such that $\A'\models\psi(a_i)$ and $\A'\models\psi(b_i)$, which leads to a contradiction.
 
 \textbf{Proof of Theorem \ref{mult-sigma-zero}}
