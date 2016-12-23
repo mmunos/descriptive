@@ -1,6 +1,27 @@
 %!TEX root = main.tex
 
-\subsection{Saluja Classes}
+In this section we study the fragment of $\eqso(\LL)$ when $\LL$ is a boolean logic contained in $\fo$. 
+
+We say that a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\Sigma$-prenex normal form} if $\alpha$ is of the form:
+\[
+\alpha := \sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{X}, \bar{x})
+\]
+where $\bar{X}$ and $\bar{x}$ is a sequence of $0$ or more second and first order variables, respectively.
+In particular, note that a boolean formula is always in $\Sigma$-prenex normal form.
+Then we say that a formula $\alpha$ is in \emph{sum normal form} if $\alpha$ is of the form $c + \Sigma_{i=1}^n \alpha_i$ where $c$ is a non-negative constant and each $\alpha_i$ is in $\Sigma$-prenex normal form.
+Next we show that each formula in $\eqso(\LL)$ can be converted in \emph{sum normal form} but not always in prenex normal form.
+
+\begin{theorem}
+	Every formula in $\eqso(\LL)$ can be rewritten in \emph{sum normal form}. Furthermore, there exists a language $\LL$ and a formula $\alpha$ such that there does not exist a formula in $\Sigma$-prenex normal form equivalent to $\alpha$.
+\end{theorem}
+
+An interesting question here is whether the multiplicative operators in $\qso$ can be defined in $\eqso(\LL)$. As the following result shows, if $\LL$ is closed under conjunction, then the binary product can be defined in  $\eqso(\LL)$.
+
+\begin{theorem}\label{theo:binary-prod}
+	If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$.
+\end{theorem}
+
+\subsection{Prenex-normal form classes}
 \input{saluja}
 
 \subsection{Horn Counting Classes}
