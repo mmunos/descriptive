@@ -93,37 +93,37 @@ $\alpha := \sa{X}(\Phi(X)\mult\varphi(X))$, where $\varphi(X) = \pa{Y}(\varphi_{
 
 \subsection{Proof of Theorem \ref{eqso-sigma-zero-in-fp}}
 
-First, for a given signature $\R$ and logic fragment $\LL$ we define a {\em valid form in $\LL$} (or just {\em valid form}). A formula $\alpha$ is in valid form in $\LL$ if (1) it is equal to $\varphi$, $1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{x}}\sa{\bar{X}}\varphi$ or $\sa{\bar{x}}\sa{\bar{X}}1$ for some $\LL$ formula $\varphi$ and some tuple of first-order (second-order) variables $\bar{x}$ ($\bar{X}$), or (2) if it is equal to $(\beta\add\gamma)$ where $\beta$ and $\gamma$ are formulas in valid form. Given a $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$ we will recursively construct a formula $\tau(\alpha)$ in valid form such that $\alpha(\enc(\A)) = \tau(\alpha)(\enc(\A))$ for each $\A\in\ostr[\R]$. 
+First, for a given signature $\R$ and logic fragment $\LL$ we define a {\em valid form in $\LL$} (or just {\em valid form}). A formula $\alpha$ is in valid form in $\LL$ if (1) it is equal to $\varphi$, $1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}1$ for some $\LL$ formula $\varphi$ and some tuple of first-order (second-order) variables $\bar{x}$ ($\bar{X}$), or (2) if it is equal to $(\beta\add\gamma)$ where $\beta$ and $\gamma$ are formulas in valid form. Given a $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$ we will recursively construct a formula $\tau(\alpha)$ in valid form such that $\alpha(\enc(\A)) = \tau(\alpha)(\enc(\A))$ for each $\A\in\ostr[\R]$. 
 
-First, each natural constant $s$ in $\alpha$ is replaced by $(1\add 1\add\cdots\add 1)$ ($s$ times). If $\alpha = 1$ or $\alpha = \varphi \in \loge{0}$, then $\tau(\alpha) = \alpha$. We assume that every sub-formula of $\alpha$ is in valid form. If $\alpha = (\beta \add \gamma)$ then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ this case separates in more cases: If $\alpha = \sa{x}\beta$ and $\beta$ is in one of the valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{X}\beta$ and $\beta$ is in the valid form $\sa{\bar{x}}\gamma$ then $\tau(\alpha) = \sa{\bar{x}}\sa{X}\gamma$; if $\beta$ it is in one of the remaining valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ ($\alpha = \sa{X}\beta$) and $\beta = (\gamma_1\add\gamma_2)$, then $\tau(\alpha) = \tau(\sa{x}\gamma_1) \add \tau(\sa{x}\gamma_2)$ ($\tau(\alpha) = \tau(\sa{X}\gamma_1) \add \tau(\sa{X}\gamma_2)$). This covers all possible cases for $\alpha$. Furthermore, suppose that $\LL$ is closed under conjunction and suppose $\alpha = (\beta\mult\gamma)$. If $\beta = (\delta_1\add\delta_2)$ (wlog), then $\tau(\alpha) = \tau(\delta_1\mult\gamma)\add\tau(\delta_2\mult\gamma)$. If $\beta = \sa{\bar{x}}\delta$, then $\tau(\alpha) = \tau(\sa{\bar{x}}\tau(\delta\mult\gamma))$. If $\beta = 1$, then $\tau(\alpha) = \gamma$. If $\beta = \varphi$ and $\gamma = \psi$, then $\tau(\alpha) = \varphi\wedge\psi$. Let $\alpha$ be a $\eqso(\loge{0})$ formula over a signature $\R$. Consider the following procedure that receives $\enc(\A)$ as input, where $\A\in\ostr[\R]$ with domain $A$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_m$. For each $\beta_i$, if $\beta_i = 1$ or $\beta_i = \varphi$, then $\sem{\beta_i}(\A)$ can be computed in polynomial time. If $\beta_i = \sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}$, if $\beta_i = \sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = 2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, if $\beta_i = \sa{\bar{x}}\sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, all of which can be computed in polynomial time. Otherwise, $\beta_i$ is $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, and then $\sem{\beta_i}(\A) = f_{\varphi}(\enc(\A))$, and $f_{\varphi}\in \#\loge{0}$ which implies that $f_{\varphi}(\enc(\A))$ can be computed in polynomial time \cite{DBLP:journals/jcss/SalujaST95}. 
+First, each natural constant $s$ in $\alpha$ is replaced by $(1\add 1\add\cdots\add 1)$ ($s$ times). If $\alpha = 1$ or $\alpha = \varphi \in \loge{0}$, then $\tau(\alpha) = \alpha$. We assume that every sub-formula of $\alpha$ is in valid form. If $\alpha = (\beta \add \gamma)$ then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ this case separates in more cases: If $\alpha = \sa{x}\beta$ and $\beta$ is in one of the valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{X}\beta$ and $\beta$ is in the valid form $\sa{\bar{x}}\gamma$ then $\tau(\alpha) = \sa{\bar{x}}\sa{X}\gamma$; if $\beta$ it is in one of the remaining valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ ($\alpha = \sa{X}\beta$) and $\beta = (\gamma_1\add\gamma_2)$, then $\tau(\alpha) = \tau(\sa{x}\gamma_1) \add \tau(\sa{x}\gamma_2)$ ($\tau(\alpha) = \tau(\sa{X}\gamma_1) \add \tau(\sa{X}\gamma_2)$). This covers all possible cases for $\alpha$. Furthermore, suppose that $\LL$ is closed under conjunction and suppose $\alpha = (\beta\mult\gamma)$. If $\beta = (\delta_1\add\delta_2)$ (wlog), then $\tau(\alpha) = \tau(\delta_1\mult\gamma)\add\tau(\delta_2\mult\gamma)$. If $\beta = \sa{\bar{x}}\delta$, then $\tau(\alpha) = \tau(\sa{\bar{x}}\tau(\delta\mult\gamma))$. If $\beta = 1$, then $\tau(\alpha) = \gamma$. If $\beta = \varphi$ and $\gamma = \psi$, then $\tau(\alpha) = \varphi\wedge\psi$. Let $\alpha$ be a $\eqso(\loge{0})$ formula over a signature $\R$. Consider the following procedure that receives $\enc(\A)$ as input, where $\A\in\ostr[\R]$ with domain $A$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_m$. For each $\beta_i$, if $\beta_i = 1$ or $\beta_i = \varphi$, then $\sem{\beta_i}(\A)$ can be computed in polynomial time. If $\beta_i = \sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}$, if $\beta_i = \sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = 2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, if $\beta_i = \sa{\bar{X}}\sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, all of which can be computed in polynomial time. Otherwise, $\beta_i$ is $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, and then $\sem{\beta_i}(\A) = f_{\varphi}(\enc(\A))$, and $f_{\varphi}\in \#\loge{0}$ which implies that $f_{\varphi}(\enc(\A))$ can be computed in polynomial time \cite{DBLP:journals/jcss/SalujaST95}. 
 
 \subsection{Proof of Theorem \ref{eqso-sigma-one-in-eqso-pi-one}}
 
-Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(\alpha) = \beta_1\add\beta_2\add\cdots\add\beta_m$ defined as in the proof of Theorem \ref{eqso-sigma-zero-in-fp}. This is, each $\beta_i$ is of the form $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{x}}\sa{\bar{X}}1$ or $\sa{\bar{x}}\sa{\bar{X}}\varphi$, where $\varphi$ is a formula in $\loge{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. For each $\beta_i$ we will construct a $\gamma_i$ such that $\gamma_i \in \eqso(\logu{1})$ and $\sem{\beta_i}(\A) = \sem{\gamma_i}(\A)$ for each $\A\in\ostr[\R]$. Since the forms $1$, $\sa{\bar{x}}1$, $\sa{\bar{X}}1$ and $\sa{\bar{x}}\sa{\bar{X}}1$ are already valid in $\eqso(\logu{1})$, we suppose $\beta_i$ is in one of the remaining forms. Without loss of generality, let $\beta_i = \sa{\bar{x}}\sa{\bar{X}}\exists\bar{y}\,\varphi(\bar{x},\bar{y},\bar{X})$ where $\varphi(\bar{x},\bar{y},\bar{X})$ is a quantifier-free formula. Similarly as in the proof by Saluja et al. \cite{DBLP:journals/jcss/SalujaST95}, we define $\gamma_i = \sa{\bar{x}}\sa{\bar{y}}\sa{\bar{X}}\varphi(\bar{x},\bar{y},\bar{X}) \wedge \forall\bar{z}(\varphi(\bar{x},\bar{z},\bar{X})\to(\bar{z} < \bar{y} \vee \bar{z} = \bar{y}))$ that fulfils the desired condition. The theorem holds true by using $\beta = \gamma_1\add\cdots\add\gamma_m$ which is in $\eqso(\logu{1})$
+Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(\alpha) = \beta_1\add\beta_2\add\cdots\add\beta_m$ defined as in the proof of Theorem \ref{eqso-sigma-zero-in-fp}. This is, each $\beta_i$ is of the form $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\loge{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. For each $\beta_i$ we will construct a $\gamma_i$ such that $\gamma_i \in \eqso(\logu{1})$ and $\sem{\beta_i}(\A) = \sem{\gamma_i}(\A)$ for each $\A\in\ostr[\R]$. Since the forms $1$, $\sa{\bar{x}}1$, $\sa{\bar{X}}1$ and $\sa{\bar{X}}\sa{\bar{x}}1$ are already valid in $\eqso(\logu{1})$, we suppose $\beta_i$ is in one of the remaining forms. Without loss of generality, let $\beta_i = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y},\bar{X})$ where $\varphi(\bar{x},\bar{y},\bar{X})$ is a quantifier-free formula. Similarly as in the proof by Saluja et al. \cite{DBLP:journals/jcss/SalujaST95}, we define $\gamma_i = \sa{\bar{x}}\sa{\bar{y}}\sa{\bar{X}}\varphi(\bar{x},\bar{y},\bar{X}) \wedge \forall\bar{z}(\varphi(\bar{x},\bar{z},\bar{X})\to(\bar{z} < \bar{y} \vee \bar{z} = \bar{y}))$ that fulfils the desired condition. The theorem holds true by using $\beta = \gamma_1\add\cdots\add\gamma_m$ which is in $\eqso(\logu{1})$
 
-\subsection{Proof of Theorem \ref{one-sigma-zero}}
+%\subsection{Proof of Theorem \ref{one-sigma-zero}}
+%
+%Towards a contradiction, suppose that there exists a constant function $f(\A) = s > 0$ which is expressible in $\E{0}$. This is, there is a formula $\psi(x,X)$ such that $f_{\psi(x,X)}(\A) = \vert \{ \langle e,P\rangle \mid \A\models\psi(e,P) \} \vert = s$ for each $\A\in\ostr$. It can be seen that if $X$ contains more than zero variables, then the function $f_{\psi(x,X)}$ grows exponentially. We have now that $\psi(x)$ contains only first order variables. Consider some $\A \in \ostr$ of size $n$ and let $a_1,\ldots,a_s\in \A$ be the tuples that satisfy $\A \models \psi(a_i)$. Now consider a structure $\A'$ that is obtained by duplicating $\A$. This is, $\A'$ has size $2n$, its first half is isomorphic to its second half, and also to $\A$. We have that there is at least $2s$ tuples $a_i,b_i\in \A'$, $s$ on each half, such that $\A'\models\psi(a_i)$ and $\A'\models\psi(b_i)$, which leads to a contradiction.
 
-Towards a contradiction, suppose that there exists a constant function $f(\A) = s > 0$ which is expressible in $\E{0}$. This is, there is a formula $\psi(x,X)$ such that $f_{\psi(x,X)}(\A) = \vert \{ \langle e,P\rangle \mid \A\models\psi(e,P) \} \vert = s$ for each $\A\in\ostr$. It can be seen that if $X$ contains more than zero variables, then the function $f_{\psi(x,X)}$ grows exponentially. We have now that $\psi(x)$ contains only first order variables. Consider some $\A \in \ostr$ of size $n$ and let $a_1,\ldots,a_s\in \A$ be the tuples that satisfy $\A \models \psi(a_i)$. Now consider a structure $\A'$ that is obtained by duplicating $\A$. This is, $\A'$ has size $2n$, its first half is isomorphic to its second half, and also to $\A$. We have that there is at least $2s$ tuples $a_i,b_i\in \A'$, $s$ on each half, such that $\A'\models\psi(a_i)$ and $\A'\models\psi(b_i)$, which leads to a contradiction.
-
-\textbf{Proof of Theorem \ref{mult-sigma-zero}}
-
-Let $\alpha \in \sqso(\loge{0})$ with binary product. This is, $\alpha$ is defined by the grammar $\alpha := \sa{x}\varphi \ \mid \ \sa{X}\varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \ (\alpha\mult\alpha)$, where $\varphi \in \loge{0}$. For convenience, we add the expressions $\sa{x}(\varphi\mult\varphi)$ and $\sa{X}(\varphi\mult\varphi)$ to the grammar. Let $k$ be the number of algebraic operators in $\alpha$. We will show by induction on $k$ that $\alpha$ is expressible without multiplication. If $k = 1$, then the possible cases are $\alpha = \sa{x}\varphi$, where $\varphi\in\loge{0}$, which is already product-free. If $k = 2$, then the only that is not two nested summations is $\alpha = \sa{x}(\varphi\mult\psi)$, which can be expressed as $\alpha = \sa{x}(\varphi\wedge\psi)$. Suppose that the hypothesis holds for $k = 1$ through $n-1$. Let $\alpha$ have $n$ algebraic operators. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ where $\beta$ is an algebraic expression, then $\beta$ has $n-1$ algebraic operators and by hypothesis it can be expressed as product-free. If $\alpha = (\beta \mult \gamma)$ there are two cases. If at least one between $\beta$ and $\gamma$ has a product, then by hypothesis it can be expressed as product-free. Moreover, the new expression for $\alpha$ has strictly less than $n$ algebraic operators so by hypothesis it can be expressed as product-free. If there are no products in $\beta$ or $\gamma$, then let $\beta = \sa{x}\delta(x)$. We have that $\alpha$ can be expressed as $\sa{y}(\delta(y)\mult\gamma)$, where $y$ is a first-order variable that does not appear in $\beta$ or $\gamma$. Since $\delta(y)\mult\gamma$ has $n-1$ algebraic operators, it can be expressed as product-free, and then $\alpha$ can be expressed as product-free.
-
-\textbf{Proof of Theorem \ref{fo-prod-sigma-zero}}
-
-The resulting grammar is $\alpha := \sa{x}\varphi \ \mid \ \sa{X} \varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \pa{x}\alpha$. Consider a more restricted grammar that replaces $\pa{x}\alpha$ by $\pa{x}\sa{y}\varphi$. Let $\alpha = \pa{x}\sa{y}(x = y)$. This formula produces a constant function equal to 1, which as shown in Theorem \ref{one-sigma-zero} is not expressible in $\E{0}$. 
-
-\textbf{Proof of Theorem \ref{fp1}}
-
-Let $f \in \XE{0}$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
-\begin{eqnarray*}
-	f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
-\end{eqnarray*}
-for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that computing $f(\A)$ can be done in polynomial time.
-
-For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \str$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
-
-Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. But, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
+%\textbf{Proof of Theorem \ref{mult-sigma-zero}}
+%
+%Let $\alpha \in \sqso(\loge{0})$ with binary product. This is, $\alpha$ is defined by the grammar $\alpha := \sa{x}\varphi \ \mid \ \sa{X}\varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \ (\alpha\mult\alpha)$, where $\varphi \in \loge{0}$. For convenience, we add the expressions $\sa{x}(\varphi\mult\varphi)$ and $\sa{X}(\varphi\mult\varphi)$ to the grammar. Let $k$ be the number of algebraic operators in $\alpha$. We will show by induction on $k$ that $\alpha$ is expressible without multiplication. If $k = 1$, then the possible cases are $\alpha = \sa{x}\varphi$, where $\varphi\in\loge{0}$, which is already product-free. If $k = 2$, then the only that is not two nested summations is $\alpha = \sa{x}(\varphi\mult\psi)$, which can be expressed as $\alpha = \sa{x}(\varphi\wedge\psi)$. Suppose that the hypothesis holds for $k = 1$ through $n-1$. Let $\alpha$ have $n$ algebraic operators. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ where $\beta$ is an algebraic expression, then $\beta$ has $n-1$ algebraic operators and by hypothesis it can be expressed as product-free. If $\alpha = (\beta \mult \gamma)$ there are two cases. If at least one between $\beta$ and $\gamma$ has a product, then by hypothesis it can be expressed as product-free. Moreover, the new expression for $\alpha$ has strictly less than $n$ algebraic operators so by hypothesis it can be expressed as product-free. If there are no products in $\beta$ or $\gamma$, then let $\beta = \sa{x}\delta(x)$. We have that $\alpha$ can be expressed as $\sa{y}(\delta(y)\mult\gamma)$, where $y$ is a first-order variable that does not appear in $\beta$ or $\gamma$. Since $\delta(y)\mult\gamma$ has $n-1$ algebraic operators, it can be expressed as product-free, and then $\alpha$ can be expressed as product-free.
+%
+%\textbf{Proof of Theorem \ref{fo-prod-sigma-zero}}
+%
+%The resulting grammar is $\alpha := \sa{x}\varphi \ \mid \ \sa{X} \varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \pa{x}\alpha$. Consider a more restricted grammar that replaces $\pa{x}\alpha$ by $\pa{x}\sa{y}\varphi$. Let $\alpha = \pa{x}\sa{y}(x = y)$. This formula produces a constant function equal to 1, which as shown in Theorem \ref{one-sigma-zero} is not expressible in $\E{0}$. 
+%
+%\textbf{Proof of Theorem \ref{fp1}}
+%
+%Let $f \in \XE{0}$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
+%\begin{eqnarray*}
+%	f(\A) &=& \vert \{\langle \P,\e  \rangle \mid \A \models \varphi(\P,\e) \} \vert
+%\end{eqnarray*}
+%for each $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\e \in A^m$ and $\P = (P_1,\ldots,P_q)$ is a tuple of predicates. We will now show that computing $f(\A)$ can be done in polynomial time.
+%
+%For each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$, let $R_{\beta}$ be a predicate of arity $m$. Let $\A^\prime = \langle A, \S^{\A}, R_{\beta}^{\A^\prime}, \leq^{\A} \rangle \in \str$, where $R_{\beta}^{\A^\prime} = \{\d \mid \A \models \beta(\d)\}$. Note that each $\beta(\x)$ is fixed in $\varphi(\X,\x)$, and for each $\d \in A^m$, checking whether $\A \models \beta(\d)$ can be done in polynomial time. Therefore, generating $R_{\beta}^{\A^\prime}$ can also be done in polynomial time.
+%
+%Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. But, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
 	
 \textbf{Proof of Theorem \ref{decisionptime}}
 
@@ -169,195 +169,226 @@ We will show that the $\E{1}$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1
 
 We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\str$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{DBLP:journals/jcss/SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
 	
-\textbf{Proof of Theorem \ref{sigmafo-minusone}}
+\subsection{Proof of Theorem \ref{sigmafo-minusone}}
 
-Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_n$ be defined as in \ref{eqso-sigma-zero-in-fp}, that is, each $\beta_i$ is equal to $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{x}}\sa{\bar{X}}1$ or $\sa{\bar{x}}\sa{\bar{X}}\varphi$, where $\varphi$ is a formula in $\logex{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. We further assume that each $\beta_i$ is either $\sa{\bar{x}}\varphi$ or $\sa{\bar{x}}\sa{\bar{X}}\varphi$, since each $1$, $\varphi$ and $\sa{\bar{X}}\varphi$ can be replaced by the formulas $\sa{x}\min(x)$, $\sa{x}(\varphi\wedge\min(x))$ and $\sa{x}\sa{\bar{X}}(\varphi\wedge\min(x))$ respectively, while maintaining the value of $\sem{\alpha}(\A)$. 
+Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_n$ be defined as in \ref{eqso-sigma-zero-in-fp}, that is, each $\beta_i$ is equal to $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\logex{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. We further assume that each $\beta_i$ is either $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, since each $1$, $\varphi$ and $\sa{\bar{X}}\varphi$ can be replaced by the formulas $\sa{x}\min(x)$, $\sa{x}(\varphi\wedge\min(x))$ and $\sa{x}\sa{\bar{X}}(\varphi\wedge\min(x))$ respectively, while maintaining the value of $\sem{\alpha}(\A)$. 
 
-The intuition behind our reasoning is separated in three points: (1) For each $\beta_i$ of the form $\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will count every tuple $\bar{x}$ that satisfies $\varphi$ except for the lexicographically smallest one. (2) For each $\beta_i$ of the form $\sa{\bar{x}}\sa{\bar{X}}\varphi$, the formula $\kappa(\beta_i)$ will isolate the smallest $\bar{X}$ that satisfies $\varphi$, and exclude the lexicographically smallest tuple $\bar{x}$ that satisfies $\varphi(\bar{X})$. And (3) if $\alpha = (\beta\add\sa{\bar{x}}\varphi)$ or $\alpha = (\beta\add\sa{\bar{x}}\sa{\bar{X}}\varphi)$, the formula $\kappa(\alpha)$ will exclude the lexicographically smallest tuple that satisfies $\varphi$ if and only if $\beta$ is equal to 0.
+The intuition behind our reasoning is separated in three points: (1) For each $\beta_i$ of the form $\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will count every tuple $\bar{x}$ that satisfies $\varphi$ except for the lexicographically smallest one. (2) For each $\beta_i$ of the form $\sa{\bar{X}}\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will isolate the smallest $\bar{X}$ that satisfies $\varphi$, and exclude the lexicographically smallest tuple $\bar{x}$ that satisfies $\varphi(\bar{X})$. And (3) if $\alpha = (\beta\add\sa{\bar{x}}\varphi)$ or $\alpha = (\beta\add\sa{\bar{X}}\sa{\bar{x}}\varphi)$, the formula $\kappa(\alpha)$ will exclude the lexicographically smallest tuple that satisfies $\varphi$ if and only if $\beta$ is equal to 0.
+
+\vspace{1em}
 
 For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha) = \sa{\bar{x}}\exists\bar{y}[\varphi(\bar{x},\bar{y})\wedge\exists\bar{z}(\varphi(\bar{z},\bar{y})\wedge\bar{z} < \bar{x})]$, which is in $\eqso(\logex{1})$ and fulfils the desired condition.
 
-For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{x}}\sa{\bar{X}}\exists\bar{y}\,\varphi(\bar{x},\bar{X},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ as is. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{x},\bar{X},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{x},\bar{X},\bar{y})$ where each $\varphi_i$ has the form:
+\vspace{1em}
+
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ as is. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{X},\bar{x},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ has the form:
 $$
-\varphi_i(\bar{x},\bar{X},\bar{y}) = (\text{conjunction of $X_i$'s}) \wedge (\text{conjunction of $\neg X_i$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_i$}).
+\varphi_i(\bar{X},\bar{x},\bar{y}) = (\text{conjunction of $X_i$'s}) \wedge (\text{conjunction of $\neg X_i$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_i$}).
 $$
 Define $\varphi_i^{+}$, $\varphi_i^{-}$ and $\varphi_i^{\fo}$ as the formulas mentioned above. 
 
-In our procedure we assume that in $\varphi_i^{+}\wedge\varphi_i^{-}$ every first-order variable from $\bar{x},\bar{y}$ is mentioned at most once. If not, we add new first-order variables from $\fv$ to $\bar{y}$ so that no variable is repeated, replace them in $\varphi_i^{+}\wedge\varphi_i^{-}$ and add their respective equalities in $\varphi_i^{\fo}$ so that the new formula is equivalent. For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = X(x,y)\wedge \neg X(x,x) \wedge x < y$, then we redefine $\bar{y} = (x_1,x_2,x_3,x_4,y)$ and $\varphi_i := X(x_1,x_2) \wedge \neg X(x_3,x_4) \wedge x < y \wedge x_1 = x \wedge x_2 = y \wedge x_3 = x \wedge x_4 = x.$ 
+In our procedure we assume that in $\varphi_i^{+}\wedge\varphi_i^{-}$ every first-order variable from $\bar{x},\bar{y}$ is mentioned at most once. If not, we add new first-order variables from $\fv$ to $\bar{y}$ so that no variable is repeated, replace them in $\varphi_i^{+}\wedge\varphi_i^{-}$ and add their respective equalities in $\varphi_i^{\fo}$ so that the new formula is equivalent. For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = X(x,y)\wedge \neg X(x,x) \wedge x < y$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and $\varphi_i := X(v_1,v_2) \wedge \neg X(v_3,v_4) \wedge x < y \wedge v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x.$ 
 
 Furthermore, we assume that $\varphi_i^{\fo}$ defines an ordered partition of the variables in the tuple $(\bar{x},\bar{y})$. For example, let $\bar{x} = (x_1,x_2,x_3,x_4)$. A possible ordered partition would be defined by the formula $\theta(\bar{x}) = x_2 < x_1 \wedge x_1 = x_4 \wedge x_4 < x_3$. On the other hand, the formula $\theta'(\bar{x}) = x_1 < x_2 \wedge x_1 < x_4 \wedge x_2 = x_3$ does not define an ordered partition since both $\{x_1\}<\{x_2,x_3\}<\{x_4\}$ and $\{x_1\} < \{x_2,x_3,x_4\}$ satisfy $\theta'$.
 For a given $k$, we define $\cB_k$ as the number of possible ordered partitions for a set of size $k$. 
 If $\varphi_i^{\fo}$ does not define an ordered partition, then for $1 \leq j \leq \cB_{\length(\bar{x},\bar{y})}$ 
-let $\theta^j(\bar{x},\bar{y})$ be a formula that defines an ordered partition over $(\bar{x},\bar{y})$. The formula $\varphi_i(\bar{x},\bar{X},\bar{y})$ is converted into $\bigvee_{j = 1}^{\cB_{\length(\bar{x},\bar{y})}}\varphi_i(\bar{x},\bar{X},\bar{y}) \wedge \theta^j(\bar{x},\bar{y})$. Consider each of these disjuncts as a new $\varphi_i$.
+let $\theta^j(\bar{x},\bar{y})$ be a formula that defines an ordered partition over $(\bar{x},\bar{y})$. The formula $\varphi_i(\bar{X},\bar{x},\bar{y})$ is converted into $\bigvee_{j = 1}^{\cB_{\length(\bar{x},\bar{y})}}\varphi_i(\bar{X},\bar{x},\bar{y}) \wedge \theta^j(\bar{x},\bar{y})$. Consider each of these disjuncts as a new $\varphi_i$.
 
-Now let $\bar{u}$ be the tuple of every first-order variable mentioned in $\varphi_i^{+}$ and let $\bar{v}$ be such that $(\bar{x},\bar{y}) = (\bar{u},\bar{v})$. We define a formula $\mu_i$ that is satisfied only by the lexicographically smallest $\bar{u}$ that satisfies $\varphi_i^{+}$ for some $\bar{v}$:
+After the previous assumptions, we do the following: for each $X_j\in \bar{X}$ we check every instance of $X_j(\bar{w})$ in $\varphi^{+}_i$ and every instance of $X_j(\bar{z})$ in $\varphi^{-}_i$, where $\bar{w}$ and $\bar{z}$ are subtuples of $(\bar{x},\bar{y})$. If the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{w} = \bar{z}$, the entire formula $\varphi_i$ is removed from $\varphi$.
+
+Now let $\bar{v}$ be the tuple of every first-order variable mentioned in $\varphi_i^{+}$ and let $\bar{u}$ be such that $(\bar{x},\bar{y}) = (\bar{u},\bar{v})$. We define a formula $\mu_i$ that is satisfied only by the lexicographically smallest $\bar{v}$ that satisfies $\varphi_i^{\fo}$ for some $\bar{u}$:
 $$
-\mu_i(\bar{u}) = \exists\bar{v}\,\varphi_i^{\fo}(\bar{u},\bar{v})\wedge\forall\bar{u}'\forall\bar{v}'(\varphi_i^{\fo}(\bar{u}',\bar{v}')\to\bar{u}\leq\bar{u}').
+\mu_i(\bar{v}) = \exists\bar{u}\,\varphi_i^{\fo}(\bar{u},\bar{v})\wedge\forall\bar{u}'\forall\bar{v}'(\varphi_i^{\fo}(\bar{u}',\bar{v}')\to\bar{v}\leq\bar{v}').
 $$
-Lastly, we define $\kappa(\varphi_i)$:
+The following is a pivotal formula for this proof. Consider some ordered finite structure $\A$ over $\R$. Given our conditions for $\varphi_i$, if $\A\models\varphi_i$ and $\A\models\varphi^{\fo}_i(\bar{u},\bar{v})$ then for that $\bar{v}$ we can define a $\bar{X}$ that has exactly the tuples mentioned in $\bar{v}$ and nothing else. This is {\em the smallest $\bar{X}$ that satisfies $\varphi_i$ over $\bar{v}$}. And if $\bar{v}$ is the lexicographically smallest such that $\A\models\varphi_i(\bar{v})$, then it is the {\em the smallest $\bar{X}$ that satisfies $\varphi_i$}. The following formula is satisfied by every pair $(\bar{X},\bar{x})$, except for the one formed by the smallest $\bar{X}$ that satisfies $\varphi_i$ and the lexicographically smallest $\bar{x}$ that satisfies $\varphi_i(\bar{X})$. And if no pair satisfies $\varphi_i$, the following formula is satisfied by every pair.
 $$
-\kappa(\varphi_i) := 
+\psi_i(\bar{X},\bar{x}) = \exists\bar{v}(\mu_i(\bar{v})\wedge(\neg\varphi^{+}_i(\bar{X},\bar{v})\vee\bigvee_{X \in \bar{X}} \exists\bar{z}(X(\bar{z}) \wedge \bigwedge\limits_{\substack{\text{instances of }X(\bar{w}) \\ \text{in }\varphi^{+}_i(\bar{X},\bar{v})}}\bar{w}\neq\bar{z}))) \vee \exists\bar{x}'(\exists\bar{y}'\varphi_i(\bar{X},\bar{x}',\bar{y}')\wedge \bar{x}'<\bar{x})\vee\neg\exists\bar{v}\mu_i(\bar{v}) .
 $$
-%Consider an $\L$-formula of the form $\exists\x\:\varphi(\x,\X,\z)$ where $\z = (z_1,\dots,z_d)$ and $\X = (X_1,\dots,X_r)$. There are three possibilities regarding the size of the tuples of free variables $\z$ and $\X$: (1) $d>0$ and $r=0$ (2) $d=0$ and $r>0$ (3) $d,r>0$. This separates the proof in three cases:
-\begin{enumerate}
-%	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,\dots,z_d)$. That is,
+\begin{claim}
+	Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a quantifier-free formula that respects all the mentioned assumptions. For a given ordered structure $\A$ with domain $A$, if $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$, then there exists some $\bar{B}$ over $\A$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi_i(\bar{B},\bar{b},\bar{a})$ for some $\bar{a}\in A^{\length(\bar{y})}$.
+\end{claim}
+\begin{proof}
+	Let $\A$ be an ordered structure with domain $A$ and let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})$. Define $\bar{B} = (B_1,\ldots,B_{\length(\bar{X})})$ as $B_j = \{\bar{c}\mid\bar{c}\text{ is a subtuple of $(\bar{b},\bar{a})$ and $X_j(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$}\}$. Towards a contradiction, suppose that $\A\not\models\varphi_i(\bar{B},\bar{b},\bar{a})$. By the choice of $\bar{a}$ and $\bar{b}$, and construction of $\bar{B}$ it is clear that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})\wedge\varphi^{+}_i(\bar{B},\bar{b},\bar{a})$, so we have that $\A\not\models\varphi^{-}_i(\bar{B},\bar{b},\bar{a})$. Let $B_t(\bar{c})$ be such that $X_t(\bar{c})$ is mentioned in $\varphi^{-}_i(\bar{X},\bar{b},\bar{a})$ and $\A\not\models\neg B_t(\bar{c})$. This is, $\bar{c}\in B_t$. By the construction of $\bar{B}$ we have that $X_t(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$. From our assumptions, we have that (1) every first-order variable is mentioned at most once in $\varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$, (2) $\varphi^{\fo}_i$ defines an ordered partition over $(\bar{x},\bar{y})$, and (3) there are no $X_j(\bar{w})$ in $\varphi^{+}_i$ and $X_j(\bar{z})$ in $\varphi^{-}_i$ such that the ordered partition defined by $\varphi^{\fo}_i$ satisfies $\bar{x} = \bar{z}$. Since $\bar{c}$ is a subtuple of $(\bar{b},\bar{a})$ that satisfies $\varphi^{\fo}_i$, and $X_t(\bar{w})$ mentioned in $\varphi^{+}_i$ and $X_t(\bar{z})$ mentioned in $\varphi^{-}_i$ were both assigned the value $\bar{c}$, then the ordered partition satisfies $\bar{w} = \bar{z}$, which follows to a contradiction.
+\end{proof}
+We define $\chi_i = \exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$. Now recall that $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$, where each $\varphi_i$ satisfies all the previous assumptions. For each $\varphi_i$ we define:
+$$
+\varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\bigvee_{j = 1}^{j = i-1}\chi_j\vee\psi_i(\bar{X},\bar{x})),
+$$
+and lastly, $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$.
+
+\vspace{1em}
+
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = (\beta + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y}))$ for some algebraic formula $\beta$ and some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ as follows: First, perform the same transformations to $\varphi(\bar{X},\bar{x},\bar{y})$ as in the previous case. Let $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ satisfies the previous assumptions. We also use the previously defined formulas $\chi_i$ and $\psi_i$. 
+
+We recursively define a function $\lambda$ as follows. If $\alpha = \sa{\bar{x}}\exists\bar{y}\varphi(\bar{x},\bar{y})$, then $\lambda(\alpha) = \exists\bar{x}'\exists\bar{y}'\varphi(\bar{x}',\bar{y}')$. If $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$, then let $\varphi = \bigvee_{i = 1}^{m}\varphi_i$ and $\lambda(\alpha) = \chi_1\vee\cdots\vee\chi_m$ as each $\chi_i$ was previously defined. If $\alpha = (\beta + \gamma)$, then $\lambda(\alpha) = \lambda(\beta) \vee \lambda(\gamma)$. Note that for a given ordered structure $\A$, then $\A\models\lambda(\alpha)$ if and only if $\sem{\alpha}(\A) > 0$.
+
+Now, for each $\varphi_i$ we define:
+$$
+\varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge[\lambda(\beta)\vee[\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\bigvee_{j = 1}^{j = i-1}\chi_j\vee\psi_i(\bar{X},\bar{x}))]].
+$$
+And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$.
+%%Consider an $\L$-formula of the form $\exists\x\:\varphi(\x,\X,\z)$ where $\z = (z_1,\dots,z_d)$ and $\X = (X_1,\dots,X_r)$. There are three possibilities regarding the size of the tuples of free variables $\z$ and $\X$: (1) $d>0$ and $r=0$ (2) $d=0$ and $r>0$ (3) $d,r>0$. This separates the proof in three cases:
+%\begin{enumerate}
+%%	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,\dots,z_d)$. That is,
+%%	\begin{eqnarray*}
+%%		f(\A) &=& \mid \{ \langle\e\rangle \mid \A \models \exists \x \ \varphi(\x,\e) \} \mid,
+%%	\end{eqnarray*}
+%%	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\e \in A^d$. Our goal here is to eliminate the lexicographically smallest sequence of variables, which can be done easily. First, let $\y = (y_1,\dots,y_k)$, $\y\,^\prime = (y_1^\prime,\dots,y_k^\prime)$ and
+%%	\begin{eqnarray*}
+%%		\varphi_{k,<}(\y\,^\prime,\y) &=& \bigvee_{i = 1}^k \left( \bigwedge_{j=1}^{i-1} y_j^\prime = y_j \wedge y_i^\prime < y_i \right).
+%%	\end{eqnarray*}
+%%	This formula is true if $\y\,^\prime$ is lexicographically smaller than $\y$. Now, let $f'$ be defined by
+%%	\begin{eqnarray*}
+%%		\varphi^\prime(\x,\z) &=& \varphi(\x,\z) \wedge \exists \z\,^\prime (\varphi(\x,\z\,^\prime) \wedge \varphi_{d,<}(\z\,^\prime,\z ) ).
+%%	\end{eqnarray*}
+%%	If $f(\A)>0$, then $f'(\A)$ will count exactly one element less than $f(\A)$. Otherwise, if $f(\A)=0$, then $\A \not\models\exists \x\,\varphi(\x,\e)$ for every tuple $\e$ of elements in $A$, so $\A \not\models\exists \x\,\varphi^\prime(\x,\e)$ for every $\e$ and, therefore, $f'(\A)=0$. Hence, $f' = f\dotminus 1,$ from which we conclude that $f\dotminus 1\in\E{1}.$
+%%	
+%	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X)$ where $\x = (x_1,\dots,x_d)$ and $\X = (X_1,\dots,X_r)$. That is,
 %	\begin{eqnarray*}
-%		f(\A) &=& \mid \{ \langle\e\rangle \mid \A \models \exists \x \ \varphi(\x,\e) \} \mid,
+%		f(\A) &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid \label{f1},
 %	\end{eqnarray*}
-%	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\e \in A^d$. Our goal here is to eliminate the lexicographically smallest sequence of variables, which can be done easily. First, let $\y = (y_1,\dots,y_k)$, $\y\,^\prime = (y_1^\prime,\dots,y_k^\prime)$ and
-%	\begin{eqnarray*}
-%		\varphi_{k,<}(\y\,^\prime,\y) &=& \bigvee_{i = 1}^k \left( \bigwedge_{j=1}^{i-1} y_j^\prime = y_j \wedge y_i^\prime < y_i \right).
-%	\end{eqnarray*}
-%	This formula is true if $\y\,^\prime$ is lexicographically smaller than $\y$. Now, let $f'$ be defined by
-%	\begin{eqnarray*}
-%		\varphi^\prime(\x,\z) &=& \varphi(\x,\z) \wedge \exists \z\,^\prime (\varphi(\x,\z\,^\prime) \wedge \varphi_{d,<}(\z\,^\prime,\z ) ).
-%	\end{eqnarray*}
-%	If $f(\A)>0$, then $f'(\A)$ will count exactly one element less than $f(\A)$. Otherwise, if $f(\A)=0$, then $\A \not\models\exists \x\,\varphi(\x,\e)$ for every tuple $\e$ of elements in $A$, so $\A \not\models\exists \x\,\varphi^\prime(\x,\e)$ for every $\e$ and, therefore, $f'(\A)=0$. Hence, $f' = f\dotminus 1,$ from which we conclude that $f\dotminus 1\in\E{1}.$
+%	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\P = (P_1,\ldots,P_r)$ and $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$. For the time being, suppose that
+%	\begin{eqnarray}
+%	\varphi(\x,\X) &=& \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)
+%	\end{eqnarray}
+%	where $n$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda:\{1,\ldots,n\}\to\{1,\ldots,r\}$, $\y$ is a $p$-tuple of variables in $\x$, $\varphi^{-}(\X,\y)$ is a conjunction of negated predicates in $\X$, $\theta(\x)$ defines a total order on a partition of $\x$, and $\beta(\x)$ is an FO-formula over $\L$ which mentions all variables in $\x$. Note that $\theta(\x)$ also mentions all variables in $\x$. We also assume that $(\x_1,\dots,\x_n,\y) = \x$. As an example, the following formula is of this form:
+%	\begin{multline*}
+%	\varphi(\x,\X) =  X_1(x_1,x_2) \wedge X_3(x_3) \wedge X_2(x_4,x_5) \wedge X_3(x_6) \wedge \neg X_1(x_7,x_8) \wedge \\ (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 ) \wedge \\ \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big),
+%	\end{multline*}
+%	where $\x = (x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8)$ and $\X = (X_1,X_2,X_3)$. Here, $n = 4$, $\lambda(1) = 1$, $\lambda(2) = \lambda(4) = 3$ and $\lambda(3) = 2$, $\x_1 = (x_1,x_2)$, $\x_2 = (x_3)$, $\x_3 = (x_4,x_5)$, $\x_4 = (x_6)$ and $\y = (x_7,x_8)$. Moreover, $\varphi^{-}(\X,\y) = \neg X_1(x_7,x_8)$, $\theta(\x) = (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 )$, which defines a total order on the partition of $\x$ $\{\{x_1,x_3,x_4\},\{x_2,x_5,x_8\},\{x_6,x_7\}\}$, and $\beta(\x) = \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big)$.
 %	
-	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X)$ where $\x = (x_1,\dots,x_d)$ and $\X = (X_1,\dots,X_r)$. That is,
-	\begin{eqnarray*}
-		f(\A) &=& \mid \{ \langle\P\rangle \mid \A \models \exists \x \ \varphi(\x,\P) \} \mid \label{f1},
-	\end{eqnarray*}
-	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\P = (P_1,\ldots,P_r)$ and $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$. For the time being, suppose that
-	\begin{eqnarray}
-	\varphi(\x,\X) &=& \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)
-	\end{eqnarray}
-	where $n$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda:\{1,\ldots,n\}\to\{1,\ldots,r\}$, $\y$ is a $p$-tuple of variables in $\x$, $\varphi^{-}(\X,\y)$ is a conjunction of negated predicates in $\X$, $\theta(\x)$ defines a total order on a partition of $\x$, and $\beta(\x)$ is an FO-formula over $\L$ which mentions all variables in $\x$. Note that $\theta(\x)$ also mentions all variables in $\x$. We also assume that $(\x_1,\dots,\x_n,\y) = \x$. As an example, the following formula is of this form:
-	\begin{multline*}
-	\varphi(\x,\X) =  X_1(x_1,x_2) \wedge X_3(x_3) \wedge X_2(x_4,x_5) \wedge X_3(x_6) \wedge \neg X_1(x_7,x_8) \wedge \\ (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 ) \wedge \\ \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big),
-	\end{multline*}
-	where $\x = (x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8)$ and $\X = (X_1,X_2,X_3)$. Here, $n = 4$, $\lambda(1) = 1$, $\lambda(2) = \lambda(4) = 3$ and $\lambda(3) = 2$, $\x_1 = (x_1,x_2)$, $\x_2 = (x_3)$, $\x_3 = (x_4,x_5)$, $\x_4 = (x_6)$ and $\y = (x_7,x_8)$. Moreover, $\varphi^{-}(\X,\y) = \neg X_1(x_7,x_8)$, $\theta(\x) = (x_1 < x_2 \wedge x_1 = x_3 \wedge x_1 = x_4 \wedge x_2 = x_8 \wedge x_2 = x_5 \wedge x_8 < x_6 \wedge x_6 = x_7 )$, which defines a total order on the partition of $\x$ $\{\{x_1,x_3,x_4\},\{x_2,x_5,x_8\},\{x_6,x_7\}\}$, and $\beta(\x) = \forall z\big( S_1(x_1,z,x_2) \wedge x_3 = x_3 \wedge x_4 = x_4 \wedge x_5 = x_5 \wedge x_6 = x_6 \wedge x_7 = x_7 \wedge x_8 = x_8 \big)$.
-	
-	Similarly to the previous proof, we would like to eliminate the {\em lexicographically smallest}\footnote{We consider the lexicographically smallest tuple of predicates as the one in which its predicates contain the lexicographically smallest tuples and do not contain any more tuples than those} tuple of predicates that satisfies the formula \eqref{f1}. Let $\u_i$ be a $a_{\lambda(i)}$-tuple of variables for every $i \in \{1,\dots,n\}$, and let $m = \sum_{i = 1}^n a_{\lambda(i)}$ be the number of variables of $(\x_1,\dots,\x_n)$. We now define
-	\begin{multline*}
-	\alpha_{\min}(\u_1,\dots,\u_n) = \exists\y\Big[ \alpha(\u_1,\dots,\u_n,\y)\wedge \\ \forall\v_1\cdots\forall\v_n\forall\w\Big(\big(\alpha(\v_1,\dots,\v_n,\w)\wedge\bigvee_{i=1}^n(\u_i\neq\v_i)\big)\to (\u_1,\dots,\u_n)<(\v_1,\dots,\v_n)\Big)\Big],
-	\end{multline*}
-	where $\alpha(\x) = \theta(\x) \wedge \beta(\x)$. Note that $\alpha_{\min}$ is satisfied only by the lexicographically smallest assignment $(\d_1,\dots,\d_n)$ to $(\x_1,\dots,\x_n)$ such that $\A\models\theta(\d_1,\dots,\d_n,\l)$ and $\A\models\beta(\d_1,\dots,\d_n,\l)$ for some $\l \in A^p$. Our new formula is
-	\begin{multline}
-	\varphi^\prime(\x,\X) = \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)\wedge \\ \exists\u_1\cdots\exists\u_n\bigg[\alpha_{\min}(\u_1,\dots,\u_n) \wedge \bigg(\bigg(\bigvee_{i = 1}^{n}\neg X_{\lambda(i)}(\u_i) \bigg) \vee \bigvee_{i=1}^r \exists \v\Big( X_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \u_j\Big) \bigg) \bigg].
-	\end{multline}
-	We now show a result by which the main proof will follow.
-	\begin{lemma} \label{first}
-		$f_{\exists \x \: \varphi^\prime(\x,\X)} = f_{\exists \x \: \varphi(\x,\X)} \dotminus 1$.
-	\end{lemma}
-	\begin{proof}
-		Let $\A \in \str$. Consider two cases: assume first that $\A\models\exists\x\,\varphi(\x,\R)$ for some assignment $\R$ to $\X$. Let $\d = (\d_1,\dots,\d_n,\ep)$ be the lexicographically smallest assignment to $\x$ for which $\A\models\alpha(\d)$, where $\d_i$ is the respective assignment to $\x_i$, for every $i\in\{1,\dots,n\}$, and $\ep$ is an assignment for $\y$. Consider now the tuple $\P = (P_1,\dots,P_r)$ where $P_i = \bigcup_{j\in[1,n]:\:\lambda(j)=i}\{\d_j\}$. We will show that this assignment to $\X$ is such that (a) $\A\models\exists\x\,\varphi(\x,\P),$ (b) $\A\not\models\exists\x\,\varphi^\prime(\x,\P)$ and (c) $\P$ is the only assignment that satisfies (a) and (b).
-		\begin{enumerate}
-			\item[(a)] By contradiction, suppose that $\A\not\models\exists\x\,\varphi(\x,\P)$. That is, there is no assignment $\s$ to $\x$ such that $\A\models\varphi(\s,\P).$ Since $\d$ is such that $\A\models \bigwedge_{i=1}^n P_{\lambda(i)}(\d_i)$ and $\A\models \alpha(\d)$, it follows that $\A\not\models\varphi^{-}(\P,\ep)$ (since $\alpha(\d)=\theta(\d)\wedge\beta(\d)$). Therefore, there is an $i\in\{1,\ldots,n\}$ such that $\neg P_{\lambda(i)}(\d_i)$ appears in $\varphi^{-}(\P,\ep)$. Then, there is an $a_{\lambda(i)}$-tuple $\z$ in $\y$ such that $\neg X_{\lambda(i)}(\z)$ appears in $\varphi^{-}(\X,\x)$. We know that either (1) $\theta(\x)\models \z = \x_i$, (2) $\theta(\x)\models \z<\x_i$ or (3) $\theta(\x)\models \x_i<\z$. Considering that (2) and (3) are not possible given that both $\z$ and $\x_i$ are assigned the value $\d_i$ and $\A\models\theta(\d)$, we have that $\theta(\x)\models \z = \x_i$. But if this is the case, then $X_{\lambda(i)}(\x_i), \neg X_{\lambda(i)}(\z)$ and $\z = \x_i$ are all logical consequences of $\varphi(\x,\X)$, which means $\varphi(\x,\X)$ is inconsistent. That is, there's no structure $\A^\prime\in\str$ such that $\A^\prime\models\exists\x\:\varphi(\x,\R^\prime)$ for any assignment $\R^\prime$ to $\X$. In particular, $\A\not\models\exists\x\,\varphi(\x,\R^\prime)$ for every possible assignment $\R^\prime$ to $\X$, which contradicts the initial assumption that $\A\models\exists\x\,\varphi(\x,\R)$ for some assignment $\R$ to $\X$.
-			\item[(b)] Note that if $\A \models \alpha_{\min}(\c_1,\ldots,\c_n)$, then necessarily $\c_i = \d_i$ for $i\in\{1,\ldots,n\}.$ However, by the construction of $\P$, we see that 
-			$$\A\not\models\bigvee_{i = 1}^{n}\neg P_{\lambda(i)}(\d_i) \text{ and that } \A\not\models\bigvee_{i=1}^r \exists \v\Big( P_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \d_j\Big).$$ Then, $\A\not\models\exists\x\,\varphi^\prime(\x,\P)$.
-			\item[(c)] By contradiction, let $\P^\prime \neq \P$ be such that $\A\models\exists\x\,\varphi(\x,\P^\prime)$ and $\A\not\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. We consider two cases: first, suppose that $\P^\prime$ is missing a tuple of $\P$. Let $i\in\{1,\ldots,n\}$ such that in $\d_i$ is not in $P^\prime_i$. Then $\A\models \neg P^\prime_i(\d_i)$, and so,$$\A\models \bigg(\bigvee_{i = 1}^{n}\neg X_{\lambda(i)}(\d_i) \bigg), $$ from which we conclude that $\A\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. Second, suppose there is some predicate $\P^\prime_i$ in $\P^\prime$ which has a tuple that $P_i$ does not have. If this is the case, then $$\A\models\bigvee_{i=1}^r \exists \v\Big( P_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \u_j\Big),$$ so $\A\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. On both cases, we have a contradiction.
-		\end{enumerate}
-		With this, we conclude that for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)>0,$ we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = f_{\exists\x\,\varphi(\x,\X)}(\A)-1.$
-		
-		Second, assume that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\R)$. Let $\P$ be an arbitrary assignment to $\X$. Since $\A\not\models\exists\x\,\varphi(\x,\P)$, we see that $\A\not\models\exists\x\,(\varphi(\x,\P)\wedge\psi(\x,\P))$ for any formula $\psi(\x,\P)$. It follows that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi^\prime(\x,\R)$. And so, for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)=0,$ it holds that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = 0.$ We conclude that $f_{\exists\x\,\varphi^\prime(\x,\X)} = f_{\exists\x\,\varphi(\x,\X)}\dotminus 1,$ which was to be shown.
-	\end{proof}
-	We now continue with the general case, in which $\varphi(\x,\X)$ is an arbirtary extended quantifier-free $\L$-formula. By using a standard DNF transformation algorithm and considering FO-formulas over $\L$ as literals, we can find formulas $\gamma_i(\x,\X)$ with $i\in\{1,\ldots,\ell\}$ such that
-	\begin{eqnarray*}
-		\varphi(\x,\X) &\equiv& \gamma_1(\x,\X) \vee \gamma_2(\x,\X) \vee \dots  \vee \gamma_{\ell}(\x,\X),
-	\end{eqnarray*}
-	where, for every $i\in\{1,\ldots,\ell\}$, 
-	\begin{eqnarray*}
-		\gamma_i(\x,\X) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j}) \right) \wedge \gamma^{-}_i(\X,\y_i)  \wedge \delta_i(\x).
-	\end{eqnarray*}
-	The function $\lambda_i$ is defined analogously to $\lambda$ of the first part of the proof. The tuple $\x_{i,j}$ has $a_{\lambda_i(j)}$ variables for $j\in\{1,\ldots,n_i\}$, $\y_i$ has $p_i$ variables and are such that $(\x_{i,1},\ldots,\x_{i,n_i},\y_i) = \x.$ The formulas $\gamma^{-}_i(\X,\y_i)$, $\delta_i(\x)$ are defined analogously to $\varphi^{-}(\X,\y)$ and $\beta(\x)\,$\footnote[2]{Note that $\delta_i(\x)$ can include subformulas of the form $(\u = \u)$.} respectively (see \eqref{f1}). Let $g$ be a function that counts the number of possible orders over partitions on a $d$-tuple of variables. Let the formulas $\theta^i(\x)$ for $i\in\{1,\ldots,g(d)\}$ represent each of these orders over $\x$. Note that for every formula $\eta(\x)$,
-	\begin{eqnarray*}
-		\exists\x\:\eta(\x) &\equiv& \exists\x(\eta(\x)\wedge\theta^1(\x)) \vee \cdots \vee \exists\x(\eta(\x)\wedge\theta^{g(d)}(\x)).
-	\end{eqnarray*}
-	We define the following formulas $\xi_i(\x,\X)$, for $i\in\{1,\ldots,m\}$ where $m = \ell \cdot g(d)$, as follows: 
-	\begin{eqnarray*}
-		\xi_1(\x,\X) &=& \gamma_1(\x,\X) \wedge \theta^1(\x), \\
-		& \vdots & \\
-		\xi_{g(d)}(\x,\X) &=& \gamma_1(\x,\X) \wedge \theta^{g(d)}(\x), \\
-		\xi_{g(d)+1}(\x,\X) &=& \gamma_2(\x,\X) \wedge \theta^1(\x), \\
-		& \vdots & \\
-		\xi_{2\cdot g(d)}(\x,\X) &=& \gamma_2(\x,\X) \wedge \theta^{g(d)}(\x), \\
-		& \vdots & \\
-		\xi_{(\ell-1) g(d)+1}(\x,\X) &=& \gamma_{\ell}(\x,\X) \wedge \theta^1(\x), \\
-		& \vdots & \\
-		\xi_{\ell \cdot g(d)}(\x,\X) &=& \gamma_{\ell}(\x,\X) \wedge \theta^{g(d)}(\x).
-	\end{eqnarray*}
-	Having every disjunct with a total order allows us to eliminate the ones that are unsatisfiable for every $\L$-structure $\A$, that is, each $i\in\{1,\ldots,m\}$ such that for every assignment $\s$ to $\x,$ $f_{\xi_i(\s,\X)}(\A) = 0,$ for every $\A\in\str.$ Let $k$ be the number of disjuncts that are left after eliminating the unsatisfiable disjuncts. We use an injective\footnote[3]{We need this function to be injective because this way we can assure each one of the $k$ satisfiable disjuncts to be represented} function $\rho:\{1,\ldots,k\}\to\{1,\ldots,m\}$ such that $\varphi_i(\x,\X) = \xi_{\rho(i)}(\x,\X)$ is satisfiable, for every $i\in\{1,\ldots,k\}.$
-	
-	We can conclude that
-	\begin{eqnarray*}
-		\varphi(\x,\X) &\equiv& \varphi_1(\x,\X) \vee \varphi_2(\x,\X) \vee \dots  \vee \varphi_k(\x,\X),
-	\end{eqnarray*}
-	and for every $i\in\{1,\ldots,k\}$,
-	\begin{eqnarray*}
-		\varphi_i(\x,\X) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j}) \right) \wedge \varphi^{-}_i(\X,\y_i) \wedge \theta_i(\x) \wedge \beta_i(\x),
-	\end{eqnarray*}
-	where $n_i$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\y_i$ is a $p_i$-tuple of variables in $\x$, $\varphi_i^{-}(\X,\y_i)$ is a conjunction of negated predicates in $\X$, $\theta_i(\x)$ defines a total order on a partition of $\x$, and $\beta_i(\x)$ is an FO-formula over $\L$ which mentions all variables in $\x$. Let $\alpha_i(\x) = \theta_i(\x)\wedge\beta_i(\x).$
-	
-	%% CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM
-	%% CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM
-	
-	\begin{claim} \label{alpha}
-		Let $\A\in\str$ and $i\in\{1,\ldots,k\}$. For every assignment $\s$ to $\x$ such that $\A\models\alpha_i(\s)$, it holds that $f_{\varphi_i(\s,\X)}(\A) > 0.$
-	\end{claim}
-	\begin{proof}
-		Let $\s = (\s_1,\ldots,\s_{n_i},\t)$ such that $\A\models\alpha_i(\s)$, and let $\P = (\P_1,\ldots,\P_r)$ where $P_i = \bigcup_{j\in[1,n_i]:\:\lambda(j)=i}\{s_i\}$. We will show that $\A\models\varphi_i(\s,\P)$. By contradiction, suppose that $\A\not\models\exists\x\,\varphi_i(\x,\P)$. That is, there is no assignment $\e$ to $\x$ such that $\A\models\varphi(\e,\P).$ Following the same proof as in case (a) of Lemma \ref{first}, we conclude that $\varphi_i(\x,\P)$ is inconsistent. However, as we mentioned previously, all of such disjuncts have been eliminated, which leads to a contradiction.
-	\end{proof}
-	
-	Our plan now is to exclude the lexicographically smallest assignment $\P$ such that $\A\models\exists\x\:\varphi_1(\x,\P)$, and if there is no such $\P$, exclude the lexicographically smallest $\Q$ such that $\A\models\exists\x\:\varphi_2(\x,\Q)$, and so on. As we already know how to exclude that assignment in the first disjunct, we will now deal with the next disjuncts. Similarly to the first part of the proof, for each $i\in\{1,\ldots,k\}$ let $m_i = \sum_{j = 1}^{n_i} a_{\lambda_i(j)}$ and let
-	\begin{multline*}
-	\alpha^i_{\min}(\u_1,\dots,\u_{n_i}) = \exists\y\Big[ \alpha_i(\u_1,\dots,\u_{n_i},\y)\wedge \\ \forall\v_1\cdots\forall\v_{n_i}\forall\w\Big(\big(\alpha_i(\v_1,\dots,\v_{n_i},\w)\wedge\bigvee_{j=1}^{n_i}(\u_j\neq\v_j)\big)\to (\u_1,\dots,\u_{n_i})<(\v_1,\dots,\v_{n_i})\Big)\Big],
-	\end{multline*}
-	where $\u_j$ and $\v_j,$ have $a_{\lambda_i(j)}$ variables for $j\in\{1,\ldots,n_i\}$, and $\w$ has $p_i$ variables. Also, let
-	\begin{multline*}
-	\psi_i(\X) = \forall\x\:\neg\alpha_i(\x) \vee \exists\u_1\cdots\exists\u_{n_i}\bigg[\alpha^i_{\min}(\u_1,\dots,\u_{n_i}) \\ \wedge \bigg(\bigg(\bigvee_{j = 1}^{n_i}\neg X_{\lambda_i(j)}(\u_i) \bigg) \vee \bigvee_{j=1}^r \exists \v\Big( X_j(\v) \wedge \bigwedge\limits_{\substack{\ell\in[1,n_i]:\\ \lambda_i(\ell) = j}} \v \neq \u_\ell\Big) \bigg) \bigg].
-	\end{multline*}
-	Note that $\psi_i(\X)$ excludes only the lexicographically smallest tuple of predicates $\P$ such that $\A\models\exists\x\:\varphi_i(\P,\x),$ if there is at least one. In other words, every assignment $\P^\prime \neq \P$ is such that $\A\models\psi_i(\P^\prime).$ Our new formula $\varphi_i^\prime(\x,\X)$ is defined as follows:
-	$$
-	\varphi_i^\prime(\x,\X) = \varphi_i(\x,\X) \wedge \psi_1(\X) \wedge (\exists\v\:\alpha_1(\v)\vee\psi_2(\X)) \wedge \cdots \wedge (\exists\v\:\alpha_1(\v)\vee\cdots\vee\exists\v\:\alpha_{i-1}(\v)\vee\psi_i(\X)).
-	$$
-	Let $\varphi^\prime(\x,\X) = \varphi_1^\prime(\x,\X)\vee\cdots\vee\varphi_k^\prime(\x,\X).$ We will now show that $f_{\exists\x\varphi^\prime(\x,\X)} = f_{\exists\x\varphi(\x,\X)}\dotminus 1.$ Assume that $\A\in\str$. Suppose first that there is at least one assignment $\R$ to $\X$ such that $\A\models\exists\x\:\varphi(\x,\R).$ Let $q$ be the least $i\in\{1,\ldots,k\}$ such that there exists at least one assignment $\R^\prime$ to $\X$ for which $\A\models\exists\x\:\varphi_i(\x,\R^\prime).$ Let $\d = (\d_1,\dots,\d_{n_q},\ep)$ be the lexicographically smallest assignment to $\x$ for which $\A\models\alpha_q(\d)$, where $\d_i$ is the corresponding assignment to $\x_i$, for every $i\in\{1,\dots,n_q\}$, and $\ep$ is an assignment for $\y$. Consider now the tuple $\P = (P_1,\dots,P_r)$ where $P_i = \bigcup_{j:\lambda_q(j)=i,j\in[1,n_q]}\{\d_j\}$. As we did in Lemma \ref{first} we will show that $\P$ is such that (a) $\A\models\exists\x\:\varphi(\x,\P),$ (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P),$ and (c) $\P$ is the only assignment to $\X$ that satisfies both (a) and (b)
-	\begin{enumerate}
-		\item[(a)] As we showed in part (a) of Lemma \ref{first}, if there is at least one assignment $\R$ to $\X$ such that $\A\models\exists\x\:\varphi_q(\x,\R)$, then $\A\models\exists\x\:\varphi_q(\x,\P)$ for this particular $\P$. However, as we showed in Claim \ref{alpha}, if there is an assignment $\s$ to $\x$ such that $\A\models\alpha_q(\s)$, then there {\em is} such an assignment to $\X$. The assignment $\d$ to $\x$ satisfies that $\A\models\alpha_q(\d)$, so it holds that $\A\models\exists\x\:\varphi_q(\x,\P)$. It immediately follows that $\A\models\exists\x\:\varphi(\x,\P).$
-		
-		\item[(b)] We will show that $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$ for (1) $i\in\{1,\ldots,q-1\}$, and (2) $i\in\{q,\ldots,k\}$. (1) By the choice of $q$, it holds that $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$ for every $i\in\{1,\ldots,q-1\}$ since there is no possible assignment to $\X$ for any of their sub-formulas $\varphi_i(\x,\X)$. (2) We can use the proof in Lemma \ref{first} to see that $\A\not\models\psi_q(\P).$ For each $i\in\{q,\ldots,k\}$, the sub-formula 
-		$$ \zeta_q(\X) =  (\exists\v\:\alpha_1(\v)\vee\cdots\vee\exists\v\:\alpha_{q-1}(\v)\vee\psi_q(\X)) $$ 
-		appears as a conjunct in $\varphi^\prime_i(\x,\X)$. However, by the choice of $q$, there is no $i\in\{1,\ldots,q-1\}$ such that $\A\models\exists\v\:\varphi_i(\v,\P)$, and also $\A\not\models\psi_q(\P)$. It follows that $\A\not\models\zeta_q(\P)$,  so $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$. And so, we conclude that $\A\not\models\exists\x\:\varphi^\prime(\x,\P).$
-		
-		\item[(c)] Suppose there is an assignment $\P^\prime \neq \P$ to $\X$ that satisfies both (a) and (b). As we deduce from the part (c) of Lemma \ref{first}, $\P$ is the only assignment to $\X$ such that $\A\not\models\:\psi_q(\P)$, so necessarily $\A\models\:\psi_q(\P^\prime)$. Since $\P^\prime$ assigned to $\X$ satisfies (a), then $\A\models\exists\x\:\varphi(\x,\P^\prime).$ By the choice of $q,$ every $i\in\{1,\ldots,q-1\}$ is such that $\A\models\forall\x\:\neg\alpha_i(\x)$, so $\A\models\psi_i(\P^\prime)$ for each $i$. But as we mentioned, also $\A\models\:\psi_q(\P^\prime),$ which means that $\A\models\exists\x\:\varphi^\prime_q(\x,\P^\prime),$ and so, $\A\models\exists\x\:\varphi^\prime(\x,\P^\prime),$ which leads to a contradiction.
-	\end{enumerate}
-	
-	With this, we conclude that for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)>0$, we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = f_{\exists\x\,\varphi(\x,\X)}(\A)-1.$
-	
-	Second, assume that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi_i(\x,\R)$ for any $i\in\{1,\ldots,k\}$. Let $\P$ be an arbitrary assignment to $\X$. Since $\A\not\models\exists\x\,\varphi_i(\x,\P)$, for any $i,$ we see that $\A\not\models\exists\x\,(\varphi(\x,\P)\wedge\chi(\x,\P))$ for any formula $\chi(\x,\P)$. It follows that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi^\prime_i(\x,\R),$ for any $i\in\{1,\ldots,k\}$. And so, for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)=0,$ we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = 0.$ Hence, from the results in the previous paragraph, if $f^\prime = f_{\exists\x\,\varphi^\prime(\x,\X)}$, we have that $f^\prime = f\dotminus 1\in\E{1}$ 
-	
-	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X,\z)$, where $\x = (x_1,\dots,x_d), \X = (X_1,\dots,X_r)$ and $\z = (z_1,\dots,z_p)$. That is,
-	\begin{eqnarray*}
-		f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \ \varphi(\x,\P,\e) \} \mid,
-	\end{eqnarray*}
-	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\P = (P_1,\ldots,P_r)$, $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$ and $\e \in A^p$. In order to prove that $f\dotminus 1\in\E{1}$, we define the formulas $\varphi_i(\x,\X,\z)$ for $i\in\{1,\ldots,k\}$ in the same way as case 2, where
-	\begin{eqnarray*}
-		\varphi(\x,\X,\z) \equiv \varphi_1(\x,\X,\z) \vee \cdots \vee \varphi_k(\x,\X,\z),
-	\end{eqnarray*}
-	and
-	\begin{eqnarray*}
-		\varphi_i(\x,\X,\z) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j},\z_{i,j}) \right) \wedge \varphi^{-}_i(\X,\y_i,\w_i) \wedge \theta_i(\x,\z) \wedge \beta_i(\x,\z),
-	\end{eqnarray*}
-	where $n_i$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, the tuple $\x_{i,j}$ has $b_{\lambda_i(j)}$ variables and the tuple $\z_{i,j}$ has $c_{\lambda_i(j)}$ for $j\in\{1,\ldots,n_i\}$ (note that $b_{\ell} + c_{\ell} = a_{\ell}$ for $\ell\in\{1,\ldots,r\}$), $\y_i$ has $p_i$ variables, and $\w_i$ has $q_i$ variables. Furthermore, we have that $(\x_{i,1},\ldots,\x_{i,n_i},\y) = \x$ and $(\z_{i,1},\ldots,\z_{i,n_i},\w_i) = \z.$ The formula $\theta(\x,\z)$ defines a total order, analogously to case 2. The formulas $\varphi^{-}_i(\X,\y_i,\w_i)$, $\beta_i(\x,\z)$, are also defined analogously.
-	
-	In this case, we mix both the strategies in cases 1 and 2. That is, we are going to {\em isolate} the lexicographically smallest tuple of predicates that satisfies the first satisfiable disjunct, and then {\em exclude} the lexicographically smallest tuple that satisfies the isolated disjunct.
-	
-	Let $m_i = \sum_{j = 1}^{n_i} a_{\lambda_i(j)}$ and
-	\begin{multline*}
-	\alpha^i_{\min}(\x_1,\dots,\x_{n_i},\z_1,\dots,\z_{n_i}) = \exists\y\exists\w\Big[ \alpha_i(\x_1,\dots,\x_{n_i},\y,\z_1,\dots,\z_{n_i},\w)\wedge \\ \forall\u_1\cdots\forall\u_{n_i}\forall\s\forall\v_1\cdots\forall\v_{n_i}\forall\t\Big(\big(\alpha_i(\u_1,\dots,\u_{n_i},\s,\v_1,\dots,\v_{n_i},\t)\wedge\bigvee_{j=1}^{n_i}(\x_j\neq\u_j \vee \z_j\neq\v_j)\big)\to \\ (\x_1,\dots,\x_{n_i},\z_1,\dots,\z_{n_i})<(\u_1,\dots,\u_{n_i},\v_1,\dots,\v_{n_i})\Big)\Big],
-	\end{multline*}
-	and let
-	\begin{multline*}
-	\psi_i(\X,\z) = \forall\x\forall\v\:\neg\alpha_i(\x,\v) \vee \exists\u_1\cdots\exists\u_{n_i}\exists\w_1\cdots\exists\w_{n_i}\bigg[\alpha^i_{\min}(\u_1,\dots,\u_{n_i},\w_1,\dots,\w_{n_i}) \\ \wedge \bigg(\bigg(\bigvee_{j = 1}^{n_i}\neg X_{\lambda_i(j)}(\u_i,\w_i) \bigg) \vee \bigvee_{j=1}^r \exists \s\exists \t\Big( X_j(\s,\t) \wedge \bigwedge_{\ell\in[1,n_i]: \lambda_i(\ell) = j} \s \neq \u_\ell \vee \t \neq \w_\ell\Big) \bigg) \bigg] \vee \\ \exists\w(\exists\u\:\varphi(\u,\X,\w) \wedge \w<\z).
-	\end{multline*}
-	Let $\P$ and $\e$ be assignments to $\X$ and $\z$. Note that $\psi_i(\X,\z)$ excludes $\P$ and $\e$ only if $\P$ is the {\em lexicographically smallest} tuple of predicates (Same as case 2) such that $\A\models\exists\x\:\varphi_i(\x,\P,\d)$, for some assignment $\d$ to $\z$, and $\e$ is the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_i(\x,\P,\e).$ We define $\varphi_i^\prime(\x,\X,\z)$ in the same way as case 2:
-	\begin{multline*}
-	\varphi_i^\prime(\x,\X,\z) = \varphi_i(\x,\X,\z) \wedge \psi_1(\X,\z) \wedge (\exists\u\exists\v\:\alpha_1(\u,\v)\vee\psi_2(\X,\z)) \wedge \cdots \wedge \\ (\exists\u\exists\v\:\alpha_1(\u,\v)\vee\cdots\vee\exists\u\exists\v\:\alpha_{i-1}(\u,\v)\vee\psi_i(\X,\z)).
-	\end{multline*}
-	Finally, let $\varphi^\prime(\x,\X,\z) = \bigvee_{i = 1}^k \varphi_i^\prime(\x,\X,\z)$.
-	
-	Let $q$ be the least $i\in\{1,\ldots,k\}$ such that $\A\models\exists\x\:\varphi_i(\x,\R,\d)$ for some assignment $R$ to $\X$ and some assignment $\d$ to $\z$. Let $\P$ be the lexicographically smallest tuple of predicates such that $\A\models\exists\x\:\varphi_q(\x,\P,\d^\prime)$ for some assignment $\d^\prime$ to $\z$. Let $\e$ be the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_q(\x,\P,\e).$ This formula is such that (a) $\A\models\exists\x\:\varphi(\x,\P,\e)$, (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P,\e)$ and $\P$ and $\e$ are the only assignments that satisfy (a) and (b). The proof of this is analogous to case 2. Therefore, we conclude that $f_{\exists\x\,\varphi^\prime(\x,\X,\z)} = f_{\exists\x\,\varphi(\x,\X,\z)}\dotminus 1.$
-\end{enumerate}
+%	Similarly to the previous proof, we would like to eliminate the {\em lexicographically smallest}\footnote{We consider the lexicographically smallest tuple of predicates as the one in which its predicates contain the lexicographically smallest tuples and do not contain any more tuples than those} tuple of predicates that satisfies the formula \eqref{f1}. Let $\u_i$ be a $a_{\lambda(i)}$-tuple of variables for every $i \in \{1,\dots,n\}$, and let $m = \sum_{i = 1}^n a_{\lambda(i)}$ be the number of variables of $(\x_1,\dots,\x_n)$. We now define
+%	\begin{multline*}
+%	\alpha_{\min}(\u_1,\dots,\u_n) = \exists\y\Big[ \alpha(\u_1,\dots,\u_n,\y)\wedge \\ \forall\v_1\cdots\forall\v_n\forall\w\Big(\big(\alpha(\v_1,\dots,\v_n,\w)\wedge\bigvee_{i=1}^n(\u_i\neq\v_i)\big)\to (\u_1,\dots,\u_n)<(\v_1,\dots,\v_n)\Big)\Big],
+%	\end{multline*}
+%	where $\alpha(\x) = \theta(\x) \wedge \beta(\x)$. Note that $\alpha_{\min}$ is satisfied only by the lexicographically smallest assignment $(\d_1,\dots,\d_n)$ to $(\x_1,\dots,\x_n)$ such that $\A\models\theta(\d_1,\dots,\d_n,\l)$ and $\A\models\beta(\d_1,\dots,\d_n,\l)$ for some $\l \in A^p$. Our new formula is
+%	\begin{multline}
+%	\varphi^\prime(\x,\X) = \left( \bigwedge_{i=1}^n X_{\lambda(i)}(\x_i) \right) \wedge \varphi^{-}(\X,\y) \wedge \theta(\x) \wedge \beta(\x)\wedge \\ \exists\u_1\cdots\exists\u_n\bigg[\alpha_{\min}(\u_1,\dots,\u_n) \wedge \bigg(\bigg(\bigvee_{i = 1}^{n}\neg X_{\lambda(i)}(\u_i) \bigg) \vee \bigvee_{i=1}^r \exists \v\Big( X_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \u_j\Big) \bigg) \bigg].
+%	\end{multline}
+%	We now show a result by which the main proof will follow.
+%	\begin{lemma} \label{first}
+%		$f_{\exists \x \: \varphi^\prime(\x,\X)} = f_{\exists \x \: \varphi(\x,\X)} \dotminus 1$.
+%	\end{lemma}
+%	\begin{proof}
+%		Let $\A \in \str$. Consider two cases: assume first that $\A\models\exists\x\,\varphi(\x,\R)$ for some assignment $\R$ to $\X$. Let $\d = (\d_1,\dots,\d_n,\ep)$ be the lexicographically smallest assignment to $\x$ for which $\A\models\alpha(\d)$, where $\d_i$ is the respective assignment to $\x_i$, for every $i\in\{1,\dots,n\}$, and $\ep$ is an assignment for $\y$. Consider now the tuple $\P = (P_1,\dots,P_r)$ where $P_i = \bigcup_{j\in[1,n]:\:\lambda(j)=i}\{\d_j\}$. We will show that this assignment to $\X$ is such that (a) $\A\models\exists\x\,\varphi(\x,\P),$ (b) $\A\not\models\exists\x\,\varphi^\prime(\x,\P)$ and (c) $\P$ is the only assignment that satisfies (a) and (b).
+%		\begin{enumerate}
+%			\item[(a)] By contradiction, suppose that $\A\not\models\exists\x\,\varphi(\x,\P)$. That is, there is no assignment $\s$ to $\x$ such that $\A\models\varphi(\s,\P).$ Since $\d$ is such that $\A\models \bigwedge_{i=1}^n P_{\lambda(i)}(\d_i)$ and $\A\models \alpha(\d)$, it follows that $\A\not\models\varphi^{-}(\P,\ep)$ (since $\alpha(\d)=\theta(\d)\wedge\beta(\d)$). Therefore, there is an $i\in\{1,\ldots,n\}$ such that $\neg P_{\lambda(i)}(\d_i)$ appears in $\varphi^{-}(\P,\ep)$. Then, there is an $a_{\lambda(i)}$-tuple $\z$ in $\y$ such that $\neg X_{\lambda(i)}(\z)$ appears in $\varphi^{-}(\X,\x)$. We know that either (1) $\theta(\x)\models \z = \x_i$, (2) $\theta(\x)\models \z<\x_i$ or (3) $\theta(\x)\models \x_i<\z$. Considering that (2) and (3) are not possible given that both $\z$ and $\x_i$ are assigned the value $\d_i$ and $\A\models\theta(\d)$, we have that $\theta(\x)\models \z = \x_i$. But if this is the case, then $X_{\lambda(i)}(\x_i), \neg X_{\lambda(i)}(\z)$ and $\z = \x_i$ are all logical consequences of $\varphi(\x,\X)$, which means $\varphi(\x,\X)$ is inconsistent. That is, there's no structure $\A^\prime\in\str$ such that $\A^\prime\models\exists\x\:\varphi(\x,\R^\prime)$ for any assignment $\R^\prime$ to $\X$. In particular, $\A\not\models\exists\x\,\varphi(\x,\R^\prime)$ for every possible assignment $\R^\prime$ to $\X$, which contradicts the initial assumption that $\A\models\exists\x\,\varphi(\x,\R)$ for some assignment $\R$ to $\X$.
+%			\item[(b)] Note that if $\A \models \alpha_{\min}(\c_1,\ldots,\c_n)$, then necessarily $\c_i = \d_i$ for $i\in\{1,\ldots,n\}.$ However, by the construction of $\P$, we see that 
+%			$$\A\not\models\bigvee_{i = 1}^{n}\neg P_{\lambda(i)}(\d_i) \text{ and that } \A\not\models\bigvee_{i=1}^r \exists \v\Big( P_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \d_j\Big).$$ Then, $\A\not\models\exists\x\,\varphi^\prime(\x,\P)$.
+%			\item[(c)] By contradiction, let $\P^\prime \neq \P$ be such that $\A\models\exists\x\,\varphi(\x,\P^\prime)$ and $\A\not\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. We consider two cases: first, suppose that $\P^\prime$ is missing a tuple of $\P$. Let $i\in\{1,\ldots,n\}$ such that in $\d_i$ is not in $P^\prime_i$. Then $\A\models \neg P^\prime_i(\d_i)$, and so,$$\A\models \bigg(\bigvee_{i = 1}^{n}\neg X_{\lambda(i)}(\d_i) \bigg), $$ from which we conclude that $\A\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. Second, suppose there is some predicate $\P^\prime_i$ in $\P^\prime$ which has a tuple that $P_i$ does not have. If this is the case, then $$\A\models\bigvee_{i=1}^r \exists \v\Big( P_i(\v) \wedge \bigwedge_{j\in[1,n]:\: \lambda(j) = i} \v \neq \u_j\Big),$$ so $\A\models\exists\x\,\varphi^\prime(\x,\P^\prime)$. On both cases, we have a contradiction.
+%		\end{enumerate}
+%		With this, we conclude that for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)>0,$ we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = f_{\exists\x\,\varphi(\x,\X)}(\A)-1.$
+%		
+%		Second, assume that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\R)$. Let $\P$ be an arbitrary assignment to $\X$. Since $\A\not\models\exists\x\,\varphi(\x,\P)$, we see that $\A\not\models\exists\x\,(\varphi(\x,\P)\wedge\psi(\x,\P))$ for any formula $\psi(\x,\P)$. It follows that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi^\prime(\x,\R)$. And so, for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)=0,$ it holds that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = 0.$ We conclude that $f_{\exists\x\,\varphi^\prime(\x,\X)} = f_{\exists\x\,\varphi(\x,\X)}\dotminus 1,$ which was to be shown.
+%	\end{proof}
+%	We now continue with the general case, in which $\varphi(\x,\X)$ is an arbirtary extended quantifier-free $\L$-formula. By using a standard DNF transformation algorithm and considering FO-formulas over $\L$ as literals, we can find formulas $\gamma_i(\x,\X)$ with $i\in\{1,\ldots,\ell\}$ such that
+%	\begin{eqnarray*}
+%		\varphi(\x,\X) &\equiv& \gamma_1(\x,\X) \vee \gamma_2(\x,\X) \vee \dots  \vee \gamma_{\ell}(\x,\X),
+%	\end{eqnarray*}
+%	where, for every $i\in\{1,\ldots,\ell\}$, 
+%	\begin{eqnarray*}
+%		\gamma_i(\x,\X) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j}) \right) \wedge \gamma^{-}_i(\X,\y_i)  \wedge \delta_i(\x).
+%	\end{eqnarray*}
+%	The function $\lambda_i$ is defined analogously to $\lambda$ of the first part of the proof. The tuple $\x_{i,j}$ has $a_{\lambda_i(j)}$ variables for $j\in\{1,\ldots,n_i\}$, $\y_i$ has $p_i$ variables and are such that $(\x_{i,1},\ldots,\x_{i,n_i},\y_i) = \x.$ The formulas $\gamma^{-}_i(\X,\y_i)$, $\delta_i(\x)$ are defined analogously to $\varphi^{-}(\X,\y)$ and $\beta(\x)\,$\footnote[2]{Note that $\delta_i(\x)$ can include subformulas of the form $(\u = \u)$.} respectively (see \eqref{f1}). Let $g$ be a function that counts the number of possible orders over partitions on a $d$-tuple of variables. Let the formulas $\theta^i(\x)$ for $i\in\{1,\ldots,g(d)\}$ represent each of these orders over $\x$. Note that for every formula $\eta(\x)$,
+%	\begin{eqnarray*}
+%		\exists\x\:\eta(\x) &\equiv& \exists\x(\eta(\x)\wedge\theta^1(\x)) \vee \cdots \vee \exists\x(\eta(\x)\wedge\theta^{g(d)}(\x)).
+%	\end{eqnarray*}
+%	We define the following formulas $\xi_i(\x,\X)$, for $i\in\{1,\ldots,m\}$ where $m = \ell \cdot g(d)$, as follows: 
+%	\begin{eqnarray*}
+%		\xi_1(\x,\X) &=& \gamma_1(\x,\X) \wedge \theta^1(\x), \\
+%		& \vdots & \\
+%		\xi_{g(d)}(\x,\X) &=& \gamma_1(\x,\X) \wedge \theta^{g(d)}(\x), \\
+%		\xi_{g(d)+1}(\x,\X) &=& \gamma_2(\x,\X) \wedge \theta^1(\x), \\
+%		& \vdots & \\
+%		\xi_{2\cdot g(d)}(\x,\X) &=& \gamma_2(\x,\X) \wedge \theta^{g(d)}(\x), \\
+%		& \vdots & \\
+%		\xi_{(\ell-1) g(d)+1}(\x,\X) &=& \gamma_{\ell}(\x,\X) \wedge \theta^1(\x), \\
+%		& \vdots & \\
+%		\xi_{\ell \cdot g(d)}(\x,\X) &=& \gamma_{\ell}(\x,\X) \wedge \theta^{g(d)}(\x).
+%	\end{eqnarray*}
+%	Having every disjunct with a total order allows us to eliminate the ones that are unsatisfiable for every $\L$-structure $\A$, that is, each $i\in\{1,\ldots,m\}$ such that for every assignment $\s$ to $\x,$ $f_{\xi_i(\s,\X)}(\A) = 0,$ for every $\A\in\str.$ Let $k$ be the number of disjuncts that are left after eliminating the unsatisfiable disjuncts. We use an injective\footnote[3]{We need this function to be injective because this way we can assure each one of the $k$ satisfiable disjuncts to be represented} function $\rho:\{1,\ldots,k\}\to\{1,\ldots,m\}$ such that $\varphi_i(\x,\X) = \xi_{\rho(i)}(\x,\X)$ is satisfiable, for every $i\in\{1,\ldots,k\}.$
+%	
+%	We can conclude that
+%	\begin{eqnarray*}
+%		\varphi(\x,\X) &\equiv& \varphi_1(\x,\X) \vee \varphi_2(\x,\X) \vee \dots  \vee \varphi_k(\x,\X),
+%	\end{eqnarray*}
+%	and for every $i\in\{1,\ldots,k\}$,
+%	\begin{eqnarray*}
+%		\varphi_i(\x,\X) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j}) \right) \wedge \varphi^{-}_i(\X,\y_i) \wedge \theta_i(\x) \wedge \beta_i(\x),
+%	\end{eqnarray*}
+%	where $n_i$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\y_i$ is a $p_i$-tuple of variables in $\x$, $\varphi_i^{-}(\X,\y_i)$ is a conjunction of negated predicates in $\X$, $\theta_i(\x)$ defines a total order on a partition of $\x$, and $\beta_i(\x)$ is an FO-formula over $\L$ which mentions all variables in $\x$. Let $\alpha_i(\x) = \theta_i(\x)\wedge\beta_i(\x).$
+%	
+%	%% CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM
+%	%% CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM CLAIM
+%	
+%	\begin{claim} \label{alpha}
+%		Let $\A\in\str$ and $i\in\{1,\ldots,k\}$. For every assignment $\s$ to $\x$ such that $\A\models\alpha_i(\s)$, it holds that $f_{\varphi_i(\s,\X)}(\A) > 0.$
+%	\end{claim}
+%	\begin{proof}
+%		Let $\s = (\s_1,\ldots,\s_{n_i},\t)$ such that $\A\models\alpha_i(\s)$, and let $\P = (\P_1,\ldots,\P_r)$ where $P_i = \bigcup_{j\in[1,n_i]:\:\lambda(j)=i}\{s_i\}$. We will show that $\A\models\varphi_i(\s,\P)$. By contradiction, suppose that $\A\not\models\exists\x\,\varphi_i(\x,\P)$. That is, there is no assignment $\e$ to $\x$ such that $\A\models\varphi(\e,\P).$ Following the same proof as in case (a) of Lemma \ref{first}, we conclude that $\varphi_i(\x,\P)$ is inconsistent. However, as we mentioned previously, all of such disjuncts have been eliminated, which leads to a contradiction.
+%	\end{proof}
+%	
+%	Our plan now is to exclude the lexicographically smallest assignment $\P$ such that $\A\models\exists\x\:\varphi_1(\x,\P)$, and if there is no such $\P$, exclude the lexicographically smallest $\Q$ such that $\A\models\exists\x\:\varphi_2(\x,\Q)$, and so on. As we already know how to exclude that assignment in the first disjunct, we will now deal with the next disjuncts. Similarly to the first part of the proof, for each $i\in\{1,\ldots,k\}$ let $m_i = \sum_{j = 1}^{n_i} a_{\lambda_i(j)}$ and let
+%	\begin{multline*}
+%	\alpha^i_{\min}(\u_1,\dots,\u_{n_i}) = \exists\y\Big[ \alpha_i(\u_1,\dots,\u_{n_i},\y)\wedge \\ \forall\v_1\cdots\forall\v_{n_i}\forall\w\Big(\big(\alpha_i(\v_1,\dots,\v_{n_i},\w)\wedge\bigvee_{j=1}^{n_i}(\u_j\neq\v_j)\big)\to (\u_1,\dots,\u_{n_i})<(\v_1,\dots,\v_{n_i})\Big)\Big],
+%	\end{multline*}
+%	where $\u_j$ and $\v_j,$ have $a_{\lambda_i(j)}$ variables for $j\in\{1,\ldots,n_i\}$, and $\w$ has $p_i$ variables. Also, let
+%	\begin{multline*}
+%	\psi_i(\X) = \forall\x\:\neg\alpha_i(\x) \vee \exists\u_1\cdots\exists\u_{n_i}\bigg[\alpha^i_{\min}(\u_1,\dots,\u_{n_i}) \\ \wedge \bigg(\bigg(\bigvee_{j = 1}^{n_i}\neg X_{\lambda_i(j)}(\u_i) \bigg) \vee \bigvee_{j=1}^r \exists \v\Big( X_j(\v) \wedge \bigwedge\limits_{\substack{\ell\in[1,n_i]:\\ \lambda_i(\ell) = j}} \v \neq \u_\ell\Big) \bigg) \bigg].
+%	\end{multline*}
+%	Note that $\psi_i(\X)$ excludes only the lexicographically smallest tuple of predicates $\P$ such that $\A\models\exists\x\:\varphi_i(\P,\x),$ if there is at least one. In other words, every assignment $\P^\prime \neq \P$ is such that $\A\models\psi_i(\P^\prime).$ Our new formula $\varphi_i^\prime(\x,\X)$ is defined as follows:
+%	$$
+%	\varphi_i^\prime(\x,\X) = \varphi_i(\x,\X) \wedge \psi_1(\X) \wedge (\exists\v\:\alpha_1(\v)\vee\psi_2(\X)) \wedge \cdots \wedge (\exists\v\:\alpha_1(\v)\vee\cdots\vee\exists\v\:\alpha_{i-1}(\v)\vee\psi_i(\X)).
+%	$$
+%	Let $\varphi^\prime(\x,\X) = \varphi_1^\prime(\x,\X)\vee\cdots\vee\varphi_k^\prime(\x,\X).$ We will now show that $f_{\exists\x\varphi^\prime(\x,\X)} = f_{\exists\x\varphi(\x,\X)}\dotminus 1.$ Assume that $\A\in\str$. Suppose first that there is at least one assignment $\R$ to $\X$ such that $\A\models\exists\x\:\varphi(\x,\R).$ Let $q$ be the least $i\in\{1,\ldots,k\}$ such that there exists at least one assignment $\R^\prime$ to $\X$ for which $\A\models\exists\x\:\varphi_i(\x,\R^\prime).$ Let $\d = (\d_1,\dots,\d_{n_q},\ep)$ be the lexicographically smallest assignment to $\x$ for which $\A\models\alpha_q(\d)$, where $\d_i$ is the corresponding assignment to $\x_i$, for every $i\in\{1,\dots,n_q\}$, and $\ep$ is an assignment for $\y$. Consider now the tuple $\P = (P_1,\dots,P_r)$ where $P_i = \bigcup_{j:\lambda_q(j)=i,j\in[1,n_q]}\{\d_j\}$. As we did in Lemma \ref{first} we will show that $\P$ is such that (a) $\A\models\exists\x\:\varphi(\x,\P),$ (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P),$ and (c) $\P$ is the only assignment to $\X$ that satisfies both (a) and (b)
+%	\begin{enumerate}
+%		\item[(a)] As we showed in part (a) of Lemma \ref{first}, if there is at least one assignment $\R$ to $\X$ such that $\A\models\exists\x\:\varphi_q(\x,\R)$, then $\A\models\exists\x\:\varphi_q(\x,\P)$ for this particular $\P$. However, as we showed in Claim \ref{alpha}, if there is an assignment $\s$ to $\x$ such that $\A\models\alpha_q(\s)$, then there {\em is} such an assignment to $\X$. The assignment $\d$ to $\x$ satisfies that $\A\models\alpha_q(\d)$, so it holds that $\A\models\exists\x\:\varphi_q(\x,\P)$. It immediately follows that $\A\models\exists\x\:\varphi(\x,\P).$
+%		
+%		\item[(b)] We will show that $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$ for (1) $i\in\{1,\ldots,q-1\}$, and (2) $i\in\{q,\ldots,k\}$. (1) By the choice of $q$, it holds that $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$ for every $i\in\{1,\ldots,q-1\}$ since there is no possible assignment to $\X$ for any of their sub-formulas $\varphi_i(\x,\X)$. (2) We can use the proof in Lemma \ref{first} to see that $\A\not\models\psi_q(\P).$ For each $i\in\{q,\ldots,k\}$, the sub-formula 
+%		$$ \zeta_q(\X) =  (\exists\v\:\alpha_1(\v)\vee\cdots\vee\exists\v\:\alpha_{q-1}(\v)\vee\psi_q(\X)) $$ 
+%		appears as a conjunct in $\varphi^\prime_i(\x,\X)$. However, by the choice of $q$, there is no $i\in\{1,\ldots,q-1\}$ such that $\A\models\exists\v\:\varphi_i(\v,\P)$, and also $\A\not\models\psi_q(\P)$. It follows that $\A\not\models\zeta_q(\P)$,  so $\A\not\models\exists\x\:\varphi^\prime_i(\x,\P)$. And so, we conclude that $\A\not\models\exists\x\:\varphi^\prime(\x,\P).$
+%		
+%		\item[(c)] Suppose there is an assignment $\P^\prime \neq \P$ to $\X$ that satisfies both (a) and (b). As we deduce from the part (c) of Lemma \ref{first}, $\P$ is the only assignment to $\X$ such that $\A\not\models\:\psi_q(\P)$, so necessarily $\A\models\:\psi_q(\P^\prime)$. Since $\P^\prime$ assigned to $\X$ satisfies (a), then $\A\models\exists\x\:\varphi(\x,\P^\prime).$ By the choice of $q,$ every $i\in\{1,\ldots,q-1\}$ is such that $\A\models\forall\x\:\neg\alpha_i(\x)$, so $\A\models\psi_i(\P^\prime)$ for each $i$. But as we mentioned, also $\A\models\:\psi_q(\P^\prime),$ which means that $\A\models\exists\x\:\varphi^\prime_q(\x,\P^\prime),$ and so, $\A\models\exists\x\:\varphi^\prime(\x,\P^\prime),$ which leads to a contradiction.
+%	\end{enumerate}
+%	
+%	With this, we conclude that for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)>0$, we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = f_{\exists\x\,\varphi(\x,\X)}(\A)-1.$
+%	
+%	Second, assume that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi_i(\x,\R)$ for any $i\in\{1,\ldots,k\}$. Let $\P$ be an arbitrary assignment to $\X$. Since $\A\not\models\exists\x\,\varphi_i(\x,\P)$, for any $i,$ we see that $\A\not\models\exists\x\,(\varphi(\x,\P)\wedge\chi(\x,\P))$ for any formula $\chi(\x,\P)$. It follows that there is no assignment $\R$ to $\X$ such that $\A\models\exists\x\,\varphi^\prime_i(\x,\R),$ for any $i\in\{1,\ldots,k\}$. And so, for every $\A\in\str$ such that $f_{\exists\x\,\varphi(\x,\X)}(\A)=0,$ we have that $f_{\exists\x\,\varphi^\prime(\x,\X)}(\A) = 0.$ Hence, from the results in the previous paragraph, if $f^\prime = f_{\exists\x\,\varphi^\prime(\x,\X)}$, we have that $f^\prime = f\dotminus 1\in\E{1}$ 
+%	
+%	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\X,\z)$, where $\x = (x_1,\dots,x_d), \X = (X_1,\dots,X_r)$ and $\z = (z_1,\dots,z_p)$. That is,
+%	\begin{eqnarray*}
+%		f(\A) &=& \mid \{ \langle\P,\e\rangle \mid \A \models \exists \x \ \varphi(\x,\P,\e) \} \mid,
+%	\end{eqnarray*}
+%	for every $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, where $\P = (P_1,\ldots,P_r)$, $P_i \subseteq A^{a_i}$ for every $i \in \{1,\ldots,r\}$ and $\e \in A^p$. In order to prove that $f\dotminus 1\in\E{1}$, we define the formulas $\varphi_i(\x,\X,\z)$ for $i\in\{1,\ldots,k\}$ in the same way as case 2, where
+%	\begin{eqnarray*}
+%		\varphi(\x,\X,\z) \equiv \varphi_1(\x,\X,\z) \vee \cdots \vee \varphi_k(\x,\X,\z),
+%	\end{eqnarray*}
+%	and
+%	\begin{eqnarray*}
+%		\varphi_i(\x,\X,\z) &=& \left( \bigwedge_{j=1}^{n_i} X_{\lambda_i(j)}(\x_{i,j},\z_{i,j}) \right) \wedge \varphi^{-}_i(\X,\y_i,\w_i) \wedge \theta_i(\x,\z) \wedge \beta_i(\x,\z),
+%	\end{eqnarray*}
+%	where $n_i$ is the number of times a non-negated variable in $\X$ is referred to, according to the function $\lambda_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, the tuple $\x_{i,j}$ has $b_{\lambda_i(j)}$ variables and the tuple $\z_{i,j}$ has $c_{\lambda_i(j)}$ for $j\in\{1,\ldots,n_i\}$ (note that $b_{\ell} + c_{\ell} = a_{\ell}$ for $\ell\in\{1,\ldots,r\}$), $\y_i$ has $p_i$ variables, and $\w_i$ has $q_i$ variables. Furthermore, we have that $(\x_{i,1},\ldots,\x_{i,n_i},\y) = \x$ and $(\z_{i,1},\ldots,\z_{i,n_i},\w_i) = \z.$ The formula $\theta(\x,\z)$ defines a total order, analogously to case 2. The formulas $\varphi^{-}_i(\X,\y_i,\w_i)$, $\beta_i(\x,\z)$, are also defined analogously.
+%	
+%	In this case, we mix both the strategies in cases 1 and 2. That is, we are going to {\em isolate} the lexicographically smallest tuple of predicates that satisfies the first satisfiable disjunct, and then {\em exclude} the lexicographically smallest tuple that satisfies the isolated disjunct.
+%	
+%	Let $m_i = \sum_{j = 1}^{n_i} a_{\lambda_i(j)}$ and
+%	\begin{multline*}
+%	\alpha^i_{\min}(\x_1,\dots,\x_{n_i},\z_1,\dots,\z_{n_i}) = \exists\y\exists\w\Big[ \alpha_i(\x_1,\dots,\x_{n_i},\y,\z_1,\dots,\z_{n_i},\w)\wedge \\ \forall\u_1\cdots\forall\u_{n_i}\forall\s\forall\v_1\cdots\forall\v_{n_i}\forall\t\Big(\big(\alpha_i(\u_1,\dots,\u_{n_i},\s,\v_1,\dots,\v_{n_i},\t)\wedge\bigvee_{j=1}^{n_i}(\x_j\neq\u_j \vee \z_j\neq\v_j)\big)\to \\ (\x_1,\dots,\x_{n_i},\z_1,\dots,\z_{n_i})<(\u_1,\dots,\u_{n_i},\v_1,\dots,\v_{n_i})\Big)\Big],
+%	\end{multline*}
+%	and let
+%	\begin{multline*}
+%	\psi_i(\X,\z) = \forall\x\forall\v\:\neg\alpha_i(\x,\v) \vee \exists\u_1\cdots\exists\u_{n_i}\exists\w_1\cdots\exists\w_{n_i}\bigg[\alpha^i_{\min}(\u_1,\dots,\u_{n_i},\w_1,\dots,\w_{n_i}) \\ \wedge \bigg(\bigg(\bigvee_{j = 1}^{n_i}\neg X_{\lambda_i(j)}(\u_i,\w_i) \bigg) \vee \bigvee_{j=1}^r \exists \s\exists \t\Big( X_j(\s,\t) \wedge \bigwedge_{\ell\in[1,n_i]: \lambda_i(\ell) = j} \s \neq \u_\ell \vee \t \neq \w_\ell\Big) \bigg) \bigg] \vee \\ \exists\w(\exists\u\:\varphi(\u,\X,\w) \wedge \w<\z).
+%	\end{multline*}
+%	Let $\P$ and $\e$ be assignments to $\X$ and $\z$. Note that $\psi_i(\X,\z)$ excludes $\P$ and $\e$ only if $\P$ is the {\em lexicographically smallest} tuple of predicates (Same as case 2) such that $\A\models\exists\x\:\varphi_i(\x,\P,\d)$, for some assignment $\d$ to $\z$, and $\e$ is the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_i(\x,\P,\e).$ We define $\varphi_i^\prime(\x,\X,\z)$ in the same way as case 2:
+%	\begin{multline*}
+%	\varphi_i^\prime(\x,\X,\z) = \varphi_i(\x,\X,\z) \wedge \psi_1(\X,\z) \wedge (\exists\u\exists\v\:\alpha_1(\u,\v)\vee\psi_2(\X,\z)) \wedge \cdots \wedge \\ (\exists\u\exists\v\:\alpha_1(\u,\v)\vee\cdots\vee\exists\u\exists\v\:\alpha_{i-1}(\u,\v)\vee\psi_i(\X,\z)).
+%	\end{multline*}
+%	Finally, let $\varphi^\prime(\x,\X,\z) = \bigvee_{i = 1}^k \varphi_i^\prime(\x,\X,\z)$.
+%	
+%	Let $q$ be the least $i\in\{1,\ldots,k\}$ such that $\A\models\exists\x\:\varphi_i(\x,\R,\d)$ for some assignment $R$ to $\X$ and some assignment $\d$ to $\z$. Let $\P$ be the lexicographically smallest tuple of predicates such that $\A\models\exists\x\:\varphi_q(\x,\P,\d^\prime)$ for some assignment $\d^\prime$ to $\z$. Let $\e$ be the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_q(\x,\P,\e).$ This formula is such that (a) $\A\models\exists\x\:\varphi(\x,\P,\e)$, (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P,\e)$ and $\P$ and $\e$ are the only assignments that satisfy (a) and (b). The proof of this is analogous to case 2. Therefore, we conclude that $f_{\exists\x\,\varphi^\prime(\x,\X,\z)} = f_{\exists\x\,\varphi(\x,\X,\z)}\dotminus 1.$
+%\end{enumerate}
 		
 \textbf{Proof of Theorem \ref{dnf-pars}}
 
