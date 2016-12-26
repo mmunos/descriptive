@@ -1,3 +1,85 @@
+
+%\begin{enumerate}
+%	\item Introduce the classes $\eqso(\LL)$.
+%	
+%	\item Study the properties of $\eqso(\LL)$.
+%	\begin{itemize}
+%		\item If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$.
+%		
+%		\item If $\LL$ is closed under XXX, then the first order product can be defined in $\eqso(\LL)$.
+%		
+%		\item Every formula in $\eqso(\LL)$ can be rewrite in \emph{sum normal form}.
+%	\end{itemize}
+%	
+%	\item Introduce Saluja classes.
+%	
+%	\item Show the connection with Saluja classes.
+%	\begin{itemize}
+%		\item New classes are properly contained.
+%		\item Old classes are properly contained/equivalent in new classes. 
+%	\end{itemize}
+%	
+%	\item Study the complexity of new classes.
+%	\begin{itemize}
+%		\item $\eqso(\Sigma_0)$ is in FP.
+%		\item $\eqso(\Sigma_1)$ is $\#P$ easy.
+%		\item $\eqso(\Sigma_1)$ has free pass.
+%	\end{itemize}
+%	
+%	\item Closure properties.
+%	\begin{itemize}
+%		\item $\eqso(\Sigma_1)$ is not closed under substraction.
+%		\item $\eqso(\Sigma_1)$ is not closed under minus 1.
+%	\end{itemize}
+%	
+%\end{enumerate}
+
+Inspired by the connection between $\shp$ and $\#\fo$, the authors in~\cite{DBLP:journals/jcss/SalujaST95} studied subclasses of  $\#fo$ syntactical restricting the alternation quantifiers in boolean formulas defining the functions.
+Specifically, they define the classes $\E{i}$ and $\U{i}$ where functions are defined by $\fo$-formulas in $\loge{i}$ and $\logu{i}$, respectively, for every $i \geq 0$. 
+Interestingly, in~\cite{DBLP:journals/jcss/SalujaST95} they show that this function classes defined a finite hierarchy of the form:
+\[
+\E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \#\fo 
+\]
+In this section, we study a natural extension of these classes in light of the $\eqso$ logic. Formally, we define the classes $\eqso(\loge{i})$ and $\eqso(\logu{i})$ where the boolean logic is restricted to $\loge{i}$ and $\logu{i}$, respectively. 
+In the next result, we show that the prenex normal form hierarchy of $\eqso$ also defined a finite hierarchy similar than in~\cite{DBLP:journals/jcss/SalujaST95}.
+\begin{proposition}
+\begin{multline*}
+\eqso(\loge{0}) \; \subsetneq \; \eqso(\loge{1}) \; \subsetneq \; \eqso(\logu{1}) \; \subsetneq \; \\ \eqso(\loge{2}) \; \subsetneq \; \eqso(\logu{2}) \; = \; \eqso(\fo)
+\end{multline*}
+\end{proposition}
+A natural question until this point is what is the connection between $\E{i}$ and $\U{i}$ and their corresponding classes $\eqso(\loge{i})$ and $\eqso(\logu{i})$. Clearly, we have that $\E{i} \subseteq \eqso(\loge{i})$ and $\E{i} \subseteq \eqso(\logu{i})$.
+The following result shows that this inclusion is strict only for the first levels of the hierarchy.
+\begin{proposition}
+	For $i \leq 1$, it holds that $\E{i} \subsetneq \eqso(\loge{i})$ and $\U{i} \subsetneq \eqso(\logu{i})$. Moreover, for $i \geq 2$ we have that $\E{i} = \eqso(\loge{i})$ and $\E{i} = \eqso(\logu{i})$.
+\end{proposition}
+
+Now, we study the complexity classes describe by this hierarchies. As the following result shows, $\eqso(\loge{0})$ defines only tractable counting functions and $\eqso(\loge{1})$ intractable counting functions but with an tractable decision problems. 
+\begin{proposition}
+All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS.
+\end{proposition}
+Therefore, in terms of counting complexity, the $\eqso$-hierarchy behaves exactly the same as the $\#\fo$-hierarchy.
+
+The next step is to study the closure properties of $\eqso$-hierarchy.
+An advantage of the $\eqso$-hierarchy is that, by its language syntax, all the classes are closed under addition and first and second order sum. 
+Furthermore, by Theorem~\ref{theo:binary-prod} one can easily see that all the hierarchy is also closed under binary product. 
+Then a natural question is whether the hierarchy is closed under subtraction. Formally, for any pair of functions $f,g$, we define $f - g$ as the function such that $(f - g)(\A) = f(\A)-g(\A)$ whenever $f(\A)>g(\A)$ and $0$ otherwise.
+As the next result shows, all classes in the $\eqso$-hierarchy is not closed under subtraction unless ${\sc P} = {\sc NP}$
+\begin{theorem} \label{sub-pnp}
+If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0$, then {\sc P} = {\sc NP}.
+\end{theorem}
+\cristian{Martin, el resultado que tienes en el apendice se generaliza trivialmente para todas las clases ya que todas contienen la clase $\eqso(\loge{0})$.}
+
+By the previous result, we know that functions in the $\eqso$ hierarchy are not closed under subtraction. Then, a natural restriction to this question is to ask whether these classes are closed under subtraction by one, namely, if $\CC$ is a class of functions and $f \in \CC$, is $f-1 \in \CC$ where $1$ is the constant function that outputs $1$ for every structure. 
+We do not know $\eqso(\logex{1})$ is closed under subtraction by one. However, if we extend $\logex{1}$ with $\fo$ predicates.
+\begin{theorem} \label{sigmafo-minusone}
+	$\eqso(\logex{1})$ is closed under substraction by one.
+\end{theorem}
+
+
+ 
+
+
+
 % We are interested in, for each $\fo$-fragment $\LL$, the biggest fragment of $\eqso$ that is contained in $\#\LL$.
 %Let $\LL = \loge{0}$:
 %\begin{theorem} \label{one-sigma-zero}
@@ -31,59 +113,59 @@
 %\logux{i+1} &::= \logex{i} \ \mid \ \forall x\, \logux{i+1}.
 %\end{align*}
 
-We see that many of the results in Saluja et. al. \cite{DBLP:journals/jcss/SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
+%We see that many of the results in Saluja et. al. \cite{DBLP:journals/jcss/SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
+%
+%\begin{theorem} \label{eqso-sigma-zero-in-fp}
+%	For every $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$, the function $f$ over $\R$ defined as $f(\enc(\A)) = \sem{\alpha}(\A)$ is in $\fp$.
+%\end{theorem}
+%
+%\begin{theorem} \label{eqso-sigma-one-in-eqso-pi-one}
+%	For every $\eqso(\loge{1})$ formula $\alpha$ over a signature $\R$ there exists a $\eqso(\logu{1})$ formula $\beta$ over $\R$ such that $\sem{\alpha}(\A) = \sem{\beta}(\A)$ for every $\A\in\ostr[\R]$.
+%\end{theorem}
+%
+%
+%The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \str \mid f(\A) > 0\}$.
+%
+%\begin{theorem} \label{decisionptime}
+%	The decision problem associated to a function in $\eqso(\logex{1})$ is in \textsc{P}.
+%\end{theorem}
 
-\begin{theorem} \label{eqso-sigma-zero-in-fp}
-	For every $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$, the function $f$ over $\R$ defined as $f(\enc(\A)) = \sem{\alpha}(\A)$ is in $\fp$.
-\end{theorem}
-
-\begin{theorem} \label{eqso-sigma-one-in-eqso-pi-one}
-	For every $\eqso(\loge{1})$ formula $\alpha$ over a signature $\R$ there exists a $\eqso(\logu{1})$ formula $\beta$ over $\R$ such that $\sem{\alpha}(\A) = \sem{\beta}(\A)$ for every $\A\in\ostr[\R]$.
-\end{theorem}
-
-
-The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \str \mid f(\A) > 0\}$.
-
-\begin{theorem} \label{decisionptime}
-	The decision problem associated to a function in $\eqso(\logex{1})$ is in \textsc{P}.
-\end{theorem}
-
-For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
-\begin{eqnarray*}
-	(f \dotminus g)(\A) =
-	\begin{cases}
-		f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
-		0, & \text{if }f(\A) \leq g(\A).
-	\end{cases}
-\end{eqnarray*}
-for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
-
-\begin{theorem} \label{sub-pnp}
-	If $\eqso(\loge{1})$ is closed under substraction, then {\sc P} = {\sc NP}.
-\end{theorem}
-
-\begin{theorem} \label{sigma1strict}
-	$\eqso(\loge{1}) \subsetneq \eqso(\logex{1})$
-\end{theorem}
-
-For a given function $f$, we define $f \dotminus 1$ as follows:
-\begin{eqnarray*}
-	f \dotminus 1(\A) =
-	\begin{cases}
-		f(\A)-1, & \text{if }f(\A) > 0 \\
-		0, & \text{if }f(\A) = 0.
-	\end{cases}
-\end{eqnarray*}
-for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
-
-\begin{theorem} \label{sigmafo-minusone}
-	$\eqso(\logex{1})$ is closed under substraction by one.
-\end{theorem}
-
-\begin{theorem} \label{dnf-pars}
-	{\sc \#DNF} is hard for $\eqso(\loge{1})$ under parsimonious reductions. 
-\end{theorem}
-
-\begin{theorem} \label{nplusone-strict}
-	$\U{1}$ with $n$ open first-order variables is properly contained in $\U{1}$ with $n+1$ open first-order variables for $n\in\N$.  
-\end{theorem}
+%For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
+%\begin{eqnarray*}
+%	(f \dotminus g)(\A) =
+%	\begin{cases}
+%		f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
+%		0, & \text{if }f(\A) \leq g(\A).
+%	\end{cases}
+%\end{eqnarray*}
+%for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
+%
+%\begin{theorem} \label{sub-pnp}
+%	If $\eqso(\loge{1})$ is closed under substraction, then {\sc P} = {\sc NP}.
+%\end{theorem}
+%
+%\begin{theorem} \label{sigma1strict}
+%	$\eqso(\loge{1}) \subsetneq \eqso(\logex{1})$
+%\end{theorem}
+%
+%For a given function $f$, we define $f \dotminus 1$ as follows:
+%\begin{eqnarray*}
+%	f \dotminus 1(\A) =
+%	\begin{cases}
+%		f(\A)-1, & \text{if }f(\A) > 0 \\
+%		0, & \text{if }f(\A) = 0.
+%	\end{cases}
+%\end{eqnarray*}
+%for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
+%
+%\begin{theorem} \label{sigmafo-minusone}
+%	$\eqso(\logex{1})$ is closed under substraction by one.
+%\end{theorem}
+%
+%\begin{theorem} \label{dnf-pars}
+%	{\sc \#DNF} is hard for $\eqso(\loge{1})$ under parsimonious reductions. 
+%\end{theorem}
+%
+%\begin{theorem} \label{nplusone-strict}
+%	$\U{1}$ with $n$ open first-order variables is properly contained in $\U{1}$ with $n+1$ open first-order variables for $n\in\N$.  
+%\end{theorem}
