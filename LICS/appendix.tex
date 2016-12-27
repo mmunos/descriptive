@@ -39,8 +39,6 @@ Let $\{+, \cdot, \sa{}, \pa{}\}$ be the set of {\it algebraic operators} in $\qs
 
 \subsection{Proof of Theorem \ref{captfp}}
 
-\martin{no revisar, es un copy-paste de arriba}
-
 For the first condition, let $\alpha\in\qfo(\lfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 	
 For the second condition, let $f\in \fp$ defined over some signature $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a formula that represents the following. Let $\A$ be an ordered structure over $\R$ with domain $A$. Consider a linear order over $A^{\ell}$ given by $\bar{a} < \bar{b}$, for any $\bar{a},\bar{b}\in A^{\ell}$. Let $w$ be a string of size $n^{\ell}$ the represents $f(\enc(\A))$ in binary. Let $(a_1,\ldots,a_{\ell})\in A^{\ell}$ be the $m$-th tuple in the given order (starting from 0). $\A\models\Phi(a_1,\ldots,a_{\ell})$ if an only if the $m$-th bit in $w$ is 1, from least to most significant. Since this condition can be computed in polynomial time, and $\lfp$ captures $\ptime$, this formula can be expressed in $\lfp$. We use
@@ -50,6 +48,8 @@ $$
 where $\varphi(x_1,\ldots,x_{\ell}) := \pa{y_1}\cdots\pa{y_{\ell}}((y_1,\ldots,y_{\ell}) < (x_1,\ldots,x_{\ell}) \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding this values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$. \qed
 
 \subsection{Proof of Theorem \ref{qfo-pfp-cap}}
+
+\martin{no revisar, es un copy-paste de arriba}	
 
 For condition (2) in \ref{cap-def}, let $\alpha\in\qfo(\pfp)$ over some $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\pfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\nfpspace$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 
