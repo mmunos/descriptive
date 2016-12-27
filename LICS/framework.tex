@@ -74,21 +74,17 @@ Suppose that we want to count the number of triangles in $\fG$. Then this can be
 \alpha_1 \ := \ \sa{x} \sa{y} \sa{z} ( E(x,y) \, \wedge \, E(y,z) \, \wedge \, E(z,x) \, \wedge \\
 x \leq y \, \wedge \, y \leq z )
 \end{multline*}
-In $\alpha_1$ we encode a triangle as an increasing sequence of nodes $\{x, y, z\}$ in order to count each triangle once. Then the boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
-x \leq y \wedge y \leq z$ is checking the triangle property by outputting $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
-Finally, the sum quantifiers in $\alpha_1$ aggregates all the values counting the number of triangles.
+For $\alpha_1$ we encode a triangle as an increasing sequence of nodes $\{x, y, z\}$ in order to count each triangle once. Then the boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
+x \leq y \wedge y \leq z$ is checking the triangle property, by outputting $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
+Finally, the sum quantifiers in $\alpha_1$ aggregates all the values, counting the number of triangles.
 
-Suppose now that we want to count the number of maximal cliques in $\fG$ (i.e. maximal set of nodes where every pair of nodes is connected). Given a second variable $X$ encoding a set, we can define that $X$ forms a clique in $\fG$ with the formula:
-$
-\op{clique}(X) := \fa{x} \fa{y} \left(X(x) \wedge Y(x)\right) \rightarrow E(x,y) 
-$.
-Then we can count the number of maximal cliques as follows:
+Suppose now that we want to count the number of cliques in $\fG$ (i.e. set of nodes where every pair of nodes is connected). We can easily compute this function with the following formula:
 $$
-\alpha_2 := \sa{X} (\op{clique}(X) \wedge \fa{Y} (X \subset Y) \rightarrow \neg \op{clique}(Y) )
+\alpha_2 := \sa{X} \big( \, \fa{x} \fa{y} \left(X(x) \wedge X(y)\right) \rightarrow E(x,y) \, \big)  
 $$ 
-Similar than for $\alpha_1$, in the boolean subformula of $\alpha_2$ we check whether $X$ is a maximal clique and with the sum quantifier we sum one for each set which is a maximal clique in $\fG$. 
-Note here that, in contrast to $\alpha_1$, in $\alpha_2$ we need second-order quantifiers both in the boolean and quantitative level.
-This is according to the inherent complexity of evaluating each formula: $\alpha_1$ defines an $\fp$ function where $\alpha_2$ defines a $\spp$-hard function~\cite{paper-that-shows-that-this-problem-is-SPANPhard}.
+Similar than for $\alpha_1$, in the boolean subformula of $\alpha_2$ we check whether $X$ is a clique and with the sum quantifier we add one for each clique in $\fG$. 
+Note here that, in contrast to $\alpha_1$, in $\alpha_2$ we need a second-order quantifier in the quantitative level.
+This is according to the inherent complexity of evaluating each formula: $\alpha_1$ defines an $\fp$ function where $\alpha_2$ defines a $\shp$-hard function~\cite{paper-that-shows-that-this-problem-is-sharpP-hard}.
 \end{example}
 \begin{example}
 For a more involved example that includes multiplication, let $\bM = \{M(\cdot,\cdot)\}$ be the vocabulary for matrices where a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ where $M(i,j)$ is true if $A_{i,j} = 1$ and $0$ otherwise. 
@@ -97,11 +93,20 @@ $$
 \op{perm}(A) \; = \; \sum_{\sigma \in S_n} \prod_{i=1}^n A_{i, \sigma(i)}  
 $$
 where $S_n$ is the set of all permutations over $\{1, \ldots, n\}$.
-The permanent is an interesting function over matrices that has found many applications in different areas~\cite{permanent-applications} and one of the first function that was shown to be intractable for counting~\cite{Valiant79} (i.e. $\shp$-complete).
+The permanent is a relevant function over matrices that has found many applications in different areas~\cite{permanent-applications} and it was one of the first function that was shown to be difficult for counting~\cite{Valiant79} (i.e. $\shp$-complete). 
+For a binary relation symbol $S$, let $\op{permut}(S)$ be the $\fo$-formula that is true iff $S$ is a permutation, i.e. bijective function, (the definition of $\op{permut}(S)$ is straightforward and we left this exercise to the reader).
+Then a $\qso$-formula for defining the permanent of a matrix is as follows:
+\[
+\alpha_3 := \sa{S} \op{permut}(S) \cdot \pa{x} (\ex{y} S(x,y) \wedge M(x,y))
+\]
+Intuitively, the subformula $\beta(s) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value $\prod_{i=1}^n A_{i, \sigma(i)}$ whenever $S$ encodes a permutation $\sigma$.
+Then the subformula $\op{permut}(S) \cdot \beta(S)$ computes $\beta(S)$ when $S$ is a permutation and $0$ otherwise (i.e. $\op{permut}(S)$ behaves like a filter). 
+Finally, the second order sum aggregates these values iterating over all binary relations and calculating the permanent of the matrix.
+We would like to end this example by highlighting the similarity of $\alpha_3$ with the permanent formula. 
+Indeed, an advantage of $\qso$-formulas is that the first- and second-order quantifiers naturally reflect the operations used to define mathematical formulas in practice.
 \end{example}
 
-
-In this paper, we consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the quantitative quantifiers. Let $\qfo$ be a fragment of $\qso$ defined by the grammar in \eqref{eq-def-qso} but only the quantitative quantifiers $\Sigma x$ and $\Pi x$ are allowed. Let $\eqfo$ be the fragment of $\qso$ defined by the following grammar:
+We consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ or the use of the quantitative quantifiers. Let $\qfo$ be a fragment of $\qso$ defined by the grammar in \eqref{eq-def-qso} but only the quantitative quantifiers $\Sigma x$ and $\Pi x$ are allowed. Let $\eqfo$ be the fragment of $\qso$ defined by the following grammar:
 $$
 \alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid \ \sa{x} \alpha.
 $$ Let $\eqso$ be a fragment of $\qso$ defined as $\eqfo$ but also allowing the quantitative quantifier $\Sigma X$. Moreover, assuming that $\LL$ is a fragment of $\so$, let $\qso(\LL)$ be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{eq-def-qso} to be a formula in $\LL$, and in general, if $\FF$ is a fragment of $\qso$, $\FF(\LL)$ be the fragment of $\FF$ obtained by imposing the same restriction. In particular, in this paper we consider the following fragments $\LL$: $\fo$, which is obtained by disallowing the use of the second-order quantifier ($\exists X$ or $\forall X$) in the formula $\varphi$ in \eqref{eq-def-qso}, and $\eso$, which is obtained by allowing $\varphi$ in \eqref{eq-def-qso} to be a formula of the form $\exists X_1 \cdots \exists X_k \, \psi$, where $\psi$ is an $\fo$-formula. 
