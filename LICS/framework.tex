@@ -1,38 +1,105 @@
 %!TEX root = main.tex
 
-We define here the logic framework that we will use for studying counting complexity classes. 
-We propose here to use framework of weighted logics~\cite{} 
+We introduce here the logic framework that we use for studying counting complexity classes. 
+This logic framework is based on the framework of Weighted Logics~\cite{DrosteG07} that has been used in the context of weighted automata for studying functions from words (or trees) to semirings. 
+We propose here to extend the framework of weighted logics to any relational structure and to restrict the semiring to natural numbers. 
+The extension to any relational structure will allow us to study general counting complexity classes and the restriction to the natural numbers will simplify the notation in this context (see Section~\ref{subsec:related} below for a more detailed discussion).
 
-Given a relational signature $\R$, the set of quantitative second-order logic formulas (or just $\qso$-formulas) over $\R$ is given by the following grammar:
-\begin{multline}
-\label{eq-def-qso}
-\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \\ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
-\end{multline}
-where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. If $\R$ is not mentioned, $\qso$ refers to the union of the sets of $\qso$ formulas over $\R$, for every relational signature $\R$.
+Given a relational signature $\R$, the set of Quantitative Second-Order logic formulas (or just $\qso$-formulas) over $\R$ is given by the following grammar:
+%\[
+%\begin{array}{rcl}
+%\alpha & := & \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \ \\
+%& &  \sa{x} \alpha \ \mid \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
+%\end{array}
+%\]
+\begin{multline*}
+\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
+\end{multline*}
+where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. If $\R$ is not mentioned, $\qso$ refers to the union of the sets of $\qso$ formulas over $\R$, for every relational signature~$\R$.
+ 
+Note that the syntax of QSO formulas is divided in two levels. 
+The first level is composed by $\so$-formulas over $\R$ (called boolean formulas) and the second level is made by counting operators of addition and multiplication. 
+For this reason, the quantifiers in $\so$ (e.g. $\exists x$ or $\exists X$) are called boolean quantifiers and the quantifiers that make use of addition and multiplication (e.g. $\Sigma x$ or $\Pi X$) are called {\em quantitative quantifiers}.
+Furthermore, $\Sigma x$ and $\Sigma X$ are called the first- and second-order sum, and $\Pi x$ and $\Pi X$ the first- and second-order product.
+This division between boolean and quantitative levels is essential for understanding the difference between the logic and the counting part. 
+Furthermore, this will allow us later to parametrize both levels of the logic in order to capture different counting complexity classes.
 
-Let $\R$ be a relational signature, $\A$ be an ordered finite $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a number in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined as follows:
-$$
-\renewcommand{\arraystretch}{1.7}
-\begin{array}{rcl} 
-\sem{\varphi}(\A, v, V) & = & 
-\begin{cases}
-1 & \mbox{if } (\A, v, V) \models \varphi \\
-0 & \mbox{otherwise}
-\end{cases}\\
-\sem{s}(\A, v, V) & = & s \\
-\sem{\alpha_1 \add \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) + \sem{\alpha_2}(\A, v, V)\\
-\sem{\alpha_1 \mult \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) \cdot \sem{\alpha_2}(\A, v, V)\\ 
-\sem{\sa{x} \alpha}(\A, v, V) & = & \displaystyle \sum_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
-\sem{\pa{x} \alpha}(\A, v, V) & = & \displaystyle \prod_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
-\sem{\sa{X} \alpha}(\A, v, V) & = & \displaystyle \sum_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])\\
-\sem{\pa{X} \alpha}(\A, v, V) & = & \displaystyle \prod_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])
-\end{array}
-$$
-A formula in $\qso$ can mention the usual quantifiers in $\so$ (that is, $\exists x$ and $\exists X$) and the quantifiers that make use of addition and multiplication (that is, $\Sigma x$, $\Pi x$, $\Sigma X$ and $\Pi X$), which are called {\em quantitative quantifiers} . A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a relational signature $\R$, then for every ordered finite $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that:
+Let $\R$ be a relational signature, $\A$ be an ordered finite $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a number in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined in Table~\ref{tab-semantics}.
+\begin{table}
+	\addtolength{\jot}{0.5em}
+	\begin{align*}
+	\sem{\varphi}(\A, v, V) & = 
+	\begin{cases}
+	1 & \mbox{if } (\A, v, V) \models \varphi \\
+	0 & \mbox{otherwise}
+	\end{cases}\\
+	\sem{s}(\A, v, V) & = s \\
+	\sem{\alpha_1 \add \alpha_2}(\A, v, V) & = \sem{\alpha_1}(\A, v, V) + \sem{\alpha_2}(\A, v, V)\\
+	\sem{\alpha_1 \mult \alpha_2}(\A, v, V) & = \sem{\alpha_1}(\A, v, V) \cdot \sem{\alpha_2}(\A, v, V)\\ 
+	\sem{\sa{x} \alpha}(\A, v, V) & = \displaystyle \sum_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+	\sem{\pa{x} \alpha}(\A, v, V) & = \displaystyle \prod_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+	\sem{\sa{X} \alpha}(\A, v, V) & = \displaystyle \sum_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])\\
+	\sem{\pa{X} \alpha}(\A, v, V) & = \displaystyle \prod_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])
+	\end{align*}
+	\caption{The semantics of QSO formulas.}
+	\label{tab-semantics}
+	\vspace*{-20pt}
+\end{table}
+%$$
+%\renewcommand{\arraystretch}{1.7}
+%\begin{array}{rcl} 
+%\sem{\varphi}(\A, v, V) & = & 
+%\begin{cases}
+%1 & \mbox{if } (\A, v, V) \models \varphi \\
+%0 & \mbox{otherwise}
+%\end{cases}\\
+%\sem{s}(\A, v, V) & = & s \\
+%\sem{\alpha_1 \add \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) + \sem{\alpha_2}(\A, v, V)\\
+%\sem{\alpha_1 \mult \alpha_2}(\A, v, V) & = & \sem{\alpha_1}(\A, v, V) \cdot \sem{\alpha_2}(\A, v, V)\\ 
+%\sem{\sa{x} \alpha}(\A, v, V) & = & \displaystyle \sum_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+%\sem{\pa{x} \alpha}(\A, v, V) & = & \displaystyle \prod_{a \in A} \sem{\alpha}(\A,v[a/x],V)\\
+%\sem{\sa{X} \alpha}(\A, v, V) & = & \displaystyle \sum_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])\\
+%\sem{\pa{X} \alpha}(\A, v, V) & = & \displaystyle \prod_{B \subseteq A^{\arity(X)}} \sem{\alpha}(\A, v, V[B/X])
+%\end{array}
+%$$
+A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a relational signature $\R$, then for every ordered finite $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that:
 \begin{eqnarray*}
 	\sem{\alpha}(\A, v_1, V_1) & = & \sem{\alpha}(\A, v_2, V_2).
 \end{eqnarray*}
 Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
+\begin{example}
+Let $\bG = \{E(\cdot,\cdot)\}$ be the vocabulary for graphs and $\fG$ be an ordered finite $\bG$-structure encoding a non-directed graphs. 
+Suppose that we want to count the number of triangles in $\fG$. Then this can be defined with the following QSO-formula:
+\begin{multline*}
+\alpha_1 \ := \ \sa{x} \sa{y} \sa{z} ( E(x,y) \, \wedge \, E(y,z) \, \wedge \, E(z,x) \, \wedge \\
+x \leq y \, \wedge \, y \leq z )
+\end{multline*}
+In $\alpha_1$ we encode a triangle as an increasing sequence of nodes $\{x, y, z\}$ in order to count each triangle once. Then the boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
+x \leq y \wedge y \leq z$ is checking the triangle property by outputting $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
+Finally, the sum quantifiers in $\alpha_1$ aggregates all the values counting the number of triangles.
+
+Suppose now that we want to count the number of maximal cliques in $\fG$ (i.e. maximal set of nodes where every pair of nodes is connected). Given a second variable $X$ encoding a set, we can define that $X$ forms a clique in $\fG$ with the formula:
+$
+\op{clique}(X) := \fa{x} \fa{y} \left(X(x) \wedge Y(x)\right) \rightarrow E(x,y) 
+$.
+Then we can count the number of maximal cliques as follows:
+$$
+\alpha_2 := \sa{X} (\op{clique}(X) \wedge \fa{Y} (X \subset Y) \rightarrow \neg \op{clique}(Y) )
+$$ 
+Similar than for $\alpha_1$, in the boolean subformula of $\alpha_2$ we check whether $X$ is a maximal clique and with the sum quantifier we sum one for each set which is a maximal clique in $\fG$. 
+Note here that, in contrast to $\alpha_1$, in $\alpha_2$ we need second-order quantifiers both in the boolean and quantitative level.
+This is according to the inherent complexity of evaluating each formula: $\alpha_1$ defines an $\fp$ function where $\alpha_2$ defines a $\spp$-hard function~\cite{paper-that-shows-that-this-problem-is-SPANPhard}.
+\end{example}
+\begin{example}
+For a more involved example that includes multiplication, let $\bM = \{M(\cdot,\cdot)\}$ be the vocabulary for matrices where a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ where $M(i,j)$ is true if $A_{i,j} = 1$ and $0$ otherwise. 
+Suppose now that we want to compute the permanent of an $n$-by-$n$ 0-1 matrix $A$ which is defined by:
+$$
+\op{perm}(A) \; = \; \sum_{\sigma \in S_n} \prod_{i=1}^n A_{i, \sigma(i)}  
+$$
+where $S_n$ is the set of all permutations over $\{1, \ldots, n\}$.
+The permanent is an interesting function over matrices that has found many applications in different areas~\cite{permanent-applications} and one of the first function that was shown to be intractable for counting~\cite{Valiant79} (i.e. $\shp$-complete).
+\end{example}
+
 
 In this paper, we consider several fragments of $\qso$, which are obtained by restricting the syntax of the formula $\varphi$ in \eqref{eq-def-qso} or the use of the quantitative quantifiers. Let $\qfo$ be a fragment of $\qso$ defined by the grammar in \eqref{eq-def-qso} but only the quantitative quantifiers $\Sigma x$ and $\Pi x$ are allowed. Let $\eqfo$ be the fragment of $\qso$ defined by the following grammar:
 $$
