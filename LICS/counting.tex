@@ -1,7 +1,5 @@
 %!TEX root = main.tex
 
-\marcelo{Ahora solo consideramos la idea de capturar sobre estructuras ordenadas}
-
 Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we also use $\alpha$ to denote a function defined over $\R$ such that for every $\A \in \ostr[\R] $:
 \begin{eqnarray*}
 	\alpha(\enc(\A)) & = & \sem{\alpha}(\A).
@@ -17,8 +15,6 @@ Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we
 \end{definition}
 %In the previous definition, if $\KK$ is the class of all finite structures, then we say that $\FF$ captures $\CC$ over the class of all structures, and if $\KK$is the class of all ordered finite structures, then we say that $\FF$ captures $\CC$ over the class of ordered structures.
 
-\marcelo{Hacer una pasada a la demostracion del siguiente teorema considerando que solo usamos estructuras ordenadas, y teniendo en cuenta que las funciones estan definidas sobre relational signatures.}
-\martin{done}
 \begin{theorem} \label{captfp}
 	$\qfo(\lfp)$ captures $\fp$ over ordered structures.
 \end{theorem}
@@ -27,7 +23,7 @@ Assume that $\alpha$ is a sentence in $\qso$. Then slightly abusing notation, we
 	$\qfo(\pfp)$ captures $\nfpspace$ over ordered structures.
 \end{theorem}
 
-Saluja et. al \cite{DBLP:journals/jcss/SalujaST95} define a family of counting classes $\#\LL$ for each fragment $\LL$ of $\so$. For a formula $\varphi(x,X)$ over $\R$, the function $f_{\varphi(x,X)}$ is defined as
+Saluja et. al \cite{SalujaST95} define a family of counting classes $\#\LL$ for each fragment $\LL$ of $\so$. For a formula $\varphi(x,X)$ over $\R$, the function $f_{\varphi(x,X)}$ is defined as
 \[
 f_{\varphi(x,X)}(\A) = \vert \{\langle e,P\rangle\mid \A\models\varphi(e,P)\}\vert.
 \]
