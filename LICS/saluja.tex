@@ -34,16 +34,16 @@
 %	
 %\end{enumerate}
 
-Inspired by the connection between $\shp$ and $\sfo$, the authors in~\cite{DBLP:journals/jcss/SalujaST95} studied subclasses of  $\sfo$ syntactically restricting the alternation quantifiers in boolean formulas defining what we call the $\sfo$-hierarchy.
+Inspired by the connection between $\shp$ and $\sfo$, the authors in~\cite{SalujaST95} studied subclasses of  $\sfo$ syntactically restricting the alternation quantifiers in boolean formulas defining what we call the $\sfo$-hierarchy.
 Specifically, they define the classes $\E{i}$ and $\U{i}$ where functions are defined by $\fo$-formulas in $\loge{i}$ and $\logu{i}$, respectively, for every $i \geq 0$. 
-Interestingly, in~\cite{DBLP:journals/jcss/SalujaST95} they show that this function classes defined a finite hierarchy of the form:
+Interestingly, in~\cite{SalujaST95} they show that this function classes defined a finite hierarchy of the form:
 \[
 \E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \#\fo 
 \]
 In this section, we study a natural extension of these classes in light of the $\eqso$ logic. Formally, we define the classes $\eqso(\loge{i})$ and $\eqso(\logu{i})$ where the boolean logic is restricted to $\loge{i}$ and $\logu{i}$, respectively. 
 We denote each class by $\QE{i}$ and $\QU{i}$ for short. 
 
-In the next result, we show that $\eqso$ also defined a finite hierarchy similar than in~\cite{DBLP:journals/jcss/SalujaST95} that we called the $\eqso$-hierarchy.
+In the next result, we show that $\eqso$ also defined a finite hierarchy similar than in~\cite{SalujaST95} that we called the $\eqso$-hierarchy.
 \begin{proposition}
 \[
 \QE{0} \; \subsetneq \; \QE{1} \; \subsetneq \; \QU{1} \; \subsetneq \; \QE{2} \; \subsetneq \; \QU{2} \; = \; \eqso{\fo} 
@@ -72,7 +72,7 @@ Interestingly, if $\LL$ contains $\logu{1}$, then we can always convert any form
 	If $\logu{1} \subseteq \LL$, then for every formula $\alpha \in \eqso(\LL)$ there exists a formula $\beta \in \eqso(\LL)$ equivalent to $\alpha$ in $\Sigma$-prenex normal form.
 \end{theorem}
 
-The previous results gives the connection the connection between the hierarchy in \cite{DBLP:journals/jcss/SalujaST95} and the $\eqso$-hierarchy. 
+The previous results gives the connection the connection between the hierarchy in \cite{SalujaST95} and the $\eqso$-hierarchy. 
 Indeed, if $\LL$ contains $\logu{1}$ we will have that $\sh{\LL}$ is equivalent to $\eqso(\LL)$ since each formula in $\eqso(\LL)$ can be converted in $\Sigma$-prefix normal form and, therefore, it is equivalent to a formula in $\sh{\LL}$. 
 Unfortunately, this is not the case for $\loge{0}$ and $\loge{1}$ as the following result shows.
 \begin{proposition}
@@ -143,7 +143,7 @@ We do not know $\E{1}$ is closed under subtraction by one. However, if we extend
 %\logux{i+1} &::= \logex{i} \ \mid \ \forall x\, \logux{i+1}.
 %\end{align*}
 
-%We see that many of the results in Saluja et. al. \cite{DBLP:journals/jcss/SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
+%We see that many of the results in Saluja et. al. \cite{SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
 %
 %\begin{theorem} \label{eqso-sigma-zero-in-fp}
 %	For every $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$, the function $f$ over $\R$ defined as $f(\enc(\A)) = \sem{\alpha}(\A)$ is in $\fp$.
