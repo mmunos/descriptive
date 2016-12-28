@@ -14,7 +14,7 @@ A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order
 where each $\varphi_i$ ($1 \leq i \leq n$) is either a positive literal or a negative literal or an \fo-formula over $\R$.  A clause is said to be Horn if it contains at most one positive literal, and a formula is said to be Horn if it is a conjunction of Horn clauses over a relational signature $\R$. With this terminology, we define $\uhorn$ as the set of formulas $\psi$ such that $\psi$ is a conjunction of Horn clauses over a relational signature $\R$. 
 
 \begin{proposition}\label{prop-uhorn-pe}
-$\eqso(\uhorn) \subseteq \pe$
+$\eqso(\uhorn) \subseteq \totp$
 \end{proposition}
 
 \begin{example}
@@ -51,7 +51,7 @@ as for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number
 We extend the definition of $\uhorn$ to allow existential quantification. More precisely, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\exists \bar x \, \psi$ with $\psi$ a Horn formula. Interestingly, it hold that $\cdnf \in \eqso(\ehorn)$ and
 
 \begin{proposition}\label{prop-ehorn-pe}
-$\eqso(\ehorn) \subseteq \pe$.
+$\eqso(\ehorn) \subseteq \totp$.
 \end{proposition}
 A natural question at this point is whether in the definitions of $\uhorn$ and $\ehorn$, it is necessary to allow negative literals of the form $\exists \v \, \neg X(\u,\v)$. The following result shows that it is indeed the case:
 
