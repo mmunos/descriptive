@@ -13,28 +13,28 @@ $$
 $$
 We will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$. We also denote $\min(\bar{x}) := \forall\bar{y}(\bar{y} < \bar{x}\vee \bar{y} = \bar{x})$.
 
-If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$. We also denote $\length(\bar{x}) = m$ ($\length(\bar{X}) = m$).
-\subsection{Proof of Theorem \ref{no-mult}}
-
-Let $\{+, \cdot, \sa{}, \pa{}\}$ be the set of {\it algebraic operators} in $\qso$. We will prove by induction over the number of algebraic operators in a $\qso$-formula $\alpha$ that there exists some $\qso$-formula $\alpha'$ that respects the stated condition. Let $\text{op}(\alpha)$ be the number of algebraic operators in $\alpha$. The case $\text{op}(\alpha) = 0$ is trivial. Let $n\in\nat$ be such that for each $\qso$-formula $\beta$ such that $\text{op}(\beta) < n$ there is some $\beta'$ that respects the condition. Let $\alpha$ be a $\qso$-formula such that $\text{op}(\alpha) = n$. Note that if $\alpha$ is of the form $\alpha = (\beta_1 \add \beta_2)$, $\alpha = \sa{x} \beta$, $\alpha = \pa{x} \beta$, $\alpha = \sa{X} \beta$ or $\alpha = \pa{X} \beta$ the proof follows directly. Therefore we assume that $\alpha = (\beta_1 \mult \beta_2)$. We separate the proof in two main cases:
-\begin{enumerate}
-	\item At least one of $\beta_1, \beta_2$ is not of the form $\pa{x} \gamma$, $\pa{X} \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. Without loss of generality, let $\beta_1$ be such one.
-	\begin{enumerate}
-		\item $\beta_1 = s \in \nat$. Then we use $\alpha' = \beta_2 \add \cdots \add \beta_2$, where $\beta_2$ is repeated $s$ times, and if $s = 0$, take $\alpha' = \perp$. Since each of the formulas paired by $\add$ has less than $n$ algebraic operators, the statement holds.
-		\item $\beta_1 = (\gamma_1 \add \gamma_2)$. Then, we use $\alpha' = (\gamma_1\mult\beta_2 + \gamma_2\mult\beta_2)$ and each of the formulas paired by $\add$ have less than $n$ algebraic operators so the statement holds.
-		\item $\beta_1 = \sa{x} \gamma$. Then, we use $\alpha' = \sa{x} (\gamma\mult\beta_2)$ and as in the previous case the statement holds.
-		\item $\beta_1 = \sa{X} \gamma$, which we treat exactly as the previous one.
-	\end{enumerate}
-	\item Both of $\beta_1$ and $\beta_2$ are of the form $\pa{x} \gamma$, $\pa{X} \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. This case also separates in further cases.
-	\begin{enumerate}
-		\item $\beta_1 = \pa{x} \gamma_1(x)$ and $\beta_2 = \pa{y} \gamma_2(y)$. Then we use $\alpha' = \pa{x}(\gamma_1(x)\mult\gamma_2(x))$, and the statement holds.
-		\item $\beta_1 = \pa{X} \gamma_1(X)$ and $\beta_2 = \pa{Y} \gamma_2(Y)$. [something about arities].
-		\item $\beta_1 = \pa{X} \gamma_1(X)$ and $\beta_2 = \pa{x} \gamma_2(x)$ (w.l.o.g.). [use singleton predicates].
-		\item $\beta_1 = \pa{x} \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). Then, we use $\alpha' = \pa{x} (\gamma \cdot \varphi)$, and the statement holds.
-		\item $\beta_1 = \pa{X} \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). We treat this case exactly as the previous one.
-		\item $\beta_1 = \varphi_1$ and $\beta_2 = \varphi_2$ both $\so$-formulas. Then, we use $\alpha' = (\varphi_1 \wedge \varphi_2)$ and the statement holds.
-	\end{enumerate}
-\end{enumerate}
+If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$. We also use $\length(\bar{x})$ ($\length(\bar{X})$) to denote the number or variables in the tuple.
+%\subsection{Proof of Theorem \ref{no-mult}}
+%
+%Let $\{+, \cdot, \sa{}, \pa{}\}$ be the set of {\it algebraic operators} in $\qso$. We will prove by induction over the number of algebraic operators in a $\qso$-formula $\alpha$ that there exists some $\qso$-formula $\alpha'$ that respects the stated condition. Let $\text{op}(\alpha)$ be the number of algebraic operators in $\alpha$. The case $\text{op}(\alpha) = 0$ is trivial. Let $n\in\nat$ be such that for each $\qso$-formula $\beta$ such that $\text{op}(\beta) < n$ there is some $\beta'$ that respects the condition. Let $\alpha$ be a $\qso$-formula such that $\text{op}(\alpha) = n$. Note that if $\alpha$ is of the form $\alpha = (\beta_1 \add \beta_2)$, $\alpha = \sa{x} \beta$, $\alpha = \pa{x} \beta$, $\alpha = \sa{X} \beta$ or $\alpha = \pa{X} \beta$ the proof follows directly. Therefore we assume that $\alpha = (\beta_1 \mult \beta_2)$. We separate the proof in two main cases:
+%\begin{enumerate}
+%	\item At least one of $\beta_1, \beta_2$ is not of the form $\pa{x} \gamma$, $\pa{X} \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. Without loss of generality, let $\beta_1$ be such one.
+%	\begin{enumerate}
+%		\item $\beta_1 = s \in \nat$. Then we use $\alpha' = \beta_2 \add \cdots \add \beta_2$, where $\beta_2$ is repeated $s$ times, and if $s = 0$, take $\alpha' = \perp$. Since each of the formulas paired by $\add$ has less than $n$ algebraic operators, the statement holds.
+%		\item $\beta_1 = (\gamma_1 \add \gamma_2)$. Then, we use $\alpha' = (\gamma_1\mult\beta_2 + \gamma_2\mult\beta_2)$ and each of the formulas paired by $\add$ have less than $n$ algebraic operators so the statement holds.
+%		\item $\beta_1 = \sa{x} \gamma$. Then, we use $\alpha' = \sa{x} (\gamma\mult\beta_2)$ and as in the previous case the statement holds.
+%		\item $\beta_1 = \sa{X} \gamma$, which we treat exactly as the previous one.
+%	\end{enumerate}
+%	\item Both of $\beta_1$ and $\beta_2$ are of the form $\pa{x} \gamma$, $\pa{X} \gamma$, or $\varphi$, where $\varphi$ is an $\so$-formula. This case also separates in further cases.
+%	\begin{enumerate}
+%		\item $\beta_1 = \pa{x} \gamma_1(x)$ and $\beta_2 = \pa{y} \gamma_2(y)$. Then we use $\alpha' = \pa{x}(\gamma_1(x)\mult\gamma_2(x))$, and the statement holds.
+%		\item $\beta_1 = \pa{X} \gamma_1(X)$ and $\beta_2 = \pa{Y} \gamma_2(Y)$. [something about arities].
+%		\item $\beta_1 = \pa{X} \gamma_1(X)$ and $\beta_2 = \pa{x} \gamma_2(x)$ (w.l.o.g.). [use singleton predicates].
+%		\item $\beta_1 = \pa{x} \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). Then, we use $\alpha' = \pa{x} (\gamma \cdot \varphi)$, and the statement holds.
+%		\item $\beta_1 = \pa{X} \gamma$ and $\beta_2 = \varphi$, which is an $\so$-formula (w.l.o.g.). We treat this case exactly as the previous one.
+%		\item $\beta_1 = \varphi_1$ and $\beta_2 = \varphi_2$ both $\so$-formulas. Then, we use $\alpha' = (\varphi_1 \wedge \varphi_2)$ and the statement holds.
+%	\end{enumerate}
+%\end{enumerate}
 
 
 \subsection{Proof of Theorem \ref{captfp}}
@@ -520,38 +520,37 @@ defines $\chsat$. We obtain the following formula $\psi(T,A)$ in $\ehorn$:
 effectively defines $\chsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
 		
 \vspace{1em}
-We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
+We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a polynomial-time procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
 $$
-\alpha = c + \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\hat{\varphi}_i(\bar{X},\bar{x}),
+\alpha = c + \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{x},\bar{y},\bar{z}),
 $$
-where each $\hat{\varphi}_i$ is a $\ehorn$ formula.
+where each $\varphi^i_j$ is a Horn clause.
 
-Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length(\bar{x})}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
+Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length(\bar{x})}$, each $\bar{b}\in A^{\length(\bar{y})}$ and each $\bar{c}\in A^{\length(\bar{z})}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
 $$
-c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\hat{\varphi}_i(\bar{X},\bar{e}).
+c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length(\bar{z})}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
 $$
-We redefine this formula as $c + \sum_{i = 1}^{m} \sa{\bar{X}}\hat{\psi}_i(\bar{X})$, where each $\hat{\psi}_i$ is a formula in $\ehorn$ with the extended grammar.
-
-%\vspace{1em}
-%Let $\alpha$ be equal to some constant $c$. We define $g_{\alpha}$ as a function that, for each $\A\in\ostr[\R]$, outputs the following formula with exactly $c$ satisfying assignments:
-%$$
-%\bigvee_{i = 1}^{c}\neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_c.
-%$$ 
-
-Let the formula be equal to $c + \sum_{i = 1}^{m}\sa{\bar{X}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{y},\bar{z})$ where each $\varphi_i$ is a Horn clause. The following formula defines the same function as $\alpha$:
-$$
-c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\bar{z}}}\varphi^i_j(\bar{X},\bar{b},\bar{c}).
-$$
-Note that each $\fo$ formula in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
+Note that each $\fo$ formula in each $\varphi^i_j$ over $(\bar{x},\bar{y},\bar{z})$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
 $$
 c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
 $$
 where every $\psi^{i}_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$.
 
-We make the following observation. If $\alpha$ is equal to $\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$, then the {\bf propositional formula} defined by $\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \bar{e}\in A^{\arity(X)} \}$ has exactly $\sem{\alpha}(\A)$ assignments and is a disjunction of Horn formulas. 
+Our idea for the rest of the proof is to define $g_{\alpha}$ for each $\alpha = \sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})$, for $\alpha = c$ and for $\alpha = \beta_1 + \cdots + \beta_m$ where each $\beta_i$ is in one of the two previous cases.
 
+If $\alpha$ is equal to $\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ where $\psi_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$, then we obtain the {\bf propositional formula} $g_{\alpha}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \bar{e}\in A^{\arity(X)} \}$ which has exactly $\sem{\alpha}(\A)$ satisfying assignments and is precisely a disjunction of Horn formulas.
 
-
+If $\alpha$ is equal to a constant $c$, then we define $g_{\alpha}(\A)$ as the following formula that has exactly $c$ satisfying assignments:
+$$
+g_{\alpha}(\A) = \bigvee_{i = 1}^{c}\neg t_1 \wedge \cdots \wedge \neg t_{i-1} \wedge t_i \wedge \neg t_{i+1} \wedge \cdots \wedge \neg p_c.
+$$ 
+If $\alpha = \beta_1 + \cdots + \beta_m$, let $g_{\beta_i}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\theta^i_{i,j}$ for each $\beta_i$ where each $\theta^i_{j,k}$ is a Horn clause. Let $\Theta_i = g_{\beta_i}(\A)$. We rename the variables in each $\Theta_i$ so none of them are mentioned more than once in total. We add $m$ new variables $t_1,\ldots,t_m$ and we define:
+\begin{align*}
+g_{\alpha}(\A) = &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^1_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m}}}t) \wedge (t_1 \wedge \bigwedge_{\ell = 2}^{m} \neg t_{\ell})) \vee \\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^2_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each $t$}\\ \text{ mentioned in}\\ \Theta_1,\Theta_3,\ldots,\Theta_{m}}}t) \wedge (t_2 \wedge \bigwedge\limits_{\substack{\ell = 1 \\ \ell \neq 2}}^{m} \neg t_{\ell})) \vee \cdots \vee\\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^m_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m-1}}}t) \wedge (t_m \wedge \bigwedge_{\ell = 1}^{m-1} \neg t_{\ell})).
+\end{align*}
+The number of satisfying assignments for this formula is exactly the sum of satisfying assignments for every $g_{\beta_i}(\A)$.
 
 %Let $f$ be an arbitrary function in $\XE{2}$. We will now show a function $h:\str\to L(P)$ such that for every $\A\in\str$, it holds that $f(\A) = \shdhsat(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
 %	\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The disjunction of Horn formulas we return is
