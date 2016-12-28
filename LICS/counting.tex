@@ -32,7 +32,7 @@ For answering this question, it is reasonable to start with $\shp$ who is one of
 Since $\shp$ has a strong similarity with $\np$, one could expect a ``Fagin-like'' Theorem~\cite{fagin1974generalized} for this class. 
 Actually, in~\cite{SalujaST95} it was shown that the class $\sfo$ captures $\shp$.
 In our setting, the class $\sfo$ is contained in $\eqso(\fo)$ which also captures $\shp$ as expected. 
-\begin{proposition} \label{eqso-fo-cap}
+\begin{proposition} \label{prop:capture-shP}
 	$\eqso(\fo)$ captures $\shp$ over ordered structures.
 \end{proposition}
 Recall that (see Section~\ref{sec:previous}) that every function class $\# \LL$ is contained in $\eqso(\LL)$. Thus, by~\cite{SalujaST95} it directly follows that every $\shp$-function can be defined in $\eqso(\LL)$. The other direction is also direct and follows by showing that $\shp$ is closed under first- and second-order sum.
@@ -51,7 +51,7 @@ Indeed, by using free SO-variables one will easily capture $\shp$-hard functions
 Therefore, it is impossible to capture classes like $\fp$ or $\fpspace$ if we follow previous approaches like~\cite{SalujaST95}. 
 
 Instead, if we move from $\eqso$ we have other options for counting like first- and second-order products. Actually, if we combine $\qfo$ with $\lfp$ this is exactly what we need to capture $\fp$, the class of function that can be computed in~$\ptime$.
-\begin{theorem} \label{captfp}
+\begin{theorem} \label{theo:capture-fp}
 	$\qfo(\lfp)$ captures $\fp$ over ordered structures.
 \end{theorem}
 To capture $\fp$ one first shows that any formula in $\qfo(\lfp)$ can be evaluated in $\ptime$. 
@@ -73,7 +73,7 @@ The proof of the previous theorem follows the same lines than the logical charac
 From the proof of the previous theorem a natural question follows: what happen if we use first-order quantitative quantifiers and $\pfp$?
 In~\cite{Ladner89}, Ladner also proposes the class $\nfpspace$ of all functions computed by $\pspace$-machines whose output is polynomially bounded. 
 Interestingly, if we restrict to FO-quantitative quantifiers we can also capture this class.
-\begin{corollary} \label{qfo-pfp-cap}
+\begin{corollary} \label{cor:capture-fpspace-poly}
 	$\qfo(\pfp)$ captures $\nfpspace$ over ordered structures.
 \end{corollary}
 
