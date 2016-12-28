@@ -1,0 +1,12 @@
+For a given signature $\R$, we define $\ostr[\R]^*$ as $$\ostr[\R]^* = \{(\A,v,V) \mid \A\in\ostr[\R]\text{, $v$ ($V$) is a first-order (second-order) assignment for $\A$}  \}.$$
+The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\neg\varphi + (\varphi\cdot\alpha))$ for given $\so$ formula $\varphi$ and $\qso$ formula $\alpha$. Note that for each $(\A,v,V) \in \ostr[\R]^*$, 
+$$
+\sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
+\begin{cases}
+\sem{\alpha}(\A,v,V) &\text{if } (\A,v,V)\models\varphi,\\
+0 &\text{otherwise}.
+\end{cases}
+$$
+We will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$. We also denote $\min(\bar{x}) := \forall\bar{y}(\bar{y} < \bar{x}\vee \bar{y} = \bar{x})$.
+
+If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$. We also denote $\length(\bar{x}) = m$ ($\length(\bar{X}) = m$).
