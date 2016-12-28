@@ -72,18 +72,18 @@ and adding these values gives $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ o
 For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\eqso(\fo)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$ accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial time, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.%%If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
 If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. This covers all possible cases for $\alpha$. Let $\alpha$ be a formula in $\eqso(\fo)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shp$ function over $\R$ and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$.
 
-For condition (2) in \ref{cap-def}, note that Saluja et al. \cite{DBLP:journals/jcss/SalujaST95} proved that $\shp = \#\fo$. We also have that $\sqso(\fo)$ captures $\#\fo$ over ordered structures so for each $f\in \shp$ let $\alpha \in \sqso(\fo)$ be its corresponding formula. Since this formula is also in $\eqso(\fo)$, the condition holds. \qed
+For condition (2) in \ref{cap-def}, note that Saluja et al. \cite{SalujaST95} proved that $\shp = \#\fo$. We also have that $\sqso(\fo)$ captures $\#\fo$ over ordered structures so for each $f\in \shp$ let $\alpha \in \sqso(\fo)$ be its corresponding formula. Since this formula is also in $\eqso(\fo)$, the condition holds. \qed
 
 \subsection{Proof of Theorem \ref{eqso-eso-cap}}
 
 For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\eqso(\eso)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic outputs for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. On each of the steps the algorithm adds the current configuration to the output tape. If $\alpha$ is a $\eso$-formula $\varphi$ it checks if $(\A,v,V)\models\varphi$ non-deterministically in polynomial time without modifying the output tape, and accepts if and only if the condition holds true. If $\alpha$ is a constant $s$, then the algorithm produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$. %% If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
 If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. This covers all possible cases for $\alpha$. Let $\alpha$ be a formula in $\eqso(\eso)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the number of accepting outputs of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\spp$ function over $\R$ and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$.
 
-For condition (2) in \ref{cap-def}, note that Compton and Graedel \cite{DBLP:journals/jcss/ComptonG96} proved that $\spp = \#\eso$. We also have that $\sqso(\eso)$ captures $\#\eso$ over ordered structures so for each $f\in \spp$ let $\alpha \in \sqso(\eso)$ be its corresponding formula. Since this formula is also in $\eqso(\eso)$, the condition holds. \qed
+For condition (2) in \ref{cap-def}, note that Compton and Graedel \cite{ComptonG96} proved that $\spp = \#\eso$. We also have that $\sqso(\eso)$ captures $\#\eso$ over ordered structures so for each $f\in \spp$ let $\alpha \in \sqso(\eso)$ be its corresponding formula. Since this formula is also in $\eqso(\eso)$, the condition holds. \qed
 
 \subsection{Proof of Theorem \ref{qso-pfp-cap}}
 
-For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space \cite{DBLP:conf/lics/AbiteboulV89}\martin{no estoy seguro de esta cita}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$. If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. If $\alpha = \pa{X}\beta$, it simulates $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\in A^{arity(X)}$. This covers all possible cases for $\alpha$, and each of these steps can be computed in polynomial space. Let $\alpha$ be a formula in $\qso(\pfp)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shpspace$ function over $\R$, which implies that $f$ is also a $\fpspace$ function over $\R$ \cite{DBLP:journals/siamcomp/Ladner89}, and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$. 
+For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space \cite{AbiteboulV89}\martin{no estoy seguro de esta cita}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$. If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. If $\alpha = \pa{X}\beta$, it simulates $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\in A^{arity(X)}$. This covers all possible cases for $\alpha$, and each of these steps can be computed in polynomial space. Let $\alpha$ be a formula in $\qso(\pfp)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shpspace$ function over $\R$, which implies that $f$ is also a $\fpspace$ function over $\R$ \cite{Ladner89}, and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$. 
 
 For the second condition, let $f\in \fpspace$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq 2^{n^\ell}$, where $\A$ has a domain of size $n$. Let $\Phi(X)$ be a $\pfp$ formula that represents the following. Consider an order over the subsets of $A^{\ell}$ given by the formula $$\varphi_{<}(X,Y) = \exists\bar{u}\big[\neg X(\bar{u})\wedge Y(\bar{u})\wedge \forall\bar{v}\big(
 \bar{u}<\bar{v}\to(X(\bar{u})\iff Y(\bar{v}))\big)\big].$$ 
@@ -95,11 +95,11 @@ $\alpha := \sa{X}(\Phi(X)\mult\varphi(X))$, where $\varphi(X) = \pa{Y}(\varphi_{
 
 First, for a given signature $\R$ and logic fragment $\LL$ we define a {\em valid form in $\LL$} (or just {\em valid form}). A formula $\alpha$ is in valid form in $\LL$ if (1) it is equal to $\varphi$, $1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}1$ for some $\LL$ formula $\varphi$ and some tuple of first-order (second-order) variables $\bar{x}$ ($\bar{X}$), or (2) if it is equal to $(\beta\add\gamma)$ where $\beta$ and $\gamma$ are formulas in valid form. Given a $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$ we will recursively construct a formula $\tau(\alpha)$ in valid form such that $\alpha(\enc(\A)) = \tau(\alpha)(\enc(\A))$ for each $\A\in\ostr[\R]$. 
 
-First, each natural constant $s$ in $\alpha$ is replaced by $(1\add 1\add\cdots\add 1)$ ($s$ times). If $\alpha = 1$ or $\alpha = \varphi \in \loge{0}$, then $\tau(\alpha) = \alpha$. We assume that every sub-formula of $\alpha$ is in valid form. If $\alpha = (\beta \add \gamma)$ then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ this case separates in more cases: If $\alpha = \sa{x}\beta$ and $\beta$ is in one of the valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{X}\beta$ and $\beta$ is in the valid form $\sa{\bar{x}}\gamma$ then $\tau(\alpha) = \sa{\bar{x}}\sa{X}\gamma$; if $\beta$ it is in one of the remaining valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ ($\alpha = \sa{X}\beta$) and $\beta = (\gamma_1\add\gamma_2)$, then $\tau(\alpha) = \tau(\sa{x}\gamma_1) \add \tau(\sa{x}\gamma_2)$ ($\tau(\alpha) = \tau(\sa{X}\gamma_1) \add \tau(\sa{X}\gamma_2)$). This covers all possible cases for $\alpha$. Furthermore, suppose that $\LL$ is closed under conjunction and suppose $\alpha = (\beta\mult\gamma)$. If $\beta = (\delta_1\add\delta_2)$ (wlog), then $\tau(\alpha) = \tau(\delta_1\mult\gamma)\add\tau(\delta_2\mult\gamma)$. If $\beta = \sa{\bar{x}}\delta$, then $\tau(\alpha) = \tau(\sa{\bar{x}}\tau(\delta\mult\gamma))$. If $\beta = 1$, then $\tau(\alpha) = \gamma$. If $\beta = \varphi$ and $\gamma = \psi$, then $\tau(\alpha) = \varphi\wedge\psi$. Let $\alpha$ be a $\eqso(\loge{0})$ formula over a signature $\R$. Consider the following procedure that receives $\enc(\A)$ as input, where $\A\in\ostr[\R]$ with domain $A$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_m$. For each $\beta_i$, if $\beta_i = 1$ or $\beta_i = \varphi$, then $\sem{\beta_i}(\A)$ can be computed in polynomial time. If $\beta_i = \sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}$, if $\beta_i = \sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = 2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, if $\beta_i = \sa{\bar{X}}\sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, all of which can be computed in polynomial time. Otherwise, $\beta_i$ is $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, and then $\sem{\beta_i}(\A) = f_{\varphi}(\enc(\A))$, and $f_{\varphi}\in \#\loge{0}$ which implies that $f_{\varphi}(\enc(\A))$ can be computed in polynomial time \cite{DBLP:journals/jcss/SalujaST95}. 
+First, each natural constant $s$ in $\alpha$ is replaced by $(1\add 1\add\cdots\add 1)$ ($s$ times). If $\alpha = 1$ or $\alpha = \varphi \in \loge{0}$, then $\tau(\alpha) = \alpha$. We assume that every sub-formula of $\alpha$ is in valid form. If $\alpha = (\beta \add \gamma)$ then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ this case separates in more cases: If $\alpha = \sa{x}\beta$ and $\beta$ is in one of the valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{X}\beta$ and $\beta$ is in the valid form $\sa{\bar{x}}\gamma$ then $\tau(\alpha) = \sa{\bar{x}}\sa{X}\gamma$; if $\beta$ it is in one of the remaining valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ ($\alpha = \sa{X}\beta$) and $\beta = (\gamma_1\add\gamma_2)$, then $\tau(\alpha) = \tau(\sa{x}\gamma_1) \add \tau(\sa{x}\gamma_2)$ ($\tau(\alpha) = \tau(\sa{X}\gamma_1) \add \tau(\sa{X}\gamma_2)$). This covers all possible cases for $\alpha$. Furthermore, suppose that $\LL$ is closed under conjunction and suppose $\alpha = (\beta\mult\gamma)$. If $\beta = (\delta_1\add\delta_2)$ (wlog), then $\tau(\alpha) = \tau(\delta_1\mult\gamma)\add\tau(\delta_2\mult\gamma)$. If $\beta = \sa{\bar{x}}\delta$, then $\tau(\alpha) = \tau(\sa{\bar{x}}\tau(\delta\mult\gamma))$. If $\beta = 1$, then $\tau(\alpha) = \gamma$. If $\beta = \varphi$ and $\gamma = \psi$, then $\tau(\alpha) = \varphi\wedge\psi$. Let $\alpha$ be a $\eqso(\loge{0})$ formula over a signature $\R$. Consider the following procedure that receives $\enc(\A)$ as input, where $\A\in\ostr[\R]$ with domain $A$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_m$. For each $\beta_i$, if $\beta_i = 1$ or $\beta_i = \varphi$, then $\sem{\beta_i}(\A)$ can be computed in polynomial time. If $\beta_i = \sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}$, if $\beta_i = \sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = 2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, if $\beta_i = \sa{\bar{X}}\sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, all of which can be computed in polynomial time. Otherwise, $\beta_i$ is $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, and then $\sem{\beta_i}(\A) = f_{\varphi}(\enc(\A))$, and $f_{\varphi}\in \#\loge{0}$ which implies that $f_{\varphi}(\enc(\A))$ can be computed in polynomial time \cite{SalujaST95}. 
 
 \subsection{Proof of Theorem \ref{eqso-sigma-one-in-eqso-pi-one}}
 
-Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(\alpha) = \beta_1\add\beta_2\add\cdots\add\beta_m$ defined as in the proof of Theorem \ref{eqso-sigma-zero-in-fp}. This is, each $\beta_i$ is of the form $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\loge{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. For each $\beta_i$ we will construct a $\gamma_i$ such that $\gamma_i \in \eqso(\logu{1})$ and $\sem{\beta_i}(\A) = \sem{\gamma_i}(\A)$ for each $\A\in\ostr[\R]$. Since the forms $1$, $\sa{\bar{x}}1$, $\sa{\bar{X}}1$ and $\sa{\bar{X}}\sa{\bar{x}}1$ are already valid in $\eqso(\logu{1})$, we suppose $\beta_i$ is in one of the remaining forms. Without loss of generality, let $\beta_i = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y},\bar{X})$ where $\varphi(\bar{x},\bar{y},\bar{X})$ is a quantifier-free formula. Similarly as in the proof by Saluja et al. \cite{DBLP:journals/jcss/SalujaST95}, we define $\gamma_i = \sa{\bar{x}}\sa{\bar{y}}\sa{\bar{X}}\varphi(\bar{x},\bar{y},\bar{X}) \wedge \forall\bar{z}(\varphi(\bar{x},\bar{z},\bar{X})\to(\bar{z} < \bar{y} \vee \bar{z} = \bar{y}))$ that fulfils the desired condition. The theorem holds true by using $\beta = \gamma_1\add\cdots\add\gamma_m$ which is in $\eqso(\logu{1})$
+Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(\alpha) = \beta_1\add\beta_2\add\cdots\add\beta_m$ defined as in the proof of Theorem \ref{eqso-sigma-zero-in-fp}. This is, each $\beta_i$ is of the form $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\loge{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. For each $\beta_i$ we will construct a $\gamma_i$ such that $\gamma_i \in \eqso(\logu{1})$ and $\sem{\beta_i}(\A) = \sem{\gamma_i}(\A)$ for each $\A\in\ostr[\R]$. Since the forms $1$, $\sa{\bar{x}}1$, $\sa{\bar{X}}1$ and $\sa{\bar{X}}\sa{\bar{x}}1$ are already valid in $\eqso(\logu{1})$, we suppose $\beta_i$ is in one of the remaining forms. Without loss of generality, let $\beta_i = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y},\bar{X})$ where $\varphi(\bar{x},\bar{y},\bar{X})$ is a quantifier-free formula. Similarly as in the proof by Saluja et al. \cite{SalujaST95}, we define $\gamma_i = \sa{\bar{x}}\sa{\bar{y}}\sa{\bar{X}}\varphi(\bar{x},\bar{y},\bar{X}) \wedge \forall\bar{z}(\varphi(\bar{x},\bar{z},\bar{X})\to(\bar{z} < \bar{y} \vee \bar{z} = \bar{y}))$ that fulfils the desired condition. The theorem holds true by using $\beta = \gamma_1\add\cdots\add\gamma_m$ which is in $\eqso(\logu{1})$
 
 %\subsection{Proof of Theorem \ref{one-sigma-zero}}
 %
@@ -163,11 +163,11 @@ $$
 $$
 Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1}$, we have by our initial assumption that $f_{all}-f_{\#3DNF} \in \E{1}$. Let $h\in\E{1}$ be such that $h = f_{all}-f_{\#3DNF}$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is $\conp$-complete. However, as we showed previously in Theorem \ref{decisionptime}, since $h\in\E{1}$, we have that $L_h \in \ptime$. Then, $\conp \subseteq \ptime$, from which we conclude that $\ptime = \np$.
 	
-\textbf{Proof of Theorem \ref{sigma1strict}}
-
-We will show that the $\E{1}$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Note that $\A$ is an induced substructure of $\B$.
-
-We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\str$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{DBLP:journals/jcss/SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
+%\textbf{Proof of Theorem \ref{sigma1strict}}
+%
+%We will show that the $\E{1}$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Note that $\A$ is an induced substructure of $\B$.
+%
+%We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\str$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
 	
 \subsection{Proof of Theorem \ref{sigmafo-minusone}}
 
@@ -183,7 +183,7 @@ For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{x}}\exists\
 
 For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ as is. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{X},\bar{x},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ has the form:
 $$
-\varphi_i(\bar{X},\bar{x},\bar{y}) = (\text{conjunction of $X_i$'s}) \wedge (\text{conjunction of $\neg X_i$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_i$}).
+\varphi_i(\bar{X},\bar{x},\bar{y}) = (\text{conjunction of $X_j$'s}) \wedge (\text{conjunction of $\neg X_j$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_j$}).
 $$
 Define $\varphi_i^{+}$, $\varphi_i^{-}$ and $\varphi_i^{\fo}$ as the formulas mentioned above. 
 
@@ -205,7 +205,14 @@ $$
 \psi_i(\bar{X},\bar{x}) = \exists\bar{v}(\mu_i(\bar{v})\wedge(\neg\varphi^{+}_i(\bar{X},\bar{v})\vee\bigvee_{X \in \bar{X}} \exists\bar{z}(X(\bar{z}) \wedge \bigwedge\limits_{\substack{\text{instances of }X(\bar{w}) \\ \text{in }\varphi^{+}_i(\bar{X},\bar{v})}}\bar{w}\neq\bar{z}))) \vee \exists\bar{x}'(\exists\bar{y}'\varphi_i(\bar{X},\bar{x}',\bar{y}')\wedge \bar{x}'<\bar{x})\vee\neg\exists\bar{v}\mu_i(\bar{v}) .
 $$
 \begin{claim}
-	Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a quantifier-free formula that respects all the mentioned assumptions. For a given ordered structure $\A$ with domain $A$, if $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$, then there exists some $\bar{B}$ over $\A$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi_i(\bar{B},\bar{b},\bar{a})$ for some $\bar{a}\in A^{\length(\bar{y})}$.
+For a given ordered structure $\A$ such that $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$, there is an assignment $(\bar{B},\bar{b})$ to $(\bar{X},\bar{x})$ that satisfies the following conditions (1) $\A\models\exists\bar{y}\,\varphi_i(\bar{B},\bar{b},\bar{y})$, (2) $\A\not\models\psi_i(\bar{B},\bar{b})$ and (3) this is the only assignment to $(\bar{X},\bar{x})$ that satisfies (1) and (2).
+\end{claim}
+\begin{proof}
+	proof here.
+\end{proof}
+The following claim identifies a crucial condition that is verifiable through a $\fo$. 
+\begin{claim}
+	Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a $\logex{0}$ formula that satisfies all the mentioned assumptions. For a given ordered structure $\A$ it holds that $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$ iff $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$.
 \end{claim}
 \begin{proof}
 	Let $\A$ be an ordered structure with domain $A$ and let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})$. Define $\bar{B} = (B_1,\ldots,B_{\length(\bar{X})})$ as $B_j = \{\bar{c}\mid\bar{c}\text{ is a subtuple of $(\bar{b},\bar{a})$ and $X_j(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$}\}$. Towards a contradiction, suppose that $\A\not\models\varphi_i(\bar{B},\bar{b},\bar{a})$. By the choice of $\bar{a}$ and $\bar{b}$, and construction of $\bar{B}$ it is clear that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})\wedge\varphi^{+}_i(\bar{B},\bar{b},\bar{a})$, so we have that $\A\not\models\varphi^{-}_i(\bar{B},\bar{b},\bar{a})$. Let $B_t(\bar{c})$ be such that $X_t(\bar{c})$ is mentioned in $\varphi^{-}_i(\bar{X},\bar{b},\bar{a})$ and $\A\not\models\neg B_t(\bar{c})$. This is, $\bar{c}\in B_t$. By the construction of $\bar{B}$ we have that $X_t(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$. From our assumptions, we have that (1) every first-order variable is mentioned at most once in $\varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$, (2) $\varphi^{\fo}_i$ defines an ordered partition over $(\bar{x},\bar{y})$, and (3) there are no $X_j(\bar{w})$ in $\varphi^{+}_i$ and $X_j(\bar{z})$ in $\varphi^{-}_i$ such that the ordered partition defined by $\varphi^{\fo}_i$ satisfies $\bar{x} = \bar{z}$. Since $\bar{c}$ is a subtuple of $(\bar{b},\bar{a})$ that satisfies $\varphi^{\fo}_i$, and $X_t(\bar{w})$ mentioned in $\varphi^{+}_i$ and $X_t(\bar{z})$ mentioned in $\varphi^{-}_i$ were both assigned the value $\bar{c}$, then the ordered partition satisfies $\bar{w} = \bar{z}$, which follows to a contradiction.
@@ -228,7 +235,8 @@ $$
 \varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge[\lambda(\beta)\vee[\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
 \bigvee_{j = 1}^{j = i-1}\chi_j\vee\psi_i(\bar{X},\bar{x}))]].
 $$
-And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$.
+And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$, which is in $\eqso(\logex{1})$ and satisfies the desired condition.
+
 %%Consider an $\L$-formula of the form $\exists\x\:\varphi(\x,\X,\z)$ where $\z = (z_1,\dots,z_d)$ and $\X = (X_1,\dots,X_r)$. There are three possibilities regarding the size of the tuples of free variables $\z$ and $\X$: (1) $d>0$ and $r=0$ (2) $d=0$ and $r>0$ (3) $d,r>0$. This separates the proof in three cases:
 %\begin{enumerate}
 %%	\item Let $f \in \E{1}$ be defined by an extended quantifier free $\L$-formula $\varphi(\x,\z)$, where $\z = (z_1,\dots,z_d)$. That is,
@@ -389,161 +397,215 @@ And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{
 %	
 %	Let $q$ be the least $i\in\{1,\ldots,k\}$ such that $\A\models\exists\x\:\varphi_i(\x,\R,\d)$ for some assignment $R$ to $\X$ and some assignment $\d$ to $\z$. Let $\P$ be the lexicographically smallest tuple of predicates such that $\A\models\exists\x\:\varphi_q(\x,\P,\d^\prime)$ for some assignment $\d^\prime$ to $\z$. Let $\e$ be the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_q(\x,\P,\e).$ This formula is such that (a) $\A\models\exists\x\:\varphi(\x,\P,\e)$, (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P,\e)$ and $\P$ and $\e$ are the only assignments that satisfy (a) and (b). The proof of this is analogous to case 2. Therefore, we conclude that $f_{\exists\x\,\varphi^\prime(\x,\X,\z)} = f_{\exists\x\,\varphi(\x,\X,\z)}\dotminus 1.$
 %\end{enumerate}
-		
-\textbf{Proof of Theorem \ref{dnf-pars}}
-
-Let $f$ be an arbitrary function in $\E{1}$ and let $f_{\textsc{\#DNF}}$ be the function that defines {\sc \#DNF}. We will now show a function $h:\str\to \textsc{Struct}[\L_{\textsc{DNF}}]$, where $\L_{\textsc{DNF}} = \{N,P\}$, such that for every $\A\in\str$, it holds that $f(\A) = f_{\textsc{\#DNF}}(h(\A))$, and which can be computed in polynomial time. For every DNF formula $\Phi$ we define $\A_{\Phi} \in \textsc{Struct}[\L_{\textsc{DNF}}]$ as stated in \ref{dnfdef}. Let $\psi$ be such that $f = f_{\psi(\X,\z)}$. We separate the proof in three cases:
-\begin{enumerate}
-	\item $\X = ()$. Let $\psi(\z) = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we generate is
-	\[
-	\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
-	\]
-	which has exactly $n$ possible assignments. Finally, we return $h(\A) = \A_{\Phi}$.
-	
-	\item $\z = ()$. Let $\psi(\X) = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a DNF-formula $\Phi = h(\A)$ as follows. First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
-	\[
-	\varphi_{i}(\x,\X) = X_{\pi_i(1)}(\x^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\x^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\x^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\x^{\nu}_{i,n_i}) \wedge \alpha_i(\x),
-	\]
-	where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$) is the rearrangement of $\x$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x)$ is a FO formula. We also define the tuple $\a^{\pi}_{i,j}$ ($\a^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$), for each $\a\in A^c$.
-	
-	We generate a propositional variable $p^{\ell}_{\a}$ for each $\a\in A^{c_{\ell}}$, and for each $\ell\in\{1,\ldots,r\}$, which will indicate if the tuple $\a$ is in the assignment to $X_{\ell}$. Let $\p$ be the tuple of all such variables.
-	
-	Then, let $\Gamma_i = \{\a\in A^c\mid \A\models\alpha_i(\a)\}$. There is exactly $\vert A \vert^c$ tuples to check, and each of those checks can be done in polynomial time, so this set can also be generated in polynomial time.
-	
-	Finally, for each $\varphi_i(\x,\X)$ the DNF formula we generate is
-	\[
-	\Phi_i = \bigvee_{\a\in\Gamma_i} p^{\pi_i(1)}_{\a^{\pi}_{i,1}} \wedge \cdots \wedge p^{\pi_i(m_i)}_{\a^{\pi}_{i,m_i}} \wedge \neg p^{\nu_i(1)}_{\a^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\pi_i(n_i)}_{\a^{\nu}_{i,n_i}}.
-	\]
-	and $\Phi = \bigvee_{i = 1}^k \Phi_i \vee \bigvee_{p\in\p} (p\wedge\neg p)$. Finally, we return $h(\A) = \A_{\Phi}$.
-	
-	As an example, let $\psi^{*}(X_1,X_2) = \exists x \exists y\, (X_1(x) \wedge X_2(y,x) \wedge \neg X_1(y) \wedge x < y \wedge \neg\exists z\,(x<z\wedge z<y))$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^1_1,p^1_2,p^1_3) \cup (p^2_{(i,j)})$ for $(i,j)\in \{1,2,3\}\times\{1,2,3\}$. Note that in this procedure we will only have one set $\Gamma_1 = \{(1,2),(2,3)\}$. And so, the DNF formula we generate is 
-	\begin{multline*}
-	\Phi^{*} = (p^1_1\wedge p^2_{(2,1)} \wedge \neg p^1_2)\vee(p^1_2\wedge p^2_{(3,2)} \wedge \neg p^1_3)\, \vee \\ (p^1_1 \wedge \neg p^1_1) \vee(p^1_2 \wedge \neg p^1_2) \vee (p^1_3\wedge \neg p^1_3) \vee \bigvee_{i,j\in\{1,2,3\}}(p^2_{(i,j)}\wedge\neg p^2_{(i,j)})
-	\end{multline*}
-	
-	Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
-	
-	\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$ we generate a DNF-formula $\Phi = h(\A)$ as follows. As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
-	\[
-	\varphi_{i}(\x,\X,\z) = X_{\pi_i(1)}(\y^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\y^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\y^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\y^{\nu}_{i,n_i}) \wedge \alpha_i(\x,\z),
-	\]
-	where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$) is the rearrangement of $(\x,\z)$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x,\z)$ is a FO formula. We also define the tuple $(\a,\e)^{\pi}_{i,j}$ ($(\a,\e)^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$), for each $(\a,\e)\in A^{c+d}$.
-	
-	We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. This variable will be true if there is an assignation to $\P$ such that $\b\in P_{\ell}$ and $\A\models\psi(\P,\e)$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
-	
-	For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
-	\[
-	\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{\pi_i(1),(\a,\e)^{\pi}_{i,1}} \wedge \cdots \wedge p^{\e}_{\pi_i(m_i),(\a,\e)^{\pi}_{i,m_i}} \wedge \neg p^{\e}_{\nu_i(1),(\a,\e)^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\e}_{\pi_i(n_i),(\a,\e)^{\nu}_{i,n_i}} \wedge \gamma_{\e} \wedge \theta_{\e},
-	\]
-	where $\gamma_{\e}$ is defined as
-	\[
-	\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
-	\]
-	and $\theta_{\e}$ is defined as
-	\[
-	\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
-	\]
-	Finally,$\Phi = \bigvee_{\e\in A^d} \bigvee_{i = 1}^k \Phi_i^{\e} \vee \bigvee_{p\in\p} (p\wedge\neg p)$, and we return $f(\A) = \A_{\Phi}$.
-	
-	As an example, let $\psi^{*}(X_1,X_2,z) = \exists x\, (X_1(x) \wedge X_2(z) \wedge \neg X_1(z) \wedge x < z)$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^e_{1,1},p^e_{1,2},p^e_{1,3},p^e_{2,1},p^e_{2,2},p^e_{2,3})$, for $e\in \{1,2,3\}$. Here, we consider $L = 2$, $T = \{t_1,t_2\}$, and $\beta$ defined as $\beta(1) = (0,0)$, $\beta(2) = (0,1)$ and $\beta(3) = (1,0)$. In this procedure we generate the sets $\Gamma^1_1 = \emptyset$, $\Gamma^2_1 = \{1\}$, $\Gamma^3_1 = \{1,2\}$. Now we generate $\gamma_e$ for $e\in\{1,2,3\}$,
-	\[
-	\gamma_e = \bigwedge_{d\in\{1,2,3\}\setminus\{e\}} p^d_{1,1} \wedge p^d_{1,2} \wedge p^d_{1,3} \wedge p^d_{2,1} \wedge p^d_{2,2} \wedge p^d_{2,3},
-	\]
-	and $\theta_e$ for $e\in\{1,2,3\}$,
-	\begin{align*}
-	\theta_1 &= \neg t_1 \wedge \neg t_2,\\
-	\theta_2 &= \neg t_1 \wedge t_2,\\
-	\theta_3 &= t_1 \wedge \neg t_2.		
-	\end{align*}
-	Then, we generate the formulas $\Phi^e_1$, for $e\in\{1,2,3\}$,
-	\begin{align*}
-	\Phi^1_1 &= \square\\
-	\Phi^2_1 &= p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2,\\
-	\Phi^3_1 &= (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3),
-	\end{align*}
-	and so, the DNF formula we generate is
-	\begin{multline*}
-	\Phi = (p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2) \vee (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee \\ \bigvee_{e\in\{1,2,3\}}[(p^e_{1,1}\wedge\neg p^e_{1,1})\vee
-	(p^e_{1,2}\wedge\neg p^e_{1,2})\vee
-	(p^e_{1,3}\wedge\neg p^e_{1,3})\vee
-	(p^e_{2,1}\wedge\neg p^e_{2,1})\vee
-	(p^e_{2,2}\wedge\neg p^e_{2,2})\vee
-	(p^e_{2,3}\wedge\neg p^e_{2,3})].
-	\end{multline*}
-	To demonstrate that our reduction is correct, we will show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows. For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. 
-	
-	Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{\#DNF}}(\A_{\Phi})$.
-\end{enumerate}
-	
-\textbf{Proof of Theorem \ref{nplusone-strict}}
-
-Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\str$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\str$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider the vocabulary $\L' = \L \cup \{\Q\}$, and let $\A' = \A \cup \langle \Q^{\A'} \rangle$ where $\Q^{\A'} = \P$. Note that $\A\models\varphi(\P,\e)$ if and only if $\A'\models\varphi(\e)$. Consider $\B'$ as the induced substructure of $\A'$ with domain $A\setminus\{a\}$, and let $\Q^{\B'}$ be the induced interpretation of $\Q$. Also let $\B$ be the induced substructure of $\A$ with domain $A\setminus\{a\}$. As universal formulae are preserved under substructure\footnote{Hodges, 1997. P. 183}, we have that $\B'\models\forall\x\,\psi(\x,\e)$, which implies that $\B\models\forall\x\,\psi(\x,\Q^{\B'},\e)$. We conclude that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
-	
-\textbf{Proof of Theorem \ref{sigma2-pe}}
-
-Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{DBLP:journals/jcss/SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\shp$.\\
-
-We will now prove that there is a polynomial time algorithm that decides $L_{f}$. This is equivalent to decide, given $\A= \langle A, \S^\A, \leq^\A \rangle\in\str$, whether there exist assignments $\P,\z$ such that $\A\models\varphi(\P,\z)$. This is the same as $\A\models\exists\X\exists\x\,\varphi(\X,\x)$. Since $\varphi(\X,\x)$ is defined by the grammar $E_2$, there exists $\psi(\X,\x,\y,\u)$ such that $\varphi(\X,\x) = \exists\x\exists\y\forall\u\exists\v\,\psi(\X,\x,\y,\u,\v)$, where every variable in $\v$ appears on a negated second-order literal $\neg X_i$, with $i\in\N$.
-
-Given $\A\in\str$ we generate an equivalent $\L$-formula $\theta(\X,\x,\y)$ with a series of operations. First, we replace every instance of $\v$ by a disjunction of all $r$-tuples in $A^r$, where $r$ is the number of variables in $\v$. The result is still a Horn clause. Second, we replace every instance of $\u$ by a conjunction of all $s$-tulples in $A^s$, where $s$ is the number or variables in $\u$. The result is still a conjunction of Horn clauses.
-
-Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time \cite{DBLP:conf/stacs/Gradel91}.
+%		
+%\textbf{Proof of Theorem \ref{dnf-pars}}
+%
+%Let $f$ be an arbitrary function in $\E{1}$ and let $f_{\textsc{\#DNF}}$ be the function that defines {\sc \#DNF}. We will now show a function $h:\str\to \textsc{Struct}[\L_{\textsc{DNF}}]$, where $\L_{\textsc{DNF}} = \{N,P\}$, such that for every $\A\in\str$, it holds that $f(\A) = f_{\textsc{\#DNF}}(h(\A))$, and which can be computed in polynomial time. For every DNF formula $\Phi$ we define $\A_{\Phi} \in \textsc{Struct}[\L_{\textsc{DNF}}]$ as stated in \ref{dnfdef}. Let $\psi$ be such that $f = f_{\psi(\X,\z)}$. We separate the proof in three cases:
+%\begin{enumerate}
+%	\item $\X = ()$. Let $\psi(\z) = \exists \x\,\varphi(\x,\z)$ where $\x = (x_1,\ldots,x_c)$ and $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\,\varphi(\x,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The DNF formula we generate is
+%	\[
+%	\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
+%	\]
+%	which has exactly $n$ possible assignments. Finally, we return $h(\A) = \A_{\Phi}$.
+%	
+%	\item $\z = ()$. Let $\psi(\X) = \exists \x\,\varphi(\x,\X)$, where $\x = (x_1,\ldots,x_c)$ and $\X = (X_1,\ldots,X_r)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a DNF-formula $\Phi = h(\A)$ as follows. First, we convert $\varphi(\x,\X)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X)$. Let each $\varphi_{i}(\x,\X)$ be of the form
+%	\[
+%	\varphi_{i}(\x,\X) = X_{\pi_i(1)}(\x^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\x^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\x^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\x^{\nu}_{i,n_i}) \wedge \alpha_i(\x),
+%	\]
+%	where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$) is the rearrangement of $\x$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x)$ is a FO formula. We also define the tuple $\a^{\pi}_{i,j}$ ($\a^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\x^{\pi}_{i,j}$ ($\x^{\nu}_{i,j}$), for each $\a\in A^c$.
+%	
+%	We generate a propositional variable $p^{\ell}_{\a}$ for each $\a\in A^{c_{\ell}}$, and for each $\ell\in\{1,\ldots,r\}$, which will indicate if the tuple $\a$ is in the assignment to $X_{\ell}$. Let $\p$ be the tuple of all such variables.
+%	
+%	Then, let $\Gamma_i = \{\a\in A^c\mid \A\models\alpha_i(\a)\}$. There is exactly $\vert A \vert^c$ tuples to check, and each of those checks can be done in polynomial time, so this set can also be generated in polynomial time.
+%	
+%	Finally, for each $\varphi_i(\x,\X)$ the DNF formula we generate is
+%	\[
+%	\Phi_i = \bigvee_{\a\in\Gamma_i} p^{\pi_i(1)}_{\a^{\pi}_{i,1}} \wedge \cdots \wedge p^{\pi_i(m_i)}_{\a^{\pi}_{i,m_i}} \wedge \neg p^{\nu_i(1)}_{\a^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\pi_i(n_i)}_{\a^{\nu}_{i,n_i}}.
+%	\]
+%	and $\Phi = \bigvee_{i = 1}^k \Phi_i \vee \bigvee_{p\in\p} (p\wedge\neg p)$. Finally, we return $h(\A) = \A_{\Phi}$.
+%	
+%	As an example, let $\psi^{*}(X_1,X_2) = \exists x \exists y\, (X_1(x) \wedge X_2(y,x) \wedge \neg X_1(y) \wedge x < y \wedge \neg\exists z\,(x<z\wedge z<y))$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^1_1,p^1_2,p^1_3) \cup (p^2_{(i,j)})$ for $(i,j)\in \{1,2,3\}\times\{1,2,3\}$. Note that in this procedure we will only have one set $\Gamma_1 = \{(1,2),(2,3)\}$. And so, the DNF formula we generate is 
+%	\begin{multline*}
+%	\Phi^{*} = (p^1_1\wedge p^2_{(2,1)} \wedge \neg p^1_2)\vee(p^1_2\wedge p^2_{(3,2)} \wedge \neg p^1_3)\, \vee \\ (p^1_1 \wedge \neg p^1_1) \vee(p^1_2 \wedge \neg p^1_2) \vee (p^1_3\wedge \neg p^1_3) \vee \bigvee_{i,j\in\{1,2,3\}}(p^2_{(i,j)}\wedge\neg p^2_{(i,j)})
+%	\end{multline*}
+%	
+%	Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\,\varphi(\x,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{DNF}}(\Phi)$.
+%	
+%	\item Let $\psi = \exists \x\,\varphi(\x,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$ we generate a DNF-formula $\Phi = h(\A)$ as follows. As in the previous case, we convert $\varphi(\x,\X,\z)$ into an equivalent DNF formula $\bigvee_{i = 1}^k \varphi_{i}(\x,\X,\z)$. Let each $\varphi_{i}(\x,\X,\z)$ be of the form
+%	\[
+%	\varphi_{i}(\x,\X,\z) = X_{\pi_i(1)}(\y^{\pi}_{i,1}) \wedge \cdots \wedge X_{\pi_i(m_i)}(\y^{\pi}_{i,m_i}) \wedge \neg X_{\nu_i(1)}(\y^{\nu}_{i,1}) \wedge \cdots \wedge \neg X_{\nu_i(n_i)}(\y^{\nu}_{i,n_i}) \wedge \alpha_i(\x,\z),
+%	\]
+%	where $\pi_i:\{1,\ldots,n_i\}\to\{1,\ldots,r\}$, $\nu_i:\{1,\ldots,m_i\}\to\{1,\ldots,r\}$, $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$) is the rearrangement of $(\x,\z)$ in the $j$-th positive (negative) second order variable mentioned in $\varphi_i$, and $\alpha(\x,\z)$ is a FO formula. We also define the tuple $(\a,\e)^{\pi}_{i,j}$ ($(\a,\e)^{\nu}_{i,j}$) as $\a$ rearranged in the same way as $\y^{\pi}_{i,j}$ ($\y^{\nu}_{i,j}$), for each $(\a,\e)\in A^{c+d}$.
+%	
+%	We generate a propositional variable $p^{\e}_{\ell,\b}$ for each $\e\in A^d$, for each $\ell\in\{1,\ldots,r\}$, and for each $\b\in A^{c_{\ell}}$. This variable will be true if there is an assignation to $\P$ such that $\b\in P_{\ell}$ and $\A\models\psi(\P,\e)$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}$ be such that $\rho_{\ell}(\x,\z) = \y_{\ell}$.
+%	
+%	For each $\e\in A^d$, we follow the following procedure. For each $\varphi_i(\x,\X)$, we consider the set $\Gamma^{\e}_i = \{\a\in A^c\mid \A\models\alpha(\a,\e)\}$, and so, the DNF formula we generate is
+%	\[
+%	\Phi^{\e}_i = \bigvee_{\a\in\Gamma_i} p^{\e}_{\pi_i(1),(\a,\e)^{\pi}_{i,1}} \wedge \cdots \wedge p^{\e}_{\pi_i(m_i),(\a,\e)^{\pi}_{i,m_i}} \wedge \neg p^{\e}_{\nu_i(1),(\a,\e)^{\nu}_{i,1}} \wedge \cdots \wedge \neg p^{\e}_{\pi_i(n_i),(\a,\e)^{\nu}_{i,n_i}} \wedge \gamma_{\e} \wedge \theta_{\e},
+%	\]
+%	where $\gamma_{\e}$ is defined as
+%	\[
+%	\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
+%	\]
+%	and $\theta_{\e}$ is defined as
+%	\[
+%	\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
+%	\]
+%	Finally,$\Phi = \bigvee_{\e\in A^d} \bigvee_{i = 1}^k \Phi_i^{\e} \vee \bigvee_{p\in\p} (p\wedge\neg p)$, and we return $f(\A) = \A_{\Phi}$.
+%	
+%	As an example, let $\psi^{*}(X_1,X_2,z) = \exists x\, (X_1(x) \wedge X_2(z) \wedge \neg X_1(z) \wedge x < z)$. We will compute $h(\B)$, where $\B = \langle \{1,2,3\}, < \rangle$, and we have that $1 < 2 < 3$. We generate the tuple of variables $\p = (p^e_{1,1},p^e_{1,2},p^e_{1,3},p^e_{2,1},p^e_{2,2},p^e_{2,3})$, for $e\in \{1,2,3\}$. Here, we consider $L = 2$, $T = \{t_1,t_2\}$, and $\beta$ defined as $\beta(1) = (0,0)$, $\beta(2) = (0,1)$ and $\beta(3) = (1,0)$. In this procedure we generate the sets $\Gamma^1_1 = \emptyset$, $\Gamma^2_1 = \{1\}$, $\Gamma^3_1 = \{1,2\}$. Now we generate $\gamma_e$ for $e\in\{1,2,3\}$,
+%	\[
+%	\gamma_e = \bigwedge_{d\in\{1,2,3\}\setminus\{e\}} p^d_{1,1} \wedge p^d_{1,2} \wedge p^d_{1,3} \wedge p^d_{2,1} \wedge p^d_{2,2} \wedge p^d_{2,3},
+%	\]
+%	and $\theta_e$ for $e\in\{1,2,3\}$,
+%	\begin{align*}
+%	\theta_1 &= \neg t_1 \wedge \neg t_2,\\
+%	\theta_2 &= \neg t_1 \wedge t_2,\\
+%	\theta_3 &= t_1 \wedge \neg t_2.		
+%	\end{align*}
+%	Then, we generate the formulas $\Phi^e_1$, for $e\in\{1,2,3\}$,
+%	\begin{align*}
+%	\Phi^1_1 &= \square\\
+%	\Phi^2_1 &= p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2,\\
+%	\Phi^3_1 &= (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3),
+%	\end{align*}
+%	and so, the DNF formula we generate is
+%	\begin{multline*}
+%	\Phi = (p^2_{1,1} \wedge p^2_{2,2} \wedge \neg p^2_{1,2} \wedge \gamma_2 \wedge \theta_2) \vee (p^3_{1,1} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee (p^3_{1,2} \wedge p^3_{2,3} \wedge \neg p^3_{1,3} \wedge \gamma_3 \wedge \theta_3) \vee \\ \bigvee_{e\in\{1,2,3\}}[(p^e_{1,1}\wedge\neg p^e_{1,1})\vee
+%	(p^e_{1,2}\wedge\neg p^e_{1,2})\vee
+%	(p^e_{1,3}\wedge\neg p^e_{1,3})\vee
+%	(p^e_{2,1}\wedge\neg p^e_{2,1})\vee
+%	(p^e_{2,2}\wedge\neg p^e_{2,2})\vee
+%	(p^e_{2,3}\wedge\neg p^e_{2,3})].
+%	\end{multline*}
+%	To demonstrate that our reduction is correct, we will show a function $g:\{\langle\P,\e\rangle \mid \A \models \exists\x\,\varphi(\x,\P,\e)\} \to \{\sigma \mid \sigma(\Phi) = 1\}$ and then prove that it is a bijection. Let $g$ be such that for each assignment $\langle \P,\e \rangle$, it holds that $g(\langle \P,\e \rangle) = \sigma$ where $\sigma$ is constructed as follows. For each $t_i\in T$, let $\sigma(t_i) = b^{\e}_i$. For each $p_{\ell,\b}^{\e}$, where $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e}) = 1$ if and only if $\b \in P_{\ell}$. For each $p_{\ell,\b}^{\e'}$, where $\e'\in A^d\setminus\{\e\}$,  $\ell\in\{1,\ldots,r\}$ and $\b\in A^{c_{\ell}}$, let $\sigma(p_{\ell,\b}^{\e'}) = 1$. 
+%	
+%	Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{\#DNF}}(\A_{\Phi})$.
+%\end{enumerate}
+%	
+%\textbf{Proof of Theorem \ref{nplusone-strict}}
+%
+%Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\str$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\str$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider the vocabulary $\L' = \L \cup \{\Q\}$, and let $\A' = \A \cup \langle \Q^{\A'} \rangle$ where $\Q^{\A'} = \P$. Note that $\A\models\varphi(\P,\e)$ if and only if $\A'\models\varphi(\e)$. Consider $\B'$ as the induced substructure of $\A'$ with domain $A\setminus\{a\}$, and let $\Q^{\B'}$ be the induced interpretation of $\Q$. Also let $\B$ be the induced substructure of $\A$ with domain $A\setminus\{a\}$. As universal formulae are preserved under substructure\footnote{Hodges, 1997. P. 183}, we have that $\B'\models\forall\x\,\psi(\x,\e)$, which implies that $\B\models\forall\x\,\psi(\x,\Q^{\B'},\e)$. We conclude that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
+%	
+%\textbf{Proof of Theorem \ref{sigma2-pe}}
+%
+%Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\shp$.\\
+%
+%We will now prove that there is a polynomial time algorithm that decides $L_{f}$. This is equivalent to decide, given $\A= \langle A, \S^\A, \leq^\A \rangle\in\str$, whether there exist assignments $\P,\z$ such that $\A\models\varphi(\P,\z)$. This is the same as $\A\models\exists\X\exists\x\,\varphi(\X,\x)$. Since $\varphi(\X,\x)$ is defined by the grammar $E_2$, there exists $\psi(\X,\x,\y,\u)$ such that $\varphi(\X,\x) = \exists\x\exists\y\forall\u\exists\v\,\psi(\X,\x,\y,\u,\v)$, where every variable in $\v$ appears on a negated second-order literal $\neg X_i$, with $i\in\N$.
+%
+%Given $\A\in\str$ we generate an equivalent $\L$-formula $\theta(\X,\x,\y)$ with a series of operations. First, we replace every instance of $\v$ by a disjunction of all $r$-tuples in $A^r$, where $r$ is the number of variables in $\v$. The result is still a Horn clause. Second, we replace every instance of $\u$ by a conjunction of all $s$-tulples in $A^s$, where $s$ is the number or variables in $\u$. The result is still a conjunction of Horn clauses.
+%
+%Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time \cite{Gradel91}.
 		
 \textbf{Proof of Theorem \ref{sigma2hard}}
 
-Let $f$ be an arbitrary function in $\XE{2}$. We will now show a function $h:\str\to L(P)$ such that for every $\A\in\str$, it holds that $f(\A) = \shdhsat(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
-	\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The disjunction of Horn formulas we return is
-	\[
-	\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
-	\]
-	which has exactly $n$ possible assignments. Note that each $p_i$ and $\neg p_i$ is a Horn clause itself.
-	
-	\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\forall \y\,\varphi(\x,\y,\X)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
-	
-	First, Let $\varphi(\x,\y,\X) = \bigwedge_{i = 1}^k \varphi_{i}(\x,\y,\X)$ where, without loss of generality, each $\varphi_{i}(\x,\y,\X)$ is of the form
-	\[
-	\varphi_{i}(\x,\y,\X) = X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n}) \vee \alpha_i(\x,\y),
-	\]
-	where $\u_{s}$ and every $\u_{t_j}$ have the corresponding number of variables in $(\x,\y)$, and $\alpha(\x,\y)$ is a FO-formula. For the rest of the proof, $X_s(\u_s)$ can be absent and it does not affect the proof. Note that this formula is equivalent to
-	\[
-	\neg\alpha_i(\x,\y) \to (X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n})),
-	\]
-	
-	Then, for each $\a\in A^c$ let $\Gamma_i^{\a} = \{\b\in A^{b}\mid \A\models\neg\alpha(\a,\b)\}$. Note that this set can be generated in polynomial time. For each $\ell\in\{1,\ldots,r\}$, we generate a propositional variable $p^{\ell}_{\d}$ for each $\d\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}(\x,\y) = \u_{\ell}$, and $\rho_{\ell}(\d)$ be the tuple that results of reordering $\d$ using the reordering of the variables of $(\x,\y)$ in $\u_{\ell}$.
-	
-	For each $\a\in A^c$ we generate a Horn formula
-	\[
-	\Phi_{\a}^i = \bigwedge_{\b\in\Gamma_i} p^{s}_{\rho_s(\a,\b)} \vee \neg p^{t_1}_{\rho_{t_1}(\a,\b)} \vee \cdots \vee \neg p^{t_n}_{\rho_{t_n}(\a,\b)}.
-	\]
-	and finally we return $\Phi = \bigvee_{\a\in A^c} \bigwedge_{i = 1}^k \Phi_{\a}^i$.
-	
-	Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\forall\y\,\varphi(\x,\y,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(\Phi)$.
-	
-	\item Let $\psi = \exists \x\forall\y\,\varphi(\x,\y,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$ we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
-	
-	As in the previous case, let $\varphi(\x,\y,\X,\z) = \bigwedge_{i = 1}^k$ where $\varphi(\x,\y,\X,\z)$ is of the form:
-	\[
-	\varphi_{i}(\x,\y,\X,\z) = X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n}) \vee \alpha_i(\x,\y,\z),
-	\]
-	where $\u_{s}$ and every $\u_{t_j}$ have the corresponding number of variables in $(\x,\y,\z)$, and $\alpha(\x,\y,\z)$ is a FO-formula. For the rest of the proof, $X_s(\u_s)$ can be absent and it does not affect the proof. Note that this formula is equivalent to
-	\[
-	\neg\alpha_i(\x,\y,\z) \to (X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n})).
-	\]
-	
-	For each $\e\in A^d$, we do the following. For each $\a\in A^c$ let $\Gamma^{\e}_{i,\a} = \{\b \in A^b \mid \A\models \neg\alpha_i(\a,\b,\e) \}$. Note that this set can be generated in polynomial time. For each $\ell\in\{1,\ldots,r\}$ we generate a propositional variable $p^{\e}_{\ell,\d}$ for each $\d\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}(\x,\y,\z) = \u_{\ell}$, and $\rho_{\ell}(\d)$ be the tuple that results of reordering $\d$ using the order of the variables in $(\x,\y,\z)$ in $\u_{\ell}$. And so, the Horn formula we generate is
-	\[
-	\Phi^{\e}_{i,\a} = \bigwedge_{\a\in\Gamma^{\e}_i} p^{\e}_{s,\rho_{s}(\a,\b,\e)} \vee p^{\e}_{t_1,\rho_{t_1}(\a,\b,\e)} \vee \cdots \vee p^{\e}_{t_n,\rho_{t_n}(\a,\b,\e)}.
-	\]
-	And finally we return $\Phi = \bigvee_{\e\in A^d}\bigvee_{\a\in A^c} (\bigwedge_{i=1}^k \Phi_{\e}^{i,\a} \wedge \gamma_{\e} \wedge \theta_{\e} )$, where $\gamma_{\e}$ is defined as
-	\[
-	\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
-	\]
-	and $\theta_{\e}$ is defined as
-	\[
-	\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
-	\]
-	
-\end{enumerate}
+First we prove that $\shdhsat$ is in $\eqso(\ehorn)$. Recall that each instance of $\shdhsat$ is a disjunction of Horn formulas. Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot), \pD(\cdot,\cdot)\}$. Each symbol in this vocabulary is used to indicate the same as in Example \ref{ex-hornsat-esop1}, with the addition of $\pD(d,c)$ which indicates that $c$ is a clause in the formula $d$. Recall that the formula
+\begin{align*}
+&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \neg\textit{T}(x)).
+\end{align*}
+defines $\chsat$. We obtain the following formula $\psi(T,A)$ in $\ehorn$:
+\begin{align*}
+\exists d[&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \pD(c,d)\vee \neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \neg\textit{T}(x))]
+\end{align*}
+effectively defines $\chsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
+		
+\vspace{1em}
+We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
+$$
+\alpha = c + \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\hat{\varphi}_i(\bar{X},\bar{x}),
+$$
+where each $\hat{\varphi}_i$ is a $\ehorn$ formula.
+
+Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length(\bar{x})}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
+$$
+c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\hat{\varphi}_i(\bar{X},\bar{e}).
+$$
+We redefine this formula as $c + \sum_{i = 1}^{m} \sa{\bar{X}}\hat{\psi}_i(\bar{X})$, where each $\hat{\psi}_i$ is a formula in $\ehorn$ with the extended grammar.
+
+%\vspace{1em}
+%Let $\alpha$ be equal to some constant $c$. We define $g_{\alpha}$ as a function that, for each $\A\in\ostr[\R]$, outputs the following formula with exactly $c$ satisfying assignments:
+%$$
+%\bigvee_{i = 1}^{c}\neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_c.
+%$$ 
+
+Let the formula be equal to $c + \sum_{i = 1}^{m}\sa{\bar{X}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{y},\bar{z})$ where each $\varphi_i$ is a Horn clause. The following formula defines the same function as $\alpha$:
+$$
+c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\bar{z}}}\varphi^i_j(\bar{X},\bar{b},\bar{c}).
+$$
+Note that each $\fo$ formula in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
+$$
+c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
+$$
+where every $\psi^{i}_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$.
+
+We make the following observation. If $\alpha$ is equal to $\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$, then the {\bf propositional formula} defined by $\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \bar{e}\in A^{\arity(X)} \}$ has exactly $\sem{\alpha}(\A)$ assignments and is a disjunction of Horn formulas. 
+
+
+
+
+%Let $f$ be an arbitrary function in $\XE{2}$. We will now show a function $h:\str\to L(P)$ such that for every $\A\in\str$, it holds that $f(\A) = \shdhsat(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
+%	\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The disjunction of Horn formulas we return is
+%	\[
+%	\Phi = \bigvee_{i = 1}^n \neg p_1 \wedge \cdots \wedge \neg p_{i-1} \wedge p_i \wedge \neg p_{i+1} \wedge \cdots \wedge \neg p_n
+%	\]
+%	which has exactly $n$ possible assignments. Note that each $p_i$ and $\neg p_i$ is a Horn clause itself.
+%	
+%	\item There are only second-order free variables in $\psi$. Let $\psi = \exists \x\forall \y\,\varphi(\x,\y,\X)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
+%	
+%	First, Let $\varphi(\x,\y,\X) = \bigwedge_{i = 1}^k \varphi_{i}(\x,\y,\X)$ where, without loss of generality, each $\varphi_{i}(\x,\y,\X)$ is of the form
+%	\[
+%	\varphi_{i}(\x,\y,\X) = X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n}) \vee \alpha_i(\x,\y),
+%	\]
+%	where $\u_{s}$ and every $\u_{t_j}$ have the corresponding number of variables in $(\x,\y)$, and $\alpha(\x,\y)$ is a FO-formula. For the rest of the proof, $X_s(\u_s)$ can be absent and it does not affect the proof. Note that this formula is equivalent to
+%	\[
+%	\neg\alpha_i(\x,\y) \to (X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n})),
+%	\]
+%	
+%	Then, for each $\a\in A^c$ let $\Gamma_i^{\a} = \{\b\in A^{b}\mid \A\models\neg\alpha(\a,\b)\}$. Note that this set can be generated in polynomial time. For each $\ell\in\{1,\ldots,r\}$, we generate a propositional variable $p^{\ell}_{\d}$ for each $\d\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. Also, let $\rho_{\ell}(\x,\y) = \u_{\ell}$, and $\rho_{\ell}(\d)$ be the tuple that results of reordering $\d$ using the reordering of the variables of $(\x,\y)$ in $\u_{\ell}$.
+%	
+%	For each $\a\in A^c$ we generate a Horn formula
+%	\[
+%	\Phi_{\a}^i = \bigwedge_{\b\in\Gamma_i} p^{s}_{\rho_s(\a,\b)} \vee \neg p^{t_1}_{\rho_{t_1}(\a,\b)} \vee \cdots \vee \neg p^{t_n}_{\rho_{t_n}(\a,\b)}.
+%	\]
+%	and finally we return $\Phi = \bigvee_{\a\in A^c} \bigwedge_{i = 1}^k \Phi_{\a}^i$.
+%	
+%	Note that for each assignment $\P$ to $\X$ such that $\A\models\exists\x\forall\y\,\varphi(\x,\y,\P)$ there is a corresponding assignment $\sigma$ to $\p$ where $\sigma(p^{\ell}_{\a}) = 1$ if and only if $\a\in P_{\ell}$. We can conclude that $f(\A) = f_{\textsc{Disj-Horn-Sat}}(\Phi)$.
+%	
+%	\item Let $\psi = \exists \x\forall\y\,\varphi(\x,\y,\X,\z)$, where $\x = (x_1,\ldots,x_c)$, $\y = (y_1,\ldots,y_b)$, $\z = (z_1,\ldots,z_d)$, $\X = (X_1,\ldots,X_r)$ and each $X_{\ell}$ has arity $c_{\ell}$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$ we generate a Disj-Horn formula $\Phi = h(\A)$ as follows:
+%	
+%	As in the previous case, let $\varphi(\x,\y,\X,\z) = \bigwedge_{i = 1}^k$ where $\varphi(\x,\y,\X,\z)$ is of the form:
+%	\[
+%	\varphi_{i}(\x,\y,\X,\z) = X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n}) \vee \alpha_i(\x,\y,\z),
+%	\]
+%	where $\u_{s}$ and every $\u_{t_j}$ have the corresponding number of variables in $(\x,\y,\z)$, and $\alpha(\x,\y,\z)$ is a FO-formula. For the rest of the proof, $X_s(\u_s)$ can be absent and it does not affect the proof. Note that this formula is equivalent to
+%	\[
+%	\neg\alpha_i(\x,\y,\z) \to (X_s(\u_{s}) \vee \neg X_{t_1}(\u_{t_1}) \vee \cdots \vee \neg X_{t_n}(\u_{t_n})).
+%	\]
+%	
+%	For each $\e\in A^d$, we do the following. For each $\a\in A^c$ let $\Gamma^{\e}_{i,\a} = \{\b \in A^b \mid \A\models \neg\alpha_i(\a,\b,\e) \}$. Note that this set can be generated in polynomial time. For each $\ell\in\{1,\ldots,r\}$ we generate a propositional variable $p^{\e}_{\ell,\d}$ for each $\d\in A^{c_{\ell}}$. Let $\p$ be the tuple of all such variables. We also generate a set $T = \{t_1,\ldots,t_{L}\}$ where $L = \lceil \log\vert A^d\vert \rceil$, and an arbitrary injective function $\beta:A^d \to \{0,1\}^L$ where $\beta(\e) = (b^{\e}_1,\ldots,b^{\e}_L)$ for each $\e\in A^d$. Also, let $\rho_{\ell}(\x,\y,\z) = \u_{\ell}$, and $\rho_{\ell}(\d)$ be the tuple that results of reordering $\d$ using the order of the variables in $(\x,\y,\z)$ in $\u_{\ell}$. And so, the Horn formula we generate is
+%	\[
+%	\Phi^{\e}_{i,\a} = \bigwedge_{\a\in\Gamma^{\e}_i} p^{\e}_{s,\rho_{s}(\a,\b,\e)} \vee p^{\e}_{t_1,\rho_{t_1}(\a,\b,\e)} \vee \cdots \vee p^{\e}_{t_n,\rho_{t_n}(\a,\b,\e)}.
+%	\]
+%	And finally we return $\Phi = \bigvee_{\e\in A^d}\bigvee_{\a\in A^c} (\bigwedge_{i=1}^k \Phi_{\e}^{i,\a} \wedge \gamma_{\e} \wedge \theta_{\e} )$, where $\gamma_{\e}$ is defined as
+%	\[
+%	\gamma_{\e} = \bigwedge_{\e'\in A^d\setminus\{\e\}} \bigwedge_{\ell = 1}^r \bigwedge_{\b\,\in A^{c_{\ell}}} p_{\ell,\b}^{\e'},
+%	\]
+%	and $\theta_{\e}$ is defined as
+%	\[
+%	\theta_{\e} = \bigwedge_{i\in[1,L]:\,b^{\e}_i = 0} \neg t_i\  \wedge \bigwedge_{i\in[1,L]:\,b^{\e}_i = 1} t_i.
+%	\]
+%	
+%\end{enumerate}
 
 
 

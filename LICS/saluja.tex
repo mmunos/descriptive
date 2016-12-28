@@ -1,38 +1,4 @@
-
-%\begin{enumerate}
-%	\item Introduce the classes $\eqso(\LL)$.
-%	
-%	\item Study the properties of $\eqso(\LL)$.
-%	\begin{itemize}
-%		\item If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$.
-%		
-%		\item If $\LL$ is closed under XXX, then the first order product can be defined in $\eqso(\LL)$.
-%		
-%		\item Every formula in $\eqso(\LL)$ can be rewrite in \emph{sum normal form}.
-%	\end{itemize}
-%	
-%	\item Introduce Saluja classes.
-%	
-%	\item Show the connection with Saluja classes.
-%	\begin{itemize}
-%		\item New classes are properly contained.
-%		\item Old classes are properly contained/equivalent in new classes. 
-%	\end{itemize}
-%	
-%	\item Study the complexity of new classes.
-%	\begin{itemize}
-%		\item $\eqso(\Sigma_0)$ is in FP.
-%		\item $\eqso(\Sigma_1)$ is $\#P$ easy.
-%		\item $\eqso(\Sigma_1)$ has free pass.
-%	\end{itemize}
-%	
-%	\item Closure properties.
-%	\begin{itemize}
-%		\item $\eqso(\Sigma_1)$ is not closed under substraction.
-%		\item $\eqso(\Sigma_1)$ is not closed under minus 1.
-%	\end{itemize}
-%	
-%\end{enumerate}
+%!TEX root = syntactic.tex
 
 Inspired by the connection between $\shp$ and $\sfo$, the authors in~\cite{SalujaST95} studied subclasses of  $\sfo$ syntactically restricting the alternation quantifiers in boolean formulas defining what we call the $\sfo$-hierarchy.
 Specifically, they define the classes $\E{i}$ and $\U{i}$ where functions are defined by $\fo$-formulas in $\loge{i}$ and $\logu{i}$, respectively, for every $i \geq 0$. 
@@ -46,11 +12,11 @@ We denote each class by $\QE{i}$ and $\QU{i}$ for short.
 In the next result, we show that $\eqso$ also defined a finite hierarchy similar than in~\cite{SalujaST95} that we called the $\eqso$-hierarchy.
 \begin{proposition}
 \[
-\QE{0} \; \subsetneq \; \QE{1} \; \subsetneq \; \QU{1} \; \subsetneq \; \QE{2} \; \subsetneq \; \QU{2} \; = \; \eqso{\fo} 
+\QE{0} \; \subsetneq \; \QE{1} \; \subsetneq \; \QU{1} \; \subsetneq \; \QE{2} \; \subsetneq \; \QU{2} \; = \; \eqso(\fo)
 \]
 \end{proposition}
 A natural question until this point is what is the connection between $\E{i}$ and $\U{i}$ and their corresponding classes $\QE{i}$ and $\QU{i}$. Clearly, we have that $\E{i} \subseteq \QE{i}$ and $\U{i} \subseteq \QU{i}$. Indeed, each formula $\varphi(\bar{X}, \bar{x})$ in $\E{i}$ or $\U{i}$ is equivalent to $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ which is in $\QE{i}$ or $\QU{i}$, respectively. 
-Then it left to know whether the containment between the sharp and quantitative classes is strict or not. 
+Then it is left to know whether the containment between the sharp and quantitative classes is strict or not. 
 For this, we study first whether each formula $\alpha$ in $\eqso(\LL)$ can be transformed in a \emph{prefix normal form} where all sums quantifiers are restricted to the beginning of the formula. 
 Formally, we say that a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\Sigma$-prenex normal form} (or just prenex normal form) if $\alpha$ is of the form:
 \[
@@ -72,7 +38,7 @@ Interestingly, if $\LL$ contains $\logu{1}$, then we can always convert any form
 	If $\logu{1} \subseteq \LL$, then for every formula $\alpha \in \eqso(\LL)$ there exists a formula $\beta \in \eqso(\LL)$ equivalent to $\alpha$ in $\Sigma$-prenex normal form.
 \end{theorem}
 
-The previous results gives the connection the connection between the hierarchy in \cite{SalujaST95} and the $\eqso$-hierarchy. 
+The previous results gives the connection between the hierarchy in \cite{SalujaST95} and the $\eqso$-hierarchy. 
 Indeed, if $\LL$ contains $\logu{1}$ we will have that $\sh{\LL}$ is equivalent to $\eqso(\LL)$ since each formula in $\eqso(\LL)$ can be converted in $\Sigma$-prefix normal form and, therefore, it is equivalent to a formula in $\sh{\LL}$. 
 Unfortunately, this is not the case for $\loge{0}$ and $\loge{1}$ as the following result shows.
 \begin{proposition}
@@ -99,7 +65,7 @@ If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0
 \end{theorem}
 \cristian{Martin, el resultado que tienes en el apendice se generaliza trivialmente para todas las clases ya que todas contienen la clase $\eqso(\loge{0})$.}
 
-By the previous result, we know that functions in the $\eqso$ hierarchy are not closed under subtraction. Then, a natural restriction to this question is to ask whether these classes are closed under subtraction by one, namely, if $\CC$ is a class of functions and $f \in \CC$, is $f-1 \in \CC$ where $1$ is the constant function that outputs $1$ for every structure. 
+By the previous result, we know that functions in the $\eqso$ hierarchy are unlikely to be closed under subtraction. Then, a natural restriction to this question is to ask whether these classes are closed under subtraction by one, namely, if $\CC$ is a class of functions and $f \in \CC$, is $f-1 \in \CC$ where $1$ is the constant function that outputs $1$ for every structure. 
 We do not know $\E{1}$ is closed under subtraction by one. However, if we extend $\logex{1}$ with $\fo$ predicates we can show that this new fragment is closed under subtraction by one.
 \begin{theorem} \label{sigmafo-minusone}
 	$\eqso(\logex{1})$ is closed under substraction by one.
