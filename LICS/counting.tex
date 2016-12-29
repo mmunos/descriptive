@@ -37,11 +37,11 @@ In our setting, the class $\sfo$ is contained in $\eqso(\fo)$ which also capture
 \end{proposition}
 Recall that (see Section~\ref{sec:previous}) that every function class $\# \LL$ is contained in $\eqso(\LL)$. Thus, by~\cite{SalujaST95} it directly follows that every $\shp$-function can be defined in $\eqso(\LL)$. The other direction is also direct and follows by showing that $\shp$ is closed under first- and second-order sum.
 Moreover, these closure properties also hold if we change the boolean core $\fo$ to any polynomial-time logic like $\lfp$. This gives the following corollary.
-\begin{corollary} \label{eqso-lfp-cap}
+\begin{corollary} \label{prop:capture-shP-LFP}
 	$\eqso(\lfp)$ captures $\shp$ over ordered structures.
 \end{corollary}
 By following the same approach as~\cite{SalujaST95}, Compton et al.~\cite{ComptonG96} show that $\seso$ captures $\spp$. As one could expect, if we parametrize $\eqso$ with $\eso$, we can also capture~$\spp$.
-\begin{proposition} \label{eqso-eso-cap}
+\begin{proposition} \label{prop:capture-spanP}
 	$\eqso(\eso)$ captures $\spp$ over ordered structures.
 \end{proposition}
 The previous result connecting fragments from $\# \LL$ with $\shp$ and $\spp$ is the further that we can go by using SO-formulas with free variables. 
@@ -65,7 +65,7 @@ Of course, for capturing this class one needs a logical core powerful enough, li
 On the other hand, an $\fpspace$ machine can generate outputs of exponentially many bits. 
 For this reason, the second-order sum is not enough for the quantitative layer of a logic for $\fpspace$, that is, one needs to consider second-order products to produce big numbers. 
 This leads us to the fragment $\qso(\pfp)$ which naturally captures $\fpspace$. 
-\begin{theorem} \label{qso-pfp-cap}
+\begin{theorem} \label{theo:capture-fpspace}
 	$\qso(\pfp)$ captures $\fpspace$ over ordered structures.
 \end{theorem}
 The proof of the previous theorem follows the same lines than the logical characterization of $\fp$: one shows that each function in $\qso(\pfp)$ can be computed in $\fpspace$ and, conversely, the output of an $\fpspace$ can be reconstructed by using $\pfp$ and second-order quantitative quantifiers.
