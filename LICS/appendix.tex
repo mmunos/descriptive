@@ -15,7 +15,7 @@ $$
 We will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$. We also denote $\min(\bar{x}) := \forall\bar{y}(\bar{y} < \bar{x}\vee \bar{y} = \bar{x})$.
 
 If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$. We also denote $\length(\bar{x}) = m$ ($\length(\bar{X}) = m$).
-\subsection{Proof of Theorem \ref{no-mult}}
+\subsection*{Proof of Theorem \ref{no-mult}}
 
 
 
@@ -62,7 +62,7 @@ Let $\{+, \cdot, \sa{}, \pa{}\}$ be the set of {\it algebraic operators} in $\qs
 %\end{enumerate}
 
 
-\subsection{Proof of Theorem \ref{captfp}}
+\subsection*{Proof of Theorem \ref{captfp}}
 
 For the first condition, let $\alpha\in\qfo(\lfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \alpha(\enc(\A))$.
 	
@@ -72,7 +72,7 @@ $$
 $$
 where $\varphi(x_1,\ldots,x_{\ell}) := \pa{y_1}\cdots\pa{y_{\ell}}((y_1,\ldots,y_{\ell}) < (x_1,\ldots,x_{\ell}) \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding this values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$. \qed
 
-\subsection{Proof of Theorem \ref{qfo-pfp-cap}}
+\subsection*{Proof of Theorem \ref{qfo-pfp-cap}}
 
 \martin{no revisar, es un copy-paste de arriba}	
 
@@ -92,21 +92,21 @@ $$
 $$
 and adding these values gives $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ over $\R$ and $\alpha(\enc(\A)) = f(\enc(\A))$. \qed
 
-\subsection{Proof of Theorem \ref{eqso-fo-cap}}
+\subsection*{Proof of Theorem \ref{eqso-fo-cap}}
 
 For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\eqso(\fo)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$ accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial time, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.%%If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
 If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. This covers all possible cases for $\alpha$. Let $\alpha$ be a formula in $\eqso(\fo)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shp$ function over $\R$ and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$.
 
 For condition (2) in \ref{cap-def}, note that Saluja et al. \cite{SalujaST95} proved that $\shp = \#\fo$. We also have that $\sqso(\fo)$ captures $\#\fo$ over ordered structures so for each $f\in \shp$ let $\alpha \in \sqso(\fo)$ be its corresponding formula. Since this formula is also in $\eqso(\fo)$, the condition holds. \qed
 
-\subsection{Proof of Theorem \ref{eqso-eso-cap}}
+\subsection*{Proof of Theorem \ref{eqso-eso-cap}}
 
 For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\eqso(\eso)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic outputs for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. On each of the steps the algorithm adds the current configuration to the output tape. If $\alpha$ is a $\eso$-formula $\varphi$ it checks if $(\A,v,V)\models\varphi$ non-deterministically in polynomial time without modifying the output tape, and accepts if and only if the condition holds true. If $\alpha$ is a constant $s$, then the algorithm produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$. %% If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
 If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. This covers all possible cases for $\alpha$. Let $\alpha$ be a formula in $\eqso(\eso)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the number of accepting outputs of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\spp$ function over $\R$ and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$.
 
 For condition (2) in \ref{cap-def}, note that Compton and Graedel \cite{ComptonG96} proved that $\spp = \#\eso$. We also have that $\sqso(\eso)$ captures $\#\eso$ over ordered structures so for each $f\in \spp$ let $\alpha \in \sqso(\eso)$ be its corresponding formula. Since this formula is also in $\eqso(\eso)$, the condition holds. \qed
 
-\subsection{Proof of Theorem \ref{qso-pfp-cap}}
+\subsection*{Proof of Theorem \ref{qso-pfp-cap}}
 
 For condition (1) in \ref{cap-def}, we will construct a recursive non-deterministic algorithm $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space \cite{AbiteboulV89}\martin{no estoy seguro de esta cita}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$. If $\alpha = \sa{x}\beta$, it chooses $a\in A$ and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. If $\alpha = \pa{X}\beta$, it simulates $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\in A^{arity(X)}$. This covers all possible cases for $\alpha$, and each of these steps can be computed in polynomial space. Let $\alpha$ be a formula in $\qso(\pfp)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shpspace$ function over $\R$, which implies that $f$ is also a $\fpspace$ function over $\R$ \cite{Ladner89}, and that for every $\A\in\ostr[\R]$: $f(\enc(\A)) = \alpha(\enc(\A))$. 
 
@@ -116,29 +116,29 @@ For the second condition, let $f\in \fpspace$ defined over some $\R$. Let $\ell\
 Let $B$ be the $p$-th subset with respect to this order and let $w$ be a string of size $2^{n^{\ell}}$ which represents the value of $f(\enc(\A))$ in binary. Then $\A\models\Phi(B)$ if and only if the $p$-th bit in $w$ is 1, from least to most significant. Since this condition can be verified in polynomial space, and $\pfp$ captures $\pspace$, then $\Phi$ can be expressed in $\pfp$. We define
 $\alpha := \sa{X}(\Phi(X)\mult\varphi(X))$, where $\varphi(X) = \pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$. Note that for each $B\subseteq A^{\ell}$ such that $B$ is the $m$-th element in the given order, $\sem{\varphi(B)}(\A) = 2^m$. Therefore, $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$. \qed
 
-\subsection{Proof of Theorem \ref{eqso-sigma-zero-in-fp}}
+\subsection*{Proof of Theorem \ref{eqso-sigma-zero-in-fp}}
 
 First, for a given signature $\R$ and logic fragment $\LL$ we define a {\em valid form in $\LL$} (or just {\em valid form}). A formula $\alpha$ is in valid form in $\LL$ if (1) it is equal to $\varphi$, $1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}1$ for some $\LL$ formula $\varphi$ and some tuple of first-order (second-order) variables $\bar{x}$ ($\bar{X}$), or (2) if it is equal to $(\beta\add\gamma)$ where $\beta$ and $\gamma$ are formulas in valid form. Given a $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$ we will recursively construct a formula $\tau(\alpha)$ in valid form such that $\alpha(\enc(\A)) = \tau(\alpha)(\enc(\A))$ for each $\A\in\ostr[\R]$. 
 
 First, each natural constant $s$ in $\alpha$ is replaced by $(1\add 1\add\cdots\add 1)$ ($s$ times). If $\alpha = 1$ or $\alpha = \varphi \in \loge{0}$, then $\tau(\alpha) = \alpha$. We assume that every sub-formula of $\alpha$ is in valid form. If $\alpha = (\beta \add \gamma)$ then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ this case separates in more cases: If $\alpha = \sa{x}\beta$ and $\beta$ is in one of the valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{X}\beta$ and $\beta$ is in the valid form $\sa{\bar{x}}\gamma$ then $\tau(\alpha) = \sa{\bar{x}}\sa{X}\gamma$; if $\beta$ it is in one of the remaining valid forms in (1), then $\tau(\alpha) = \alpha$. If $\alpha = \sa{x}\beta$ ($\alpha = \sa{X}\beta$) and $\beta = (\gamma_1\add\gamma_2)$, then $\tau(\alpha) = \tau(\sa{x}\gamma_1) \add \tau(\sa{x}\gamma_2)$ ($\tau(\alpha) = \tau(\sa{X}\gamma_1) \add \tau(\sa{X}\gamma_2)$). This covers all possible cases for $\alpha$. Furthermore, suppose that $\LL$ is closed under conjunction and suppose $\alpha = (\beta\mult\gamma)$. If $\beta = (\delta_1\add\delta_2)$ (wlog), then $\tau(\alpha) = \tau(\delta_1\mult\gamma)\add\tau(\delta_2\mult\gamma)$. If $\beta = \sa{\bar{x}}\delta$, then $\tau(\alpha) = \tau(\sa{\bar{x}}\tau(\delta\mult\gamma))$. If $\beta = 1$, then $\tau(\alpha) = \gamma$. If $\beta = \varphi$ and $\gamma = \psi$, then $\tau(\alpha) = \varphi\wedge\psi$. Let $\alpha$ be a $\eqso(\loge{0})$ formula over a signature $\R$. Consider the following procedure that receives $\enc(\A)$ as input, where $\A\in\ostr[\R]$ with domain $A$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_m$. For each $\beta_i$, if $\beta_i = 1$ or $\beta_i = \varphi$, then $\sem{\beta_i}(\A)$ can be computed in polynomial time. If $\beta_i = \sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}$, if $\beta_i = \sa{\bar{X}}1$ then $\sem{\beta_i}(\A) = 2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, if $\beta_i = \sa{\bar{X}}\sa{\bar{x}}1$ then $\sem{\beta_i}(\A) = \vert A \vert^{\length(\bar{x})}2^{\Sigma_{X\in\bar{X}}\vert A \vert^{\arity(X)}}$, all of which can be computed in polynomial time. Otherwise, $\beta_i$ is $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, and then $\sem{\beta_i}(\A) = f_{\varphi}(\enc(\A))$, and $f_{\varphi}\in \#\loge{0}$ which implies that $f_{\varphi}(\enc(\A))$ can be computed in polynomial time \cite{SalujaST95}. 
 
-\subsection{Proof of Theorem \ref{eqso-sigma-one-in-eqso-pi-one}}
+\subsection*{Proof of Theorem \ref{eqso-sigma-one-in-eqso-pi-one}}
 
 Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(\alpha) = \beta_1\add\beta_2\add\cdots\add\beta_m$ defined as in the proof of Theorem \ref{eqso-sigma-zero-in-fp}. This is, each $\beta_i$ is of the form $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\loge{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. For each $\beta_i$ we will construct a $\gamma_i$ such that $\gamma_i \in \eqso(\logu{1})$ and $\sem{\beta_i}(\A) = \sem{\gamma_i}(\A)$ for each $\A\in\ostr[\R]$. Since the forms $1$, $\sa{\bar{x}}1$, $\sa{\bar{X}}1$ and $\sa{\bar{X}}\sa{\bar{x}}1$ are already valid in $\eqso(\logu{1})$, we suppose $\beta_i$ is in one of the remaining forms. Without loss of generality, let $\beta_i = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y},\bar{X})$ where $\varphi(\bar{x},\bar{y},\bar{X})$ is a quantifier-free formula. Similarly as in the proof by Saluja et al. \cite{SalujaST95}, we define $\gamma_i = \sa{\bar{x}}\sa{\bar{y}}\sa{\bar{X}}\varphi(\bar{x},\bar{y},\bar{X}) \wedge \forall\bar{z}(\varphi(\bar{x},\bar{z},\bar{X})\to(\bar{z} < \bar{y} \vee \bar{z} = \bar{y}))$ that fulfils the desired condition. The theorem holds true by using $\beta = \gamma_1\add\cdots\add\gamma_m$ which is in $\eqso(\logu{1})$
 
-%\subsection{Proof of Theorem \ref{one-sigma-zero}}
+%\subsection*{Proof of Theorem \ref{one-sigma-zero}}
 %
 %Towards a contradiction, suppose that there exists a constant function $f(\A) = s > 0$ which is expressible in $\E{0}$. This is, there is a formula $\psi(x,X)$ such that $f_{\psi(x,X)}(\A) = \vert \{ \langle e,P\rangle \mid \A\models\psi(e,P) \} \vert = s$ for each $\A\in\ostr$. It can be seen that if $X$ contains more than zero variables, then the function $f_{\psi(x,X)}$ grows exponentially. We have now that $\psi(x)$ contains only first order variables. Consider some $\A \in \ostr$ of size $n$ and let $a_1,\ldots,a_s\in \A$ be the tuples that satisfy $\A \models \psi(a_i)$. Now consider a structure $\A'$ that is obtained by duplicating $\A$. This is, $\A'$ has size $2n$, its first half is isomorphic to its second half, and also to $\A$. We have that there is at least $2s$ tuples $a_i,b_i\in \A'$, $s$ on each half, such that $\A'\models\psi(a_i)$ and $\A'\models\psi(b_i)$, which leads to a contradiction.
 
-%\textbf{Proof of Theorem \ref{mult-sigma-zero}}
+%\subsection*{Proof of Theorem \ref{mult-sigma-zero}}
 %
 %Let $\alpha \in \sqso(\loge{0})$ with binary product. This is, $\alpha$ is defined by the grammar $\alpha := \sa{x}\varphi \ \mid \ \sa{X}\varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \ (\alpha\mult\alpha)$, where $\varphi \in \loge{0}$. For convenience, we add the expressions $\sa{x}(\varphi\mult\varphi)$ and $\sa{X}(\varphi\mult\varphi)$ to the grammar. Let $k$ be the number of algebraic operators in $\alpha$. We will show by induction on $k$ that $\alpha$ is expressible without multiplication. If $k = 1$, then the possible cases are $\alpha = \sa{x}\varphi$, where $\varphi\in\loge{0}$, which is already product-free. If $k = 2$, then the only that is not two nested summations is $\alpha = \sa{x}(\varphi\mult\psi)$, which can be expressed as $\alpha = \sa{x}(\varphi\wedge\psi)$. Suppose that the hypothesis holds for $k = 1$ through $n-1$. Let $\alpha$ have $n$ algebraic operators. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$ where $\beta$ is an algebraic expression, then $\beta$ has $n-1$ algebraic operators and by hypothesis it can be expressed as product-free. If $\alpha = (\beta \mult \gamma)$ there are two cases. If at least one between $\beta$ and $\gamma$ has a product, then by hypothesis it can be expressed as product-free. Moreover, the new expression for $\alpha$ has strictly less than $n$ algebraic operators so by hypothesis it can be expressed as product-free. If there are no products in $\beta$ or $\gamma$, then let $\beta = \sa{x}\delta(x)$. We have that $\alpha$ can be expressed as $\sa{y}(\delta(y)\mult\gamma)$, where $y$ is a first-order variable that does not appear in $\beta$ or $\gamma$. Since $\delta(y)\mult\gamma$ has $n-1$ algebraic operators, it can be expressed as product-free, and then $\alpha$ can be expressed as product-free.
 %
-%\textbf{Proof of Theorem \ref{fo-prod-sigma-zero}}
+%\subsection*{Proof of Theorem \ref{fo-prod-sigma-zero}}
 %
 %The resulting grammar is $\alpha := \sa{x}\varphi \ \mid \ \sa{X} \varphi \ \mid \ \sa{x}\alpha \ \mid \ \sa{X}\alpha \ \mid \pa{x}\alpha$. Consider a more restricted grammar that replaces $\pa{x}\alpha$ by $\pa{x}\sa{y}\varphi$. Let $\alpha = \pa{x}\sa{y}(x = y)$. This formula produces a constant function equal to 1, which as shown in Theorem \ref{one-sigma-zero} is not expressible in $\E{0}$. 
 %
-%\textbf{Proof of Theorem \ref{fp1}}
+%\subsection*{Proof of Theorem \ref{fp1}}
 %
 %Let $f \in \XE{0}$, and let $\varphi(\X,\x)$ be and {\sc FO}-extended quantifier-free $\L$-formula such that:
 %\begin{eqnarray*}
@@ -150,7 +150,7 @@ Let $\alpha$ be a formula in $\eqso(\loge{1})$ over a signature $\R$. Let $\tau(
 %
 %Let $\psi(\X,\x)$ be obtained by replacing each {\sc FO}-formula $\beta(\x)$ in $\varphi(\X,\x)$ by $R_{\beta}(\x)$. Also, let $g = f_{\psi(\X,\x)}$. Note that for each tuple of predicates $\P$ and each $\e \in A^m$, $\A \models \varphi(\P,\e)$ if and only if $\A^\prime \models \psi(\P,\e)$, and so, $g(\A^\prime) = f(\A)$. But, $\psi(\X,\x)$ is a quantifier-free $\L$-formula, and therefore, $g \in \#\Sigma_0$. Since it is shown in \cite{DBLP:journals/jcss/SalujaST95} that $\#\Sigma_0 \subseteq$ {\sc FP}, we conclude that $f(\A)$ can be evaluated in polynomial time.
 	
-\textbf{Proof of Theorem \ref{decisionptime}}
+\subsection*{Proof of Theorem \ref{decisionptime}}
 
 Let $f$ be a function in $\E{1}$. Then there is an extended quantifier-free $\L-$formula $\varphi(\x,\X,\z)$ such that
 \begin{eqnarray*}
@@ -167,7 +167,7 @@ where $\A = \langle A, \S^{\A}, \leq^{\A} \rangle \in \str$, $A = \{a_1,\ldots,a
 \end{proof}
 Note that $\psi(\X,\y)$ is an {\sc FO}-extended $\L$-formula, so $g \in\XE{0}$. It follows from \ref{mono} that for each $\A \in \str$, it holds that $\A \in L_f$ if and only if $g(\A) > 0$. But by Theorem \ref{fp1}, $g(\A)$ can be evaluated in polynomial time. From this we conclude that the decision version of $f$ is in $\ptime$.
 	
-\textbf{Proof of Theorem \ref{sub-pnp}}
+\subsection*{Proof of Theorem \ref{sub-pnp}}
 
 Suppose that $\E{1}$ is closed under substraction, that is, for each pair of functions $f,g\in \E{1}$, there exists $h\in\E{1}$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\str$.
 
@@ -188,13 +188,13 @@ $$
 $$
 Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1}$, we have by our initial assumption that $f_{all}-f_{\#3DNF} \in \E{1}$. Let $h\in\E{1}$ be such that $h = f_{all}-f_{\#3DNF}$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is $\conp$-complete. However, as we showed previously in Theorem \ref{decisionptime}, since $h\in\E{1}$, we have that $L_h \in \ptime$. Then, $\conp \subseteq \ptime$, from which we conclude that $\ptime = \np$.
 	
-%\textbf{Proof of Theorem \ref{sigma1strict}}
+%\subsection*{Proof of Theorem \ref{sigma1strict}}
 %
 %We will show that the $\E{1}$ function $f$ defined by $\varphi(x_1) = (x_1 = x_1) \wedge \forall y \, S(y)$ is not in $\#\Sigma_1$. By contradiction, suppose that it is. Let $\A = \langle A =\{1\},S^\A = \{1\},\leq^\A=\{(1,1)\} \rangle$. Then, $f(\A) = 1$. Now let $\B = \langle B =\{1,2\},S^\B = \{1\},\leq^\B=\{(1,1),(1,2),(2,2)\} \rangle$. Note that $\A$ is an induced substructure of $\B$.
 %
 %We have that for each function $g \in \#\Sigma_1$ and structures $\A_1,\A_2\in\str$, if $\A_1$ is an induced substructure of $\A_2$, then $g(\A_1) \leq g(\A_2)$ \cite{SalujaST95}. Therefore, $f(\B) \geq f(\A) = 1$. However, there is no assignment $s\in B$ to $x$ such that $\B\models\:\varphi(s)$, so $f(\B) = 0$, which leads to a contradiction.
 	
-\subsection{Proof of Theorem \ref{sigmafo-minusone}}
+\subsection*{Proof of Theorem \ref{sigmafo-minusone}}
 
 Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_n$ be defined as in \ref{eqso-sigma-zero-in-fp}, that is, each $\beta_i$ is equal to $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\logex{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. We further assume that each $\beta_i$ is either $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, since each $1$, $\varphi$ and $\sa{\bar{X}}\varphi$ can be replaced by the formulas $\sa{x}\min(x)$, $\sa{x}(\varphi\wedge\min(x))$ and $\sa{x}\sa{\bar{X}}(\varphi\wedge\min(x))$ respectively, while maintaining the value of $\sem{\alpha}(\A)$. 
 
@@ -423,7 +423,7 @@ And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{
 %	Let $q$ be the least $i\in\{1,\ldots,k\}$ such that $\A\models\exists\x\:\varphi_i(\x,\R,\d)$ for some assignment $R$ to $\X$ and some assignment $\d$ to $\z$. Let $\P$ be the lexicographically smallest tuple of predicates such that $\A\models\exists\x\:\varphi_q(\x,\P,\d^\prime)$ for some assignment $\d^\prime$ to $\z$. Let $\e$ be the lexicographically smallest assignment to $\z$ such that $\A\models\exists\x\:\varphi_q(\x,\P,\e).$ This formula is such that (a) $\A\models\exists\x\:\varphi(\x,\P,\e)$, (b) $\A\not\models\exists\x\:\varphi^\prime(\x,\P,\e)$ and $\P$ and $\e$ are the only assignments that satisfy (a) and (b). The proof of this is analogous to case 2. Therefore, we conclude that $f_{\exists\x\,\varphi^\prime(\x,\X,\z)} = f_{\exists\x\,\varphi(\x,\X,\z)}\dotminus 1.$
 %\end{enumerate}
 %		
-%\textbf{Proof of Theorem \ref{dnf-pars}}
+%\subsection*{Proof of Theorem \ref{dnf-pars}}
 %
 %Let $f$ be an arbitrary function in $\E{1}$ and let $f_{\textsc{\#DNF}}$ be the function that defines {\sc \#DNF}. We will now show a function $h:\str\to \textsc{Struct}[\L_{\textsc{DNF}}]$, where $\L_{\textsc{DNF}} = \{N,P\}$, such that for every $\A\in\str$, it holds that $f(\A) = f_{\textsc{\#DNF}}(h(\A))$, and which can be computed in polynomial time. For every DNF formula $\Phi$ we define $\A_{\Phi} \in \textsc{Struct}[\L_{\textsc{DNF}}]$ as stated in \ref{dnfdef}. Let $\psi$ be such that $f = f_{\psi(\X,\z)}$. We separate the proof in three cases:
 %\begin{enumerate}
@@ -508,11 +508,11 @@ And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{
 %	Let $i$ be such that $\A\models \exists\x\,\varphi_i(\x,\P,\e)$. It is simple to see that from the way we constructed $\Phi_i^{\e}$, it holds that $\sigma(\Phi_i^{\e}) = 1$. Also, note that every different assignment $\langle \P',\e' \rangle$, it holds that $\sigma(\langle \P',\e' \rangle) \neq \sigma(\langle \P,\e \rangle)$. Therefore, $g$ is an injective function. Now, let $\sigma$ be an arbitrary assignment such that $\sigma(\Phi) = 1$. Let $i$ and $\e$ be such that $\sigma(\Phi^{\e}_i)$. Note that for every $\e'\in A^d\setminus\{\e\}$, it holds that $\sigma(\theta_{\e'}) = 0$, so there is exactly one possible $\e$ associated to $\sigma$. Consider the assignment $\P$ where $\b\in P_{\ell}$ if and only if $\sigma(p^{\e}_{\ell,\b}) = 1$, for each $\ell$ and $\b \in A^{c_{\ell}}$. Since there is at least one $\a\in\Gamma_i$ for which $\sigma$ satisfies its respective subformula, it holds that $\A\models\varphi_i(\a,\P,\e)$, which implies that $\A\models\exists\x\,\varphi(\x,\P,\e)$. From this we deduce that $g$ is surjective, and therefore a bijection. We conclude that $f(\A) = f_{\textsc{\#DNF}}(\A_{\Phi})$.
 %\end{enumerate}
 %	
-%\textbf{Proof of Theorem \ref{nplusone-strict}}
+%\subsection*{Proof of Theorem \ref{nplusone-strict}}
 %
 %Suppose it is not properly contained for $n$. Let $\z = (z_1,\ldots,z_{n+1})$, let $\u = (u_1,\ldots,u_n)$ and let $\varphi(\z) = \bigwedge_{i = 1}^{n} (z_i < z_{i+1} \wedge \forall y(z_i\not<y \vee y\not<z_{i+1} )) \wedge \forall y(y \not< z_1)$. Note that $f_{\varphi(\z)}(\A) = 1$ if $\A$ has at least $n+1$ elements, and  $f_{\varphi(\z)}(\A) = 0$ otherwise, for each $\A\in\str$. Let $\forall\x\,\psi(\x,\X,\u)$ be such that $f_{\varphi(\z)} = f_{\forall\x\,\psi(\x,\X,\u)}$. Let $\A = \langle A, \S^{\A}, <^{\A} \rangle\in\str$ where $\vert A \vert = n+1$. Note that $f_{\forall\x\,\psi(\x,\X,\u)}(\A) = 1$. Let $(\P,\e)$ be such that $\A\models\forall\x\,\psi(\x,\P,\e)$. Let $a\in A$ be such that $a\not\in\e$. Consider the vocabulary $\L' = \L \cup \{\Q\}$, and let $\A' = \A \cup \langle \Q^{\A'} \rangle$ where $\Q^{\A'} = \P$. Note that $\A\models\varphi(\P,\e)$ if and only if $\A'\models\varphi(\e)$. Consider $\B'$ as the induced substructure of $\A'$ with domain $A\setminus\{a\}$, and let $\Q^{\B'}$ be the induced interpretation of $\Q$. Also let $\B$ be the induced substructure of $\A$ with domain $A\setminus\{a\}$. As universal formulae are preserved under substructure\footnote{Hodges, 1997. P. 183}, we have that $\B'\models\forall\x\,\psi(\x,\e)$, which implies that $\B\models\forall\x\,\psi(\x,\Q^{\B'},\e)$. We conclude that $f_{\forall\x\,\psi(\x,\X,\u)}(\B) \geq 1$, which leads to a contradiction.
 %	
-%\textbf{Proof of Theorem \ref{sigma2-pe}}
+%\subsection*{Proof of Theorem \ref{sigma2-pe}}
 %
 %Let $f = f_{\varphi(\X,\z)}$ such that $\varphi(\X,\z)$ is defined by the grammar $E_2$. First we notice that, as stated in \cite{SalujaST95}, for every $\L$-formula $\varphi$, $f_{\varphi}\in\shp$.\\
 %
@@ -522,7 +522,7 @@ And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{
 %
 %Now we notice that $\zeta = \exists\X\exists\x\exists\y\,\theta(\X,\x,\y)$ is an existential second-order FO-formula, for which $\A\models\zeta$ can be decided in polynomial time \cite{Gradel91}.
 		
-\textbf{Proof of Theorem \ref{sigma2hard}}
+\subsection*{Proof of Theorem \ref{sigma2hard}}
 
 First we prove that $\shdhsat$ is in $\eqso(\ehorn)$. Recall that each instance of $\shdhsat$ is a disjunction of Horn formulas. Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot), \pD(\cdot,\cdot)\}$. Each symbol in this vocabulary is used to indicate the same as in Example \ref{ex-hornsat-esop1}, with the addition of $\pD(d,c)$ which indicates that $c$ is a clause in the formula $d$. Recall that the formula
 \begin{align*}
@@ -555,7 +555,7 @@ Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we
 $$
 c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length(\bar{z})}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
 $$
-Note that each $\fo$ formula in each $\varphi^i_j$ over $(\bar{x},\bar{y},\bar{z})$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
+Note that each $\fo$ formula over $(\bar{x},\bar{y},\bar{z})$ in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
 $$
 c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
 $$
@@ -569,13 +569,13 @@ If $\alpha$ is equal to a constant $c$, then we define $g_{\alpha}(\A)$ as the f
 $$
 g_{\alpha}(\A) = \bigvee_{i = 1}^{c}\neg t_1 \wedge \cdots \wedge \neg t_{i-1} \wedge t_i \wedge \neg t_{i+1} \wedge \cdots \wedge \neg p_c.
 $$ 
-If $\alpha = \beta_1 + \cdots + \beta_m$, let $g_{\beta_i}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\theta^i_{i,j}$ for each $\beta_i$ where each $\theta^i_{j,k}$ is a Horn clause. Let $\Theta_i = g_{\beta_i}(\A)$. We rename the variables in each $\Theta_i$ so none of them are mentioned more than once in total. We add $m$ new variables $t_1,\ldots,t_m$ and we define:
+If $\alpha = \beta_1 + \cdots + \beta_m$, let $g_{\beta_i}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\theta^i_{i,j}$ for each $\beta_i$ where each $\theta^i_{j,k}$ is a Horn clause. Let $\Theta_i = g_{\beta_i}(\A)$. We rename the variables in each $\Theta_i$ so none of them are mentioned in any other $\Theta_j$. We add $m$ new variables $t_1,\ldots,t_m$ and we define:
 \begin{align*}
 g_{\alpha}(\A) = &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^1_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m}}}t) \wedge (t_1 \wedge \bigwedge_{\ell = 2}^{m} \neg t_{\ell})) \vee \\ 
 &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^2_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each $t$}\\ \text{ mentioned in}\\ \Theta_1,\Theta_3,\ldots,\Theta_{m}}}t) \wedge (t_2 \wedge \bigwedge\limits_{\substack{\ell = 1 \\ \ell \neq 2}}^{m} \neg t_{\ell})) \vee \cdots \vee\\ 
 &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^m_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m-1}}}t) \wedge (t_m \wedge \bigwedge_{\ell = 1}^{m-1} \neg t_{\ell})).
 \end{align*}
-The number of satisfying assignments for this formula is exactly the sum of satisfying assignments for all $g_{\beta_i}(\A)$. This covers all possible cases for $\alpha$, and the complete procedure takes polynomial time.
+The formula is a disjunction of Horn formulas, and the number of satisfying assignments for this formula is exactly the sum of satisfying assignments for each $g_{\beta_i}(\A)$. This, at the same time, is equal to $\sem{\alpha}(\A)$. This covers all possible cases for $\alpha$, and the entire procedure takes polynomial time.
 
 %Let $f$ be an arbitrary function in $\XE{2}$. We will now show a function $h:\str\to L(P)$ such that for every $\A\in\str$, it holds that $f(\A) = \shdhsat(h(\A))$, and which can be computed in polynomial time. Let $\psi$ be such that $f = f_{\psi}$. We separate the proof in three cases:\begin{enumerate}
 %	\item All free variables in $\psi$ are of first order. Let $\psi = \exists \x \forall \y\,\varphi(\x,\y,\z)$ where $\z = (z_1,\ldots,z_d)$. Given a structure $\A = \langle A, \S^{\A}, \leq^{\A} \rangle\in\str$, we generate a propositional formula $\Phi = h(\A)$. First we notice that this case is trivial since we can calculate this function in polynomial time, by checking for each $\e\in A^d$ if $\A\models\exists\x\forall \y\,\varphi(\x,\y,\e)$. Let $n$ be the number of such assignments to $\z$. Let $\p$ be an $n$-tuple of propositional variables where $\p = (p_1,\ldots,p_n)$. The disjunction of Horn formulas we return is
@@ -633,10 +633,10 @@ The number of satisfying assignments for this formula is exactly the sum of sati
 
 
 
-\textbf{Proof of Theorem \ref{so-rec}}
+\subsection*{Proof of Theorem \ref{so-rec}}
 
 
-\textbf{Proof of Theorem \ref{tqfo-fo-cap}}
+\subsection*{Proof of Theorem \ref{tqfo-fo-cap}}
 
 For the second condition, let $f \in \shl$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\A) = \acc_M(\A)$ for each $\A \in \ostr[R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, and $q_{\ell}$ is only final state of $M$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
 
@@ -879,9 +879,9 @@ Finally we define $\varphi_I$ and $\varphi_F$:
 \end{align*}
 and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{u},\bar{v})](\bar{x},\bar{y})\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y}))}(\A) = \acc_M(\A)$.
 
-\textbf{Proof of Theorem \ref{tqso-fo-cap}}
+\subsection*{Proof of Theorem \ref{tqso-fo-cap}}
 
 
-\textbf{Proof of Theorem \ref{rqfo-fo-cap}}
+\subsection*{Proof of Theorem \ref{rqfo-fo-cap}}
 
 
