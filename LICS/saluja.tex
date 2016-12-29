@@ -57,6 +57,7 @@ Next we show that each formula in $\eqso(\LL)$ can be converted in \emph{sum nor
 Every formula in $\eqso(\LL)$ can be rewritten in \emph{sum normal form}. Furthermore, there exists a formula $\alpha \in \QE{1}$ that is not equivalent to any formula in $\QE{1}$ that is in prenex normal form.
 %such that there does not exist a formula in $\Sigma$-prenex normal form in $\QE{1}$ equivalent to $\alpha$.
 \end{theorem}
+\martin{Creo que el resultado de que existe una formula en $\QE{1}$ que no se puede pasar a prenex está mas relacionado con el teorema siguiente que con este.}
 
 %By the previous result, we know that there exists logics $\LL$ where no $\Sigma$-prenex normal form exists. 
 %Then 
@@ -89,7 +90,7 @@ The following proposition summarizes these results, also including the cases of 
 The previous result shows that the classes $\QE{i}$ and $\QU{i}$ are more robust than the classes $\E{i}$ and $\U{i}$: they are closed under binary and sum quantifiers but the other not necessarily. 
 
 Now, we study the complexity classes describe by this hierarchies. As the following result shows, $\eqso(\loge{0})$ defines only tractable counting functions and $\eqso(\loge{1})$ intractable counting functions but with an tractable decision problems. 
-\begin{proposition}
+\begin{proposition} \label{prop:qe0-fp-qe1-totp-fptras}
 All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS.
 \end{proposition}
 Therefore, in terms of counting complexity, the $\eqso$-hierarchy behaves exactly the same as the $\#\fo$-hierarchy.

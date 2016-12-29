@@ -1,0 +1,170 @@
+\subsection*{Proof of Proposition \ref{prop:eqso-hierarchy-proper}} %V.1
+Classes QE0, QE1, QU1, QE2, QU2 = QFO form a properly contained hierarchy:\vspace{1em}
+
+\subsection*{Proof of Theorem \ref{theo:eqso-sum-normal-form}} %V.2
+Every formula in $\eqso(\LL)$ can be rewritten in \emph{sum normal form}. Furthermore, there exists a formula $\alpha \in \QE{1}$ such that there does not exist a formula in $\Sigma$-prenex normal form in $\QE{1}$ equivalent to $\alpha$:\vspace{1em}
+
+\subsection*{Proof of Theorem \ref{theo:prenex}}%V.3
+If $\logu{1} \subseteq \LL$, then for every formula $\alpha \in \eqso(\LL)$ there exists a formula $\beta \in \eqso(\LL)$ equivalent to $\alpha$ in $\Sigma$-prenex normal form:\vspace{1em}
+
+\subsection*{Proof of Proposition \ref{prop:sharp-Q-rel}}%V.4
+The classes $\E{0}$ and $\E{1}$ are strictly contained in $\QE{0}$ and $\QE{1}$, respectively. Moreover, the classes $\U{1}$, $\E{2}$, and $\U{2}$ are equivalent with $\QU{1}$, $\QE{2}$, and $\QU{2}$, respectively:\vspace{1em}
+
+\subsection*{Proof of Proposition \ref{prop:qe0-fp-qe1-totp-fptras}} %V.5
+All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS:\vspace{1em}
+
+\subsection*{Proof of Theorem \ref{theo:binary-prod}}%V.6
+If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$:\vspace{1em}
+
+\subsection*{Proof of Theorem \ref{sub-pnp}}%V.7
+If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0$, then {\sc P} = {\sc NP}:\vspace{1em}
+
+Suppose that $\E{1}$ is closed under substraction, that is, for each pair of functions $f,g\in \E{1}$, there exists $h\in\E{1}$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\str$.
+
+Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\Phi$, where $A$ is the set of variables mentioned in $\Phi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
+\begin{eqnarray*}
+	S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
+\end{eqnarray*}
+Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
+\begin{multline*}
+\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
+\end{multline*}
+Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+$$
+\varphi(x,X) = (T(x) \vee \neg T(x)).
+$$
+Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1}$, we have by our initial assumption that $f_{all}-f_{\#3DNF} \in \E{1}$. Let $h\in\E{1}$ be such that $h = f_{all}-f_{\#3DNF}$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is $\conp$-complete. However, as we showed previously in Theorem \ref{decisionptime}, since $h\in\E{1}$, we have that $L_h \in \ptime$. Then, $\conp \subseteq \ptime$, from which we conclude that $\ptime = \np$.
+
+
+\subsection*{Proof of Theorem \ref{sigmafo-minusone}}%V.8
+
+Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_n$ be defined as in \ref{eqso-sigma-zero-in-fp}, that is, each $\beta_i$ is equal to $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\logex{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. We further assume that each $\beta_i$ is either $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, since each $1$, $\varphi$ and $\sa{\bar{X}}\varphi$ can be replaced by the formulas $\sa{x}\min(x)$, $\sa{x}(\varphi\wedge\min(x))$ and $\sa{x}\sa{\bar{X}}(\varphi\wedge\min(x))$ respectively, while maintaining the value of $\sem{\alpha}(\A)$. 
+
+The intuition behind our reasoning is separated in three points: (1) For each $\beta_i$ of the form $\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will count every tuple $\bar{x}$ that satisfies $\varphi$ except for the lexicographically smallest one. (2) For each $\beta_i$ of the form $\sa{\bar{X}}\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will isolate the smallest $\bar{X}$ that satisfies $\varphi$, and exclude the lexicographically smallest tuple $\bar{x}$ that satisfies $\varphi(\bar{X})$. And (3) if $\alpha = (\beta\add\sa{\bar{x}}\varphi)$ or $\alpha = (\beta\add\sa{\bar{X}}\sa{\bar{x}}\varphi)$, the formula $\kappa(\alpha)$ will exclude the lexicographically smallest tuple that satisfies $\varphi$ if and only if $\beta$ is equal to 0.
+
+\vspace{1em}
+
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha) = \sa{\bar{x}}\exists\bar{y}[\varphi(\bar{x},\bar{y})\wedge\exists\bar{z}(\varphi(\bar{z},\bar{y})\wedge\bar{z} < \bar{x})]$, which is in $\eqso(\logex{1})$ and fulfils the desired condition.
+
+\vspace{1em}
+
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ as is. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{X},\bar{x},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ has the form:
+$$
+\varphi_i(\bar{X},\bar{x},\bar{y}) = (\text{conjunction of $X_j$'s}) \wedge (\text{conjunction of $\neg X_j$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_j$}).
+$$
+Define $\varphi_i^{+}$, $\varphi_i^{-}$ and $\varphi_i^{\fo}$ as the formulas mentioned above. 
+
+In our procedure we assume that in $\varphi_i^{+}\wedge\varphi_i^{-}$ every first-order variable from $\bar{x},\bar{y}$ is mentioned at most once. If not, we add new first-order variables from $\fv$ to $\bar{y}$ so that no variable is repeated, replace them in $\varphi_i^{+}\wedge\varphi_i^{-}$ and add their respective equalities in $\varphi_i^{\fo}$ so that the new formula is equivalent. For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = X(x,y)\wedge \neg X(x,x) \wedge x < y$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and $\varphi_i := X(v_1,v_2) \wedge \neg X(v_3,v_4) \wedge x < y \wedge v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x.$ 
+
+Furthermore, we assume that $\varphi_i^{\fo}$ defines an ordered partition of the variables in the tuple $(\bar{x},\bar{y})$. For example, let $\bar{x} = (x_1,x_2,x_3,x_4)$. A possible ordered partition would be defined by the formula $\theta(\bar{x}) = x_2 < x_1 \wedge x_1 = x_4 \wedge x_4 < x_3$. On the other hand, the formula $\theta'(\bar{x}) = x_1 < x_2 \wedge x_1 < x_4 \wedge x_2 = x_3$ does not define an ordered partition since both $\{x_1\}<\{x_2,x_3\}<\{x_4\}$ and $\{x_1\} < \{x_2,x_3,x_4\}$ satisfy $\theta'$.
+For a given $k$, we define $\cB_k$ as the number of possible ordered partitions for a set of size $k$. 
+If $\varphi_i^{\fo}$ does not define an ordered partition, then for $1 \leq j \leq \cB_{\length(\bar{x},\bar{y})}$ 
+let $\theta^j(\bar{x},\bar{y})$ be a formula that defines an ordered partition over $(\bar{x},\bar{y})$. The formula $\varphi_i(\bar{X},\bar{x},\bar{y})$ is converted into $\bigvee_{j = 1}^{\cB_{\length(\bar{x},\bar{y})}}\varphi_i(\bar{X},\bar{x},\bar{y}) \wedge \theta^j(\bar{x},\bar{y})$. Consider each of these disjuncts as a new $\varphi_i$.
+
+After the previous assumptions, we do the following: for each $X_j\in \bar{X}$ we check every instance of $X_j(\bar{w})$ in $\varphi^{+}_i$ and every instance of $X_j(\bar{z})$ in $\varphi^{-}_i$, where $\bar{w}$ and $\bar{z}$ are subtuples of $(\bar{x},\bar{y})$. If the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{w} = \bar{z}$, the entire formula $\varphi_i$ is removed from $\varphi$.
+
+Now let $\bar{v}$ be the tuple of every first-order variable mentioned in $\varphi_i^{+}$ and let $\bar{u}$ be such that $(\bar{x},\bar{y}) = (\bar{u},\bar{v})$. We define a formula $\mu_i$ that is satisfied only by the lexicographically smallest $\bar{v}$ that satisfies $\varphi_i^{\fo}$ for some $\bar{u}$:
+$$
+\mu_i(\bar{v}) = \exists\bar{u}\,\varphi_i^{\fo}(\bar{u},\bar{v})\wedge\forall\bar{u}'\forall\bar{v}'(\varphi_i^{\fo}(\bar{u}',\bar{v}')\to\bar{v}\leq\bar{v}').
+$$
+The following is a pivotal formula for this proof. Consider some ordered finite structure $\A$ over $\R$. Given our conditions for $\varphi_i$, if $\A\models\varphi_i$ and $\A\models\varphi^{\fo}_i(\bar{u},\bar{v})$ then for that $\bar{v}$ we can define a $\bar{X}$ that has exactly the tuples mentioned in $\bar{v}$ and nothing else. This is {\em the smallest $\bar{X}$ that satisfies $\varphi_i$ over $\bar{v}$}. And if $\bar{v}$ is the lexicographically smallest such that $\A\models\varphi_i(\bar{v})$, then it is the {\em the smallest $\bar{X}$ that satisfies $\varphi_i$}. The following formula is satisfied by every pair $(\bar{X},\bar{x})$, except for the one formed by the smallest $\bar{X}$ that satisfies $\varphi_i$ and the lexicographically smallest $\bar{x}$ that satisfies $\varphi_i(\bar{X})$. And if no pair satisfies $\varphi_i$, the following formula is satisfied by every pair.
+$$
+\psi_i(\bar{X},\bar{x}) = \exists\bar{v}(\mu_i(\bar{v})\wedge(\neg\varphi^{+}_i(\bar{X},\bar{v})\vee\bigvee_{X \in \bar{X}} \exists\bar{z}(X(\bar{z}) \wedge \bigwedge\limits_{\substack{\text{instances of }X(\bar{w}) \\ \text{in }\varphi^{+}_i(\bar{X},\bar{v})}}\bar{w}\neq\bar{z}))) \vee \exists\bar{x}'(\exists\bar{y}'\varphi_i(\bar{X},\bar{x}',\bar{y}')\wedge \bar{x}'<\bar{x})\vee\neg\exists\bar{v}\mu_i(\bar{v}) .
+$$
+\begin{claim}
+	For a given ordered structure $\A$ such that $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$, there is an assignment $(\bar{B},\bar{b})$ to $(\bar{X},\bar{x})$ that satisfies the following conditions (1) $\A\models\exists\bar{y}\,\varphi_i(\bar{B},\bar{b},\bar{y})$, (2) $\A\not\models\psi_i(\bar{B},\bar{b})$ and (3) this is the only assignment to $(\bar{X},\bar{x})$ that satisfies (1) and (2).
+\end{claim}
+\begin{proof}
+	proof here.
+\end{proof}
+The following claim identifies a crucial condition that is verifiable with a $\fo$ formula. 
+\begin{claim}
+	Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a $\logex{0}$ formula that satisfies all the mentioned assumptions. For a given ordered structure $\A$ it holds that $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$ iff $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$.
+\end{claim}
+\begin{proof}
+	Let $\A$ be an ordered structure with domain $A$ and let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})$. Define $\bar{B} = (B_1,\ldots,B_{\length(\bar{X})})$ as $B_j = \{\bar{c}\mid\bar{c}\text{ is a subtuple of $(\bar{b},\bar{a})$ and $X_j(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$}\}$. Towards a contradiction, suppose that $\A\not\models\varphi_i(\bar{B},\bar{b},\bar{a})$. By the choice of $\bar{a}$ and $\bar{b}$, and construction of $\bar{B}$ it is clear that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})\wedge\varphi^{+}_i(\bar{B},\bar{b},\bar{a})$, so we have that $\A\not\models\varphi^{-}_i(\bar{B},\bar{b},\bar{a})$. Let $B_t(\bar{c})$ be such that $X_t(\bar{c})$ is mentioned in $\varphi^{-}_i(\bar{X},\bar{b},\bar{a})$ and $\A\not\models\neg B_t(\bar{c})$. This is, $\bar{c}\in B_t$. By the construction of $\bar{B}$ we have that $X_t(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$. From our assumptions, we have that (1) every first-order variable is mentioned at most once in $\varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$, (2) $\varphi^{\fo}_i$ defines an ordered partition over $(\bar{x},\bar{y})$, and (3) there are no $X_j(\bar{w})$ in $\varphi^{+}_i$ and $X_j(\bar{z})$ in $\varphi^{-}_i$ such that the ordered partition defined by $\varphi^{\fo}_i$ satisfies $\bar{x} = \bar{z}$. Since $\bar{c}$ is a subtuple of $(\bar{b},\bar{a})$ that satisfies $\varphi^{\fo}_i$, and $X_t(\bar{w})$ mentioned in $\varphi^{+}_i$ and $X_t(\bar{z})$ mentioned in $\varphi^{-}_i$ were both assigned the value $\bar{c}$, then the ordered partition satisfies $\bar{w} = \bar{z}$, which follows to a contradiction.
+\end{proof}
+We define $\chi_i = \exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$. Now recall that $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$, where each $\varphi_i$ satisfies all the previous assumptions. For each $\varphi_i$ we define:
+$$
+\varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\bigvee_{j = 1}^{j = i-1}\chi_j\vee\psi_i(\bar{X},\bar{x})),
+$$
+and lastly, $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$.
+
+\vspace{1em}
+
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = (\beta + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y}))$ for some algebraic formula $\beta$ and some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ as follows: First, perform the same transformations to $\varphi(\bar{X},\bar{x},\bar{y})$ as in the previous case. Let $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ satisfies the previous assumptions. We also use the previously defined formulas $\chi_i$ and $\psi_i$. 
+
+We recursively define a function $\lambda$ as follows. If $\alpha = \sa{\bar{x}}\exists\bar{y}\varphi(\bar{x},\bar{y})$, then $\lambda(\alpha) = \exists\bar{x}'\exists\bar{y}'\varphi(\bar{x}',\bar{y}')$. If $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$, then let $\varphi = \bigvee_{i = 1}^{m}\varphi_i$ and $\lambda(\alpha) = \chi_1\vee\cdots\vee\chi_m$ as each $\chi_i$ was previously defined. If $\alpha = (\beta + \gamma)$, then $\lambda(\alpha) = \lambda(\beta) \vee \lambda(\gamma)$. Note that for a given ordered structure $\A$, then $\A\models\lambda(\alpha)$ if and only if $\sem{\alpha}(\A) > 0$.
+
+Now, for each $\varphi_i$ we define:
+$$
+\varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge[\lambda(\beta)\vee[\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\bigvee_{j = 1}^{j = i-1}\chi_j\vee\psi_i(\bar{X},\bar{x}))]].
+$$
+And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$, which is in $\eqso(\logex{1})$ and satisfies the desired condition.
+
+\subsection*{Proof of Proposition \ref{prop:uhorn-pe}} %V.9
+
+\subsection*{Proof of Proposition \ref{prop:ehorn-pe}} %V.11
+
+\subsection*{Proof of Proposition \ref{prop:hsat-not-sigma2}} %V.12
+$\eqso(\uhorn) \subseteq \totp$:\vspace{1em}
+
+\subsection*{Proof of Theorem \ref{sigma2hard}} %V.13
+
+First we prove that $\shdhsat$ is in $\eqso(\ehorn)$. Recall that each instance of $\shdhsat$ is a disjunction of Horn formulas. Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot), \pD(\cdot,\cdot)\}$. Each symbol in this vocabulary is used to indicate the same as in Example \ref{ex-hornsat-esop1}, with the addition of $\pD(d,c)$ which indicates that $c$ is a clause in the formula $d$. Recall that the formula
+\begin{align*}
+&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \neg\textit{T}(x)).
+\end{align*}
+defines $\chsat$. We obtain the following formula $\psi(T,A)$ in $\ehorn$:
+\begin{align*}
+\exists d[&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \pD(c,d)\vee \neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \neg\textit{T}(x))]
+\end{align*}
+effectively defines $\chsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
+
+\vspace{1em}
+We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a polynomial-time procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
+$$
+\alpha = c + \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{x},\bar{y},\bar{z}),
+$$
+where each $\varphi^i_j$ is a Horn clause.                                                                
+
+Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length(\bar{x})}$, each $\bar{b}\in A^{\length(\bar{y})}$ and each $\bar{c}\in A^{\length(\bar{z})}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
+$$
+c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length(\bar{z})}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
+$$
+Note that each $\fo$ formula over $(\bar{x},\bar{y},\bar{z})$ in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
+$$
+c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
+$$
+where every $\psi^{i}_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$.
+
+Our idea for the rest of the proof is to define $g_{\alpha}$ for each $\alpha = \sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})$, for $\alpha = c$ and for $\alpha = \beta_1 + \cdots + \beta_m$ where each $\beta_i$ is in one of the two previous cases.
+
+If $\alpha$ is equal to $\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ where $\psi_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$, then we obtain the {\bf propositional formula} $g_{\alpha}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \bar{e}\in A^{\arity(X)} \}$ which has exactly $\sem{\alpha}(\A)$ satisfying assignments and is precisely a disjunction of Horn formulas.
+
+If $\alpha$ is equal to a constant $c$, then we define $g_{\alpha}(\A)$ as the following formula that has exactly $c$ satisfying assignments:
+$$
+g_{\alpha}(\A) = \bigvee_{i = 1}^{c}\neg t_1 \wedge \cdots \wedge \neg t_{i-1} \wedge t_i \wedge \neg t_{i+1} \wedge \cdots \wedge \neg p_c.
+$$ 
+If $\alpha = \beta_1 + \cdots + \beta_m$, let $g_{\beta_i}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\theta^i_{j,k}$ for each $\beta_i$ where each $\theta^i_{j,k}$ is a Horn clause. Let $\Theta_i = g_{\beta_i}(\A)$. We rename the variables in each $\Theta_i$ so none of them are mentioned in any other $\Theta_j$. We add $m$ new variables $t_1,\ldots,t_m$ and we define:
+\begin{align*}
+g_{\alpha}(\A) = &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^1_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m}}}t) \wedge (t_1 \wedge \bigwedge_{\ell = 2}^{m} \neg t_{\ell})) \vee \\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^2_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each $t$}\\ \text{ mentioned in}\\ \Theta_1,\Theta_3,\ldots,\Theta_{m}}}t) \wedge (t_2 \wedge \bigwedge\limits_{\substack{\ell = 1 \\ \ell \neq 2}}^{m} \neg t_{\ell})) \vee \cdots \vee\\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^m_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m-1}}}t) \wedge (t_m \wedge \bigwedge_{\ell = 1}^{m-1} \neg t_{\ell})).
+\end{align*}
+The formula is a disjunction of Horn formulas, and the number of satisfying assignments for this formula is exactly the sum of satisfying assignments for each $g_{\beta_i}(\A)$. This, at the same time, is equal to $\sem{\alpha}(\A)$. This covers all possible cases for $\alpha$, and the entire procedure takes polynomial time.
