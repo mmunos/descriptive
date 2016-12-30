@@ -1,242 +1,77 @@
 %!TEX root = syntactic.tex
 
 Inspired by the connection between $\shp$ and $\sfo$, a hierarchy of subclases of $\sfo$ was introduced in~\cite{SalujaST95} 
-%studied subclasses of  $\sfo$ syntactically 
 by restricting the alternation of quantifiers in Boolean formulas.
-%, defining what we call 
 Specifically, the \emph{$\sfo$-hierarchy} consists of the 
-%they define 
 the classes $\E{i}$ and $\U{i}$ for every $i \geq 0$, where $\E{i}$ (resp., $\U{i}$) is defined as $\sfo$ but restricting the formulas used to be in $\loge{i}$ (resp., $\logu{i}$).
-%is there exists a for are defined where functions are defined by $\fo$-formulas in $\loge{i}$ and $\logu{i}$, respectively, 
-%for every $i \geq 0$. 
 By definition ,we have that $\U{0} = \E{0}$. Moreover, it is shown in~\cite{SalujaST95} that:
-% this function classes defined a finite hierarchy of the form:
 \[
-\E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \#\fo 
+\E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \sfo 
 \]
 In light of the framework introduced in this paper, natural extensions of these classes are obtained by considering 
-%in light of the $\eqso$ logic. Specifically, we consider 
-%the classes 
-$\eqso(\loge{i})$ and $\eqso(\logu{i})$ for every $i \geq 0$, which form the \emph{$\eqso$-hierarchy}.
-%, where the boolean logic is restricted to $\loge{i}$ and $\logu{i}$, respectively. 
-%We denote each class by $\QE{i}$ and $\QU{i}$ for short. 
+$\eqso(\loge{i})$ and $\eqso(\logu{i})$ for every $i \geq 0$, which form the \emph{$\eqso(\fo)$-hierarchy}.
 Clearly, we have that $\E{i} \subseteq \QE{i}$ and $\U{i} \subseteq \QU{i}$. Indeed, each formula $\varphi(\bar{X}, \bar{x})$ in $\E{i}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\QE{i}$, and likewise for $\U{i}$ and $\QU{i}$.
 But what is the exact relationship between these two hierarchies?
-%Then it is left to know whether these containments are strict.
-%between the sharp and quantitative classes is strict or not. 
-%For this, 
 To answer this question, we start by introducing two normal forms for $\eqso(\LL)$ that helps us to characterize the expressive power of this quantitative logic.
-%study first whether a formula $\alpha$ in $\eqso(\LL)$ can be transformed into a 
-%\emph{prenex 
-%normal form where sum quantifiers are restricted to be at the beginning of the formula. 
-%Formally, we say that 
 A formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-prenex normal form ($\LL$-PNF)} 
-%(or just prenex normal form) 
 if $\alpha$ is of the form
-%\[
-%\alpha := 
 $\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{X}, \bar{x})$,
-%\]
 where $\bar{X}$ and $\bar{x}$ are sequences of zero or more second-order and first-order variables, respectively, and $\varphi(\bar{X}, \bar{x})$ is a formula in $\LL$. Notice that 
-%a sentence in $\LL$ is in $\LL$-PNF, while 
-a formula $\varphi(\bar{X}, \bar{x})$ in $\#\LL$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\LL$-PNF. 
-%In particular, 
-%%note that a 
-%each Boolean formula is in 
-%%$\Sigma$-
-%prenex normal form.
+a formula $\varphi(\bar{X}, \bar{x})$ in $\sh{\LL}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\LL$-PNF. 
 Moreover, a formula $\alpha$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $c + \Sigma_{i=1}^n \alpha_i$, where $c$ is a non-negative constant and each $\alpha_i$ is in 
-%$\Sigma$-
 $\LL$-PNF.
-%prenex normal form.
-%The following results shows that 
-%%Next we show that 
-%each formula in $\eqso(\LL)$ can be converted in sum normal form.
-% but not always in prenex normal form.
 \begin{theorem}\label{theo-pnf-snf}
 Every formula in $\eqso(\LL)$ can be rewritten in $\LL$-SNF.
-%sum normal form.
-%such that there does not exist a formula in $\Sigma$-prenex normal form in $\QE{1}$ equivalent to $\alpha$.
 \end{theorem}
-%\martin{Creo que el resultado de que existe una formula en $\QE{1}$ que no se puede pasar a prenex está mas relacionado con el teorema siguiente que con este.}
-%By the previous result, we know that there exists logics $\LL$ where no $\Sigma$-prenex normal form exists. 
-%Then
-Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqso$-hierarchy, we need to understand the boundary between PNF and SNF. We do this in the following theorem. 
-%An interesting question at this point is when a formula $\alpha \in \eqso(\LL)$ can be converted in 
-%%$\Sigma$-
-%prenex normal form. 
-%%Of course, this would depend on the expressibility of $\LL$.
-%Interestingly, if $\LL$ contains $\logu{1}$, then it can be shown that $\alpha$ can be converted in
-%%we can always convert any formula in $\Sigma$-
-%%prenex 
-%this normal form. 
+Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, we need to understand the boundary between PNF and SNF. We do this in the following theorem. 
 \begin{theorem}\label{theo-pi1-pnf}
-There exists a formula $\alpha$ in $\QE{1}$ that is not equivalent to any formula in $\Sigma_1$-PNF. 
-%prenex normal form. 
+For $i = 0,1$, there exists a formula $\alpha_i$ in $\QE{i}$ that is not equivalent to any formula in $\Sigma_i$-PNF. 
 On the other hand, if $\logu{1} \subseteq \LL$, then 
-	%for 
 	every formula in
-	%$\alpha \in \eqso(\LL)$ 
 	$\eqso(\LL)$ can be rewritten in $\LL$-PNF. 
-	%there exists a formula $\beta \in \eqso(\LL)$ equivalent to $\alpha$ in $\Sigma$-
-%	prenex normal form.
 \end{theorem}
 
 \begin{figure*}
-
 \begin{center}
-\begin{tabular}{ccc}
-$\E{0}$ & $\subsetneq$ & 
-\end{tabular}
+\begin{tikzpicture}
+\node[rectw] (n1) {$\E{0}$};
+\node[rectw, right=0.5cm of n1] (n2) {};
+\node[rectw, above=0.5cm of n2] (n3) {$\E{1}$}
+	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+\node[rectw, below=0.5cm of n2] (n4) {$\QE{0}$}
+        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+\node[rectw, right=0.5cm of n2] (n5) {$\QE{1}$}
+        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+        edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+\node[rectw, right=0.5cm of n5] (n6) {$\U{1}$}       
+        edge[draw=white] node {$\subsetneq$} (n5);
+\node[rectw, right=0.5cm of n6] (n7) {$\QU{1}$}       
+        edge[draw=white] node {$=$} (n6);
+\node[rectw, right=0.5cm of n7] (n8) {$\E{2}$}       
+        edge[draw=white] node {$\subsetneq$} (n7);
+\node[rectw, right=0.5cm of n8] (n9) {$\QE{2}$}       
+        edge[draw=white] node {$=$} (n8);        
+\node[rectw, right=0.5cm of n9] (n10) {$\U{2}$}       
+        edge[draw=white] node {$\subsetneq$} (n9);
+\node[rectw, right=0.5cm of n10] (n11) {$\QU{2}$}       
+        edge[draw=white] node {$=$} (n10); 
+\node[rectw, right=0.5cm of n11] (n12) {$\sfo$}       
+        edge[draw=white] node {$=$} (n11); 
+\end{tikzpicture}
 \end{center}
 
-\caption{The relationship between the $\sfo$-hierarchy and the $\eqso$-hierarchy.\label{fir-sfo-eqso}}
+\caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \end{figure*}
 
-
-As our first result, we show that in terms of containment the $\eqso$-hierarchy behaves as the $\sfo$-hierarchy:
-%$\eqso$ also defined a finite hierarchy similar than in~\cite{SalujaST95} that we called the $\eqso$-hierarchy.
+As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 1,2$, and that $\sh{\LL} = \eqso(\LL)$ for every Boolean logic containing $\Pi_1$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, which is summarized in Figure \ref{fig-sfo-eqso}.
 \begin{proposition}
-\begin{multline*}
-\; \QE{0} \; \subsetneq \; \QE{1} \; \subsetneq \; \QU{1} \; \subsetneq \\ \QE{2} \; \subsetneq \; \QU{2} \; = \; \eqso(\fo)
-\end{multline*}
+The following properties hold:
+\begin{itemize}
+\item $\QE{0} \subsetneq \QE{1}$
+\item $\QE{1} \subsetneq \QU{1}$
+\item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$
+\end{itemize}
 \end{proposition}
-As our second result, we establish precise connections between 
-%A natural question at this point is what is 
-%the connection between 
-$\E{i}$ and $\U{i}$ and their corresponding classes $\QE{i}$ and $\QU{i}$. 
-
-
-
-
-
-
-Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf} are instrumental in answering our question of what is the relationship between the $\sfo$-hierarchy and the $\eqso$-hierarchy. 
-%The previous results gives the connection between the hierarchy in \cite{SalujaST95} and the $\eqso$-hierarchy. 
-Indeed, if $\LL$ contains $\logu{1}$, then we have that $\sh{\LL}$ is equal to $\eqso(\LL)$ since each formula in $\eqso(\LL)$ can be converted in prefix normal form and, therefore, it is equivalent to a formula in $\sh{\LL}$. 
-The following proposition summarizes these results, also including the cases of $\E{0}$ and $\E{1}$.
-%Unfortunately, this is not the case for $\loge{0}$ and $\loge{1}$ as the following result shows.
-\begin{proposition}
-	The classes $\E{0}$ and $\E{1}$ are strictly contained in $\QE{0}$ and $\QE{1}$, respectively. Moreover, the classes $\U{1}$, $\E{2}$, and $\U{2}$ are equivalent with $\QU{1}$, $\QE{2}$, and $\QU{2}$, respectively.
-\end{proposition}
-The previous result shows that the classes $\QE{i}$ and $\QU{i}$ are more robust than the classes $\E{i}$ and $\U{i}$: they are closed under binary and sum quantifiers but the other not necessarily. 
-
-Now, we study the complexity classes describe by this hierarchies. As the following result shows, $\eqso(\loge{0})$ defines only tractable counting functions and $\eqso(\loge{1})$ intractable counting functions but with an tractable decision problems. 
-\begin{proposition} \label{prop:qe0-fp-qe1-totp-fptras}
-All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS.
-\end{proposition}
-Therefore, in terms of counting complexity, the $\eqso$-hierarchy behaves exactly the same as the $\#\fo$-hierarchy.
-
-The next step is to study the closure properties of $\eqso$-hierarchy. 
-An advantage of the $\eqso$-hierarchy is that, by its language syntax, all the classes are closed under addition and first and second order sum.
-So, the first question is whether the multiplicative operators in $\qso$ can be defined in $\eqso(\LL)$. As the following result shows, if $\LL$ is closed under conjunction, then the binary product can be defined in  $\eqso(\LL)$.
-\begin{theorem}\label{theo:binary-prod}
-	If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$.
-\end{theorem}
-The next question is whether the hierarchy is closed under subtraction. Formally, for any pair of functions $f,g$, we define $f - g$ as the function such that $(f - g)(\A) = f(\A)-g(\A)$ whenever $f(\A)>g(\A)$ and $0$ otherwise.
-As the next result shows, all classes in the $\eqso$-hierarchy is not closed under subtraction unless ${\sc P} = {\sc NP}$
-\begin{theorem} \label{sub-pnp}
-If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0$, then {\sc P} = {\sc NP}.
-\end{theorem}
-\cristian{Martin, el resultado que tienes en el apendice se generaliza trivialmente para todas las clases ya que todas contienen la clase $\eqso(\loge{0})$.}
-
-By the previous result, we know that functions in the $\eqso$ hierarchy are unlikely to be closed under subtraction. Then, a natural restriction to this question is to ask whether these classes are closed under subtraction by one, namely, if $\CC$ is a class of functions and $f \in \CC$, is $f-1 \in \CC$ where $1$ is the constant function that outputs $1$ for every structure. 
-We do not know $\E{1}$ is closed under subtraction by one. However, if we extend $\logex{1}$ with $\fo$ predicates we can show that this new fragment is closed under subtraction by one.
-\begin{theorem} \label{sigmafo-minusone}
-	$\eqso(\logex{1})$ is closed under substraction by one.
-\end{theorem}
 
 
  
-
-
-
-% We are interested in, for each $\fo$-fragment $\LL$, the biggest fragment of $\eqso$ that is contained in $\#\LL$.
-%Let $\LL = \loge{0}$:
-%\begin{theorem} \label{one-sigma-zero}
-%	Positive constant functions are not expressible in $\E{0}$
-%\end{theorem}
-%\begin{corollary}
-%	If a fragment of $\eqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow sole constants.
-%\end{corollary}
-%\begin{conjecture}
-%	Sum is not expressible in $\E{0}$
-%\end{conjecture}
-%\begin{theorem} \label{mult-sigma-zero}
-%	$\sqso(\loge{0})$ with binary product is contained in $\E{0}$.
-%\end{theorem}
-%\begin{theorem} \label{fo-prod-sigma-zero}
-%	If an extension of $\sqso(\loge{0})$ is contained in $\E{0}$, its grammar does not allow first-order product.
-%\end{theorem}
-
-
-%For every logic $\LL$, we define an $\LL$-extended quantifier-free (QF) formula as follows:
-%\begin{eqnarray*}
-%	\varphi &::=& \alpha, \alpha \text{ is an $\LL$-formula} \ \mid \\
-%	&& X_i(x_1,\dots,x_{a_i}), i\in\N \ \mid \ \\
-%	&& (\neg \varphi) \ \mid \ (\varphi \wedge \varphi) \ \mid \ (\varphi \vee \varphi).
-%\end{eqnarray*}
-%
-%We define syntactically the fragments $\logex{i}$ and $\logux{i}$ according to the following grammar:
-%\begin{align*}
-%\logex{0} = \logux{0} &::= \varphi , \varphi \mbox{ is an $\fo$-extended QF formula,} \\
-%\logex{i+1} &::= \logux{i} \ \mid \ \exists x\, \logex{i+1}, \\
-%\logux{i+1} &::= \logex{i} \ \mid \ \forall x\, \logux{i+1}.
-%\end{align*}
-
-%We see that many of the results in Saluja et. al. \cite{SalujaST95} for $\#\LL$ still apply in $\eqso(\LL)$ for a given fragment $\LL$:
-%
-%\begin{theorem} \label{eqso-sigma-zero-in-fp}
-%	For every $\eqso(\loge{0})$ formula $\alpha$ over a signature $\R$, the function $f$ over $\R$ defined as $f(\enc(\A)) = \sem{\alpha}(\A)$ is in $\fp$.
-%\end{theorem}
-%
-%\begin{theorem} \label{eqso-sigma-one-in-eqso-pi-one}
-%	For every $\eqso(\loge{1})$ formula $\alpha$ over a signature $\R$ there exists a $\eqso(\logu{1})$ formula $\beta$ over $\R$ such that $\sem{\alpha}(\A) = \sem{\beta}(\A)$ for every $\A\in\ostr[\R]$.
-%\end{theorem}
-%
-%
-%The {\em decision problem} associated to a function $f$ is defined by the language $L_f = \{\A \in \str \mid f(\A) > 0\}$.
-%
-%\begin{theorem} \label{decisionptime}
-%	The decision problem associated to a function in $\eqso(\logex{1})$ is in \textsc{P}.
-%\end{theorem}
-
-%For a given pair of functions $f,g$, we define $f \dotminus g$ as follows:
-%\begin{eqnarray*}
-%	(f \dotminus g)(\A) =
-%	\begin{cases}
-%		f(\A)-g(\A), & \text{if }f(\A)>g(\A) \\
-%		0, & \text{if }f(\A) \leq g(\A).
-%	\end{cases}
-%\end{eqnarray*}
-%for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction} if for every pair of functions $f,g \in \F$, it holds that $f \dotminus g \in \F$.
-%
-%\begin{theorem} \label{sub-pnp}
-%	If $\eqso(\loge{1})$ is closed under substraction, then {\sc P} = {\sc NP}.
-%\end{theorem}
-%
-%\begin{theorem} \label{sigma1strict}
-%	$\eqso(\loge{1}) \subsetneq \eqso(\logex{1})$
-%\end{theorem}
-%
-%For a given function $f$, we define $f \dotminus 1$ as follows:
-%\begin{eqnarray*}
-%	f \dotminus 1(\A) =
-%	\begin{cases}
-%		f(\A)-1, & \text{if }f(\A) > 0 \\
-%		0, & \text{if }f(\A) = 0.
-%	\end{cases}
-%\end{eqnarray*}
-%for every $\L$-structure $\A \in \str$. A function class $\F$ is {\em closed under substraction by one} if for every function $f \in \F$, it holds that $f \dotminus 1 \in \F$.
-%
-%\begin{theorem} \label{sigmafo-minusone}
-%	$\eqso(\logex{1})$ is closed under substraction by one.
-%\end{theorem}
-%
-%\begin{theorem} \label{dnf-pars}
-%	{\sc \#DNF} is hard for $\eqso(\loge{1})$ under parsimonious reductions. 
-%\end{theorem}
-%
-%\begin{theorem} \label{nplusone-strict}
-%	$\U{1}$ with $n$ open first-order variables is properly contained in $\U{1}$ with $n+1$ open first-order variables for $n\in\N$.  
-%\end{theorem}

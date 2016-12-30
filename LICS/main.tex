@@ -23,6 +23,53 @@
 \usepackage{stfloats}
 \usepackage{url}
 
+\usetikzlibrary{chains,fit,shapes}
+\usetikzlibrary{arrows,positioning} 
+
+\tikzset{
+    rect/.style={
+           rectangle,
+           rounded corners,
+           draw=black, 
+           thick,
+           text centered},
+    rectw/.style={
+           rectangle,
+           rounded corners,
+           draw=white, 
+           thick,
+           text centered},
+    sq/.style={
+           rectangle,
+           draw=black, 
+           thick,
+           text centered},
+    sqw/.style={
+           rectangle,
+           draw=white, 
+           thick,
+           text centered},
+    arrout/.style={
+           ->,
+           -latex,
+           thick,
+           },
+    arrin/.style={
+           <-,
+           latex-,
+           thick,
+           },
+    arrd/.style={
+           <->,
+           >=latex,
+           thick,
+           },
+    arrw/.style={
+           thick,
+           }
+}
+
+
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \input{macros}
