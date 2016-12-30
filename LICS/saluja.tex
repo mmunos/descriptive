@@ -26,7 +26,7 @@ Every formula in $\eqso(\LL)$ can be rewritten in $\LL$-SNF.
 Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, we need to understand the boundary between PNF and SNF. We do this in the following theorem. 
 \begin{theorem}\label{theo-pi1-pnf}
 For $i = 0,1$, there exists a formula $\alpha_i$ in $\QE{i}$ that is not equivalent to any formula in $\Sigma_i$-PNF. 
-On the other hand, if $\logu{1} \subseteq \LL$, then 
+On the other hand, if $\logu{1} \subseteq \LL$ and $\LL$ is closed under conjunction and disjunction, then 
 	every formula in
 	$\eqso(\LL)$ can be rewritten in $\LL$-PNF. 
 \end{theorem}
@@ -63,13 +63,13 @@ On the other hand, if $\logu{1} \subseteq \LL$, then
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \end{figure*}
 
-As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 1,2$, and that $\sh{\LL} = \eqso(\LL)$ for every Boolean logic containing $\Pi_1$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, which is summarized in Figure \ref{fig-sfo-eqso}.
+As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL = \Pi_1$, $\LL = \Sigma_2$ and $\LL = \Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, which is summarized in Figure \ref{fig-sfo-eqso}.
 \begin{proposition}\label{prop-rest}
 The following properties hold:
 \begin{itemize}
-\item $\QE{0} \subsetneq \QE{1}$
-\item $\QE{1} \subsetneq \QU{1}$
+\item $\QE{0} \not\subseteq \E{0}$
 \item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$
+\item $\QE{1} \subsetneq \QU{1}$
 \end{itemize}
 \end{proposition}
 
