@@ -56,19 +56,20 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 \begin{proof}
 	For the second condition, let $f \in \shl$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\A) = \acc_M(\A)$ for each $\A \in \ostr[R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, and $q_{\ell}$ is only final state of $M$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
 	
-	We represent configurations with a tuple of fixed size $k$. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ models that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ models that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
+	We represent configurations with a tuple of fixed size. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ describes that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ describes that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
 	$$
 	\alpha = \sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{u},\bar{v})](\bar{x},\bar{y})\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y})).
 	$$
 	
-	To illustrate our idea, we will show a greatly simplified example. Consider a machine $M$ that works in exactly $\log_2(n)$ space and only allows 0 or 1 in the working tape. Consider an input $\A$ of size 16 (that is, $A = \{0,\ldots,9,A,\ldots,F\}$). Let some configuration $s$ have 0011 in the working tape, the head in the input tape is in position 26, and the head in the input tape is in position 2 (we consider 0-indexed positions). Also, $Q = \{q_1,\ldots,q_5\}$ and the current state is $q_3$.
+	To illustrate our idea, we will show a simplified example. Consider a machine $M$ that works in exactly $\log_2(n)$ space and only allows 0 or 1 in the working tape. Consider an input $\A$ of size 16 (that is, $A = \{0,\ldots,9,A,\ldots,F\}$). Let some configuration $s$ have 0011 in the working tape, the head in the input tape is in position 26, and the head in the input tape is in position 2 (we consider 0-indexed positions). Also, $Q = \{q_1,\ldots,q_5\}$ and the current state is $q_3$.
 	
 	As a first approach, we will use a 9-tuple $\bar{a} = (a_1,\ldots,a_9)$ to represent $s$. That is, $(a_1,a_2) = (1,A)$ represent the position of the head in the input tape, $a_3 = 2$ represents the position of the head in the working tape, $a_4 = C$ (1100b in base 16) represents the content of the working tape, and $(a_5,\ldots,a_9) = (0,0,1,0,0)$ represents the current state. Then $\bar{a} = (1,A,2,C,0,0,1,0,0)$ will represent $s$.
 	
-	The problem that arises from this representation, is that to describe a transition in $M$ we need to read an arbitrary character in the working tape, and therefore we have to obtain the $a_3$-th bit in $a_4$. Furthermore, to get the following configuration, we need compute $a_4$ with the $a_3$-th bit flipped. This is generally not possible to describe with an $FO$ formula. Consider the following procedure that receives $x = a_4$ and $i = a_3$.
+	The problem that arises from this representation, is that to describe a transition in $M$ we need to read an arbitrary character in the working tape, and therefore we have to obtain the $a_3$-th bit in $a_4$. Furthermore, to represent the following configuration, we need compute $a_4$ with the $a_3$-th bit flipped. This is generally not possible to describe with an $\fo$ formula. Consider the following procedure that receives $x = a_4$ and $i = a_3$.
 	
-	\begin{algorithm} \label{switch1to0}
+	\begin{algorithm}
 	\caption{If the $i$-th bit in $x$ is 1 replace it by 0 and return the result}
+	\label{switch1to0}
 	\begin{algorithmic}
 		\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
 		\While{$j > 0$}
@@ -211,9 +212,10 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 	[\varphi^E_a(x_1,x_2) \wedge \varphi_{1,0}(s_1,s_2) \wedge \varphi^b_7(\bar{w}) \wedge \mu_1(u_{3c+1},\ldots,u_{4c}) \wedge \varphi_{0,0}(t_1,t_2) \wedge \varphi^b_0(\bar{z}) \wedge \bigwedge_{i = 1}^{5c+2} u_i = v_i \,\wedge \\
 	\varphi^2_{op_1}(x_1,x_2,y_1,y_2) \wedge \varphi_{op_2}(x_3,y_3) \wedge \bigwedge_{i = 1}^c u_i = x_{3+i} \wedge \varphi^q_i(x_{4+c},\ldots,x_{3+c+\ell}) \wedge \varphi^q_j(y_{4+c},\ldots,y_{3+c+\ell})].
 	\end{multline*}
-	Note that we also need to specify that the program we are following is Algorithm \ref{switch1to0} so we store $1,0$ in $b_1,b_2$ all along the procedure. We now describe the three other algorithms that compute the switches from $0\to 0$, $0\to 1$ and $1\to 1$.
-	\begin{algorithm} \label{switch0to0}
-		\caption{If the $i$-th bit in $x$ is 0 return $x$}
+	
+	
+	\begin{algorithm}
+		\caption{If the $i$-th bit in $x$ is 0 return $x$} \label{switch0to0}
 		\begin{algorithmic}
 			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
 			\While{$j > 0$}
@@ -230,8 +232,10 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 			\State \Return $x$.
 		\end{algorithmic}
 	\end{algorithm}
-	\begin{algorithm} \label{switch0to1}
+	
+	\begin{algorithm}
 		\caption{If the $i$-th bit in $x$ is 0 replace it by 1 and return the result}
+		\label{switch0to1}
 		\begin{algorithmic}
 			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
 			\While{$j > 0$}
@@ -259,8 +263,10 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 			\State \Return $x$.
 		\end{algorithmic}
 	\end{algorithm}	
-	\begin{algorithm} \label{switch1to1}
+	
+	\begin{algorithm}
 		\caption{If the $i$-th bit in $x$ is 1 return $x$}
+		\label{switch1to1}
 		\begin{algorithmic}
 			\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
 			\While{$j > 0$}
@@ -277,6 +283,7 @@ In the previous definition, if $\KK$ is the class of all finite structures, then
 			\State \Return $x$.
 		\end{algorithmic}
 	\end{algorithm}
+	Note that we also need to specify that the program we are following is Algorithm \ref{switch1to0} so we store $1,0$ in $b_1,b_2$ all along the procedure. We describe the three other algorithms that compute the switches from $0\to 0$, $0\to 1$ and $1\to 1$ (Algorithms \ref{switch0to0}, \ref{switch0to1} and \ref{switch1to1}.)
 	For the other three cases, where $\delta = (q_i,a,0,q_j,op_1,0,op_2)$, $\delta = (q_i,a,0,q_j,op_1,1,op_2)$ and $\delta = (q_i,a,1,q_j,op_1,1,op_2)$, $\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined analogously. Then, $\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined as:
 	$$
 	\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \bigvee_{\delta \in \Delta} \varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}).
@@ -307,9 +314,9 @@ $\eqso(\fo)$ captures $\shp$ over the class of ordered structures.
 $\eqso(\fo)$ does not capture $\shp$ over the class of all structures.
 \end{proposition}
 
-%\begin{theorem}
-%$\eqso(\integ,\fo)$ captures $\gp$ over the class of ordered structures.
-%\end{theorem}
+\begin{theorem}
+$\eqso(\integ,\fo)$ captures $\gp$ over the class of ordered structures.
+\end{theorem}
 
 
 \begin{theorem}

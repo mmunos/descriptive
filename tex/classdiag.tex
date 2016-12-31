@@ -1,8 +1,8 @@
 \begin{center}
-	\begin{tikzpicture}[scale=1.0]
+	\begin{tikzpicture}[scale=1.0] 
 	
 	[scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
-	\node (nminp) at 	(4,4) {MinP};
+	\node[draw, circle] (nminp) at 	(4,4) {MinP};
 	\node (nmaxp) at 	(4,3) {MaxP};
 	\node (nfpnp) at 	(6,3) {$\fp^{\np}$};
 	\node (ntotpnp) at 	(8,3) {$\totp^{\np}$};
@@ -13,6 +13,7 @@
 	\node (ntotp) at 	(4,1) {$\totp$};
 	\node (nshp) at 	(6,1) {$\shp$};
 	\node (nspanp) at 	(8,1) {$\spanp$};
+	%\node (nnotspanp) at 	(9.2,1.8) {$\notspanp$};
 	
 	\foreach \from/\to in {	
 		nminp/nfpnp,
@@ -27,6 +28,9 @@
 		ntotp/nshp,
 		nshp/nspanp,
 		nfp/nfpnp,
+	%	nshp/nnotspanp,
+	%	nnotspanp/ntotpnp,
+	%	nminp/nnotspanp,
 		nspanp/ntotpnp} {
 		\draw [->] (\from) to (\to);
 	}
@@ -37,7 +41,7 @@
 		nfpnp/ntotp,
 		ntotp/nfpnp,
 		nshp/ntotp,
-		nspanp/nshp,
+		nmaxp/nshp,
 		nshpnp/ntotpnp} {
 		\draw [dashed] [bend left] [red] [->] (\from) to (\to);	
 	}
