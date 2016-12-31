@@ -4,7 +4,7 @@ Inspired by the connection between $\shp$ and $\sfo$, a hierarchy of subclases o
 by restricting the alternation of quantifiers in Boolean formulas.
 Specifically, the \emph{$\sfo$-hierarchy} consists of the 
 the classes $\E{i}$ and $\U{i}$ for every $i \geq 0$, where $\E{i}$ (resp., $\U{i}$) is defined as $\sfo$ but restricting the formulas used to be in $\loge{i}$ (resp., $\logu{i}$).
-By definition ,we have that $\U{0} = \E{0}$. Moreover, it is shown in~\cite{SalujaST95} that:
+By definition, we have that $\U{0} = \E{0}$. Moreover, it is shown in~\cite{SalujaST95} that:
 \[
 \E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \sfo 
 \]
@@ -12,13 +12,13 @@ In light of the framework introduced in this paper, natural extensions of these 
 $\eqso(\loge{i})$ and $\eqso(\logu{i})$ for every $i \geq 0$, which form the \emph{$\eqso(\fo)$-hierarchy}.
 Clearly, we have that $\E{i} \subseteq \QE{i}$ and $\U{i} \subseteq \QU{i}$. Indeed, each formula $\varphi(\bar{X}, \bar{x})$ in $\E{i}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\QE{i}$, and likewise for $\U{i}$ and $\QU{i}$.
 But what is the exact relationship between these two hierarchies?
-To answer this question, we start by introducing two normal forms for $\eqso(\LL)$ that helps us to characterize the expressive power of this quantitative logic.
+To answer this question, we first introduce two normal forms for $\eqso(\LL)$ that helps us to characterize the expressive power of this quantitative logic.
 A formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-prenex normal form ($\LL$-PNF)} 
 if $\alpha$ is of the form
 $\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{X}, \bar{x})$,
 where $\bar{X}$ and $\bar{x}$ are sequences of zero or more second-order and first-order variables, respectively, and $\varphi(\bar{X}, \bar{x})$ is a formula in $\LL$. Notice that 
 a formula $\varphi(\bar{X}, \bar{x})$ in $\sh{\LL}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\LL$-PNF. 
-Moreover, a formula $\alpha$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $c + \Sigma_{i=1}^n \alpha_i$, where $c$ is a non-negative constant and each $\alpha_i$ is in 
+Moreover, a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $c + \Sigma_{i=1}^n \alpha_i$, where $c$ is a non-negative constant and each $\alpha_i$ is in 
 $\LL$-PNF.
 \begin{theorem}\label{theo-pnf-snf}
 Every formula in $\eqso(\LL)$ can be rewritten in $\LL$-SNF.
@@ -63,15 +63,14 @@ On the other hand, if $\logu{1} \subseteq \LL$ and $\LL$ is closed under conjunc
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \end{figure*}
 
-As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL = \Pi_1$, $\LL = \Sigma_2$ and $\LL = \Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, which is summarized in Figure \ref{fig-sfo-eqso}.
+As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL$ equal to  $\Pi_1$, $\Sigma_2$ or $\Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy.
 \begin{proposition}\label{prop-rest}
 The following properties hold:
 \begin{itemize}
-\item $\QE{0} \not\subseteq \E{0}$
 \item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$
 \item $\QE{1} \subsetneq \QU{1}$
 \end{itemize}
 \end{proposition}
-
+The results of this section are summarized in Figure \ref{fig-sfo-eqso}.
 
  

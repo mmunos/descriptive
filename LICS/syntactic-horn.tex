@@ -7,35 +7,6 @@
 \newcommand{\pNC}{\textit{NC}}
 \newcommand{\pD}{\textit{D}}
 
-
-The previous result shows that the classes $\QE{i}$ and $\QU{i}$ are more robust than the classes $\E{i}$ and $\U{i}$: they are closed under binary and sum quantifiers but the other not necessarily. 
-
-Now, we study the complexity classes describe by this hierarchies. As the following result shows, $\eqso(\loge{0})$ defines only tractable counting functions and $\eqso(\loge{1})$ intractable counting functions but with an tractable decision problems. 
-\begin{proposition} \label{prop:qe0-fp-qe1-totp-fptras}
-All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS.
-\end{proposition}
-Therefore, in terms of counting complexity, the $\eqso$-hierarchy behaves exactly the same as the $\#\fo$-hierarchy.
-
-The next step is to study the closure properties of $\eqso$-hierarchy. 
-An advantage of the $\eqso$-hierarchy is that, by its language syntax, all the classes are closed under addition and first and second order sum.
-So, the first question is whether the multiplicative operators in $\qso$ can be defined in $\eqso(\LL)$. As the following result shows, if $\LL$ is closed under conjunction, then the binary product can be defined in  $\eqso(\LL)$.
-\begin{theorem}\label{theo:binary-prod}
-	If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$.
-\end{theorem}
-The next question is whether the hierarchy is closed under subtraction. Formally, for any pair of functions $f,g$, we define $f - g$ as the function such that $(f - g)(\A) = f(\A)-g(\A)$ whenever $f(\A)>g(\A)$ and $0$ otherwise.
-As the next result shows, all classes in the $\eqso$-hierarchy is not closed under subtraction unless ${\sc P} = {\sc NP}$
-\begin{theorem} \label{sub-pnp}
-If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0$, then {\sc P} = {\sc NP}.
-\end{theorem}
-\cristian{Martin, el resultado que tienes en el apendice se generaliza trivialmente para todas las clases ya que todas contienen la clase $\eqso(\loge{0})$.}
-
-By the previous result, we know that functions in the $\eqso$ hierarchy are unlikely to be closed under subtraction. Then, a natural restriction to this question is to ask whether these classes are closed under subtraction by one, namely, if $\CC$ is a class of functions and $f \in \CC$, is $f-1 \in \CC$ where $1$ is the constant function that outputs $1$ for every structure. 
-We do not know $\E{1}$ is closed under subtraction by one. However, if we extend $\logex{1}$ with $\fo$ predicates we can show that this new fragment is closed under subtraction by one.
-\begin{theorem} \label{sigmafo-minusone}
-	$\eqso(\logex{1})$ is closed under substraction by one.
-\end{theorem}
-
-
 A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order variable and $\x$ is a tuple of first-order variables, and a negative literal is a formula of the form $\exists \v \, \neg X(\u,\v)$, where $\u$ and $\v$ are tuples of first-order variables. Given a relational signature $\R$, a clause over $\R$ is a formula of the form:
 $$
 \forall \x \, (\varphi_1 \vee \cdots \vee \varphi_n),
