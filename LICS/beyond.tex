@@ -65,80 +65,99 @@ As for the case of $\qso$, the logic $\tqso(\LL)$ is obtained by restricting $\v
 
 \subsection{Recursive Logics}
 
-We define an operator which extends least fixed point logic \cite{I86,vardi1982complexity} to allow counting. Recall that the least fixed point operator is defined by a formula $\psi(x_1,\ldots,x_k,R)$ that is positive on $R$, where $R$  is a predicate of arity $k$. For a structure $\A$ with domain $A$, the operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ is defined as $T_{\varphi}(X) = \{(a_1,\ldots,a_k)\mid (\A,X)\models \psi(a_1,\ldots,a_k,R) \}$, for each $X\subseteq A^k$. Let $T_0 = \emptyset$ and $T_{i+1} = T_{\varphi}(T_i)$ for each $i \in \nat$. Note that there exists $n\in \nat$ such that $T_{n+1} = T_n$ because $R$ is positive in $\psi(x_1,\ldots,x_k,R)$. Then the evaluation of $[\lfpop\psi(x_1,\ldots,x_k,R)]$ is defined by the fixed point $T_n$, that is, for every $(a_1,\ldots,a_k)\in A^k$, it holds that $\A\models[\lfpop\psi(x_1,\ldots,x_k,R)](a_1,\ldots,a_k)$ if and only if $(a_1,\ldots,a_k) \in T_n$.
+We define an operator which extends least fixed point logic \cite{I86,vardi1982complexity} to allow counting. 
+Fix a relational signature $\R$. Then the set of $\rqfo$ formulas over $\R$ is defined by the following grammar:
+\begin{multline*}
+	\alpha := \varphi \, \mid \, s \, \mid \, (\alpha \add \alpha) \, \mid\, (\alpha \mult \alpha) \, \mid \, 
+	\sa{x} \alpha \, \mid\\ 
+	\pa{x} \alpha \, \mid\,
+	\clfp{\psi(x_1,\ldots,x_k,R)}{\beta(y_1, \ldots, y_\ell, R, \pi)},
+\end{multline*}
+where $R$ is second-order variable of arity $k$, $\psi(x_1, \ldots, x_k, R)$ is an $\fo$-formula over $(\R \cup \{R\})$ that is positive on $R$ and $\beta(y_1, \ldots, y_\ell, R, \pi)$ is a $\qfo$-formula over $\R$ including a fresh symbol $\pi$ that represents a function of arity $\ell$, that is, every atomic formula in $\beta(y_1, \ldots, y_\ell, R, \pi)$ is either an $\fo$-formula over $\R$, a constant $s \in \N$ or a term of the form $\pi(u_1, \ldots, u_\ell)$ with $u_1, \ldots, u_\ell$ non-necessarily distinct first-order variables. 
+The free variables of the formula $\clfp{\psi(x_1,\ldots,x_k,R)}{\beta(y_1, \ldots, y_\ell, R, \pi)}$
+are $y_1, \ldots, y_\ell$, in particular it does not have any second-order free variable.
 
-We extend $\qfo$ with the operator $[\alfp\psi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](z_1,\ldots,z_{\ell})$, where $\psi(y_1,\ldots,y_k,R)$ 
-%It is defined by a 
-is an FO-formula 
-%$\varphi$ 
-and $\alpha$  is a $\qso$-formula 
-%in $\qfo$ without the $\Pi$ operator, which 
-that mentions a placeholder $\pi$ for a function of arity $\ell$.
-%with domain $\fv^{\ell}$. 
-To define the semantics of such operator 
-%$[\alfp\psi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](x_1,\ldots,x_{\ell})$ 
-we need to introduce some terminology. Given a $\qso$-formula $\beta$ with $\ell$ first-order free variables and no second-order free variable, $\alpha|_{\pi\to\beta}$ is a $\qso$-formula obtained from $\alpha$ by replacing every occurrence $\pi(u_1, \ldots, u_\ell)$ of the placeholder by $\beta(u_1, \ldots, u_\ell)$.
-%For each $\qfo$ formulas $\alpha, \beta, \gamma$, where $\beta$ and $\gamma$ have $\ell$ and $m$ first-order free variables respectively, $u_1,\ldots,u_{\ell} \in \fv$, and $v_1,\ldots,v_m \in \{u_1,\ldots,u_{\ell}\}$, we define $\alpha\mid_{\beta(u_1,\ldots,u_{\ell})\to\gamma(v_1,\ldots,v_{m})}$ as $\alpha$ where every instance of the subformula $\beta(u_1,\ldots,u_{\ell})$ is replaced by $\gamma(v_1,\ldots,v_{m})$. 
-Moreover, for every natural number $i \geq 1$, define a formula $\varphi_i(x)$ such that $\varphi_i(a)$ holds in a structure $\A$ if and only if $a$ is the $i$-th element in the linear order  $<^{\A}$.
-%$a\in A$, suppose that $a$ is the $p$-th element in the order $<^{\A}$. Then if $a$ is the first element, we define $\varphi_a(x) = \forall y(x < y \vee x = y)$, and if it is not we define:
-Thus, we have that $\varphi_1(x) = \forall y(x < y \vee x = y)$ and for every $p > 1$:
+We need to introduce some terminology to define the semantics of the formula $\clfp{\psi(x_1,\ldots,x_k,R)}{\beta(y_1, \ldots, y_\ell, R, \pi)}$
+Given a $\qfo$-formula $\gamma$ with $\ell$ first-order free variables and no second-order free variable, define $\beta[\gamma/\pi]$ to be the $\qfo$-formula obtained from $\beta$ by replacing every occurrence of a term $\pi(u_1, \ldots, u_\ell)$ by $\gamma(u_1, \ldots, u_\ell)$.
+Let $\A$ be an $\R$-structure with domain $A$. Then for every $a \in A$, let $\varphi_a(x)$ be an $\fo$-formula such that $\A \models \varphi_a(b)$ if and only if $b = a$. Formally, assuming that $a$ is the $p$-th element of $A$ according to the linear order $<^\A$, we have that:
+%then $\varphi_a(x) = \forall y(x < y \vee x = y)$
+%for every natural number $i \geq 1$, let $\varphi_i(x)$ be an $\fo$-formula such that $\varphi_i(a)$ holds in an $\R$-structure $\A$ if and only if $a$ is the $i$-th element in the linear order  $<^{\A}$,
+%that is, $\varphi_1(x) = \forall y(x < y \vee x = y)$ and for every $p > 1$:
 \begin{multline*}
-\varphi_p(x) = \exists x_1 \cdots \exists x_{p-1}[\bigwedge_{1\leq i,j < p}x_i\neq x_j \wedge\,\\ \bigwedge_{i = 1}^{p-1} x_i < x  \wedge \forall y(y < x \to \bigvee_{i = 1}^{p-1} y = x_i)].
+\varphi_a(x) \ = \ \exists x_1 \cdots \exists x_{p-1}\bigg[\bigwedge_{i =1}^{p-2}x_i < x_{i+1} \wedge\,\\  
+x_{p-1} < x  \wedge \forall y(y < x \to \bigvee_{i = 1}^{p-1} y = x_i)\bigg].
 \end{multline*}
-We are now ready to define the semantics of $[\alfp\psi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](z_1,\ldots,z_{\ell})$. 
-Assume that $\A$ is an $\R$-structure with domain $A$, and let $\{T_i\}_{i\in\nat}$ be as in the definition of $[\lfpop\psi(x_1,\ldots,x_k,R)]$.
-Moreover, suppose that $n\in\nat$ is the smallest value such that $T_{n+1} = T_n$. 
-%To formally characterize 
-%We name $\T = \{T_0,\ldots,T_n\}$ and 
-Then we define a sequence of functions $\zeta_0,\ldots,\zeta_n:A^{\ell}\to\nat$ as follows. 
-We first have that $\zeta_0(a_1, \ldots, a_\ell) = 0$ for every $(a_1, \ldots, a_\ell) \in A^\ell$. Now assume that function $\zeta_i$ has already been defined, where $0 \leq i < n$. By using this function define a formula $\beta_{i}(u_1, \ldots, u_\ell)$ as follows:
-%For each $T_i \in \T$, we define a $\qfo$ formula $\beta_i$ as follows. If $i = 0$, then $\beta_i(u_1,\ldots,u_{\ell}) = 0$. If $i \geq 1$, then
+Finally, given a function $f : A^\ell \to \N$, define $\qfo$-formula $\delta_{f,\A}(z_1, \ldots, z_\ell)$ as follows:
 \begin{multline*}
-%\beta_{i+1}(u_1,\ldots,u_{\ell}) = 
- \mathop{+}_{(a_1,\ldots,a_{\ell})\in A^{\ell}} \varphi_{\sigma(a_1)}(u_1) \cdot \ldots \cdot \varphi_{\sigma(a_{\ell})}(u_{\ell})\cdot \zeta_{i}(a_1,\ldots,a_{\ell}), 
+ \mathop{+}_{(a_1,\ldots,a_{\ell})\in A^{\ell}} \ \varphi_{a_1}(z_1) \cdot \ldots \cdot \varphi_{a_{\ell}}(z_{\ell})\cdot f(a_1,\ldots,a_{\ell}), 
 \end{multline*}
-where $(u_1, \ldots, u_\ell)$ is a tuple of pairwise distinct first-order variables and $\sigma(\cdot)$ is a function that assigns to every $a \in A$ its position in the lineal order $<^\A$. 
-Then function $\zeta_{i+1}$ is defined as follows. Assuming that $(a_1, \ldots, a_\ell) \in A^\ell$, $v$ is a first-order assignment for $\A$ such that $v(z_i) = a_i$ for every $i \in \{1, \ldots, \ell\}$, and that $V$ is a second-order assignment for $\A$ such that $V(R) = T_{i+1}$, we have that:
+where $z_1, \ldots, z_\ell$ is a sequence of pairwise distinct first-order variables.
+We have that $\delta_{f,\A}(z_1, \ldots, z_\ell)$ encodes $f$ in the structure $\A$ since:
 \begin{eqnarray*}
-\zeta_{i+1}(a_1, \ldots, a_\ell) & = & \sem{\alpha\mid_{\pi \to \beta}}(\A,v,V).
+\sem{\delta_{f,\A}(z_1, \ldots, z_\ell)}(\A,v)  & = & f(v(z_1), \ldots, v(z_\ell)).
+\end{eqnarray*}
+%Recall that the least fixed point operator is defined by a formula $\psi(x_1,\ldots,x_k,R)$ that is positive on $R$, where $R$  is a predicate of arity $k$. For a structure $\A$ with domain $A$, the operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ is defined as $T_{\varphi}(X) = \{(a_1,\ldots,a_k)\mid (\A,X)\models \psi(a_1,\ldots,a_k,R) \}$, for each $X\subseteq A^k$. Let $T_0 = \emptyset$ and $T_{i+1} = T_{\varphi}(T_i)$ for each $i \in \nat$. Note that there exists $n\in \nat$ such that $T_{n+1} = T_n$ because $R$ is positive in $\psi(x_1,\ldots,x_k,R)$. Then the evaluation of $[\lfpop\psi(x_1,\ldots,x_k,R)]$ is defined by the fixed point $T_n$, that is, for every $(a_1,\ldots,a_k)\in A^k$, it holds that $\A\models[\lfpop\psi(x_1,\ldots,x_k,R)](a_1,\ldots,a_k)$ if and only if $(a_1,\ldots,a_k) \in T_n$.
+We are now ready to define the semantics of the formula $\clfp{\psi(x_1,\ldots,x_k,R)}{\beta(y_1,\ldots,y_{\ell},R,\pi)}$,  whose free variables are $y_1$, $\ldots$, $y_\ell$. Assume that $\A$ is an $\R$-structure with domain $A$. Following the definition of the semantics of least fixed point logic \cite{I86,vardi1982complexity}, define an operator $T_{\varphi}:2^{A^k} \to 2^{A^k}$ such that:
+$$
+T_{\varphi}(X)  =  \{(a_1,\ldots,a_k) \in A^k \mid \A \models \psi(a_1,\ldots,a_k,X) \},
+$$
+for every $X \subseteq A^k$. This operator is used to defined 
+a sequence $T_0 \subsetneq T_1 \subsetneq \cdots \subsetneq T_n \subseteq A^k$  such that $n \geq 0$, $T_0 = \emptyset$, $T_{i+1} = T_{\varphi}(T_i)$ for every $i \in \{0, \ldots, n-1\}$, and $T_n = T_\varphi(T_n)$. We know that such a sequence exists as formula $\psi(x_1,\ldots,x_k,R)$ is positive on $R$. Now, the sequence $T_0 \subsetneq T_1 \subsetneq \cdots \subsetneq T_n$ is used to defined  a sequence of functions $f_0,f_1,\ldots,f_n:A^{\ell}\to\nat$. Formally, we have that $f_0(a_1, \ldots, a_\ell) = 0$ for every $(a_1, \ldots, a_\ell) \in A^\ell$. Moreover, assuming that $(a_1, \ldots, a_\ell) \in A^\ell$, $v$ is a first-order assignment for $\A$ such that $v(y_i) = a_i$ for every $i \in \{1, \ldots, \ell\}$, and that $V$ is a second-order assignment for $\A$ such that $V(R) = T_{i+1}$, we have that:
+\begin{eqnarray*}
+f_{i+1}(a_1, \ldots, a_\ell) & = & \sem{\beta[\delta_{f_i,\A}/\pi]}(\A,v,V).
 \end{eqnarray*}
 %, for each $T_i \in \T$, let $V$ be a second-order assignment for $\A$ that assigns $T_i$ to $R$, let $\zeta_i: A^{\ell}\to\nat$ be such that for each $(a_1,\ldots,a_{\ell})\in A^{\ell}$ it holds $\zeta_i(a_1,\ldots,a_{\ell}) = \sem{\alpha\mid_{\pi(u_1,\ldots,u_{\ell})\to \beta_i(u_1,\ldots,u_{\ell})}}(\A,v,V)$, where $v$ is a first-order assignment for $\A$ that satisfies $a_i = v(x_i)$ for each free $x_i$ in $\alpha$.
-Finally, the semantics of $[\alfp\psi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)](z_1,\ldots,z_{\ell})$ is defined by means of function $\zeta_n$:
+Finally, the semantics of the formula $\clfp{\psi(x_1,\ldots,x_k,R)}{\beta(y_1,\ldots,y_{\ell},R,\pi)}$ is defined by means of function $f_n$:
 %For a given first order assignment $v$ and a second order assignment $V$, let $a_i = v(x_i)$, the operator is then evaluated as:
 \begin{align*}
-&\llbracket [\alfp\psi(y_1,\ldots,y_k,R)\mid\\
-&\hspace{5mm}\alpha(x_1,\ldots,x_{\ell},R,\pi)](z_1,\ldots,z_{\ell}) \rrbracket =
-%\sem{[\alfp\psi(y_1,\ldots,y_k,R)\mid\alpha(x_1,\ldots,x_{\ell},R,\pi)]}(\A,v,V) = \\ 
-\zeta_n(v(z_1),\ldots,v(z_{\ell})).
+&\llbracket [{\bf lfp} \, \psi(x_1,\ldots,x_k,R) \,|\\
+&\hspace{10mm}\beta(y_1,\ldots,y_{\ell},R,\pi)]\rrbracket(\A,v) \ = \
+f_n(v(y_1),\ldots,v(y_{\ell})).
 \end{align*}
 
 \begin{example}
 %As an example, 
-We would like to define a formula that, given a graph with $n$ nodes, counts the number of paths of length at most $n$ from a source node to a target node. To this end, assume that $\R = \{ E(\cdot,\cdot) \}$, and define $\psi(x,R)$ as follows:
+We would like to define a formula that, given a graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$.
+To this end, assume that $\R = \{ E(\cdot,\cdot) \}$, and define $\psi(x,R)$ as follows:
 \begin{eqnarray*}
 %\psi(x,R) = 
 \forall y(x < y \vee x = y) \vee \exists z(R(z) \wedge \varphi_{succ}(z,x)),
 \end{eqnarray*}
-where $\varphi_{succ}(x,y)$ is a formula that is satisfied by pairs $(x,y)$ that are consecutive in the order $<$. That is, $\varphi_{succ}(x,y) = x < y \wedge \forall z((x < z \wedge z < y) \to (x = z \vee z = y) )$. Moreover, define $\alpha(x,y,R,\pi)$ as:
+where $\varphi_{succ}(x,y)$ is a formula that is satisfied by pairs $(x,y)$ that are consecutive in the order $<$. That is, $\varphi_{succ}(x,y) = x < y \wedge \neg \exists z \, (x < z \wedge z < y)$. Moreover, define formula $\beta(x,y,R,\pi)$ as follows:
 $$
 %\alpha(x,y,R,\pi) = 
-(\neg \exists zR(z))\cdot(x = y) + \sa{z} [\pi(x,z)\cdot E(z,y)].
+%(\neg \exists zR(z))\cdot(x = y) 
+E(x,y) + \sa{z} [\pi(x,z)\cdot E(z,y)].
 $$
-Then we have that $[\alfp\psi(x,R)\mid \alpha(x,y,R,\pi)](u,v)$ is our desired formula. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain, and assume $a,b$ are elements of $\A$. We have that the evaluation of $[\alfp\psi(x,R)\mid \alpha(x,y,R,\pi)](u,v)$ over $\A$ with $u$ replaced by $a$ and $v$ replaced by $b$ returns the number of paths in $\A$ from $a$ to $b$ of length at most $n$.
-%when evaluated on $(\A,a,b)$ will count the number of paths of size $n$ from $a$ to $b$.
+Then we have that $\clfp{\psi(x,R)}{\beta(x,y,R,\pi)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain, $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\clfp{\psi(x,R)}{\beta(x,y,R,\pi)}}(\A,v)$ is equal to the  number of paths in $\A$ from $b$ to $c$ of length at most $n$.
 \end{example}
 
-Given a relation signature $\R$, the set of recursive $\qfo$ formulas ($\rqfo$-formulas) is defined by the following grammar:
-%This operator lets us define the set of recursive $\qfo$ formulas over $\R$ ($\rqfo$-formulas) using the following grammar:
-\begin{multline*}
-%	\label{eq-def-rqfo}
-	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid \\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ [\alfp \varphi \mid \alpha]
-\end{multline*}
-where $\varphi$ is an $\fo$-formula over $\R$, $s \in \bbN$ and $x \in \fv$.
+\marcelo{Deberiamos mostrar como el ejemplo anterior se generaliza para definir $[\pth \psi(\bar x, \bar y)]$ en terminos del operador ${\bf lfp}$.}
 
-\marcelo{Vamos a permitir anidacion del operador $\alfp$? Esta gramatica lo permite.}
+It is well known that least fixed point logic is contained in second-order logic \cite{L04}. In the following theorem we show that the same holds in our case.
+\begin{theorem} \label{so-rec}
+$\rqfo \subseteq \qso$
+%	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
+\end{theorem}
 
+Finally, the following is the main result of this section:
 \begin{theorem} \label{rqfo-fo-cap}
 	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
 \end{theorem}
 
+\marcelo{Notese que estoy permitiendo en la formula $\beta(y_1, \ldots, y_\ell,R,\pi)$ tener subformulas $\pa{x} \alpha$. Esta bien el resultado con esto? O tenemos que eliminar estas formulas?}
+
+%Given a relation signature $\R$, the set of recursive $\qfo$ formulas ($\rqfo$-formulas) is defined by the following grammar:
+%%This operator lets us define the set of recursive $\qfo$ formulas over $\R$ ($\rqfo$-formulas) using the following grammar:
+%\begin{multline*}
+%%	\label{eq-def-rqfo}
+%	\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid \\ (\alpha \mult \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ [\alfp \varphi \mid \alpha]
+%\end{multline*}
+%where $\varphi$ is an $\fo$-formula over $\R$, $s \in \bbN$ and $x \in \fv$.
+%
+%\marcelo{Vamos a permitir anidacion del operador $\alfp$? Esta gramatica lo permite.}
+%
+%\begin{theorem} \label{rqfo-fo-cap}
+%	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
+%\end{theorem}
+%
