@@ -1,4 +1,23 @@
-\subsection*{Proof of Proposition \ref{prop:eqso-hierarchy-proper}} %V.1
+\subsection*{Proof of Theorem \ref{theo-pnf-snf}}
+Recall that a formula in $\eqso(\LL)$ is on the following grammar:
+$$
+\alpha = \varphi \ \mid \ s \ \mid \ (\alpha + \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \sa{X} \alpha,
+$$
+where $\varphi$ is a formula in $\LL$ and $s\in\nat$. We will show a recursive function $\tau$ such that for every $\eqso(\LL)$ formula $\alpha$, $\tau(\alpha)$ is a formula in $\LL$-SNF that describes the same function as $\alpha$. If $\alpha = \varphi$ or $\alpha = s$, then we define $\tau(\alpha) = \alpha$ which clearly describes the same function, and is already in $\LL$-SNF. If $\alpha = (\alpha_1 + \alpha_2)$, then $\tau(\alpha) = (\tau(\alpha_1) + \tau(\alpha_2))$ which satisfies the condition. If $\alpha = \sa{x}\beta$, then let $\tau(\beta) = c + \sum_{i = 1}^{n}\beta_i$ where each $\beta_i$ is in $\LL$-PNF. First we replace $c$ with the formula $(\top \add \cdots \add \top)$ (c times) and we obtain a formula $\sum_{i = 1}^{m}\beta_i$ where each $\beta_i$ is in $\LL$-PNF. Since $\beta_i$ is in $\LL$-PNF, then $\sa{x}\beta_i$ also is, and then we define $\tau(\alpha) = \sum_{i = 1}^{m}\sa{x}\beta_i$ which satisfies the condition. If $\alpha = \sa{X}\beta$, then we proceed analogously as in the previous case. This covers all possible cases for $\alpha$ and we conclude the proof by taking $\tau(\alpha)$ as the desired rewrite of $\alpha$.
+
+\subsection*{Proof of theorem \ref{theo-pi1-pnf}}
+We divide the proof in three parts.
+
+\vspace{1em}
+First, we prove that the formula $\alpha_{0} = \sa{X(\cdot)}1 + 1$ is not equivalent to any formula in $\loge{0}$-PNF. Suppose that there exists some formula $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ in $\loge{0}$-PNF that is equivalent to the $\eqso(\loge{0})$ formula $\sa{X(\cdot)}1 + 1$. Note that this defines the function $2^{n}+1$, where $n$ is the size of the input structure. Then, note that if $\varphi(\bar{X},\bar{x})$ is not satisfiable, then the function is null. Note also that if $\length(\bar{X}) = \length(\bar{x}) = 0$, then the function defined by $\alpha$ is never greater than 1. Now note that $\sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ is equivalent to a function in $\E{0}$. The authors in \cite{SalujaST95} proved that if $\length(\bar{X}) > 0$, then the function defined by the formula, for big enough structures, is always even. And since $\sa{\bar{x}}\varphi(\bar{x})$ defines a polynomially bounded function, we follow to a contradiction.
+
+\vspace{1em}
+Second, we prove that the formula $\alpha_{1} = 2$ is not equivalent to any formula in $\loge{1}$-PNF. Suppose that there exists some formula $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\, \varphi(\bar{X},\bar{x},\bar{y})$ in $\loge{1}$-PNF that is equivalent to the $\eqso(\loge{1})$ formula $2$. Suppose that $\varphi$ is quantifier-free. Note first that if $\length(\bar{X}) = \length(\bar{x}) = 0$, then the function defined by $\alpha$ is never greater than 1. Consider an ordered structure $\A$. Since $\sem{\alpha}(\A) = 2$, there exist at least two assignations $(\bar{B}_1,\bar{b}_1,\bar{a}_1)$, $(\bar{B}_2,\bar{b}_2,\bar{a}_2)$ to $(\bar{X},\bar{x},\bar{y})$ such that for both, $\A\models\varphi(\bar{B}_i,\bar{b}_i,\bar{a}_i)$. Now consider the ordered structure $\A'$ that is obtained by duplicating $\A$. This is, each half of $\A'$ is isomorphic to $\A$. Note that $\A'\models\varphi(\bar{B}_i,\bar{b}_i,\bar{a}_i)$ for $i = 1,2$ and there exists a third assignation $(\bar{B}_1',\bar{b}_1',\bar{a}_1')$ that is identical to $(\bar{B}_1,\bar{b}_1,\bar{a}_1)$ but in the other half to the structure such that $\A'\models\varphi(\bar{B}_1',\bar{b}_1',\bar{a}_1')$. We have that $\sem{\alpha}(\A) \geq 3$, and we follow to a contradiction.
+
+
+\vspace{3em}
+
+
 Classes QE0, QE1, QU1, QE2, QU2 = QFO form a properly contained hierarchy:\vspace{1em}
 
 We give this proof in various parts.
