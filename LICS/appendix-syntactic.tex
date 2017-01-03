@@ -85,6 +85,13 @@ Suppose that there exists an equivalent formula $\alpha$ in $\eqso(\loge{1})$. A
 
 \subsection*{Proof of Proposition \ref{prop-e1-nc}}
 
+Towards a contradiction, assume that the statement is false. This is, that $\E{1}$ is closed under binary sum. Consider the formula $\sa{x}(x = x)$ which is in $\E{1}$ over some signature $\R$. For every finite $\R$-structure $\A$ with $n$ elements, and where every predicate in $\R$ is empty, $\alpha(\enc(\A)) = n$. From our assumption, there exists some formula in $\E{1}$ equivalent to the formula $\alpha \add \alpha$, which describes the function $2n$. Let $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ be this formula, where $\varphi$ is quantifier-free. Note that the function defined by this formula is equal or greater than the one defined by $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ divided by a polynomial factor. More specifically, for each ordered structure $\A$ with domain $A$, we have the following inequality:
+$$
+\sem{\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A) \cdot \vert A \vert^{\length(\bar{y})} \geq \sem{\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A)
+$$
+Note that the formula $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ defines a function in $\E{0}$. It was shown by the authors in \cite{SalujaST95} that every function in $\E{0}$ grows exponentially over the size of the structure for large enough structures, when $\length(\bar{X}) > 0$. This function divided by a polynomial factor still grows exponentially. Therefore, for $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ we have that $\length(\bar{X}) = 0$.
+
+Now, for the formula $\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})$ note that if $\length(\bar{x}) = 0$, then the formula takes value at most 1, and if $\length(\bar{x}) = 1$, then the formula takes value at most $n$. Then we have that $\length(bar{x}) \geq 2$. Let $\psi = \bigvee_{i = 1}^{m}$ be an equivalent formula to $\varphi$ that is in DNF
 
 
 \subsection*{Proof of Theorem \ref{theo:binary-prod}}
