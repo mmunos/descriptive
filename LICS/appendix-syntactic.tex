@@ -83,6 +83,10 @@ $$
 $$
 Suppose that there exists an equivalent formula $\alpha$ in $\eqso(\loge{1})$. Also, suppose that it is in $\L$-PNF, so $\alpha = c + \sum_{i = 1}^n\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\varphi_i(\bar{X},\bar{x},\bar{y})$. Since $\alpha$ takes the value 0 for some structures, $c$ must be 0. Consider a structure with one element $\mathfrak{1}$. We have that for some $i$, there exists an assignment $(\bar{B},\bar{b},\bar{a})$ for $(\bar{X},\bar{x},\bar{y})$ such that $\mathfrak{1}\models\varphi_i(\bar{B},\bar{b},\bar{a})$. Consider now the structure $\mathfrak{2}$ that is obtained by duplicating $\mathfrak{1}$, as we did for Theorem \ref{theo-pi1-pnf}. Note that $\mathfrak{2}\models\varphi_i(\bar{B},\bar{b},\bar{a})$, which implies that $\sem{\alpha}(\mathfrak{2}) \geq 1$, which leads to a contradiction.
 
+\subsection*{Proof of Proposition \ref{prop-e1-nc}}
+
+
+
 \subsection*{Proof of Theorem \ref{theo:binary-prod}}
 
 Let $\LL$ be a fragment of $\so$ that is closed under conjunction. We will define a recursive function $\tau$ that receives a formula $\alpha$ over the grammar of $\eqso(\LL)$ with multiplication, and outputs an equivalent formula $\tau(\alpha)$ over the unextended grammar of $\eqso(\LL)$. Furthermore, the formula $\tau(\alpha)$ is in $\LL$-SNF. First we replace each constant $s$ in $\alpha$ for $(\top \add \cdot \add \top)$ ($s$ times). If $\alpha = \varphi$, then we define $\tau(\alpha) = \alpha$. We assume that for every $\beta$ that has less algebraic operators than $\alpha$, $\tau(\beta)$ is in $\LL$-SNF. If $\alpha = (\alpha_1 + \alpha_2)$ then we define $\tau(\alpha) = \tau(\alpha_1) + \tau(\alpha_2)$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$, then we define $\tau(\alpha)$ as the formula in $\LL$-SNF that is equivalent to $\sa{x}\tau(\beta)$ and to $\tau(\alpha) = \sa{X}\tau(\beta)$, respectively. If $\alpha = (\alpha_1 \cdot \alpha_2)$, we assume that each $\alpha_i$ is in $\LL$-SNF. We identify three cases. (1) Some $\alpha_i$ is equal to $\sum_{j = 1}^n\beta_j$ for $n > 1$. Suppose wlog. that it is $\alpha_1$. We then define $\tau(\alpha) = \sum_{j = 1}^n\tau(\beta_j\cdot\alpha_2)$. In the following cases, $\alpha_1$ and $\alpha_2$ are in $\LL$-SNF. (2) If some $\alpha_i$ is equal to $\sa{X}\beta$ or $\sa{x}\beta$, we define $\tau(\alpha)$ as the $\LL$-SNF formula that is equivalent to $\sa{x}\tau(\beta\cdot\alpha_2)$ and $\sa{X}\tau(\beta\cdot\alpha_2)$, respectively. The remaining case is (3) $\alpha_1 = \varphi_1$ and $\alpha_2 = \varphi_2$ where each $\varphi$ is an $\LL$ formula. Then we define $\tau(\alpha) = \varphi_1 \wedge \varphi_2$. This covers all possible cases for $\alpha$. For every formula $\alpha$ in $\eqso(\LL)$ extended by multiplication, we take $\tau(\alpha)$ which is equivalent and in unextended $\eqso(\LL)$. This concludes the proof.
@@ -189,7 +193,8 @@ $$
 $$
 Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1} \subseteq \eqso(\loge{1}) \subseteq \eqso(\logex{1}) \subseteq \totp$, and at least one of the classes is closed under subtraction, the function $f_{\#3DNF} - f_{all}$ is in $\totp$. However, note that for each $\R$-structure $\A$ that represents a formula $\Phi$, $(f_{\#3DNF} - f_{all})(\A) = 0$ if an only if $\Phi$ is a tautology. The decision version of this function is the $\np$-complete problem $\textsc{Tautology}$. And since the function is in $\totp$, its decision version is also in $\ptime$. We conclude that $\np \subseteq \ptime$.
 
-\subsection*{Proof of Proposition \ref{prop:ehorn-pe}} %V.11
+\subsection*{Proof of Proposition \ref{prop:uhorn-pe}} %V.11
+This can be obtained directly by Proposition \ref{prop:ehorn-pe}, since $\eqso(\uhorn)\subseteq\eqso(\ehorn)\subseteq\totp$.
 
 \subsection*{Proof of Proposition \ref{prop:hsat-not-sigma2}} %V.12
 $\eqso(\uhorn) \subseteq \totp$:\vspace{1em}
