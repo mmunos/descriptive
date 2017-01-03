@@ -83,47 +83,18 @@ $$
 $$
 Suppose that there exists an equivalent formula $\alpha$ in $\eqso(\loge{1})$. Also, suppose that it is in $\L$-PNF, so $\alpha = c + \sum_{i = 1}^n\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\varphi_i(\bar{X},\bar{x},\bar{y})$. Since $\alpha$ takes the value 0 for some structures, $c$ must be 0. Consider a structure with one element $\mathfrak{1}$. We have that for some $i$, there exists an assignment $(\bar{B},\bar{b},\bar{a})$ for $(\bar{X},\bar{x},\bar{y})$ such that $\mathfrak{1}\models\varphi_i(\bar{B},\bar{b},\bar{a})$. Consider now the structure $\mathfrak{2}$ that is obtained by duplicating $\mathfrak{1}$, as we did for Theorem \ref{theo-pi1-pnf}. Note that $\mathfrak{2}\models\varphi_i(\bar{B},\bar{b},\bar{a})$, which implies that $\sem{\alpha}(\mathfrak{2}) \geq 1$, which leads to a contradiction.
 
-\subsection*{Proof of Theorem \ref{theo:eqso-sum-normal-form}} %V.2
-Every formula in $\eqso(\LL)$ can be rewritten in \emph{sum normal form}. Furthermore, there exists a formula $\alpha \in \QE{1}$ such that there does not exist a formula in $\Sigma$-prenex normal form in $\QE{1}$ equivalent to $\alpha$:\vspace{1em}
+\subsection*{Proof of Theorem \ref{theo:binary-prod}}
 
-\subsection*{Proof of Theorem \ref{theo:prenex}}%V.3
-If $\logu{1} \subseteq \LL$, then for every formula $\alpha \in \eqso(\LL)$ there exists a formula $\beta \in \eqso(\LL)$ equivalent to $\alpha$ in $\Sigma$-prenex normal form:\vspace{1em}
+Let $\LL$ be a fragment of $\so$ that is closed under conjunction. We will define a recursive function $\tau$ that receives a formula $\alpha$ over the grammar of $\eqso(\LL)$ with multiplication, and outputs an equivalent formula $\tau(\alpha)$ over the unextended grammar of $\eqso(\LL)$. Furthermore, the formula $\tau(\alpha)$ is in $\LL$-SNF. First we replace each constant $s$ in $\alpha$ for $(\top \add \cdot \add \top)$ ($s$ times). If $\alpha = \varphi$, then we define $\tau(\alpha) = \alpha$. We assume that for every $\beta$ that has less algebraic operators than $\alpha$, $\tau(\beta)$ is in $\LL$-SNF. If $\alpha = (\alpha_1 + \alpha_2)$ then we define $\tau(\alpha) = \tau(\alpha_1) + \tau(\alpha_2)$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$, then we define $\tau(\alpha)$ as the formula in $\LL$-SNF that is equivalent to $\sa{x}\tau(\beta)$ and to $\tau(\alpha) = \sa{X}\tau(\beta)$, respectively. If $\alpha = (\alpha_1 \cdot \alpha_2)$, we assume that each $\alpha_i$ is in $\LL$-SNF. We identify three cases. (1) Some $\alpha_i$ is equal to $\sum_{j = 1}^n\beta_j$ for $n > 1$. Suppose wlog. that it is $\alpha_1$. We then define $\tau(\alpha) = \sum_{j = 1}^n\tau(\beta_j\cdot\alpha_2)$. In the following cases, $\alpha_1$ and $\alpha_2$ are in $\LL$-SNF. (2) If some $\alpha_i$ is equal to $\sa{X}\beta$ or $\sa{x}\beta$, we define $\tau(\alpha)$ as the $\LL$-SNF formula that is equivalent to $\sa{x}\tau(\beta\cdot\alpha_2)$ and $\sa{X}\tau(\beta\cdot\alpha_2)$, respectively. The remaining case is (3) $\alpha_1 = \varphi_1$ and $\alpha_2 = \varphi_2$ where each $\varphi$ is an $\LL$ formula. Then we define $\tau(\alpha) = \varphi_1 \wedge \varphi_2$. This covers all possible cases for $\alpha$. For every formula $\alpha$ in $\eqso(\LL)$ extended by multiplication, we take $\tau(\alpha)$ which is equivalent and in unextended $\eqso(\LL)$. This concludes the proof.
 
-\subsection*{Proof of Proposition \ref{prop:sharp-Q-rel}}%V.4
-The classes $\E{0}$ and $\E{1}$ are strictly contained in $\QE{0}$ and $\QE{1}$, respectively. Moreover, the classes $\U{1}$, $\E{2}$, and $\U{2}$ are equivalent with $\QU{1}$, $\QE{2}$, and $\QU{2}$, respectively:\vspace{1em}
+\subsection*{Proof of Theorem \ref{sigmafo-minusone}}
 
-\subsection*{Proof of Proposition \ref{prop:qe0-fp-qe1-totp-fptras}} %V.5
-All functions defined in $\eqso(\loge{0})$ and $\eqso(\loge{1})$ can be computed in $\fp$ and $\totp$, respectively. Furthermore, every function defined in $\eqso(\loge{1})$ has a FPTRAS:\vspace{1em}
+We divide the proof in two parts.
 
-\subsection*{Proof of Theorem \ref{theo:binary-prod}}%V.6
-If $\LL$ is closed under conjunction, then binary product can be defined in $\eqso(\LL)$:\vspace{1em}
+\vspace{1em}
+First, note that for every fragment $\LL$ of $\so$ the class $\eqso(\LL)$ is closed under sum by definition, and if $\LL$ is closed under conjunction, like $\logex{1}$ is, $\eqso(\LL)$ is closed under product. We are only left to prove that $\eqso(\logex{1})$ is closed under subtraction by one.
 
-\subsection*{Proof of Theorem \ref{sub-pnp}}%V.7
-If $\eqso(\loge{i})$ or $\eqso(\logu{i})$ is closed under subtraction for $i > 0$, then {\sc P} = {\sc NP}:\vspace{1em}
-
-Suppose that $\E{1}$ is closed under substraction, that is, for each pair of functions $f,g\in \E{1}$, there exists $h\in\E{1}$ such that $(f\dotminus g)(\A) = h(\A)$ for each $\A\in\str$.
-
-Let $\A = \langle A, S_1^\A, S_2^\A, S_3^\A, S_4^\A, \leq^\A \rangle$ be an $\L-$structure that represents an instance of a 3DNF formula $\Phi$, where $A$ is the set of variables mentioned in $\Phi$, $S_i^\A$ is a ternary relation described as follows, for each $i\in\{1,2,3,4\}$:
-\begin{eqnarray*}
-	S_1^\A &=& \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_2^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_3^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_4^\A &=& \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
-\end{eqnarray*}
-Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
-\begin{multline*}
-\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
-\end{multline*}
-Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
-$$
-\varphi(x,X) = (T(x) \vee \neg T(x)).
-$$
-Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1}$, we have by our initial assumption that $f_{all}-f_{\#3DNF} \in \E{1}$. Let $h\in\E{1}$ be such that $h = f_{all}-f_{\#3DNF}$. For each structure $\A$ that represents a 3DNF formula $\psi$, it holds that $h(\A) = f_{all}(\A)-f_{\#3DNF}(\A) = 0$ if and only if $\psi$ is a tautology, so the decision version $L_h$ of $f_{all}-f_{\#3DNF}$ is $\conp$-complete. However, as we showed previously in Theorem \ref{decisionptime}, since $h\in\E{1}$, we have that $L_h \in \ptime$. Then, $\conp \subseteq \ptime$, from which we conclude that $\ptime = \np$.
-
-
-\subsection*{Proof of Theorem \ref{sigmafo-minusone}}%V.8
-
-Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. Let $\tau(\alpha) = \beta_1\add\cdots\add\beta_n$ be defined as in \ref{eqso-sigma-zero-in-fp}, that is, each $\beta_i$ is equal to $1$, $\varphi$, $\sa{\bar{x}}1$, $\sa{\bar{x}}\varphi$, $\sa{\bar{X}}1$, $\sa{\bar{X}}\varphi$, $\sa{\bar{X}}\sa{\bar{x}}1$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, where $\varphi$ is a formula in $\logex{1}$ and $\bar{x}$ ($\bar{X}$) is a tuple of first-order (second-order) variables. We further assume that each $\beta_i$ is either $\sa{\bar{x}}\varphi$ or $\sa{\bar{X}}\sa{\bar{x}}\varphi$, since each $1$, $\varphi$ and $\sa{\bar{X}}\varphi$ can be replaced by the formulas $\sa{x}\min(x)$, $\sa{x}(\varphi\wedge\min(x))$ and $\sa{x}\sa{\bar{X}}(\varphi\wedge\min(x))$ respectively, while maintaining the value of $\sem{\alpha}(\A)$. 
+Let $\alpha$ be a $\eqso(\logex{1})$ formula over a signature $\R$. We will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. We suppose that $\alpha$ is in $\logex{1}$-SNF and $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length(\bar{x}) > 0$ since we can replace each $\varphi_i$ for the equivalent formula $\sa{y}\varphi_i\wedge\min(y)$.
 
 The intuition behind our reasoning is separated in three points: (1) For each $\beta_i$ of the form $\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will count every tuple $\bar{x}$ that satisfies $\varphi$ except for the lexicographically smallest one. (2) For each $\beta_i$ of the form $\sa{\bar{X}}\sa{\bar{x}}\varphi$, the formula $\kappa(\beta_i)$ will isolate the smallest $\bar{X}$ that satisfies $\varphi$, and exclude the lexicographically smallest tuple $\bar{x}$ that satisfies $\varphi(\bar{X})$. And (3) if $\alpha = (\beta\add\sa{\bar{x}}\varphi)$ or $\alpha = (\beta\add\sa{\bar{X}}\sa{\bar{x}}\varphi)$, the formula $\kappa(\alpha)$ will exclude the lexicographically smallest tuple that satisfies $\varphi$ if and only if $\beta$ is equal to 0.
 
@@ -133,7 +104,7 @@ For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{x}}\exists\
 
 \vspace{1em}
 
-For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ as is. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{X},\bar{x},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ has the form:
+For each $\alpha$ in $\eqso(\logex{1})$ such that $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ for some quantifier-free formula $\varphi$, we define $\kappa(\alpha)$ procedurally as follows: Let $\bar{x} = (x_1,\ldots,x_{\length(\bar{x})})$ and $\bar{X} = (X_1,\ldots,X_{\length(\bar{X})})$. We suppose that $\varphi$ is in a DNF form that leaves formulas that do not mention $\bar{X}$ intact. If it is not, we convert $\varphi$ to this form with a standard transformation algorithm. Let $\varphi(\bar{X},\bar{x},\bar{y}) = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$ where each $\varphi_i$ has the form:
 $$
 \varphi_i(\bar{X},\bar{x},\bar{y}) = (\text{conjunction of $X_j$'s}) \wedge (\text{conjunction of $\neg X_j$'s})  \wedge (\text{an $\fo$ formula that does not mention any $X_j$}).
 $$
@@ -156,19 +127,20 @@ The following is a pivotal formula for this proof. Consider some ordered finite 
 $$
 \psi_i(\bar{X},\bar{x}) = \exists\bar{v}(\mu_i(\bar{v})\wedge(\neg\varphi^{+}_i(\bar{X},\bar{v})\vee\bigvee_{X \in \bar{X}} \exists\bar{z}(X(\bar{z}) \wedge \bigwedge\limits_{\substack{\text{instances of }X(\bar{w}) \\ \text{in }\varphi^{+}_i(\bar{X},\bar{v})}}\bar{w}\neq\bar{z}))) \vee \exists\bar{x}'(\exists\bar{y}'\varphi_i(\bar{X},\bar{x}',\bar{y}')\wedge \bar{x}'<\bar{x})\vee\neg\exists\bar{v}\mu_i(\bar{v}) .
 $$
-\begin{claim}
+\begin{lemma}
 	For a given ordered structure $\A$ such that $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$, there is an assignment $(\bar{B},\bar{b})$ to $(\bar{X},\bar{x})$ that satisfies the following conditions (1) $\A\models\exists\bar{y}\,\varphi_i(\bar{B},\bar{b},\bar{y})$, (2) $\A\not\models\psi_i(\bar{B},\bar{b})$ and (3) this is the only assignment to $(\bar{X},\bar{x})$ that satisfies (1) and (2).
-\end{claim}
+\end{lemma}
 \begin{proof}
-	proof here.
+	Excusing the nested proof, we have a claim that identifies a crucial condition that is verifiable with a $\fo$ formula. 
+	\begin{claim}
+		Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a $\logex{0}$ formula that satisfies all the mentioned assumptions. For a given ordered structure $\A$ it holds that $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$ iff $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$.
+	\end{claim}
+	\begin{proof}
+		Let $\A$ be an ordered structure with domain $A$ and let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})$. Define $\bar{B} = (B_1,\ldots,B_{\length(\bar{X})})$ as $B_j = \{\bar{c}\mid\bar{c}\text{ is a subtuple of $(\bar{b},\bar{a})$ and $X_j(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$}\}$. Towards a contradiction, suppose that $\A\not\models\varphi_i(\bar{B},\bar{b},\bar{a})$. By the choice of $\bar{a}$ and $\bar{b}$, and construction of $\bar{B}$ it is clear that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})\wedge\varphi^{+}_i(\bar{B},\bar{b},\bar{a})$, so we have that $\A\not\models\varphi^{-}_i(\bar{B},\bar{b},\bar{a})$. Let $B_t(\bar{c})$ be such that $X_t(\bar{c})$ is mentioned in $\varphi^{-}_i(\bar{X},\bar{b},\bar{a})$ and $\A\not\models\neg B_t(\bar{c})$. This is, $\bar{c}\in B_t$. By the construction of $\bar{B}$ we have that $X_t(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$. From our assumptions, we have that (1) every first-order variable is mentioned at most once in $\varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$, (2) $\varphi^{\fo}_i$ defines an ordered partition over $(\bar{x},\bar{y})$, and (3) there are no $X_j(\bar{w})$ in $\varphi^{+}_i$ and $X_j(\bar{z})$ in $\varphi^{-}_i$ such that the ordered partition defined by $\varphi^{\fo}_i$ satisfies $\bar{x} = \bar{z}$. Since $\bar{c}$ is a subtuple of $(\bar{b},\bar{a})$ that satisfies $\varphi^{\fo}_i$, and $X_t(\bar{w})$ mentioned in $\varphi^{+}_i$ and $X_t(\bar{z})$ mentioned in $\varphi^{-}_i$ were both assigned the value $\bar{c}$, then the ordered partition satisfies $\bar{w} = \bar{z}$, which follows to a contradiction.
+	\end{proof}
+	We give the proof for the base theorem. Let $\A$ be an ordered structure with domain $A$. We clearly have that $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$, so let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\mu_i(\bar{b},\bar{a})$. We use the same construction in the claim and we obtain the assignment $(\bar{B},\bar{b},\bar{a})$ which satisfies the three conditions.
 \end{proof}
-The following claim identifies a crucial condition that is verifiable with a $\fo$ formula. 
-\begin{claim}
-	Let $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ be a $\logex{0}$ formula that satisfies all the mentioned assumptions. For a given ordered structure $\A$ it holds that $\A\models\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$ iff $\A\models\exists\bar{X}\exists\bar{x}\exists\bar{y}\,\varphi_i(\bar{X},\bar{x},\bar{y})$.
-\end{claim}
-\begin{proof}
-	Let $\A$ be an ordered structure with domain $A$ and let $\bar{a}\in A^{\length(\bar{y})}$ and $\bar{b}\in A^{\length(\bar{x})}$ such that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})$. Define $\bar{B} = (B_1,\ldots,B_{\length(\bar{X})})$ as $B_j = \{\bar{c}\mid\bar{c}\text{ is a subtuple of $(\bar{b},\bar{a})$ and $X_j(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$}\}$. Towards a contradiction, suppose that $\A\not\models\varphi_i(\bar{B},\bar{b},\bar{a})$. By the choice of $\bar{a}$ and $\bar{b}$, and construction of $\bar{B}$ it is clear that $\A\models\varphi^{\fo}_i(\bar{b},\bar{a})\wedge\varphi^{+}_i(\bar{B},\bar{b},\bar{a})$, so we have that $\A\not\models\varphi^{-}_i(\bar{B},\bar{b},\bar{a})$. Let $B_t(\bar{c})$ be such that $X_t(\bar{c})$ is mentioned in $\varphi^{-}_i(\bar{X},\bar{b},\bar{a})$ and $\A\not\models\neg B_t(\bar{c})$. This is, $\bar{c}\in B_t$. By the construction of $\bar{B}$ we have that $X_t(\bar{c})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{b},\bar{a})$. From our assumptions, we have that (1) every first-order variable is mentioned at most once in $\varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$, (2) $\varphi^{\fo}_i$ defines an ordered partition over $(\bar{x},\bar{y})$, and (3) there are no $X_j(\bar{w})$ in $\varphi^{+}_i$ and $X_j(\bar{z})$ in $\varphi^{-}_i$ such that the ordered partition defined by $\varphi^{\fo}_i$ satisfies $\bar{x} = \bar{z}$. Since $\bar{c}$ is a subtuple of $(\bar{b},\bar{a})$ that satisfies $\varphi^{\fo}_i$, and $X_t(\bar{w})$ mentioned in $\varphi^{+}_i$ and $X_t(\bar{z})$ mentioned in $\varphi^{-}_i$ were both assigned the value $\bar{c}$, then the ordered partition satisfies $\bar{w} = \bar{z}$, which follows to a contradiction.
-\end{proof}
+
 We define $\chi_i = \exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$. Now recall that $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x},\bar{y})$, where each $\varphi_i$ satisfies all the previous assumptions. For each $\varphi_i$ we define:
 $$
 \varphi_i'(\bar{X},\bar{x},\bar{y}) = \varphi_i(\bar{X},\bar{x},\bar{y})\wedge\psi_1(\bar{X},\bar{x})\wedge(\chi_1\vee\psi_2(\bar{X},\bar{x}))\wedge(\chi_1\vee\chi_2\vee\psi_2(\bar{X},\bar{x}))\wedge\cdots\wedge(
@@ -189,7 +161,33 @@ $$
 $$
 And lastly $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigvee_{i = 1}^m\varphi_i'(\bar{X},\bar{x},\bar{y})$, which is in $\eqso(\logex{1})$ and satisfies the desired condition.
 
-\subsection*{Proof of Proposition \ref{prop:uhorn-pe}} %V.9
+\vspace{1em}
+For the second part, for each $\alpha$ in $\eqso(\logex{0})$ over a signature $\R$ we will define a formula $\lambda(\alpha)$ in $\eqso(\loge{0})$ over a signature $\R_{\alpha}$, and a function $g_{\alpha}$ that receives a finite $\R$-structure $\A$ and outputs a finite $\R_{\alpha}$-structure $g_{\alpha}(\A)$. Let $\alpha$ be in $\eqso(\logex{0})$. The signature $\R_{\alpha}$ is defined by adding the symbol $R_{\psi}$ for every $\fo$ formula $\psi(\bar{z})$. Each symbol $R_{\psi}$ represents a predicate with arity $\length(\bar{z})$. Then, $\lambda(\alpha)$ is defined by replacing every $\fo$ formula $\psi(\bar{z})$ for $R_{\psi}(\bar{z})$. We now define the function $g_{\alpha}$. Let $\A$ be a $\R$-structure with domain $A$. Let $\A'$ be a $\R_{\alpha}$-structure obtained by copying $\A$ and leaving each $R_{\psi}^{\A}$ empty. For each $\fo$-formula $\psi(\z)$ with $\length(\bar{z})$ open first-order variables, we iterate for every tuple $\bar{a} \in A^{\length(\bar{z})}$. If $\A\models\psi(\bar{a})$, then the tuple $\bar{a}$ is added to $R_{\psi}^{\A'}$. This concludes the construction of $\A'$. Note that the number of $\fo$ subformulas and each arity and tuple size is fixed to $\alpha$, so the entire procedure takes polynomial time over the size of the structure (and $g_{\alpha}(\A)$ has polynomial size over $\A$). We define $g_{\alpha}(\A) = \A'$ and we have that for each finite $\R$-structure $\A$: $\sem{\alpha}(\A) = \sem{\lambda(\alpha)}(g_{\alpha}(\A))$. Therefore, we have a parsimonious reduction from $\alpha$ to $\lambda(\alpha)$, which is in $\eqso(\loge{1})$.
+
+To show that $\alpha$ is in $\totp$, consider a procedure that takes an input $\A$, converts it to $g_{\alpha}(\A)$ and simulates the $\totp$ procedure for $\lambda(\alpha)$ on input $g_{\alpha}(\A)$. This procedure generates exactly $\sem{\alpha}(\A) = \sem{\lambda(\alpha)}(g_{\alpha}(\A))$ branches, and therefore $\alpha$ is in $\totp$.
+
+To show that $\alpha$ has an FPRAS, consider a procedure that takes an input $\A$, converts it to $g_{\alpha}(\A)$ and simulates the FPRAS for $\lambda(\alpha)$. This procedure also takes polynomial time and satisfies the condition.
+
+\subsection*{Proof of Theorem \ref{sub-pnp}}
+
+Towards a contradiction, suppose that any of the classes $\E{1}$, $\eqso(\loge{1})$, and $\eqso(\logex{1})$ is closed under subtraction.
+
+Let $\R$ include the symbols $S_1, S_2, S_3, S_4$, which describe the following properties. If a finite $\R$-structure $\A$ defines a 3DNF formula $\Phi$, then its domain is the set of variables mentioned in $\Phi$, and for each $i = 1,2,3,4$:
+\begin{align*}
+	S_1^\A &= \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_2^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_3^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+	S_4^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
+\end{align*}
+Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
+\begin{multline*}
+\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
+\end{multline*}
+Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+$$
+\varphi(x,X) = (T(x) \vee \neg T(x)).
+$$
+Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1} \subseteq \eqso(\loge{1}) \subseteq \eqso(\logex{1}) \subseteq \totp$, and at least one of the classes is closed under subtraction, the function $f_{\#3DNF} - f_{all}$ is in $\totp$. However, note that for each $\R$-structure $\A$ that represents a formula $\Phi$, $(f_{\#3DNF} - f_{all})(\A) = 0$ if an only if $\Phi$ is a tautology. The decision version of this function is the $\np$-complete problem $\textsc{Tautology}$. And since the function is in $\totp$, its decision version is also in $\ptime$. We conclude that $\np \subseteq \ptime$.
 
 \subsection*{Proof of Proposition \ref{prop:ehorn-pe}} %V.11
 
