@@ -5,6 +5,17 @@ $$
 $$
 where $\varphi$ is a formula in $\LL$ and $s\in\nat$. We will show a recursive function $\tau$ such that for every $\eqso(\LL)$ formula $\alpha$, $\tau(\alpha)$ is a formula in $\LL$-SNF that describes the same function as $\alpha$. If $\alpha = \varphi$ or $\alpha = s$, then we define $\tau(\alpha) = \alpha$ which clearly describes the same function, and is already in $\LL$-SNF. If $\alpha = (\alpha_1 + \alpha_2)$, then $\tau(\alpha) = (\tau(\alpha_1) + \tau(\alpha_2))$ which satisfies the condition. If $\alpha = \sa{x}\beta$, then let $\tau(\beta) = c + \sum_{i = 1}^{n}\beta_i$ where each $\beta_i$ is in $\LL$-PNF. First, if $c > 0$, we replace $c$ with the formula $(\top \add \cdots \add \top)$ (c times) and we obtain a formula $\sum_{i = 1}^{m}\beta_i$ where each $\beta_i$ is in $\LL$-PNF. If $c = 0$ the formula is already in that form. Since $\beta_i$ is in $\LL$-PNF, then $\sa{x}\beta_i$ also is, and then we define $\tau(\alpha) = \sum_{i = 1}^{m}\sa{x}\beta_i$ which satisfies the condition. If $\alpha = \sa{X}\beta$, then we proceed analogously as in the previous case. This covers all possible cases for $\alpha$ and we conclude the proof by taking $\tau(\alpha)$ as the desired rewrite of $\alpha$.
 
+
+
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of theorem \ref{theo-pi1-pnf}}
 We divide the proof in three parts.
 
@@ -54,6 +65,15 @@ This covers all possible cases for $\alpha$.
 
 Finally, consider a $\eqso(\LL)$ formula $\alpha$ in $\LL$-SNF. If $\alpha = \sum_{i = 1}^n\alpha_i$, then consider $\alpha = (\alpha_1 + (\sum_{i = 2}^n\alpha_i))$. Then we use $\tau(\alpha)$ as the rewrite of $\alpha$, which satisfies the condition in the hypothesis.
 
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Theorem \ref{prop-rest}}
 We give this proof in three parts.
 
@@ -83,6 +103,15 @@ $$
 $$
 Suppose that there exists an equivalent formula $\alpha$ in $\eqso(\loge{1})$. Also, suppose that it is in $\L$-PNF, so $\alpha = c + \sum_{i = 1}^n\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\varphi_i(\bar{X},\bar{x},\bar{y})$. Since $\alpha$ takes the value 0 for some structures, $c$ must be 0. Consider a structure with one element $\mathfrak{1}$. We have that for some $i$, there exists an assignment $(\bar{B},\bar{b},\bar{a})$ for $(\bar{X},\bar{x},\bar{y})$ such that $\mathfrak{1}\models\varphi_i(\bar{B},\bar{b},\bar{a})$. Consider now the structure $\mathfrak{2}$ that is obtained by duplicating $\mathfrak{1}$, as we did for Theorem \ref{theo-pi1-pnf}. Note that $\mathfrak{2}\models\varphi_i(\bar{B},\bar{b},\bar{a})$, which implies that $\sem{\alpha}(\mathfrak{2}) \geq 1$, which leads to a contradiction.
 
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Proposition \ref{prop-e1-nc}}
 
 Towards a contradiction, assume that the statement is false. This is, that $\E{1}$ is closed under binary sum. Consider the formula $\sa{x}(x = x)$ which is in $\E{1}$ over some signature $\R$. For every finite $\R$-structure $\A$ with $n$ elements, and where every predicate in $\R$ is empty, $\alpha(\enc(\A)) = n$. From our assumption, there exists some formula in $\E{1}$ equivalent to the formula $\alpha \add \alpha$, which describes the function $2n$. Let $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ be this formula, where $\varphi$ is quantifier-free. Note that the function defined by this formula is equal or greater than the one defined by $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ divided by a polynomial factor. More specifically, for each ordered structure $\A$ with domain $A$, we have the following inequality:
@@ -92,6 +121,15 @@ $$
 Note that the formula $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ defines a function in $\E{0}$. It was shown by the authors in \cite{SalujaST95} that every function in $\E{0}$ grows exponentially over the size of the structure for large enough structures, when $\length(\bar{X}) > 0$. This function divided by a polynomial factor still grows exponentially. Therefore, for $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ we have that $\length(\bar{X}) = 0$.
 
 Now, for the formula $\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})$ consider a structure $\mathfrak{1}$ with only one element $a$. We have that $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) = 2$, but the only possible assignment to $\bar{x}$ is the tuple $(a,\ldots,a)$ so $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) \leq 1$, which follows to a contradiction.
+
+
+
+
+
+
+
+
+
 
 \subsection*{Proof of Proposition \ref{prop:qe0-fp-qe1-totp-fptras}}
 
@@ -105,9 +143,40 @@ For the first part, let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that 
 \vspace{1em}
 For the second part, let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that it is in $\loge{1}$-SNF. This is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. Note that each $\alpha_i$ that is equal to some $\loge{1}$ formula $\varphi$ has an FPRAS given by the procedure that simply checks if $\A\models\varphi$ and returns 1 if it does and 0 otherwise. Also, each remaining $\alpha_i$ has an FPRAS since $\alpha_i\in \E{1}$ \cite{SalujaST95}. If two functions have an FPRAS, then their sum also has one given by the procedure that simulates them both and sums the results. We conclude that $\alpha$ has an FPRAS.
 
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Theorem \ref{theo:binary-prod}}
 
 Let $\LL$ be a fragment of $\so$ that is closed under conjunction. We will define a recursive function $\tau$ that receives a formula $\alpha$ over the grammar of $\eqso(\LL)$ with multiplication, and outputs an equivalent formula $\tau(\alpha)$ over the unextended grammar of $\eqso(\LL)$. Furthermore, the formula $\tau(\alpha)$ is in $\LL$-SNF. First we replace each constant $s$ in $\alpha$ for $(\top \add \cdot \add \top)$ ($s$ times). If $\alpha = \varphi$, then we define $\tau(\alpha) = \alpha$. We assume that for every $\beta$ that has less algebraic operators than $\alpha$, $\tau(\beta)$ is in $\LL$-SNF. If $\alpha = (\alpha_1 + \alpha_2)$ then we define $\tau(\alpha) = \tau(\alpha_1) + \tau(\alpha_2)$. If $\alpha = \sa{x}\beta$ or $\alpha = \sa{X}\beta$, then we define $\tau(\alpha)$ as the formula in $\LL$-SNF that is equivalent to $\sa{x}\tau(\beta)$ and to $\tau(\alpha) = \sa{X}\tau(\beta)$, respectively. If $\alpha = (\alpha_1 \cdot \alpha_2)$, we assume that each $\alpha_i$ is in $\LL$-SNF. We identify three cases. (1) Some $\alpha_i$ is equal to $\sum_{j = 1}^n\beta_j$ for $n > 1$. Suppose wlog. that it is $\alpha_1$. We then define $\tau(\alpha) = \sum_{j = 1}^n\tau(\beta_j\cdot\alpha_2)$. In the following cases, $\alpha_1$ and $\alpha_2$ are in $\LL$-SNF. (2) If some $\alpha_i$ is equal to $\sa{X}\beta$ or $\sa{x}\beta$, we define $\tau(\alpha)$ as the $\LL$-SNF formula that is equivalent to $\sa{x}\tau(\beta\cdot\alpha_2)$ and $\sa{X}\tau(\beta\cdot\alpha_2)$, respectively. The remaining case is (3) $\alpha_1 = \varphi_1$ and $\alpha_2 = \varphi_2$ where each $\varphi$ is an $\LL$ formula. Then we define $\tau(\alpha) = \varphi_1 \wedge \varphi_2$. This covers all possible cases for $\alpha$. For every formula $\alpha$ in $\eqso(\LL)$ extended by multiplication, we take $\tau(\alpha)$ which is equivalent and in unextended $\eqso(\LL)$. This concludes the proof.
+
+
+
+
+
+
+
+
+
+
+\subsection*{Proof of Proposition \ref{pi-minusone}}
+
+Let $\LL$ be a fragment of $\fo$ that contains $\logu{1}$. Then we have that every function in $\U{1}$ is expressible in $\eqso(\LL)$. In particular, $\ctcnf \in \eqso(\LL)$. Suppose that $\eqso(\LL)$ is closed under subtraction by one. Then, the function $\ctcnf-1$, which counts the number of satisfying assignments of a 3-CNF formula minus one, is also in $\eqso(\LL)$. Note that $\eqso(\LL) \subseteq \eqso(\fo) = \shp$. We have that $\ctcnf$ is $\shp$-complete under parsimonious reductions\footnote{It can be easily verified that the standard reduction from SAT to 3-CNF (or 3-SAT) preserves the number of satisfying assignments}. Now, let $f$ be a function in $\shp$, and consider the nondeterministic polynomial-time procedure that on input $\enc(\A)$ computes the corresponding reduction to $\ctcnf$, name it $g(\enc(\A))$, and simulates the $\shp$ procedure for $\ctcnf-1$ on input $g(\enc(\A))$. We have that this is a $\shp$ procedure that computes $f-1$, from which we conclude that $\shp$ is closed under subtraction by one.
+
+
+
+
+
+
+
+
+
 
 \subsection*{Proof of Theorem \ref{sigmafo-minusone}}
 
@@ -190,6 +259,15 @@ To show that $\alpha$ is in $\totp$, consider a procedure that takes an input $\
 
 To show that $\alpha$ has an FPRAS, consider a procedure that takes an input $\A$, converts it to $g_{\alpha}(\A)$ and simulates the FPRAS for $\lambda(\alpha)$. This procedure also takes polynomial time and satisfies the condition.
 
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Theorem \ref{sub-pnp}}
 
 Towards a contradiction, suppose that any of the classes $\E{1}$, $\eqso(\loge{1})$, and $\eqso(\logex{1})$ is closed under subtraction.
@@ -211,11 +289,58 @@ $$
 $$
 Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1} \subseteq \eqso(\loge{1}) \subseteq \eqso(\logex{1}) \subseteq \totp$, and at least one of the classes is closed under subtraction, the function $f_{\#3DNF} - f_{all}$ is in $\totp$. However, note that for each $\R$-structure $\A$ that represents a formula $\Phi$, $(f_{\#3DNF} - f_{all})(\A) = 0$ if an only if $\Phi$ is a tautology. The decision version of this function is the $\np$-complete problem $\textsc{Tautology}$. And since the function is in $\totp$, its decision version is also in $\ptime$. We conclude that $\np \subseteq \ptime$.
 
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Proposition \ref{prop:uhorn-pe}} %V.11
 This can be obtained directly by Proposition \ref{prop:ehorn-pe}, since $\eqso(\uhorn)\subseteq\eqso(\ehorn)\subseteq\totp$.
 
+
+
+
+
+
+
+
+
+
+\subsection*{Proof of Proposition \ref{prop:ehorn-pe}}
+Pagourtzis and Zachos mention a $\totp$ procedure that computes the number of satisfying assignments of a DNF formula \cite{PagourtzisZ06}. This procedure can be easily extended to receive Horn formulas, and furthermore, a disjunction of Horn formulas. We can deduce that $\shdhsat$ is in $\totp$.
+
+As we show in Proposition \ref{sigma2hard}, $\shdhsat$ is complete for $\eqso(\ehorn)$ under parsimonious reductions. Let $\alpha$ be a formula in $\eqso(\ehorn)$ and let $g_{\alpha}$ be the reduction to $\shdhsat$. The $\totp$ procedure we construct, for each input $\enc(\A)$, is simply to compute $g_{\alpha}(\enc(\A))$, and then simulate the $\totp$ procedure for $\shdhsat$ on input $g_{\alpha}(\enc(\A))$. We conclude that $\alpha$ is in $\totp$.
+
+
+
+
+
+
+
+
+
+
 \subsection*{Proof of Proposition \ref{prop:hsat-not-sigma2}} %V.12
-$\eqso(\uhorn) \subseteq \totp$:\vspace{1em}
+We use a similar proof to the one provided by the authors in \cite{SalujaST95} to separate the classes $\E{2}$ and $\U{2}$. Suppose that the statement is false, this is, $\chsat \in \eqso(\loge{2})$. We consider the signature $\R$ that we used as the encoding for a Horn formula (Example \ref{ex-hornsat-esop1}) and that the formula $\alpha \in \eqso(\loge{2})$ follows the encoding in the same way. From what we proved in Theorem \ref{theo-pnf-snf}, we have that every formula in $\eqso(\loge{2})$ can be rewritten in $\loge{2}$-PNF, so we assume that $\alpha$ is in this form. Let $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\forall\bar{z}\,\varphi(\bar{X},\bar{x},\bar{y},\bar{z})$. Consider the following Horn formula $\Phi$:
+$$
+Phi = p \wedge \bigwedge_{i = 1}^n (t_i \vee p \to q) \wedge \neg q,
+$$
+where $n = \length(\bar{x}) + \length(\bar{y}) + 1$. Let $\A$ be the encoding of this formula. In the encoding, each variable appears as an element in the domain of $\A$. This formula is satisfiable, so $\sem{\alpha}(\A) \geq 1$. Let $(\bar{B},\bar{b},\bar{a})$ be an assignment to $(\bar{X},\bar{x},\bar{y})$ such that $\A\models\forall\bar{z}\,\varphi(\bar{B},\bar{b},\bar{a},\bar{z})$. Let $t_{\ell}$ be such that it does not appear in $\bar{b}$ or $\bar{a}$. Consider the induced substructure $\A'$ that is obtained by removing $t_{\ell}$ from $\A$ and $\bar{B}'$ as the subset of $\bar{B}$ obtained by deleting each appearance of $t_{\ell}$ in $\bar{B}$. We have that $\A'\models\forall\bar{z}\,\varphi(\bar{B},\bar{b},\bar{a},\bar{z})$. This is because each subformula of the form $\exists y \neg B_i$ is still true, and universal formulas are monotone over induced substructures. It follows that $\sem{\alpha}(\A') \geq 1$ which is not possible since $\A'$ encodes the formula
+$$
+Phi' = p \wedge \bigwedge_{i = 1}^{\ell-1} (t_i \vee p \to q) \wedge (p\to q) \wedge \bigwedge_{i = \ell+1}^{n} (t_i \vee p \to q) \wedge \neg q,
+$$
+which is unsatisfiable. We arrive to a contradiction and we conclude that $\chsat$ is not in $\eqso(\ehorn)$.
+
+
+
+
+
+
+
 
 \subsection*{Proof of Theorem \ref{sigma2hard}} %V.13
 
