@@ -327,11 +327,11 @@ As we show in Proposition \ref{sigma2hard}, $\shdhsat$ is complete for $\eqso(\e
 \subsection*{Proof of Proposition \ref{prop:hsat-not-sigma2}} %V.12
 We use a similar proof to the one provided by the authors in \cite{SalujaST95} to separate the classes $\E{2}$ and $\U{2}$. Suppose that the statement is false, this is, $\chsat \in \eqso(\loge{2})$. We consider the signature $\R$ that we used as the encoding for a Horn formula (Example \ref{ex-hornsat-esop1}) and that the formula $\alpha \in \eqso(\loge{2})$ follows the encoding in the same way. From what we proved in Theorem \ref{theo-pnf-snf}, we have that every formula in $\eqso(\loge{2})$ can be rewritten in $\loge{2}$-PNF, so we assume that $\alpha$ is in this form. Let $\alpha = \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\forall\bar{z}\,\varphi(\bar{X},\bar{x},\bar{y},\bar{z})$. Consider the following Horn formula $\Phi$:
 $$
-Phi = p \wedge \bigwedge_{i = 1}^n (t_i \vee p \to q) \wedge \neg q,
+\Phi = p \wedge \bigwedge_{i = 1}^n (t_i \wedge p \to q) \wedge \neg q,
 $$
 where $n = \length(\bar{x}) + \length(\bar{y}) + 1$. Let $\A$ be the encoding of this formula. In the encoding, each variable appears as an element in the domain of $\A$. This formula is satisfiable, so $\sem{\alpha}(\A) \geq 1$. Let $(\bar{B},\bar{b},\bar{a})$ be an assignment to $(\bar{X},\bar{x},\bar{y})$ such that $\A\models\forall\bar{z}\,\varphi(\bar{B},\bar{b},\bar{a},\bar{z})$. Let $t_{\ell}$ be such that it does not appear in $\bar{b}$ or $\bar{a}$. Consider the induced substructure $\A'$ that is obtained by removing $t_{\ell}$ from $\A$ and $\bar{B}'$ as the subset of $\bar{B}$ obtained by deleting each appearance of $t_{\ell}$ in $\bar{B}$. We have that $\A'\models\forall\bar{z}\,\varphi(\bar{B},\bar{b},\bar{a},\bar{z})$. This is because each subformula of the form $\exists y \neg B_i$ is still true, and universal formulas are monotone over induced substructures. It follows that $\sem{\alpha}(\A') \geq 1$ which is not possible since $\A'$ encodes the formula
 $$
-Phi' = p \wedge \bigwedge_{i = 1}^{\ell-1} (t_i \vee p \to q) \wedge (p\to q) \wedge \bigwedge_{i = \ell+1}^{n} (t_i \vee p \to q) \wedge \neg q,
+\Phi' = p \wedge \bigwedge_{i = 1}^{\ell-1} (t_i \wedge p \to q) \wedge (p\to q) \wedge \bigwedge_{i = \ell+1}^{n} (t_i \wedge p \to q) \wedge \neg q,
 $$
 which is unsatisfiable. We arrive to a contradiction and we conclude that $\chsat$ is not in $\eqso(\ehorn)$.
 
