@@ -293,3 +293,25 @@ and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x}
 
 \subsection*{Proof of Theorem \ref{tqso-fo-fpsace}}
 
+We separate the proof in two parts. Let $\R$ be a relational signature. First we prove that for every formula $\alpha$ in $\tqso$ over $\R$ there exists a function $f\in\shpspace$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for every $\A\in\ostr[\R]$. Then we prove that for every function $f\in \fpspace$ over $\R$ there exists a $\tqso(\fo)$ formula $\alpha$ such that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$. By the inclusion of $\tqso(\fo)\subseteq\tqso$ and the equality $\shpspace = \fpspace$, this proves that both $\tqso$ and $\tqso(\fo)$ capture $\fpspace$ over ordered structures.
+
+\vspace{1em}
+For the first part, let $\alpha$ be a formula in $\tqso$ over $\R$. 
+We will construct a nondeterministic polynomial-space algorithm $M_{\alpha}$ that on input $(\enc(\A),\enc(v),\enc(V))$, accepts in $\sem{\alpha}(\A,v,V)$ paths, for each $(\A,v,V)\in\ostr[\R]^*$. Let $A = \{1,\ldots,n\}$  be the domain of $\A$. 
+First-order assignments are encoded as a simple mapping from every first-order variable mentioned in $\alpha$ to an element in $A$. 
+Second order assignments are encoded in polynomial space as a mapping from every second-order variable $X$ to a subset of $A^{\arity(X)}$. We now begin the construction of the algorithm. 
+If $\alpha = \varphi$, a $\so$ formula, we check if $(\A,v,V)\models\varphi$ in deterministic polynomial space, and accept if and only if it holds. 
+If $\alpha = s$, we generate $s$ branches and accept in all of them. 
+If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$, both on input $(A,v,V)$, on separate branches. 
+If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
+If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v[a/x],V)$.
+If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ on input $(A,v[1/x],V)$, and on each accepting branch, instead of accepting we simulate $M_{\beta}$ on input $(A,v[2/x],V)$, and so on. 
+If $\alpha = \sa{X}\beta$, for each $B\subseteq A^{\arity(X)}$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v,V[B/X])$.
+If $\alpha = \pa{X}\beta$, we simulate $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\subseteq A^{\arity(X)}$. 
+If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure, on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. 
+This is repeated $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ times, and it generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
+This ends the construction of the algorithm. 
+Consider $f$ as the $\shpspace$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+
+\vspace{1em}
+For the second part 
