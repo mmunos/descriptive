@@ -1,0 +1,317 @@
+\subsection*{Proof of Theorem \ref{tqfo-shl}}
+
+Let $\R$ be some relational signature.  First we address the first condition in the Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\cdot\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure, on each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value, and rejects otherwise. This is repeated $n^{\length(\bar{x})}$ times, and it generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+
+\vspace{1em}
+For the second condition, let $f \in \shl$ defined over some signature $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, and $q_{\ell}$ is only final state of $M$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
+
+We represent configurations with a tuple of fixed size. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ describes that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ describes that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
+$$
+\alpha = \sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y})).
+$$
+
+To illustrate our idea, we will show a simplified example. Consider a machine $M$ that works in exactly $\log_2(n)$ space and only allows 0 or 1 in the working tape. Consider an input $\A$ of size 16 (that is, $A = \{0,\ldots,9,A,\ldots,F\}$). Let some configuration $s$ have 0011 in the working tape, the head in the input tape is in position 26, and the head in the input tape is in position 2 (we consider 0-indexed positions). Also, $Q = \{q_1,\ldots,q_5\}$ and the current state is $q_3$.
+
+As a first approach, we will use a 9-tuple $\bar{a} = (a_1,\ldots,a_9)$ to represent $s$. That is, $(a_1,a_2) = (1,A)$ represent the position of the head in the input tape (since 1A equal to 26 in base 16), $a_3 = 2$ represents the position of the head in the working tape, $a_4 = C$ (1100b in base 16) represents the content of the working tape, and $(a_5,\ldots,a_9) = (0,0,1,0,0)$ represents the current state. Then $\bar{a} = (1,A,2,C,0,0,1,0,0)$ will represent $s$.
+
+\newcommand\algx{\mathtt{x}}
+\newcommand\algy{\mathtt{y}}
+\newcommand\algz{\mathtt{z}}
+\newcommand\algu{\mathtt{u}}
+\newcommand\algv{\mathtt{v}}
+\newcommand\algi{\mathtt{i}}
+\newcommand\algj{\mathtt{j}}
+
+
+The problem that arises from this representation, is that to describe a transition in $M$ we need to read an arbitrary character in the working tape. In the example, this translates to obtaining the $a_3$-th bit in $a_4$. Furthermore, to represent the following configuration, we need compute $a_4$ with the $a_3$-th bit flipped. This is generally not possible to describe with an $\fo$ formula. To deal with this issue, consider the following procedure. (In the example it would receive $\algx = a_4$ and $\algi = a_3$.)
+
+\begin{algorithm}
+	\caption{If the $\algi$-th bit in $\algx$ is 1 replace it by 0 and return the result}
+	\label{switch1to0}
+	\begin{algorithmic}
+		\State $\algu \gets \algx,\; \algj \gets \algi$ \Comment{Get the $\algi$-th bit on $\algx$ and store it in $\algu$}
+		\While{$\algj > 0$}
+		\State $\algv \gets 0$
+		\While{$\algu > 1$}
+		\State $\algu \gets \algu-2,\; \algv \gets \algv+1$
+		\EndWhile
+		\State $\algu\gets \algv,\; \algj \gets \algj-1$
+		\EndWhile
+		\While{$\algu > 1$}
+		\State $\algu \gets \algu-2$
+		\EndWhile
+		\State $\textbf{assert } \algu = 1$ \Comment{If $\algu \neq 1$ simply stop}	
+		\State $\algy \gets 1$ \Comment{Compute $2^{\algi}$ and store it in $\algy$}
+		\While{$\algi > 0$}
+		\State $\algz \gets 0$
+		\While{$\algy > 0$}
+		\State $\algz \gets \algz+2,\; \algy \gets \algy-1$
+		\EndWhile
+		\State $\algi \gets \algi-1,\; \algy \gets \algz$
+		\EndWhile
+		\While{$\algy > 0$} \Comment{Subtract $\algy$ from $\algx$}
+		\State $\algx \gets \algx-1,\; y \gets \algy-1$
+		\EndWhile
+		\State \Return $\algx$.
+	\end{algorithmic}
+\end{algorithm}	
+Each of the instructions can be expressed with $\fo$, so our strategy is to use the $\pth$ operator to simulate the algorithm and then we can describe a transition using the processed value of $a_4$. This procedure simulates a transition that writes 1 in the cell where it read a 0. We call this a $1 \to 0$ transition. At the end of the proof we provide in detail three more procedures that simulate a $0\to 0$ transition, a $0\to 1$ transition, and a $1\to 1$ transition. The rest of the proof only addresses the case where we are simulating a $1\to 0$ transition, and the rest of the cases can be described analogously.
+
+We will now describe how to simulate both the procedure and the transition. A procedure tuple $\bar{p} = (a_1,\ldots,a_{3+c+\ell},b_1,b_2,c_1,c_2,c_3,d_1,\ldots,d_{5c+2})$ represents the current configuration of $M(w)$ in $a_1,\ldots,a_{2+c+\ell}$, the values that will be read and written in the working tape in $b_1,b_2$, the instruction pointer in $c_1,c_2,c_3$ and the values stored in memory in $d_1,\ldots,d_{10c+2}$. In detail:
+\begin{enumerate}
+	\item $a_1,a_2$ and $a_3$ represent the position of the head in the input tape and the working tape, respectively, $a_4,\ldots,a_{3+c}$ represent the content of the working tape and $a_{4+c},\ldots,a_{3+c+\ell}$ represent the current state in the current configuration that is being processed.
+	\item $b_1$ and $b_2$ are equal to the value that is being read in the working tape and the value that will be written in the working tape respectively. These values also indicate which algorithm is being simulated.
+	\item $c_1,c_2,c_2$ represent the instruction pointer in the procedure. Only 8 different instructions are needed in the simulation.
+	\item The variables $\algx,\algy,\algz,\algu,\algv$ need $c$ elements each to be represented and $\algi,\algj$ need only one. We map $(d_1\ldots,d_{c}) \to \algx$, $(d_{c+1}\ldots,d_{2c}) \to \algy$,
+	$(d_{2c+1}\ldots,d_{3c}) \to \algz$, $(d_{3c+1}\ldots,d_{4c}) \to \algu$,
+	$(d_{4c+1}\ldots,d_{5c}) \to \algv$, $d_{5c+1} \to \algi$ and $d_{5c+2}\to \algj$.
+\end{enumerate}
+For each transition $\delta \in \Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ we define a formula $\varphi_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$, where $\bar{x} = (x_1,\ldots,x_{3+c+\ell})$, $\bar{s} = (s_1,s_2)$, $\bar{w} = (w_1,w_2,w_3)$, $\bar{u} = (u_1,\ldots,u_{5c+2})$, $\bar{y} = (y_1,\ldots,y_{3+c+\ell})$, $\bar{t} = (t_1,t_2)$, $\bar{z} = (z_1,z_2,z_3)$ and $\bar{v} = (v_1,\ldots,v_{5c+2})$. The tuples $\bar{x}$ and $\bar{y}$ represent the current and next configuration of $M$ respectively, $\bar{s}$ and $\bar{t}$ indicate which algorithm is being simulated, $\bar{w}$ and $\bar{z}$ represent the current and next instruction of the algorithm, $\bar{u}$ and $\bar{v}$ represent the current and next values in memory. We will describe the formula part by part. Suppose $\delta = (q_i,a,1,q_j,op_1,0,op_2)$, so we have to simulate Algorithm \ref{switch1to0}.
+
+To significantly improve the readability of the construction, we define the following tuples:
+\begin{equation*}
+\begin{aligned}
+	\bar{x}_{\text{h-in}} &= (x_1,x_2), \\
+	x_{\text{h-w}} &= x_3, \\
+	\bar{x}_{\text{tape}} &= (x_4,\ldots,x_{3+c}),\\
+	\bar{x}_{\text{state}} &= (x_{4+c},\ldots,x_{3+c+\ell}),\\
+	\bar{u}_{\algx} &= (u_1,\ldots,u_c),\\
+	\bar{u}_{\algy} &= (u_{c+1},\ldots,u_{2c}),\\
+	\bar{u}_{\algz} &= (u_{2c+1},\ldots,u_{3c}),\\
+	\bar{u}_{\algu} &= (u_{3c+1},\ldots,u_{4c}),\\
+	\bar{u}_{\algv} &= (u_{4c+1},\ldots,u_{5c}),\\
+	u_{\algi} &= u_{5c+1},\\
+	u_{\algj} &= u_{5c+2},
+\end{aligned}
+\hspace{1em}
+\begin{aligned}
+	\bar{y}_{\text{h-in}} &= (y_1,y_2), \\
+	y_{\text{h-w}} &= y_3, \\
+	\bar{y}_{\text{tape}} &= (y_4,\ldots,y_{3+c}),\\
+	\bar{x}_{\text{state}} &= (x_{4+c},\ldots,x_{3+c+\ell}),\\
+	\bar{v}_{\algx} &= (v_1,\ldots,v_c),\\
+	\bar{v}_{\algy} &= (v_{c+1},\ldots,v_{2c}),\\
+	\bar{v}_{\algz} &= (v_{2c+1},\ldots,v_{3c}),\\
+	\bar{v}_{\algu} &= (v_{3c+1},\ldots,v_{4c}),\\
+	\bar{v}_{\algv} &= (v_{4c+1},\ldots,v_{5c}),\\
+	v_{\algi} &= v_{5c+1},\\
+	v_{\algj} &= v_{5c+2}.
+\end{aligned}
+\end{equation*}
+We also define some auxiliary formulas:
+\begin{align*}
+\gamma_{0}(\bar{x}) &= \neg\exists\bar{y}(\bar{y}<\bar{x}),\\
+\gamma_{1}(\bar{x}) &= \exists\bar{y}(\gamma_{0}(\bar{y})\wedge \bar{y} < \bar{x} \wedge \neg\exists\bar{z}(\bar{y}<\bar{z}\wedge\bar{z}<\bar{x}))\\
+\gamma_{+1}(\bar{x},\bar{y}) &= \bar{x} < \bar{y} \wedge \neg\exists \bar{z}(\bar{x}<\bar{z} \wedge \bar{z}<\bar{y}), \\
+\gamma_{-1}(\bar{x},\bar{y}) &= \gamma_{+1}(\bar{y},\bar{x}),\\
+\gamma_{=}(\bar{x},\bar{y}) &= \bar{x} = \bar{y} \\
+\gamma_{+2}(\bar{x},\bar{y}) &= \exists\bar{z}(\gamma_{+1}(\bar{x},\bar{z}) \wedge \gamma_{+1}(\bar{z},\bar{y})),\\
+\gamma_{-2}(\bar{x},\bar{y}) &= \gamma_{+2}(\bar{y},\bar{x}),\\
+\gamma_{i,j}(x,y) &= \gamma_i(x) \wedge \gamma_j(y),\text{ for $i,j \in\{0,1\}$}\\
+\varphi^b_k(x_1,x_2,x_3) &= \gamma_{a_1}(x_1) \wedge \gamma_{a_2}(x_2) \wedge \gamma_{a_3}(x_3),\text{ for each $k \leq 7$, where $a_1a_2a_3$ is the value of $k$ in binary}, \\
+\varphi^q_i(x_1,\ldots,x_{\ell}) &= \gamma_0(x_1) \wedge \cdots \wedge \gamma_0(x_{i-1}) \wedge \gamma_1(x_i) \wedge \gamma_0(x_{i+1}) \wedge \cdots \wedge \gamma_0(x_{\ell}), \text{ for each } q_i\in Q\\
+\varphi^E_0(x_1,x_2) &= \neg E(x_1,x_2),\\		\varphi^E_1(x_1,x_2) &= E(x_1,x_2),\\
+\end{align*}
+
+We start from instruction 0, which means that the procedure has not started yet and every value in the tuple is 0 except for the configuration values. It also initializes all the values in the tuple to 0 except for $\algx,\algu,\algi,\algj$.
+\begin{align*}
+\varphi^{0,1}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{0,0}(\bar{s})\wedge\varphi^b_0(\bar{w}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_1(\bar{z}) \wedge 
+\bar{v}_{\algx} = \bar{x}_{\text{tape}} \wedge 
+\gamma_0(\bar{v}_{\algy}) \wedge 
+\gamma_0(\bar{v}_{\algz}) \wedge 
+\bar{v}_{\algu} = \bar{x}_{\text{tape}} \wedge 
+\gamma_0(\bar{v}_{\algv}) \wedge 
+v_{\algi} = x_{\text{h-w}} \wedge v_{\algj} = x_{\text{h-w}}.
+\end{align*}
+Instruction 1 which checks whether the value of $\algj$ is more than 0 or not, and then proceeds to instruction 2 or 3 on each case.
+\begin{align*}
+\varphi^{1,2}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
+\,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_1(\bar{w}) \wedge \neg \gamma_0(u_{\algj}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_2(\bar{z}) \wedge \bar{u} = \bar{v}, \\
+\varphi^{1,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
+\,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_1(\bar{w}) \wedge \gamma_0(u_{\algj}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_3(\bar{z}) \wedge \bar{u} = \bar{v}.
+\end{align*}
+Instruction 2 checks the value of $\algu$. If it is $> 1$ then it subtracts 2 from $\algu$ and adds 1 to $\algv$, then repeats instruction 2. If it is equal to 0 or 1, then moves the value of $\algv$ to $\algu$, subtracts 1 from $\algj$ and goes back to instruction 1.
+\begin{align*}
+\varphi^{2,2}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
+\,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_2(\bar{w}) \wedge \neg \gamma_0(\bar{u}_{\algu}) \wedge \neg \gamma_1(\bar{u}_{\algu}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_2(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\bar{u}_{\algy} = \bar{v}_{\algy} \wedge
+\bar{u}_{\algz} = \bar{v}_{\algz} \wedge
+\gamma_{-2}(\bar{u}_{\algu},\bar{v}_{\algu}) \wedge
+\gamma_{+1}(\bar{u}_{\algv},\bar{v}_{\algv}) \wedge u_{\algi} = v_{\algi} \wedge u_{\algj} = v_{\algj},\\
+\varphi^{2,1}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_2(\bar{w}) \wedge ( \gamma_0(\bar{u}_{\algu}) \vee \gamma_1(\bar{u}_{\algu})) \wedge \\ 
+&\gamma_{1,0}(\bar{t}) \wedge \varphi^b_1(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\bar{u}_{\algy} = \bar{v}_{\algy} \wedge
+\bar{u}_{\algz} = \bar{v}_{\algz} \wedge
+\bar{u}_{\algv} = \bar{v}_{\algu} \wedge
+\gamma_0(\bar{v}_{\algv}) \wedge
+u_{\algi} = v_{\algi} \wedge \gamma_{-1}(u_{\algj},v_{\algj}).	
+\end{align*}
+Instruction 3 calculates the value of $\algu\mod 2$, that is, it repeats instruction 3 until the value of $\algu$ is equal to 0 or 1. On each iteration, it subtracts 2 from $\algu$. Moreover, if the value of $\algu$ at the end of the iterations is not 1 then there is no step defined.
+\begin{align*}
+\varphi^{3,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_3(\bar{w}) \wedge \neg \gamma_0(\bar{u}_{\algu}) \wedge \neg \gamma_1(\bar{u}_{\algu}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge 	\varphi^b_3(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\bar{u}_{\algy} = \bar{v}_{\algy} \wedge
+\bar{u}_{\algz} = \bar{v}_{\algz} \wedge
+\gamma_{-2}(\bar{u}_{\algu},\bar{v}_{\algu}) \wedge
+\bar{u}_{\algv} = \bar{v}_{\algv} \wedge
+u_{\algi} = v_{\algi} \wedge u_{\algj} = v_{\algj},\\
+\varphi^{3,3}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 
+\,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_3(\bar{w}) \wedge \gamma_1(\bar{u}_{\algu}) \wedge\\ &\gamma_{1,0}(\bar{t}) \wedge 	\varphi^b_4(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\gamma_1(\bar{v}_{\algy}) \wedge
+\bar{u}_{\algz} = \bar{v}_{\algz} \wedge
+\bar{u}_{\algu} = \bar{v}_{\algu} \wedge
+\bar{u}_{\algv} = \bar{v}_{\algv} \wedge
+u_{\algi} = v_{\algi} \wedge u_{\algj} = v_{\algj}
+\end{align*}
+Instruction 4 checks the value of $\algi$. If it is not 0 then goes to instruction 5 and if is 0 then goes to instruction 6. Moreover it initializes the value of $\algz$ to 0 (which was 0 all along.)
+\begin{align*}
+\varphi^{4,5}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_4(\bar{w}) \wedge \neg \gamma_0(u_{\algi}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge 	\varphi^b_5(\bar{z}) \wedge \bar{u} = \bar{v}, \\
+\varphi^{4,6}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = &\gamma_{1,0}(\bar{s}) \wedge \varphi^b_4(\bar{w}) \wedge \gamma_0(u_{\algi}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge 	\varphi^b_6(\bar{z}) \wedge \bar{u} = \bar{v}.
+\end{align*}
+Instruction 5 checks the value of $\algy$. If it is more than 0 then it adds 2 to $\algz$ and subtracts 1 from $\algy$, then repeats instruction 2. If it is not, then copies the value of $\algz$ to $\algy$ and subtracts 1 from $\algi$ and returns to instruction 4.
+\begin{align*}
+\varphi^{5,5}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_5(\bar{w}) \wedge \neg \gamma_0(\bar{u}_{\algy}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_5(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\gamma_{-1}(\bar{u}_{\algy},\bar{v}_{\algy}) \wedge
+\gamma_{+2}(\bar{u}_{\algz},\bar{v}_{\algz})\, \wedge \bar{u}_{\algu} = \bar{v}_{\algu} \wedge
+\bar{u}_{\algv} = \bar{v}_{\algv} \wedge
+u_{\algi} = v_{\algi} \wedge u_{\algj} = v_{\algj},\\
+\varphi^{5,4}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_5(\bar{w}) \wedge \gamma_0(\bar{u}_{\algy}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_4(\bar{z}) \wedge
+\bar{u}_{\algx} = \bar{v}_{\algx} \wedge
+\bar{u}_{\algz} = \bar{v}_{\algy} \wedge
+\gamma_0(\bar{v}_{\algz}) \wedge
+\bar{u}_{\algu} = \bar{v}_{\algu} \wedge
+\bar{u}_{\algv} = \bar{v}_{\algv} \wedge
+\gamma_{-1}(u_{\algi},v_{\algi}) \wedge u_{\algj} = v_{\algj}
+\end{align*}
+Instruction 6 checks the value of $\algy$. If it is more than 0, then subtracts 1 from $\algx$ and $\algy$ and repeats instruction 6. If it is not, then goes to instruction 7.
+\begin{align*}
+\varphi^{6,6}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_6(\bar{w}) \wedge \neg \gamma_0(\bar{u}_{\algy}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_6(\bar{z}) \wedge
+\gamma_{-1}(\bar{u}_{\algx},\bar{v}_{\algx}) \wedge \gamma_{-1}(\bar{u}_{\algy},\bar{v}_{\algy}) \wedge \bar{u}_{\algu} = \bar{v}_{\algu} \wedge \bar{u}_{\algv} = \bar{v}_{\algv} \\
+\varphi^{6,7}_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \,&\gamma_{1,0}(\bar{s}) \wedge \varphi^b_6(\bar{w}) \wedge \gamma_0(\bar{u}_{\algy}) \wedge \\ &\gamma_{1,0}(\bar{t}) \wedge \varphi^b_7(\bar{z}) \wedge \bar{u} = \bar{v}.
+\end{align*}
+Instruction 7 stores the value of $\algx$ after the corresponding bit has been switched. Then we can define $\gamma_{\delta}$ which also simulates the actual transition. If $\algu$ equals 1, then copy what is stored in $\algx$ to $a_4,\ldots,a_{3+c}$, go from state $q_i$ to state $q_j$, and move the heads to their corresponding positions. Recall that $op_1,op_2\in\{+1,=,-1\}$
+\begin{align*}
+\gamma_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = 	[&\bar{x} = \bar{y} \wedge (\varphi^{0,1}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{1,2}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{1,3}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{2,2}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{2,1}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{3,3}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{3,4}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{4,5}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{4,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{5,5}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee  \varphi^{5,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \\ &\varphi^{6,6}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) \vee \varphi^{6,7}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}))] \, \vee \\
+[\varphi^E_a(\bar{x}_{\text{h-in}}) \wedge &\gamma_{1,0}(\bar{s}) \wedge \varphi^b_7(\bar{w}) \wedge \gamma_1(\bar{u}_{\algu}) \wedge \\ &\gamma_{0,0}(\bar{t}) \wedge \varphi^b_0(\bar{z}) \wedge \bar{u} = \bar{v} \wedge
+\gamma_{op_1}(\bar{x}_{\text{h-in}},\bar{y}_{\text{h-in}}) \wedge \gamma_{op_2}(x_{\text{h-w}},y_{\text{h-w}}) \wedge \bar{y}_{\text{tape}} = \bar{u}_{\algx} \wedge \varphi^q_i(\bar{x}_{\text{state}}) \wedge \varphi^q_j(\bar{y}_{\text{state}})].
+\end{align*}
+
+Note that we also need to specify that the program we are following is Algorithm \ref{switch1to0} so we store $1,0$ in $b_1,b_2$ all along the procedure. We describe the three other algorithms that compute the switches from $0\to 0$, $0\to 1$ and $1\to 1$ (Algorithms \ref{switch0to0}, \ref{switch0to1} and \ref{switch1to1}.)
+For the other three cases, where $\delta = (q_i,a,0,q_j,op_1,0,op_2)$, $\delta = (q_i,a,0,q_j,op_1,1,op_2)$ and $\delta = (q_i,a,1,q_j,op_1,1,op_2)$, $\gamma_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined analogously. Then, $\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v})$ is defined as:
+$$
+\varphi(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}) = \bigvee_{\delta \in \Delta} \gamma_{\delta}(\bar{x},\bar{s},\bar{w},\bar{u},\bar{y},\bar{t},\bar{z},\bar{v}).
+$$
+Lastly we define $\varphi_I$ and $\varphi_F$:
+\begin{align*}
+\varphi_I(\bar{x},\bar{s},\bar{w},\bar{u}) &= \gamma_0(\bar{x}_{\text{Head-1}}) \wedge \gamma_0(x_{\text{Head-2}}) \wedge \gamma_0(\bar{x}_{\text{Tape}}) \wedge \varphi^{q}_1(\bar{x}_{\text{State}})\wedge \gamma_{0,0}(\bar{s})\wedge \varphi^b_0(\bar{w}) \wedge\gamma_0(\bar{u}). \\
+\varphi_F(\bar{x},\bar{s},\bar{w},\bar{u}) &= \varphi^q_{\ell}(\bar{x}_{\text{State}}) \wedge \gamma_{0,0}(\bar{s}) \wedge \varphi^b_0(\bar{w}) \wedge\gamma_0(\bar{u}),
+\end{align*}
+and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y}))}(\A) = \acc_M(\A)$.
+
+\begin{algorithm}
+	\caption{If the $i$-th bit in $x$ is 0 return $x$} \label{switch0to0}
+	\begin{algorithmic}
+		\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+		\While{$j > 0$}
+		\State $v \gets 0$
+		\While{$u > 1$}
+		\State $u \gets u-2,\; v \gets v+1$
+		\EndWhile
+		\State $u\gets v,\; j \gets j-1$
+		\EndWhile
+		\While{$u > 1$}
+		\State $u \gets u-2$
+		\EndWhile
+		\State $\textbf{assert } u = 0$ \Comment{If $u \neq 0$ simply stop}	
+		\State \Return $x$.
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{If the $i$-th bit in $x$ is 0 replace it by 1 and return the result}
+	\label{switch0to1}
+	\begin{algorithmic}
+		\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+		\While{$j > 0$}
+		\State $v \gets 0$
+		\While{$u > 1$}
+		\State $u \gets u-2,\; v \gets v+1$
+		\EndWhile
+		\State $u\gets v,\; j \gets j-1$
+		\EndWhile
+		\While{$u > 1$}
+		\State $u \gets u-2$
+		\EndWhile
+		\State $\textbf{assert } u = 0$ \Comment{If $u \neq 0$ simply stop}	
+		\State $y \gets 1$ \Comment{Compute $2^i$ and store it in $y$}
+		\While{$i > 0$}
+		\State $z \gets 0$
+		\While{$y > 0$}
+		\State $z \gets z+2,\; y \gets y-1$
+		\EndWhile
+		\State $i \gets i-1,\; y \gets z$
+		\EndWhile
+		\While{$y > 0$} \Comment{Add $y$ to $x$}
+		\State $x \gets x+1,\; y \gets y-1$
+		\EndWhile
+		\State \Return $x$.
+	\end{algorithmic}
+\end{algorithm}	
+
+\begin{algorithm}
+	\caption{If the $i$-th bit in $x$ is 1 return $x$}
+	\label{switch1to1}
+	\begin{algorithmic}
+		\State $u \gets x,\; j \gets i$ \Comment{Get the $i$-th bit on $x$ and store it in $u$}
+		\While{$j > 0$}
+		\State $v \gets 0$
+		\While{$u > 1$}
+		\State $u \gets u-2,\; v \gets v+1$
+		\EndWhile
+		\State $u\gets v,\; j \gets j-1$
+		\EndWhile
+		\While{$u > 1$}
+		\State $u \gets u-2$
+		\EndWhile
+		\State $\textbf{assert } u = 1$ \Comment{If $u \neq 0$ simply stop}	
+		\State \Return $x$.
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+
+\subsection*{Proof of Theorem \ref{tqso-fo-fpsace}}
+
+We separate the proof in two parts. Let $\R$ be a relational signature. First we prove that for every formula $\alpha$ in $\tqso$ over $\R$ there exists a function $f\in\shpspace$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for every $\A\in\ostr[\R]$. Then we prove that for every function $f\in \fpspace$ over $\R$ there exists a $\tqso(\fo)$ formula $\alpha$ such that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$. By the inclusion of $\tqso(\fo)\subseteq\tqso$ and the equality $\shpspace = \fpspace$, this proves that both $\tqso$ and $\tqso(\fo)$ capture $\fpspace$ over ordered structures.
+
+\vspace{1em}
+For the first part, let $\alpha$ be a formula in $\tqso$ over $\R$. 
+We will construct a nondeterministic polynomial-space algorithm $M_{\alpha}$ that on input $(\enc(\A),\enc(v),\enc(V))$, accepts in $\sem{\alpha}(\A,v,V)$ paths, for each $(\A,v,V)\in\ostr[\R]^*$. Let $A = \{1,\ldots,n\}$  be the domain of $\A$. 
+First-order assignments are encoded as a simple mapping from every first-order variable mentioned in $\alpha$ to an element in $A$. 
+Second order assignments are encoded in polynomial space as a mapping from every second-order variable $X$ to a subset of $A^{\arity(X)}$. We now begin the construction of the algorithm. 
+If $\alpha = \varphi$, a $\so$ formula, we check if $(\A,v,V)\models\varphi$ in deterministic polynomial space, and accept if and only if it holds. 
+If $\alpha = s$, we generate $s$ branches and accept in all of them. 
+If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$, both on input $(A,v,V)$, on separate branches. 
+If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
+If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v[a/x],V)$.
+If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ on input $(A,v[1/x],V)$, and on each accepting branch, instead of accepting we simulate $M_{\beta}$ on input $(A,v[2/x],V)$, and so on. 
+If $\alpha = \sa{X}\beta$, for each $B\subseteq A^{\arity(X)}$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v,V[B/X])$.
+If $\alpha = \pa{X}\beta$, we simulate $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\subseteq A^{\arity(X)}$. 
+If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure, on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. 
+This is repeated $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ times, and it generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
+This ends the construction of the algorithm. 
+Consider $f$ as the $\shpspace$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+
+\vspace{1em}
+For the second part 

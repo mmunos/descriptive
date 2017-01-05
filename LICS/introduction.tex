@@ -3,3 +3,62 @@
 \marcelo{Enfatizar el rol fundamental de la logica para obtener los resultados, por ejemplo para obtener cerrado bajo menos uno}
 
 \marcelo{Poner un comentario sobre funciones totales versus parciales, dado que estamos considerando clases con funciones totales}
+%
+%\marcelo{Enfatizar el rol fundamental de la logica para obtener los resultados, por ejemplo para obtener cerrado bajo menos uno}
+%
+%Strategy:
+%\begin{enumerate}
+%	\item Descriptive complexity and application.
+%	
+%	\item Counting complexity classes. 
+%	
+%	\item Our contribution in terms of logic.
+%	
+%	\item sharP and its structure. 
+%	
+%	\item Syntactic classes with good properties. 
+%\end{enumerate}
+%
+%\cristian{Aqui empieza la intro.}
+
+The goal of descriptive complexity is to measure the complexity of a problem in terms of the logical constructors needed to express it~\cite{immerman1999descriptive}. 
+The starting point of this branch of complexity theory is Fagin's theorem, which states that $\np$ is equal to existential second-order logic. Since then, many more complexity classes have been characterized in terms of logics (see \cite{G07} for a survey) and descriptive complexity has found a variety of applications in different areas~\cite{immerman1999descriptive, L04}.
+For instance, Fagin's theorem was the key ingredient to define the class {\sc MaxSNP}~\cite{PY91}, which was later shown to be a fundamental class in the study of hardness of approximation \cite{ALMSS98}. 
+It is important to mention here that the definition of {\sc MaxSNP} would not have been possible without the machine-independent point of view of descriptive complexity, as pointed out in~\cite{PY91}.
+
+Counting problems differ from decision problems in that the value of a function has to be computed.
+More generally, a counting problem corresponds to compute a function $f$ from a set of instances (e.g. graphs, formulas, etc) to natural numbers\footnote{This value is usually associated to count the number of solution for a given instance in a search problem, but here we consider a more general definition.}. 
+The study of counting problems has given rise to a rich theory of counting complexity classes \cite{HV95,F97,arora2009computational}. Some of these classes are natural counterparts of some classes of decision problems; for example, $\fp$ ($\fpspace$) is the class of all functions that can be computed in polynomial time (space resp.), the natural counterpart of $\ptime$ ($\pspace$ resp.). 
+However, other function complexity classes have emerged from the need to understand the complexity of some function problems for which little can be said if their decision counterparts are considered. This is the case of the class $\shp$, a counting complexity class introduced in \cite{Valiant79} to prove that natural counting problems like counting the number of satisfying assignments of a propositional formula or the number of perfect matchings of a bipartite graph~\cite{Valiant79} are difficult, namely, $\shp$-complete.
+Starting from $\shp$ the zoo of counting complexity classes was open with other natural counting classes like $\spp$, $\shl$, and $\gp$ among others~\cite{HV95,F97}.
+
+Although counting problems play a prominent role in computational complexity, descriptive complexity for this type of problems has not been systematically studied and it is not as developed as for the case of decision problems. Insightful characterizations of $\shp$ and some of its extensions have been provided \cite{SalujaST95,ComptonG96}. However, these characterizations do not define function problems in terms of a logic, but instead in terms of some counting problems associated to a boolean logic like $\fo$. Thus, it is not clear how these characterizations can be used to provide a general descriptive complexity framework for counting complexity classes like $\fp$ and $\fpspace$.
+%It should be mentioned that logical definability has also been studied for the case of optimization problems \cite{KT94} and computation over the real numbers \cite{GM95}. As for the previous cases, it is not clear how these approaches can be extended to provide logical characterizations of a variety of function complexity classes. 
+
+In this paper, we propose to study the descriptive complexity of counting complexity classes in terms of Weighted Logics (WL)~\cite{DrosteG07}, a general logical framework that combines boolean formulas (e.g. FO, SO) with operations over a fix semirings (e.g. $\bbN$). 
+Specifically, we propose to restrict WL over natural numbers, called Quantitative Second Order Logics (QSO), and study its expressive power for defining counting complexity classes over general structures. 
+As a proof of concept, we show that natural syntactical fragments of $\qso$ captures counting complexity classes like $\shp$, $\spp$, $\fp$ and $\fpspace$.
+Furthermore, by slightly extending the framework we can prove that $\qso$ can also capture classes like $\gp$ and $\optp$ showing the robustness of our approach.
+
+The next step is to use the machine-independent point of view of $\qso$ to search for subclasses with good properties inside $\shp$. 
+The question here is, what properties are desirable from a subclass inside $\shp$?
+First, we desire to have a class of counting problems whose associated decision version is tractable, in the sense that one can decide in $\ptime$ whether the value is greater than $0$ or not. 
+Actually, this requirement is crucial in order to have any chance of finding efficient approximation algorithms (see Section~\ref{sec:syntactic}).
+Second, we expect that our class is closed under basic arithmetical operations like sum, multiplication and minus one. 
+This is a common topic for functional complexity classes and, for example, it is known that $\shp$ is not closed under minus one. 
+Finally, we want a class with natural complete problems that characterize all problems from the complexity point of view.
+
+We give here the first results towards finding robust classes in terms of efficiency, closure properties, and complete problems. 
+Specifically, we introduce a syntactic hierarchy inside $\shp$, called the $\eqso(\fo)$-hierarchy, and we show that it is very close to the $\fo$-hierarchy introduced in~\cite{SalujaST95}. 
+Looking inside the $\eqso(\fo)$-hierarchy, we propose the class $\eqso(\logex{1})$ and show that it has tractable associated decision version and it is closed under sum, multiplication, and minus one. 
+Unfortunately, we cannot show a natural complete problem for $\eqso(\logex{1})$.
+Despite of this we introduce a Horn-style syntactic class, inspired by the approach in~\cite{G92}, that has easy associated decision versions and a natural complete problem.
+
+After studying the internal structure of $\shp$, we move beyond $\qso$ by introducing new quantifiers. 
+By adding functional variables in top of $\qso$, we introduce a quantitative least fixed point operator to the logic. 
+Adding finite recursion to a numerical setting is subtle since functions over natural numbers can easily diverge without finding any fix point. 
+By using the support of the functions, we give a natural halting condition that generalizes the least-fixed-point operator of boolean logics. 
+Then, with a quantitative recursion at hand we show how to capture $\fp$ from a different perspective and, moreover, how to restrict recursion to capture classes below $\fp$ like~$\shl$. 
+
+\noindent{\bf Organisation.} The basic definitions of $\so$ logic and complexity classes are given in Section~\ref{sec:preliminaries}. Then the logical framework is introduced in Section~\ref{sec:logic} and used it to capture standard counting complexity classes in Section~\ref{sec:complexity}. The structure of $\shp$ is studied in Section~\ref{sec:syntactic}. Section~\ref{sec:beyond} is devoted to define recursion in $\qso$ and how to capture classes below $\fp$. 
+We finally give some concluding remarks in Section~\ref{sec:conclusions}. 

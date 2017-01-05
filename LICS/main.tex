@@ -78,9 +78,8 @@
 
 \begin{document}
 
-\title{Descriptive Complexity \\
-	for Complexity Classes of Functions}
-
+\title{Descriptive complexity \\
+	for counting complexity classes}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -104,39 +103,20 @@ marenas@ing.puc.cl}
 
 
 \begin{abstract}
-The goal of descriptive complexity is to measure the complexity of a problem in terms of the logical constructors needed to express it. 
-The starting point of this branch of complexity theory is Fagin's Theorem, which states that $\np$ is equal to existential second-order logic. Since then, many more decision complexity classes have been characterized in terms of the properties definable in a logic. 
-Unfortunately, descriptive complexity for function complexity classes (e.g. $\fp$ and $\shp$) has not been systematically studied, and it is not as developed as for the case of decision problems.
-
-In this paper, we propose to study the descriptive complexity of function complexity classes in terms of Weighted Logics (WL), a general logical framework that combines boolean formulas (e.g. FO, SO) with operations over a fix semirings (e.g. $\bbN$). 
-Specifically, we propose to restrict WL over natural numbers, called Quantitative Second Order Logics (QSO), and study its expressive power for defining function complexity classes over general structures. 
-Interestingly, we show that fragments of QSO naturally captures classes like $\shp$, $\fp$ and $\fpspace$ among others. 
-Then we study the structure of $\eqso$, a fragment of $\qso$ that captures $\shp$, by refining the hierarchy studied by Saluja et al. 
-In particular, we show fragments of $\eqso$ that have good properties in terms of decidability, closure properties, and natural complete problems. 
-Finally, we go beyond QSO by adding recursion over functions. We show that this new logic naturally captures $\fp$ and subclasses like $\shl$.
-
-
+Descriptive Complexity has been very successful in characterizing complexity classes of decision problems in terms of the properties definable in some logics. However, descriptive complexity for counting complexity classes, such as $\fp$ and $\shp$, has not been systematically studied, and it is not as developed as its decision counterpart. In this paper, we propose a framework based on Weighted Logics to address this issue. Specifically, by focusing on the natural numbers we obtained a logic called Quantitative Second Order Logics (QSO), and show how some of its fragments can be used to capture fundamental counting complexity classes such as $\fp$, $\shp$ and $\fpspace$, among others. We also use QSO to define a hierarchy inside $\shp$, identifying counting complexity classes with good closure and approximation properties, and which admit natural complete problems. Finally, we add recursion to QSO, and show how this extension naturally captures lower counting complexity classes such as $\shl$.	
 	
 %The goal of descriptive complexity is to measure the complexity of a problem in terms of the logical constructors needed to express it. 
-%More specifically,  
-%the main objective of descriptive complexity is to understand how a problem can be defined in a mathematical logic, and whether a complexity class can be characterized in terms of the properties definable in a logic. The starting point of this branch of complexity theory is Fagin's theorem, which states that $\np$ is equal to existential second-order logic. Since then, many more complexity classes have been characterized in terms of the properties definable in a logic. 
-%%Most notably, the class $\ptime$ of all problems that can be solved in polynomial time was shown to be equal to first-order logic extended with a least fixed point operator and also to some fragments of second-order logic, provided that a linear order on the domain of the problem to solve is available.
+%The starting point of this branch of complexity theory is Fagin's theorem, which states that $\np$ is equal to existential second-order logic. Since then, many more decision complexity classes have been characterized in terms of the properties definable in a logic. 
+%Unfortunately, descriptive complexity for function complexity classes (e.g. $\shp$, $\fp$) has not been systematically studied and it is not as developed as for the case of decision problems.
 %
-%The work on descriptive complexity for decision problems has found a variety of applications. In the area of databases, it has been instrumental in improving our understanding of query languages, as the design of such languages has been guided by the study of logic in different data models.
-%%In particular, the design of expressive query languages that can be evaluated efficiently has taken advantage of the study of the logical definability of the problems in $\ptime$. 
-%In the area of computational complexity, it has helped us in gaining new insights into the definitions of complexity classes and, in particular, it has given us new tools for the fundamental and difficult problem of separating complexity classes. 
-%In the area of algorithms, descriptive complexity was the key ingredient to define the class MAXSNP of optimization problems, which was later shown to be a fundamental class in the study of hardness of approximation.
-%
-%Function problems differ from decision problems in that the value of a  function has to be computed. Thus, solving a function problem means computing, given an input $x$, the value of a particular function $f$ on $x$.  As for the case of decision problems, the complexity of a function problem is usually measured in terms of the time, or space, needed to solve it. The study  of function problems has given rise to a rich theory of function complexity classes, some of which are natural counterparts of some classes of decision problems. However, other function complexity classes have emerged from the need to understand the complexity of some function problems for which little can be said if their decision counterparts are considered. Most notably, the function complexity class $\shp$ was introduced for this purpose. 
-%%A function $f$ is said to be in $\shp$ if there exists a nondeterministic Turing machine $M$ running in polynomial time such that $f(x)$ is the number of accepting runs of $M$ with input $x$. 
-%A prototypical example of a problem in $\shp$ is $\#\text{SAT}$, the problem of counting the number of satisfying assignments of a given propositional formula. Obviously, $\#\text{SAT}$ is as difficult as the problem $\text{SAT}$ of verifying whether a propositional formula is satisfiable; in fact, $\#\text{SAT}$ is a $\shp$-complete problem.  
-%Since the introduction of $\shp$, many counting problems have proved to be difficult by showing that they are $\shp$-complete. More interesting, this class has been used to prove that this happens even for function problems for which their decision counterparts can be solved efficiently. 
-%
-%
-%Although function problems play a prominent role in computational complexity, descriptive complexity for this type of problems has not been systematically studied and it is not as developed as for the case of decision problems. The general goal of this project is to develop a descriptive complexity theory for function complexity classes. 
-%To this end, our first specific goal is to develop an appropriate logical framework for function complexity classes, where the result of evaluating a formula over a structure is an arbitrary value instead of the classical values {\it true} and {\it false} in first-order logic. It is important to notice that this framework has to account for the different types of results that can be obtained by evaluating a function; and it has to take into consideration the different types of operators that are allowed in function complexity classes. 
-%Our second specific goal is to show that the logical framework is appropriate to develop a descriptive complexity theory for function complexity classes. More specifically,  we plan to restate, as a proof of concept, the results already obtained in the area in terms of our logical framework, to show that it is general enough to provide a unified view of these results. Moreover, we plan to obtain logical characterizations of some of the fundamental function complexity classes.
-%Finally, our third specific goal is to take advantage of the machine-independent point of view of descriptive complexity to improve the understanding of the complexity class $\shp$. More specifically, we plan to obtain robust syntactic definitions of classes of counting problem in $\shp$ whose associated decision problems can be efficiently solved, and we plan to identify sub-classes of $\shp$ whose counting problems have good properties in terms of approximations. 
+%In this paper, we propose to study the descriptive complexity of function complexity classes in terms of Weighted Logics (WL), a general logical framework that combines boolean formulas (e.g. FO, SO) with operations over a fix semirings (e.g. $\bbN$). 
+%Specifically, we propose to restrict WL over natural numbers, called Quantitative Second Order Logics (QSO), and study its expressive power for defining function complexity classes over general structures. 
+%Interestingly, we show that fragments of QSO naturally captures classes like $\shp$, $\fp$ and $\fpspace$ among others. 
+%Then we study the structure of $\eqso$, a fragment of $\qso$ that captures $\shp$, by refining the hierarchy studied by Saluja et al. 
+%In particular, we show fragments of $\eqso$ that have good properties in terms of decidability, closure properties, and natural complete problems. 
+%Finally, we go beyond QSO by adding recursion over functions. We show that this new logic naturally captures $\fp$ and subclasses like $\shl$.
+
+
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
@@ -159,7 +139,7 @@ Finally, we go beyond QSO by adding recursion over functions. We show that this 
 \section{Adding recursion to QSO}\label{sec:beyond}
 \input{beyond}
 
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusions}
 \input{conclusions}
 
 
@@ -168,7 +148,7 @@ Finally, we go beyond QSO by adding recursion over functions. We show that this 
 
 
 
-\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtranS}
 \bibliography{biblio}
 
 \newpage
@@ -181,12 +161,15 @@ Finally, we go beyond QSO by adding recursion over functions. We show that this 
 
 \bigskip
 
+\newpage
 \subsection{Proofs from Section~\ref{sec:complexity}}
 \input{appendix-counting}
 
+\newpage
 \subsection{Proofs from Section~\ref{sec:syntactic}}
 \input{appendix-syntactic}
 
+\newpage
 \subsection{Proofs from Section~\ref{sec:beyond}}
 \input{appendix-beyond}
 
