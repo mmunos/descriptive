@@ -1,4 +1,4 @@
-%!TEX root = syntactic.tex
+%!TEX root = main.tex
 
 Inspired by the connection between $\shp$ and $\sfo$, a hierarchy of subclases of $\sfo$ was introduced in~\cite{SalujaST95} 
 by restricting the alternation of quantifiers in Boolean formulas.
@@ -18,11 +18,12 @@ if $\alpha$ is of the form
 $\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{X}, \bar{x})$,
 where $\bar{X}$ and $\bar{x}$ are sequences of zero or more second-order and first-order variables, respectively, and $\varphi(\bar{X}, \bar{x})$ is a formula in $\LL$. Notice that 
 a formula $\varphi(\bar{X}, \bar{x})$ in $\sh{\LL}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\LL$-PNF. 
-Moreover, a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $c + \Sigma_{i=1}^n \alpha_i$, where $c$ is a non-negative constant and each $\alpha_i$ is in 
-$\LL$-PNF.
-\begin{theorem}\label{theo-pnf-snf}
+Moreover, a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $\Sigma_{i=1}^n \alpha_i$ where each $\alpha_i$ is in $\LL$-PNF. 
+\begin{proposition}\label{theo-pnf-snf}
 Every formula in $\eqso(\LL)$ can be rewritten in $\LL$-SNF.
-\end{theorem}
+\end{proposition}
+If a formula is in $\LL$-PNF then clearly the formula is in $\LL$-SNF.
+Unfortunately, for some $\LL$ there exist formulas in $\eqso(\LL)$  that cannot be rewritten in $\LL$-PNF.
 Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, we need to understand the boundary between PNF and SNF. We do this in the following theorem. 
 \begin{theorem}\label{theo-pi1-pnf}
 For $i = 0,1$, there exists a formula $\alpha_i$ in $\QE{i}$ that is not equivalent to any formula in $\Sigma_i$-PNF. 
@@ -63,7 +64,7 @@ On the other hand, if $\logu{1} \subseteq \LL$ and $\LL$ is closed under conjunc
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \end{figure*}
 
-As a consequence of Theorems \ref{theo-pnf-snf} and \ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL$ equal to  $\Pi_1$, $\Sigma_2$ or $\Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy.
+As a consequence of Proposition~\ref{theo-pnf-snf} and Theorem~\ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL$ equal to  $\Pi_1$, $\Sigma_2$ or $\Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy.
 \begin{proposition}\label{prop-rest}
 The following properties hold:
 \begin{itemize}
@@ -71,6 +72,8 @@ The following properties hold:
 \item $\QE{1} \subsetneq \QU{1}$
 \end{itemize}
 \end{proposition}
-The results of this section are summarized in Figure \ref{fig-sfo-eqso}.
+The relationship between both hierarchies is summarized in Figure \ref{fig-sfo-eqso}.
+One can see there that the difference between our hierarchy and the one proposed in~\cite{SalujaST95} only differ in~$\Sigma_0$ and~$\Sigma_1$. 
+Actually, we show next that this difference is very crucial for finding classes of functions with easy decision versions and good closure properties.
 
  
