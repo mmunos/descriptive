@@ -31,20 +31,24 @@ However, when the algorithm starts checking whether $(\A,v,V)\models\varphi$ for
 Let $\alpha$ be a formula in $\eqso(\eso)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the number of accepting outputs of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. 
 We have that $f$ is a $\spp$ function over $\R$ and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
 
-For the other direction, Compton et al.~\cite{ComptonG96} proved that $\spp = \#\eso$. Since a function in $\#\eso$ can also be defined in $\eqso(\eso)$, then $\eqso(\eso)$ captures $\spp$ over ordered structures. \qed
+For the other direction, Compton et al.~\cite{ComptonG96} proved that $\spp = \#\eso$. Since a function in $\#\eso$ can also be defined in $\eqso(\eso)$, then $\eqso(\eso)$ captures $\spp$ over ordered structures.
 
 \medskip
 
 %%% DEMOSTRACION DE QFO(LFP) y FP
 \subsection*{Proof of Theorem~\ref{theo:capture-fp}}
 
-For the first condition, let $\alpha\in\qfo(\lfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \sem{\alpha}(\A)$.
+For the first condition, let $\alpha\in\qfo(\lfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{1,\ldots,n\}$. In the procedure we slightly extend the grammar of $\qfo(\lfp)$ to include constants. We replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\sa{x} \beta(x)$ is replaced by $(\beta(1)+\cdots+\beta(n))$ and $\pa{x}\beta(x)$ is replaced by $(\beta(1)\cdot\,\cdots\,\cdot\beta(n))$. Then each sub-formula $\varphi\in\lfp$ in $\alpha$ is evaluated in polynomial time and replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\fp$ and $f(\enc(\A)) = \sem{\alpha}(\A)$.
 	
-For the second condition, let $f\in \fp$ defined over some signature $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a formula that represents the following. Let $\A$ be an ordered structure over $\R$ with domain $A$. Consider a linear order over $A^{\ell}$ given by $\bar{a} < \bar{b}$, for any $\bar{a},\bar{b}\in A^{\ell}$. Let $w$ be a string of size $n^{\ell}$ the represents $f(\enc(\A))$ in binary. Let $(a_1,\ldots,a_{\ell})\in A^{\ell}$ be the $m$-th tuple in the given order (starting from 0). $\A\models\Phi(a_1,\ldots,a_{\ell})$ if an only if the $m$-th bit in $w$ is 1, from least to most significant. Since this condition can be computed in polynomial time, and $\lfp$ captures $\ptime$, this formula can be expressed in $\lfp$. We use
+For the second condition, let $f\in \fp$ defined over some signature $\R$.
+Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$.
+Let $\bar{x} = (x_1,\ldots,x_{\ell})$.
+Consider a procedure that receives $\enc(\A)$ and an assignation $\bar{a}$ to $\bar{x}$. Let $m$ be the position of $\bar{a}$ in the lexicographic order of the tuples in $A^{\ell}$. The procedure then computes the $m$-th bit of $f(\enc(\A))$, from least to most significant. Since this procedure works in polynomial time, it can be described by an $\lfp$ formula $\Phi(\bar{x})$. Then we use
 $$
-\alpha = \sa{x_1} \cdots \sa{x_{\ell}} \Phi(x_1,\ldots,x_{\ell})\cdot\varphi(x_1,\ldots,x_{\ell}),
+\alpha = \sa{\bar{x}} \Phi(\bar{x})\cdot\varphi(\bar{x}),
 $$
-where $\varphi(x_1,\ldots,x_{\ell}) := \pa{y_1}\cdots\pa{y_{\ell}}((y_1,\ldots,y_{\ell}) < (x_1,\ldots,x_{\ell}) \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$. \qed
+where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
+
 \medskip
 
 %%% DEMOSTRACION DE QSO(PFP) y FPSPACE
@@ -58,11 +62,14 @@ $$
 \varphi_{<}(X,Y) = \exists\bar{u}\big[\neg X(\bar{u})\wedge Y(\bar{u})\wedge \forall\bar{v}\big(
 \bar{u}<\bar{v}\to(X(\bar{u})\iff Y(\bar{v}))\big)\big].
 $$
-Consider a polynomial space algorithm over $\R\cup\{X\}$ that receives a $\R\cup\{X\}$-structure $\A'$. Let $X^{\A'}$ be the $p$-th subset in the given order (we consider 0-indexation). The algorithm simulates $f(\enc(\A))$ until $(2^{n^{\ell}}-p)$ characters have been written, but each character of the output is written over the last one. It accepts if and only if the last character written is $1$. Since this algorithm works in polynomial space, it can be described in $\pfp$ \cite{AbiteboulV89} by a formula $\Phi(X)$.
+Consider a polynomial space algorithm over $\R\cup\{X\}$ that receives a $\R\cup\{X\}$-structure $\A'$. Let $X^{\A'}$ be the $p$-th subset in the given order (we consider 0-indexation). The algorithm computes $f(\enc(\A))$ until $(2^{n^{\ell}}-p)$ characters have been written, but each character of the output is written over the last one. It accepts if and only if the last character written is $1$. Since this algorithm works in polynomial space, it can be described in $\pfp$ \cite{AbiteboulV89} by a formula $\Phi(X)$.
 
 Note that the formula also represents the following.
 For each $(\A,v,V)\in\ostr[\R]^*$, let $V(X)$ be the $p$-th subset with respect to this order and let $w$ be a string of size $2^{n^{\ell}}$ which represents the value of $f(\enc(\A))$ in binary. Then $(\A,v,V)\models\Phi(X)$ if and only if the $p$-th bit in $w$ is 1, from least to most significant. We define
-$$\alpha := \sa{X}(\Phi(X)\mult\varphi(X)),$$ where $\varphi(X) = \pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$. Note that for each $B\subseteq A^{\ell}$ such that $B$ is the $m$-th element in the given order, $\sem{\varphi(B)}(\A) = 2^m$. Therefore, $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
+$$
+\alpha := \sa{X}(\Phi(X)\mult\varphi(X)),
+$$ 
+where $\varphi(X) = \pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$. Note that for each $B\subseteq A^{\ell}$ such that $B$ is the $m$-th element in the given order, $\sem{\varphi(B)}(\A) = 2^m$. Therefore, $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
 
 \medskip
 
@@ -70,10 +77,13 @@ $$\alpha := \sa{X}(\Phi(X)\mult\varphi(X)),$$ where $\varphi(X) = \pa{Y}(\varphi
 %%% DEMOSTRACION DE QFO(PFP) y FPSPACE(poly)
 \subsection*{Proof of Corollary~\ref{cor:capture-fpspace-poly}}
 
-For the first condition, let $\alpha\in\qfo(\pfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{a_1,\ldots,a_n\}$. Replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\Sigma x \beta(x)$ is replaced by $(\beta(a_1)+\cdots+\beta(a_n))$ and $\Pi x \beta(x)$ is replaced by $(\beta(a_1)\cdot\,\cdots\,\cdot\beta(a_n))$. Then each sub-formula $\varphi\in\pfp$ in $\alpha$ is replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\nfpspace$ and $f(\enc(\A)) = \sem{\alpha}(\A)$.
+For the first condition, let $\alpha\in\qfo(\pfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{1,\ldots,n\}$. In the procedure we slightly extend the grammar of $\qfo(\pfp)$ to include constants. We replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\sa{x} \beta(x)$ is replaced by $(\beta(1)+\cdots+\beta(n))$ and $\pa{x}\beta(x)$ is replaced by $(\beta(1)\cdot\,\cdots\,\cdot\beta(n))$. Then each sub-formula $\varphi\in\pfp$ in $\alpha$ is evaluated in polynomial space and replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size which is evaluated and lastly given as output. Note that $f\in\nfpspace$ and $f(\enc(\A)) = \sem{\alpha}(\A)$.
 
-For the second condition, let $f\in \fpspace$ defined over some signature $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$. Let $\Phi(x_0,\ldots,x_{\ell-1})$ be a formula that represents the following. Let $\A$ be an ordered structure over $\R$ with domain $A$. Consider a linear order over $A^{\ell}$ given by $\bar{a} < \bar{b}$, for any $\bar{a},\bar{b}\in A^{\ell}$. Let $w$ be a string of size $n^{\ell}$ the represents $f(\enc(\A))$ in binary. Let $(a_1,\ldots,a_{\ell})\in A^{\ell}$ be the $m$-th tuple in the given order (starting from 0). $\A\models\Phi(a_1,\ldots,a_{\ell})$ if an only if the $m$-th bit in $w$ is 1, from least to most significant. Since this condition can be computed in polynomial space, and $\pfp$ captures $\pspace$, this formula can be expressed in $\pfp$. We use
+For the second condition, let $f\in \fpspace$ defined over some signature $\R$.
+Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$.
+Let $\bar{x} = (x_1,\ldots,x_{\ell})$.
+Consider a procedure that receives $\enc(\A)$ and an assignation $\bar{a}$ to $\bar{x}$. Let $m$ be the position of $\bar{a}$ in the lexicographic order of the tuples in $A^{\ell}$. The procedure then computes the $m$-th bit of $f(\enc(\A))$, from least to most significant. Since this procedure works in polynomial space, it can be described by an $\pfp$ formula $\Phi(\bar{x})$. Then we use
 $$
-\alpha = \sa{x_1} \cdots \sa{x_{\ell}} \Phi(x_1,\ldots,x_{\ell})\cdot\varphi(x_1,\ldots,x_{\ell}),
+\alpha = \sa{\bar{x}} \Phi(\bar{x})\cdot\varphi(\bar{x}),
 $$
-where $\varphi(x_1,\ldots,x_{\ell}) := \pa{y_1}\cdots\pa{y_{\ell}}((y_1,\ldots,y_{\ell}) < (x_1,\ldots,x_{\ell}) \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
+where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.

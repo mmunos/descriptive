@@ -349,17 +349,17 @@ effectively defines $\chsat$ as for every disjunction of Horn formulas $\theta =
 \vspace{1em}
 We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a polynomial-time procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
 $$
-\alpha = c + \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{x},\bar{y},\bar{z}),
+\alpha = \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{x},\bar{y},\bar{z}),
 $$
 where each $\varphi^i_j$ is a Horn clause.                                                                
 
 Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length(\bar{x})}$, each $\bar{b}\in A^{\length(\bar{y})}$ and each $\bar{c}\in A^{\length(\bar{z})}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
 $$
-c + \sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length(\bar{z})}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
+\sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length(\bar{x})}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length(\bar{y})}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length(\bar{z})}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
 $$
 Note that each $\fo$ formula over $(\bar{x},\bar{y},\bar{z})$ in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
 $$
-c + \sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
+\sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
 $$
 where every $\psi^{i}_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$.
 
