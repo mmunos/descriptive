@@ -71,7 +71,7 @@ Moreover, define formula $\beta(x, y, u, g)$ as follows:
 \end{multline*}
 Then our extended counting function is defined by the following formula:
 $$
-\sa{u} (\varphi_{\text{\rm first}}(u) \wedge \clfp{\beta(x,y,u,g)}.
+\sa{u} (\varphi_{\text{\rm first}}(u) \wedge \clfp{\beta(x,y,u,g)}).
 $$ 
 In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,u)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(u)$, which stores this value in $g(x,y,u)$ with $u$ the first element in the domain.  The other formula $\varphi_{\text{succ}}(v,u) \cdot g(x,y,v)$ is used as a counter that allows to reach a fixed point in the support of function $g$ in $n$ steps.
 \end{example}
@@ -105,7 +105,7 @@ In the following result we show how the fixed point operator introduced in this 
 %
 
 
-\subsection{Transitive Logics}
+\subsection{A logic with an operator for counting paths}
 
 It was shown in \cite{I86,I88} that first-order logic extended with a transitive closure operator captures $\nlog$. Inspired by this work, we extend the definition of $\qfo$ with an operator for counting the number of paths in a directed graph, and we show that it can be used to capture $\shl$. Besides, we show that the same idea can be used to extend $\qso$ allowing to capture harder complexity classes. 
 
@@ -130,7 +130,27 @@ As for the case of $\qso$, the logic $\tqso(\LL)$ is obtained by restricting $\v
 	$\tqso$ and $\tqso(\fo)$ captures $\fpspace$ over the class of ordered structures.
 \end{theorem}
 
-\marcelo{Deberiamos mostrar como el ejemplo anterior se generaliza para definir $[\pth \psi(\bar x, \bar y)]$ en terminos del operador ${\bf lfp}$.}
+\begin{theorem} \label{tqfo-subseteq}
+	$\tqfo(\fo) \subseteq \rqfo(\fo)$.
+\end{theorem}
+Given tuples $\bar x = (x_1, \ldots, x_\ell)$, $\bar y = (y_1, \ldots, y_\ell)$ of pairwise distinct first-order variables, define formula $\varphi_{\text{\rm lex}}(\bar x, \bar y)$ as follows:
+$$
+\bigvee_{i = 1}^\ell \bigg(\bigwedge_{j = 1}^{i -1} x_i = y_i\bigg) \wedge x_i < y_i.
+$$
+That is, $\varphi_{\text{\rm lex}}(\bar x, \bar y)$ holds if $\bar x$ is smaller than $\bar y$ in the lexicographic order on tuples with $\ell$ elements induced by the built-in order of each structure. Moreover, define formula $\varphi_{\text{\rm succ}}(\bar x, \bar y)$ as follows:
+$$
+\varphi_{\text{\rm lex}}(\bar x, \bar y) \wedge \neg \exists \bar z \, (\varphi_{\text{\rm lex}}(\bar x, \bar z) \wedge \varphi_{\text{\rm lex}}(\bar z, \bar y)).
+$$
+That is, $\varphi_{\text{\rm succ}}(\bar x, \bar y)$ holds if $\bar y$ is the successor of $\bar x$ in the lexicographic order on tuples with $\ell$ elements.
+With this notation, define $\tqsos$ to be the restriction of $\tqso$ where each occurrence of the operator ${\bf path}$ is of the form:
+$$
+[\pth (\psi(\bar{x}, \bar{X},\bar{y}, \bar{Y}) \wedge \varphi_{\text{\rm succ}}(\bar x, \bar y))],
+$$
+where $\psi(\bar{x}, \bar{X},\bar{y}, \bar{Y})$ satisfies the same conditions as in grammar \eqref{eq-def-tqso}. Then we have that:
+\begin{theorem} \label{tqfo-shl}
+	$\tqsos(\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
 %
 %\marcelo{Puede que este equivocado, pero me parece que teniamos una forma de capturar $\shp$ usando el operator ${\bf path}$. Pero no logro recordar como se hacia esto, y me parece que lo que habiamos escrito antes en esta seccion estaba equivocado: ``$\tqso(\fo)$ captures $\shp$ over the class of ordered structures". Claro que yo puedo estar usando una definicion distinta de $\tqso(\fo)$.}
 
