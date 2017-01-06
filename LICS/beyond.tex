@@ -10,34 +10,37 @@ We define the extension of $\qso$ with function symbols as follows. Assume that 
 	\sa{X} \alpha \  \mid \
 	\pa{X} \alpha,
 \end{multline}
-where $h \in \fs$, $\arity(h) = \ell$ and $x_1, \ldots, x_\ell$ is a sequence of (non-necessarily distinct) first-order variables. Given an $\R$-structure $\A$ with domain $A$, we say that $F$ is a function assignment for $\A$ if for every $h \in \fs$ with $\arity(h) = \ell$, we have that $F(h) :  A^\ell \to \N$. The notion of function assignment is used to extend the semantics of $\qso$ to the case of a formula of the form $h(x_1, \ldots, x_\ell)$. More precisely, given first-order and second-order assignments $v$ and $V$ for $\A$, respectively, 
+where $h \in \fs$, $\arity(h) = \ell$ and $x_1, \ldots, x_\ell$ is a sequence of (non-necessarily distinct) first-order variables. Given an $\R$-structure $\A$ with domain $A$, we say that $F$ is a function assignment for $\A$ if for every $h \in \fs$ with $\arity(h) = \ell$, we have that $F(h) :  A^\ell \to \N$. The notion of function assignment is used to extend the semantics of $\qso$ to the case of a quantitative formula of the form $h(x_1, \ldots, x_\ell)$. More precisely, given first-order and second-order assignments $v$ and $V$ for $\A$, respectively, 
 we have that:
 \begin{eqnarray*}
 \sem{h(x_1, \ldots, x_\ell)}(\A,v,V,F) & = & F(h)(v(x_1),\ldots, v(x_\ell)).
 \end{eqnarray*}
-As for the case of $\qfo$, we define $\fqfo$ by restricting $\varphi$ in \eqref{eq-fqso} to be a first-order formula, and by disallowing quantifiers $\Sigma X$ and $\Pi X$ in \eqref{eq-fqso}. 
+As for the case of $\qfo$, we define $\fqfo$ disallowing quantifiers $\Sigma X$ and $\Pi X$ in \eqref{eq-fqso}, and we define $\fqfo(\fo)$ by also imposing the restriction that $\varphi$ in \eqref{eq-fqso} is a first-order formula.
 
 
-\subsection{Recursive Logics}
+\subsection{A logic with a fixed point operator}
 
 We define an operator which extends Least Fixed Point Logic (LFP) \cite{I86,vardi1982complexity} to allow counting. 
-Fix a relational signature $\R$. Then the set of $\rqfo$ formulas over $\R$ is defined by the following grammar:
+Fix a relational signature $\R$. Then the set of $\rqfo(\fo)$ formulas over $\R$ is defined by the following grammar:
 \begin{multline*}
 	\alpha := \varphi \, \mid \, s \, \mid \, (\alpha \add \alpha) \, \mid\, (\alpha \mult \alpha) \, \mid \\
 	\sa{x} \alpha \, \mid\, 
 	\pa{x} \alpha \, \mid\,
 	\clfp{\beta(x_1, \ldots, x_\ell, h)},
 \end{multline*}
-where $x_1, \ldots, x_\ell$ is a sequence of pairwise distinct first-order variables and $\beta(x_1, \ldots, x_\ell, h)$ is an $\fqfo$-formula over $\R$ whose only function symbol is $h$ with $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(x_1,\ldots,x_\ell,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free in this formula.
+where $\varphi$ is an $\fo$-formula, $x_1, \ldots, x_\ell$ is a sequence of pairwise distinct first-order variables and $\beta(x_1, \ldots, x_\ell, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, with $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(x_1,\ldots,x_\ell,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free in this formula.
 
-Fix and $\R$-structure with domain $A$ and a quantitative formula $\clfp{\beta(x_1,\ldots,x_\ell,h)}$, and assume that $\F$ is the set of functions $f :A^\ell \to \N$. To define the semantics of $\clfp{\beta(x_1,\ldots,x_\ell,h)}$, we first show how $\beta(x_1,\ldots,x_\ell,h)$ can be interpreted as an operator $T_{\beta}$ on the set $\F$. More precisely, for every $f \in \F$ and tuple $(a_1, \ldots, a_\ell) \in A^\ell$, the function $T_{\beta}(f)$ satisfies that:
+Fix an $\R$-structure with domain $A$ and a quantitative formula $\clfp{\beta(x_1,\ldots,x_\ell,h)}$, and assume that $\F$ is the set of functions $f :A^\ell \to \N$. To define the semantics of $\clfp{\beta(x_1,\ldots,x_\ell,h)}$, we first show how $\beta(x_1,\ldots,x_\ell,h)$ can be interpreted as an operator $T_{\beta}$ on $\F$. More precisely, for every $f \in \F$ and tuple $(a_1, \ldots, a_\ell) \in A^\ell$, the function $T_{\beta}(f)$ satisfies that:
 \begin{eqnarray*}
 T_{\beta}(f)(a_1, \ldots, a_\ell) & = & \sem{\beta(x_1, \ldots, x_\ell, h)}(\A,v,F),
 \end{eqnarray*}
 where $v$ is a first-order assignment  for $\A$ such that $v(x_i) = a_i$ for every $i \in \{1, \ldots, \ell\}$, and $F$ is a function assignment for $\A$ such that $F(h) = f$. 
 
-As for the case of LFP, it would be natural to consider the partial order $\leq$ on $\F$ defined as $f \leq g$ if and only if $f(i) \leq g(i)$ for every $i \in \{1, \ldots, \ell\}$, and let the semantics of $\clfp{\beta(x_1,\ldots,x_\ell,h)}$ be the least fixed point of the operator $T_\beta$. However, $(\F, \leq)$ is not a complete lattice, so we do not have a Knaster-Tarski Theorem ensuring that such a fixed point exist. Instead, we generalize the semantics of LFP in the following way. Given a relation $R \subseteq A^\ell$, let $\chi_R$ be its characteristic function, that is $\chi_R(\bar a) = 1$ if $\bar a \in R$, and $\chi_R(\bar a) = 0$ otherwise. Moreover, given a function $f \in \F$, define the support of $f$, denoted by $\support(f)$, as $\{ \bar a \in A^\ell \mid f(\bar a) > 0 \}$. Notice that for a relation $R$ we have that $\support(\chi_R) = R$. In the definition of the semantics of LFP, an operator $T$ on relations is considered, and the semantics is defined in terms of the least fixed point for $T$, that is, a relation $R$ such that $T(R) = R$ and $R \subseteq S$ for every $S$ such that $T(S) = S$ \cite{I86,vardi1982complexity}. We can view the computation of this fixed point in terms of functions if we consider an operator $T^\star$ on characteristic functions defined as $T^\star(\chi_R) = \chi_{T(R)}$. In particular, the conditions defining the least fixed point of $T$ can be rewritten as follows in terms of $T^\star$: $\support(T^\star(\chi_R)) = \support(\chi_R)$ and $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that 
-$\support(T^\star(\chi_{S})) = \support(\chi_S)$. This condition can be generalized in the obvious way to the case of the operator $T_\beta$: a function $f \in \F$ is a {\em s-fixed point} of $T_{\beta}$ if $\support(T_\beta(f)) = \support(f)$, and $f$ is a {\em least s-fixed point} of $T_{\beta}$ if $f$ is a s-fixed point of $T_\beta$ and for every s-fixed point $g$ of $T_\beta$ it holds that $\support(f) \subseteq \support(g)$. The existence of such fixed point is ensured by the following lemma:
+As for the case of LFP, it would be natural to consider the partial order $\leq$ on $\F$ defined as $f \leq g$ if and only if $f(i) \leq g(i)$ for every $i \in \{1, \ldots, \ell\}$, and let the semantics of $\clfp{\beta(x_1,\ldots,x_\ell,h)}$ be the least fixed point of the operator $T_\beta$. However, $(\F, \leq)$ is not a complete lattice, so we do not have a Knaster-Tarski Theorem ensuring that such a fixed point exist. Instead, we generalize the semantics of LFP as follows. In the definition of the semantics of LFP, an operator $T$ on relations is considered, and the semantics is defined in terms of the least fixed point of $T$, that is, a relation $R$ such that: (a) $T(R) = R$, and (2) $R \subseteq S$ for every $S$ such that $T(S) = S$ \cite{I86,vardi1982complexity}.  We can view $T$ as an operator on functions if we consider the characteristic function of a relation. Given a relation $R \subseteq A^\ell$, let $\chi_R$ be its characteristic function, that is $\chi_R(\bar a) = 1$ if $\bar a \in R$, and $\chi_R(\bar a) = 0$ otherwise. Then define an operator $T^\star$ on characteristic functions as $T^\star(\chi_R) = \chi_{T(R)}$. Moreover, we can rewrite the conditions defining a least fixed point of $T$ in terms of the operator $T^\star$ if we consider the notion of support of a function. Given a function $f \in \F$, define the support of $f$, denoted by $\support(f)$, as $\{ \bar a \in A^\ell \mid f(\bar a) > 0 \}$. Then given that $\support(\chi_R) = R$, we have that the conditions (a) and (b) are equivalent to the following conditions on $T^\star$:
+%Given a relation $R \subseteq A^\ell$, let $\chi_R$ be its characteristic function, that is $\chi_R(\bar a) = 1$ if $\bar a \in R$, and $\chi_R(\bar a) = 0$ otherwise. Moreover, given a function $f \in \F$, define the support of $f$, denoted by $\support(f)$, as $\{ \bar a \in A^\ell \mid f(\bar a) > 0 \}$. Notice that for a relation $R$ we have that $\support(\chi_R) = R$.  In particular, the conditions defining the least fixed point of $T$ can be rewritten as follows in terms of $T^\star$: 
+$\support(T^\star(\chi_R)) = \support(\chi_R)$, and $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that  $\support(T^\star(\chi_{S})) = \support(\chi_S)$. 
+To define a notion of fixed point for $T_\beta$ we simply generalized these conditions. More precisely, %These conditions can be generalized in the obvious way to the case of the operator $T_\beta$: 
+a function $f \in \F$ is a {\em s-fixed point} of $T_{\beta}$ if $\support(T_\beta(f)) = \support(f)$, and $f$ is a {\em least s-fixed point} of $T_{\beta}$ if $f$ is a s-fixed point of $T_\beta$ and for every s-fixed point $g$ of $T_\beta$ it holds that $\support(f) \subseteq \support(g)$. The existence of such fixed point is ensured by the following lemma:
 \begin{lemma}\label{lem-support}
 If $f,g \in \F$ and $\support(f) \subseteq \support(g)$, then $\support(T_\beta(f)) \subseteq \support(T_\beta(g))$.
 \end{lemma}
@@ -48,7 +51,7 @@ In fact, as for the case of LFP, this lemma gives us a simple way to compute the
 
 \begin{example}
 %As an example, 
-We would like to define a $\rqfo$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the relational signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
+We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the relational signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
 $$
 %\alpha(x,y,R,\pi) = 
 %(\neg \exists zR(z))\cdot(x = y) 
@@ -68,11 +71,10 @@ Moreover, define formula $\beta(x, y, u, g)$ as follows:
 \end{multline*}
 Then our extended counting function is defined by the following formula:
 $$
-\sa{u} (\varphi_{\text{\rm first}}(u) \wedge \clfp{\beta(x,y,u,g)}.
+\sa{u} (\varphi_{\text{\rm first}}(u) \wedge \clfp{\beta(x,y,u,g)}).
 $$ 
 In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,u)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(u)$, which stores this value in $g(x,y,u)$ with $u$ the first element in the domain.  The other formula $\varphi_{\text{succ}}(v,u) \cdot g(x,y,v)$ is used as a counter that allows to reach a fixed point in the support of function $g$ in $n$ steps.
 \end{example}
-
 %
 %
 %It is well known that least fixed point logic is contained in second-order logic \cite{L04}. In the following theorem we show that the same holds in our case.
@@ -80,8 +82,7 @@ In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$
 %$\rqfo \subseteq \qso$
 %%	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
 %\end{theorem}
-
-The following is the main result of this section:
+In the following result we show how the fixed point operator introduced in this section can be used to capture (over the class of ordered structures) the fundamental class of functions that can be computed in polynomial time.
 \begin{theorem} \label{rqfo-fo-cap}
 	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
 \end{theorem}
@@ -104,7 +105,7 @@ The following is the main result of this section:
 %
 
 
-\subsection{Transitive Logics}
+\subsection{A logic with an operator for counting paths}
 
 It was shown in \cite{I86,I88} that first-order logic extended with a transitive closure operator captures $\nlog$. Inspired by this work, we extend the definition of $\qfo$ with an operator for counting the number of paths in a directed graph, and we show that it can be used to capture $\shl$. Besides, we show that the same idea can be used to extend $\qso$ allowing to capture harder complexity classes. 
 
@@ -129,7 +130,27 @@ As for the case of $\qso$, the logic $\tqso(\LL)$ is obtained by restricting $\v
 	$\tqso$ and $\tqso(\fo)$ captures $\fpspace$ over the class of ordered structures.
 \end{theorem}
 
-\marcelo{Deberiamos mostrar como el ejemplo anterior se generaliza para definir $[\pth \psi(\bar x, \bar y)]$ en terminos del operador ${\bf lfp}$.}
+\begin{theorem} \label{tqfo-subseteq}
+	$\tqfo(\fo) \subseteq \rqfo(\fo)$.
+\end{theorem}
+Given tuples $\bar x = (x_1, \ldots, x_\ell)$, $\bar y = (y_1, \ldots, y_\ell)$ of pairwise distinct first-order variables, define formula $\varphi_{\text{\rm lex}}(\bar x, \bar y)$ as follows:
+$$
+\bigvee_{i = 1}^\ell \bigg(\bigwedge_{j = 1}^{i -1} x_i = y_i\bigg) \wedge x_i < y_i.
+$$
+That is, $\varphi_{\text{\rm lex}}(\bar x, \bar y)$ holds if $\bar x$ is smaller than $\bar y$ in the lexicographic order on tuples with $\ell$ elements induced by the built-in order of each structure. Moreover, define formula $\varphi_{\text{\rm succ}}(\bar x, \bar y)$ as follows:
+$$
+\varphi_{\text{\rm lex}}(\bar x, \bar y) \wedge \neg \exists \bar z \, (\varphi_{\text{\rm lex}}(\bar x, \bar z) \wedge \varphi_{\text{\rm lex}}(\bar z, \bar y)).
+$$
+That is, $\varphi_{\text{\rm succ}}(\bar x, \bar y)$ holds if $\bar y$ is the successor of $\bar x$ in the lexicographic order on tuples with $\ell$ elements.
+With this notation, define $\tqsos$ to be the restriction of $\tqso$ where each occurrence of the operator ${\bf path}$ is of the form:
+$$
+[\pth (\psi(\bar{x}, \bar{X},\bar{y}, \bar{Y}) \wedge \varphi_{\text{\rm succ}}(\bar x, \bar y))],
+$$
+where $\psi(\bar{x}, \bar{X},\bar{y}, \bar{Y})$ satisfies the same conditions as in grammar \eqref{eq-def-tqso}. Then we have that:
+\begin{theorem} \label{tqfo-shl}
+	$\tqsos(\fo)$ captures $\shp$ over the class of ordered structures.
+\end{theorem}
+
 %
 %\marcelo{Puede que este equivocado, pero me parece que teniamos una forma de capturar $\shp$ usando el operator ${\bf path}$. Pero no logro recordar como se hacia esto, y me parece que lo que habiamos escrito antes en esta seccion estaba equivocado: ``$\tqso(\fo)$ captures $\shp$ over the class of ordered structures". Claro que yo puedo estar usando una definicion distinta de $\tqso(\fo)$.}
 
