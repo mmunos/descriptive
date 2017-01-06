@@ -1,0 +1,24 @@
+There are counting complexity classes that do not fit in our framework because either the output of a function in not a natural numbers (e.g. a negative number) or the class is not defined purely in terms of arithmetical operations (e.g. min and max).
+To remedy this problem, we show here how to easily extend $\qso$ in order to capture these classes that go beyond our logical framework. 
+
+It is well-known that $\shp$ is not closed under subtraction, not either closed under subtraction by one, by some complexity-theoretical assumption~\cite{OH93}.
+To overcome this issue, people introduced the class $\gp$~\cite{fenner1994gap} defined as the class of functions $f$ such that for some non-deterministic polynomial time Turing machine, $f(x)$ is the number of accepting runs minus the number of rejecting runs.
+That is, $\gp$ is the closure of $\shp$ functions under subtraction and, by definition, it can compute negative values. 
+
+Given that our logical framework was built on top of non-negative values, we need to extend $\qso$ in order to describe functions in $\gp$. 
+The most elegant way to do this is by allowing constants coming from $\bbZ$ instead of just $\bbN$. 
+Formally, we define the logic $\qsoz$ whose syntax is the same as in (\ref{syntax}) and semantics is the same as in Table~\ref{tab-semantics} except that constant $s$ come from $\bbZ$.  
+Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with negative constants.
+\begin{example}
+	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. Then this can be easily done in $\qsoz$ with the following formula:
+	\[
+	\alpha_4 := \alpha_2 + (-1) \cdot \alpha_1 
+	\]
+\end{example}
+Adding negative constants is a mild extension to allow subtraction in the logic. 
+In fact, this is what we need to capture classes like $\gp$.
+\begin{proposition} \label{prop:capture-gapp}
+	$\eqsoz(\fo)$ captures $\gp$ over ordered structures.
+\end{proposition}
+The previous result can be proved straightforward from the characterization of $\shp$ and the definition of $\gp$. 
+However, we believe that this is a relevant result for showing how robust is $\qso$ in order to capture diverse complexity classes.

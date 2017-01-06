@@ -12,9 +12,9 @@ Given a relational signature $\R$, the set of Quantitative Second-Order logic fo
 %& &  \sa{x} \alpha \ \mid \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
 %\end{array}
 %\]
-\begin{multline*}
-\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha 
-\end{multline*}
+\begin{multline}
+\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha \label{syntax} 
+\end{multline}
 where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. If $\R$ is not mentioned, $\qso$ refers to the union of the sets of $\qso$ formulas over $\R$, for every relational signature~$\R$.
 \marcelo{En la gramatica de la logica deberiamos incluir la formula $\top$ que discutimos, la cual representa true y para la cual se tiene que $\sem{\top}(\A, v, V) = 1$. Les parece?}
  
@@ -65,7 +65,7 @@ Let $\R$ be a relational signature, $\A$ be an ordered finite $\R$-structure wit
 %$$
 A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a relational signature $\R$, then for every ordered finite $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that $\sem{\alpha}(\A, v_1, V_1) = \sem{\alpha}(\A, v_2, V_2)$.
 Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
-\begin{example}
+\begin{example}\label{ex:cliques}
 Let $\bG = \{E(\cdot,\cdot)\}$ be the vocabulary for graphs and $\fG$ be an ordered finite $\bG$-structure encoding a non-directed graphs. 
 Suppose that we want to count the number of triangles in $\fG$. Then this can be defined with the following QSO-formula:
 \begin{multline*}
