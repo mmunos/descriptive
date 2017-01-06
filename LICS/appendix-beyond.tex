@@ -1,9 +1,9 @@
 \subsection*{Proof of Theorem \ref{tqfo-shl}}
 
-Let $\R$ be some relational signature.  First we address the first condition in the Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\cdot\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure, on each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value, and rejects otherwise. This is repeated $n^{\length(\bar{x})}$ times, and it generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+Let $\R$ be some relational signature.  First we address the first condition in the Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\cdot\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure starts by setting $\bar{a} = v(\bar{x})$. On each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value for $\bar{a}$, and rejects otherwise. If at any point we obtain that $\bar{a} = v(\bar{y})$, we generate an accepting branch, and continue simulating the procedure in the current branch. We simulate $n^{\length(\bar{x})}$ iterations of the procedure, and this generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 
 \vspace{1em}
-For the second condition, let $f \in \shl$ defined over some signature $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, and $q_{\ell}$ is only final state of $M$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
+For the second condition, let $f \in \shl$ defined over some signature $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, $q_{\ell}$ is only final state of $M$ and suppose $\Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ is the set of transitions in $M$. We also suppose that the machine stops when it reaches a final state. Formally, for each $a,b,c\in\{0,1\}$, each $op_1,op_2\in\{-1,=,+1\}$ and state $q\in Q$, we have $(q_{\ell},a,b,op_1,c,op_2,q)\not\in\Delta$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
 
 We represent configurations with a tuple of fixed size. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ describes that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ describes that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
 $$
@@ -23,7 +23,7 @@ As a first approach, we will use a 9-tuple $\bar{a} = (a_1,\ldots,a_9)$ to repre
 \newcommand\algj{\mathtt{j}}
 
 
-The problem that arises from this representation, is that to describe a transition in $M$ we need to read an arbitrary character in the working tape. In the example, this translates to obtaining the $a_3$-th bit in $a_4$. Furthermore, to represent the following configuration, we need compute $a_4$ with the $a_3$-th bit flipped. This is generally not possible to describe with an $\fo$ formula. To deal with this issue, consider the following procedure. (In the example it would receive $\algx = a_4$ and $\algi = a_3$.)
+The problem that arises from this representation, is that to describe a transition in $M$ we need to read an arbitrary character in the working tape. (In the example, this translates to obtaining the $a_3$-th bit in $a_4$. Furthermore, to represent the next configuration, we need compute $a_4$ with the $a_3$-th bit flipped.) This is generally not possible to describe with an $\fo$ formula. To deal with this issue, consider the procedure defined in Algorithm \ref{switch1to0}. (In the example the procedure would receive $\algx = a_4$ and $\algi = a_3$.)
 
 \begin{algorithm}
 	\caption{If the $\algi$-th bit in $\algx$ is 1 replace it by 0 and return the result}
@@ -289,7 +289,7 @@ and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x}
 
 
 
-
+\medskip
 
 \subsection*{Proof of Theorem \ref{tqso-fo-fpsace}}
 
@@ -308,10 +308,31 @@ If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch wher
 If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ on input $(A,v[1/x],V)$, and on each accepting branch, instead of accepting we simulate $M_{\beta}$ on input $(A,v[2/x],V)$, and so on. 
 If $\alpha = \sa{X}\beta$, for each $B\subseteq A^{\arity(X)}$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v,V[B/X])$.
 If $\alpha = \pa{X}\beta$, we simulate $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\subseteq A^{\arity(X)}$. 
-If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure, on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. 
-This is repeated $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ times, and it generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
+If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure starts with $(\bar{b},\bar{B}) = (v(\bar{x}),V(\bar{X}))$, then on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. If at any point we obtain that $(\bar{b}, \bar{B}) = (v(\bar{y}),V(\bar{Y}))$ we generate a new accepting branch, and we continue with the procedure.
+We compute $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ iterations of the procedure, which generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
 This ends the construction of the algorithm. 
 Consider $f$ as the $\shpspace$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 
 \vspace{1em}
-For the second part 
+For the second part let $f\in\fpspace$ over some relational signature $\R$. We use our proof for theorem \ref{theo:capture-fpspace} and recall the formula
+$$
+\alpha := \sa{X}(\Phi(X)\mult\gamma(X))
+$$
+that satisfies $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$, where $\Phi(X)$ is a $\pfp$ formula that models a $\pspace$ language over the encoding of structures in $\ostr[\R\cup\{X\}]$. The typical reduction  for this \cite{G07} uses a first-order over $\R\cup\{X,R\}$ formula $\psi(R,\bar{x})$ and describes $\Phi = \exists\bar{y}\,[\mathbf{pfp}\,R(\bar{x}):\psi(R,\bar{x})](\bar{y})$ (note that $X$ might be mentioned in $\psi$). We will provide an equivalent formula $\zeta(X)$ in $\tqso(\fo)$:
+$$
+\zeta(X) := \sa{R}\sa{S}\sa{Y}[\pth\varphi(X,R,Y,S)]\mult\forall\bar{x}(X(\bar{x})\leftrightarrow Y(\bar{x}))\mult\forall\bar{y}\neg R(\bar{y})\mult\forall\bar{y}(S(\bar{y})\leftrightarrow\psi(S,\bar{y}))\mult\exists\bar{y}S(\bar{y}),
+$$
+where $\varphi$ is defined as:
+$$
+\varphi(X,R,Y,S) := \forall\bar{x}(X(\bar{x})\leftrightarrow Y(\bar{x}))\wedge\forall\bar{y}(S(\bar{y})\leftrightarrow\psi(R,\bar{y}))\wedge\neg\forall\bar{y}(R(\bar{y})\leftrightarrow\psi(R,\bar{y})).
+$$
+The formula $\neg\forall\bar{y}(R(\bar{y})\leftrightarrow\psi(R,\bar{y}))$ prevents $R$ from already being a fixed point. This way, the operator finds a fixed point $S$ and then stops iterating. It can be checked that in the graph described for this operator, each node has out-degree and in-degree at most 1. So $\sem{\zeta(X)}(\A,v,V)$ takes the value 0 or 1. Then the formula
+$$
+\alpha := \sa{X}(\zeta(X)\mult\gamma(X))
+$$
+is in $\tqso(\fo)$ and satisfies $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\A\in\ostr[\R]$.
+
+\subsection*{Proof of Theorem \#P}
+
+First we prove the first condition in Definition \ref{def:cap}. Let $\alpha$ be a formula $\tqso(\fo)$ with the succ condition.
+
