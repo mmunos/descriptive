@@ -84,7 +84,7 @@ In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$
 %%	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
 %\end{theorem} 
 Note that, in contrast to $\lfp$-logic, here we do not need to impose any positive restriction to the formula $\beta(\x,h)$.
-Indeed, since $\beta$ is constructed over the natural numbers based on the monotone operators of sum and product, it is not necessary to add any restriction to the base formula.
+Indeed, since $\beta$ is constructed from monotones operations over the natural numbers, it is not necessary to add any restriction to the base formula.
 In the following result we show how the fixed point operator introduced in this section can be used to capture the fundamental class of functions that can be computed in polynomial time.
 \begin{theorem} \label{rqfo-fo-cap}
 	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
@@ -105,8 +105,11 @@ In the following result we show how the fixed point operator introduced in this 
 %\end{theorem}
 %
 
-It was shown in \cite{I86,I88} that $\fo$ extended with a transitive closure operator captures $\nlog$. Moreover, it was shown in \cite{I83} that $\so$ extended with a transitive closure operator captures $\pspace$. Inspired by this work, we extend the definition of $\qfo$ with an operator for counting the number of paths in a directed graph defined in terms of $\rqfo$.
-Then we show that it can be used to capture $\shl$. Besides, we show that the same idea can be used to extend $\qso$ allowing to capture harder complexity classes. 
+It was shown in \cite{I86,I88} that $\fo$ extended with a transitive closure operator captures $\nlog$. 
+%Moreover, it was shown in \cite{I83} that $\so$ extended with a transitive closure operator captures $\pspace$. 
+Inspired by this work, we show that a restricted version of $\rqfo$ can be used to capture $\shl$, the counting version of $\nlog$. 
+Specifically, we use $\rqfo$ to define an operator for counting the number of paths in a directed graph to later show that it can be used to capture $\shl$. 
+%Besides, we show that the same idea can be used to extend $\qso$ allowing to capture harder complexity classes. 
 
 Given a relation signature $\R$, the set of transitive $\qfo$ formulas ($\tqfo$-formulas) is defined as an extension of $\qfo$ with the operator:
 %\begin{multline}
@@ -119,15 +122,15 @@ Given a relation signature $\R$, the set of transitive $\qfo$ formulas ($\tqfo$-
 \[
 [\pth \psi(\bar{x},\bar{y})]
 \]
-where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined by using $\rqfo(\fo)$ as follows. 
-Similar than Example~\ref{ex:count-path}, suppose that the formula $\psi(\bar{x},\bar{y})$ define a (directed) graph over tuples in $A^k$ ($A$ is the domain of $\A$) such that for every $\a, \b \in A^k$ there exists an edge $(\a, \b)$ if $\A \models \psi(\bar a, \bar b)$. 
+where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined in terms of $\rqfo(\fo)$ as follows. 
+Similar than Example~\ref{ex:count-path}, the formula $\psi(\bar{x},\bar{y})$ indirectly defines a (directed) graph over tuples in $A^k$ such that for every $\a, \b \in A^k$ there exists an edge $(\a, \b)$ if $\A \models \psi(\bar a, \bar b)$. 
 Define formula $\beta_{\psi(\bar{x},\bar{y})}(\x, \y, \t, g)$ as follows:
 \begin{multline*}
 (\psi(\bar{x},\bar{y}) + \sa{\z} g(\x,\z,\t)\cdot \psi(\z,\y)) \cdot \varphi_{\text{\rm first}}(\t) \ +\\
 \sa{\t'} \varphi_{\text{succ}}(\t',\t) \cdot \left(\sa{\x'} \sa{\y'} g(\x',\y',\t') \right)
 \end{multline*}
 where $\varphi_{\text{\rm first}}$ and $\varphi_{\text{succ}}$ define now the first and successor predicates over the lexicographic order of tuples induced by~$<$.
-Then the semantics of the path operator is defined by the semantics of the following equivalent $\rqfo$ formula:
+Then the semantics of the path operator is defined by the following equivalent $\rqfo$ formula:
 \[
 [\pth \psi(\bar{x}, \bar{y})] := \sa{\t} (\varphi_{\text{\rm first}}(\t) \wedge \clfp{\beta_{\psi(\bar{x},\bar{y})}(\x,\y,\t,g)})
 \]
