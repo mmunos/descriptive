@@ -1,8 +1,9 @@
 %!TEX root = main.tex
 
-In the previous sections, we use weighted logics to give a framework for descriptive complexity of functions. Here, we go beyond weighted logics to add unexplored quantifiers at the quantitative level. Specifically, we give the first steps on defining quantitative recursion. This goal is not trivial for two reasons: (1) we want to add recursion over functions which, in general, it is a difficult task and (2) it is not clear what is the right notion of ``fixed point'' for recursive functions. 
-Towards this goal, we show first how to extend $\qso$ with function symbols to later use them to define recursion at a quantitative level. Furthermore,  we define some sort of least fixed point that we called \emph{least s-fixed point} and, as a proof of concept, we show that it captures $\fp$.
-Further, we use our new tool to define an operator for counting paths in a graph, a natural generalization of the transitive closure operator~\cite{immerman1999descriptive}, and show that this captures the expressiveness of~$\shl$.
+In the previous sections, we use weighted logics to give a framework for descriptive complexity of functions. Here, we go beyond weighted logics to add unexplored quantifiers at the quantitative level. Specifically, we give the first steps on defining quantitative recursion. This goal is not trivial for two reasons: (1) we want to add recursion over functions and (2) it is not clear what could be the right notion of ``fixed point'' . 
+Towards this goal, we show first how to extend $\qso$ with function symbols to later use them to define recursion at a quantitative level. 
+Furthermore, we define a natural generalization of (boolean) least fixed point for functions that we called \emph{least s-fixed point} and, as a proof of concept, we show that it captures $\fp$.
+Finally,we use our new tool to define an operator for counting paths in a graph, a natural generalization of the transitive closure operator~\cite{immerman1999descriptive}, and show that this captures the expressiveness of~$\shl$.
 
 For defining recursion, we first need to define an extension of $\qso$ with function symbols. Assume that $\fs$ is an infinite set of function symbols, where each $h \in \fs$ has an associated arity, which is denoted by $\arity(h)$. Then the set of $\fqso$ formulas over a relational signature $\R$ is defined by the following grammar:
 \begin{multline}
@@ -22,10 +23,11 @@ we have that:
 As for the case of $\qfo$, we define $\fqfo$ disallowing quantifiers $\Sigma X$ and $\Pi X$ in \eqref{eq-fqso}.
 
 It worths noting that function symbols represent in $\fqso$ functions from tuples to numbers and cannot be compared to the classical notion of (boolean) function symbol in first-order logics~\cite{enderton2001mathematical}. 
-Furthermore, one could see a function symbol as an ``oracle'' that is instantiated by the function assignment and is used to express another function. As far as we know, this is the first paper proposing this extension on weighted logics and it would be interesting to study this concept further (i.e. outside recursion).
+Furthermore, one could see a function symbol as an ``oracle'' that is instantiated by the function assignment. 
+As far as we know, this is the first paper proposing this extension on weighted logics and it would be interesting to study this concept further (i.e. outside recursion).
 
-We define an operator which extends Least Fixed Point Logic (LFP) \cite{I86,vardi1982complexity} to allow counting. 
-We show how to define this operator in $\qfo(\fo)$ and we discuss how to extend these ideas to $\qso$ towards the end of the section. 
+We define an operator which extends Least Fixed Point Logic (LFP) \cite{I86,vardi1982complexity} over $\fo$ to allow counting. 
+%We show how to define this operator in $\qfo(\fo)$ and we discuss how to extend these ideas to $\qso$ towards the end of the section. 
 Fix a relational signature $\R$. Then the set of $\rqfo(\fo)$ formulas (Recursive $\qfo$) over $\R$ is defined as an extension of $\qfo(\fo)$ by adding the operator $\clfp{\beta(\x, h)}$ where $\x = (x_1, \ldots, x_\ell)$ is a sequence of $\ell$ distinct first-order variables and $\beta(\x, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, with $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(\x,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free in this formula.
 
 Fix an $\R$-structure with domain $A$ and a quantitative formula $\clfp{\beta(\x,h)}$, and assume that $\F$ is the set of functions $f :A^\ell \to \N$. To define the semantics of $\clfp{\beta(\x,h)}$, we first show how $\beta(\x,h)$ can be interpreted as an operator $T_{\beta}$ on $\F$. More precisely, for every $f \in \F$ and tuple $\a = (a_1, \ldots, a_{\ell}) \in A^\ell$, the function $T_{\beta}(f)$ satisfies that:
@@ -65,7 +67,7 @@ E(x,y) + \sa{z} f(x,z)\cdot E(z,y).
 $$
 We have that $\clfp{\alpha(x,y,f)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain encoding an acyclic directed graph. Moreover, assume that $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\alpha(x,y,f)}(\A,v)$ is equal to the  number of paths in $\A$ from $b$ to $c$ of length at most $n$.
 
-Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are the $\fo$-formulas for defining the first and successor predicates, respectively, of the total-order $<$. Moreover, define formula $\beta(x, y, t, g)$ as follows:
+Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are the $\fo$-formulas for defining the first and successor predicates, respectively, of $<$. Moreover, define formula $\beta(x, y, t, g)$ as follows:
 \begin{multline*}
 (E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t) \ +\\
 \sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)
@@ -84,8 +86,10 @@ In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$
 %%	Given a positive $\fo$ formula $\varphi(\bar{x},R)$ and a $\qfo$ formula $\alpha(\bar{x})$, there exists a $\qso$ formula $\beta(\bar{x})$ such that $\sem{[\alfp\varphi(\bar{x},R)\mid \alpha(\bar{x},R)](\bar{x})} = \sem{\beta(\bar{x})}$.
 %\end{theorem} 
 Note that, in contrast to $\lfp$-logic, here we do not need to impose any positive restriction to the formula $\beta(\x,h)$.
-Indeed, since $\beta$ is constructed from monotones operations over the natural numbers, it is not necessary to add any restriction to the base formula.
-In the following result we show how the fixed point operator introduced in this section can be used to capture the fundamental class of functions that can be computed in polynomial time.
+Indeed, since $\beta$ is constructed from monotones operations (i.e. sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.
+
+Now that a least fixed point operator over functions is defined, the next step is to understand its expressive power.
+In the following result we show how lsfp-operator can be used to capture all functions that can be computed in polynomial time.
 \begin{theorem} \label{rqfo-fo-cap}
 	$\rqfo(\fo)$ captures $\fp$ over the class of ordered structures.
 \end{theorem}
@@ -105,13 +109,14 @@ In the following result we show how the fixed point operator introduced in this 
 %\end{theorem}
 %
 
+Our last goal in this section is to use the new characterization of $\fp$ to explore classes below it.
 It was shown in \cite{I86,I88} that $\fo$ extended with a transitive closure operator captures $\nlog$. 
 %Moreover, it was shown in \cite{I83} that $\so$ extended with a transitive closure operator captures $\pspace$. 
 Inspired by this work, we show that a restricted version of $\rqfo$ can be used to capture $\shl$, the counting version of $\nlog$. 
-Specifically, we use $\rqfo$ to define an operator for counting the number of paths in a directed graph to later show that it can be used to capture $\shl$. 
+Specifically, we use $\rqfo$ to define an operator for counting the number of paths in a directed graph which is exactly what we need for $\shl$. 
 %Besides, we show that the same idea can be used to extend $\qso$ allowing to capture harder complexity classes. 
 
-Given a relation signature $\R$, the set of transitive $\qfo$ formulas ($\tqfo$-formulas) is defined as an extension of $\qfo$ with the operator:
+Given a relation signature $\R$, the set of transitive $\qfo$ formulas ($\tqfo$-formulas) is defined as an extension of $\qfo$ with the operator
 %\begin{multline}
 %	\label{eq-def-tqso}
 %	\alpha := \varphi \, \mid \, s \, \mid \, (\alpha \add \alpha) \, \mid\, (\alpha \mult \alpha) \, \mid \, 
@@ -119,30 +124,33 @@ Given a relation signature $\R$, the set of transitive $\qfo$ formulas ($\tqfo$-
 %	\pa{x} \alpha \, \mid \\ 
 %	\sa{X} \alpha \, \mid \, \pa{X} \alpha \, \mid \, [\pth \psi(\bar{x}, \bar{X},\bar{y}, \bar{Y})],
 %\end{multline}
-\[
+$
 [\pth \psi(\bar{x},\bar{y})]
-\]
-where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined in terms of $\rqfo(\fo)$ as follows. 
-Similar than Example~\ref{ex:count-path}, the formula $\psi(\bar{x},\bar{y})$ indirectly defines a (directed) graph over tuples in $A^k$ such that for every $\a, \b \in A^k$ there exists an edge $(\a, \b)$ if $\A \models \psi(\bar a, \bar b)$. 
-Define formula $\beta_{\psi(\bar{x},\bar{y})}(\x, \y, \t, g)$ as follows:
+$ where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined in terms of $\rqfo(\fo)$ as follows. 
+Given an $\R$-structure $\A$ with domain $A$, define a (directed) graph $\cG_{\psi}(\A) = (N,E)$ such that $N = A^k$ and for every pair $\bar b, \bar c \in N$, it holds that $(\bar b, \bar c) \in E$ if, and only if, $\A \models \psi(\bar b, \bar c)$.
+Similar than for Example~\ref{ex:count-path}, we can count the paths of length at most $|A^k|$ with the formula $\beta_{\psi(\bar{x},\bar{y})}(\x, \y, \t, g)$:
 \begin{multline*}
-(\psi(\bar{x},\bar{y}) + \sa{\z} g(\x,\z,\t)\cdot \psi(\z,\y)) \cdot \varphi_{\text{\rm first}}(\t) \ +\\
-\sa{\t'} \varphi_{\text{succ}}(\t',\t) \cdot \left(\sa{\x'} \sa{\y'} g(\x',\y',\t') \right)
+(\psi(\bar{x},\bar{y}) + \sa{\z} g(\x,\z,\t)\cdot \psi(\z,\y)) \cdot \varphi_{\text{\rm first-lex}}(\t) \ +\\
+\sa{\t'} \varphi_{\text{succ-lex}}(\t',\t) \cdot \left(\sa{\x'} \sa{\y'} g(\x',\y',\t') \right)
 \end{multline*}
-where $\varphi_{\text{\rm first}}$ and $\varphi_{\text{succ}}$ define now the first and successor predicates over the lexicographic order of tuples induced by~$<$.
-Then the semantics of the path operator is defined by the following equivalent $\rqfo$ formula:
+where $\varphi_{\text{\rm first-lex}}$ and $\varphi_{\text{succ-lex}}$ are $\fo$-formulas for defining the first and successor predicates over tuples in $A^k$, following the lexicographic order induced by~$<$.
+Then the semantics of the path operator is defined $\rqfo$ formula:
 \[
 [\pth \psi(\bar{x}, \bar{y})] := \sa{\t} (\varphi_{\text{\rm first}}(\t) \wedge \clfp{\beta_{\psi(\bar{x},\bar{y})}(\x,\y,\t,g)})
 \]
-In other words, $\sem{[\pth \psi(\bar{x}, \bar{y})]}(\A,v,V)$ is the number of paths in the graph induced by $\psi(\bar{x}, \bar{y})$ whose length is at most~$|A|$.
+In other words, $\sem{[\pth \psi(\bar{x}, \bar{y})]}(\A,v,V)$ counts the number of paths in the graph $\cG_{\psi}(\A)$ whose length is at most~$|A^k|$.
 %As for the case of $\qso$, the logic $\tqso(\LL)$ is obtained by restricting $\varphi$ in \eqref{eq-def-tqso} to be a formula in $\LL$. Moreover, the logic $\tqfo$ is obtained by disallowing in \eqref{eq-def-tqso} formulas $\sa{X} \alpha$ and $\pa{X} \alpha$, and by only allowing  first-order free-variables in the formula $\psi$ used in $[\pth \psi]$ in \eqref{eq-def-tqso}. 
-With this logic, we have the following results:
-
+As it was previously said, the operator for counting paths is exactly what we need to capture $\shl$.
 \begin{theorem} \label{tqfo-shl}
 	$\tqfo(\fo)$ captures $\shl$ over the class of ordered structures.
 \end{theorem}
+The last result perfectly illustrates the benefits of the logical framework for the descriptive complexity of counting functions. 
+The distinction of the language between boolean and quantitative allows us to define operators at the later that cannot be defined at the former. 
+Indeed, it is not clear how to capture $\shl$ with $\qfo(\tc)$\footnote{$\tc$ corresponds to $\fo$-logic extended with transitive closure}, or any other extension of $\qfo(\fo)$ at the boolean level.
+In contrast, with $\rqfo$ one can naturally define the path operator at the quantitative level and easily capture $\shl$.
+Therefore, Theorem~\ref{tqfo-shl} is good example of how to go beyond classical logic to have a better understanding of the expressivity of counting.
 
-\cristian{Aca voy}
+\begin{comment}
 
 \begin{theorem} \label{tqso-fo-fpsace}
 	$\tqso$ and $\tqso(\fo)$ captures $\fpspace$ over the class of ordered structures.
@@ -168,6 +176,8 @@ where $\psi(\bar{x}, \bar{X},\bar{y}, \bar{Y})$ satisfies the same conditions as
 \begin{theorem} \label{tqsos-shp}
 	$\tqsos(\fo)$ captures $\shp$ over the class of ordered structures.
 \end{theorem}
+
+\end{comment}
 
 %
 %\marcelo{Puede que este equivocado, pero me parece que teniamos una forma de capturar $\shp$ usando el operator ${\bf path}$. Pero no logro recordar como se hacia esto, y me parece que lo que habiamos escrito antes en esta seccion estaba equivocado: ``$\tqso(\fo)$ captures $\shp$ over the class of ordered structures". Claro que yo puedo estar usando una definicion distinta de $\tqso(\fo)$.}
