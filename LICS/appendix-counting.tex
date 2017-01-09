@@ -90,13 +90,6 @@ $$
 $$
 where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
 
-
-%%% DEMOSTRACION DE GapP y SumQSO en Z  
-\subsection*{Proof of Proposition~\ref{prop:capture-gapp}}
-
-\cristian{FALTA LA DEMOSTRACION DE GapP y SumQSO en Z}
-
-
 %%% DEMOSTRACION DE optP y MaxQSO, MinQSO
 \subsection*{Proof of Theorem~\ref{theo:capture-optp}}
 
@@ -111,10 +104,10 @@ Furthermore, it is straightforward to prove that each of these steps are correct
 Let $\alpha$ be a formula in $\maxqso$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the maximum run (with respect to the output value) of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\maxp$ function over $\R$ and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
 Finally, one can easily see that the same construction holds with $\minqso(\fo)$ by constructing a Turing machine that take the min over all runs instead of max.
 
-The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of previous proofs. Let $f\in \maxp$ be a function defined over some signature $\R$ and
+The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of Theorem~\ref{theo:capture-fp}. Let $f\in \maxp$ be a function defined over some signature $\R$ and
 $\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$ for each $\A\in\ostr[\R]$ of size $n$.
-For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$, i.e. $\enc(U)$, as the binary encoding of a number with $n^l$-bits. We denote this value by $\val(\enc(U))$.
-Then, given $\A\in\ostr[\R]$ with domain $A$ and $U \subseteq A^{\ell}$, consider the problem of checking whether $f(\enc(\A)) \geq \val(\enc(U))$. 
+For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$ ($\enc(U)$) as the binary encoding of a number with $n^l$-bits. We denote this value by $\val(\enc(U))$.
+Then, given $\A\in\ostr[\R]$ and $U \subseteq A^{\ell}$, consider the problem of checking whether $f(\enc(\A)) \geq \val(\enc(U))$. 
 Clearly, this is an $\np$-problem and, by Fagin's theorem, there exists a formula of the form $\ex{\bar{X}} \Phi(\bar{X}, Y)$ with $\Phi(\bar{X}, Y)$ in $\fo$-logic and $\arity(Y) = \ell$ such that $f(\enc(\A)) \geq \val(\enc(U))$ if, and only if, $(\A,v,V) \models \ex{\bar{X}} \Phi(\bar{X}, Y)$ with $V(Y) = U$. 
 Then we can describe the function $f$ by the following $\maxqso$ formula:
 $$
@@ -124,7 +117,7 @@ Note that, in contrast with previous proofs, we use $\bar{x} < \bar{y}$ instead 
 It is easy to check that $\Phi(\bar{X}, Y)$ simulates the NP-machine and, if $\Phi(\bar{X}, Y)$ holds, the formula to the right  reconstructs the binary output from the relation in $Y$.
 Then, $\alpha$ is in $\maxqso(\fo)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$. 
 
-For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow the same approach but considering the problem of checking whether $f(\enc(\A)) \leq \val(\enc(U))$. Then, the formula $\alpha$ for $f$ will be:
+For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow the same approach but considering the $\np$-problem of checking whether $f(\enc(\A)) \leq \val(\enc(U))$. Then, the formula for describing $f$ is the following:
 $$
 \alpha = \mina{\bar{X}} \mina{Y} \ \sa{\bar{x}} \big( (\Phi(\bar{X}, Y) \rightarrow Y(\bar{x})) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2)  \big).
 $$
