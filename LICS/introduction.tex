@@ -27,7 +27,9 @@ For instance, Fagin's theorem was the key ingredient to define the class {\sc Ma
 It is important to mention here that the definition of {\sc MaxSNP} would not have been possible without the machine-independent point of view of descriptive complexity, as pointed out in~\cite{PY91}.
 
 Counting problems differ from decision problems in that the value of a function has to be computed.
-More generally, a counting problem corresponds to compute a function $f$ from a set of instances (e.g. graphs, formulae, etc) to natural numbers.\footnote{This value is usually associated to counting the number of solution for a given instance in a search problem, but here we consider a more general definition.} 
+More generally, a counting problem corresponds to compute a function $f$ from a set of instances (e.g. graphs, formulae, etc) to natural numbers.\footnote{This value is usually associated to counting the number of solution 
+%for a given instance 
+in a search problem, but here we consider a more general definition.} 
 The study of counting problems has given rise to a rich theory of counting complexity classes \cite{HV95,F97,arora2009computational}. Some of these classes are natural counterparts of some classes of decision problems; for example, $\fp$ 
 %(resp., $\fpspace$) 
 is the class of all functions that can be computed in polynomial time, 
@@ -81,9 +83,10 @@ Adding finite recursion to a numerical setting is subtle since functions over na
 By using the support of the functions, we give a natural halting condition that generalizes the least fixed point operator of Boolean logics. 
 Then, with a quantitative recursion at hand we show how to capture $\fp$ from a different perspective and, moreover, how to restrict recursion to capture lower complexity classes 
 %below $\fp$ 
-such as~$\shl$, the counting version of $\nlog$ (Nondeterministic Logarithmic-space).
+such as~$\shl$, the counting version of $\nlog$.
+%(Nondeterministic Logarithmic-space).
 
 \smallskip
 
-\noindent{\bf Organisation.} The basic definitions of the logics and complexity classes used in the paper are given in Section~\ref{sec:preliminaries}. Then the logical framework is introduced in Section~\ref{sec:logic}, and it is used to capture standard counting complexity classes in Section~\ref{sec:complexity}. The structure of $\shp$ is studied in Section~\ref{sec:syntactic}. Section~\ref{sec:beyond} is devoted to define recursion in $\qso$, and to show how to capture classes below $\fp$. 
+\noindent{\bf Organisation.} The main terminology used in the paper is given in Section~\ref{sec:preliminaries}. Then the logical framework is introduced in Section~\ref{sec:logic}, and it is used to capture standard counting complexity classes in Section~\ref{sec:complexity}. The structure of $\shp$ is studied in Section~\ref{sec:syntactic}. Section~\ref{sec:beyond} is devoted to define recursion in $\qso$, and to show how to capture classes below $\fp$. 
 Finally, we give some concluding remarks in Section~\ref{sec:conclusions}. 

@@ -14,10 +14,10 @@ The most elegant way to do this is by allowing constants coming from $\bbZ$ inst
 Formally, we define the logic $\qsoz$ whose syntax is the same as in \eqref{syntax} and whose semantics is the same as in Table~\ref{tab-semantics} except that the atomic formula $s$ (i.e. a constant) comes from $\bbZ$.  
 Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with constants in $\bbZ$.
 \begin{example}
-	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. Then this can be easily done in $\qsoz$ with the following formula:
-	\[
+	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. Then this can be easily done in $\qsoz$ with the formula:
+	$
 	\alpha_5 :=	\alpha_2 + (-1) \cdot \alpha_1 
-	\]
+	$.
 \end{example}
 Adding negative constants is a mild extension to allow subtraction in the logic. 
 It follows from our characterization of $\shp$ that this is exactly what we need to capture  $\gp$.
@@ -44,7 +44,7 @@ Given a relational signature $\R$, the set of $\optqso$-formulae over $\R$ is gi
 \end{multline*}
 where $x \in \fv$ and $X \in \sv$. The semantics of the $\qso$-operators in $\optqso$ are defined as usual. Furthermore, the semantics of the max and min quantifiers are defined as the natural extension of the sum quantifiers in $\qso$ (see Table~\ref{tab-semantics}) by maximizing or minimizing, respectively, instead of computing a sum. 
 \begin{example}\label{ex:optqso}
-	Recall again the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the size of the largest clique in a graph. This can be done in $\optqso$ with the following formula:
+	Recall again the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the size of the largest clique in a graph. This can be done in $\optqso$ as follows:
 	\[
 \alpha_6 := \maxa{X} \left( \, \clique(X) \cdot \sa{z} X(z)  \, \right)
 	\]
