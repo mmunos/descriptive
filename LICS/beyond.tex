@@ -26,7 +26,7 @@ We start
 %first need to define 
 by defining an extension of $\qso$ with function symbols. Assume that $\fs$ is an infinite set of function symbols, where each $h \in \fs$ has an associated arity
 %, which is 
-denoted by $\arity(h)$. Then the set of $\fqso$ formulae over a relational signature $\R$ is defined by the following grammar:
+denoted by $\arity(h)$. Then the set of $\fqso$ formulae over a signature $\R$ is defined by the following grammar:
 \begin{multline}
 \label{eq-fqso}
 	\alpha := \varphi \ \mid \  s \  \mid \  h(x_1, \ldots, x_\ell) \  \mid \
@@ -45,7 +45,7 @@ As for the case of $\qfo$, we define $\fqfo$ disallowing quantifiers $\Sigma X$ 
 
 It is worth noting that function symbols in $\fqso$ represent functions from tuples to natural numbers, so they are different from 
 %cannot be compared to 
-the classical notion of function symbol in $\fo$~\cite{enderton2001mathematical}. 
+the classical notion of function symbol in $\fo$~\cite{L04}. 
 %~$\shl$.first-order logics
 Furthermore, %one could see 
 a function symbol can be seen as an ``oracle'' that is instantiated by the function assignment. 
@@ -63,9 +63,9 @@ LFP \cite{I86,vardi1982complexity}
 to allow counting. 
 %We show how to define this operator in $\qfo(\fo)$ and we discuss how to extend these ideas to $\qso$ towards the end of the section. 
 %Fix a relational signature $\R$. 
-More precisely, the set of $\rqfo(\fo)$ formulae over a relational signature $\R$, where $\rqfo$ stands for recursive $\qfo$, is defined as an extension of $\qfo(\fo)$ that includes the formula 
+More precisely, the set of $\rqfo(\fo)$ formulae over a signature $\R$, where $\rqfo$ stands for recursive $\qfo$, is defined as an extension of $\qfo(\fo)$ that includes the formula 
 %by adding the operator 
-$\clfp{\beta(\x, h)}$, where (1) $\x = (x_1, \ldots, x_\ell)$ is a sequence of $\ell$ distinct first-order variables, (2) $\beta(\x, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, and (3) $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(\x,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free in this formula.
+$\clfp{\beta(\x, h)}$, where (1) $\x = (x_1, \ldots, x_\ell)$ is a sequence of $\ell$ distinct first-order variables, (2) $\beta(\x, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, and (3) $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(\x,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free.
 
 Fix an $\R$-structure with domain $A$ and a quantitative formula $\clfp{\beta(\x,h)}$ with $\arity(h) = \ell$, and assume that $\F$ is the set of functions $f :A^\ell \to \N$. To define the semantics of $\clfp{\beta(\x,h)}$, we first show how $\beta(\x,h)$ can be interpreted as an operator $T_{\beta}$ on $\F$. More precisely, for every $f \in \F$ and tuple $\a = (a_1, \ldots, a_{\ell}) \in A^\ell$, the function $T_{\beta}(f)$ satisfies that:
 \begin{eqnarray*}
@@ -74,16 +74,18 @@ T_{\beta}(f)(\a) & = & \sem{\beta(\x, h)}(\A,v,F),
 where $v$ is a first-order assignment  for $\A$ such that $v(x_i) = a_i$ for every $i \in \{1, \ldots, \ell\}$, and $F$ is a function assignment for $\A$ such that $F(h) = f$. 
 
 As for the case of LFP, it would be natural to consider the point-wise partial order $\leq$ on $\F$ defined as $f \leq g$ if, and only if, $f(i) \leq g(i)$ for every $i \in \{1, \ldots, \ell\}$, and let the semantics of $\clfp{\beta(\x,h)}$ be the least fixed point of the operator $T_\beta$. However, $(\F, \leq)$ is not a complete lattice, so we do not have a Knaster-Tarski Theorem ensuring that such a fixed point exists. Instead, we generalize the semantics of LFP as follows. In the definition of the semantics of LFP, an operator $T$ on relations is considered, and the semantics is defined in terms of the least fixed point of $T$, that is, a relation $R$ such that~\cite{I86,vardi1982complexity}: 
-\begin{enumerate}
- \item[(a)] $T(R) = R$, and 
- \item[(b)]  $R \subseteq S$ for every $S$ such that $T(S) = S$.  
-\end{enumerate}
+(a) $T(R) = R$, and (b) $R \subseteq S$ for every $S$ such that $T(S) = S$.  
+%\begin{enumerate}
+% \item[(a)] $T(R) = R$, and 
+% \item[(b)]  $R \subseteq S$ for every $S$ such that $T(S) = S$.  
+%\end{enumerate}
 We can view $T$ as an operator on functions if we consider the characteristic function of a relation. Given a relation $R \subseteq A^\ell$, let $\chi_R$ be its characteristic function, that is $\chi_R(\bar a) = 1$ if $\bar a \in R$, and $\chi_R(\bar a) = 0$ otherwise. Then define an operator $T^\star$ on characteristic functions as $T^\star(\chi_R) = \chi_{T(R)}$. Moreover, we can rewrite the conditions defining a least fixed point of $T$ in terms of the operator $T^\star$ if we consider the notion of support of a function. Given a function $f \in \F$, define the support of $f$, denoted by $\support(f)$, as $\{ \bar a \in A^\ell \mid f(\bar a) > 0 \}$. Then given that $\support(\chi_R) = R$, we have that the conditions (a) and (b) are equivalent to the following conditions on $T^\star$:
 %Given a relation $R \subseteq A^\ell$, let $\chi_R$ be its characteristic function, that is $\chi_R(\bar a) = 1$ if $\bar a \in R$, and $\chi_R(\bar a) = 0$ otherwise. Moreover, given a function $f \in \F$, define the support of $f$, denoted by $\support(f)$, as $\{ \bar a \in A^\ell \mid f(\bar a) > 0 \}$. Notice that for a relation $R$ we have that $\support(\chi_R) = R$.  In particular, the conditions defining the least fixed point of $T$ can be rewritten as follows in terms of $T^\star$: 
-\begin{enumerate}
-	\item[(a)] $\support(T^\star(\chi_R)) = \support(\chi_R)$, and  
-	\item[(b)] $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that  $\support(T^\star(\chi_{S})) = \support(\chi_S)$.  
-\end{enumerate}
+(a) $\support(T^\star(\chi_R)) = \support(\chi_R)$, and  (b) $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that  $\support(T^\star(\chi_{S})) = \support(\chi_S)$.
+%\begin{enumerate}
+%	\item[(a)] $\support(T^\star(\chi_R)) = \support(\chi_R)$, and  
+%	\item[(b)] $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that  $\support(T^\star(\chi_{S})) = \support(\chi_S)$.  
+%\end{enumerate}
 To define a notion of fixed point for $T_\beta$ we simply generalized these conditions. More precisely, %These conditions can be generalized in the obvious way to the case of the operator $T_\beta$: 
 a function $f \in \F$ is a {\em s-fixed point} of $T_{\beta}$ if $\support(T_\beta(f)) = \support(f)$, and $f$ is a {\em least s-fixed point} of $T_{\beta}$ if $f$ is a s-fixed point of $T_\beta$ and for every s-fixed point $g$ of $T_\beta$ it holds that $\support(f) \subseteq \support(g)$. The existence of such fixed point is ensured by the following lemma:
 \begin{lemma}\label{lem-support}
@@ -96,7 +98,7 @@ In fact, as for the case of LFP, this lemma gives us a simple way to compute a l
 
 \begin{example} \label{ex:count-path}
 %As an example, 
-We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the relational signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
+We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
 $$
 %\alpha(x,y,R,\pi) = 
 %(\neg \exists zR(z))\cdot(x = y) 
@@ -109,7 +111,7 @@ Assume now that we need to extend our previous counting function to the case of 
 (E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t) \ +\\
 \sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)
 \end{multline*}
-Then our extended counting function is defined by the following formula:
+Then our extended counting function is defined by:
 $$
 \sa{t} (\varphi_{\text{\rm first}}(t) \cdot \clfp{\beta(x,y,t,g)}).
 $$ 
