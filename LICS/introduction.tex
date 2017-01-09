@@ -27,7 +27,7 @@ For instance, Fagin's theorem was the key ingredient to define the class {\sc Ma
 It is important to mention here that the definition of {\sc MaxSNP} would not have been possible without the machine-independent point of view of descriptive complexity, as pointed out in~\cite{PY91}.
 
 Counting problems differ from decision problems in that the value of a function has to be computed.
-More generally, a counting problem corresponds to compute a function $f$ from a set of instances (e.g. graphs, formulae, etc) to natural numbers.\footnote{This value is usually associated to counting the number of solution 
+More generally, a counting problem corresponds to compute a function $f$ from a set of instances (e.g. graphs, formulae, etc) to natural numbers.\footnote{This value is usually associated to counting the number of solutions
 	%for a given instance 
 	in a search problem, but here we consider a more general definition.} 
 The study of counting problems has given rise to a rich theory of counting complexity classes \cite{HV95,F97,arora2009computational}. Some of these classes are natural counterparts of some classes of decision problems; for example, $\fp$ 
@@ -48,8 +48,8 @@ $\shl$, $\spp$ and $\gp$~\cite{HV95,F97}.
 Although counting problems play a prominent role in computational complexity, descriptive complexity for this type of problems has not been systematically studied and it is not as developed as for the case of decision problems. Insightful characterizations of $\shp$ and some of its extensions have been provided \cite{SalujaST95,ComptonG96}. However, these characterizations do not define function problems in terms of a logic, but instead in terms of some counting problems associated to a logic like $\fo$. Thus, it is not clear how these characterizations can be used to provide a general descriptive complexity framework for counting complexity classes like $\fp$ and $\fpspace$ (the class of functions computable in polynomial space). 
 %It should be mentioned that logical definability has also been studied for the case of optimization problems \cite{KT94} and computation over the real numbers \cite{GM95}. As for the previous cases, it is not clear how these approaches can be extended to provide logical characterizations of a variety of function complexity classes. 
 
-In this paper, we propose to study the descriptive complexity of counting complexity classes in terms of Weighted Logics (WL)~\cite{DrosteG07}, a general logical framework that combines Boolean formulae (e.g. in $\fo$ or $\so$) with operations over a fix semirings (e.g. $\bbN$). 
-Specifically, we propose to restrict WL over natural numbers, called Quantitative Second Order Logics (QSO), and study its expressive power for defining counting complexity classes over general structures. 
+In this paper, we propose to study the descriptive complexity of counting complexity classes in terms of Weighted Logics (WL)~\cite{DrosteG07}, a general logical framework that combines Boolean formulae (e.g. in $\fo$ or $\so$) with operations over a fixed semiring (e.g. $\bbN$). 
+Specifically, we propose a restriction of WL over natural numbers, called Quantitative Second Order Logics (QSO), and study its expressive power for defining counting complexity classes over ordered structures. 
 As a proof of concept, we show that natural syntactical fragments of $\qso$ captures counting complexity classes like $\shp$, $\spp$, $\fp$ and $\fpspace$.
 Furthermore, by slightly extending the framework we can prove that $\qso$ can also capture classes like $\gp$ and $\optp$, showing the robustness of our approach.
 
