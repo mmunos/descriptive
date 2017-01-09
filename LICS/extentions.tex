@@ -4,7 +4,7 @@ There exist complexity classes that do not fit in our framework because either t
 To remedy this problem, we show here how $\qso$ can be easily extended  to capture such classes that go beyond sum and product over natural numbers. 
 
 It is well-known that, under some reasonable complexity-theoretical assumptions, $\shp$ is not closed under subtraction, not even under subtraction by one~\cite{OH93}.
-To overcome this limitation, $\gp$ was introduced in~\cite{fenner1994gap} as the class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tma_M(x) - \tmr_M(x)$, where  $\tmr_M(x)$ is the number of rejecting runs of $M$ with input $x$.
+To overcome this limitation, $\gp$ was introduced in~\cite{FFK94} as the class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tma_M(x) - \tmr_M(x)$, where  $\tmr_M(x)$ is the number of rejecting runs of $M$ with input $x$.
 %such that for some $\np$ machine, $f(x)$ is the number of accepting runs minus the number of rejecting runs.
 That is, $\gp$ is the closure of $\shp$ functions under subtraction, and its functions can obviously take negative values.
 %it can compute negative values by definition. 
@@ -38,7 +38,7 @@ Given that in~\cite{krentel1988complexity} the author does not make the distinct
 
 
 In order to capture classes of optimization functions, we can extend $\qso$ with $\max$ and $\min$ quantifiers (called $\optqso$) as follows. 
-Given a relational signature $\R$, the set of $\optqso$-formulae over $\R$ is given by extending the syntax in (\ref{syntax}) with the following operators:
+Given a signature $\R$, the set of $\optqso$-formulae over $\R$ is given by extending the syntax in (\ref{syntax}) with the following operators:
 \begin{multline*}
 \max\{\alpha,\alpha\} \ \mid\ \min\{\alpha,\alpha\} \ \mid \\ \maxa{x} \alpha \ \mid \ \mina{x} \alpha \ \mid \ \maxa{X} \alpha \ \mid \ \mina{X} \alpha 
 \end{multline*}

@@ -26,7 +26,7 @@ We start
 %first need to define 
 by defining an extension of $\qso$ with function symbols. Assume that $\fs$ is an infinite set of function symbols, where each $h \in \fs$ has an associated arity
 %, which is 
-denoted by $\arity(h)$. Then the set of $\fqso$ formulae over a relational signature $\R$ is defined by the following grammar:
+denoted by $\arity(h)$. Then the set of $\fqso$ formulae over a signature $\R$ is defined by the following grammar:
 \begin{multline}
 \label{eq-fqso}
 	\alpha := \varphi \ \mid \  s \  \mid \  h(x_1, \ldots, x_\ell) \  \mid \
@@ -63,7 +63,7 @@ LFP \cite{I86,vardi1982complexity}
 to allow counting. 
 %We show how to define this operator in $\qfo(\fo)$ and we discuss how to extend these ideas to $\qso$ towards the end of the section. 
 %Fix a relational signature $\R$. 
-More precisely, the set of $\rqfo(\fo)$ formulae over a relational signature $\R$, where $\rqfo$ stands for recursive $\qfo$, is defined as an extension of $\qfo(\fo)$ that includes the formula 
+More precisely, the set of $\rqfo(\fo)$ formulae over a signature $\R$, where $\rqfo$ stands for recursive $\qfo$, is defined as an extension of $\qfo(\fo)$ that includes the formula 
 %by adding the operator 
 $\clfp{\beta(\x, h)}$, where (1) $\x = (x_1, \ldots, x_\ell)$ is a sequence of $\ell$ distinct first-order variables, (2) $\beta(\x, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, and (3) $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(\x,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free.
 
@@ -98,7 +98,7 @@ In fact, as for the case of LFP, this lemma gives us a simple way to compute a l
 
 \begin{example} \label{ex:count-path}
 %As an example, 
-We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the relational signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
+We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot) \}$, and then define formula $\alpha(x, y, f)$ as follows:
 $$
 %\alpha(x,y,R,\pi) = 
 %(\neg \exists zR(z))\cdot(x = y) 

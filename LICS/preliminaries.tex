@@ -6,7 +6,7 @@
 \subsection{Second-order logic, LFP and PFP}
 A relational signature $\R$ (or just signature) is a finite set $\{R_1, \ldots, R_k\}$, where each $R_i$ ($1 \leq i \leq k$) is a relation name with an associated arity greater than 0, which is denoted by $\arity(R_i)$. A finite structure over $\R$ (or just finite $\R$-structure) is a tuple $\A = \langle A, R_1^\A, \ldots, R_k^\A \rangle$ such that $A$ is a finite set and $R_i^\A \subseteq A^{\arity(R_i)}$ for every $i \in \{1, \ldots, k\}$. In this paper we only consider finite structures, so we omit the word finite when referring to them. An $\R$-structure $\A$ is said to be ordered if $<$ is a binary predicate name in $\R$ and $<^\A$ is a linear order on $A$. Let $\str[\R]$ be the class of all $\R$-structures and $\ostr[\R]$ be the class of all ordered $\R$-structures. 
 
-From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order variables and second-order variables, respectively. Notice that every variable in $\sv$ has an associated arity, which is denoted by $\arity(X)$. Then given a relational signature $\R$, the set of second-order logic formulae ($\so$-formulae) over $\R$ is given by the following grammar:
+From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order variables and second-order variables, respectively. Notice that every variable in $\sv$ has an associated arity, which is denoted by $\arity(X)$. Then given a  signature $\R$, the set of second-order logic formulae ($\so$-formulae) over $\R$ is given by the following grammar:
 \begin{multline*}\ 
 	\varphi \ := \ x = y \ \mid \ R(\bar u) \ \mid \ \top  \ \mid\  
 	X(\bar v)  \ \mid\\ 
@@ -56,5 +56,5 @@ $\fp$ is the class of functions computable in polynomial time, while $\fpspace$ 
 
 %\marcelo{La notacion $\tma_M(x)$ se usa en el paper, hay que definirla aqui. Donde vamos a usar la clase $\gp$? Para definir esta clase tambien necesitamos la notacion $\tmr_M(x)$, podriamos definirla aqui. }
 
-%If $\KK$ is a class of finite structures and $f$ is a function from a relational signature $\R$ to $\bbD$, we denote by $\res{f}{\KK}$ the restriction of $f$ to $\KK$, that is, a function such that: the domain of $\res{f}{\KK}$ is $\{ \enc(\A) \mid \A \in \str[\R] \cap \KK\}$, and 
+%If $\KK$ is a class of finite structures and $f$ is a function from a signature $\R$ to $\bbD$, we denote by $\res{f}{\KK}$ the restriction of $f$ to $\KK$, that is, a function such that: the domain of $\res{f}{\KK}$ is $\{ \enc(\A) \mid \A \in \str[\R] \cap \KK\}$, and 
 %$\res{f}{\KK}(\enc(\A)) = f(\enc(\A))$ for every $\A \in \str[\R] \cap \KK$.
