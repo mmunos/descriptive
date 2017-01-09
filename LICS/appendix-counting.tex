@@ -4,7 +4,7 @@
 %%% DEMOSTRACION DE SQSO(FO) y #P
 \subsection*{Proof of Proposition~\ref{prop:capture-shP}}
 
-We construct recursively a $\shp$-machine $M_{\alpha}$ for each $\eqso(\fo)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$ accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial time, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. 
+We construct recursively a $\shp$-machine $M_{\alpha}$ for each $\eqso(\fo)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$ accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ deterministically in polynomial time, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. 
 %If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.
 If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
 %If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. 
@@ -21,13 +21,13 @@ Since a function in $\sfo$ can also be defined $\eqso(\fo)$ (see Section~\ref{se
 
 Similar than the previous proof, we construct recursively a $\spp$ machine $M_{\alpha}$ for each $\eqso(\eso)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, non-deterministically produces $\sem{\alpha}(\A,v,V)$ distinct accepting outputs for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. 
 If $\alpha$ is a $\eso$-formula $\varphi$ it checks if $(\A,v,V)\models\varphi$ non-deterministically in polynomial time \cite{fagin1974generalized}, and accepts if and only if the condition holds true. 
-If $\alpha$ is a constant $s$, then the algorithm produces $s$ branches and accepts in all of them. 
+If $\alpha$ is a constant $s$, then the machine produces $s$ branches and accepts in all of them. 
 If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$.  
 If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. 
 If $\alpha = \sa{X} \beta$, it chooses $B\in A^{\arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. 
 This covers all possible cases for $\alpha$.
-Additionally, the algorithm produces a different output on each path. This can be done by printing the trace of all the non-deterministic choices.
-However, when the algorithm starts checking whether $(\A,v,V)\models\varphi$ for some $\eso$ formula $\varphi$, it stops printing in the output tape. This way the algorithm produces exactly one output from that point onwards.
+Additionally, the machine produces a different output on each path. This can be done by printing the trace of all the non-deterministic choices.
+However, when the machine starts checking whether $(\A,v,V)\models\varphi$ for some $\eso$ formula $\varphi$, it stops printing in the output tape. This way the machine produces exactly one output from that point onwards.
 Let $\alpha$ be a formula in $\eqso(\eso)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the number of accepting outputs of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. 
 We have that $f$ is a $\spp$ function over $\R$ and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
 
@@ -56,7 +56,7 @@ Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$
 %%% DEMOSTRACION DE QSO(PFP) y FPSPACE
 \subsection*{Proof of Theorem~\ref{theo:capture-fpspace}}
 
-To show how to evaluate a $\qso(\pfp)$-formula, we construct recursively a $\shpspace$-machine $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine runs in non-deterministic polynomial space and, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the algorithm checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space~\cite{L04}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.
+To show how to evaluate a $\qso(\pfp)$-formula, we construct recursively a $\shpspace$-machine $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine runs in non-deterministic polynomial space and, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space~\cite{L04}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.
 If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$, continuing to the next $A$-value if the run of $M_{\beta}$ accepts. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. If $\alpha = \pa{X}\beta$, it simulates $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\in A^{arity(X)}$, again continuing to the next $A$-value if the run of $M_{\beta}$ accepts. This covers all possible cases for $\alpha$, and each of these steps can be computed in polynomial space. Let $\alpha$ be a formula in $\qso(\pfp)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shpspace$ function over $\R$, which implies that $f$ is also a $\fpspace$ function over $\R$, by the fact that $\shpspace = \fpspace$ \cite{Ladner89}, and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
 
 For the second condition, let $f\in \fpspace$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq 2^{n^\ell}$ (i.e. $2^{n^\ell}$ is an upper bound for the output size), where $\A$ has a domain of size $n$. Let $X$ be a second-order variable of arity $\ell$. Consider a linear order over predicates of arity $\ell$ given by the formula 
@@ -66,7 +66,7 @@ $$
 $$
 Namely, we use relations to encode numbers with at most $2^{n^\ell}$-bits where the empty relation represents $0$ and the total-relation represents $2^{2^{n^\ell}}-1$.
 Furthermore, each relation $X$ indexes a position in the binary output of $f(\enc(\A))$ as follows.
-Consider a polynomial space algorithm over the $\R$ that receives as input an $\R$-structure $\A$ and a number $p$ encoded by a relation $X$. Then the algorithm accepts if, and only if, the $p$-th bit of $f(\enc(\A))$ is $1$. 
+Consider a polynomial space machine over the $\R$ that receives as input an $\R$-structure $\A$ and a number $p$ encoded by a relation $X$. Then the machine accepts if, and only if, the $p$-th bit of $f(\enc(\A))$ is $1$. 
 Since this procedure works in polynomial space, it can be described in $\pfp$ \cite{AbiteboulV89} by a formula $\Phi(X)$ where the free variable $X$ encodes the number $p$. Then, similar than the previous proof we define:
 $$
 \alpha := \sa{X}(\Phi(X)\mult\varphi(X)),
@@ -100,5 +100,36 @@ where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2).$ Note that
 %%% DEMOSTRACION DE optP y MaxQSO, MinQSO
 \subsection*{Proof of Theorem~\ref{theo:capture-optp}}
 
-\cristian{FALTA LA DEMOSTRACION DE optP y MaxQSO, MinQSO}
+Similar than the previous proofs, we construct recursively a non-deterministic polynomial time Turing machine $M_{\alpha}$ with output tape for each $\maxqso(\fo)$ formula $\alpha$ over a signature $\R$.
+This machine, on input $(\A,v,V)$, non-deterministically produces $\sem{\alpha}(\A,v,V)$ (in binary) over the output tape of some run, and this value is the maximum value over all runs.
+Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ in deterministic polynomial time, and output $1$ if, and only if, $(\A,v,V)$ satisfies $\varphi$. If $\alpha$ is a constant $s$, it outputs $s$ in binary over the output tape. If $\alpha = (\beta \add \gamma)$, then it simulates $M_{\beta}$ and $M_{\gamma}$ on input $(\A,v,V)$, adds the output of both machines and prints this value over the output tape. If $\alpha = (\beta \mult \gamma)$ or $\alpha = \max\{\beta,\gamma\}$, then it does the same than the previous case but it multiplies or maximizes, respectively, the outputs of both machines instead of adding. 
+If $\alpha = \sa{x}\beta$, it iterates over all elements $a\in A$ simulating and adding the output of $M_{\beta}$ on input $(\A,v[a/x],V)$. $M_{\alpha}$ finally outputs the aggregated value in the output tape. 
+If $\alpha = \pa{x}\beta$ or $\alpha = \maxa{x}\beta$, then $M_{\alpha}$ does the same idea than the previous case with the difference that the output of $M_{\beta}$ on input $(\A,v[a/x],V)$ is multiplied or maximized, respectively.
+If $\alpha = \maxa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$.
+This covers all possible cases for $\alpha$.
+Furthermore, it is straightforward to prove that each of these steps are correct and can be computed with a non-deterministic polynomial time Turing machine with output tape.
+Let $\alpha$ be a formula in $\maxqso$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the maximum run (with respect to the output value) of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\maxp$ function over $\R$ and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
+Finally, one can easily see that the same construction holds with $\minqso(\fo)$ by constructing a Turing machine that take the min over all runs instead of max.
+
+The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of previous proofs. Let $f\in \maxp$ be a function defined over some signature $\R$ and
+$\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$ for each $\A\in\ostr[\R]$ of size $n$.
+For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$, i.e. $\enc(U)$, as the binary encoding of a number with $n^l$-bits. We denote this value by $\val(\enc(U))$.
+Then, given $\A\in\ostr[\R]$ with domain $A$ and $U \subseteq A^{\ell}$, consider the problem of checking whether $f(\enc(\A)) \geq \val(\enc(U))$. 
+Clearly, this is an $\np$-problem and, by Fagin's theorem, there exists a formula of the form $\ex{\bar{X}} \Phi(\bar{X}, Y)$ with $\Phi(\bar{X}, Y)$ in $\fo$-logic and $\arity(Y) = \ell$ such that $f(\enc(\A)) \geq \val(\enc(U))$ if, and only if, $(\A,v,V) \models \ex{\bar{X}} \Phi(\bar{X}, Y)$ with $V(Y) = U$. 
+Then we can describe the function $f$ by the following $\maxqso$ formula:
+$$
+\alpha = \maxa{\bar{X}} \maxa{Y} \ \Phi(\bar{X}, Y) \cdot \big( \sa{\bar{x}} Y(\bar{x}) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2) \big).
+$$
+Note that, in contrast with previous proofs, we use $\bar{x} < \bar{y}$ instead of $\bar{y} < \bar{x}$ because the most significant bit in $\enc(U)$ correspond to the smallest tuple in $U$.  
+It is easy to check that $\Phi(\bar{X}, Y)$ simulates the NP-machine and, if $\Phi(\bar{X}, Y)$ holds, the formula to the right  reconstructs the binary output from the relation in $Y$.
+Then, $\alpha$ is in $\maxqso(\fo)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$. 
+
+For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow the same approach but considering the problem of checking whether $f(\enc(\A)) \leq \val(\enc(U))$. Then, the formula $\alpha$ for $f$ will be:
+$$
+\alpha = \mina{\bar{X}} \mina{Y} \ \sa{\bar{x}} \big( (\Phi(\bar{X}, Y) \rightarrow Y(\bar{x})) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2)  \big).
+$$
+In this case, if the formula $\Phi(\bar{X}, Y)$ is false, then the output produced by the subformula inside the $\min$-quantifiers will be the biggest possible value (i.e. $2^{n^\ell}$).
+On the other hand, if $\Phi(\bar{X}, Y)$ holds, the subformula will produce $\val(\enc(U))$. 
+Similar than for $\max$, we conclude that $\alpha$ is in $\minqso(\fo)$ and $\sem{\alpha}(\A) = f(\enc(\A))$. 
+
 
