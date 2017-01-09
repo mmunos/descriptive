@@ -3,13 +3,15 @@
 There exist complexity classes that do not fit in our framework because either the output of a function in not a natural number (e.g. a negative number) or the class is not defined purely in terms of arithmetical operations (e.g. min and max are used).
 To remedy this problem, we show here how $\qso$ can be easily extended  to capture such classes that go beyond sum and product over natural numbers. 
 
-It is well-known that $\shp$ is not closed under subtraction, not even closed under subtraction by one~\cite{OH93}.
-To overcome this issue, people introduced the class $\gp$~\cite{fenner1994gap} defined as the class of functions $f$ such that for some $\np$ machine, $f(x)$ is the number of accepting runs minus the number of rejecting runs.
-That is, $\gp$ is the closure of $\shp$ functions under subtraction and it can compute negative values by definition. 
-
-Given that our logical framework was built on top of natural numbers, we need to extend $\qso$ in order to describe functions in $\gp$. 
+It is well-known that, under some reasonable complexity-theoretical assumptions, $\shp$ is not closed under subtraction, not even under subtraction by one~\cite{OH93}.
+To overcome this limitation, $\gp$ was introduced in~\cite{fenner1994gap} as the class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tma_M(x) - \tmr_M(x)$, where  $\tmr_M(x)$ is the number of rejecting runs of $M$ with input $x$.
+%such that for some $\np$ machine, $f(x)$ is the number of accepting runs minus the number of rejecting runs.
+That is, $\gp$ is the closure of $\shp$ functions under subtraction, and its functions can obviously take negative values.
+%it can compute negative values by definition. 
+Given that our logical framework was built on top of the natural numbers, we need to extend $\qso$ in order to %describe functions
+capture $\gp$. 
 The most elegant way to do this is by allowing constants coming from $\bbZ$ instead of just $\bbN$. 
-Formally, we define the logic $\qsoz$ whose syntax is the same as in (\ref{syntax}) and whose semantics is the same as in Table~\ref{tab-semantics} except that the atomic formula $s$ (i.e. a constant) come from $\bbZ$.  
+Formally, we define the logic $\qsoz$ whose syntax is the same as in \eqref{syntax} and whose semantics is the same as in Table~\ref{tab-semantics} except that the atomic formula $s$ (i.e. a constant) comes from $\bbZ$.  
 Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with constants in $\bbZ$.
 \begin{example}
 	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. Then this can be easily done in $\qsoz$ with the following formula:
@@ -18,36 +20,45 @@ Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\e
 	\]
 \end{example}
 Adding negative constants is a mild extension to allow subtraction in the logic. 
-In fact, this is exactly what we need to capture classes like $\gp$.
+Interestingly, this is exactly what we need to capture  $\gp$.
 \begin{proposition} \label{prop:capture-gapp}
 	$\eqsoz(\fo)$ captures $\gp$ over ordered structures.
 \end{proposition}
-The previous result is straightforward to prove from the characterization of $\shp$ and the definition of $\gp$. 
-However, we believe that this is an interesting result for showing how robust is $\qso$ in order to capture diverse complexity classes.
+%The previous result is straightforward to prove from the characterization of $\shp$ and the definition of $\gp$. 
+%However, 
+%We 
+%believe 
+%think
+This is an interesting result that shows how robust is $\qso$ when capturing different complexity classes.
 
-An interesting class of functions comes from considering the optimization version of a decision problem. For example, one can define MAX-SAT as the problem of determining the maximum number of clauses, of a given CNF formula, that can be made true by an assignment. Here, MAX-SAT is defined in terms of a maximization problem which in his essence differs from functions in $\shp$. 
-To formalize this set of optimization problems, Krentel defined $\optp$~\cite{krentel1988complexity} as the class of functions computable by taking the maximum or minimum of the output values over all runs of an $\np$ machine with output (i.e. each run produces a binary string which is interpreted as a number). 
-For instance, MAX-SAT is in $\optp$ as several others optimization version of $\np$-problems.
-Given that in~\cite{krentel1988complexity} the author do not make the distinction between $\max$ or $\min$, in~\cite{vollmer1995complexity} the authors define the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
+A different class of functions comes from considering the optimization version of a decision problem. For example, one can define MAX-SAT as the problem of determining the maximum number of clauses, of a given CNF propositional formula, that can be made true by an assignment. Here, MAX-SAT is defined in terms of a maximization problem which in its essence differs from the functions in $\shp$. 
+To formalize this set of optimization problems, Krentel defined $\optp$~\cite{krentel1988complexity} as the class of functions computable by taking the maximum or minimum of the output values over all runs of a polynomial-time NTM machine with output tape (i.e. each run produces a binary string which is interpreted as a number). 
+For instance, MAX-SAT is in $\optp$ as several others optimization versions of $\np$-problems.
+Given that in~\cite{krentel1988complexity} the author does not make the distinction between $\max$ or $\min$, in~\cite{vollmer1995complexity} the authors define the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
 
 
 In order to capture classes of optimization functions, we can extend $\qso$ with $\max$ and $\min$ quantifiers (called $\optqso$) as follows. 
-Given a relational signature $\R$, the set of $\optqso$-formulas over $\R$ is given by extending the syntax in (\ref{syntax}) with the following operators:
+Given a relational signature $\R$, the set of $\optqso$-formulae over $\R$ is given by extending the syntax in (\ref{syntax}) with the following operators:
 \begin{multline*}
 \max\{\alpha,\alpha\} \ \mid\ \min\{\alpha,\alpha\} \ \mid \\ \maxa{x} \alpha \ \mid \ \mina{x} \alpha \ \mid \ \maxa{X} \alpha \ \mid \ \mina{X} \alpha 
 \end{multline*}
-where $x \in \fv$ and $X \in \sv$. The semantics of the $\qso$-operators in $\optqso$ are defined as usual. Furthermore, the semantics of the max and min quantifiers are defined as the natural extension of the sum quantifiers in $\qso$ (see Table~\ref{tab-semantics}) by maximizing or minimizing (respectively) instead of summing.
+where $x \in \fv$ and $X \in \sv$. The semantics of the $\qso$-operators in $\optqso$ are defined as usual. Furthermore, the semantics of the max and min quantifiers are defined as the natural extension of the sum quantifiers in $\qso$ (see Table~\ref{tab-semantics}) by maximizing or minimizing, respectively, instead of computing a sum. 
 \begin{example}\label{ex:optqso}
-	Recall again the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the size of the bigger clique in a graph. Then this can be define in $\optqso$ with the following formula:
+	Recall again the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the size of the largest clique in a graph. This can be done in $\optqso$ with the following formula:
 	\[
 \alpha_6 := \maxa{X} \left( \, \clique(X) \cdot \sa{z} X(z)  \, \right)
 	\]
+	Notice that formula $\sa{z} X(z)$ is used to compute the number of nodes in a clique $X$. 
 \end{example}
-Similar than for $\maxp$ and $\minp$, we have to distinguished between the $\max$ and $\min$ fragments of $\optqso$. For this, we define the fragment $\maxqso$ of all $\optqso$ formulas constructed from $\qfo$ operators and $\max$ operators (of first- and second-order). The class $\minqso$ is defined analogously changing $\max$ with $\min$. Note that in $\maxqso$ and $\minqso$ the second-order sum and product quantifiers are not allowed. For example, the formulas $\alpha_1$ and $\alpha_6$ are in $\maxqso$ but $\alpha_2$ and $\alpha_3$ are not. As one could expect, $\maxqso$ and $\minqso$ are the logics that we need to capture $\optp$.
+Similar than for $\maxp$ and $\minp$, we have to distinguished between the $\max$ and $\min$ fragments of $\optqso$. For this, we define the fragment $\maxqso$ of all $\optqso$ formulae constructed from $\qfo$ operators and $\max$-formulae $\max\{\alpha,\alpha\}$, $\maxa{x} \alpha$ and  $\maxa{X} \alpha$.
+%operators of first- and second-order. 
+The class $\minqso$ is defined analogously changing $\max$ with $\min$. Notice that in $\maxqso$ and $\minqso$, second-order sum and product are not allowed. For instance, formula $\alpha_6$ in Example \ref{ex:optqso} is in $\maxqso$.
+%the formulae $\alpha_1$ and $\alpha_6$ are in $\maxqso$ but $\alpha_2$ and $\alpha_3$ are not. 
+As one could expect, $\maxqso$ and $\minqso$ are the needed logics to capture $\maxp$ and $\minp$.
 \begin{theorem} \label{theo:capture-optp}
 	$\maxqso(\fo)$ and $\minqso(\fo)$ captures $\maxp$ and $\minp$, respectively, over ordered structures.
 \end{theorem}
-It is important to mention that a similar result was proved in~\cite{kolaitis1994logical} for the class $\maxpb$ and $\minpb$ of problems in $\maxp$ and $\minp$ whose output value is polynomially bounded.
-Interestingly, the result is stronger here since our logic has the freedom to use sum and product quantifiers instead of using a max-and-count problem over boolean formulas. 
-Finally, it is straightforward to prove that our framework can also capture $\maxpb$ and $\minpb$ by disallowing the product $\Pi x$ in $\maxqso(\fo)$ and $\minqso(\fo)$, respectively.
+It is important to mention that a similar result was proved in~\cite{kolaitis1994logical} for the class $\maxpb$ (resp., $\minpb$) of problems in $\maxp$ (resp., $\minp$) whose output value is polynomially bounded.
+Interestingly, Theorem \ref{theo:capture-optp} is stronger since our logic has the freedom to use sum and product quantifiers, instead of using a max-and-count problem over Boolean formulae. 
+Finally, it is easy to prove that our framework can also capture $\maxpb$ and $\minpb$ by disallowing the product $\Pi x$ in $\maxqso(\fo)$ and $\minqso(\fo)$, respectively.
 
