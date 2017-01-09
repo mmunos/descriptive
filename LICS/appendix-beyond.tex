@@ -1,6 +1,18 @@
 \subsection*{Proof of Theorem \ref{lem-support}}
 
+First we prove the statement for the grammar without the fixed-point operator, and then we will prove it for the unrestricted grammar.
 
+Let $\R$ be a signature. Let $\beta(\bar{x},h)$ be a formula in $\rqfo(\fo)$ over $\R$ without the fixed-point operator. Let $\length(\bar{x}) = \ell$. Let $f,g :A^{\ell}\to\nat$ and suppose $\support(f) \subseteq \support(g)$. Let $F,G$ be assignments such that $F(h) = f$ and $G(h) = g$. We will prove by induction over the size of $\beta$, that for every first-order assignment $v$ it holds that: If $v(\bar{x})\in\support(T_{\beta}(f))$, this is, $\sem{\beta(\bar{x},h)}(\A,v,F) > 0$, then $\sem{\beta(\bar{x},h)}(\A,v,G) > 0$.
+If $\beta = \varphi$ in $\fo$ or $\beta = s$ then $h$ does not appear in $\beta$ so $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G) > 0$ for each $v$. If $\alpha = h(\bar{y})$, then $T_{\beta}(f) = f$ and the condition holds trivially. Suppose it holds for every formula smaller than $\beta$. If $\beta = (\beta_1 \add \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) + \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$. Then for some $\beta_i$ we have $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ and so from our assumption $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$. 
+If $\beta = (\beta_1 \mult \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) \cdot \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$ which implies that $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ for each $\beta_i$. From our assumption we have that $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$ for each $\beta_i$ which proves the statement. If $\beta = \sa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$. Then we have $\sum_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$. Then for some $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[x/a],G) > 0$ which proves the statement since the assignment $x$ to $a$ does not change the assignation to $\bar{x}$. If $\beta = \pa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$.
+Then we have $\prod_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$. Then for each $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[x/a],G) > 0$ for each $a\in A$ which proves the statement, similarly to the previous case. This covers all possible cases for $\beta$ and finishes the proof for this case.
+
+\vspace{1em}
+For the unrestricted grammar we begin the proof likewise as we did in the previous case. The only additional case is  where $\beta = \clfp{\delta(\bar{x},\hat{h})}$. Suppose $v(\bar{x})\in\support(T_{\beta}(f))$, then we have $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,F) > 0$. 
+
+By induction, suppose $\delta$ does not contain any fixed-point operator. We prove the following: If $f^1_i$ are the functions that are calculated from the iterations of $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,F) > 0$, and $f^2_i$ are the functions for $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,G) > 0$, then $\support(f^1_i)\subseteq\support(f^2_i)$. This can be proven by an argument of induction, starting from $f^1_0$ and $f^2_0$ for which clearly $\support(f^1_0) \subseteq \support(f^2_0)$, and where the inductive step is a direct consequence of the result from the previous paragraph.
+
+If $\delta$ contains a fixed-point operator the statement can be proven analogously. We conclude that $\support(T_{\beta}(f))\subseteq\support(T_{\beta}(g))$.
 
 \subsection*{Proof of Theorem \ref{rqfo-fo-cap}}
 
@@ -19,16 +31,80 @@ This ends the construction of the algorithm.
 Consider $f$ as the $\fp$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 
 \vspace{1em}
-Now we prove the second condition in Definition \ref{def:cap}. Let $f\in\fp$ be defined over $\R$. Recall that in the proof for Theorem \ref{theo:capture-fp} we constructed a formula $\alpha = \sa{\bar{x}}\Phi(\bar{x})\mult\varphi(\bar{x})$ in $\qfo(\lfp)$ where $\Phi(\bar{x})$ is a formula in $\lfp$ extended with constants over the signature $\R \cup \{\bar{x}\}$. We use the construction used by Gradel in \cite{G07} to capture $\ptime$ with $\lfp$. Consider the function defined by the operator $\clfp{\varphi(\bar{x},h)}(\bar{x})$. This corresponds exactly to the function:
-$$
-f(\A,v(\bar{x})) 
-\begin{cases}
-1 &(\A,v)\models [{\bf lfp}\,{\varphi(\bar{x},R)}](\bar{x}), \\
-0 &\text{ in other case.}
-\end{cases}
-$$
-Then, each formula $[{\bf lfp}\,{\varphi(\bar{x},R)}]$ in $\Phi$ can be replaced by $\clfp{\varphi(\bar{x},h)}$ to obtain an equivalent formula $\alpha'$. We have that $\alpha'$ is in $\rqfo(\fo)$ and for each $\A\in\ostr[\R]$ it holds that $\sem{\alpha'}(\A) = f(\enc(\A))$.
-
+Now we prove the second condition in Definition \ref{def:cap}.
+%Let $f\in\fp$ be defined over $\R$. Recall that in the proof for Theorem \ref{theo:capture-fp} we constructed a formula $\alpha = \sa{\bar{x}}\Phi(\bar{x})\mult\varphi(\bar{x})$ in $\qfo(\lfp)$ where $\Phi(\bar{x})$ is a formula in $\lfp$ extended with constants over the signature $\R \cup \{\bar{x}\}$. We use the construction used by Gradel in \cite{G07} to capture $\ptime$ with $\lfp$. Consider the function defined by the operator $\clfp{\varphi(\bar{x},h)}(\bar{x})$. This corresponds exactly to the function:
+%$$
+%f(\A,v(\bar{x})) 
+%\begin{cases}
+%1 &(\A,v)\models [{\bf lfp}\,{\varphi(\bar{x},R)}](\bar{x}), \\
+%0 &\text{ in other case.}
+%\end{cases}
+%$$
+%Then, each formula $[{\bf lfp}\,{\varphi(\bar{x},R)}]$ in $\Phi$ can be replaced by $\clfp{\varphi(\bar{x},h)}$ to obtain an equivalent formula $\alpha'$. We have that $\alpha'$ is in $\rqfo(\fo)$ and for each $\A\in\ostr[\R]$ it holds that $\sem{\alpha'}(\A) = f(\enc(\A))$.
+We generalize $\clfp$ a bit. The formula is
+\begin{align*}
+\sa{t}\clfp{out(t): \,&\alpha_{T_0}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{T_1}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{T_B}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{T_{\vdash}}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{h}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{\hat{h}}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{s_{q_1}}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\vdots \\
+&\alpha_{s_{q_{\ell}}}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
+&\alpha_{out}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)}\mult last(t).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{T_0}(t,p,...) = \,&first(t) \wedge \neg E(p_1,p_2) + \\
+&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_0(t',p)) + \\
+&\bigplus_{\delta(q,a) = (q',0,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{T_1}(t,p,...) = \,&first(t) \wedge E(p_1,p_2) + \\
+&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_1(t',p)) + \\
+&\bigplus_{\delta(q,a) = (q',1,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{T_B}(t,p,...) = \,&first(t) \wedge (p \text{ is larger than input}) + \\
+&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_B(t',p)) + \\
+&\bigplus_{\delta(q,a) = (q',B,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{T_{\vdash}}(t,p,...) = \,&first(t) \wedge first(p) + \\
+&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_{\vdash}(t',p)) + \\
+&\bigplus_{\delta(q,a) = (q',\vdash,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{h}(t,p,...) = \,& first(t) \wedge second(p) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}(succ(t',t) \mult succ(p,p')\mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')) + \\
+&\bigplus_{\delta(q,a) = (q',b,\rightarrow,v)}\sa{t'}\sa{p'}(succ(t',t) \mult succ(p',p)\mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{\hat{h}}(t,p,...) = \,& first(t) \wedge (p\text{ is either first or greater than second}) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}\sa{p''}(succ(t',t) \mult T_a(t',p')  \mult h(t',p') \mult s_{q}(t') \mult succ(p'',p') \mult (p'' < p \vee p < p'')) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}\sa{p''}(succ(t',t) \mult T_a(t',p')  \mult h(t',p') \mult s_{q}(t') \mult succ(p',p'') \mult (p'' < p \vee p < p'')).
+\end{align*}
+We define:
+\begin{align*}
+\alpha_{q_0}(t,...) = \,& first(t) + \\
+&\bigplus_{\delta(q,a) = (q_0,b,op,v)}\sa{t'}\sa{p'}(succ(t',t) \mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
+\end{align*}
+For the remaining $q_i$ we define:
+\begin{align*}
+\alpha_{q_i}(t,...) = &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{t'}\sa{p'}(succ(t',t) \mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
+\end{align*}
+And lastly we define:
+\begin{align*}
+\alpha_{out}(t,...) = &\bigplus_{\delta(q,a) = (q',b,op,0)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult 2\mult out(t')) + \\
+&\bigplus_{\delta(q,a) = (q',b,op,1)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult (2\mult out(t')+1)) + \\ 
+&\bigplus_{\delta(q,a) = (q',b,op,B)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult out(t')).
+\end{align*}
 
 \subsection*{Proof of Theorem \ref{tqfo-shl}}
 
@@ -352,13 +428,13 @@ and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x}
 %$$
 %that satisfies $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$, where $\Phi(X)$ is a $\pfp$ formula that models a $\pspace$ language over the encoding of structures in $\ostr[\R\cup\{X\}]$. The typical reduction  for this \cite{G07} uses a first-order over $\R\cup\{X,R\}$ formula $\psi(R,\bar{x})$ and describes $\Phi = \exists\bar{y}\,[\mathbf{pfp}\,R(\bar{x}):\psi(R,\bar{x})](\bar{y})$ (note that $X$ might be mentioned in $\psi$). We will provide an equivalent formula $\zeta(X)$ in $\tqso(\fo)$:
 %$$
-%\zeta(X) := \sa{R}\sa{S}\sa{Y}[\pth\varphi(X,R,Y,S)]\mult\forall\bar{x}(X(\bar{x})\leftrightarrow Y(\bar{x}))\mult\forall\bar{y}\neg R(\bar{y})\mult\forall\bar{y}(S(\bar{y})\leftrightarrow\psi(X,S,\bar{y}))\mult\exists\bar{y}S(\bar{y}),
+%\zeta(X) := \sa{R}\sa{S}\sa{Y}[\pth\varphi(X,R,Y,S)]\mult\forall\bar{x}(X(\bar{x})\leftrightarrow,v Y(\bar{x}))\mult\forall\bar{y}\neg R(\bar{y})\mult\forall\bar{y}(S(\bar{y})\leftrightarrow,v\psi(X,S,\bar{y}))\mult\exists\bar{y}S(\bar{y}),
 %$$
 %where $\varphi$ is defined as:
 %$$
-%\varphi(X,R,Y,S) := \forall\bar{x}(X(\bar{x})\leftrightarrow Y(\bar{x}))\wedge\forall\bar{y}(S(\bar{y})\leftrightarrow\psi(X,R,\bar{y}))\wedge\neg\forall\bar{y}(R(\bar{y})\leftrightarrow\psi(X,R,\bar{y})).
+%\varphi(X,R,Y,S) := \forall\bar{x}(X(\bar{x})\leftrightarrow,v Y(\bar{x}))\wedge\forall\bar{y}(S(\bar{y})\leftrightarrow,v\psi(X,R,\bar{y}))\wedge\neg\forall\bar{y}(R(\bar{y})\leftrightarrow,v\psi(X,R,\bar{y})).
 %$$
-%The formula $\neg\forall\bar{y}(R(\bar{y})\leftrightarrow\psi(R,\bar{y}))$ prevents $R$ from already being a fixed point. This way, the operator finds a fixed point $S$ and then stops iterating. It can be checked that in the graph described for this operator, each node has out-degree and in-degree at most 1. And so, $\sem{\zeta(X)}(\A,v,V)$ takes the value 0 or 1 for each $(\A,v,V)\in\ostr[\R]^*$. Then the formula
+%The formula $\neg\forall\bar{y}(R(\bar{y})\leftrightarrow,v\psi(R,\bar{y}))$ prevents $R$ from already being a fixed point. This way, the operator finds a fixed point $S$ and then stops iterating. It can be checked that in the graph described for this operator, each node has out-degree and in-degree at most 1. And so, $\sem{\zeta(X)}(\A,v,V)$ takes the value 0 or 1 for each $(\A,v,V)\in\ostr[\R]^*$. Then the formula
 %$$
 %\alpha := \sa{X}(\zeta(X)\mult\gamma(X))
 %$$
