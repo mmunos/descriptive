@@ -41,69 +41,76 @@ Now we prove the second condition in Definition \ref{def:cap}.
 %\end{cases}
 %$$
 %Then, each formula $[{\bf lfp}\,{\varphi(\bar{x},R)}]$ in $\Phi$ can be replaced by $\clfp{\varphi(\bar{x},h)}$ to obtain an equivalent formula $\alpha'$. We have that $\alpha'$ is in $\rqfo(\fo)$ and for each $\A\in\ostr[\R]$ it holds that $\sem{\alpha'}(\A) = f(\enc(\A))$.
-We generalize $\clfp$ a bit. The formula is
+
+\newcommand{\ttB}{\mathtt{B}}
+\newcommand{\successor}{\text{succ}}
+
+For the second condition, let $f$ be a $\fp$ function defined over $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the remaining cases can be deduced from this. Let $M$ be a deterministic polynomial-time transducer such that $f(\enc(\A))$ is equal to the output of $M$ on input $\enc(\A)$ for each $\R$-structure $\A$. We suppose that $M = (Q,\{0,1\},q_0,\delta)$ without final states, where $Q = (q_0,\ldots,q_{\ell})$, and $\delta:Q\times\{0,1,\ttB, \vdash\}\to Q\times\{0,1,\ttB, \vdash\}\times \{\leftarrow,\rightarrow\}\times\{0,1,\emptyset\}$ is a partial function. The machine has an output tape and the only allowed operations in that tape on each step are (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. This is represented by the set $\{0,1,\emptyset\}$. Suppose that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, stops at exactly $n^k$ steps for some $k > 1$.
+
+We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$. This extension allows defining the operator ${\bf lsfp}$ for multiple functions, analogously to the generalization of fixed-point operator with multiple predicates. Let $\bar{x} = (x_1,\ldots,x_k)$ and $\bar{t} = (t_1,\ldots,t_k)$, and then $\alpha$ is defined as:
 \begin{align*}
-\sa{t}\clfp{out(t): \,&\alpha_{T_0}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{T_1}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{T_B}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{T_{\vdash}}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{h}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{\hat{h}}(t,p,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{s_{q_1}}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\vdots \\
-&\alpha_{s_{q_{\ell}}}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)\\
-&\alpha_{out}(t,T_0,T_1,T_B,T_{\vdash},h,\hat{h},s_{q_1},\ldots,s_{q_{\ell}},out)}\mult last(t).
+\alpha = \sa{\bar{t}}\clfp{out(\bar{t}): \,&\alpha_{T_0}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{T_1}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{T_{\ttB}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{T_{\vdash}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{h}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{\hat{h}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{s_{q_0}}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\vdots \\
+	&\alpha_{s_{q_{\ell}}}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
+	&\alpha_{out}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out)}\mult \last(\bar{t}).
 \end{align*}
-We define:
+Where each function is defined as follows. First we define four formulas that encode the contents of the tape on each step.
 \begin{align*}
-\alpha_{T_0}(t,p,...) = \,&first(t) \wedge \neg E(p_1,p_2) + \\
-&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_0(t',p)) + \\
-&\bigplus_{\delta(q,a) = (q',0,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\alpha_{T_0}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge\neg E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) )+ \\
+&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_0(\bar{t}',\bar{x})) + \\
+&\bigplus_{\delta(q,a) = (q',0,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
+\alpha_{T_1}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) )+ \\
+&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_1(\bar{t}',\bar{x})) + \\
+&\bigplus_{\delta(q,a) = (q',1,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
+\alpha_{T_{\ttB}}(\bar{t},\bar{x},...) = \,&\first(\bar{t})\wedge\exists\bar{y}\exists\bar{y}'(\first(y_1,\ldots,y_{k-2})\wedge\last(y_{k-1},y_k)\wedge\successor(\bar{y},\bar{y}')\wedge\bar{y}' < \bar{x}) + \\
+&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\ttB}(\bar{t}',\bar{x})) + \\
+&\bigplus_{\delta(q,a) = (q',{\ttB},op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
+\alpha_{T_{\vdash}}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \first(\bar{x}) + \\
+&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\vdash}(\bar{t}',\bar{x})) + \\
+&\bigplus_{\delta(q,a) = (q',\vdash,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
 \end{align*}
-We define:
+We also define two formulas that model which position the head is in, and which positions the head is not in.
 \begin{align*}
-\alpha_{T_1}(t,p,...) = \,&first(t) \wedge E(p_1,p_2) + \\
-&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_1(t',p)) + \\
-&\bigplus_{\delta(q,a) = (q',1,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\alpha_{h}(\bar{t},\bar{x},...) = \,& \first(\bar{t}) \wedge \successor(\bar{t},\bar{x}) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x},\bar{x}')\mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')) + \\
+&\bigplus_{\delta(q,a) = (q',b,\rightarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x}',\bar{x})\mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')),\\
+\alpha_{\hat{h}}(\bar{t},\bar{x},...) = \,& \first(\bar{t}) \wedge \neg\successor(\bar{t},\bar{x}) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')  \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \successor(\bar{x}'',\bar{x}') \mult (\bar{x} \neq \bar{x}'')) + \\
+&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')  \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \successor(\bar{x}',\bar{x}'') \mult (\bar{x} \neq \bar{x}'')).
 \end{align*}
-We define:
+For $q_0$ we define a formula that models which state the machine is in at each time,
 \begin{align*}
-\alpha_{T_B}(t,p,...) = \,&first(t) \wedge (p \text{ is larger than input}) + \\
-&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_B(t',p)) + \\
-&\bigplus_{\delta(q,a) = (q',B,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\alpha_{q_0}(\bar{t},...) = \,& \first(\bar{t}) + \\
+&\bigplus_{\delta(q,a) = (q_0,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')) \mult h(\bar{t}',\bar{x}')) \mult s_{q}(\bar{t}')),
 \end{align*}
-We define:
+and for the remaining $q_i$ we define
 \begin{align*}
-\alpha_{T_{\vdash}}(t,p,...) = \,&first(t) \wedge first(p) + \\
-&\sa{t'}(succ(t',t) \mult \hat{h}(t',p) \mult T_{\vdash}(t',p)) + \\
-&\bigplus_{\delta(q,a) = (q',\vdash,op,v)}\sa{t'}(succ(t',t) \mult h(t',p) \mult T_a(t',p) \mult s_{q}(t')).
+\alpha_{q_i}(\bar{t},...) = &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
 \end{align*}
-We define:
+And lastly we define a function that computes the output at each time.
 \begin{align*}
-\alpha_{h}(t,p,...) = \,& first(t) \wedge second(p) + \\
-&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}(succ(t',t) \mult succ(p,p')\mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')) + \\
-&\bigplus_{\delta(q,a) = (q',b,\rightarrow,v)}\sa{t'}\sa{p'}(succ(t',t) \mult succ(p',p)\mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
+\alpha_{out}(\bar{t},...) = &\bigplus_{\delta(q,a) = (q',b,op,0)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult 2\mult out(\bar{t}')) + \\
+&\bigplus_{\delta(q,a) = (q',b,op,1)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult (2\mult out(\bar{t}')+1)) + \\ 
+&\bigplus_{\delta(q,a) = (q',b,op,\emptyset)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult out(\bar{t}')).
 \end{align*}
-We define:
+Clearly, at each iteration of the LSFP operator, the tuple $\bar{t}$ represents the step the machine is currently in. From the construction of the formula, and since the machine is deterministic, it can be seen that in each function $g\in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the LSFP operator, it holds that $g(\bar{a},\bar{b}) \leq 1$ for each $\bar{b}\in A^k$, that $g(\bar{a}+1,\bar{b}) = 0$ for each $\bar{b}\in A^k$. Also, at the $\bar{a}$-th iteration, $g(\bar{a}) \leq 1$ and $g(\bar{a}+1) = 0$ for each $g\in\{s_{q_1},\ldots,s_{q_{\ell}}\}$. From this, we have that at each iteration $\bar{a}$ of the operator, $out(\bar{a})$ is equal to either $2\cdot out(\bar{a}-1)$, $2\cdot out(\bar{a}-1) + 1$, or $out(\bar{a}-1)$, which represents precisely the value in the output tape at each step of $M$ running on input $\enc(\A)$. From this argument it can be seen that $\sem{\alpha}(\A) = f(\enc(\A)$.
+
+\vspace{1em}
+We now prove that for each formula $\alpha$ in the previously defined extension of $\rqfo(\fo)$, there exists an equivalent formula in the unextended grammar of $\rqfo(\fo)$. It suffices to have $\alpha$ be a formula of the form 
+$$
+\alpha(\bar{x}_1) = \clfp{f_1(\bar{x}_1): \alpha_1(\bar{x}_1,f_1,\ldots,f_n),\alpha_2(\bar{x}_2,f_1,\ldots,f_n),\ldots,\alpha_n(\bar{x}_n,f_1,\ldots,f_n)}
+$$
+and showing an equivalent formula defined by a LSFP operator which uses one formula less in its definition.
+
+We construct the equivalent formula as follows. Let $\alpha_1'$ and $\alpha_2'$ be obtained by performing the following replacements in $\alpha_1$ and $\alpha_2$ respectively:
 \begin{align*}
-\alpha_{\hat{h}}(t,p,...) = \,& first(t) \wedge (p\text{ is either first or greater than second}) + \\
-&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}\sa{p''}(succ(t',t) \mult T_a(t',p')  \mult h(t',p') \mult s_{q}(t') \mult succ(p'',p') \mult (p'' < p \vee p < p'')) + \\
-&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{t'}\sa{p'}\sa{p''}(succ(t',t) \mult T_a(t',p')  \mult h(t',p') \mult s_{q}(t') \mult succ(p',p'') \mult (p'' < p \vee p < p'')).
-\end{align*}
-We define:
-\begin{align*}
-\alpha_{q_0}(t,...) = \,& first(t) + \\
-&\bigplus_{\delta(q,a) = (q_0,b,op,v)}\sa{t'}\sa{p'}(succ(t',t) \mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
-\end{align*}
-For the remaining $q_i$ we define:
-\begin{align*}
-\alpha_{q_i}(t,...) = &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{t'}\sa{p'}(succ(t',t) \mult T_a(t',p') \mult h(t',p') \mult s_{q}(t')).
-\end{align*}
-And lastly we define:
-\begin{align*}
-\alpha_{out}(t,...) = &\bigplus_{\delta(q,a) = (q',b,op,0)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult 2\mult out(t')) + \\
-&\bigplus_{\delta(q,a) = (q',b,op,1)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult (2\mult out(t')+1)) + \\ 
-&\bigplus_{\delta(q,a) = (q',b,op,B)}\sa{t'}\sa{p'}(succ(t',t) \mult h(t',p') \mult T_a(t',p') \mult out(t')).
+f_1()
 \end{align*}
 
 \subsection*{Proof of Theorem \ref{tqfo-shl}}
