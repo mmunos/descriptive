@@ -4,8 +4,8 @@ First we prove the statement for the grammar without the fixed-point operator, a
 
 Let $\R$ be a signature. Let $\beta(\bar{x},h)$ be a formula in $\rqfo(\fo)$ over $\R$ without the fixed-point operator. Let $\length(\bar{x}) = \ell$. Let $f,g :A^{\ell}\to\nat$ and suppose $\support(f) \subseteq \support(g)$. Let $F,G$ be assignments such that $F(h) = f$ and $G(h) = g$. We will prove by induction over the size of $\beta$, that for every first-order assignment $v$ it holds that: If $v(\bar{x})\in\support(T_{\beta}(f))$, this is, $\sem{\beta(\bar{x},h)}(\A,v,F) > 0$, then $\sem{\beta(\bar{x},h)}(\A,v,G) > 0$.
 If $\beta = \varphi$ in $\fo$ or $\beta = s$ then $h$ does not appear in $\beta$ so $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G) > 0$ for each $v$. If $\alpha = h(\bar{y})$, then $T_{\beta}(f) = f$ and the condition holds trivially. Suppose it holds for every formula smaller than $\beta$. If $\beta = (\beta_1 \add \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) + \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$. Then for some $\beta_i$ we have $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ and so from our assumption $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$. 
-If $\beta = (\beta_1 \mult \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) \cdot \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$ which implies that $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ for each $\beta_i$. From our assumption we have that $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$ for each $\beta_i$ which proves the statement. If $\beta = \sa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$. Then we have $\sum_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$. Then for some $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[x/a],G) > 0$ which proves the statement since the assignment $x$ to $a$ does not change the assignation to $\bar{x}$. If $\beta = \pa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$.
-Then we have $\prod_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$. Then for each $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[x/a],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[x/a],G) > 0$ for each $a\in A$ which proves the statement, similarly to the previous case. This covers all possible cases for $\beta$ and finishes the proof for this case.
+If $\beta = (\beta_1 \mult \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) \cdot \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$ which implies that $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ for each $\beta_i$. From our assumption we have that $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$ for each $\beta_i$ which proves the statement. If $\beta = \sa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$. Then we have $\sum_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$. Then for some $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[a/x],G) > 0$ which proves the statement since the assignment $x$ to $a$ does not change the assignation to $\bar{x}$. If $\beta = \pa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$.
+Then we have $\prod_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$. Then for each $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[a/x],G) > 0$ for each $a\in A$ which proves the statement, similarly to the previous case. This covers all possible cases for $\beta$ and finishes the proof for this case.
 
 \vspace{1em}
 For the unrestricted grammar we begin the proof likewise as we did in the previous case. The only additional case is  where $\beta = \clfp{\delta(\bar{x},\hat{h})}$. Suppose $v(\bar{x})\in\support(T_{\beta}(f))$, then we have $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,F) > 0$. 
@@ -24,8 +24,8 @@ If $\alpha = \varphi$, a formula in $\fo$, we check if $(\A,v,F)\models\varphi$ 
 If $\alpha = s$, we write $s$ as output.
 If $\alpha = (\alpha_1 + \alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the sum of the values as output.
 If $\alpha = (\alpha_1\cdot\alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the product of the values as output.
-If $\alpha = \sa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[x/a],F)$, and give the sum of all values as output.
-If $\alpha = \pa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[x/a],F)$, and give the product of all values as output.
+If $\alpha = \sa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the sum of all values as output.
+If $\alpha = \pa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the product of all values as output.
 If $\alpha = \clfp{\beta(\bar{x},h)}$, we compute each of the functions $f_0,\ldots,f_k$ iteratively. We start from the null function $f_0$ and compute $f_i$ on each step. If at any point $\support(f_i) = \support(f_{i+1})$, then we stop iterating and output $f_i(v(\bar{x}))$.
 This ends the construction of the algorithm.
 Consider $f$ as the $\fp$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
@@ -108,21 +108,44 @@ $$
 $$
 and showing an equivalent formula defined by a LSFP operator which uses one formula less in its definition.
 
-We construct the equivalent formula as follows. Let $\alpha_1'$ and $\alpha_2'$ be obtained by performing the following replacements in $\alpha_1$ and $\alpha_2$ respectively:
+We construct the equivalent formula as follows. We use a new function symbol $f$ with arity $\length(\bar{x}_1) + \length(\bar{x}_2)$. Let $\alpha_i'$ be obtained by performing the following replacements in $\alpha_i$, for each $i = 1,\ldots,n$.
 \begin{align*}
-f_1()
+f_1(\bar{y}_1) &\text{ is replaced by } \sa{\bar{y}_2}f(\bar{y}_1,\bar{y}_2)\mult[\first(\bar{y}_1)\mult\last(\bar{y}_2)  \add (\neg\first(\bar{y}_1))\mult\first(\bar{y}_2)], \\
+f_2(\bar{y}_2) &\text{ is replaced by } \sa{\bar{y}_1}f(\bar{y}_1,\bar{y}_2)\mult[\first(\bar{y}_1)\mult\first(\bar{y}_2)  \add \last(\bar{y}_1)\mult(\neg\first(\bar{y}_2))].
 \end{align*}
-
+Let us now define $\beta$ as
+\begin{align*}
+\beta(\bar{x}_1,\bar{x}_2) = \,&\alpha_1'(\bar{x}_1)\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2)) \add \\ &\alpha_2'(\bar{x}_2)\mult(\first(\bar{x}_1)\mult\first(\bar{x}_2)  \add \last(\bar{x}_1)\mult(\neg\first(\bar{x}_2))),
+\end{align*}
+and lastly we produce the formula
+\begin{align*}
+\alpha'(\bar{x}_1) = \,&\sa{\bar{x}_2}\clfp{f(\bar{x}_1,\bar{x}_2): \beta(\bar{x}_1,\bar{x}_2,f,f_3,\ldots,f_n),\\
+&\alpha_3(\bar{x}_3,f,f_3,\ldots,f_n),\ldots,\alpha_n(\bar{x}_n,f,f_3,\ldots,f_n)}\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2))
+\end{align*}
+It can be seen that for all values of $f_1$, besides the first one one, are stored in the first assignment of $\bar{x}_2$, and the first itself is stored in the last assignment of $\bar{x}_2$. Moreover, all values of $f_2$, besides the first one, are stored in the last assignment of $\bar{x}_1$, and the first one itself is stored in the first assignment of $\bar{x}_1$. This schema is depicted in Table \ref{table-clfp}. Since $\alpha'(\bar{x}_1)$ is equivalent to $\alpha(\bar{x}_1)$, this concludes the proof.
+\begin{table}[htbp]
+	\centering
+	\caption{Values of $f(\bar{x}_1,\bar{x}_2)$}
+	\label{table-clfp}
+	\begin{tabular}{crlllll}
+		\multicolumn{1}{l}{} & \multicolumn{6}{c}{$\bar{x}_2$} \\ \cline{2-7} 
+		\multicolumn{1}{c|}{\multirow{5}{*}{$\bar{x}_1$}} & \multicolumn{1}{c|}{$f_2$} &  &  &  & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$f_1$} \\ \cline{2-2} \cline{7-7} 
+		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{\multirow{4}{*}{$f_1$}} &  &  &  &  & \multicolumn{1}{l|}{} \\
+		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} &  &  &  &  & \multicolumn{1}{l|}{} \\
+		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} &  &  &  &  & \multicolumn{1}{l|}{} \\ \cline{3-7} 
+		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} & \multicolumn{5}{c|}{$f_2$} \\ \cline{2-7} 
+	\end{tabular}
+\end{table}
 \subsection*{Proof of Theorem \ref{tqfo-shl}}
 
-Let $\R$ be some relational signature.  First we address the first condition in the Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\cdot\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure starts by setting $\bar{a} = v(\bar{x})$. On each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value for $\bar{a}$, and rejects otherwise. If at any point we obtain that $\bar{a} = v(\bar{y})$, we generate an accepting branch, and continue simulating the procedure in the current branch. We simulate $n^{\length(\bar{x})}$ iterations of the procedure, and this generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+Let $\R$ be some relational signature.  First we address the first condition in the Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\mult\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\mult\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure starts by setting $\bar{a} = v(\bar{x})$. On each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value for $\bar{a}$, and rejects otherwise. If at any point we obtain that $\bar{a} = v(\bar{y})$, we generate an accepting branch, and continue simulating the procedure in the current branch. We simulate $n^{\length(\bar{x})}$ iterations of the procedure, and this generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 
 \vspace{1em}
-For the second condition, let $f \in \shl$ defined over $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, $q_{\ell}$ is only final state of $M$ and suppose $\Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ is the set of transitions in $M$. We also suppose that the machine stops when it reaches a final state. Formally, for each $a,b,c\in\{0,1\}$, each $op_1,op_2\in\{-1,=,+1\}$ and state $q\in Q$, we have $(q_{\ell},a,b,op_1,c,op_2,q)\not\in\Delta$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\cdot\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
+For the second condition, let $f \in \shl$ defined over $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, $q_{\ell}$ is only final state of $M$ and suppose $\Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ is the set of transitions in $M$. We also suppose that the machine stops when it reaches a final state. Formally, for each $a,b,c\in\{0,1\}$, each $op_1,op_2\in\{-1,=,+1\}$ and state $q\in Q$, we have $(q_{\ell},a,b,op_1,c,op_2,q)\not\in\Delta$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\mult\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
 
 We represent configurations with a tuple of fixed size. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ describes that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ describes that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
 $$
-\alpha = \sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y})).
+\alpha = \sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\mult \varphi_I(\bar{x})\mult\varphi_F(\bar{y})).
 $$
 
 To illustrate our idea, we will show a simplified example. Consider a machine $M$ that works in exactly $\log_2(n)$ space and only allows 0 or 1 in the working tape. Consider an input $\A$ of size 16 (that is, $A = \{0,\ldots,9,A,\ldots,F\}$). Let some configuration $s$ have 0011 in the working tape, the head in the input tape is in position 26, and the head in the input tape is in position 2 (we consider 0-indexed positions). Also, $Q = \{q_1,\ldots,q_5\}$ and the current state is $q_3$.
@@ -224,7 +247,7 @@ We also define some auxiliary formulas:
 \gamma_{-2}(\bar{x},\bar{y}) &= \gamma_{+2}(\bar{y},\bar{x}),\\
 \gamma_{i,j}(x,y) &= \gamma_i(x) \wedge \gamma_j(y),\text{ for $i,j \in\{0,1\}$}\\
 \varphi^b_k(x_1,x_2,x_3) &= \gamma_{a_1}(x_1) \wedge \gamma_{a_2}(x_2) \wedge \gamma_{a_3}(x_3),\text{ for each $k \leq 7$, where $a_1a_2a_3$ is the value of $k$ in binary}, \\
-\varphi^q_i(x_1,\ldots,x_{\ell}) &= \gamma_0(x_1) \wedge \cdots \wedge \gamma_0(x_{i-1}) \wedge \gamma_1(x_i) \wedge \gamma_0(x_{i+1}) \wedge \cdots \wedge \gamma_0(x_{\ell}), \text{ for each } q_i\in Q\\
+\varphi^q_i(x_1,\ldots,x_{\ell}) &= \gamma_0(x_1) \wedge \mults \wedge \gamma_0(x_{i-1}) \wedge \gamma_1(x_i) \wedge \gamma_0(x_{i+1}) \wedge \mults \wedge \gamma_0(x_{\ell}), \text{ for each } q_i\in Q\\
 \varphi^E_0(x_1,x_2) &= \neg E(x_1,x_2),\\		\varphi^E_1(x_1,x_2) &= E(x_1,x_2),\\
 \end{align*}
 
@@ -325,7 +348,7 @@ Lastly we define $\varphi_I$ and $\varphi_F$:
 \varphi_I(\bar{x},\bar{s},\bar{w},\bar{u}) &= \gamma_0(\bar{x}_{\text{Head-1}}) \wedge \gamma_0(x_{\text{Head-2}}) \wedge \gamma_0(\bar{x}_{\text{Tape}}) \wedge \varphi^{q}_1(\bar{x}_{\text{State}})\wedge \gamma_{0,0}(\bar{s})\wedge \varphi^b_0(\bar{w}) \wedge\gamma_0(\bar{u}). \\
 \varphi_F(\bar{x},\bar{s},\bar{w},\bar{u}) &= \varphi^q_{\ell}(\bar{x}_{\text{State}}) \wedge \gamma_{0,0}(\bar{s}) \wedge \varphi^b_0(\bar{w}) \wedge\gamma_0(\bar{u}),
 \end{align*}
-and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\cdot \varphi_I(\bar{x})\cdot\varphi_F(\bar{y}))}(\A) = \acc_M(\A)$.
+and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x},\bar{y})]\mult \varphi_I(\bar{x})\mult\varphi_F(\bar{y}))}(\A) = \acc_M(\A)$.
 
 \begin{algorithm}
 	\caption{If the $i$-th bit in $x$ is 0 return $x$} \label{switch0to0}
@@ -418,13 +441,13 @@ and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x}
 %If $\alpha = \varphi$, a $\so$ formula, we check if $(\A,v,V)\models\varphi$ in deterministic polynomial space, and accept if and only if it holds. 
 %If $\alpha = s$, we generate $s$ branches and accept in all of them. 
 %If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$, both on input $(A,v,V)$, on separate branches. 
-%If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
+%If $\alpha = (\alpha_1\mult\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
 %If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v[a/x],V)$.
 %If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ on input $(A,v[1/x],V)$, and on each accepting branch, instead of accepting we simulate $M_{\beta}$ on input $(A,v[2/x],V)$, and so on. 
 %If $\alpha = \sa{X}\beta$, for each $B\subseteq A^{\arity(X)}$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v,V[B/X])$.
 %If $\alpha = \pa{X}\beta$, we simulate $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\subseteq A^{\arity(X)}$. 
 %If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure starts with $(\bar{b},\bar{B}) = (v(\bar{x}),V(\bar{X}))$, then on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. If at any point we obtain that $(\bar{b}, \bar{B}) = (v(\bar{y}),V(\bar{Y}))$ we generate a new accepting branch, and we continue with the procedure.
-%We compute $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ iterations of the procedure, which generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
+%We compute $n^{\length(\bar{x})}\mult \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ iterations of the procedure, which generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
 %This ends the construction of the algorithm. 
 %Consider $f$ as the $\shpspace$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 %
@@ -458,12 +481,12 @@ and then $\sem{\alpha}(\A) = \sem{\sa{\bar{x}}\sa{\bar{y}}([\pth \varphi(\bar{x}
 %If $\alpha = \varphi$, a $\so$ formula, we check if $(\A,v,V)\models\varphi$ in deterministic polynomial space, and accept if and only if it holds. 
 %If $\alpha = s$, we generate $s$ branches and accept in all of them. 
 %If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$, both on input $(A,v,V)$, on separate branches. 
-%If $\alpha = (\alpha_1\cdot\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
+%If $\alpha = (\alpha_1\mult\alpha_2)$, we simulate $\alpha_1$ on input $(A,v,V)$ and if it accepts, instead of doing so, we simulate $\alpha_2$ on input $(A,v,V)$. 
 %If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v[a/x],V)$.
 %If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ on input $(A,v[1/x],V)$, and on each accepting branch, instead of accepting we simulate $M_{\beta}$ on input $(A,v[2/x],V)$, and so on. 
 %If $\alpha = \sa{X}\beta$, for each $B\subseteq A^{\arity(X)}$ we generate a different branch where we simulate $M_{\beta}$ on input $(A,v,V[B/X])$.
 %If $\alpha = [\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]$ where $\varphi$ is an $\so$ formula, we simulate the procedure that counts the number of paths for a graph of a given size. This procedure starts with $(\bar{b},\bar{B}) = (v(\bar{x}),V(\bar{X}))$, then on each iteration, nondeterministically chooses an assignment $(\bar{a},\bar{B})$ for $(\bar{x},\bar{X})$, and checks in polynomial space if $(\A,v,V)\models\varphi(\bar{a}',\bar{B}',\bar{a},\bar{B})$, where $(\bar{a}',\bar{B}')$ is the previously chosen value. If it holds, we continue, and otherwise we reject. If at any point we obtain that $(\bar{b}, \bar{B}) = (v(\bar{y}),V(\bar{Y}))$ we generate a new accepting branch, and we continue with the procedure.
-%We compute $n^{\length(\bar{x})}\cdot \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ iterations of the procedure, which generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
+%We compute $n^{\length(\bar{x})}\mult \prod_{X\in\bar{X}} 2^{A^{\arity(X)}}$ iterations of the procedure, which generates exactly $\sem{[\pth \varphi(\bar{x},\bar{X},\bar{y},\bar{Y})]}(\A,v,V)$ accepting branches. 
 %This ends the construction of the algorithm. 
 %Consider $f$ as the $\shpspace$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 %
