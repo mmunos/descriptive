@@ -20,7 +20,7 @@ Since a function in $\sfo$ can also be defined $\eqso(\fo)$ (see Section~\ref{se
 \subsection*{Proof of Proposition~\ref{prop:capture-spanP}}
 
 Similar than the previous proof, we construct recursively a $\spp$ machine $M_{\alpha}$ for each $\eqso(\eso)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$, non-deterministically produces $\sem{\alpha}(\A,v,V)$ distinct accepting outputs for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. 
-If $\alpha$ is a $\eso$-formula $\varphi$ it checks if $(\A,v,V)\models\varphi$ non-deterministically in polynomial time \cite{fagin1974generalized}, and accepts if and only if the condition holds true. 
+If $\alpha$ is a $\eso$-formula $\varphi$ it checks if $(\A,v,V)\models\varphi$ non-deterministically in polynomial time \cite{F75}, and accepts if and only if the condition holds true. 
 If $\alpha$ is a constant $s$, then the machine produces $s$ branches and accepts in all of them. 
 If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$.  
 If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. 
