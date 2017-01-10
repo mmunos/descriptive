@@ -269,26 +269,26 @@ To show that $\alpha$ has an FPRAS, consider a procedure that takes an input $\A
 
 
 
-\subsection*{Proof of Theorem \ref{sub-pnp}}
-
-Towards a contradiction, suppose that any of the classes $\E{1}$, $\eqso(\loge{1})$, and $\eqso(\logex{1})$ is closed under subtraction.
-
-Let $\R$ include the symbols $S_1, S_2, S_3, S_4$, which describe the following properties. If a finite $\R$-structure $\A$ defines a 3DNF formula $\Phi$, then its domain is the set of variables mentioned in $\Phi$, and for each $i = 1,2,3,4$:
-\begin{align*}
-	S_1^\A &= \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_2^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_3^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
-	S_4^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
-\end{align*}
-Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
-\begin{multline*}
-\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
-\end{multline*}
-Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
-$$
-\varphi(x,X) = (T(x) \vee \neg T(x)).
-$$
-Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1} \subseteq \eqso(\loge{1}) \subseteq \eqso(\logex{1}) \subseteq \totp$, and at least one of the classes is closed under subtraction, the function $f_{\#3DNF} - f_{all}$ is in $\totp$. However, note that for each $\R$-structure $\A$ that represents a formula $\Phi$, $(f_{\#3DNF} - f_{all})(\A) = 0$ if an only if $\Phi$ is a tautology. The decision version of this function is the $\np$-complete problem $\textsc{Tautology}$. And since the function is in $\totp$, its decision version is also in $\ptime$. We conclude that $\np \subseteq \ptime$.
+%\subsection*{Proof of Theorem \ref{sub-pnp}}
+%
+%Towards a contradiction, suppose that any of the classes $\E{1}$, $\eqso(\loge{1})$, and $\eqso(\logex{1})$ is closed under subtraction.
+%
+%Let $\R$ include the symbols $S_1, S_2, S_3, S_4$, which describe the following properties. If a finite $\R$-structure $\A$ defines a 3DNF formula $\Phi$, then its domain is the set of variables mentioned in $\Phi$, and for each $i = 1,2,3,4$:
+%\begin{align*}
+%	S_1^\A &= \{(a_1,a_2,a_3)\mid (\neg a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+%	S_2^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge \neg a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+%	S_3^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge \neg a_3) \mbox{ appears as a disjunct in }\Phi\},\\
+%	S_4^\A &= \{(a_1,a_2,a_3)\mid ( a_1 \wedge  a_2 \wedge  a_3) \mbox{ appears as a disjunct in }\Phi\}.
+%\end{align*}
+%Now we define $f_{\#3DNF} = f_{\psi(T)}$ where
+%\begin{multline*}
+%\psi(T) = \exists x \exists y \exists z\, [(S_1(x,y,z) \wedge \neg T(x) \wedge \neg T(y) \wedge \neg T(z)) \vee (S_2(x,y,z) \wedge T(x) \wedge \neg T(y) \wedge \neg T(z)) \, \vee \\ (S_3(x,y,z) \wedge T(x) \wedge T(y) \wedge \neg T(z)) \vee (S_4(x,y,z) \wedge T(x) \wedge T(y) \wedge T(z))].
+%\end{multline*}
+%Note that $f_{\#3DNF} \in \#\Sigma_1$. Let $f_{all} = f_{\exists x\:\varphi(x,X)}$, where
+%$$
+%\varphi(x,X) = (T(x) \vee \neg T(x)).
+%$$
+%Note that $f_{all}$ counts every possible truth assignment (satisfying or not) to a 3DNF formula. Given that $f_{\#3DNF}, f_{all} \in \E{1} \subseteq \eqso(\loge{1}) \subseteq \eqso(\logex{1}) \subseteq \totp$, and at least one of the classes is closed under subtraction, the function $f_{\#3DNF} - f_{all}$ is in $\totp$. However, note that for each $\R$-structure $\A$ that represents a formula $\Phi$, $(f_{\#3DNF} - f_{all})(\A) = 0$ if an only if $\Phi$ is a tautology. The decision version of this function is the $\np$-complete problem $\textsc{Tautology}$. And since the function is in $\totp$, its decision version is also in $\ptime$. We conclude that $\np \subseteq \ptime$.
 
 
 
