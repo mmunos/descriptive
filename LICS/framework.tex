@@ -100,11 +100,12 @@ in fact, showing that this function is hard to compute was one of the main motiv
 %and it was one of the first function that was shown to be difficult for counting~\cite{Valiant79} (i.e. $\shp$-complete). 
 
 To define the permanent of a 0-1 matrix in $\qso$, assume that for a binary relation symbol $S$, $\op{permutation}(S)$ is an $\fo$-formula that is true if and only if $S$ is a permutation, that is, a total bijective function (the definition of $\op{permutation}(S)$ is straightforward).
+\martin{abreviar $\op{permutation}$ a $\op{permut}$ ahorra un par de lineas}
 Then the following is a $\qso$-formula defining the permanent of a matrix:
 \[
 \alpha_3 := \sa{S} \op{permutation}(S) \cdot \pa{x} (\ex{y} S(x,y) \wedge M(x,y)).
 \]
-Intuitively, the subformula $\beta(s) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
+Intuitively, the subformula $\beta(S) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
 Moreover, the subformula $\op{permutation}(S) \cdot \beta(S)$ returns $\beta(S)$ when $S$ is a permutation, and returns $0$ otherwise (i.e. $\op{permutation}(S)$ behaves like a filter). 
 Finally, the second order sum aggregates these values iterating over all binary relations and calculating the permanent of the matrix.
 We would like to finish with this example by highlighting the similarity of $\alpha_3$ with the permanent formula. 
@@ -158,7 +159,8 @@ Formally, Saluja et. al \cite{SalujaST95} define a family of counting classes $\
 $
 f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varphi(\bar{a},\bar{A})\}\vert,
 $
-for every $\A\in\ostr[\R]$. Then a function $g:\ostr[\R]\to\nat$ is in $\#\LL$ if there exists a formula $\varphi(\bar{x},\bar{X})$ in $\LL$ such that $g = f_{\varphi(\bar x, \bar X)}$. 
+for every $\A\in\ostr[\R]$. Then a function $g:\ostr[\R]\to\nat$ is in $\#\LL$ if there exists a formula $\varphi(\bar{x},\bar{X})$ in $\LL$ such that $g = f_{\varphi(\bar x, \bar X)}$.
+\martin{La notacion $f_{\psi(x,X)}$ la inventamos}
 In~\cite{SalujaST95}, they were proved several results about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
 Notice that for every formula $\varphi(\bar{x},\bar{X})$, it holds that $f_{\varphi(\bar{x},\bar{X})}$ is the same function as $\sem{\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{x},\bar{X})}$, that is, the approach in \cite{SalujaST95} can be seen as a syntactical restriction of our approach based on $\qso$. 
 Thus, the advantage of our approach relies on the flexibility for defining  functions by alternating sum with product operators and, moreover, by introducing new quantitative operators (see Section~\ref{sec:beyond}).
