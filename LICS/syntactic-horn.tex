@@ -11,9 +11,10 @@ The goal of this section is to define a class of functions in $\shp$ with easy d
 
 In the previous section, we show that the class $\eqso(\logex{1})$ has good closure and approximation properties. Unfortunately, it is not clear whether it admits a {\em natural} complete problem under parsimonious reductions, where {\em natural} means any of the counting problems defined in this section or any other well-known counting problem (not one specifically designed to be complete for the class). Hence, in this section we follow a different approach to find a class of functions in $\shp$ with easy decision counterparts and natural complete problems, which is inspired by the approach followed in \cite{G92} that uses a restriction of second-order logic to Horn clauses for capturing $\ptime$ (over ordered structures). The following example shows how our approach works.
 \begin{example} \label{ex-hornsat-esop1}
-Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot)\}$. This vocabulary is used as follows to encode a Horn formula. A fact $\pP(c,x)$ indicates that propositional variable $x$ is a disjunct in a clause $c$, while $\pN(c,x)$ indicates that $\neg x$ is a disjunct in $c$. Furthermore, $\pV(x)$ holds if  $x$ is a propositional variable, and $\pNC(c)$ holds if $c$ is a clause containing only negative literals, that is, $c$ is of the form $(\neg x_1 \vee \cdots \vee \neg x_n)$.
+Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot),<\}$. This vocabulary is used as follows to encode a Horn formula. A fact $\pP(c,x)$ indicates that propositional variable $x$ is a disjunct in a clause $c$, while $\pN(c,x)$ indicates that $\neg x$ is a disjunct in $c$. Furthermore, $\pV(x)$ holds if  $x$ is a propositional variable, and $\pNC(c)$ holds if $c$ is a clause containing only negative literals, that is, $c$ is of the form $(\neg x_1 \vee \cdots \vee \neg x_n)$.
 
-To define $\chsat$, we consider an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if and only if $x$ is a propositional variable that is assigned value true.  More specifically, $\varphi(\pT)$ is defined as follows:
+To define $\chsat$, we consider an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if and only if $x$ is a propositional variable that is assigned value true.  More specifically, 
+%$\varphi(\pT)$ is defined as follows:
 \begin{align*}
 \varphi(\pT) \; :=\;\;  &\forall x \, (\pT(x) \to \pV(x)) \ \wedge\\
 &\forall c \, (\pNC(c) \to \exists x \, (\pN(c,x) \wedge \neg \pT(x))) \ \wedge\\
@@ -48,12 +49,18 @@ More precisely, we have that:
 %This formula effectively defines $\chsat$
 %as for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\chsat \in \eqso(\uhorn)$. 
 \end{example}
-The previous example suggests that in order to define $\chsat$, we can use Horn formulae defined as follows. 
+The previous example suggests that to define $\chsat$, we can use Horn formulae defined as follows. 
 A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order variable and $\x$ is a tuple of first-order variables, and a negative literal is a formula of the form $\exists \v \, \neg X(\u,\v)$, where $\u$ and $\v$ are tuples of first-order variables. Given a signature $\R$, a clause over $\R$ is a formula of the form $\forall \x \, (\varphi_1 \vee \cdots \vee \varphi_n)$, 
-where each $\varphi_i$ ($1 \leq i \leq n$) is either a positive literal, a negative literal or an \fo-formula.  A clause is said to be Horn if it contains at most one positive literal, and a formula is said to be Horn if it is a conjunction of Horn clauses. With this terminology, we define $\uhorn$ as the set of formulae $\psi$ such that $\psi$ is a conjunction of Horn clauses over a signature $\R$. 
+where each $\varphi_i$ ($1 \leq i \leq n$) is either a positive literal, a negative literal or an \fo-formula over $\R$.  A clause is said to be Horn if it contains at most one positive literal, and a formula is said to be Horn if it is a conjunction of Horn clauses. With this terminology, we define $\uhorn$ as the set of formulae $\psi$ such that $\psi$ is a 
+%conjunction of 
+Horn formula 
+%clauses 
+over a signature $\R$. 
 
 We have that $\chsat \in \eqso(\uhorn)$. Moreover, one can show that $\eqso(\uhorn)$ forms a class of functions with easy decision counterparts, namely, $\eqso(\uhorn) \subseteq \totp$.
-Thus, $\eqso(\uhorn)$ is a new alternative in our search for functions in $\shp$ with easy decision counterparts and natural complete problems. Moreover, an even larger class for our search can be generated by extending the definition of $\uhorn$ with outermost existential quantification. More precisely, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\exists \bar x \, \psi$ with $\psi$ a Horn formula. 
+Thus, $\eqso(\uhorn)$ is a new alternative in our search for a class of functions in $\shp$ with easy decision counterparts and natural complete problems. Moreover, an even larger class for our search can be generated by extending the definition of $\uhorn$ with outermost existential quantification. 
+%More precisely, 
+Formally, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\exists \bar x \, \psi$ with $\psi$ a Horn formula. 
 
 \begin{proposition}\label{prop:ehorn-pe}
 $\eqso(\ehorn) \subseteq \totp$.

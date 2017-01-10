@@ -76,14 +76,25 @@ We encode a triangle in $\alpha_1$ as an increasing sequence of nodes $\{x, y, z
 x < y \wedge y < z$ is checking the triangle property, by returning $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
 Finally, the sum quantifiers in $\alpha_1$ aggregates all the values, counting the number of triangles in $\fG$.
 
-Suppose now that we want to count the number of cliques in~$\fG$ (i.e. set of nodes where every pair of nodes is connected). We can easily define this function with the following formula:
+Suppose now that we want to count the number of cliques in~$\fG$.
+%(i.e. set of nodes where every pair of nodes is connected). 
+We can 
+%easily 
+define this function with the following formula:
 $$
-\alpha_2 \ := \ \sa{X} \clique(X) ,
+\alpha_2 \ := \ \sa{X} \clique(X),
 $$ 
 where $\clique(X) := \forall x \forall y ((X(x) \wedge X(y) \wedge x \neq y)  \rightarrow E(x,y))$.
-Similar than for $\alpha_1$, in the Boolean subformula of $\alpha_2$ we check whether $X$ is a clique, and with the sum quantifier we add one for each clique in $\fG$. 
-Note here that, in contrast to $\alpha_1$, in $\alpha_2$ we need a second-order quantifier in the quantitative level.
-This is according to the inherent complexity of evaluating each formula: $\alpha_1$ defines an $\fp$-function where $\alpha_2$ defines a $\shp$-complete function.
+%Similar than for $\alpha_1$, 
+In the Boolean sub-formula of $\alpha_2$ we check whether $X$ is a clique, and with the sum quantifier we add one for each clique in $\fG$. 
+%Note here that, 
+But in contrast to $\alpha_1$, 
+in $\alpha_2$ we need a second-order quantifier in the quantitative level.
+This is according to the
+%inherent 
+complexity of evaluating each formula:
+%each formula: 
+$\alpha_1$ defines an $\fp$-function while $\alpha_2$ defines a $\shp$-complete function.
 %~\cite{paper-that-shows-that-this-problem-is-sharpP-hard}.
 \end{example}
 \begin{example}\label{exa-perm}
