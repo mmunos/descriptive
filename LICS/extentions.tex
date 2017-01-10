@@ -14,7 +14,7 @@ The most elegant way to do this is by allowing constants coming from $\bbZ$ inst
 Formally, we define the logic $\qsoz$ whose syntax is the same as in \eqref{syntax} and whose semantics is the same as in Table~\ref{tab-semantics} except that the atomic formula $s$ (i.e. a constant) comes from $\bbZ$.  
 Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with constants in $\bbZ$.
 \begin{example}
-	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. Then this can be easily done in $\qsoz$ with the formula:
+	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. This can be easily done in $\qsoz$ with the formula:
 	$
 	\alpha_5 :=	\alpha_2 + (-1) \cdot \alpha_1 
 	$.
@@ -34,7 +34,7 @@ This is an interesting result that shows how robust is $\qso$ when capturing dif
 A different class of functions comes from considering the optimization version of a decision problem. For example, one can define MAX-SAT as the problem of determining the maximum number of clauses, of a given CNF propositional formula, that can be made true by an assignment. Here, MAX-SAT is defined in terms of a maximization problem which in its essence differs from the functions in $\shp$. 
 To formalize this set of optimization problems, Krentel defined $\optp$~\cite{krentel1988complexity} as the class of functions computable by taking the maximum or minimum of the output values over all runs of a polynomial-time NTM machine with output tape (i.e. each run produces a binary string which is interpreted as a number). 
 For instance, MAX-SAT is in $\optp$ as several others optimization versions of $\np$-problems.
-Given that in~\cite{krentel1988complexity} the author does not make the distinction between $\max$ or $\min$, in~\cite{vollmer1995complexity} the authors define the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
+Given that in~\cite{krentel1988complexity} the author does not make the distinction between $\max$ and $\min$, in~\cite{vollmer1995complexity} the authors define the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
 
 
 In order to capture classes of optimization functions, we can extend $\qso$ with $\max$ and $\min$ quantifiers (called $\optqso$) as follows. 
@@ -48,7 +48,7 @@ where $x \in \fv$ and $X \in \sv$. The semantics of the $\qso$-operators in $\op
 	\[
 \alpha_6 := \maxa{X} \left( \, \clique(X) \cdot \sa{z} X(z)  \, \right)
 	\]
-	Notice that formula $\sa{z} X(z)$ is used to compute the number of nodes in a clique $X$. 
+	Notice that formula $\sa{z} X(z)$ is used to compute the number of nodes in a set $X$. 
 \end{example}
 Similar than for $\maxp$ and $\minp$, we have to distinguished between the $\max$ and $\min$ fragments of $\optqso$. For this, we define the fragment $\maxqso$ of all $\optqso$ formulae constructed from $\qfo$ operators and $\max$-formulae $\max\{\alpha,\alpha\}$, $\maxa{x} \alpha$ and  $\maxa{X} \alpha$.
 %operators of first- and second-order. 
@@ -56,7 +56,7 @@ The class $\minqso$ is defined analogously changing $\max$ with $\min$. Notice t
 %the formulae $\alpha_1$ and $\alpha_6$ are in $\maxqso$ but $\alpha_2$ and $\alpha_3$ are not. 
 As one could expect, $\maxqso$ and $\minqso$ are the needed logics to capture $\maxp$ and $\minp$.
 \begin{theorem} \label{theo:capture-optp}
-	$\maxqso(\fo)$ and $\minqso(\fo)$ captures $\maxp$ and $\minp$, respectively, over ordered structures.
+	$\maxqso(\fo)$ and $\minqso(\fo)$ capture $\maxp$ and $\minp$, respectively, over ordered structures.
 \end{theorem}
 It is important to mention that a similar result was proved in~\cite{kolaitis1994logical} for the class $\maxpb$ (resp., $\minpb$) of problems in $\maxp$ (resp., $\minp$) whose output value is polynomially bounded.
 Interestingly, Theorem \ref{theo:capture-optp} is stronger since our logic has the freedom to use sum and product quantifiers, instead of using a max-and-count problem over Boolean formulae. 
