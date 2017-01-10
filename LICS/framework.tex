@@ -1,9 +1,9 @@
 %!TEX root = main.tex
 
 We introduce here the logical framework that we use for studying counting complexity classes. 
-This framework is based on the framework of Weighted Logics~\cite{DrosteG07} (WL) that has been used in the context of weighted automata for studying functions from words (or trees) to semirings. 
+This framework is based on the framework of Weighted Logics (WL)~\cite{DrosteG07}  that has been used in the context of weighted automata for studying functions from words (or trees) to semirings. 
 We propose here to use the framework of WL over any relational structure and to restrict the semiring to natural numbers. 
-The extension to any relational structure will allow us to study general function complexity classes and the restriction to the natural numbers will simplify the notation in this context (see Section~\ref{sec:previous} for a more detailed discussion).
+The extension to any relational structure will allow us to study general counting complexity classes and the restriction to the natural numbers will simplify the notation in this context (see Section~\ref{sec:previous} for a more detailed discussion).
 
 Given a relational signature $\R$, the set of Quantitative Second-Order logic formulae (or just $\qso$-formulae) over $\R$ is given by the following grammar:
 %\[
@@ -13,7 +13,7 @@ Given a relational signature $\R$, the set of Quantitative Second-Order logic fo
 %\end{array}
 %\]
 \begin{multline}
-\alpha := \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha \label{syntax} 
+\alpha \ := \ \varphi \ \mid \ s \ \mid \ (\alpha \add \alpha) \ \mid\ (\alpha \mult \alpha) \ \mid \\ \sa{x} \alpha \ \mid \ \pa{x} \alpha \ \mid \ \sa{X} \alpha \ \mid \ \pa{X} \alpha \label{syntax} 
 \end{multline}
 where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. Moreover, if $\R$ is not mentioned, then $\qso$ refers to the set of $\qso$ formulae over all possible relational signatures.
 %\marcelo{En la gramatica de la logica deberiamos incluir la formula $\top$ que discutimos, la cual representa true y para la cual se tiene que $\sem{\top}(\A, v, V) = 1$. Les parece?}
@@ -72,8 +72,8 @@ Suppose that we want to count the number of triangles in $\fG$. Then this can be
 \alpha_1 \ := \ \sa{x} \sa{y} \sa{z} ( E(x,y) \, \wedge \, E(y,z) \, \wedge \, E(z,x) \, \wedge \\
 x < y \, \wedge \, y < z )
 \end{multline*}
-For $\alpha_1$ we encode a triangle as an increasing sequence of nodes $\{x, y, z\}$ in order to count each triangle once. Then the Boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
-x < y \wedge y < z$ is checking the triangle property, by outputting $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
+We encode a triangle in $\alpha_1$ as an increasing sequence of nodes $\{x, y, z\}$, in order to count each triangle once. Then the Boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
+x < y \wedge y < z$ is checking the triangle property, by returning $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
 Finally, the sum quantifiers in $\alpha_1$ aggregates all the values, counting the number of triangles in $\fG$.
 
 Suppose now that we want to count the number of cliques in~$\fG$ (i.e. set of nodes where every pair of nodes is connected). We can easily define this function with the following formula:
@@ -81,13 +81,13 @@ $$
 \alpha_2 \ := \ \sa{X} \clique(X) ,
 $$ 
 where $\clique(X) := \forall x \forall y ((X(x) \wedge X(y) \wedge x \neq y)  \rightarrow E(x,y))$.
-Similar than for $\alpha_1$, in the Boolean subformula of $\alpha_2$ we check whether $X$ is a clique and with the sum quantifier we add one for each clique in $\fG$. 
+Similar than for $\alpha_1$, in the Boolean subformula of $\alpha_2$ we check whether $X$ is a clique, and with the sum quantifier we add one for each clique in $\fG$. 
 Note here that, in contrast to $\alpha_1$, in $\alpha_2$ we need a second-order quantifier in the quantitative level.
 This is according to the inherent complexity of evaluating each formula: $\alpha_1$ defines an $\fp$-function where $\alpha_2$ defines a $\shp$-complete function.
 %~\cite{paper-that-shows-that-this-problem-is-sharpP-hard}.
 \end{example}
 \begin{example}\label{exa-perm}
-For a more involved example that includes multiplication, let $\bM = \{M(\cdot,\cdot)\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i.j)$ is false.
+For a more involved example that includes multiplication, let $\bM = \{M(\cdot,\cdot),<\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i.j)$ is false.
 Suppose now that we want to compute the permanent of an $n$-by-$n$ 0-1 matrix $A$, that is:
 \begin{eqnarray*}
 \op{perm}(A) & = & \sum_{\sigma \in S_n} \prod_{i=1}^n A[i, \sigma(i)],  
@@ -99,14 +99,14 @@ The permanent is a fundamental function on matrices that has found many applicat
 in fact, showing that this function is hard to compute was one of the main motivations behind the definition of the counting class $\shp$~\cite{Valiant79}.
 %and it was one of the first function that was shown to be difficult for counting~\cite{Valiant79} (i.e. $\shp$-complete). 
 
-To define the permanent of a 0-1 matrix in $\qso$, assume that for a binary relation symbol $S$, $\op{permutation}(S)$ is an $\fo$-formula that is true if and only if $S$ is a permutation, that is, a total bijective function (the definition of $\op{permutation}(S)$ is straightforward).
-\martin{abreviar $\op{permutation}$ a $\op{permut}$ ahorra un par de lineas}
+To define the permanent of a 0-1 matrix in $\qso$, assume that for a binary relation symbol $S$, $\op{permut}(S)$ is an $\fo$-formula that is true if and only if $S$ is a permutation, that is, a total bijective function (the definition of $\op{permut}(S)$ is straightforward).
+%\martin{abreviar $\op{permutation}$ a $\op{permut}$ ahorra un par de lineas}
 Then the following is a $\qso$-formula defining the permanent of a matrix:
 \[
-\alpha_3 := \sa{S} \op{permutation}(S) \cdot \pa{x} (\ex{y} S(x,y) \wedge M(x,y)).
+\alpha_3 := \sa{S} \op{permut}(S) \cdot \pa{x} (\ex{y} S(x,y) \wedge M(x,y)).
 \]
 Intuitively, the subformula $\beta(S) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
-Moreover, the subformula $\op{permutation}(S) \cdot \beta(S)$ returns $\beta(S)$ when $S$ is a permutation, and returns $0$ otherwise (i.e. $\op{permutation}(S)$ behaves like a filter). 
+Moreover, the subformula $\op{permut}(S) \cdot \beta(S)$ returns $\beta(S)$ when $S$ is a permutation, and returns $0$ otherwise (i.e. $\op{permut}(S)$ behaves like a filter). 
 Finally, the second order sum aggregates these values iterating over all binary relations and calculating the permanent of the matrix.
 We would like to finish with this example by highlighting the similarity of $\alpha_3$ with the permanent formula. 
 Indeed, an advantage of $\qso$-formulae is that the first- and second-order quantifiers in the quantitative level naturally reflect the operations used to define mathematical formulae.
@@ -134,11 +134,11 @@ show the connection of $\qso$ with previous frameworks for defining functions ov
 
 \subsection{Previous frameworks for quantitative functions} \label{sec:previous}
 
-In this subsection, we discuss some previous frameworks proposed in the literature and how they differ from our approach.
+In this section, we discuss some previous frameworks proposed in the literature and how they differ from our approach.
 We start by discussing the connection between $\qso$ and weighted logics (WL)~\cite{DrosteG07}. 
 As it was previously discussed, $\qso$ is a fragment of WL.
 The main difference is that we restrict the semiring used in WL to natural numbers in order to study counting complexity classes.
-Another difference of WL with our approach is that, to the best of our knowledge, this is the first paper to study weighted logics over general relational signatures to do descriptive complexity for counting complexity classes. 
+Another difference of WL with our approach is that, to the best of our knowledge, this is the first paper to study weighted logics over general relational signatures, in order  to do descriptive complexity for counting complexity classes. 
 Previous works on WL usually restrict the signature of the logic to strings, trees, and other specific structures (see \cite{droste2009handbook} for more examples), and they did not study the logic over general structures. 
 Furthermore, in this paper we propose further extensions for $\qso$ (see Section~\ref{sec:beyond}) which differ from previous approaches in WL.
 
@@ -160,8 +160,8 @@ $
 f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varphi(\bar{a},\bar{A})\}\vert,
 $
 for every $\A\in\ostr[\R]$. Then a function $g:\ostr[\R]\to\nat$ is in $\#\LL$ if there exists a formula $\varphi(\bar{x},\bar{X})$ in $\LL$ such that $g = f_{\varphi(\bar x, \bar X)}$.
-\martin{La notacion $f_{\psi(x,X)}$ la inventamos}
+%\martin{La notacion $f_{\psi(x,X)}$ la inventamos}
 In~\cite{SalujaST95}, they were proved several results about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
 Notice that for every formula $\varphi(\bar{x},\bar{X})$, it holds that $f_{\varphi(\bar{x},\bar{X})}$ is the same function as $\sem{\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{x},\bar{X})}$, that is, the approach in \cite{SalujaST95} can be seen as a syntactical restriction of our approach based on $\qso$. 
-Thus, the advantage of our approach relies on the flexibility for defining  functions by alternating sum with product operators and, moreover, by introducing new quantitative operators (see Section~\ref{sec:beyond}).
+Thus, the advantage of our approach relies on the flexibility to define functions by alternating sum with product operators and, moreover, by introducing new quantitative operators (see Section~\ref{sec:beyond}).
 Furthermore, we show in the following section how to capture some fundamental classes that cannot be captured by following the approach in~\cite{SalujaST95}.
