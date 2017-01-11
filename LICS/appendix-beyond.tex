@@ -1,3 +1,5 @@
+%!TEX root = main.tex
+
 \subsection*{Proof of Theorem \ref{lem-support}}
 
 First we prove the statement for the grammar without the fixed-point operator, and then we will prove it for the unrestricted grammar.
@@ -16,22 +18,26 @@ If $\delta$ contains a fixed-point operator the statement can be proven analogou
 
 \subsection*{Proof of Theorem \ref{rqfo-fo-cap}}
 
-Let $\R$ be a relational signature. First we prove the first condition in Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$.
-We will recursively construct a deterministic polynomial-space algorithm $M_{\alpha}$ that on input $(\enc(\A),\enc(v),\enc(F))$, where $v$ is a first-order assignment and $F$ is a function assignment, outputs the value $\sem{\alpha}(\A,v)$.
-From this point on we use $\A$, $v$ and $F$ to denote $\enc(\A)$, $\enc(v)$ and $\enc(F)$ respectively.
-Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$.
-If $\alpha = \varphi$, a formula in $\fo$, we check if $(\A,v,F)\models\varphi$ in deterministic polynomial-space space, and output 1.
-If $\alpha = s$, we write $s$ as output.
-If $\alpha = (\alpha_1 + \alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the sum of the values as output.
-If $\alpha = (\alpha_1\cdot\alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the product of the values as output.
-If $\alpha = \sa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the sum of all values as output.
-If $\alpha = \pa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the product of all values as output.
-If $\alpha = \clfp{\beta(\bar{x},h)}$, we compute each of the functions $f_0,\ldots,f_k$ iteratively. We start from the null function $f_0$ and compute $f_i$ on each step. If at any point $\support(f_i) = \support(f_{i+1})$, then we stop iterating and output $f_i(v(\bar{x}))$.
-This ends the construction of the algorithm.
-Consider $f$ as the $\fp$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
-
-\vspace{1em}
-Now we prove the second condition in Definition \ref{def:cap}.
+Given the definition of the semantics of $\rqfo(\fo)$, it is clear that a fixed formula $\clfp{\beta(\x, h)}$ can be evaluated in polynomial time, from which it is possible to conclude that each fixed formula in $\rqfo(\fo)$ can be evaluated in polynomial time. Thus, to prove that $\rqfo(\fo)$ captures $\fp$, we only need to prove the second condition in Definition \ref{def:cap}.
+%
+%Let $\R$ be a relational signature. First we prove the first condition in Definition \ref{def:cap}. Let $\alpha$ be a formula in $\tqfo(\fo)$.
+%We will recursively construct a deterministic polynomial-space algorithm $M_{\alpha}$ that on input $(\enc(\A),\enc(v),\enc(F))$, where $v$ is a first-order assignment and $F$ is a function assignment, outputs the value $\sem{\alpha}(\A,v)$.
+%From this point on we use $\A$, $v$ and $F$ to denote $\enc(\A)$, $\enc(v)$ and $\enc(F)$ respectively.
+%Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$.
+%If $\alpha = \varphi$, a formula in $\fo$, we check if $(\A,v,F)\models\varphi$ in deterministic polynomial-space space, and output 1.
+%If $\alpha = s$, we write $s$ as output.
+%If $\alpha = (\alpha_1 + \alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the sum of the values as output.
+%If $\alpha = (\alpha_1\cdot\alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the product of the values as output.
+%If $\alpha = \sa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the sum of all values as output.
+%If $\alpha = \pa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the product of all values as output.
+%If $\alpha = \clfp{\beta(\bar{x},h)}$, we compute each of the functions $f_0,\ldots,f_k$ iteratively. We start from the null function $f_0$ and compute $f_i$ on each step. If at any point $\support(f_i) = \support(f_{i+1})$, then we stop iterating and output $f_i(v(\bar{x}))$.
+%This ends the construction of the algorithm.
+%Consider $f$ as the $\fp$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
+%
+%\vspace{1em}
+%
+%
+%Now we prove the second condition in Definition \ref{def:cap}.
 %Let $f\in\fp$ be defined over $\R$. Recall that in the proof for Theorem \ref{theo:capture-fp} we constructed a formula $\alpha = \sa{\bar{x}}\Phi(\bar{x})\mult\varphi(\bar{x})$ in $\qfo(\lfp)$ where $\Phi(\bar{x})$ is a formula in $\lfp$ extended with constants over the signature $\R \cup \{\bar{x}\}$. We use the construction used by Gradel in \cite{G07} to capture $\ptime$ with $\lfp$. Consider the function defined by the operator $\clfp{\varphi(\bar{x},h)}(\bar{x})$. This corresponds exactly to the function:
 %$$
 %f(\A,v(\bar{x})) 
@@ -45,9 +51,18 @@ Now we prove the second condition in Definition \ref{def:cap}.
 \newcommand{\ttB}{\mathtt{B}}
 \newcommand{\successor}{\text{succ}}
 
-For the second condition, let $f$ be a $\fp$ function defined over $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the remaining cases can be deduced from this. Let $M$ be a deterministic polynomial-time transducer such that $f(\enc(\A))$ is equal to the output of $M$ on input $\enc(\A)$ for each $\R$-structure $\A$. We suppose that $M = (Q,\{0,1\},q_0,\delta)$ without final states, where $Q = (q_0,\ldots,q_{\ell})$, and $\delta:Q\times\{0,1,\ttB, \vdash\}\to Q\times\{0,1,\ttB, \vdash\}\times \{\leftarrow,\rightarrow\}\times\{0,1,\emptyset\}$ is a partial function. The machine has an output tape and the only allowed operations in that tape on each step are (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. This is represented by the set $\{0,1,\emptyset\}$. Suppose that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, stops at exactly $n^k$ steps for some $k > 1$.
+%For the second condition, 
+Let $f$ be a function in $\fp$. We address the case when $f$ is defined for the encodings of the structures of a relational signature $\R = \{ E(\cdot, \cdot) \}$, as the proof for an arbitrary signature is analogous.
+%$\R$ contains only one binary predicate $E$, and the remaining cases can be deduced from this. 
+ Let $M$ be a deterministic polynomial-time TM with a working tape and an output tape, such that the output of $M$ on input $\enc(\A)$ is $f(\enc(\A))$ for each $\R$-structure $\A$. We assume that $M = (Q,\{0,1\},q_0,\delta)$, 
+ %without final states, 
+ where $Q = \{q_0,\ldots,q_{\ell}\}$, and $\delta:Q\times\{0,1,\ttB, \vdash\}\to Q\times\{0,1,\ttB, \vdash\}\times \{\leftarrow,\rightarrow\}\times\{0,1,\emptyset\}$ is a partial function. In particular, the tapes of $M$ are infinite to the right so the symbol $\vdash$ is used to indicate the first position in each tape, and $M$ does not have any final states, as it produces an output for each input. Moreover, the only allowed operations in the output tape are: 
+ %The machine has an output tape and the only allowed operations in that tape on each step are 
+ (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. These operations are represented by the set $\{0,1,\emptyset\}$. Finally, assume that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, executes exactly $n^k$ steps for some $k \geq 1$.
 
-We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$. This extension allows defining the operator ${\bf lsfp}$ for multiple functions, analogously to the generalization of fixed-point operator with multiple predicates. Let $\bar{x} = (x_1,\ldots,x_k)$ and $\bar{t} = (t_1,\ldots,t_k)$, and then $\alpha$ is defined as:
+We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$. This extension allows defining the operator ${\bf lsfp}$ for multiple functions, analogously to the notion of simultaneous LFP~\cite{L04}.
+%generalization of fixed-point operator with multiple predicates. 
+Let $\bar{x} = (x_1,\ldots,x_k)$ and $\bar{t} = (t_1,\ldots,t_k)$. Then $\alpha$ is defined as:
 \begin{align*}
 \alpha = \sa{\bar{t}}\clfp{out(\bar{t}): \,&\alpha_{T_0}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
 	&\alpha_{T_1}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
@@ -60,84 +75,83 @@ We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ s
 	&\alpha_{s_{q_{\ell}}}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out),\\
 	&\alpha_{out}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out)}\mult \last(\bar{t}).
 \end{align*}
-Where each function is defined as follows. First we define four formulas that encode the contents of the tape on each step.
+Function $T_0$ is used to indicate whether the content of a cell of the working tape is 0 at some point of time, that is, $T_0(\bar{t},\bar{x}) > 0$ if the cell at position $\bar{x}$ of the working tape contains the symbol 0 at step $\bar{t}$, and $T_0(\bar{t},\bar{x}) = 0$ otherwise. Functions $T_1$, $T_{\ttB}$ and $T_{\vdash}$ are defined analogously. Function $h$ is used to indicate whether the head of the working tape is in some position at some point of time, that is, $h(\bar{t},\bar{x}) > 0$ if the head of the working tape is at position $\bar{x}$ at step $\bar{t}$, and $h(\bar{t},\bar{x}) = 0$ otherwise. 
+Function $\hat{h}$ is used to indicate whether the head of the working tape is {\bf not} in some position at some point of time, that is, $\hat{h}(\bar{t},\bar{x}) > 0$ if the head of the working tape is {\bf not} at position $\bar{x}$ at step $\bar{t}$, and $h(\bar{t},\bar{x}) = 0$ otherwise. For each $i \in \{0, \ldots, \ell\}$, function 
+$s_{q_i}$ is used to indicate whether the TM $M$ is in state $q_i$ at some point of time, that is, $s_{q_i}(\bar{t}) > 0$ if the TM $M$ is in state $q_i$ at step $\bar{t}$, and $s_{q_i}(\bar{t},\bar{x}) = 0$ otherwise. Finally, function $out$ stores the output of the TM $M$; in particular, $out(\bar t)$ is the value returned by $M$ when $\bar t$ is the last step (that is, when $\last(\bar t)$ holds).
+
+Formulas $\alpha_{T_0}$, $\alpha_{T_1}$, $\alpha_{T_{\ttB}}$ and $\alpha_{T_{\vdash}}$ are defined as follows, assuming that $\bar y = (y_1, \ldots, y_k)$:
 \begin{align*}
-\alpha_{T_0}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge\neg E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) )+ \\
+\alpha_{T_0}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \,&(\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge\neg E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) ))+ \\
 &\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_0(\bar{t}',\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',0,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
-\alpha_{T_1}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) )+ \\
+\alpha_{T_1}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \,&(\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) ))+ \\
 &\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_1(\bar{t}',\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',1,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
-\alpha_{T_{\ttB}}(\bar{t},\bar{x},...) = \,&\first(\bar{t})\wedge\exists\bar{y}\exists\bar{y}'(\first(y_1,\ldots,y_{k-2})\wedge\last(y_{k-1},y_k)\wedge\successor(\bar{y},\bar{y}')\wedge\bar{y}' < \bar{x}) + \\
+\alpha_{T_{\ttB}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \,&(\first(\bar{t})\wedge\exists\bar{y}\exists\bar{y}'(\first(y_1,\ldots,y_{k-2})\wedge\last(y_{k-1},y_k)\wedge\successor(\bar{y},\bar{y}')\wedge\bar{y}' < \bar{x})) + \\
 &\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\ttB}(\bar{t}',\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',{\ttB},op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
-\alpha_{T_{\vdash}}(\bar{t},\bar{x},...) = \,&\first(\bar{t}) \wedge \first(\bar{x}) + \\
+\alpha_{T_{\vdash}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \,&(\first(\bar{t}) \wedge \first(\bar{x})) + \\
 &\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\vdash}(\bar{t}',\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',\vdash,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
 \end{align*}
-We also define two formulas that model which position the head is in, and which positions the head is not in.
+Formulas $\alpha_{h}$ and $\alpha_{\hat{h}}$ are defined as:
 \begin{align*}
-\alpha_{h}(\bar{t},\bar{x},...) = \,& \first(\bar{t}) \wedge \successor(\bar{t},\bar{x}) + \\
+\alpha_{h}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\
+& (\first(\bar{t}) \wedge \successor(\bar{t},\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x},\bar{x}')\mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')) + \\
 &\bigplus_{\delta(q,a) = (q',b,\rightarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x}',\bar{x})\mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')),\\
-\alpha_{\hat{h}}(\bar{t},\bar{x},...) = \,& \first(\bar{t}) \wedge \neg\successor(\bar{t},\bar{x}) + \\
+\alpha_{\hat{h}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\
+& (\first(\bar{t}) \wedge \neg\successor(\bar{t},\bar{x})) + \\
 &\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')  \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \successor(\bar{x}'',\bar{x}') \mult (\bar{x} \neq \bar{x}'')) + \\
-&\bigplus_{\delta(q,a) = (q',b,\leftarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')  \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \successor(\bar{x}',\bar{x}'') \mult (\bar{x} \neq \bar{x}'')).
+&\bigplus_{\delta(q,a) = (q',b,\rightarrow,v)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')  \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \successor(\bar{x}',\bar{x}'') \mult (\bar{x} \neq \bar{x}'')).
 \end{align*}
-For $q_0$ we define a formula that models which state the machine is in at each time,
+Formula $\alpha_{q_0}$ is defined as:
+%we define a formula that models which state the machine is in at each time,
 \begin{align*}
-\alpha_{q_0}(\bar{t},...) = \,& \first(\bar{t}) + \\
-&\bigplus_{\delta(q,a) = (q_0,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}')) \mult h(\bar{t}',\bar{x}')) \mult s_{q}(\bar{t}')),
+\alpha_{q_0}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \,& \first(\bar{t}) + \\
+&\bigplus_{\delta(q,a) = (q_0,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
 \end{align*}
-and for the remaining $q_i$ we define
+Moreover, for every $i \in \{1, \ldots, \ell\}$, formula $\alpha_{q_i}$ is defined as:
 \begin{align*}
-\alpha_{q_i}(\bar{t},...) = &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
+\alpha_{q_i}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
 \end{align*}
-And lastly we define a function that computes the output at each time.
+Finally, formula $\alpha_{out}$ is defined as:
+%And lastly we define a function that computes the output at each time.
 \begin{align*}
-\alpha_{out}(\bar{t},...) = &\bigplus_{\delta(q,a) = (q',b,op,0)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult 2\mult out(\bar{t}')) + \\
-&\bigplus_{\delta(q,a) = (q',b,op,1)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult (2\mult out(\bar{t}')+1)) + \\ 
-&\bigplus_{\delta(q,a) = (q',b,op,\emptyset)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult out(\bar{t}')).
+\alpha_{out}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) =\\
+&\bigplus_{\delta(q,a) = (q',b,op,0)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult 2\mult out(\bar{t}')) + \\
+&\bigplus_{\delta(q,a) = (q',b,op,1)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult (2\mult out(\bar{t}')+1)) + \\ 
+&\bigplus_{\delta(q,a) = (q',b,op,\emptyset)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult out(\bar{t}')).
 \end{align*}
-Clearly, at each iteration of the LSFP operator, the tuple $\bar{t}$ represents the step the machine is currently in. From the construction of the formula, and since the machine is deterministic, it can be seen that in each function $g\in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the LSFP operator, it holds that $g(\bar{a},\bar{b}) \leq 1$ for each $\bar{b}\in A^k$, that $g(\bar{a}+1,\bar{b}) = 0$ for each $\bar{b}\in A^k$. Also, at the $\bar{a}$-th iteration, $g(\bar{a}) \leq 1$ and $g(\bar{a}+1) = 0$ for each $g\in\{s_{q_1},\ldots,s_{q_{\ell}}\}$. From this, we have that at each iteration $\bar{a}$ of the operator, $out(\bar{a})$ is equal to either $2\cdot out(\bar{a}-1)$, $2\cdot out(\bar{a}-1) + 1$, or $out(\bar{a}-1)$, which represents precisely the value in the output tape at each step of $M$ running on input $\enc(\A)$. From this argument it can be seen that $\sem{\alpha}(\A) = f(\enc(\A)$.
+Clearly, at each iteration of the LSFP operator, the tuple $\bar{t}$ represents the step the machine is currently in. From the construction of the formula, and since the machine is deterministic, it can be seen that in each function $g\in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the LSFP operator, it holds that $g(\bar{a},\bar{b}) \leq 1$ for each $\bar{b}\in A^k$, that $g(\bar{a}+1,\bar{b}) = 0$ for each $\bar{b}\in A^k$. Also, at the $\bar{a}$-th iteration, $g(\bar{a}) \leq 1$ and $g(\bar{a}+1) = 0$ for each $g\in\{s_{q_1},\ldots,s_{q_{\ell}}\}$. From this, we have that at each iteration $\bar{a}$ of the operator, $out(\bar{a})$ is equal to either $2\cdot out(\bar{a}-1)$, $2\cdot out(\bar{a}-1) + 1$, or $out(\bar{a}-1)$, which represents precisely the value in the output tape at each step of $M$ running on input $\enc(\A)$. From this argument, it can be seen that $\sem{\alpha}(\A) = f(\enc(\A))$.
 
-\vspace{1em}
-We now prove that for each formula $\alpha$ in the previously defined extension of $\rqfo(\fo)$, there exists an equivalent formula in the unextended grammar of $\rqfo(\fo)$. It suffices to have $\alpha$ be a formula of the form 
-$$
-\alpha(\bar{x}_1) = \clfp{f_1(\bar{x}_1): \alpha_1(\bar{x}_1,f_1,\ldots,f_n),\alpha_2(\bar{x}_2,f_1,\ldots,f_n),\ldots,\alpha_n(\bar{x}_n,f_1,\ldots,f_n)}
-$$
-and showing an equivalent formula defined by a LSFP operator which uses one formula less in its definition.
+\medskip
 
-We construct the equivalent formula as follows. We use a new function symbol $f$ with arity $\length{\bar{x}_1} + \length{\bar{x}_2}$. Let $\alpha_i'$ be obtained by performing the following replacements in $\alpha_i$, for each $i = 1,\ldots,n$.
+To conclude the proof, we show that for each formula $\alpha$ in the previously defined extension of $\rqfo(\fo)$, there exists an equivalent formula confirming to the grammar of $\rqfo(\fo)$ defined in Section \ref{sec:beyond}. It suffices to consider a formula $\alpha$ of the form 
+$$
+\alpha(\bar{x}_1) = \clfp{f_1(\bar{x}_1): \alpha_1(\bar{x}_1,f_1,\ldots,f_n),\alpha_2(\bar{x}_2,f_1,\ldots,f_n),\ldots,\alpha_n(\bar{x}_n,f_1,\ldots,f_n)},
+$$
+and show an equivalent formula defined by a LSFP operator which uses one formula less in its definition.
+
+We construct the equivalent formula as follows. We use a new function symbol $f$ with arity $\length{\bar{x}_1} + \length{\bar{x}_2}$. For every $i \in \{1,\ldots,n\}$, let $\alpha_i'$ be the formula obtained by performing the following replacements in $\alpha_i$:
 \begin{align*}
 f_1(\bar{y}_1) &\text{ is replaced by } \sa{\bar{y}_2}f(\bar{y}_1,\bar{y}_2)\mult[\first(\bar{y}_1)\mult\last(\bar{y}_2)  \add (\neg\first(\bar{y}_1))\mult\first(\bar{y}_2)], \\
 f_2(\bar{y}_2) &\text{ is replaced by } \sa{\bar{y}_1}f(\bar{y}_1,\bar{y}_2)\mult[\first(\bar{y}_1)\mult\first(\bar{y}_2)  \add \last(\bar{y}_1)\mult(\neg\first(\bar{y}_2))].
 \end{align*}
-Let us now define $\beta$ as
+Moreover, let $\beta$ be a formula defined as:
 \begin{align*}
-\beta(\bar{x}_1,\bar{x}_2) = \,&\alpha_1'(\bar{x}_1)\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2)) \add \\ &\alpha_2'(\bar{x}_2)\mult(\first(\bar{x}_1)\mult\first(\bar{x}_2)  \add \last(\bar{x}_1)\mult(\neg\first(\bar{x}_2))),
+\beta(\bar{x}_1,\bar{x}_2) = \,&\alpha_1'(\bar{x}_1)\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2)) \add \\ &\alpha_2'(\bar{x}_2)\mult(\first(\bar{x}_1)\mult\first(\bar{x}_2)  \add \last(\bar{x}_1)\mult(\neg\first(\bar{x}_2))).
 \end{align*}
-and lastly we produce the formula
+It can be seen that all values of $f_1$, besides the first one, are stored in the first assignment of $\bar{x}_2$, while the first value of $f_1$ is stored in the last assignment of $\bar{x}_2$. Moreover, all values of $f_2$, besides the first one, are stored in the last assignment of $\bar{x}_1$, while the first value of $f_2$ is stored in the first assignment of $\bar{x}_1$. 
+%This schema is depicted in Table \ref{table-clfp}. 
+We use formula $\beta$ to define the following formula:
 \begin{align*}
 \alpha'(\bar{x}_1) = \,&\sa{\bar{x}_2}\clfp{f(\bar{x}_1,\bar{x}_2): \beta(\bar{x}_1,\bar{x}_2,f,f_3,\ldots,f_n),\\
-&\alpha_3(\bar{x}_3,f,f_3,\ldots,f_n),\ldots,\alpha_n(\bar{x}_n,f,f_3,\ldots,f_n)}\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2))
+&\alpha'_3(\bar{x}_3,f,f_3,\ldots,f_n),\ldots,\alpha'_n(\bar{x}_n,f,f_3,\ldots,f_n)}\mult(\first(\bar{x}_1)\mult\last(\bar{x}_2)  \add (\neg\first(\bar{x}_1))\mult\first(\bar{x}_2))
 \end{align*}
-It can be seen that for all values of $f_1$, besides the first one one, are stored in the first assignment of $\bar{x}_2$, and the first itself is stored in the last assignment of $\bar{x}_2$. Moreover, all values of $f_2$, besides the first one, are stored in the last assignment of $\bar{x}_1$, and the first one itself is stored in the first assignment of $\bar{x}_1$. This schema is depicted in Table \ref{table-clfp}. Since $\alpha'(\bar{x}_1)$ is equivalent to $\alpha(\bar{x}_1)$, this concludes the proof.
-\begin{table}[htbp]
-	\centering
-	\caption{Values of $f(\bar{x}_1,\bar{x}_2)$}
-	\label{table-clfp}
-	\begin{tabular}{crlllll}
-		\multicolumn{1}{l}{} & \multicolumn{6}{c}{$\bar{x}_2$} \\ \cline{2-7} 
-		\multicolumn{1}{c|}{\multirow{5}{*}{$\bar{x}_1$}} & \multicolumn{1}{c|}{$f_2$} &  &  &  & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$f_1$} \\ \cline{2-2} \cline{7-7} 
-		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{\multirow{4}{*}{$f_1$}} &  &  &  &  & \multicolumn{1}{l|}{} \\
-		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} &  &  &  &  & \multicolumn{1}{l|}{} \\
-		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} &  &  &  &  & \multicolumn{1}{l|}{} \\ \cline{3-7} 
-		\multicolumn{1}{c|}{} & \multicolumn{1}{r|}{} & \multicolumn{5}{c|}{$f_2$} \\ \cline{2-7} 
-	\end{tabular}
-\end{table}
-%\subsection*{Proof of Theorem \ref{tqfo-shl}}
-%For the second condition, let $f \in \shl$ defined over $\R$. We will address the case where $\R$ contains only one binary predicate $E$, and the rest of the cases can be deduced from this. Let $M$ be a non-deterministic logspace machine such that $f(\enc(\A)) = \acc_M(\enc(\A))$ for each $\A \in \ostr[\R]$. Suppose ${\cal Q} = \{q_1,\ldots,q_{\ell}\}$ is the set of states of $M$, where $q_1$ is the initial state, $q_{\ell}$ is only final state of $M$ and suppose $\Delta \subseteq Q \times \{0,1\} \times \{0,1\} \times Q \times \{-1,=,+1\} \times \{0,1\} \times \{-1,=,+1\}$ is the set of transitions in $M$. We also suppose that the machine stops when it reaches a final state. Formally, for each $a,b,c\in\{0,1\}$, each $op_1,op_2\in\{-1,=,+1\}$ and state $q\in Q$, we have $(q_{\ell},a,b,op_1,c,op_2,q)\not\in\Delta$. Let $n = \vert A \vert$ and let $w = \enc(\A) \in \{0,1\}^{n^2}$. We assume that $M$ with input $w$ uses space $s_M(w) < c\mult\log(n)$ and furthermore, $s_M(w) < n-2$. We notate $M(w)$ as the graph of configurations of $M$ running on input $w$.
+
+It is not difficult to see that $\alpha'(\bar{x}_1)$ is equivalent to $\alpha(\bar{x}_1)$, which concludes the proof.
+
 %
 %We represent configurations with a tuple of fixed size. The formula $\varphi(\bar{x},\bar{y})$ describes a procedure that given a configuration generates a possible next configuration. The formula $\varphi_I(\bar{x})$ describes that $\bar{x}$ is the initial configuration of $M(w)$. The formula $\varphi_F(\bar{x})$ describes that $\bar{x}$ is an accepting (final) configuration of $M(w)$. The formula we construct is:
 %$$
@@ -489,6 +503,7 @@ It can be seen that for all values of $f_1$, besides the first one one, are stor
 %%\vspace{1em}
 %%For the second part let $f\in\shp$ over some relational signature $\R$.
 %%
+
 \subsection*{Proof of Theorem \ref{tqfo-shl}}
 $\boldsymbol{\tqfo(\fo)}$ {\bf can be computed in} $\boldsymbol{\shl.}$
 Let $\R$ be some relational signature. Let $\alpha$ be a formula in $\tqfo(\fo)$. We will construct a nondeterministic logspace algorithm $M_{\alpha}$ that on input $\enc(\A)$, where a first-order assignment $v$ is being stored in memory, accepts in $\sem{\alpha}(\A,v)$ paths. Suppose the domain of $\A$ is $A = \{1,\ldots,n\}$. The algorithm needs $c\mult\log_2(n)$ bits of memory to store $v$, where $c$ is the total number of first-order variables in $\alpha$. If $\alpha = \varphi$, we check if $(\A,v)\models\varphi$ in deterministic logarithmic space, and accept if and only if it does. If $\alpha = s$, we generate $s$ branches and accept in all of them. If $\alpha = (\alpha_1 + \alpha_2)$, we simulate $M_{\alpha_1}$ and $M_{\alpha_2}$ on separate branches. If $\alpha = (\alpha_1\mult\alpha_2)$, we simulate $\alpha_1$ and if it accepts, instead of doing so, we simulate $\alpha_2$. If $\alpha = \sa{x}\beta$, for each $a\in A$ we generate a different branch where we simulate $M_{\beta}$ while storing $v[a/x]$. If $\alpha = \pa{x}\beta$, we simulate $M_{\beta}$ while storing $v[1/n]$, and on each accepting branch, instead of accepting we replace the assignment on $x$ to 2, to simulate $M_{\beta}$ while storing $v[2/x]$, and so on. If $\alpha = [\pth \varphi(\bar{x},\bar{y})]$ where $\varphi$ is an $\fo$ formula, we simulate the $\shl$ procedure that counts the number of paths for a graph of a given size. This procedure starts by setting $\bar{a} = v(\bar{x})$. On each iteration, nondeterministically chooses an assignment $\bar{a}$ for $\bar{x}$, continues if $(\A,v)\models\varphi(\bar{a}',\bar{a})$ where $\bar{a}'$ is the previously chosen value for $\bar{a}$, and rejects otherwise. If at any point we obtain that $\bar{a} = v(\bar{y})$, we generate an accepting branch, and continue simulating the procedure in the current branch. We simulate $n^{\length{\bar{x}}}$ iterations of the procedure, and this generates exactly $\sem{[\pth \varphi(\bar{x},\bar{y})]}(\A,v)$ accepting branches. This ends the construction of the algorithm. Consider $f$ as the $\shl$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
