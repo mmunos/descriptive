@@ -2,19 +2,27 @@
 
 \subsection*{Proof of Theorem \ref{lem-support}}
 
-First we prove the statement for the grammar without the fixed-point operator, and then we will prove it for the unrestricted grammar.
+{\bf For }$\boldsymbol{\fqfo(\fo).}$ Let $\R$ be a signature. We prove the statement for $\fqfo(\fo)$ over $\R$.
 
-Let $\R$ be a signature. Let $\beta(\bar{x},h)$ be a formula in $\rqfo(\fo)$ over $\R$ without the fixed-point operator. Let $\length{\bar{x}} = \ell$. Let $f,g :A^{\ell}\to\nat$ and suppose $\support(f) \subseteq \support(g)$. Let $F,G$ be assignments such that $F(h) = f$ and $G(h) = g$. We will prove by induction over the size of $\beta$, that for every first-order assignment $v$ it holds that: If $v(\bar{x})\in\support(T_{\beta}(f))$, this is, $\sem{\beta(\bar{x},h)}(\A,v,F) > 0$, then $\sem{\beta(\bar{x},h)}(\A,v,G) > 0$.
-If $\beta = \varphi$ in $\fo$ or $\beta = s$ then $h$ does not appear in $\beta$ so $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G) > 0$ for each $v$. If $\alpha = h(\bar{y})$, then $T_{\beta}(f) = f$ and the condition holds trivially. Suppose it holds for every formula smaller than $\beta$. If $\beta = (\beta_1 \add \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) + \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$. Then for some $\beta_i$ we have $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ and so from our assumption $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$. 
-If $\beta = (\beta_1 \mult \beta_2)$, then suppose $v(\bar{x})\in\support(T_{\beta}(f))$. We have $\sem{\beta_1(\bar{x},h)}(\A,v,F) \cdot \sem{\beta_2(\bar{x},h)}(\A,v,F) > 0$ which implies that $\sem{\beta_i(\bar{x},h)}(\A,v,F) > 0$ for each $\beta_i$. From our assumption we have that $\sem{\beta_i(\bar{x},h)}(\A,v,G) > 0$ for each $\beta_i$ which proves the statement. If $\beta = \sa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$. Then we have $\sum_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$. Then for some $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[a/x],G) > 0$ which proves the statement since the assignment $x$ to $a$ does not change the assignation to $\bar{x}$. If $\beta = \pa{x}\delta$, suppose $v(\bar{x})\in\support(T_{\beta}(f))$.
-Then we have $\prod_{a\in A}\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$. Then for each $a\in A$ we have $\sem{\delta(\bar{x},h)}(\A,v[a/x],F) > 0$, and from our assumption, $\sem{\delta(\bar{x},h)}(\A,v[a/x],G) > 0$ for each $a\in A$ which proves the statement, similarly to the previous case. This covers all possible cases for $\beta$ and finishes the proof for this case.
+We prove inductively that for each formula $\beta(\bar{x},h)$ in $\fqfo(\fo)$ over $\R$, for a given pair of functions $f,g$ such that $\support(f)\subseteq\support(g)$, it holds that $\support(T_{\beta}(f))\subseteq\support(T_{\beta}(g))$. Let $\length{\bar{x}} = \ell$.
+
+We separate the proof in each case determined by the $\fqfo$ grammar. For each of the following cases.
+\begin{itemize}
+\item $\beta$ is either equal to a constant $s$ of an $\fo$ formula $\varphi$. Then $h$ does not appear. Then, for each structure $\A$, each first-order assignment $v$ and functional assignments $F,G$ over $\A$, we have that $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G)$. As a result, $\support(T_{\beta}(f)) = \support(T_{\beta}(g))$.
+\item $\beta$ is equal to $h(\bar{y})$ for some subtuple $\bar{y}$ of $\bar{x}$. Then $T_{\beta}(f) = f$ and $T_{\beta}(g) = g$ and the condition holds trivially.
+\end{itemize}
+We suppose that the statement holds for each formula smaller than $\beta$.
+\begin{itemize}
+\item $\beta = (\beta_1 + \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) + T_{\beta_2}(f)(\bar{a})$. Therefore, if $T_{\beta}(f)(\bar{a}) > 0$, then for some $\beta_i$ it holds $T_{\beta_i}(f) > 0$. The statement now follows directly from the supposition.
+\item $\beta = (\beta_1 \mult \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) \mult T_{\beta_2}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\beta_i}(f)(\bar{a}) > 0$ for both $\beta_i$. The statement now follows directly from the supposition.
+\item $\beta = \sa{y}\delta(y,\bar{x},h)$. We extend the grammar slightly to allow constants, and we use the notation $\delta[a/y]$ to denote the formula obtained by replacing each instance of $y$ by the constant $a$. It can be seen that $T_{\beta}(f)(\bar{a}) = \sum_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then for some $a\in A$ we have $T_{\delta[y/a]}(f)(\bar{a}) > 0$. As in the $\add$ case, the statement follows directly.
+\item $\beta = \pa{y}\delta(y,\bar{x},h)$. It can be seen that $T_{\beta}(f)(\bar{a}) = \prod_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\delta[y/a]}(f)(\bar{a}) > 0$ for each $a\in A$. As in the $\mult$ case, the statement follows directly.
+\end{itemize}
+This covers all possible cases for $\beta$ and we finish the proof of the statement for $\fqfo(\fo)$.
 
 \vspace{1em}
-For the unrestricted grammar we begin the proof likewise as we did in the previous case. The only additional case is  where $\beta = \clfp{\delta(\bar{x},\hat{h})}$. Suppose $v(\bar{x})\in\support(T_{\beta}(f))$, then we have $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,F) > 0$. 
+{\bf For} $\boldsymbol{\rqfo(\fo).}$ The only additional case is where $\beta = \clfp{\delta(\bar{y},h')}$ for some subtuple $\bar{y}$ of $\bar{x}$. We have that $\beta$ does not mention $h$, and so, the statement follows directly as we showed in the previous part of the proof.
 
-By induction, suppose $\delta$ does not contain any fixed-point operator. We prove the following: If $f^1_i$ are the functions that are calculated from the iterations of $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,F) > 0$, and $f^2_i$ are the functions for $\sem{\clfp{\delta(\bar{y},\hat{h})}}(\A,v,G) > 0$, then $\support(f^1_i)\subseteq\support(f^2_i)$. This can be proven by an argument of induction, starting from $f^1_0$ and $f^2_0$ for which clearly $\support(f^1_0) \subseteq \support(f^2_0)$, and where the inductive step is a direct consequence of the result from the previous paragraph.
-
-If $\delta$ contains a fixed-point operator the statement can be proven analogously. We conclude that $\support(T_{\beta}(f))\subseteq\support(T_{\beta}(g))$.
 
 \subsection*{Proof of Theorem \ref{rqfo-fo-cap}}
 
@@ -542,4 +550,3 @@ satisfies $\sem{\alpha}(\A) = f(\enc(\A))$ for each structure $\A$. This conclud
 %Note that from our suppositions on the machine, we have that if it accepts, there exists only one accepting configuration, and therefore at most one assignment for $\bar{z}$ will be counted by its first-order sum. Furthermore, the ${\bf path}$ operator computes the transitive closure of the formula $\psi_{\bf next}$ which simulates a {\em deterministic} machine, and so the operator always takes value 0 or 1. From this we deduce that $\tau(\varphi)$ is equivalent to $\varphi$. This finishes the case where $\alpha = \varphi$ in $\dtc$.
 %
 %For the general case, let $\alpha$ be a $\rqfo(\dtc)$ formula. We simply replace each $\dtc$ formula $\varphi$ in $\alpha$ by $\tau(\varphi)$ and we define the resulting formula as $\tau(\alpha)$ which clearly is equivalent to $\alpha$. This concludes the proof.
-
