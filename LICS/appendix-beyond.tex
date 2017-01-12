@@ -4,19 +4,22 @@
 
 {\bf For }$\boldsymbol{\fqfo(\fo).}$ Let $\R$ be a signature. We prove the statement for $\fqfo(\fo)$ over $\R$.
 
-We prove inductively that for each formula $\beta(\bar{x},h)$ in $\fqfo(\fo)$ over $\R$, for a given pair of functions $f,g$ such that $\support(f)\subseteq\support(g)$, it holds that $\support(T_{\beta}(f))\subseteq\support(T_{\beta}(g))$. Let $\length{\bar{x}} = \ell$.
+We prove inductively that for each formula $\beta(\bar{x},h)$ in $\fqfo(\fo)$ over $\R$, for a given pair of functions $f,g$ such that $\supp(f)\subseteq\supp(g)$, it holds that $\supp(T_{\beta}(f))\subseteq\supp(T_{\beta}(g))$. Let $\length{\bar{x}} = \ell$.
 
 We separate the proof in each case determined by the $\fqfo$ grammar. For each of the following cases.
 \begin{itemize}
-\item $\beta$ is either equal to a constant $s$ of an $\fo$ formula $\varphi$. Then $h$ does not appear. Then, for each structure $\A$, each first-order assignment $v$ and functional assignments $F,G$ over $\A$, we have that $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G)$. As a result, $\support(T_{\beta}(f)) = \support(T_{\beta}(g))$.
-\item $\beta$ is equal to $h(\bar{y})$ for some subtuple $\bar{y}$ of $\bar{x}$. Then $T_{\beta}(f) = f$ and $T_{\beta}(g) = g$ and the condition holds trivially.
+\item[1.] $\beta$ is either equal to a constant $s$ or an $\fo$ formula $\varphi$. Then $h$ does not appear. Then, for each structure $\A$, each first-order assignment $v$ and functional assignments $F,G$ over $\A$, we have that $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G)$. As a result, $\supp(T_{\beta}(f)) = \supp(T_{\beta}(g))$ for every pair of functions $f,g$.
+\item[2.] $\beta$ is equal to $h(\bar{y})$ for some subtuple $\bar{y}$ of $\bar{x}$. Then $T_{\beta}(f) = f$ and $T_{\beta}(g) = g$ and the condition holds trivially.
 \end{itemize}
-We suppose that the statement holds for each formula smaller than $\beta$.
+Suppose that the statement holds for each formula smaller than $\beta$.
 \begin{itemize}
-\item $\beta = (\beta_1 + \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) + T_{\beta_2}(f)(\bar{a})$. Therefore, if $T_{\beta}(f)(\bar{a}) > 0$, then for some $\beta_i$ it holds $T_{\beta_i}(f) > 0$. The statement now follows directly from the supposition.
-\item $\beta = (\beta_1 \mult \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) \mult T_{\beta_2}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\beta_i}(f)(\bar{a}) > 0$ for both $\beta_i$. The statement now follows directly from the supposition.
-\item $\beta = \sa{y}\delta(y,\bar{x},h)$. We extend the grammar slightly to allow constants, and we use the notation $\delta[a/y]$ to denote the formula obtained by replacing each instance of $y$ by the constant $a$. It can be seen that $T_{\beta}(f)(\bar{a}) = \sum_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then for some $a\in A$ we have $T_{\delta[y/a]}(f)(\bar{a}) > 0$. As in the $\add$ case, the statement follows directly.
-\item $\beta = \pa{y}\delta(y,\bar{x},h)$. It can be seen that $T_{\beta}(f)(\bar{a}) = \prod_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\delta[y/a]}(f)(\bar{a}) > 0$ for each $a\in A$. As in the $\mult$ case, the statement follows directly.
+\item[3.] $\beta = (\beta_1 + \beta_2)$. It is easy to see that for each $\bar{a} \in A^{\ell}$ and function $f:A^{\ell}\to\nat$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) + T_{\beta_2}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a} \in \supp(T_{\beta}(f))$, or in other words, $T_{\beta}(f)(\bar{a}) > 0$. Then, for some $\beta_i$ it holds that $T_{\beta_i}(f)(\bar{a}) > 0$. From the supposition we have that $T_{\beta_i}(g)(\bar{a}) > 0$ from which the statement follows.
+\item[4.] $\beta = (\beta_1 \mult \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$ and function $f:A^{\ell}\to\nat$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) \mult T_{\beta_2}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a}$ be such that $T_{\beta}(f)(\bar{a}) > 0$. Then $T_{\beta_i}(f)(\bar{a}) > 0$ for both $\beta_i$. From the supposition we have that $T_{\beta_i}(g)(\bar{a}) > 0$ for both $\beta_i$ and the statement holds.
+\item[5.] $\beta = \sa{y}\delta(y,\bar{x},h)$. Here we extend the grammar slightly to allow constants, and we use the notation $\delta[a/y]$ to denote the formula obtained by replacing each instance of $y$ by the constant $a$. It can be seen that $T_{\beta}(f)(\bar{a}) = \sum_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a}$ be such that $T_{\beta}(f)(\bar{a}) > 0$. Then for some $a\in A$ we have $T_{\delta[y/a]}(f)(\bar{a}) > 0$. The statement now follows as in the case 3.
+\item[6.] $\beta = \pa{y}\delta(y,\bar{x},h)$. 
+It can be seen that $T_{\beta}(f)(\bar{a}) = \prod_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. 
+%If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\delta[y/a]}(f)(\bar{a}) > 0$ for each $a\in A$. As in the $\mult$ case, the statement follows directly.
+The statement follows using the same argument from the cases 4 and 5.
 \end{itemize}
 This covers all possible cases for $\beta$ and we finish the proof of the statement for $\fqfo(\fo)$.
 
@@ -38,7 +41,7 @@ Given the definition of the semantics of $\rqfo(\fo)$, it is clear that a fixed 
 %If $\alpha = (\alpha_1\cdot\alpha_2)$, we compute $M_{\alpha_1}$ and $M_{\alpha_2}$ on input $(\A,v,F)$ and give the product of the values as output.
 %If $\alpha = \sa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the sum of all values as output.
 %If $\alpha = \pa{x}\beta$, we iterate for each $a\in A$, compute $M_{\beta}$ on input $(\A,v[a/x],F)$, and give the product of all values as output.
-%If $\alpha = \clfp{\beta(\bar{x},h)}$, we compute each of the functions $f_0,\ldots,f_k$ iteratively. We start from the null function $f_0$ and compute $f_i$ on each step. If at any point $\support(f_i) = \support(f_{i+1})$, then we stop iterating and output $f_i(v(\bar{x}))$.
+%If $\alpha = \clfp{\beta(\bar{x},h)}$, we compute each of the functions $f_0,\ldots,f_k$ iteratively. We start from the null function $f_0$ and compute $f_i$ on each step. If at any point $\supp(f_i) = \supp(f_{i+1})$, then we stop iterating and output $f_i(v(\bar{x}))$.
 %This ends the construction of the algorithm.
 %Consider $f$ as the $\fp$ function associated to this procedure and we have that for each finite $\R$-structure $\A$: $f(\enc(\A)) = \sem{\alpha}(\A)$.
 %
