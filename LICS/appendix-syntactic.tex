@@ -244,7 +244,11 @@ We explain below how to rewrite $\varphi_i$ in order to satisfy each condition.
 	Then, by redefining the conjuncts $\varphi_i(\bar{X},\bar{x},\bar{y})$ of $\varphi$ to $\theta^j(\bar{x},\bar{y})\wedge \varphi_i(\bar{X},\bar{x},\bar{y})$, we can suppose that each $\varphi_i^{\fo}(\bar{x},\bar{y})$ defines an ordered partition over the variables in $(\bar{x},\bar{y})$.
 	\item[(c)] For showing that no $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ are mentioned in $\varphi_i$ with $\bar{z}$ and $\bar{w}$ equivalent in the ordered partition (i.e. $\varphi_i$ is inconsistent), we do the following. If there exists an instance of $X_j(\bar{z})$ in $\varphi^{+}_i$, an instance of $\neg X_j(\bar{w})$ in $\varphi^{-}_i$ and the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{z} = \bar{w}$, then the entire formula $\varphi_i$ is removed from $\varphi$.
 \end{itemize}
-It is important to notice that the resulting $\varphi$ is equivalent to the initial one, and it is still an extended quantifier-free formula. From now on, we assume that each $\varphi_i(\bar{X},\bar{x},\bar{y}) = \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X},\bar{x},\bar{y})$ satisfies conditions (a), (b) and (c). 
+It is important to notice that the resulting $\varphi$ is equivalent to the initial one, and it is still an extended quantifier-free formula. From now on, we assume that each $\varphi_i(\bar{X},\bar{x},\bar{y})$ satisfies conditions (a), (b) and (c). Furthermore, by condition (a) we have that:
+$$
+\varphi_i(\bar{X},\bar{x},\bar{y}) \; = \; \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X}, \bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{y}) 
+$$
+where $\varphi^{+}$ and $\varphi^{-}_i$ do not depend on the variables $\bar{x}$.
 \begin{claim}\label{claim:minusone}
 For a given ordered structure $\A$, if there exists a first-order assignment $v$ for $\A$ such that $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$, then there exists a second-order assignment $V$ for $\A$ such that  $(\A,V,v)\models\varphi_i(\bar{X},\bar{x},\bar{y})$.
 \end{claim}
@@ -257,10 +261,10 @@ Let $X_t$ be such that $\neg X_t(\bar{w})$ is mentioned in $\varphi^{-}_i(\bar{X
 However, by the construction of $B_t$, there exists a subtuple $\bar{z}$ of $\bar{y}$ such that $X_t(\bar{z})$ appears in $\varphi^{+}_i(\bar{X},\bar{y})$ and $v(\bar{z}) = v(\bar{w})$. Since $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ and $v(\bar{z}) = v(\bar{w})$, then the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{z} = \bar{w}$. This violates condition (c) since $\neg X_t(\bar{w})$ appears in $\varphi^{-}_i$ and $X_t(\bar{z})$ appears in $\varphi^{+}_i$, which leads to a contradiction. 
 \end{proof}
 
-The previous claim motivates the following definitions, in particular, a generalization of the sequence $\bar{B}$. 
+The previous claim and proof motivates the following definitions, in particular, a generalization of the sequence $\bar{B}$. 
 For a structure $\A$ and a first-order assignment $v$ for $\A$, define $\bar{B}^v = (B^v_1,\ldots,B^v_{\length(\bar{X})})$ where each $B^v_j = \{v(\bar{w}) \mid \text{$X_j(\bar{w})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{y})$}\}$. 
 Moreover, let $\bar{v}$ be the sequence of all different first-order variable mentioned in $\varphi_i^{+}$ and let $\bar{u}$ be a sequence of variables disjoint from $\bar{v}$ such that $(\bar{v},\bar{u})$ and $(\bar{x},\bar{y})$ have the same set of variables. Then define $v^*$ to be the first-order assignment for $\A$ for which we have that $v^{*}(\bar{v})$ is the lexicographically smallest tuple that satisfies $(\A,v^{*})\models\exists\bar{u} \varphi^{\fo}_i(\bar{u},\bar{v})$.
-Indeed, one can define a formula $\mu_i$ that defines $v^*$ as follows:
+Indeed, one ca define a formula $\mu_i$ that defines $v^*$ as follows:
 $$
 \mu_i(\bar{v}) = \exists\bar{u}\,\varphi_i^{\fo}(\bar{u},\bar{v})\wedge\forall\bar{u}'\forall\bar{v}'(\varphi_i^{\fo}(\bar{u}',\bar{v}')\to\bar{v}\leq\bar{v}').
 $$ 
