@@ -1,0 +1,121 @@
+%!TEX root = main.tex
+
+In this section, we show that by syntactically restricting $\qso$ one can capture different counting complexity classes. 
+In other words, by using $\qso$ we can extend the theory of descriptive complexity~\cite{immerman1999descriptive} from decision problems to computation problems. 
+For this, we first formalize the notion of \emph{capturing} a complexity class of functions.
+%, and then show how to capture classes like $\shp$, $\fp$, and $\fpspace$.
+
+Fix a signature $\R = \{R_1, \ldots, R_k\}$ and assume that $\A$ is an ordered (finite) $\R$-structure with a domain $A = \{a_1, \ldots, a_n\}$.
+%$ containing $n$ elements. 
+Recall that  $<$ is a linear order on $A$, say $a_1 < a_2 < \ldots < a_n$. For every $i \in \{1, \ldots, k\}$, define the encoding of $R_i^\A$, denoted by $\enc(R_i^\A)$, as the following binary string. Assume that $\ell = \arity(R_i)$ and consider an enumeration of the $\ell$-tuples over $A$ in the lexicographic order induced by $<$. 
+%(that is, $(a_1, \ldots, a_1, a_1)$, $(a_1, \ldots, a_1, a_2)$, $\ldots$, $(a_n, \ldots, a_n, a_{n-1})$, $(a_n, \ldots, a_n, a_n)$). 
+Then let $\enc(R_i^\A)$ be a binary string of length $n^\ell$ such that the $i$-th bit of $\enc(R_i^\A)$ is 1 if the $i$-th tuple in the previous enumeration belongs to $R_i^\A$, and 0 otherwise. Moreover, define the encoding of $\A$, denoted by $\enc(\A)$, as the string
+%following binary string~\cite{L04}:
+%\begin{eqnarray*}
+	%\enc(\A) & = & 0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
+%\end{eqnarray*}
+$0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A)$~\cite{L04}. 
+%We define the class of all $\R$-functions, denoted by $\Func(\R)$, as the class of all functions $f: \ostr \rightarrow \bbN$.
+%Given a function complexity class $\CC$ (i.e. $f: \Sigma^* \rightarrow \bbN$ for every $f \in \CC$), we say that a function $f \in \Func(\R)$ can be computed in $\CC$ if there exists $g \in \CC$ such that $f(\A) = g(\enc(\A))$ for every $\A \in \ostr$. 
+%Note that the function $g$ outputs $f$ for encodings of structures and can behave arbitrarily otherwise.
+We can now formalize the notion of capturing a counting complexity class. From now on, we assume that every counting complexity class $\CC$ consists of functions $f : \{0,1\}^* \to \N$ that are invariant under isomorphism of structures. More precisely, given a signature $\R$, a function $f : \{0,1\}^* \to \N$ is invariant under $\R$-isomorphisms if for every pair $\A, \mathfrak{B} \in \ostr[\R]$ such that $\A$ and 
+$\mathfrak{B}$ are isomorphic, it holds that $f(\enc(\A)) = f(\enc(\mathfrak{B}))$. It is worth noticing that this is a usual assumption in descriptive complexity~\cite{L04}.
+%over $\R$-structures.
+\begin{defi} \label{def:cap}
+	Let $\FF$ be a fragment of $\qso$ and $\CC$ a counting complexity class. Then {\em  $\FF$ captures $\CC$ over ordered $\R$-structures} if the  following conditions hold:
+	\begin{enumerate}
+		\item for every $\alpha \in \FF$, there exists $f \in \CC$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for every $\A \in \ostr[\R]$. 
+		
+		\item for every $f \in \CC$ that is invariant under $\R$-isomorphisms, there exists $\alpha \in \FF$ such that   $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A \in \ostr[\R]$.
+	\end{enumerate} 
+	Moreover, {\em $\FF$ captures $\CC$ over ordered structures} if $\FF$ captures~$\CC$ over ordered $\R$-structures for every signature~$\R$.
+\end{defi}
+%For the sake of simplification, we denote the first condition by $\FF \subseteq \CC$ and the second condition by $\CC \subseteq \FF$.
+In Definition~\ref{def:cap}, function $f \in \CC$ and formula $\alpha \in \FF$ must coincide in all the strings that encode ordered $\R$-structures. Notice that this restriction is natural as we want to capture %Since we want to capture 
+$\CC$ over a fix set of structures (e.g. graphs, matrices).
+%, it is natural to just consider strings that encodes $\R$-structures. 
+Moreover, this restriction is fairly standard in descriptive complexity \cite{immerman1999descriptive,L04}, and it has also been used in the previous work on capturing complexity classes of functions \cite{SalujaST95,ComptonG96}.
+%all notions for capturing complexity classes restrict $f \in \CC$ similarly. 
+
+What counting complexity classes can be captured with fragments of $\qso$?
+For answering this question, it is reasonable to start with $\shp$, a well-known and widely-studied counting complexity class~\cite{arora2009computational}. 
+Since $\shp$ has a strong similarity with $\np$, one could expect a ``Fagin-like'' Theorem~\cite{F75} for this class. 
+Actually, in~\cite{SalujaST95} it was shown that the class $\sfo$ captures $\shp$.
+In our setting, the class $\sfo$ is contained in $\eqso(\fo)$, which also captures $\shp$ as expected.
+
+For a given signature $\R$, we define $\ostr[\R]^*$ as
+\begin{multline*}
+\ostr[\R]^* = \{(\A,v,V) \mid \A\in\ostr[\R]\text{,} \\ \text{$v$ ($V$) is a first-order (second-order) assignment for $\A$}  \}.
+\end{multline*}
+ 
+\begin{prop} \label{prop:capture-shP}
+	$\eqso(\fo)$ captures $\shp$ over ordered structures.
+\end{prop}
+\proof
+\input{proof-capture-shP} 
+\qed
+Recall  that every function class $\# \LL$ is contained in $\eqso(\LL)$ (see Section~\ref{sec:previous}). Thus, it directly follows from~\cite{SalujaST95}  that every $\shp$-function can be defined in $\eqso(\LL)$. The other direction of Proposition \ref{prop:capture-shP} follows by the fact that $\shp$ is closed under first- and second-order sum.
+
+By following the same approach as~\cite{SalujaST95}, Compton and Gr\"adel~\cite{ComptonG96} show that $\seso$ captures $\spp$, where $\eso$ is the existential fragment of $\so$. As one could expect, if we parametrize $\eqso$ with $\eso$, we can also capture~$\spp$.
+\begin{prop} \label{prop:capture-spanP}
+	$\eqso(\eso)$ captures $\spp$ over ordered structures.
+\end{prop}
+\proof
+\input{proof-capture-spanP}
+\qed
+Can we capture $\fp$ by using $\# \LL$ for some fragment $\LL$ of $\so$? A first attempt could be based on the use of a fragment $\LL$ of $\so$ that capture either $\ptime$ or $\nlog$~\cite{G92}. Such an approach fails as $\# \LL$ can encode $\shp$-complete problems in both cases; in the first case, one can encode the problem of counting the number of satisfying assignments of a Horn  propositional formula, while in the second case one can encode the problem of counting the number of satisfying assignments of a 2-CNF propositional formula. A second attempt could be based then on considering a fragment $\LL$ of $\fo$. 
+But even if we consider the existential fragment $\Sigma_1$ of $\fo$ the approach fails, as $\# \Sigma_1$ can encode $\shp$-complete problems like counting the number of satisfying assignments of a 3-DNF propositional formula\cite{SalujaST95}. One last attempt could be based on disallowing the use of second-order free variables in $\sfo$. But in this case one 
+cannot capture exponential functions definable in $\fp$ such as~$2^n$.
+Thus, it is not  clear how to capture $\fp$ 
+by following the approach proposed in~\cite{SalujaST95}. 
+On the other hand, if we consider our framework and move out from $\eqso$, we have other options for counting like first- and second-order products. In fact, the combination of $\qfo$ with $\lfp$ is exactly what we need to capture $\fp$.
+
+From now on, we will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$. Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
+
+The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\neg\varphi + (\varphi\cdot\alpha))$ for given $\so$ formula $\varphi$ and $\qso$ formula $\alpha$. Note that for each $(\A,v,V) \in \ostr[\R]^*$, 
+\[
+\sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
+\begin{cases}
+\sem{\alpha}(\A,v,V) &\text{if } (\A,v,V)\models\varphi,\\
+0 &\text{otherwise}.
+\end{cases}
+\]
+\begin{thm} \label{theo:capture-fp}
+	$\qfo(\lfp)$ captures $\fp$ over ordered structures.
+\end{thm}
+\proof
+\input{proof-capture-fp}
+\qed
+To prove this theorem, 
+%capture $\fp$ 
+one first shows that every formula in $\qfo(\lfp)$ can be evaluated in polynomial time. 
+Indeed, $\lfp$ is a polynomial-time logic~\cite{I86,vardi1982complexity}, and the sum and product quantifiers can also be computed in polynomial time. 
+For the other direction, one has to use $\qfo(\lfp)$ to simulate the run of a polynomial time TM $M$ computing a function, in particular using the quantitative quantifiers to reconstruct the natural number returned by $M$ in the output tape. 
+It is important to notice that the alternation between sum and product quantifiers is crucial for this reconstructions and, thus, crucial for capturing $\fp$.
+
+At this point it is natural to ask whether one can extend the previous idea to capture $\fpspace$~\cite{Ladner89}, the class of functions computable in polynomial space. 
+Of course, for capturing this class one needs a logical core powerful enough, like $\pfp$, for simulating the run of a polynomial-space TM.
+Moreover, 
+one also needs more powerful quantitative quantifiers as functions like $2^{2^n}$ can be computed in polynomial space,
+so second-order sum is not enough for the quantitative layer of a logic for $\fpspace$.
+In fact, by considering second-order product we obtain the fragment $\qso(\pfp)$ that captures $\fpspace$. 
+\begin{thm} \label{theo:capture-fpspace}
+	$\qso(\pfp)$ captures $\fpspace$ over ordered structures.
+\end{thm}
+\proof
+\input{proof-capture-fpspace}
+\qed
+The proof of the previous theorem follows the same line as for the logical characterization of $\fp$: one shows that each function in $\qso(\pfp)$ can be computed in $\fpspace$ and, conversely, the output of a polynomial-space TM can be reconstructed by using $\pfp$ and quantitative quantifiers.
+
+From the proof of the previous theorem a natural question follows: what happens if we use first-order quantitative quantifiers and $\pfp$?
+In~\cite{Ladner89}, Ladner also introduced the class $\nfpspace$ of all functions computed by polynomial-space TMs 
+with output length bounded by a polynomial.
+Interestingly, if we restrict to FO-quantitative quantifiers we can also capture this class.
+\begin{cor} \label{cor:capture-fpspace-poly}
+	$\qfo(\pfp)$ captures $\nfpspace$ over ordered structures.
+\end{cor}
+\proof
+\input{proof-capture-fpspace-poly}
+\qed
+
+The results of this section validate $\qso$ as an appropriate logical framework for extending the theory of descriptive complexity to counting complexity classes. In the following sections, we provide more arguments for this claim, by considering some fragments of $\eqso$ and, moreover, by showing how to go beyond $\eqso$ to capture other classes.

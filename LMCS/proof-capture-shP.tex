@@ -1,0 +1,9 @@
+We construct recursively a $\shp$-machine $M_{\alpha}$ for each $\eqso(\fo)$ formula $\alpha$ over a signature $\R$. This machine, on input $(\A,v,V)$ accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ deterministically in polynomial time, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. 
+%If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.
+If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$.
+%If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$. 
+If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. This covers all possible cases for $\alpha$. Let $\alpha$ be a formula in $\eqso(\fo)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shp$-function over $\R$ and $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
+
+For the other direction, note that Saluja et al.~\cite{SalujaST95} proved that $\shp = \sfo$. 
+%We also have that $\sqso(\fo)$ captures $\#\fo$ over ordered structures so for each $f\in \shp$ let $\alpha \in \sqso(\fo)$ be its corresponding formula. 
+Since a function in $\sfo$ can also be defined $\eqso(\fo)$ (see Section~\ref{sec:previous}), the condition holds.

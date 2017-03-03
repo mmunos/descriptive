@@ -1,0 +1,94 @@
+\documentclass{lmcs} %%% last changed 2014-08-20
+
+%% mandatory lists of keywords 
+\keywords{MANDATORY list of keywords}
+
+%% read in additional TeX-packages or personal macros here:
+%% e.g. \usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{cite}
+\usepackage{amsmath,amsfonts,amssymb,mathabx}
+\usepackage{stmaryrd}
+\input{macros}
+%% define non-standard environments BEYOND the ones already supplied 
+%% here, for example
+\theoremstyle{plain}\newtheorem{satz}[thm]{Satz} %\crefname{satz}{Satz}{S\"atze}
+%% Do NOT replace the proclamation environments lready provided by
+%% your own.
+
+\def\eg{{\em e.g.}}
+\def\cf{{\em cf.}}
+
+%% due to the dependence on amsart.cls, \begin{document} has to occur
+%% BEFORE the title and author information:
+
+\begin{document}
+
+\title[Counting]{Descriptive Complexity for Counting Complexity Classes}
+\titlecomment{{\lsuper*}OPTIONAL comment concerning the title, \eg, 
+  if a variant or an extended abstract of the paper has appeared elsewhere.}
+
+\author[M.~Arenas]{Marcelo Arenas}	%required
+\address{PUC Chile}	%required
+\email{marenas@ing.puc.cl}  %optional
+%\thanks{thanks 1, optional.}	%optional
+
+\author[M.~Munoz]{Martin Mu\~noz}	%optional
+\address{PUC Chile}	%optional
+\email{mmunos@uc.cl}  %optional
+%\thanks{thanks 2, optional.}	%optional
+
+\author[C.~Riveros]{Cristian Riveros}	%optional
+\address{PUC Chile}	%optional
+\email{cristian.riveros@uc.cl}  %optional
+%\thanks{thanks 3, optional.}	%optional
+
+%% etc.
+
+%% required for running head on odd and even pages, use suitable
+%% abbreviations in case of long titles and many authors:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% the abstract has to PRECEDE the command \maketitle:
+%% be sure not to issue the \maketitle command twice!
+
+\begin{abstract}
+  \noindent Descriptive Complexity has been very successful in characterizing complexity classes of decision problems in terms of the properties definable in some logics. However, descriptive complexity for counting complexity classes, such as $\fp$ and $\shp$, has not been systematically studied, and it is not as developed as its decision counterpart. In this paper, we propose a framework based on Weighted Logics to address this issue. Specifically, by focusing on the natural numbers we obtain a logic called Quantitative Second Order Logics (QSO), and show how some of its fragments can be used to capture fundamental counting complexity classes such as $\fp$, $\shp$ and $\fpspace$, among others. We also use QSO to define a hierarchy inside $\shp$, identifying counting complexity classes with good closure and approximation properties, and which admit natural complete problems. Finally, we add recursion to QSO, and show how this extension naturally captures lower counting complexity classes such as $\shl$.
+\end{abstract}
+
+\maketitle
+
+%% start the paper here:
+\section{Introduction}
+\input{introduction}
+
+\section{Preliminaries} \label{sec:preliminaries}
+\input{preliminaries}
+
+\section{A logic for quantitative functions} \label{sec:logic}
+\input{framework}
+
+\section{Counting under $\qso$} \label{sec:complexity}
+\input{counting}
+
+\subsection{Extending $\qso$ to capture non-counting classes} \label{sec:extentions}
+\input{extentions}
+
+\section{Exploring the structure of $\shp$ through $\qso$} \label{sec:syntactic}
+\input{syntactic}
+
+\section{Adding recursion to QSO}\label{sec:beyond}
+\input{beyond}
+
+\section{Concluding remarks and future work}\label{sec:conclusions}
+\input{conclusions}
+
+
+
+\begin{thebibliography}{10}
+	
+\end{thebibliography}
+
+\end{document}

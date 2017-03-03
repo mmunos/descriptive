@@ -1,0 +1,87 @@
+%!TEX root = main.tex
+
+Inspired by the connection between $\shp$ and $\sfo$, a hierarchy of subclases of $\sfo$ was introduced in~\cite{SalujaST95} 
+by restricting the alternation of quantifiers in Boolean formulae.
+Specifically, the \emph{$\sfo$-hierarchy} consists of the 
+the classes $\E{i}$ and $\U{i}$ for every $i \geq 0$, where $\E{i}$ (resp., $\U{i}$) is defined as $\sfo$ but restricting the formulae used to be in $\loge{i}$ (resp., $\logu{i}$).
+By definition, we have that $\U{0} = \E{0}$. Moreover, it is shown in~\cite{SalujaST95} that:
+\[
+\E{0} \; \subsetneq \; \E{1} \; \subsetneq \; \U{1} \; \subsetneq \; \E{2} \; \subsetneq \; \U{2} \; = \; \sfo 
+\]
+In light of the framework introduced in this paper, natural extensions of these classes are obtained by considering 
+$\eqso(\loge{i})$ and $\eqso(\logu{i})$ for every $i \geq 0$, which form the \emph{$\eqso(\fo)$-hierarchy}.
+Clearly, we have that $\E{i} \subseteq \QE{i}$ and $\U{i} \subseteq \QU{i}$. Indeed, each formula $\varphi(\bar{X}, \bar{x})$ in $\E{i}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\QE{i}$, and likewise for $\U{i}$ and $\QU{i}$.
+But what is the exact relationship between these two hierarchies?
+To answer this question, we first introduce two normal forms for $\eqso(\LL)$ that helps us to characterize the expressive power of this quantitative logic.
+A formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-prenex normal form ($\LL$-PNF)} 
+if $\alpha$ is of the form
+$\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{X}, \bar{x})$,
+where $\bar{X}$ and $\bar{x}$ are sequences of zero or more second-order and first-order variables, respectively, and $\varphi(\bar{X}, \bar{x})$ is a formula in $\LL$. Notice that 
+a formula $\varphi(\bar{X}, \bar{x})$ in $\sh{\LL}$ is equivalent to the formula $\sa{\bar X} \sa{\bar x} \varphi(\bar{X}, \bar{x})$ in $\LL$-PNF. 
+Moreover, a formula $\alpha$ in $\eqso(\LL)$ is in \emph{$\LL$-sum normal form ($\LL$-SNF)} if $\alpha$ is of the form $\Sigma_{i=1}^n \alpha_i$ where each $\alpha_i$ is in $\LL$-PNF. 
+\begin{prop}\label{theo-pnf-snf}
+Every formula in $\eqso(\LL)$ can be rewritten in $\LL$-SNF.
+\end{prop}
+\proof
+\input{proof-theo-pnf-snf}
+\qed
+If a formula is in $\LL$-PNF then clearly the formula is in $\LL$-SNF.
+Unfortunately, for some $\LL$ there exist formulae in $\eqso(\LL)$  that cannot be rewritten in $\LL$-PNF.
+Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, we need to understand the boundary between PNF and SNF. We do this in the following theorem. 
+\begin{thm}\label{theo-pi1-pnf}
+For $i = 0,1$, there exists a formula $\alpha_i$ in $\QE{i}$ that is not equivalent to any formula in $\Sigma_i$-PNF. 
+On the other hand, if $\logu{1} \subseteq \LL$ and $\LL$ is closed under conjunction and disjunction, then every formula in $\eqso(\LL)$ can be rewritten in $\LL$-PNF. 
+
+From now on, for every first-order tuple $\bar{x}$ (second-order tuple $\bar{X}$) $\length{\bar{x}}$ as the size of $\bar{x}$ ($\length{\bar{X}}$ as the size of $\bar{X}$).
+\end{thm}
+\proof
+\input{proof-theo-pi1-pnf}
+\qed
+
+\begin{figure*}
+\begin{center}
+\begin{tikzpicture}
+\node[rectw] (n1) {$\E{0}$};
+\node[rectw, right=0.5cm of n1] (n2) {};
+\node[rectw, above=0.4cm of n2] (n3) {$\E{1}$}
+	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+\node[rectw, below=0.4cm of n2] (n4) {$\QE{0}$}
+        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+\node[rectw, right=0.5cm of n2] (n5) {$\QE{1}$}
+        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+        edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+\node[rectw, right=0.5cm of n5] (n6) {$\U{1}$}       
+        edge[draw=white] node {$\subsetneq$} (n5);
+\node[rectw, right=0.5cm of n6] (n7) {$\QU{1}$}       
+        edge[draw=white] node {$=$} (n6);
+\node[rectw, right=0.5cm of n7] (n8) {$\E{2}$}       
+        edge[draw=white] node {$\subsetneq$} (n7);
+\node[rectw, right=0.5cm of n8] (n9) {$\QE{2}$}       
+        edge[draw=white] node {$=$} (n8);        
+\node[rectw, right=0.5cm of n9] (n10) {$\U{2}$}       
+        edge[draw=white] node {$\subsetneq$} (n9);
+\node[rectw, right=0.5cm of n10] (n11) {$\QU{2}$}       
+        edge[draw=white] node {$=$} (n10); 
+\node[rectw, right=0.5cm of n11] (n12) {$\sfo$}       
+        edge[draw=white] node {$=$} (n11); 
+\end{tikzpicture}
+\end{center}
+\vspace{-0.4cm}
+\caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
+\vspace{-0.1cm}
+\end{figure*}
+
+As a consequence of Proposition~\ref{theo-pnf-snf} and Theorem~\ref{theo-pi1-pnf}, we obtain that $\E{i} \subsetneq \QE{i}$ for $i = 0,1$, and that $\sh{\LL} = \eqso(\LL)$ for $\LL$ equal to  $\Pi_1$, $\Sigma_2$ or $\Pi_2$. The following proposition completes our picture of the relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy.
+\begin{prop}\label{prop-rest}
+The following properties hold:
+\begin{itemize}
+\item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$
+\item $\QE{1} \subsetneq \QU{1}$
+\end{itemize}
+\end{prop}
+\proof
+\input{proof-prop-rest}
+\qed
+The relationship between the two hierarchies is summarized in Figure \ref{fig-sfo-eqso}.
+Our hierarchy and the one proposed in~\cite{SalujaST95} only differ in~$\Sigma_0$ and~$\Sigma_1$. 
+Interestingly, we show next that this difference is crucial for finding classes of functions with easy decision versions and good closure properties.

@@ -1,0 +1,52 @@
+First we prove that $\shdhsat$ is in $\eqso(\ehorn)$. Recall that each instance of $\shdhsat$ is a disjunction of Horn formulas. Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot), \pD(\cdot,\cdot)\}$. Each symbol in this vocabulary is used to indicate the same as in Example \ref{ex-hornsat-esop1}, with the addition of $\pD(d,c)$ which indicates that $c$ is a clause in the formula $d$. Recall that the formula
+\begin{align*}
+&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \neg\textit{T}(x)).
+\end{align*}
+defines $\chsat$. We obtain the following formula $\psi(T,A)$ in $\ehorn$:
+\begin{align*}
+\exists d[&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \pD(c,d)\vee \neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \neg\textit{T}(x))]
+\end{align*}
+effectively defines $\chsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
+
+\vspace{1em}
+We will now prove that $\shdhsat$ is hard for $\eqso$ over a signature $\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a polynomial-time procedure that computes a function $g_{\alpha}$. This function receives a finite $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. We suppose that $\alpha$ is in sum normal form and:
+$$
+\alpha = \sum_{i = 1}^{\text{\#clauses}} \sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\bigwedge_{j = 1}^{n}\forall\bar{z}\,\varphi^i_j(\bar{X},\bar{x},\bar{y},\bar{z}),
+$$
+where each $\varphi^i_j$ is a Horn clause.                                                                
+
+Consider a finite $\R$-structure $\A$ with domain $A$. To simplify the proof, we extend our grammar to allow first-order constants. Consider each tuple $\bar{a}\in A^{\length{\bar{x}}}$, each $\bar{b}\in A^{\length{\bar{y}}}$ and each $\bar{c}\in A^{\length{\bar{z}}}$ as a tuple of first-order constants. The following formula defines the same function as $\alpha$:
+$$
+\sum_{i = 1}^{\#clauses} \sum_{\bar{a}\in A^{\length{\bar{x}}}} \sa{\bar{X}}\bigvee_{\bar{b}\in A^{\length{\bar{y}}}}\bigwedge_{j = 1}^{n}\bigwedge_{\bar{c}\in A^{\length{\bar{z}}}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
+$$
+Note that each $\fo$ formula over $(\bar{x},\bar{y},\bar{z})$ in each $\varphi^i_j$ has no free variables. Therefore, we can evaluate each of these in polynomial time and replace them by $\perp$ and $\top$ where it corresponds. Each $\varphi^i_j$ will be of the form $\perp \vee\, \chi^i_j(\bar{X})$ or $\top \vee \chi^i_j(\bar{X})$ where $\chi^i_j$ is a disjunction of $\neg X_{\ell}$'s and at most one $X_{\ell}$. The formulas of the form $\top \vee \chi^i_j(\bar{X})$ can be removed entirely, and the formulas of the form $\perp \vee\, \chi^i_j(\bar{X})$ can be replaced by $\chi^i_j(\bar{X})$. We obtain the formula
+$$
+\sum_{i = 1}^{m}\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})
+$$
+where every $\psi^{i}_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$.
+
+Our idea for the rest of the proof is to define $g_{\alpha}$ for each $\alpha = \sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi^{i}_{j,k}(\bar{X})$, for $\alpha = c$ and for $\alpha = \beta_1 + \cdots + \beta_m$ where each $\beta_i$ is in one of the two previous cases.
+
+If $\alpha$ is equal to $\sa{\bar{X}}\bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ where $\psi_{j,k}(\bar{X})$ is a disjunction of $\neg X_{\ell}$'s and zero or one $X_{\ell}$, then we obtain the {\bf propositional formula} $g_{\alpha}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\psi_{j,k}(\bar{X})$ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \bar{e}\in A^{\arity(X)} \}$ which has exactly $\sem{\alpha}(\A)$ satisfying assignments and is precisely a disjunction of Horn formulas.
+
+If $\alpha$ is equal to a constant $c$, then we define $g_{\alpha}(\A)$ as the following formula that has exactly $c$ satisfying assignments:
+$$
+g_{\alpha}(\A) = \bigvee_{i = 1}^{c}\neg t_1 \wedge \cdots \wedge \neg t_{i-1} \wedge t_i \wedge \neg t_{i+1} \wedge \cdots \wedge \neg p_c.
+$$ 
+If $\alpha = \beta_1 + \cdots + \beta_m$, let $g_{\beta_i}(\A) = \bigvee_{j = 1}^{\#d}\bigwedge_{k = 1}^{\#c}\theta^i_{j,k}$ for each $\beta_i$ where each $\theta^i_{j,k}$ is a Horn clause. Let $\Theta_i = g_{\beta_i}(\A)$. We rename the variables in each $\Theta_i$ so none of them are mentioned in any other $\Theta_j$. We add $m$ new variables $t_1,\ldots,t_m$ and we define:
+\begin{align*}
+g_{\alpha}(\A) = &\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^1_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m}}}t) \wedge (t_1 \wedge \bigwedge_{\ell = 2}^{m} \neg t_{\ell})) \vee \\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^2_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each $t$}\\ \text{ mentioned in}\\ \Theta_1,\Theta_3,\ldots,\Theta_{m}}}t) \wedge (t_2 \wedge \bigwedge\limits_{\substack{\ell = 1 \\ \ell \neq 2}}^{m} \neg t_{\ell})) \vee \cdots \vee\\ 
+&\bigvee_{i = 1}^{\#d}(\bigwedge_{j = 1}^{\#c}\theta^m_{i,j} \wedge (\bigwedge\limits_{\substack{\text{each } t\\ \text{ mentioned in}\\ \Theta_2,\ldots,\Theta_{m-1}}}t) \wedge (t_m \wedge \bigwedge_{\ell = 1}^{m-1} \neg t_{\ell})).
+\end{align*}
+The formula is a disjunction of Horn formulas, and the number of satisfying assignments for this formula is exactly the sum of satisfying assignments for each $g_{\beta_i}(\A)$. This, at the same time, is equal to $\sem{\alpha}(\A)$. This covers all possible cases for $\alpha$, and the entire procedure takes polynomial time.

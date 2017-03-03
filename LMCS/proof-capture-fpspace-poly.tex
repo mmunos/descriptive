@@ -1,0 +1,10 @@
+For the first condition, let $\alpha\in\qfo(\pfp)$ over some signature $\R$. Let $f$ be a function over $\R$ defined by the following procedure. Let $\enc(\A)$ be an input, where $\A$ is an ordered structure over $\R$ with domain $A = \{1,\ldots,n\}$. In the procedure we slightly extend the grammar of $\qfo(\pfp)$ to include constants. We replace each first order sum and first order product in $\alpha$ by an expansion using the elements in $A$. This is, $\sa{x} \beta(x)$ is replaced by $(\beta(1)+\cdots+\beta(n))$ and $\pa{x}\beta(x)$ is replaced by $(\beta(1)\cdot\,\cdots\,\cdot\beta(n))$. Then each sub-formula $\varphi\in\pfp$ in $\alpha$ is evaluated in polynomial space and replaced by 1 if $\A\models\varphi$ and by 0 otherwise. The resulting formula is an arithmetic expression of polynomial size  (recall that $\alpha$ is fixed) which is evaluated and lastly given as output. Note that $f\in\nfpspace$ and $f(\enc(\A)) = \sem{\alpha}(\A)$.
+
+For the second condition, let $f\in \fpspace$ defined over some signature $\R$.
+Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$, where $\A$ has a domain of size $n$.
+Let $\bar{x} = (x_1,\ldots,x_{\ell})$.
+Consider a procedure that receives $\enc(\A)$ and an assignment $\bar{a}$ to $\bar{x}$. Let $m$ be the position of $\bar{a}$ in the lexicographic order of the tuples in $A^{\ell}$. The procedure then computes the $m$-th bit of $f(\enc(\A))$, from least to most significant. Since this procedure works in polynomial space, it can be described by an $\pfp$ formula $\Phi(\bar{x})$. Then we use
+$$
+\alpha = \sa{\bar{x}} \Phi(\bar{x})\cdot\varphi(\bar{x}),
+$$
+where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2).$ Note that if $\bar{a} \in A^{\ell}$ is the $m$-th tuple in the given order (starting from 0), then $\sem{\varphi(\bar{a})}(\A) = 2^{m}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. Then, $\alpha$ is in $\qfo(\pfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.

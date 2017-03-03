@@ -1,0 +1,3 @@
+Pagourtzis and Zachos mention a $\totp$ procedure that computes the number of satisfying assignments of a DNF formula \cite{PagourtzisZ06}. This procedure can be easily extended to receive Horn formulas, and furthermore, a disjunction of Horn formulas. Hence $\shdhsat$ is in $\totp$.
+
+As we show in Proposition \ref{sigma2hard}, $\shdhsat$ is complete for $\eqso(\ehorn)$ under parsimonious reductions. Let $\alpha$ be a formula in $\eqso(\ehorn)$ and let $g_{\alpha}$ be the reduction to $\shdhsat$. The $\totp$ procedure we construct, for each input $\enc(\A)$, is simply to compute $g_{\alpha}(\enc(\A))$, and then simulate the $\totp$ procedure for $\shdhsat$ on input $g_{\alpha}(\enc(\A))$. We conclude that $\alpha$ is in $\totp$.

@@ -1,0 +1,70 @@
+%!TEX root = main.tex
+\newcommand{\pP}{\textit{P}}
+\newcommand{\pN}{\textit{N}}
+\newcommand{\pV}{\textit{V}}
+\newcommand{\pT}{\textit{T}}
+\newcommand{\pA}{\textit{A}}
+\newcommand{\pNC}{\textit{NC}}
+\newcommand{\pD}{\textit{D}}
+
+
+A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order variable and $\x$ is a tuple of first-order variables, and a negative literal is a formula of the form $\exists \v \, \neg X(\u,\v)$, where $\u$ and $\v$ are tuples of first-order variables. Given a relational signature $\R$, a clause over $\R$ is a formula of the form:
+$$
+\forall \x \, (\varphi_1 \vee \cdots \vee \varphi_n),
+$$
+where each $\varphi_i$ ($1 \leq i \leq n$) is either a positive literal, a negative literal or an \fo-formula over $\R$.  A clause is said to be Horn if it contains at most one positive literal, and a formula is said to be Horn if it is a conjunction of Horn clauses over a relational signature $\R$. With this terminology, we define $\uhorn$ as the set of formulas $\psi$ such that $\psi$ is a conjunction of Horn clauses over a relational signature $\R$. 
+
+\begin{proposition}\label{prop:uhorn-pe}
+$\eqso(\uhorn) \subseteq \totp$
+\end{proposition}
+
+\begin{example} \label{ex-hornsat-esop1}
+Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot)\}$. This vocabulary is used as follows to encode a Horn formula. A fact $\pP(c,x)$ indicates that propositional variable $x$ is a disjunct in a clause $c$, while $\pN(c,x)$ indicates that $\neg x$ is a disjunct in $c$. Furthermore, $\pV(x)$ holds if  $x$ is a propositional variable, and $\pNC(c)$ holds if $c$ is a clause containing only negative literals, that is, $c$ is of the form $(\neg x_1 \vee \cdots \vee \neg x_n)$.
+
+To encode $\chsat$, we define an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if and only if $x$ is a propositional variable that is assigned value 1.  More specifically, $\varphi(\pT)$ is defined as follows:
+\begin{align*}
+&\forall x \, (\pT(x) \to \pV(x)) \ \wedge\\
+&\forall c \, (\pNC(c) \to \exists x \, (\pN(c,x) \wedge \neg \pT(x))) \ \wedge\\
+&\forall c \forall x \, ([\pP(c,x) \wedge \forall y \, (\pN(c,y) \to \pT(y))] \to \pT(x)).
+\end{align*}
+Given that $\uhorn$ is designed with the goal in mind of capturing $\chsat$, we expect $\varphi(\pT)$ to be a formula in $\uhorn$. However, if we rewrite it as a conjunction of clauses we obtain the following:
+\begin{align*}
+&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \pNC(c) \vee \exists x \, (\pN(c,x) \wedge \neg \pT(x)))\ \wedge\\
+&\forall c \forall x \, (\neg \pP(c,x) \vee \exists y \, (\pN(c,y) \wedge \neg \pT(y)) \vee \pT(x)).
+\end{align*}
+The resulting formula $\varphi(\pT)$ is not in $\uhorn$, but it can be easily transformed into a formula in this class  by introducing an auxiliary binary predicate $\pA$ defined as follows:
+\begin{align*}
+\forall c \forall x \, (\neg \pA(c,x) \leftrightarrow [\pN(c,x) \wedge \neg \pT(x)]).
+\end{align*}
+In this way, we obtain the following formula $\psi(\pT,\pA)$ in $\uhorn$:
+\begin{align*}
+&\forall x \, (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+&\forall c \, (\neg \textit{NC}(c) \vee \exists x \, \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{P}(c,x) \vee \exists y \, \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+&\forall c \forall x \, (\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+&\forall c \forall x \, (\textit{A}(c,x) \vee \neg\textit{T}(x)).
+\end{align*}
+This formula effectively defines $\chsat$
+as for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A)$.  Therefore, we conclude that $\chsat \in \eqso(\uhorn)$. 
+\end{example}
+We extend the definition of $\uhorn$ to allow existential quantification. More precisely, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\exists \bar x \, \psi$ with $\psi$ a Horn formula. Interestingly, it hold that $\cdnf \in \eqso(\ehorn)$ and
+
+\begin{proposition}\label{prop:ehorn-pe}
+$\eqso(\ehorn) \subseteq \totp$.
+\end{proposition}
+A natural question at this point is whether in the definitions of $\uhorn$ and $\ehorn$, it is necessary to allow negative literals of the form $\exists \v \, \neg X(\u,\v)$. The following result shows that it is indeed the case:
+
+\begin{proposition}\label{prop:hsat-not-sigma2}	
+$\chsat \not\in \eqso(\loge{2})$.
+\end{proposition}
+We conclude this section by showing that a natural extension of $\chsat$ is $\eqso(\ehorn)$-complete under parsimonious reductions. We define the decision problem:
+\begin{multline*}
+\dhsat = \{\Phi \mid \Phi \text{ is a disjunction of}\\  \text{Horn formulas and $\Phi$ is satisfiable}\},
+\end{multline*}
+and the counting problem $\shdhsat$ as a function that counts all satisfying assignments of a formula $\Phi$ that is a disjunction of Horn formulas.
+
+\begin{theorem} \label{sigma2hard}
+	$\shdhsat$ is $\eqso(\ehorn)$-complete under parsimonious reductions. 
+\end{theorem}
