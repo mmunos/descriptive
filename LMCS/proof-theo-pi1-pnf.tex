@@ -1,3 +1,5 @@
+%!TEX root = main.tex
+
 We divide the proof in three parts.
 
 \vspace{1em}
@@ -35,20 +37,21 @@ where $\bar{z} = (\bar{z}_0,\bar{z}_1,\ldots,\bar{z}_{\length{\bar{X}}})$. The f
 \end{align}
 To show that the formula is indeed equivalent to $\alpha$, note that the formulas in lines (\ref{eq:partition1}) and (\ref{eq:partition2}) form a partition over the assignments of $(\bar{X},\bar{x})$, while fixing an assignment for $(\bar{Y},\bar{y})$, and the formulas in lines (\ref{eq:partition3}) and (\ref{eq:partition4}) form a partition over the assignments of $(\bar{Y},\bar{y})$, while fixing an assignment for $(\bar{X},\bar{x})$. Altogether, the four lines define pairwise disjoint assignments for $(\bar{X},\bar{x}),(\bar{Y},\bar{y})$. With this, it is straightforward to show that the above formula is equivalent to $\alpha$. However, the formula is not yet in the correct form since it has existential quantifiers in the subformulas $\gamma_{\text{not first}}$ and $\gamma_{\text{not last}}$. To solve this, first let take a close look to the complete formula:
 \begin{align*}
-\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{Y}}\sa{\bar{y}}[&(\varphi(\bar{X},\bar{x})\wedge\exists\bar{v}(\bar{v}_0 < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i))\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z}\neg Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{y}\leq\bar{z})\vee\\
+\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{Y}}\sa{\bar{y}}[&(\varphi(\bar{X},\bar{x})\wedge\exists\bar{v}(\bar{v}_0 < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i))\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z}\neg Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{y}\leq\bar{z}))\vee\\
 &(\varphi(\bar{X},\bar{x})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z}\neg X_i(\bar{z}) \wedge \forall\bar{z}(\bar{x}\leq\bar{z})\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z} Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{y}))\vee\\
 &(\psi(\bar{Y},\bar{y})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z}\neg X_i(\bar{z}) \wedge \forall\bar{z}(\bar{x}\leq\bar{z})\wedge\exists\bar{w}(\bar{y} < \bar{w}_0 \vee \bigvee_{i = 1}^{\length{\bar{Y}}}\neg Y(\bar{w}_i))\vee\\
 &(\psi(\bar{Y},\bar{y})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z} X_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{x})\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z} Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{y}))].
 \end{align*}
 To construct an equivalent formula that is in the correct form, we define $\bar{u} = (\bar{v},\bar{w})$ and we replace the first-order quantifiers by a first-sum and count the first assignment to $\bar{v}$ and $\bar{w}$ that satisfies the formula. A similar construction was used in \cite{SalujaST95}. Then the final formula equivalent to $\alpha$ is the following:
 \begin{align*}
-\sa{\bar{X}}\sa{\bar{Y}}\sa{\bar{x}}\sa{\bar{y}}\sa{\bar{u}}[&(\varphi(\bar{X},\bar{x})\wedge(\bar{v}_0 < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i))\wedge \forall\bar{u}'((\bar{v}_0' < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i'))\to\bar{u}\leq\bar{u}') \wedge \\
-& \hspace{3cm}  \bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z}\neg Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{y}\leq\bar{z})\vee\\
+\sa{\bar{X}}&\sa{\bar{Y}}\sa{\bar{x}}\sa{\bar{y}}\sa{\bar{u}}[ \\
+&(\varphi(\bar{X},\bar{x})\wedge(\bar{v}_0 < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i))\wedge \forall\bar{u}'((\bar{v}_0' < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{v}_i'))\to\bar{u}\leq\bar{u}') \wedge \\
+&\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z}\neg Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{y}\leq\bar{z}))\vee\\
 &
 (\varphi(\bar{X},\bar{x})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z}\neg X_i(\bar{z}) \wedge \forall\bar{z}(\bar{x}\leq\bar{z})\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z} Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{y})\wedge\forall\bar{u}'(\bar{u}\leq\bar{u}'))\vee
 \\
 &(\psi(\bar{Y},\bar{y})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z}\neg X_i(\bar{z}) \wedge \forall\bar{z}(\bar{x}\leq\bar{z})\wedge \\
-& \hspace{3cm} (\bar{y} < \bar{w}_0 \vee \bigvee_{i = 1}^{\length{\bar{Y}}}\neg Y(\bar{w}_i))\wedge\forall\bar{u}'(\bar{y} < \bar{w}_0' \vee \bigvee_{i = 1}^{\length{\bar{Y}}}\neg Y(\bar{w}_i'))\to\bar{u}\leq\bar{u}')\vee \\
+&(\bar{y} < \bar{w}_0 \vee \bigvee_{i = 1}^{\length{\bar{Y}}}\neg Y(\bar{w}_i))\wedge\forall\bar{u}'(\bar{y} < \bar{w}_0' \vee \bigvee_{i = 1}^{\length{\bar{Y}}}\neg Y(\bar{w}_i'))\to\bar{u}\leq\bar{u}')\vee \\
 &(\psi(\bar{Y},\bar{y})\wedge\bigwedge_{i = 1}^{\length{\bar{X}}} \forall\bar{z} X_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{x})\wedge\bigwedge_{i = 1}^{\length{\bar{Y}}} \forall\bar{z} Y_i(\bar{z}) \wedge \forall\bar{z}(\bar{z}\leq\bar{y})\wedge\forall\bar{u}'(\bar{u}\leq\bar{u}'))].
 \end{align*}
 Finally, consider a $\eqso(\LL)$ formula $\alpha$ in $\LL$-SNF. If $\alpha = \sum_{i = 1}^n\alpha_i$, then by induction we can consider $\alpha = \alpha_1 + (\sum_{i = 2}^n\alpha_i)$ and use $\tau(\alpha_1 + \tau(\sum_{i = 2}^n\alpha_i))$ as the rewrite of $\alpha$, which satisfies the condition in the hypothesis.

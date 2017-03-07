@@ -89,7 +89,7 @@ Then the following is a $\qso$-formula defining the permanent of a matrix:
 \[
 \alpha_3 := \sa{S} \op{permut}(S) \cdot \pa{x} (\ex{y} S(x,y) \wedge M(x,y)).
 \]
-Intuitively, the subformula $\beta(S) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
+Intuitively, the subformula $\beta(S) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value \linebreak $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
 Moreover, the subformula $\op{permut}(S) \cdot \beta(S)$ returns $\beta(S)$ when $S$ is a permutation, and returns $0$ otherwise (i.e. $\op{permut}(S)$ behaves like a filter). 
 Finally, the second order sum aggregates these values iterating over all binary relations and calculating the permanent of the matrix.
 We would like to finish with this example by highlighting the similarity of $\alpha_3$ with the permanent formula. 

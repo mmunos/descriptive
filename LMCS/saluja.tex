@@ -39,32 +39,59 @@ From now on, for every first-order tuple $\bar{x}$ (second-order tuple $\bar{X}$
 \qed
 
 \begin{figure*}
+%\begin{center}
+%\begin{tikzpicture}
+%\node[rectw] (n1) {$\E{0}$};
+%\node[rectw, right=0.5cm of n1] (n2) {};
+%\node[rectw, above=0.3cm of n2] (n3) {$\E{1}$}
+%	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+%\node[rectw, below=0.3cm of n2] (n4) {$\QE{0}$}
+%        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+%\node[rectw, right=0.3cm of n2] (n5) {$\QE{1}$}
+%        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+%         edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+%\node[rectw, right=0.3cm of n5] (n6) {$\U{1}$}       
+%        edge[draw=white] node {$\subsetneq$} (n5);
+%\node[rectw, right=0.3cm of n6] (n7) {$\QU{1}$}       
+%        edge[draw=white] node {$=$} (n6);
+%\node[rectw, right=0.3cm of n7] (n8) {$\E{2}$}       
+%        edge[draw=white] node {$\subsetneq$} (n7);
+%\node[rectw, right=0.3cm of n8] (n9) {$\QE{2}$}       
+%        edge[draw=white] node {$=$} (n8);        
+%\node[rectw, right=0.3cm of n9] (n10) {$\U{2}$}       
+%        edge[draw=white] node {$\subsetneq$} (n9);
+%\node[rectw, right=0.3cm of n10] (n11) {$\QU{2}$}       
+%        edge[draw=white] node {$=$} (n10); 
+%\node[rectw, right=0.3cm of n11] (n12) {$\sfo$}       
+%        edge[draw=white] node {$=$} (n11); 
+%\end{tikzpicture}
+%\end{center}
 \begin{center}
-\begin{tikzpicture}
-\node[rectw] (n1) {$\E{0}$};
-\node[rectw, right=0.5cm of n1] (n2) {};
-\node[rectw, above=0.4cm of n2] (n3) {$\E{1}$}
-	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
-\node[rectw, below=0.4cm of n2] (n4) {$\QE{0}$}
-        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
-\node[rectw, right=0.5cm of n2] (n5) {$\QE{1}$}
-        edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
-        edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
-\node[rectw, right=0.5cm of n5] (n6) {$\U{1}$}       
-        edge[draw=white] node {$\subsetneq$} (n5);
-\node[rectw, right=0.5cm of n6] (n7) {$\QU{1}$}       
-        edge[draw=white] node {$=$} (n6);
-\node[rectw, right=0.5cm of n7] (n8) {$\E{2}$}       
-        edge[draw=white] node {$\subsetneq$} (n7);
-\node[rectw, right=0.5cm of n8] (n9) {$\QE{2}$}       
-        edge[draw=white] node {$=$} (n8);        
-\node[rectw, right=0.5cm of n9] (n10) {$\U{2}$}       
-        edge[draw=white] node {$\subsetneq$} (n9);
-\node[rectw, right=0.5cm of n10] (n11) {$\QU{2}$}       
-        edge[draw=white] node {$=$} (n10); 
-\node[rectw, right=0.5cm of n11] (n12) {$\sfo$}       
-        edge[draw=white] node {$=$} (n11); 
-\end{tikzpicture}
+	\begin{tikzpicture}
+	\node[rectw] (n1) {$\E{0}$};
+	\node[rectw, right=0.5cm of n1] (n2) {};
+	\node[rectw, above=0.3cm of n2] (n3) {$\E{1}$}
+		edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+	\node[rectw, below=0.5cm of n2] (n4) {$\QE{0}$}
+		edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+	\node[rectw, right=0.5cm of n2] (n5) {$\QE{1}$}
+		edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+		edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+	\node[rectw, right=0.8cm of n5] (n6) {$\U{1}$}       
+		edge[draw=white] node {$\subsetneq$} (n5);
+	\node[rectw, below=0.3cm of n6] (n7) {$\QU{1}$}       
+		edge[draw=white] node {\rotatebox{90}{$=$}} (n6);
+	\node[rectw, right=1.0cm of n6] (n8) {$\E{2}$}       
+		edge[draw=white] node {$\subsetneq$} (n6);
+	\node[rectw, below=0.3cm of n8] (n9) {$\QE{2}$}       
+		edge[draw=white] node {\rotatebox{90}{$=$}} (n8);        
+	\node[rectw, right=1.0cm of n8] (n10) {$\U{2}$}       
+		edge[draw=white] node {$\subsetneq$} (n8);
+	\node[rectw, below=0.3cm of n10] (n11) {$\QU{2}$}       
+		edge[draw=white] node {\rotatebox{90}{$=$}} (n10); 
+	\node[rectw, right=0.5cm of n10] (n12) {$\sfo$}       
+		edge[draw=white] node {$=$} (n10); 
+	\end{tikzpicture}
 \end{center}
 \vspace{-0.4cm}
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}

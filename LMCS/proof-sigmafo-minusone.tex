@@ -1,3 +1,5 @@
+%!TEX root = main.tex
+
 \noindent {\bf Closed under sum and multiplication.} We show here that $\eqso(\logex{1})$ is closed under sum and multiplication. This can be seen because $\eqso(\LL)$ is closed under sum for every fragment $\LL$ by definition, and since $\logex{1}$ is closed under conjunction, from Lemma \ref{conj-mult} it follows that $\eqso(\logex{1})$ is closed under multiplication.
 
 \vspace{1em}
@@ -60,10 +62,10 @@ $$
 \varphi_i'(\bar{X},\bar{x}, \bar{y}) \; = \; \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X}, \bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{y}) 
 $$
 where $\varphi^{+}$ and $\varphi^{-}_i$ do not depend on  $\bar{x}$.
-\begin{claim}\label{claim:minusone}
+\begin{clm}\label{claim:minusone}
 	For a given ordered structure $\A$ and a first-order assignment $v$ for $\A$, $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ if, and only if, there exists a second-order assignment $V$ for $\A$ such that $(\A,V,v)\models \varphi_i'(\bar{X},\bar{x}, \bar{y})$.
-\end{claim}
-\begin{proof}
+\end{clm}
+\proof
 	Let $\A$ be an ordered structure with domain $A$ and let $v$ be a first-order assignment for $\A$, such that $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$.
 	Define $\bar{B} = (B_1,\ldots,B_{\length{\bar{X}}})$ as $B_j = \{v(\bar{w})\mid \text{ $X_j(\bar{w})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{y})$}\}$, and let $V$ be a second-order assignment for which $V(\bar{X}) = \bar{B}$.
 	Towards a contradiction, suppose that $(\A,V,v)\not\models \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X}, \bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{y})$.
@@ -72,16 +74,16 @@ where $\varphi^{+}$ and $\varphi^{-}_i$ do not depend on  $\bar{x}$.
 	However, by the construction of $B_t$, there exists a subtuple $\bar{z}$ of $\bar{y}$ such that $X_t(\bar{z})$ appears in $\varphi^{+}_i(\bar{X},\bar{y})$ and $v(\bar{z}) = v(\bar{w})$. Since $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ and $v(\bar{z}) = v(\bar{w})$, then the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{z} = \bar{w}$. This violates condition (c) since $\neg X_t(\bar{w})$ appears in $\varphi^{-}_i$ and $X_t(\bar{z})$ appears in $\varphi^{+}_i$, which leads to a contradiction. 
 	
 	For the other direction, if $(\A,V,v)\models \varphi_i'(\bar{X},\bar{x}, \bar{y})$ for a second order assignment $V$ for $\A$, then it is easy to check $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ since $\varphi^{\fo}_i(\bar{x},\bar{y})$ is a subformula of $\varphi_i'$.
-\end{proof}
+\qed
 
 The previous claim and proof motivates the following definitions.
 For a structure $\A$ and a first-order assignment $v$ for $\A$, define $\bar{B}^v = (B^v_1,\ldots,B^v_{\length{\bar{X}}})$ where each $B^v_j = \{v(\bar{w}) \mid \text{$X_j(\bar{w})$ is mentioned in $\varphi^{+}_i(\bar{X},\bar{y})$}\}$.
 One can easily check that for every assignments $(V, v)$ such that $(\A,V,v)\models \varphi_i'(\bar{X}, \bar{x}, \bar{y})$, it holds that $(\A,\bar{B}^v,v)\models \varphi_i'(\bar{X}, \bar{x}, \bar{y})$ and $\bar{B}^v \subseteq V(\bar{X})$, namely, $\bar{B}^v$ is a valid candidate for $\bar{X}$ and, furthermore, it is contained in all assignments of $\bar{X}$ when $v$ is fixed.
 Therefore, by choosing one particular $v$ the plan is to remove $\bar{B}^v$ as an assignment over $\bar{X}$ in $\varphi_i$. 
 For this, the idea is to choose the minimal $v$ that satisfies $\varphi^{\fo}_i(\bar{x},\bar{y})$ which can be defined with the following formula:
-$$
+\[
 \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge\forall\bar{x}'\forall\bar{y}'(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')).
-$$ 
+\] 
 If $\varphi^{\fo}_i$ is satisfiable, let $v$ be the only assignment such that  $(\A,v)\models \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y})$. 
 Furthermore, let $V^*$ the second order assignment and $v^*$ the first order assignment that satisfy $V^*(\bar{X}) = \bar{B}^{v}$ and $v^*(\bar{x}) = v(\bar{x})$.
 By the previous discussion, we have that $(\A,V^*,v^*)\models\varphi_i(\bar{X},\bar{x})$.
@@ -92,10 +94,10 @@ Towards this goal, we can define a formula $\psi_i(\bar{X},\bar{x})$ such that $
 $V \neq V^*$ or $v \neq v^*$ whenever $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 This property can be defined as follows:
 \begin{align}
-\psi_i(\bar{X},\bar{x}) = & \;\; \big( \, \exists\bar{x}\exists\bar{y}\, \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
-& \hspace{1cm} \Big( \; 
+\psi_i(\bar{X},\bar{x}) = &\big( \, \exists\bar{x}\exists\bar{y}\, \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
+&\Big( \; 
 \exists\bar{y}~\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \bigvee_{X \in \bar{X}} \exists\bar{z}\, ( \, X(\bar{z}) \wedge \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{v})}\bar{w}\neq\bar{z} \, ) \big)  \;\;\;\;  \vee   \label{eq:part2} \\ 
-& \hspace{1.5cm} (\; \exists\bar{x}'\exists\bar{y}\; \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x} \; ) \;\; \Big)  \label{eq:part3}
+&(\; \exists\bar{x}'\exists\bar{y}\; \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x} \; ) \;\; \Big)  \label{eq:part3}
 \end{align}
 To understand the formula, first notice that the premise of the implication at (\ref{eq:part1}) is true if, and only if, $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 Indeed, by Claim~\ref{claim:minusone} we know that if $\exists\bar{x}\exists\bar{y}\, \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exists assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
@@ -109,19 +111,19 @@ where each modified disjunct $\varphi_i^*(\bar{X},\bar{x})$ is constructed as fo
 For the sake of simplification, define the auxiliary formula $\chi_i = \neg\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$. 
 This formula basically checks if $\varphi_i$ is not satisfiable (recall Claim~\ref{claim:minusone}).
 Define the first formula $\varphi_1^*$ as:
-$$
+\[
 \varphi^*_1(\bar{X},\bar{x}) = \varphi_1(\bar{X},\bar{x})\wedge\psi_1(\bar{X},\bar{x}).
-$$
+\]
 This formula accepts all the assignments that satisfy $\varphi_1$, except for the assignment $(V^*,v^*)$ of $\varphi_1$. The second formula $\varphi_2^*$ is defined as:
-$$
+\[
 \varphi^*_2(\bar{X},\bar{x}) = \varphi_2(\bar{X},\bar{x})\wedge\psi_1(\bar{X},\bar{x})\wedge(\chi_1\to\psi_2(\bar{X},\bar{x})).
-$$
+\]
 This models all the assignments that satisfy $\varphi_2$, except for the assignment $(V^*,v^*)$ of $\varphi_1$. Moreover, if $\varphi_1$ is not satisfiable, then $\psi_1(\bar{X},\bar{x})$ and $\chi_1$ will hold, and the formula $\psi_2(\bar{X},\bar{x})$ will forbid the assignment $(V^*,v^*)$ of $\varphi_2$. 
 One can easily generalize this construction for each $\varphi_i$ as follows:
-$$
-\varphi_i^*(\bar{X},\bar{x}) = \varphi_i(\bar{X},\bar{x})\wedge\psi_1(\bar{X},\bar{x})\wedge(\chi_1\to\psi_2(\bar{X},\bar{x}))\wedge((\chi_1\wedge\chi_2)\to\psi_3(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\begin{multline*}
+\varphi_i^*(\bar{X},\bar{x}) = \varphi_i(\bar{X},\bar{x})\wedge\psi_1(\bar{X},\bar{x})\,\wedge \\ (\chi_1\to\psi_2(\bar{X},\bar{x}))\wedge((\chi_1\wedge\chi_2)\to\psi_3(\bar{X},\bar{x}))\wedge\cdots\wedge(
 \bigwedge_{j = 1}^{j = i-1}\chi_j\to\psi_i(\bar{X},\bar{x})),
-$$
+\end{multline*}
 From the construction of $\kappa(\alpha)$, one can easily check that  $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A)-1$ for each $\A$.
 
 \vspace{1em}
@@ -131,8 +133,9 @@ First, rewrite $\varphi(\bar{X},\bar{x})$ as in the previous section. Let $\varp
 
 We construct a function $\lambda$ that receives a quantitative formula $\beta$ and produces a logic formula $\lambda(\beta)$ that satisfies $\A\models\lambda(\beta)$ if, and only if, $\sem{\beta}(\A) = 0$. If $\beta = \sa{\bar{x}} \varphi(\bar{x})$, then $\lambda(\beta) = \neg\exists\bar{x}'\varphi(\bar{x}')$. If $\beta = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$, then let $\varphi = \bigvee_{i = 1}^{m}\varphi_i$ where each $\varphi_i$ satisfies conditions (a), (b) and (c) of the previous section, and define $\lambda(\beta) = \chi_1\wedge \cdots\wedge\chi_m$. If $\beta = (\beta_1 + \beta_2)$, then $\lambda(\beta) = \lambda(\beta_1) \wedge \lambda(\beta_2)$.
 Now, for each $\varphi_i$ we define:
-$$
-\varphi_i^*(\bar{X},\bar{x}) = \varphi_i(\bar{X},\bar{x})\wedge\Big(\lambda(\beta)\to\Big(\psi_1(\bar{X},\bar{x})\wedge(\chi_1\to\psi_2(\bar{X},\bar{x}))\wedge((\chi_1\wedge\chi_2)\to\psi_3(\bar{X},\bar{x}))\wedge\cdots\wedge(
+\begin{multline*}
+\varphi_i^*(\bar{X},\bar{x}) = \varphi_i(\bar{X},\bar{x})\wedge\Big(\lambda(\beta)\to\Big(\psi_1(\bar{X},\bar{x})\,\wedge \\
+(\chi_1\to\psi_2(\bar{X},\bar{x}))\wedge((\chi_1\wedge\chi_2)\to\psi_3(\bar{X},\bar{x}))\wedge\cdots\wedge(
 \bigwedge_{j = 1}^{j = i-1}\chi_j\to\psi_i(\bar{X},\bar{x}))\Big)\Big).
-$$
+\end{multline*}
 Finally, $\kappa(\alpha)$ is defined as $\kappa(\alpha) = \kappa(\beta) + \sa{\bar{X}}\sa{\bar{x}} \bigvee_{i = 1}^m\varphi_i^*(\bar{X},\bar{x})$, which is in $\eqso(\logex{1})$ and satisfies the desired condition.
