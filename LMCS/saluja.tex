@@ -93,6 +93,35 @@ From now on, for every first-order tuple $\bar{x}$ (second-order tuple $\bar{X}$
 		edge[draw=white] node {$=$} (n10); 
 	\end{tikzpicture}
 \end{center}
+\vspace{1cm}
+\begin{center}
+	\begin{tikzpicture}
+	\node[rectw] (n1) {$\E{0}$};
+	\node[rectw, right=1.2cm of n1] (n2) {};
+	\node[rectw, above=0.2cm of n2] (n3) {$\E{1}$}
+	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+	\node[rectw, below=0.1cm of n2] (n4) {$\QE{0}$}
+	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+	\node[rectw, right=1.2cm of n2] (n5) {$\QE{1}$}
+	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+	\node[rectw, right=1.3cm of n5] (n6) {\rotatebox{90}{$=$}}       
+	edge[draw=white] node {$\subsetneq$} (n5);
+	\node[rectw, above=0cm of n6] (n13) {$\U{1}$};
+	\node[rectw, below=0cm of n6] (n7) {$\QU{1}$};      
+	\node[rectw, right=1.8cm of n6] (n8) {\rotatebox{90}{$=$}}       
+	edge[draw=white] node {$\subsetneq$} (n6);
+	\node[rectw, above=0cm of n8] (n14) {$\E{2}$};
+	\node[rectw, below=0cm of n8] (n9) {$\QE{2}$};       
+	\node[rectw, right=1.8cm of n8] (n10) {\rotatebox{90}{$=$}}       
+	edge[draw=white] node {$\subsetneq$} (n8);
+	\node[rectw, above=0cm of n10] (n15) {$\U{2}$};
+	\node[rectw, below=0cm of n10] (n11) {$\QU{2}$};      
+	edge[draw=white] node {\rotatebox{90}{$=$}} (n10); 
+	\node[rectw, right=0.5cm of n10] (n12) {$\sfo$}       
+	edge[draw=white] node {$=$} (n10); 
+	\end{tikzpicture}
+\end{center}
 \vspace{-0.4cm}
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \vspace{-0.1cm}
