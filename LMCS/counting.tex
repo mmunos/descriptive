@@ -18,15 +18,13 @@ $0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A)$~\cite{L04}.
 %We define the class of all $\R$-functions, denoted by $\Func(\R)$, as the class of all functions $f: \ostr \rightarrow \bbN$.
 %Given a function complexity class $\CC$ (i.e. $f: \Sigma^* \rightarrow \bbN$ for every $f \in \CC$), we say that a function $f \in \Func(\R)$ can be computed in $\CC$ if there exists $g \in \CC$ such that $f(\A) = g(\enc(\A))$ for every $\A \in \ostr$. 
 %Note that the function $g$ outputs $f$ for encodings of structures and can behave arbitrarily otherwise.
-We can now formalize the notion of capturing a counting complexity class. From now on, we assume that every counting complexity class $\CC$ consists of functions $f : \{0,1\}^* \to \N$ that are invariant under isomorphism of structures. More precisely, given a signature $\R$, a function $f : \{0,1\}^* \to \N$ is invariant under $\R$-isomorphisms if for every pair $\A, \mathfrak{B} \in \ostr[\R]$ such that $\A$ and 
-$\mathfrak{B}$ are isomorphic, it holds that $f(\enc(\A)) = f(\enc(\mathfrak{B}))$. It is worth noticing that this is a usual assumption in descriptive complexity~\cite{L04}.
-%over $\R$-structures.
+We can now formalize the notion of capturing a counting complexity class.
 \begin{defi} \label{def:cap}
 	Let $\FF$ be a fragment of $\qso$ and $\CC$ a counting complexity class. Then {\em  $\FF$ captures $\CC$ over ordered $\R$-structures} if the  following conditions hold:
 	\begin{enumerate}
 		\item for every $\alpha \in \FF$, there exists $f \in \CC$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for every $\A \in \ostr[\R]$. 
 		
-		\item for every $f \in \CC$ that is invariant under $\R$-isomorphisms, there exists $\alpha \in \FF$ such that   $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A \in \ostr[\R]$.
+		\item for every $f \in \CC$, there exists $\alpha \in \FF$ such that   $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A \in \ostr[\R]$.
 	\end{enumerate} 
 	Moreover, {\em $\FF$ captures $\CC$ over ordered structures} if $\FF$ captures~$\CC$ over ordered $\R$-structures for every signature~$\R$.
 \end{defi}
@@ -42,11 +40,6 @@ For answering this question, it is reasonable to start with $\shp$, a well-known
 Since $\shp$ has a strong similarity with $\np$, one could expect a ``Fagin-like'' Theorem~\cite{F75} for this class. 
 Actually, in~\cite{SalujaST95} it was shown that the class $\sfo$ captures $\shp$.
 In our setting, the class $\sfo$ is contained in $\eqso(\fo)$, which also captures $\shp$ as expected.
-
-For a given signature $\R$, we define $\ostr[\R]^*$ as
-\begin{multline*}
-\ostr[\R]^* = \{(\A,v,V) \mid \A\in\ostr[\R]\text{,} \\ \text{$v$ ($V$) is a first-order (second-order) assignment for $\A$}  \}.
-\end{multline*}
  
 \begin{prop} \label{prop:capture-shP}
 	$\eqso(\fo)$ captures $\shp$ over ordered structures.
@@ -54,7 +47,6 @@ For a given signature $\R$, we define $\ostr[\R]^*$ as
 \proof
 \input{proof-capture-shP} 
 \qed
-Recall  that every function class $\# \LL$ is contained in $\eqso(\LL)$ (see Section~\ref{sec:previous}). Thus, it directly follows from~\cite{SalujaST95}  that every $\shp$-function can be defined in $\eqso(\LL)$. The other direction of Proposition \ref{prop:capture-shP} follows by the fact that $\shp$ is closed under first- and second-order sum.
 
 By following the same approach as~\cite{SalujaST95}, Compton and Gr\"adel~\cite{ComptonG96} show that $\seso$ captures $\spp$, where $\eso$ is the existential fragment of $\so$. As one could expect, if we parametrize $\eqso$ with $\eso$, we can also capture~$\spp$.
 \begin{prop} \label{prop:capture-spanP}
@@ -70,14 +62,15 @@ Thus, it is not  clear how to capture $\fp$
 by following the approach proposed in~\cite{SalujaST95}. 
 On the other hand, if we consider our framework and move out from $\eqso$, we have other options for counting like first- and second-order products. In fact, the combination of $\qfo$ with $\lfp$ is exactly what we need to capture $\fp$.
 
-From now on, we will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$. Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
+From now on, we will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$.
+%Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
 
-The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\neg\varphi + (\varphi\cdot\alpha))$ for given $\so$ formula $\varphi$ and $\qso$ formula $\alpha$. Note that for each $(\A,v,V) \in \ostr[\R]^*$, 
+The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\neg\varphi + (\varphi\cdot\alpha))$ for given $\so$ formula $\varphi$ and $\qso$ formula $\alpha$. Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$,
 \[
 \sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
 \begin{cases}
 \sem{\alpha}(\A,v,V) &\text{if } (\A,v,V)\models\varphi,\\
-0 &\text{otherwise}.
+1 &\text{otherwise}.
 \end{cases}
 \]
 \begin{thm} \label{theo:capture-fp}
@@ -86,12 +79,12 @@ The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\n
 \proof
 \input{proof-capture-fp}
 \qed
-To prove this theorem, 
+%To prove this theorem, 
 %capture $\fp$ 
-one first shows that every formula in $\qfo(\lfp)$ can be evaluated in polynomial time. 
-Indeed, $\lfp$ is a polynomial-time logic~\cite{I86,vardi1982complexity}, and the sum and product quantifiers can also be computed in polynomial time. 
-For the other direction, one has to use $\qfo(\lfp)$ to simulate the run of a polynomial time TM $M$ computing a function, in particular using the quantitative quantifiers to reconstruct the natural number returned by $M$ in the output tape. 
-It is important to notice that the alternation between sum and product quantifiers is crucial for this reconstructions and, thus, crucial for capturing $\fp$.
+%one first shows that every formula in $\qfo(\lfp)$ can be evaluated in polynomial time. 
+%Indeed, $\lfp$ is a polynomial-time logic~\cite{I86,vardi1982complexity}, and the sum and product quantifiers can also be computed in polynomial time. 
+%For the other direction, one has to use $\qfo(\lfp)$ to simulate the run of a polynomial time TM $M$ computing a function, in particular using the quantitative quantifiers to reconstruct the natural number returned by $M$ in the output tape. 
+%It is important to notice that the alternation between sum and product quantifiers is crucial for this reconstructions and, thus, crucial for capturing $\fp$.
 
 At this point it is natural to ask whether one can extend the previous idea to capture $\fpspace$~\cite{Ladner89}, the class of functions computable in polynomial space. 
 Of course, for capturing this class one needs a logical core powerful enough, like $\pfp$, for simulating the run of a polynomial-space TM.
@@ -105,7 +98,7 @@ In fact, by considering second-order product we obtain the fragment $\qso(\pfp)$
 \proof
 \input{proof-capture-fpspace}
 \qed
-The proof of the previous theorem follows the same line as for the logical characterization of $\fp$: one shows that each function in $\qso(\pfp)$ can be computed in $\fpspace$ and, conversely, the output of a polynomial-space TM can be reconstructed by using $\pfp$ and quantitative quantifiers.
+%The proof of the previous theorem follows the same line as for the logical characterization of $\fp$: one shows that each function in $\qso(\pfp)$ can be computed in $\fpspace$ and, conversely, the output of a polynomial-space TM can be reconstructed by using $\pfp$ and quantitative quantifiers.
 
 From the proof of the previous theorem a natural question follows: what happens if we use first-order quantitative quantifiers and $\pfp$?
 In~\cite{Ladner89}, Ladner also introduced the class $\nfpspace$ of all functions computed by polynomial-space TMs 
