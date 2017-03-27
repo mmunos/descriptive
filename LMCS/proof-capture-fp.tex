@@ -1,19 +1,18 @@
-For the first condition, let $\alpha\in\qfo(\lfp)$ over some signature $\R$, defined by the grammar in \ref{syntax}. Notice that for each $\lfp$ formula $\varphi$,  checking whether $\A\models\varphi$ can be done in deterministic polynomial time on the size of $\A$ [cite here]. Also, the constant function $s$ can be trivially simulated in $\fp$. These facts, together with closure properties of $\fp$ of polynomial sum and product [cite here?] suffice to show that the function represented by $\alpha$ is in $\fp$.
+For condition (1), notice that for each $\lfp$ formula $\varphi$, checking whether $\A\models\varphi$ can be done in deterministic polynomial time on the size of $\A$\cite{I83}. Also, the constant function $s$ can be trivially simulated in $\fp$. Furthermore, $\fp$ is closed under polynomial sum and multiplication. This suffices to show that the condition holds.
 	
-For the second condition, let $f\in \fp$ and consider some signature $\R$.
+For condition (2), let $f\in \fp$ and consider some signature $\R$.
 Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq \size{\A}^\ell$ (i.e. $\size{\A}^\ell$ is an upper bound for the output size).
-Let $\bar{x} = (x_1,\ldots,x_{\ell})$.
+Let $\bar{x} = (x_1,\ldots,x_{\ell})$ and $\bar{a} = (a_1,\ldots,a_{\ell})$.
 Define a language
 \[
 L = \{(\A,a_1,\ldots,a_{\ell})\mid a_1,\ldots,a_{\ell}\in A \text{ and the } (a_1,\ldots,a_{\ell})\text{-th bit of }f(\enc(\A))\text{ is 1}\}.
 \]
-
 %Consider a procedure that receives $\enc(\A)$ and an assignment $\bar{a}$ to $\bar{x}$. Let $m$ be the position of $\bar{a}$ in the lexicographic order of the tuples in $A^{\ell}$. The procedure then computes the $m$-th bit of $f(\enc(\A))$, from least to most significant. 
-Since this language is in $\ptime$, by \cite{I86} there exists a formula $\Phi(\bar{x})$ in $\lfp$ such that $\A\models\Phi(\bar{a})$ if and only if $(\A,\bar{a})\in L$. 
+Since this language is in $\ptime$, by \cite{I83} there exists a formula $\Phi(\bar{x})$ in $\lfp$ such that $\A\models\Phi(\bar{a})$ if and only if $(\A,\bar{a})\in L$. 
 Then we use
 $$
 \alpha = \sa{\bar{x}} \Phi(\bar{x})\cdot\varphi(\bar{x}),
 $$
-where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2)$. This formula takes the value $2^m$ if there exists $m$ tuples in $A^{\ell}$ that are smaller than $\bar{x}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. 
-In other words, $\Phi(\bar{x})$ simulates the behavior of the $\fp$-machine and the formula $\alpha$ reconstruct the binary output.
+where $\varphi(\bar{x}) := \pa{\bar{y}}(\bar{y} < \bar{x} \mapsto 2)$. This formula takes the value $2^m$ if there exist $m$ tuples in $A^{\ell}$ that are smaller than $\bar{x}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. 
+In other words, $\Phi(\bar{x})$ simulates the behavior of the $\fp$-machine and the formula $\alpha$ reconstructs the binary output.
 Then, $\alpha$ is in $\qfo(\lfp)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
