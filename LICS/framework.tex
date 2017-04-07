@@ -66,7 +66,7 @@ Let $\R$ be a signature, $\A$ an $\R$-structure with domain $A$, $v$ a first-ord
 A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a signature $\R$, then for every $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that $\sem{\alpha}(\A, v_1, V_1) = \sem{\alpha}(\A, v_2, V_2)$.
 Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
 \begin{example}\label{ex:cliques}
-Let $\bG = \{E(\cdot,\cdot),<\}$ be the vocabulary for graphs and $\fG$ be an ordered $\bG$-structure encoding a non-directed graph. 
+Let $\bG = \{E(\cdot,\cdot),<\}$ be the vocabulary for graphs and $\fG$ be an ordered $\bG$-structure encoding an undirected graph. 
 Suppose that we want to count the number of triangles in $\fG$. Then this can be defined as follows:
 \begin{multline*}
 \alpha_1 \ := \ \sa{x} \sa{y} \sa{z} ( E(x,y) \, \wedge \, E(y,z) \, \wedge \, E(z,x) \, \wedge \\
@@ -172,7 +172,7 @@ f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varph
 $
 for every $\A\in\ostr[\R]$. Then a function $g:\ostr[\R]\to\nat$ is in $\#\LL$ if there exists a formula $\varphi(\bar{x},\bar{X})$ in $\LL$ such that $g = f_{\varphi(\bar x, \bar X)}$.
 %\martin{La notacion $f_{\psi(x,X)}$ la inventamos}
-In~\cite{SalujaST95}, they were proved several results about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
+In~\cite{SalujaST95}, several results were proved about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
 Notice that for every formula $\varphi(\bar{x},\bar{X})$, it holds that $f_{\varphi(\bar{x},\bar{X})}$ is the same function as $\sem{\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{x},\bar{X})}$, that is, the approach in \cite{SalujaST95} can be seen as a syntactical restriction of our approach based on $\qso$. 
 Thus, the advantage of our approach relies on the flexibility to define functions by alternating sum with product operators and, moreover, by introducing new quantitative operators (see Section~\ref{sec:beyond}).
 Furthermore, we show in the following section how to capture some fundamental classes that cannot be captured by following the approach in~\cite{SalujaST95}.
