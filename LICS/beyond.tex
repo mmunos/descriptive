@@ -197,7 +197,7 @@ This last result
 perfectly 
 illustrates the benefits of our logical framework for the development of descriptive complexity for counting %functions.
 complexity classes.  
-The distinction in the language between the Boolean and the quantitative level allows us to define operators at the later level that cannot be defined at the former. 
+The distinction in the language between the Boolean and the quantitative level allows us to define operators at the latter level that cannot be defined at the former. 
 As a example showing how fundamental this separation is, consider the issue of extending $\qfo(\fo)$ at the Boolean level in order to capture $\shl$. The natural alternative to do this is to use $\fo$ extended with a transitive closure operator, which is denoted by $\tc$. But then the problem is that for every language $L \in \nlog$, it holds that its characteristic function $\chi_L$ is in $\qfo(\tc)$, where $\chi_L(x) = 1$ if $x \in L$, and $\chi_L(x) = 0$ otherwise. Thus, if we assume that $\qfo(\tc)$ captures $\shl$ (over ordered structures), then we have that $\chi_L \in \shl$ for every $L \in \nlog$. This would imply that $\nlog = \ulog$,\footnote{A decision language $L$ is in $\ulog$ is there exists a logarithmic-space NTM $M$ accepting $L$ and satisfying that $\tma_M(x) = 1$ for every $x \in L$.} which is believed to be so\cite{Reinhardt97}.
 %and thus contradicts the widely believed assumption that $\ulog \subsetneq \nlog$.
 %$\qfo(\tc)$ can def
