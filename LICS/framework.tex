@@ -123,21 +123,21 @@ We would like to finish with this example by highlighting the similarity of $\al
 Indeed, an advantage of $\qso$-formulae is that the first- and second-order quantifiers in the quantitative level naturally reflect the operations used to define mathematical formulae.
 \end{example}
 
-We consider several fragments [and extensions] of $\qso$, which are obtained by restricting the syntax of the Boolean formulae or the use of the quantitative quantifiers.
+We consider several fragments of $\qso$, which are obtained by restricting the syntax of the Boolean formulae or the use of the quantitative quantifiers.
 In this direction, we denote by $\qfo$ the fragment of $\qso$ where second-order sum and product are not allowed. 
 For instance, for the $\qso$-formulae defined in Example \ref{ex:cliques}, we have that $\alpha_1$ is in $\qfo$ and $\alpha_2$ is not.
 Another interesting fragment of $\qso$ consists of the $\qso$-formulae where only sum operators and quantifiers are allowed. 
 Formally, we denote by $\eqso$ the fragment of $\qso$ where first- and second-order products (i.e. $\pa{x}$ and $\pa{X}$) are not allowed.
 For example, $\alpha_1$ and $\alpha_2$ in Example \ref{ex:cliques} are formulae of $\eqso$, while $\alpha_3$ in Example \ref{exa-perm} is not. 
-We also consider fragments [and extensions] of $\qso$ by further restricting the Boolean part of the logic.
-If $\LL$ is a fragment [or extension] of $\so$, then we define the quantitative logic $\qso(\LL)$ to be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{syntax} to be a formula in $\LL$. Moreover, we also [consider] other fragments [or extension] of $\qso$ by using the same idea. 
+We also consider fragments of $\qso$ by further restricting the Boolean part of the logic.
+If $\LL$ is a fragment of $\so$, then we define the quantitative logic $\qso(\LL)$ to be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{syntax} to be a formula in $\LL$. Moreover, we also consider other fragments of $\qso$ by using the same idea. 
 %In general, if $\FF$ is a fragment of $\qso$ we define $\FF(\LL)$ to be the fragment of $\FF$ obtained by restricting Boolean formulae to $\LL$.
 For example, we define $\qfo(\fo)$ to be the fragment of $\qfo$ obtained by restricting $\varphi$ in \eqref{syntax} to be an $\fo$-formula, and likewise for $\eqso(\fo)$.
 %, $\eqso(\fo)$ of $\qfo$ and $\eqso$ where $\varphi$ is restricted to $\fo$ formulae. 
 
 %\marcelo{IMPORTANTE: Tenemos que decir que $\qfo(\fo)$ permite variables libre de segundo orden en las formulae de primer orden. Hay que aclarar esto tambien para PFP y otras logicas.}
 
-In the following section, we use different fragments [and extensions] of $\qso$ to capture counting complexity classes. 
+In the following section, we use different fragments of $\qso$ to capture counting complexity classes. 
 %variate $\FF$ and $\LL$ to capture several function complexity classes. 
 But before doing this, we 
 %devote the next subsection to 
@@ -166,7 +166,7 @@ In particular, we are not aware of any paper that uses this approach for capturi
 Finally, the work in~\cite{SalujaST95} and \cite{ComptonG96} is of particular interest for our research. 
 In~\cite{SalujaST95}, it was proposed to define a function over a structure by using free variables in an SO-formula; in particular, the function is defined by the number of instantiations of the free variables that are satisfied by the structure.
 %and then counting how many extensions of an structure satisfy the formula (i.e. by instantiating the free variables). 
-Formally, Saluja et. al \cite{SalujaST95} define a family of counting classes $\#\LL$ for a fragment $\LL$ of $\fo$. [This definition can also be expanded to include extensions of $\fo$ as it was done in \cite{ComptonG96}.] For a formula $\varphi(\bar{x},\bar{X})$ over $\R$, the function $f_{\varphi(\bar x, \bar X)}$ is defined as
+Formally, Saluja et. al \cite{SalujaST95} define a family of counting classes $\#\LL$ for a fragment $\LL$ of $\fo$. For a formula $\varphi(\bar{x},\bar{X})$ over $\R$, the function $f_{\varphi(\bar x, \bar X)}$ is defined as
 $
 f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varphi(\bar{a},\bar{A})\}\vert,
 $
