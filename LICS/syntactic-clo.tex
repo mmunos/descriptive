@@ -39,13 +39,10 @@ However, if $\shp$ is closed under subtraction by one, then it holds that $\np \
 \begin{proposition} \label{pi-minusone}
 If $\Pi_1 \subseteq \LL \subseteq \fo$ and $\eqso(\LL)$ is closed under subtraction by one, then $\shp$ is closed under subtraction by~one. 
 \end{proposition}
-\cristian{Volver a la versión anterior y no hacerle caso al reviewer.}
-Therefore, the desired extension has to be achieved by allowing some local extensions to $\Sigma_1$. More precisely, we define $\logex{1}$ as follows. An $\fo$-extended quantifier free formula is defined by the grammar
-\[
-\varphi \,:=\, x = y \,\mid\, R(\bar{u}) \,\mid\, X(\bar{v}) \,\mid\, \top \,\mid\, \neg\varphi \,\mid\, (\varphi\vee\varphi) \,\mid\, \psi(\bar{w})
-\]
-where the characterization of the symbols is the same as the one mentioned in the definition of second-order formulae, and $\psi$ is an $\fo$-formula. A formula in $\logex{1}$ has the form $\exists\bar{x}\,\varphi(\bar{x})$, where $\varphi$ is an $\fo$-extended quantifier free formula. 
-With this extension we obtain a class with the desired properties.
+\martin{Sugerencia:
+	
+	we define $\logex{1}$ as $\Sigma_1$ but allowing arbitrary quantifiers in sub-formulas that have only first-order variables. This is, atomic formulae include arbitrary first-order formulae. [Tal vez incluir un ejemplo] }
+Therefore, the desired extension has to be achieved by allowing some local extensions to $\Sigma_1$. More precisely, we define $\logex{1}$ as $\Sigma_1$ but allowing atomic formulae over a signature $\R$ to be of the form either $u = v$ or $X(\bar u)$, where $X$ is a second-order variable, or $\varphi(\bar u)$, where $\varphi(\bar u)$ is a first-order formula over $\R$ (in particular, it does not mention any second-order variable). With this extension we obtain a class with the desired properties.
 %find the promised class.
 \begin{theorem}\label{sigmafo-minusone}
 The class $\eqso(\logex{1})$ is closed under sum, multiplication and subtraction by one. Moreover, $\eqso(\logex{1}) \subseteq \totp$ and every function in $\eqso(\logex{1})$ has an FPRAS.

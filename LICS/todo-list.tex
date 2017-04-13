@@ -1,0 +1,152 @@
+%!TEX root = main.tex
+
+\section*{\LARGE \textbf{TODO LIST}}
+
+\bigskip
+
+Reviewer 2
+
+\begin{itemize}
+
+\item[$\checkmark$] p1, c2, l12: "type of problem" not "problems"
+
+\item[$\checkmark$] p2, c1, l23: "on top of" not "in"
+
+\item[$\checkmark$] p2, c2, l9 and l12 and again at p10, c1, l2: "not necessarily" rather than "non-"
+
+\item[$\checkmark$] Example III.1: "undirected graph" rather than "non-directed".
+
+\item[$\checkmark$] p4, c2, l-23: "several results were proved" rather than "they were
+proved..."
+
+\item[$\checkmark$] p5, c1, l6: delete the word "previous".
+
+\item I am puzzled by the definition of invariance under R-isomorphisms
+that appears just before Definition IV.1. You have assumed that
+structures are ordered, and the definition of the encoding enc is
+based on the resulting lexicographical order. Under these
+conditions, if A and B are isomorphic structures, then enc(A) =
+enc(B), so any function would be invariant.
+
+You say that the assumption is standard in descriptive complexity.
+But there the issue of isomorphism invariance only arises when we
+want to define properties of *unordered* structures. For such a
+structure A, enc(A) may depend on the particular choice of order
+and we want to consider properties that are invariant under this
+choice.
+
+In short, because you only consider ordered structures, I don't
+think you need to define isomorphism-invariance and this assumption
+can also be removed from Definition IV.1(2).
+\martin{retire donde mencionaba la idea de invariante a isomorfismo y esta marcado donde hay que agregar el comentario de estructuras ordenadas o no ordenadas}
+
+\item[$\checkmark$] p5, c1, l-23: "fixed" rather than "fix".
+
+\item[$\checkmark$] p5, c1, l-9 to l-7: you haven't said what \cal{L} is? At least for
+the third occurrence of this symbol, I think you actually mean FO.
+
+\item[$\checkmark$] p5, c2, l5: "captures" rather than "capture".
+
+\item p5, c2, l5 to l10: this explantion that \#L (when L is LFP or TC)
+can express some \#P-complete problems seems out of place when you
+have already mentioned (just before Prop. IV.2) that \#FO captures
+all of \#P.
+\martin{esta marcado donde hay que reescribir esto}
+
+\item[$\checkmark$] p5, c2, l-18: "reconstruction" rather than "reconstructions".
+
+\item Also, is the claim that sum-product alternation "is crucial" for
+this something that you can prove? That is, is there a proof that
+you cannot capture FP without the alternation?
+\martin{esta marcado donde hay que reescribir esto}
+
+\item p5, c2, l-14 to l-12: the sentence beginning with "Of course". Why
+is this obvious? I can imagine that the powerful quantitative
+mechanisms introduced could compensate for the lack of a powerful
+logical core. So, again, this looks to me like a statement that
+asks for proof.
+\martin{esta marcado donde hay que reescribir esto}
+
+\item p2, c2, l-22: this seems to say that PFP is a fragment of
+second-order logic. But, surele we do not know this is the case.
+
+\item Theorem IV.5. You defined QSO(L) for fragments L of second-order
+logic, and PFP is not such a fragment, so at this point it is
+undefined. Of course, I can see how to define it, but this should
+be stated more carefully.
+\martin{suger\'i cambiar 'fragments' por 'fragments and extensions' pero no fue muy acogida por el autor R.}
+
+\item[$\checkmark$] p6, c1, l19: "is" not "in".
+
+\item[$\checkmark$] p6, c1, l-13; and p6, c2, l-15; and p11, c2, l-15: "Similar than" sounds wrong. I would use "Just
+as..."
+
+\item[$\checkmark$] p6, c1, l-2: "QSO is" rather than "is QSO".
+
+\item[$\checkmark$] p6, c2, l13: "as are many" instead of "as many"
+
+\item[$\checkmark$] p6, c2, l-15: "distinguish" not "distinguished"
+
+\item[$\checkmark$] p6, c2, l-6: "logics needed" rather than "needed logics"
+
+\item[$\checkmark$] p7, c1, l27: Is \cal{A} the algorithm or the function?
+
+\item[$\checkmark$] p7, c1, l-2: "functions" not "function"
+
+\item[$\checkmark$] p7, c2, l22: "satisfies" rather than "satisfy"
+
+\item[$\checkmark$] p9, c1, l13: "mention" not "mentioned"
+
+\item[$\checkmark$] p9, c2, l-2 to l-1: perhaps just "the set of Horn formulae over a
+signature R" rather than "the set of formulae psi such that psi is
+a Horn formula over a signature R".
+
+\item[$\checkmark$] p10, c1, l-12: delete "that" before "how"
+
+\item[$\checkmark$] p10, c1, l-11: "capture" not "captures"
+
+\item[$\checkmark$] p10, c2, l19: "of weighted logics" not "on"
+
+\item[$\checkmark$] p11, c2, l12: "monotone" not "monotones"
+
+\item[$\checkmark$] p11, c2, l29: "relational" not "relation"
+
+\item[$\checkmark$] p12, c1, l18: "the widely believed assumption" that UL is properly
+contained in NL? I don't think this assumption is widely believed
+among complexity theorists. I think UL = NL is more widely
+believed. See the references:
+1. Klaus Reinhardt, Eric Allender: Making Nondeterminism
+Unambiguous. SIAM J. Comput. 29(4): 1118-1131 (2000)
+2. Eric Allender, Klaus Reinhardt, Shiyu Zhou: Isolation, Matching,
+and Counting Uniform and Nonuniform Upper Bounds. 
+J. Comput. Syst. Sci. 59(2): 164-181 (1999).
+\martin{corregido en el ultimo parrafo antes de las conclusiones}
+\end{itemize}
+
+Reviewer 3
+
+\begin{itemize}
+	
+\item[$\checkmark$] What is the strength of full QSO without any fixed-point operator? This is an apparent gap in the story you are telling.
+\martin{esta mencionado en las conclusiones}
+	
+\item[$\checkmark$] After Corollary IV.8: "This is an interesting result..." Generally, I think that you should let the reader decide which results are interesting and which are not. I recommend to cut the "interesting" here.
+	
+\item[$\checkmark$] First paragraph of Section V: I find it weird that you cite [6] for the problem \#DNF. This problem has been studied long before; it was at least already known to be \#P-complete in [24], but I would guess Valiant already remarked in his early papers that the problem is \#P-complete (although I have not checked this).
+\martin{cada vez que se menciona [6] por dnf lo cambie por [6,24]}
+	
+\item after Proposition V.6: Please make the definition of $\Sigma_1[FO]$ more readable. I had a hard time parsing it.
+\martin{agregué una nota de cómo se puede hacer un poco más legible y además más corto}
+	
+\item[$\checkmark$] Typo: "this notion can be used to captures" -> capture
+	
+\item[$\checkmark$] After Theorem VI.4: "at the later level" -> latter
+	
+\item[$\checkmark$] I did not get the definition of min(x) in the appendix. Should the $<$ be $>$? Is this just supposed to define the lexicographically smallest of all tuples, so $a^m$ where a is the minimal element of the domain?
+	
+\end{itemize}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
