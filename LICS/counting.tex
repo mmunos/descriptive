@@ -38,8 +38,6 @@ $\CC$ over a fixed set of structures (e.g. graphs, matrices).
 Moreover, this restriction is fairly standard in descriptive complexity \cite{immerman1999descriptive,L04}, and it has also been used in the previous work on capturing complexity classes of functions \cite{SalujaST95,ComptonG96}.
 %all notions for capturing complexity classes restrict $f \in \CC$ similarly. 
 
-\martin{comment about unordered structures}
-
 What counting complexity classes can be captured with fragments of $\qso$?
 For answering this question, it is reasonable to start with $\shp$, a well-known and widely-studied counting complexity class~\cite{arora2009computational}. 
 Since $\shp$ has a strong similarity with $\np$, one could expect a ``Fagin-like'' Theorem~\cite{F75} for this class. 
@@ -58,12 +56,11 @@ By following the same approach as~\cite{SalujaST95}, Compton and Gr\"adel~\cite{
 \begin{proposition} \label{prop:capture-spanP}
 	$\eqso(\eso)$ captures $\spp$ over ordered structures.
 \end{proposition}
-Can we capture $\fp$ by using $\# \LL$ for some fragment $\LL$ of $\so$? A first attempt could be based on the use of a fragment $\LL$ of $\so$ that captures either $\ptime$ or $\nlog$~\cite{G92}. Such an approach fails as $\# \LL$ can encode $\shp$-complete problems in both cases since they contain $\sfo$.
-\martin{comentario "this explantion that \#L (when L is LFP or TC) can express some \#P-complete problems seems out of
-	place when you have already mentioned (just before Prop. IV.2) that \#FO captures all of \#P."}
+Can we capture $\fp$ by using $\# \LL$ for some fragment $\LL$ of $\so$? 
+%A first attempt could be based on the use of a fragment $\LL$ of $\so$ that captures either $\ptime$ or $\nlog$~\cite{G92}. Such an approach fails as $\# \LL$ can encode $\shp$-complete problems in both cases since they contain $\sfo$.
 %; in the first case, one can encode the problem of counting the number of satisfying assignments of a Horn  propositional formula, while in the second case one can encode the problem of counting the number of satisfying assignments of a 2-CNF propositional formula. 
-A second attempt could be based then on considering a fragment $\LL$ of $\fo$. 
-But even if we consider the existential fragment $\Sigma_1$ of $\fo$ the approach fails, as $\# \Sigma_1$ can encode $\shp$-complete problems like counting the number of satisfying assignments of a 3-DNF propositional formula\cite{SalujaST95}. One last attempt could be based on disallowing the use of second-order free variables in $\sfo$. But in this case one 
+A first attempt could be based on considering a fragment $\LL$ of $\fo$. 
+But even if we consider the existential fragment $\Sigma_1$ of $\fo$ the approach fails, as $\# \Sigma_1$ can encode $\shp$-complete problems like counting the number of satisfying assignments of a 3-DNF propositional formula\cite{SalujaST95}. A second attempt could be based on disallowing the use of second-order free variables in $\sfo$. But in this case one 
 %The previous result connecting fragments from $\# \LL$ with $\shp$ and $\spp$ is the further that we can go by using SO-formulas with free variables. 
 %So, what happen with other counting complexity classes like $\fp$ and $\fpspace$?
 %By trying to search for an $\# \LL$ class for capturing $\fp$ one can easily see that this is pointless.
@@ -84,7 +81,6 @@ On the other hand, if we consider our framework and move out from $\eqso$, we ha
 \begin{theorem} \label{theo:capture-fp}
 	$\qfo(\lfp)$ captures $\fp$ over ordered structures.
 \end{theorem}
-\martin{rewrite two following paragraphs}
 
 To prove this theorem, 
 %capture $\fp$ 
@@ -92,7 +88,8 @@ one first shows that every formula in $\qfo(\lfp)$ can be evaluated in polynomia
 Indeed, $\lfp$ is a polynomial-time logic~\cite{I86,vardi1982complexity}, and the sum and product quantifiers can also be computed in polynomial time. 
 For the other direction, one has to use $\qfo(\lfp)$ to simulate the run of a polynomial time TM $M$ computing a function, in particular using the quantitative quantifiers to reconstruct the natural number returned by $M$ in the output tape. 
 %built in the ouptape. 
-It is important to notice that the alternation between sum and product quantifiers is crucial for this reconstruction and, thus, crucial for capturing $\fp$.
+It is important to notice that the alternation between sum and product quantifiers is used for this reconstruction.
+%and, thus, crucial for capturing $\fp$.
 %That is, without these operators is difficult to capture $\fp$.
 
 At this point it is natural to ask whether one can extend the previous idea to capture $\fpspace$~\cite{Ladner89}, the class of functions computable in polynomial space. 
