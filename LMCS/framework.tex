@@ -18,14 +18,13 @@ Given a relational signature $\R$, the set of Quantitative Second-Order logic fo
 where $\varphi$ is an $\so$-formula over $\R$, $s \in \bbN$, $x \in \fv$ and $X \in \sv$. Moreover, if $\R$ is not mentioned, then $\qso$ refers to the set of $\qso$ formulae over all possible relational signatures.
 %\marcelo{En la gramatica de la logica deberiamos incluir la formula $\top$ que discutimos, la cual representa true y para la cual se tiene que $\sem{\top}(\A, v, V) = 1$. Les parece?}
  
-Note that the syntax of QSO formulae is divided in two levels. 
+The syntax of QSO formulae is divided in two levels. 
 The first level is composed by $\so$-formulae over $\R$ (called Boolean formulae) and the second level is made by counting operators of addition and multiplication. 
 For this reason, the quantifiers in $\so$ (e.g. $\exists x$ or $\exists X$) are called Boolean quantifiers and the quantifiers that make use of addition and multiplication (e.g. $\Sigma x$ or $\Pi X$) are called {\em quantitative quantifiers}.
 Furthermore, $\Sigma x$ and $\Sigma X$ are called first- and second-order sum, and $\Pi x$ and $\Pi X$ are called first- and second-order product, respectively.
 This division between Boolean and quantitative level is essential for understanding the difference between the logic and the quantitative part. 
 Furthermore, this will allow us later to parametrize both levels of the logic in order to capture different counting complexity classes.
 
-Let $\R$ be a signature, $\A$ an $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a number in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined in Table~\ref{tab-semantics}.
 \begin{table}
 	\addtolength{\jot}{0.5em}
 	\begin{align*}
@@ -45,7 +44,7 @@ Let $\R$ be a signature, $\A$ an $\R$-structure with domain $A$, $v$ a first-ord
 	\caption{The semantics of QSO formulae.}
 	\label{tab-semantics}
 \end{table}
-
+Let $\R$ be a signature, $\A$ an $\R$-structure with domain $A$, $v$ a first-order assignment for $\A$ and $V$ a second-order assignment for $\A$. Then the \emph{evaluation} of a $\qso$-formula $\alpha$ over $(\A, v, V)$ is defined as a function $\sem{\alpha}$ that on input $(\A, v, V)$ returns a number in $\bbN$. Formally, the function $\sem{\alpha}$ is recursively defined in Table~\ref{tab-semantics}.
 A $\qso$-formula $\alpha$ is said to be a \emph{sentence} if it does not have any free variable, that is, every variable in $\alpha$ is under the scope of a usual quantifier or a quantitative quantifier. It is important to notice that if $\alpha$ is a $\qso$-sentence over a signature $\R$, then for every $\R$-structure $\A$, first-order assignments $v_1$, $v_2$ for $\A$ and second-order assignments $V_1$, $V_2$ for $\A$, it holds that $\sem{\alpha}(\A, v_1, V_1) = \sem{\alpha}(\A, v_2, V_2)$.
 Thus, in such a case we use the term $\sem{\alpha}(\A)$ to denote $\sem{\alpha}(\A, v, V)$, for some arbitrary first-order assignment $v$ for $\A$ and some arbitrary second-order assignment $V$ for $\A$. 
 \begin{exa}\label{ex:cliques}
@@ -62,7 +61,7 @@ Suppose now that we want to count the number of cliques in~$\fG$. We can define 
 \[
 \alpha_2 \ := \ \sa{X} \clique(X),
 \] 
-where $\clique(X) := \forall x \forall y ((X(x) \wedge X(y) \wedge x \neq y)  \rightarrow E(x,y))$.
+where $\clique(X) := \fa{x} \fa{y} ((X(x) \wedge X(y) \wedge x \neq y)  \rightarrow E(x,y))$.
 In the Boolean sub-formula of $\alpha_2$ we check whether $X$ is a clique, and with the sum quantifier we add one for each clique in $\fG$. 
 But in contrast to $\alpha_1$, 
 in $\alpha_2$ we need a second-order quantifier in the quantitative level.
@@ -71,7 +70,7 @@ complexity of evaluating each formula:
 $\alpha_1$ defines an $\fp$-function while $\alpha_2$ defines a $\shp$-complete function.
 \end{exa}
 \begin{exa}\label{exa-perm}
-For a more involved example that includes multiplication, let $\bM = \{M(\cdot,\cdot),<\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i.j)$ is false.
+For an example that includes multiplication, let $\bM = \{M(\cdot,\cdot),<\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i.j)$ is false.
 Suppose now that we want to compute the permanent of an $n$-by-$n$ 0-1 matrix $A$, that is:
 \begin{align*}
 \op{perm}(A) &= \sum_{\sigma \in S_n} \prod_{i=1}^n A[i, \sigma(i)],  
@@ -80,10 +79,10 @@ where $S_n$ is the set of all permutations over $\{1, \ldots, n\}$.
 The permanent is a fundamental function on matrices that has found many applications;
 % in different areas,
 %~\cite{permanent-applications},
-in fact, showing that this function is hard to compute was one of the main motivations behind the definition of the counting class $\shp$~\cite{Valiant79}.
+in fact, showing that this function is hard to compute was one of the main motivations behind the definition of the class $\shp$~\cite{Valiant79}.
 %and it was one of the first function that was shown to be difficult for counting~\cite{Valiant79} (i.e. $\shp$-complete). 
 
-To define the permanent of a 0-1 matrix in $\qso$, assume that for a binary relation symbol $S$, $\op{permut}(S)$ is an $\fo$-formula that is true if and only if $S$ is a permutation, that is, a total bijective function (the definition of $\op{permut}(S)$ is straightforward).
+To define the permanent of a 0-1 matrix in $\qso$, assume that for a binary relation symbol $S$, $\op{permut}(S)$ is an $\fo$-formula that is true if, and only if, $S$ is a permutation, namely, a total bijective function (the definition of $\op{permut}(S)$ is straightforward).
 %\martin{abreviar $\op{permutation}$ a $\op{permut}$ ahorra un par de lineas}
 Then the following is a $\qso$-formula defining the permanent of a matrix:
 \[
@@ -96,18 +95,17 @@ We would like to finish with this example by highlighting the similarity of $\al
 Indeed, an advantage of $\qso$-formulae is that the first- and second-order quantifiers in the quantitative level naturally reflect the operations used to define mathematical formulae.
 \end{exa}
 
-We consider several fragments of $\qso$, which are obtained by restricting the syntax of the Boolean formulae or the use of the quantitative quantifiers.
+We consider several fragments or extensions of $\qso$, which are obtained by restricting the syntax of the Boolean formulae or the use of the quantitative quantifiers.
 In this direction, we denote by $\qfo$ the fragment of $\qso$ where second-order sum and product are not allowed. 
 For instance, for the $\qso$-formulae defined in Example \ref{ex:cliques}, we have that $\alpha_1$ is in $\qfo$ and $\alpha_2$ is not.
-Another interesting fragment of $\qso$ consists of the $\qso$-formulae where only sum operators and quantifiers are allowed. 
+Another interesting fragment of $\qso$ consists of the $\qso$-formulae where only sum operators and sum quantifiers are allowed. 
 Formally, we denote by $\eqso$ the fragment of $\qso$ where first- and second-order products (i.e. $\pa{x}$ and $\pa{X}$) are not allowed.
 For example, $\alpha_1$ and $\alpha_2$ in Example \ref{ex:cliques} are formulae of $\eqso$, while $\alpha_3$ in Example \ref{exa-perm} is not. 
 We also consider fragments of $\qso$ by further restricting the Boolean part of the logic.
 If $\LL$ is a fragment of $\so$, then we define the quantitative logic $\qso(\LL)$ to be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{syntax} to be a formula in $\LL$. Moreover, we also restrict other fragments of $\qso$ by using the same idea. 
 For example, we define $\qfo(\fo)$ to be the fragment of $\qfo$ obtained by restricting $\varphi$ in \eqref{syntax} to be an $\fo$-formula, and likewise for $\eqso(\fo)$.
 
-
-In the following section, we use different fragments of $\qso$ to capture counting complexity classes. But before doing this, we show the connection of $\qso$ with previous frameworks for defining functions over relational structures.
+In the following section, we use different fragments or extensions of $\qso$ to capture counting complexity classes. But before doing this, we show the connection of $\qso$ with previous frameworks for defining functions over relational structures.
 
 \subsection{Previous frameworks for quantitative functions} \label{sec:previous}
 
@@ -127,10 +125,10 @@ Finally, the work in~\cite{SalujaST95} and \cite{ComptonG96} is of particular in
 In~\cite{SalujaST95}, it was proposed to define a function over a structure by using free variables in an SO-formula; in particular, the function is defined by the number of instantiations of the free variables that are satisfied by the structure.
 Formally, Saluja et. al \cite{SalujaST95} define a family of counting classes $\#\LL$ for a fragment $\LL$ of $\fo$. For a formula $\varphi(\bar{x},\bar{X})$ over $\R$, the function $f_{\varphi(\bar x, \bar X)}$ is defined as
 $
-f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varphi(\bar{a},\bar{A})\}\vert,
+f_{\varphi(\bar x, \bar X)}(\A) = \vert \{(\bar{a},\bar{A}) \mid \A\models\varphi(\bar{a},\bar{A})\}\vert
 $
 for every $\A\in\ostr[\R]$. Then a function $g:\ostr[\R]\to\nat$ is in $\#\LL$ if there exists a formula $\varphi(\bar{x},\bar{X})$ in $\LL$ such that $g = f_{\varphi(\bar x, \bar X)}$.
-In~\cite{SalujaST95}, they were proved several results about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
+In~\cite{SalujaST95}, they proved several results about capturing counting complexity classes which are relevant for our work. We discuss and use these results in Sections~\ref{sec:complexity} and~\ref{sec:syntactic}.
 Notice that for every formula $\varphi(\bar{x},\bar{X})$, it holds that $f_{\varphi(\bar{x},\bar{X})}$ is the same function as $\sem{\sa{\bar{X}} \sa{\bar{x}} \varphi(\bar{x},\bar{X})}$, that is, the approach in \cite{SalujaST95} can be seen as a syntactical restriction of our approach based on $\qso$. 
 Thus, the advantage of our approach relies on the flexibility to define functions by alternating sum with product operators and, moreover, by introducing new quantitative operators (see Section~\ref{sec:beyond}).
-Furthermore, we show in the following section how to capture some fundamental classes that cannot be captured by following the approach in~\cite{SalujaST95}.
+Furthermore, we show in the next section how to capture some classes that cannot be captured by following the approach in~\cite{SalujaST95}.

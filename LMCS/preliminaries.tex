@@ -4,7 +4,9 @@
 %We introduce here the main terminology used in the paper.
 
 \subsection{Second-order logic, LFP and PFP}
-A relational signature $\R$ (or just signature) is a finite set $\{R_1, \ldots, R_k\}$, where each $R_i$ ($1 \leq i \leq k$) is a relation name with an associated arity greater than 0, which is denoted by $\arity(R_i)$. A finite structure over $\R$ (or just finite $\R$-structure) is a tuple $\A = \langle A, R_1^\A, \ldots, R_k^\A \rangle$ such that $A$ is a finite set and $R_i^\A \subseteq A^{\arity(R_i)}$ for every $i \in \{1, \ldots, k\}$. In this paper we only consider finite structures, so we omit the word finite when referring to them. An $\R$-structure $\A$ is said to be ordered if $<$ is a binary predicate name in $\R$ and $<^\A$ is a linear order on $A$. Let $\str[\R]$ be the class of all $\R$-structures and $\ostr[\R]$ be the class of all ordered $\R$-structures. 
+A relational signature $\R$ (or just signature) is a finite set $\{R_1, \ldots, R_k\}$, where each $R_i$ ($1 \leq i \leq k$) is a relation name with an associated arity greater than 0, which is denoted by $\arity(R_i)$. A finite structure over $\R$ (or just finite $\R$-structure) is a tuple $\A = \langle A, R_1^\A, \ldots, R_k^\A \rangle$ such that $A$ is a finite set and $R_i^\A \subseteq A^{\arity(R_i)}$ for every $i \in \{1, \ldots, k\}$. Further, an $\R$-structure $\A$ is said to be ordered if $<$ is a binary predicate name in $\R$ and $<^\A$ is a linear order on $A$.
+We denote by $\ostr[\R]$ the class of all finite ordered $\R$-structures. 
+In this paper we only consider finite ordered structures, so we will usually omit the word finite or ordered when referring to them.
 
 From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order variables and second-order variables, respectively. Notice that every variable in $\sv$ has an associated arity, which is denoted by $\arity(X)$. Then given a  signature $\R$, the set of second-order logic formulae ($\so$-formulae) over $\R$ is given by the following grammar:
 \begin{align*}\ 
@@ -12,8 +14,8 @@ From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order 
 	X(\bar v)  \ \mid
 	\neg \varphi \ \mid\ 
 	(\varphi \vee \varphi) \ \mid\ 
-	\exists x \, \varphi \ \mid\ 
-	\exists X \, \varphi
+	\ex{x} \varphi \ \mid\ 
+	\ex{X} \varphi
  \end{align*}
 where $x,y \in \fv$, $R \in \R$, $\bar u$ is a tuple of (not necessarily distinct) variables from $\fv$ whose length is $\arity(R)$, $\top$ is a reserved symbol to represent a tautology, $X \in \sv$, $\bar v$ is a tuple of (not necessarily distinct) variables from $\fv$ whose length is $\arity(X)$, and $x \in \fv$. 
 
@@ -23,10 +25,11 @@ where $x,y \in \fv$, $R \in \R$, $\bar u$ is a tuple of (not necessarily distinc
 
 We assume that the reader is familiar with the semantics of $\so$, so we only introduce here some notation that will be used in this paper. 
 %To define the semantics of $\so$, we need to introduce some terminology. 
-Given a signature $\R$ and an $\R$-structure $\A$ with domain $A$, a first-order assignment $v$ for $\A$ is a total function from $\fv$ to $A$, while a second-order assignment $V$ for $\A$ is a total function with domain $\sv$ that maps each $X \in \sv$ to a subset of $A^{\arity(X)}$. Moreover, given a first-order assignment $v$ for $\A$, $x \in \fv$ and $a \in A$, we denote by $v[a/x]$ a first-order assignment such that $v[a/x](x) = a$ and $v[a/x](y) = v(y)$ for every $y \in \fv$ distinct from $x$. Similarly, given a second-order assignment $V$ for $\A$, $X \in \sv$ and $B  \subseteq A^{\arity(X)}$, we denote by $V[B/X]$ a second-order assignment such that $V[B/X](X) = B$ and $V[B/X](Y) = V(Y)$ for every $Y \in \sv$ distinct from $X$. We use notation $(\A, v, V) \models \varphi$ to indicate that structure $\A$ satisfies $\varphi$ under $v$ and $V$. In particular, we have that $(\A, v, V) \models \top$.
+Given a signature $\R$ and an $\R$-structure $\A$ with domain $A$, a first-order assignment $v$ for $\A$ is a total function from $\fv$ to $A$, while a second-order assignment $V$ for $\A$ is a total function with domain $\sv$ that maps each $X \in \sv$ to a subset of $A^{\arity(X)}$. Moreover, given a first-order assignment $v$ for $\A$, $x \in \fv$ and $a \in A$, we denote by $v[a/x]$ a first-order assignment such that $v[a/x](x) = a$ and $v[a/x](y) = v(y)$ for every $y \in \fv$ distinct from $x$. Similarly, given a second-order assignment $V$ for $\A$, $X \in \sv$ and $B  \subseteq A^{\arity(X)}$, we denote by $V[B/X]$ a second-order assignment such that $V[B/X](X) = B$ and $V[B/X](Y) = V(Y)$ for every $Y \in \sv$ distinct from $X$. We use notation $(\A, v, V) \models \varphi$ to indicate that structure $\A$ satisfies $\varphi$ under $v$ and $V$.
+% In particular, we have that $(\A, v, V) \models \top$.
 %\martin{En vez de decir "for every $y\in \fv$ distinct from $x$" podría ser "for every $y\in\fv\setminus\{x\}$", y lo mismo con $Y\in\sv$.}
 
-In this paper, we consider several fragments of $\so$, in particular first-order logic ($\fo$), least fixed point logic (LFP) and partial fixed point logic (PFP) \cite{L04}. Moreover, for every $i \in \N$, we consider the fragment $\Sigma_i$ (resp., $\Pi_i$) of $\fo$, which is the set of $\fo$-formulae of the form 
+In this paper, we consider several fragments or extensions of $\so$ like first-order logic~($\fo$), least fixed point logic (LFP) and partial fixed point logic (PFP) \cite{L04}. Moreover, for every $i \in \N$, we consider the fragment $\Sigma_i$ (resp., $\Pi_i$) of $\fo$, which is the set of $\fo$-formulae of the form 
 $\exists \bar x_1 \forall \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i} \, \psi$ (resp., 
 $\forall \bar x_1 \exists \bar x_2 \cdots \forall \bar x_{i-1} \exists \bar x_{i} \, \psi$) if $i$ is even, and of the form
 $\exists \bar x_1 \forall \bar x_2 \cdots \forall \bar x_{i-1} \exists \bar x_{i} \, \psi$ (resp., 
@@ -47,7 +50,7 @@ $\forall \bar x_1 \exists \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i
 
 \subsection{Counting complexity classes}
 
-We consider the following counting complexity classes in this paper. 
+We consider several counting complexity classes in this paper, some of the are recalled here~(see \cite{F97,hemaspaandra2013complexity}).
 %We define the following function complexity classes: 
 $\fp$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial time, while $\fpspace$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial space. 
 %Moreover, $\nfpspace$ is the class of functions computable in polynomial space with output length bounded by a polynomial. 
