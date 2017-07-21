@@ -2,9 +2,9 @@ In the next proof and the followings, we will use the symbol $<$ also to denote 
 $$
 \bigvee_{i = 1}^m \, \bigwedge_{j = 1}^{i-1} \, (x_j = y_j \wedge x_i < y_i).
 $$
-Similarly, we use $=$ to denote equality between tuples (e.g. $\bar{x} = \bar{y}$) and $\leq$ to denote $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$.
+Similarly, we use $\bar{x} = \bar{y}$ to denote equality between tuples and $\bar{x} \leq \bar{y}$  to denote $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$.
 %Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
-We also use some syntactic sugar in $\qso$ to simplify formulas. For example, we use {\em conditional count} symbol $(\varphi \mapsto \alpha)$ defined as $ (\varphi\cdot\alpha) + \neg\varphi$ for any Boolean formula $\varphi$ and any quantitative formula $\alpha$. Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$:
+We also use some syntactic sugar in $\qso$ to simplify formulas like the {\em conditional count} symbol $(\varphi \mapsto \alpha)$ defined as $ (\varphi\cdot\alpha) + \neg\varphi$ for any Boolean formula $\varphi$ and any quantitative formula $\alpha$. Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$:
 \[
 \sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
 \begin{cases}
