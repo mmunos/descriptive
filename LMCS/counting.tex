@@ -1,20 +1,20 @@
 %!TEX root = main.tex
 
 In this section, we show that by syntactically restricting $\qso$ one can capture different counting complexity classes. 
-In other words, by using $\qso$ we can extend the theory of descriptive complexity~\cite{immerman1999descriptive} from decision problems to computation problems. 
+In other words, by using $\qso$ we can extend the theory of descriptive complexity~\cite{immerman1999descriptive} from decision problems to counting problems. 
 For this, we first formalize the notion of \emph{capturing} a complexity class of functions.
 %, and then show how to capture classes like $\shp$, $\fp$, and $\fpspace$.
 
-Fix a signature $\R = \{R_1, \ldots, R_k\}$ and assume that $\A$ is an ordered (finite) $\R$-structure with a domain $A = \{a_1, \ldots, a_n\}$.
-%$ containing $n$ elements. 
-Recall that  $<$ is a linear order on $A$, say $a_1 < a_2 < \ldots < a_n$. For every $i \in \{1, \ldots, k\}$, define the encoding of $R_i^\A$, denoted by $\enc(R_i^\A)$, as the following binary string. Assume that $\ell = \arity(R_i)$ and consider an enumeration of the $\ell$-tuples over $A$ in the lexicographic order induced by $<$. 
+Fix a signature $\R = \{R_1, \ldots, R_k\}$ and assume that $\A$ is an ordered $\R$-structure with a domain $A = \{a_1, \ldots, a_n\}$ and $a_1 < a_2 < \ldots < a_n$. For every $i \in \{1, \ldots, k\}$, define the encoding of $R_i^\A$, denoted by $\enc(R_i^\A)$, as the following binary string. Assume that $\ell = \arity(R_i)$ and consider an enumeration of the $\ell$-tuples over $A$ in the lexicographic order induced by $<$. 
 %(that is, $(a_1, \ldots, a_1, a_1)$, $(a_1, \ldots, a_1, a_2)$, $\ldots$, $(a_n, \ldots, a_n, a_{n-1})$, $(a_n, \ldots, a_n, a_n)$). 
-Then let $\enc(R_i^\A)$ be a binary string of length $n^\ell$ such that the $i$-th bit of $\enc(R_i^\A)$ is 1 if the $i$-th tuple in the previous enumeration belongs to $R_i^\A$, and 0 otherwise. Moreover, define the encoding of $\A$, denoted by $\enc(\A)$, as the string
+Then let $\enc(R_i^\A)$ be a binary string of length $n^\ell$ such that the $i$-th bit of $\enc(R_i^\A)$ is 1 if the $i$-th tuple in the previous enumeration belongs to $R_i^\A$, and 0 otherwise. Moreover, define the encoding of $\A$, denoted by $\enc(\A)$, as the string~\cite{L04}:
 %following binary string~\cite{L04}:
 %\begin{eqnarray*}
 	%\enc(\A) & = & 0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
 %\end{eqnarray*}
-$0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A)$~\cite{L04}. 
+$$
+0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
+$$
 %We define the class of all $\R$-functions, denoted by $\Func(\R)$, as the class of all functions $f: \ostr \rightarrow \bbN$.
 %Given a function complexity class $\CC$ (i.e. $f: \Sigma^* \rightarrow \bbN$ for every $f \in \CC$), we say that a function $f \in \Func(\R)$ can be computed in $\CC$ if there exists $g \in \CC$ such that $f(\A) = g(\enc(\A))$ for every $\A \in \ostr$. 
 %Note that the function $g$ outputs $f$ for encodings of structures and can behave arbitrarily otherwise.
@@ -58,21 +58,9 @@ By following the same approach as~\cite{SalujaST95}, Compton and Gr\"adel~\cite{
 Can we capture $\fp$ by using $\# \LL$ for some fragment $\LL$ of $\so$? A first attempt could be based on the use of a fragment $\LL$ of $\so$ that capture either $\ptime$ or $\nlog$~\cite{G92}. Such an approach fails as $\# \LL$ can encode $\shp$-complete problems in both cases; in the first case, one can encode the problem of counting the number of satisfying assignments of a Horn  propositional formula, while in the second case one can encode the problem of counting the number of satisfying assignments of a 2-CNF propositional formula. A second attempt could be based then on considering a fragment $\LL$ of $\fo$. 
 But even if we consider the existential fragment $\Sigma_1$ of $\fo$ the approach fails, as $\# \Sigma_1$ can encode $\shp$-complete problems like counting the number of satisfying assignments of a 3-DNF propositional formula\cite{SalujaST95}. One last attempt could be based on disallowing the use of second-order free variables in $\sfo$. But in this case one 
 cannot capture exponential functions definable in $\fp$ such as~$2^n$.
-Thus, it is not  clear how to capture $\fp$ 
+Thus, it is not clear how to capture $\fp$ 
 by following the approach proposed in~\cite{SalujaST95}. 
-On the other hand, if we consider our framework and move out from $\eqso$, we have other options for counting like first- and second-order products. In fact, the combination of $\qfo$ with $\lfp$ is exactly what we need to capture $\fp$.
-
-From now on, we will use the symbol $<$ also to denote the lexicographic order over same-sized tuples. If $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ are tuples of first-order variables, we denote $\bar{x} < \bar{y}$ for the formula $\bigvee_{i = 1}^m[\bigwedge_{j = 1}^{i-1}x_j = y_j \wedge x_i < y_i]$. Similarly, we use $=$ to denote equality between tuples, as $\bar{x} = \bar{y}$ denotes $\bigwedge_{i = 1}^m(x_i = y_i)$, and also $\bar{x}\leq\bar{y}$ denotes $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$.
-%Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
-
-The {\em conditional count} symbol $(\varphi \mapsto \alpha)$ is defined as $(\neg\varphi + (\varphi\cdot\alpha))$ for given $\so$ formula $\varphi$ and $\qso$ formula $\alpha$. Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$,
-\[
-\sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
-\begin{cases}
-\sem{\alpha}(\A,v,V) &\text{if } (\A,v,V)\models\varphi,\\
-1 &\text{otherwise}.
-\end{cases}
-\]
+On the other hand, if we consider our framework and move out from $\eqso$, we have other alternatives for counting like first- and second-order products. In fact, the combination of $\qfo$ with $\lfp$ is exactly what we need to capture $\fp$.
 \begin{thm} \label{theo:capture-fp}
 	$\qfo(\lfp)$ captures $\fp$ over ordered structures.
 \end{thm}
