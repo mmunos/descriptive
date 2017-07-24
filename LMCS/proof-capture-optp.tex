@@ -1,20 +1,11 @@
-In this proof we construct recursively a non-deterministic polynomial time Turing machine $M_{\alpha}$ with output tape for each $\maxqso(\fo)$ formula $\alpha$ over a signature $\R$.
-This machine, on input $(\A,v,V)$, non-deterministically produces $\sem{\alpha}(\A,v,V)$ (in binary) over the output tape of some run, and this value is the maximum value over all runs.
-Suppose $\A$ has domain $A$. If $\alpha$ is a $\fo$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ in deterministic polynomial time, and output $1$ if, and only if, $(\A,v,V)$ satisfies $\varphi$. If $\alpha$ is a constant $s$, it outputs $s$ in binary over the output tape. If $\alpha = (\beta \add \gamma)$, then it simulates $M_{\beta}$ and $M_{\gamma}$ on input $(\A,v,V)$, adds the output of both machines and prints this value over the output tape. If $\alpha = (\beta \mult \gamma)$ or $\alpha = \max\{\beta,\gamma\}$, then it does the same than the previous case but it multiplies or maximizes, respectively, the outputs of both machines instead of adding. 
-If $\alpha = \sa{x}\beta$, it iterates over all elements $a\in A$ simulating and adding the output of $M_{\beta}$ on input $(\A,v[a/x],V)$. $M_{\alpha}$ finally outputs the aggregated value in the output tape. 
-If $\alpha = \pa{x}\beta$ or $\alpha = \maxa{x}\beta$, then $M_{\alpha}$ does the same idea than the previous case with the difference that the output of $M_{\beta}$ on input $(\A,v[a/x],V)$ is multiplied or maximized, respectively.
-If $\alpha = \maxa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$.
-This covers all possible cases for $\alpha$.
-Furthermore, it is straightforward to prove that each of these steps are correct and can be computed with a non-deterministic polynomial time Turing machine with output tape.
-Let $\alpha$ be a formula in $\maxqso$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the maximum run (with respect to the output value) of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\maxp$ function over $\R$ and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
-Finally, one can easily see that the same construction holds with $\minqso(\fo)$ by constructing a Turing machine that take the min over all runs instead of max.
-
+It is straightforward to prove that $\maxp$ can compute any $\fo$-formula, is closed under first-order sum and product, and second-order maximization. 
+Therefore, condition (1) in Definition~\ref{def:cap} follows similar than in the previous characterizations. Furthermore, one can easily see that the same holds with $\minqso(\fo)$.
 The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of Theorem~\ref{theo:capture-fp}. Let $f\in \maxp$ be a function defined over some signature $\R$ and
-$\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq n^\ell$ for each $\A\in\ostr[\R]$ of size $n$.
-For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$ ($\enc(U)$) as the binary encoding of a number with $n^l$-bits. We denote this value by $\val(\enc(U))$.
+$\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq |\A|^\ell$ for each $\A\in\ostr[\R]$.
+For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$ ($\enc(U)$) as the binary encoding of a number with $|\A|^\ell$-bits. We denote this value by $\val(\enc(U))$.
 Then, given $\A\in\ostr[\R]$ and $U \subseteq A^{\ell}$, consider the problem of checking whether $f(\enc(\A)) \geq \val(\enc(U))$. 
-Clearly, this is an $\np$-problem and, by Fagin's theorem, there exists a formula of the form $\ex{\bar{X}} \Phi(\bar{X}, Y)$ with $\Phi(\bar{X}, Y)$ in $\fo$-logic and $\arity(Y) = \ell$ such that $f(\enc(\A)) \geq \val(\enc(U))$ if, and only if, $(\A,v,V) \models \ex{\bar{X}} \Phi(\bar{X}, Y)$ with $V(Y) = U$. 
-Then we can describe the function $f$ by the following $\maxqso$ formula:
+Clearly, this is an $\np$-problem and, by Fagin's theorem, there exists a formula of the form $\ex{\bar{X}} \Phi(\bar{X}, Y)$ with $\Phi(\bar{X}, Y)$ in $\fo$ and $\arity(Y) = \ell$ such that $f(\enc(\A)) \geq \val(\enc(U))$ if, and only if, $(\A,v,V) \models \ex{\bar{X}} \Phi(\bar{X}, Y)$ with $V(Y) = U$. 
+Then we can describe $f$ by the following $\maxqso$ formula:
 $$
 \alpha = \maxa{\bar{X}} \maxa{Y} \ \Phi(\bar{X}, Y) \cdot \big( \sa{\bar{x}} Y(\bar{x}) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2) \big).
 $$
@@ -26,6 +17,6 @@ For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow t
 $$
 \alpha = \mina{\bar{X}} \mina{Y} \ \sa{\bar{x}} \big( (\Phi(\bar{X}, Y) \rightarrow Y(\bar{x})) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2)  \big).
 $$
-In this case, if the formula $\Phi(\bar{X}, Y)$ is false, then the output produced by the subformula inside the $\min$-quantifiers will be the biggest possible value (i.e. $2^{n^\ell}$).
+In this case, if the formula $\Phi(\bar{X}, Y)$ is false, then the output produced by the subformula inside the $\min$-quantifiers will be the biggest possible value (i.e. $2^{{|\A|}^\ell}$).
 On the other hand, if $\Phi(\bar{X}, Y)$ holds, the subformula will produce $\val(\enc(U))$. 
 Similar than for $\max$, we conclude that $\alpha$ is in $\minqso(\fo)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.

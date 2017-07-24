@@ -1,22 +1,18 @@
-For condition (1), notice that each $\pfp$ formula can be evaluated in deterministic polynomial space, that the constant function $s$ can be trivially simulated in $\fpspace$ for each $s\in\nat$, and that $\fpspace$ is closed under exponential sum and multiplication. This suffices to show that the condition holds.
-
-%To show how to evaluate a $\qso(\pfp)$-formula, we construct recursively a $\shpspace$-machine $M_{\alpha}$ for each $\qso(\pfp)$ formula $\alpha$ over a signature $\R$. This machine runs in non-deterministic polynomial space and, on input $(\A,v,V)$, accepts in $\sem{\alpha}(\A,v,V)$ of its non-deterministic paths for each $(\A,v,V) \in \ostr[\R]^*$. Suppose $\A$ has domain $A$. If $\alpha$ is a $\pfp$-formula $\varphi$, then the machine checks if $(\A,v,V)\models\varphi$ deterministically in polynomial space~\cite{L04}, and accepts if and only if it holds true. If $\alpha$ is a constant $s$, it produces $s$ branches and accepts in all of them. If $\alpha = (\beta \add \gamma)$, then it chooses between 0 or 1, if it is 0 (1), it simulates $M_{\beta}$ ($M_{\gamma}$) on input $(\A,v,V)$. If $\alpha = (\beta \mult \gamma)$, it simulates $M_{\beta}$ on input $(\A,v,V)$ and on each accepting path, it continues simulating $M_{\gamma}$ on input $(\A,v,V)$.
-%If $\alpha = \sa{x}\beta$, it chooses $a\in A$ non-deterministically and simulates $M_{\beta}$ on input $(\A,v[a/x],V)$. If $\alpha = \pa{x}\beta$, it simulates $M_{\beta}$ on input $(\A,v[a/x],V)$ consecutively for each $a\in A$, continuing to the next $A$-value if the run of $M_{\beta}$ accepts. If $\alpha = \sa{X}\beta$, it chooses $B\in A^{arity(X)}$ and simulates $M_{\beta}$ on input $(\A,v,V[B/X])$. If $\alpha = \pa{X}\beta$, it simulates $M_{\beta}$ on input $(\A,v,V[B/X])$ consecutively for each $B\in A^{arity(X)}$, again continuing to the next $A$-value if the run of $M_{\beta}$ accepts. This covers all possible cases for $\alpha$, and each of these steps can be computed in polynomial space. Let $\alpha$ be a formula in $\qso(\pfp)$ over a signature $\R$ and let $f$ be a function over $\R$ such that $f(\enc(\A))$ is equal to the accepting paths of $M_{\alpha}$ on input $(\A,v,V)$ for some $(\A,v,V) \in \ostr[\R]^*$. We have that $f$ is a $\shpspace$ function over $\R$, which implies that $f$ is also a $\fpspace$ function over $\R$, by the fact that $\shpspace = \fpspace$ \cite{Ladner89}, and that $f(\enc(\A)) = \sem{\alpha}(\A)$ for every $\A\in\ostr[\R]$.
-
-For the condition (2), we provide a similar proof to theorem \ref{theo:capture-fp}. Let $f\in \fpspace$ defined over some $\R$. Let $\ell\in\nat$ be such that for each $\A\in\ostr[\R]$, $\lceil\log_2 f(\enc(\A)) \rceil \leq 2^{n^\ell}$ (i.e. $2^{n^\ell}$ is an upper bound for the output size), where $\A$ has a domain of size $n$. Let $X$ be a second-order variable of arity $\ell$. Consider a linear order over predicates of arity $\ell$ given by the formula 
+For the first condition of Definition~\ref{def:cap}, notice that each $\pfp$ formula can be evaluated in deterministic polynomial space, the constant function $s$ can be trivially simulated in $\fpspace$, and $\fpspace$ is closed under exponential sum and multiplication. This suffices to show that the condition holds.
+For the second condition, the proof is similar than in Theorem~\ref{theo:capture-fp}. Let $f\in \fpspace$ defined over some $\R$ and $\ell\in\nat$ such that $\log_2\left( f(\enc(\A)) \right) \leq 2^{{|\A|}^\ell}$ for every $\A\in\ostr[\R]$  (i.e. $2^{{|\A|}^\ell}$ is an upper bound for the output size). Let $X$ be a second-order variable of arity $\ell$. Consider the linear order induced by $<$ over predicates of arity $\ell$ which can be defined by the following formula:
 $$
-\varphi_{<}(X,Y) = \exists\bar{u}\big[\neg X(\bar{u})\wedge Y(\bar{u})\wedge \forall\bar{v}\big(
+\varphi_{<}(X,Y) = \ex{\bar{u}}\big[\neg X(\bar{u})\wedge Y(\bar{u})\wedge \fa{\bar{v}}\big(
 \bar{u}<\bar{v}\to(X(\bar{u})\iff Y(\bar{v}))\big)\big].
 $$
-Namely, we use relations to encode numbers with at most $2^{n^\ell}$-bits where the empty relation represents $0$ and the total-relation represents $2^{2^{n^\ell}}-1$.
-Furthermore, each relation $X$ indexes a position in the binary output of $f(\enc(\A))$ as follows.
+Namely, we use relations to encode numbers with at most $2^{{|\A|}^\ell}$-bits where the empty relation represents $0$ and the total-relation represents $2^{2^{{|\A|}^\ell}}-1$.
+Furthermore, we can use a relation~$X$ to index a position in the binary output of $f(\enc(\A))$ as follows.
 %Consider a polynomial space machine over the $\R$ that receives as input an $\R$-structure $\A$ and a number $p$ encoded by a relation $X$. Then the machine accepts if, and only if, the $p$-th bit of $f(\enc(\A))$ is $1$. 
-Define a language
+Define the language:
 \[
 L = \{(\A,B)\mid B \subseteq A^{\ell}\text{ and the $B$-th bit of $f(\enc(\A))$ is 1}\}.
 \]
-Since this language is in $\pspace$, it can be described in $\pfp$ \cite{AbiteboulV89} by a formula $\Phi(X)$ where the free variable $X$ encodes the number $p$. Then, similar than the previous proof we define:
+Since $L$ is in $\pspace$, it can be specified in $\pfp$ \cite{AbiteboulV89} by a formula $\Phi(X)$ where the free variable $X$ encodes relation $B$ in $L$. Then, similar than the previous proof we define:
 $$
-\alpha := \sa{X}(\Phi(X)\mult\varphi(X)),
+\alpha := \sa{X} \Phi(X)\mult  \pa{Y}(\varphi_{<}(Y,X)\mapsto 2).
 $$ 
-where $\varphi(X) = \pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$. As in theorem \ref{theo:capture-fp}, this formula takes the value $2^m$ if there exist $m$ predicates that are smaller than $X$. Using an analogous argument, we conclude that $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
+where $\pa{Y}(\varphi_{<}(Y,X)\mapsto 2)$ takes the value $2^m$ if there exist $m$ predicates that are smaller than~$X$ and $\alpha$ reconstruct the output of $f(\enc(\A))$ by simulating $f$ with $\Phi(X)$. Using an analogous argument, we conclude that $\alpha\in\qso(\pfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
