@@ -31,8 +31,6 @@ Therefore, to unveil the relationship between the $\sfo$-hierarchy and the $\eqs
 \begin{thm}\label{theo-pi1-pnf}
 For $i = 0,1$, there exists a formula $\alpha_i$ in $\QE{i}$ that is not equivalent to any formula in $\Sigma_i$-PNF. 
 On the other hand, if $\logu{1} \subseteq \LL$ and $\LL$ is closed under conjunction and disjunction, then every formula in $\eqso(\LL)$ can be rewritten in $\LL$-PNF. 
-
-From now on, for every first-order tuple $\bar{x}$ (second-order tuple $\bar{X}$) $\length{\bar{x}}$ as the size of $\bar{x}$ ($\length{\bar{X}}$ as the size of $\bar{X}$).
 \end{thm}
 \proof
 \input{proof-theo-pi1-pnf}
@@ -77,52 +75,51 @@ From now on, for every first-order tuple $\bar{x}$ (second-order tuple $\bar{X}$
 	\node[rectw, right=0.5cm of n2] (n5) {$\QE{1}$}
 		edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
 		edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
-	\node[rectw, right=0.8cm of n5] (n6) {$\U{1}$}       
+	\node[rectw, right=0.8cm of n5] (n6) {$\QU{1}$}       
 		edge[draw=white] node {$\subsetneq$} (n5);
-	\node[rectw, below=0.3cm of n6] (n7) {$\QU{1}$}       
+	\node[rectw, below=0.3cm of n6] (n7) {$\U{1}$}       
 		edge[draw=white] node {\rotatebox{90}{$=$}} (n6);
-	\node[rectw, right=1.0cm of n6] (n8) {$\E{2}$}       
+	\node[rectw, right=1.0cm of n6] (n8) {$\QE{2}$}       
 		edge[draw=white] node {$\subsetneq$} (n6);
-	\node[rectw, below=0.3cm of n8] (n9) {$\QE{2}$}       
+	\node[rectw, below=0.3cm of n8] (n9) {$\E{2}$}       
 		edge[draw=white] node {\rotatebox{90}{$=$}} (n8);        
-	\node[rectw, right=1.0cm of n8] (n10) {$\U{2}$}       
+	\node[rectw, right=1.0cm of n8] (n10) {$\QU{2}$}       
 		edge[draw=white] node {$\subsetneq$} (n8);
-	\node[rectw, below=0.3cm of n10] (n11) {$\QU{2}$}       
+	\node[rectw, below=0.3cm of n10] (n11) {$\U{2}$}       
 		edge[draw=white] node {\rotatebox{90}{$=$}} (n10); 
 	\node[rectw, right=0.5cm of n10] (n12) {$\sfo$}       
 		edge[draw=white] node {$=$} (n10); 
 	\end{tikzpicture}
 \end{center}
-\vspace{1cm}
-\begin{center}
-	\begin{tikzpicture}
-	\node[rectw] (n1) {$\E{0}$};
-	\node[rectw, right=1.2cm of n1] (n2) {};
-	\node[rectw, above=0.2cm of n2] (n3) {$\E{1}$}
-	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
-	\node[rectw, below=0.1cm of n2] (n4) {$\QE{0}$}
-	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
-	\node[rectw, right=1.2cm of n2] (n5) {$\QE{1}$}
-	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
-	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
-	\node[rectw, right=1.3cm of n5] (n6) {\rotatebox{90}{$=$}}       
-	edge[draw=white] node {$\subsetneq$} (n5);
-	\node[rectw, above=0cm of n6] (n13) {$\U{1}$};
-	\node[rectw, below=0cm of n6] (n7) {$\QU{1}$};      
-	\node[rectw, right=1.8cm of n6] (n8) {\rotatebox{90}{$=$}}       
-	edge[draw=white] node {$\subsetneq$} (n6);
-	\node[rectw, above=0cm of n8] (n14) {$\E{2}$};
-	\node[rectw, below=0cm of n8] (n9) {$\QE{2}$};       
-	\node[rectw, right=1.8cm of n8] (n10) {\rotatebox{90}{$=$}}       
-	edge[draw=white] node {$\subsetneq$} (n8);
-	\node[rectw, above=0cm of n10] (n15) {$\U{2}$};
-	\node[rectw, below=0cm of n10] (n11) {$\QU{2}$};      
-	edge[draw=white] node {\rotatebox{90}{$=$}} (n10); 
-	\node[rectw, right=0.5cm of n10] (n12) {$\sfo$}       
-	edge[draw=white] node {$=$} (n10); 
-	\end{tikzpicture}
-\end{center}
-\vspace{-0.4cm}
+%\vspace{1cm}
+%\begin{center}
+%	\begin{tikzpicture}
+%	\node[rectw] (n1) {$\E{0}$};
+%	\node[rectw, right=1.2cm of n1] (n2) {};
+%	\node[rectw, above=0.2cm of n2] (n3) {$\E{1}$}
+%	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n1);
+%	\node[rectw, below=0.1cm of n2] (n4) {$\QE{0}$}
+%	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n1);
+%	\node[rectw, right=1.2cm of n2] (n5) {$\QE{1}$}
+%	edge[draw=white] node {\rotatebox{315}{$\subsetneq$}} (n3)
+%	edge[draw=white] node {\rotatebox{45}{$\subsetneq$}} (n4);
+%	\node[rectw, right=1.3cm of n5] (n6) {\rotatebox{90}{$=$}}       
+%	edge[draw=white] node {$\subsetneq$} (n5);
+%	\node[rectw, above=0cm of n6] (n13) {$\U{1}$};
+%	\node[rectw, below=0cm of n6] (n7) {$\QU{1}$};      
+%	\node[rectw, right=1.8cm of n6] (n8) {\rotatebox{90}{$=$}}       
+%	edge[draw=white] node {$\subsetneq$} (n6);
+%	\node[rectw, above=0cm of n8] (n14) {$\E{2}$};
+%	\node[rectw, below=0cm of n8] (n9) {$\QE{2}$};       
+%	\node[rectw, right=1.8cm of n8] (n10) {\rotatebox{90}{$=$}}       
+%	edge[draw=white] node {$\subsetneq$} (n8);
+%	\node[rectw, above=0cm of n10] (n15) {$\U{2}$};
+%	\node[rectw, below=0cm of n10] (n11) {$\QU{2}$};      
+%	edge[draw=white] node {\rotatebox{90}{$=$}} (n10); 
+%	\node[rectw, right=0.5cm of n10] (n12) {$\sfo$}       
+%	edge[draw=white] node {$=$} (n10); 
+%	\end{tikzpicture}
+%\end{center}
 \caption{The relationship between the $\sfo$-hierarchy and the $\eqso(\fo)$-hierarchy, where $\E{1}$ and $\QE{0}$ are incomparable. \label{fig-sfo-eqso}}
 \vspace{-0.1cm}
 \end{figure*}
@@ -131,8 +128,8 @@ As a consequence of Proposition~\ref{theo-pnf-snf} and Theorem~\ref{theo-pi1-pnf
 \begin{prop}\label{prop-rest}
 The following properties hold:
 \begin{itemize}
-\item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$
-\item $\QE{1} \subsetneq \QU{1}$
+\item $\QE{0}$ and $\E{1}$ are incomparable, that is, $\E{1} \not\subseteq \QE{0}$ and $\QE{0} \not\subseteq \E{1}$,
+\item $\QE{1} \subsetneq \QU{1}$.
 \end{itemize}
 \end{prop}
 \proof
