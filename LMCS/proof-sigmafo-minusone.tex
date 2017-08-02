@@ -1,69 +1,78 @@
 %!TEX root = main.tex
 
-\noindent {\bf Closed under sum and multiplication.} We show here that $\eqso(\logex{1})$ is closed under sum and multiplication. This can be seen because $\eqso(\LL)$ is closed under sum for every fragment $\LL$ by definition, and since $\logex{1}$ is closed under conjunction, from Lemma \ref{conj-mult} it follows that $\eqso(\logex{1})$ is closed under multiplication.
+For the sake of readability, we divide the proof in three parts. The last part, i.e. subtraction by one, is probably the most technical proof of the paper. 
 
-\vspace{1em}
-\noindent {\bf Easy decision version and FRPRAS.}  We show here that $\eqso(\logex{1}) \subseteq \totp$ and every function in $\eqso(\logex{1})$ has an FPRAS. We do this by showing a parsimonious reduction from a function in $\eqso(\logex{1})$ to some function in $\eqso(\loge{1})$, and using the result of Theorem \ref{prop:qe0-fp-qe1-totp-fptras}. First, we define a function that converts a formula $\alpha$ in $\eqso(\logex{1})$ over a signature $\R$ into a formula $\lambda(\alpha)$ in $\eqso(\loge{1})$ over a signature $\R_{\alpha}$. Afterwards, we define a function $g_{\alpha}$ that receives an $\R$-structure $\A$ and outputs an $\R_{\alpha}$-structure $g_{\alpha}(\A)$.
+\medskip
 
-Let $\alpha$ be in $\eqso(\logex{0})$. The signature $\R_{\alpha}$ is obtained by adding the symbol $R_{\psi}$, for every $\fo$ formula $\psi(\bar{z})$ in $\alpha$, to $\R$. Each symbol $R_{\psi}$ represents a predicate with arity $\length{\bar{z}}$. Then, $\lambda(\alpha)$ is defined as $\alpha$ where each $\fo$ formula $\psi(\bar{z})$ has been replaced by $R_{\psi}(\bar{z})$. We now define the function $g_{\alpha}$ procedurally. Let $\A$ be a $\R$-structure with domain $A$. Let $\A'$ be an $\R_{\alpha}$-structure obtained by copying $\A$ and leaving each $R_{\psi}^{\A}$ empty. For each $\fo$-formula $\psi(\z)$ with $\length{\bar{z}}$ open first-order variables, we iterate for every tuple $\bar{a} \in A^{\length{\bar{z}}}$. If $\A\models\psi(\bar{a})$, then the tuple $\bar{a}$ is added to $R_{\psi}^{\A'}$ (this can be done in $\ptime$). This concludes the construction of $\A'$. Note that the number of $\fo$ subformulas, arity and tuple size is fixed in $\alpha$, so computing this function takes polynomial time over the size of the structure. Moreover, the encoding of $\A'$ has polynomial size over the size of $\enc(\A)$. We define $g_{\alpha}(\A) = \A'$ and we have that for each $\R$-structure $\A$: $\sem{\alpha}(\A) = \sem{\lambda(\alpha)}(g_{\alpha}(\A))$. Therefore, we have a parsimonious reduction from $\alpha$ to the $\eqso(\loge{1})$ formula $\lambda(\alpha)$.
+\noindent {\bf Closed under sum and multiplication.} By the previous results, it is straightforward to prove that $\eqso(\logex{1})$ is closed under sum and multiplication. Indeed, $\eqso(\LL)$ is closed under sum by definition for every fragment $\LL$, and since $\logex{1}$ is closed under conjunction, from Lemma \ref{conj-mult} it follows that $\eqso(\logex{1})$ is closed under multiplication.
+\medskip
 
-To show that $\alpha$ is in $\totp$, we can convert $\alpha$ and $\enc(\A)$ into $\lambda(\alpha)$ and $\enc(g_{\alpha}(\A))$, respectively, and run the procedure in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. Similarly, to show that $\alpha$ has an FPRAS, we do the same as before and simulates the FPRAS for $\lambda(\alpha)$ in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. These procedures also takes polynomial time and satisfies the condition.
+\noindent {\bf Easy decision version and FPRAS.}  We show here that $\eqso(\logex{1}) \subseteq \totp$ and every function in $\eqso(\logex{1})$ has an FPRAS. We do this by showing a parsimonious reduction from a function in $\eqso(\logex{1})$ to some function in $\eqso(\loge{1})$, and using the result of Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. First, we define a function that converts a formula $\alpha$ in $\eqso(\logex{1})$ over a signature $\R$ into a formula $\lambda(\alpha)$ in $\eqso(\loge{1})$ over a signature $\R_{\alpha}$. Afterwards, we define a function $g_{\alpha}$ that receives an $\R$-structure $\A$ and outputs an $\R_{\alpha}$-structure $g_{\alpha}(\A)$.
 
-\vspace{1em}
+Let $\alpha$ be in $\eqso(\logex{1})$. The signature $\R_{\alpha}$ is obtained by adding the symbol $R_{\psi}$ to $\R$ for every $\fo$ formula $\psi(\bar{z})$ in $\alpha$. Each symbol $R_{\psi}$ represents a predicate with arity $\length{\bar{z}}$. Then, $\lambda(\alpha)$ is defined as $\alpha$ where each $\fo$ formula $\psi(\bar{z})$ has been replaced by $R_{\psi}(\bar{z})$. We now define the function $g_{\alpha}$ with a polynomial time procedure. Let $\A$ be a $\R$-structure with domain $A$. Let $\A'$ be an $\R_{\alpha}$-structure obtained by copying $\A$ and leaving each $R_{\psi}^{\A}$ empty. For each $\fo$-formula $\psi(\z)$ with $\length{\bar{z}}$ open first-order variables, we iterate for every tuple $\bar{a} \in A^{\length{\bar{z}}}$. If $\A\models\psi(\bar{a})$ (this can be done in $\ptime$), then the tuple $\bar{a}$ is added to $R_{\psi}^{\A'}$ . This concludes the construction of $\A'$. Note that the number of $\fo$ subformulas, arity and tuple size is fixed in $\alpha$, so computing this function takes polynomial time over the size of the structure. Moreover, the encoding of $\A'$ has polynomial size over the size of $\enc(\A)$. We define $g_{\alpha}(\A) = \A'$ and we have that for each $\R$-structure $\A$: $\sem{\alpha}(\A) = \sem{\lambda(\alpha)}(g_{\alpha}(\A))$. Therefore, we have a parsimonious reduction from $\alpha$ to the $\eqso(\loge{1})$ formula $\lambda(\alpha)$.
+
+To show that $\alpha$ is in $\totp$, we can convert $\alpha$ and $\enc(\A)$ into $\lambda(\alpha)$ and $\enc(g_{\alpha}(\A))$, respectively, and run the procedure in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. Similarly, to show that $\alpha$ has an FPRAS, we do the same as before and simulates the FPRAS for $\lambda(\alpha)$ in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. These procedures also takes polynomial time and satisfies the required conditions.
+
+\medskip
+
+
 \noindent {\bf Closed under subtraction by one.} We prove here that $\eqso(\logex{1})$ is closed under subtraction by one. 
-For this, given $\alpha \in \eqso(\logex{1})$ over a signature $\R$, we will define a $\eqso(\logex{1})$ formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. 
-Without lost of generality, we assume that $\alpha$ is in $\logex{1}$-SNF and $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length{\bar{x}} > 0$  since, if this is not the case, we can replace $\varphi_i$ for the equivalent formula $\sa{\bar{X}} \sa{y} \varphi_i \wedge\first(y)$.
+For this, given $\alpha \in \eqso(\logex{1})$ over a signature $\R$, we will define a $\eqso(\logex{1})$-formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. 
+Without lost of generality, we assume that $\alpha$ is in $\logex{1}$-SNF, that is, $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length{\bar{x}} > 0$  since, if this is not the case, we can replace $\sa{\bar{X}}\varphi_i$ for the equivalent formula $\sa{\bar{X}} \sa{y} \varphi_i \wedge\first(y)$.
 
-The proof will be separated in two parts. In the first part, we suppose that  $\alpha$ is in $\logex{1}$-PNF, namely, $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi$ for some $\varphi$ in $\logex{1}$. Then we will show how to define a formula $\varphi'$ that satisfies the following condition: for each $\A$, if $(\A,V,v)\models \varphi(\bar{X},\bar{x})$ for some $V$ and $v$ over $\A$, then there exists exactly one assignment to $(\bar{X},\bar{x})$ that satisfies $\varphi$ and not $\varphi'$. 
-From this, we clearly have that $\kappa(\alpha) = \sa{\bar{X}}\sa{\bar{x}}\varphi'$ is the formula. In the second part, we suppose that $\alpha$ is of the form $\beta + \sa{\bar{X}}\sa{\bar{x}}\varphi$ with $\beta$ the sum of one or more formulas in $\logex{1}$-PNF. 
+The proof will be separated in two parts. In the first part, we will assume that  $\alpha$ is in $\logex{1}$-PNF, namely, $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi$ for some $\varphi$ in $\logex{1}$. Then we will show how to define a formula $\varphi'$ that satisfies the following condition: for each $\A$, if $(\A,V,v)\models \varphi(\bar{X},\bar{x})$ for some $V$ and $v$ over $\A$, then there exists exactly one assignment to $(\bar{X},\bar{x})$ that satisfies $\varphi$ and not $\varphi'$. 
+From this, we clearly have that $\kappa(\alpha) = \sa{\bar{X}}\sa{\bar{x}}\varphi'$ will be the desired formula. In the second part, we suppose that $\alpha$ is of the form $\beta + \sa{\bar{X}}\sa{\bar{x}}\varphi$ with $\beta$ the sum of one or more formulas in $\logex{1}$-PNF. 
 We define a formula $\varphi'$ that satisfies the following condition: if $(\A,V,v)\models \varphi(\bar{X},\bar{x})$ and $\sem{\beta}(\A) = 0$, then there exists exactly one assignment to $(\bar{X},\bar{x})$ that satisfies $\varphi$ and not $\varphi'$. From here, we can define $\kappa(\alpha)$ recursively as  $\kappa(\alpha) = \kappa(\beta) +  \sa{\bar{X}}\sa{\bar{x}}\varphi'$ and the property of subtraction by one will be~proven.
 
-\vspace{1em}
+\smallskip
 
 \noindent {\em Part (1).}  Let $\alpha =  \sa{\bar{X}}\sa{\bar{x}} \varphi(\bar{X},\bar{x})$ where $\varphi$ is an  $\fo$-formula.
-Note that, if $\alpha$ is of the form $\alpha = \sa{\bar{x}} \varphi(\bar{x})$ (i.e. $\length{\bar{X}} = 0$), we can define $\kappa(\alpha) = \sa{\bar{x}} [\varphi(\bar{x})\wedge\exists\bar{z}(\varphi(\bar{z})\wedge\bar{z} < \bar{x})]$, which is in $\eqso(\logex{1})$ and fulfills the desired condition. 
+Note that, if $\alpha$ is of the form $\alpha = \sa{\bar{x}} \varphi(\bar{x})$ (i.e. $\length{\bar{X}} = 0$), we can define $\kappa(\alpha) = \sa{\bar{x}} [\varphi(\bar{x})\wedge \ex{\bar{z}}(\varphi(\bar{z})\wedge\bar{z} < \bar{x})]$, which is in $\eqso(\logex{1})$ and fulfills the desired condition. 
 Therefore, for the rest of the proof we can assume that $\length{\bar{X}} > 0$ and $\length{\bar{x}} > 0$.
 
 To simplify the analysis of $\varphi$, the first step is to rewrite $\varphi$ in a DNF formula. 
-More precisely, we rewrite $\varphi$ into an equivalent formula of the form $\bigvee_{i = 1}^m \varphi_i$ for some $m\in \bbN$ where each $\varphi_i(\bar{X}, \bar{x}) = \exists \bar{y} \, \varphi_i'(\bar{X}, \bar{x}, \bar{y})$ and $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ is a conjunction of atomic formulas or negation of atomic formulas. Furthermore, we suppose that each conjunct $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ has the~form:
+More precisely, we rewrite $\varphi$ into an equivalent formula of the form $\bigvee_{i = 1}^m \varphi_i$ for some $m\in \bbN$ where each $\varphi_i(\bar{X}, \bar{x}) = \ex{\bar{y}} \varphi_i'(\bar{X}, \bar{x}, \bar{y})$ and $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ is a conjunction of atomic formulas or negation of atomic formulas. Furthermore, we assume that each $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ has the~form:
 $$
 \varphi_i'(\bar{X}, \bar{x}, \bar{y}) =  \underbrace{\varphi_i^{\fo}(\bar{x},\bar{y})}_{\text{an $\fo$ formula}} \wedge 
 \underbrace{\varphi_i^{+}(\bar{X},\bar{x},\bar{y})}_{\text{conjunction of $X_j$'s}} \wedge
 \underbrace{\varphi_i^{-}(\bar{X},\bar{x},\bar{y})}_{\text{conjunction of $\neg X_j$'s}}.
 $$
-Note that atomic formulas of the form $R(\bar{z})$ where $R \in \R$ will appear in the subformula $\varphi_i^{\fo}(\bar{x},\bar{y})$. 
+Note that atomic formulas, like $R(\bar{z})$ for $R \in \R$, will appear in the subformula $\varphi_i^{\fo}(\bar{x},\bar{y})$. 
 
-Now, we define a series of rewritings to $\varphi$ that will make each formula $\varphi_i$ satisfy the following three conditions: (a) no variable from $\bar{x}$ are mentioned in $\varphi_i^{-}(\bar{X},\bar{x},\bar{y})\wedge\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$, (b) $\varphi_i^{\fo}(\bar{x},\bar{y})$ defines an ordered partition over the variables in $(\bar{x},\bar{y})$ (see below for the definition of ordered partition) and (c) if $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ are mentioned, then the ordered partition should not satisfy $\bar{z} = \bar{w}$.
+Now, we define a series of rewritings to $\varphi$ that will make each formula $\varphi_i$ satisfy the following three conditions: (a) no variable from $\bar{x}$ are mentioned in $\varphi_i^{-}(\bar{X},\bar{x},\bar{y})\wedge\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$, (b) $\varphi_i^{\fo}(\bar{x},\bar{y})$ defines an ordered partition over the variables in $(\bar{x},\bar{y})$ (see below for the formal definition of ordered partition) and (c) if $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ are mentioned, then the ordered partition should not satisfy $\bar{z} = \bar{w}$.
 We explain below how to rewrite $\varphi_i$ in order to satisfy each condition.
-\begin{itemize}
-	\item[(a)] In order to satisfy the first condition, consider some instance of a $X_j(\bar{w})$ in $\varphi_i$, where $\bar{w}$ is a subtuple of $(\bar{x},\bar{y})$. We add $\length{\bar{w}}$ new variables $z_1,\ldots,z_{\length{\bar{w}}}$ to the formula and let $\bar{z} = (z_1,\ldots,z_{\length{\bar{w}}})$. We redefine $\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$ by replacing $X_j(\bar{w})$ with $X_j(\bar{z})$. The formula $\varphi_i$ is now defined as
+\begin{itemize} \itemsep1mm
+	\item[(a)] In order to satisfy the first condition, consider some instance of a $X_j(\bar{w})$ in $\varphi_i$, where $\bar{w}$ is a subtuple of $(\bar{x},\bar{y})$. We add $\length{\bar{w}}$ new variables $z_1,\ldots,z_{\length{\bar{w}}}$ to the formula and let $\bar{z} = (z_1,\ldots,z_{\length{\bar{w}}})$. We redefine $\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$ by replacing $X_j(\bar{w})$ with $X_j(\bar{z})$ (denoted by $\varphi_i^{+}(\bar{X},\bar{x},\bar{y})[X_j(\bar{w}) \leftarrow X_j(\bar{z})]$ and then the formula $\varphi_i$ is equivalently defined as:
 	$$
-	\varphi_i(\bar{X},\bar{x}) = \exists \bar{y} \exists \bar{z} \; (\bar{z} = \bar{w} \wedge \varphi_i^{\fo}(\bar{x},\bar{y})) \wedge \varphi_i^{-}(\bar{X},\bar{x},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{x},\bar{y})).
+	\varphi_i(\bar{X},\bar{x}) \ := \ \ex{\bar{y}} \ex{\bar{z}} (\bar{z} = \bar{w} \wedge \varphi_i^{\fo}(\bar{x},\bar{y})) \wedge \varphi_i^{+}(\bar{X},\bar{x},\bar{y})[X_j(\bar{w}) \leftarrow X_j(\bar{z})] \wedge
+	\varphi_i^{-}(\bar{X},\bar{x},\bar{y}).
 	$$
-	We repeat this process for each instance of a $X_j(\bar{w})$ in $\varphi_i$, and we obtain a formula where none of the $X_j$'s acts over any variable in $\bar{x}$. We add the new first-order variables to $\bar{y}$ and we redefine $\varphi_i$ as
+	We repeat this process for each instance of a $X_j(\bar{w})$ in $\varphi_i$, and we obtain a formula where none of the $X_j$'s acts over any variable in $\bar{x}$. We add the new first-order variables to $\bar{y}$ and we redefine $\varphi_i$ as:
 	$$
-	\varphi_i(\bar{X},\bar{x}) = \exists \bar{y} \; \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y}).
+	\varphi_i(\bar{X},\bar{x}) \ := \  \ex{\bar{y}} \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y}).
 	$$
-	For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = \exists \bar{y} \;  X(x,y)\wedge \neg X(x,x) \wedge x < y$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and $\varphi_i := \exists \bar{y} \;  X(v_1,v_2) \wedge \neg X(v_3,v_4) \wedge x < y \wedge v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x.$ 
+	For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = \ex{\bar{y}}  x < y \wedge  X(x,y)\wedge \neg X(x,x)$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and:
+	$$
+	\varphi_i \ := \ \ex{\bar{y}} v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x \wedge x < y  \wedge  X(v_1,v_2) \wedge \neg X(v_3,v_4).
+	$$ 
 	\item[(b)] An ordered partition on a set $S$ is defined by an equivalence relation $\sim$ over $S$, and a linear order over $S/\!\sim$. For example, let $\bar{x} = (x_1,x_2,x_3,x_4)$. A possible ordered partition would be defined by the formula $\theta(\bar{x}) = x_2 < x_1 \wedge x_1 = x_4 \wedge x_4 < x_3$. On the other hand, the formula $\theta'(\bar{x}) = x_1 < x_2 \wedge x_1 < x_4 \wedge x_2 = x_3$ does not define an ordered partition since both $\{x_1\}<\{x_2,x_3\}<\{x_4\}$ and $\{x_1\} < \{x_2,x_3,x_4\}$ satisfy $\theta'$.
 	For a given $k$, let $\cB_k$ be the number of possible ordered partitions for a set of size $k$. For $1 \leq j \leq \cB_{\length{(\bar{x},\bar{y})}}$ 
-	let $\theta^j(\bar{x},\bar{y})$ be a formula that defines an ordered partition over $(\bar{x},\bar{y})$. 
-	
-	Thus, the formula $\varphi_i(\bar{X},\bar{x})$ is then redefined as:
+	let $\theta^j(\bar{x},\bar{y})$ be the formula that defines the $j$-th ordered partition over $(\bar{x},\bar{y})$. 
+	Thus, the formula $\varphi(\bar{X},\bar{x})$ is then redefined as:
 	$$
-	\bigvee_{i = 1}^m \bigvee_{j = 1}^{\cB_{\length{(\bar{x},\bar{y})}}} \exists \bar{y} \; [\theta^j(\bar{x},\bar{y})\wedge \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y})],
+	\varphi(\bar{X},\bar{x}) \ := \ \bigvee_{i = 1}^m \bigvee_{j = 1}^{\cB_{\length{(\bar{x},\bar{y})}}} \ex{\bar{y}} [\theta^j(\bar{x},\bar{y})\wedge \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y})],
 	$$
 	Note that each $\theta^j(\bar{x},\bar{y})$ is an $\fo$-formula.
-	Then, by redefining $\varphi_i^{\fo}(\bar{x},\bar{y})$  as $\theta^j(\bar{x},\bar{y})\wedge \varphi_i^{\fo}(\bar{x},\bar{y})$, we can suppose that each $\varphi_i^{\fo}(\bar{x},\bar{y})$ defines an ordered partition over the variables in $(\bar{x},\bar{y})$.
-	\item[(c)] For showing that no $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ are mentioned in $\varphi_i$ with $\bar{z}$ and $\bar{w}$ equivalent in the ordered partition (i.e. $\varphi_i$ is inconsistent), we do the following. If there exists an instance of $X_j(\bar{z})$ in $\varphi^{+}_i$, an instance of $\neg X_j(\bar{w})$ in $\varphi^{-}_i$ and the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{z} = \bar{w}$, then the entire formula $\varphi_i$ is removed from $\varphi$.
+	Then, by redefining $\varphi_i^{\fo}(\bar{x},\bar{y})$  as $\theta^j(\bar{x},\bar{y})\wedge \varphi_i^{\fo}(\bar{x},\bar{y})$, we can suppose that each $\varphi_i^{\fo}(\bar{x},\bar{y})$ forces an ordered partition over the variables in $(\bar{x},\bar{y})$.
+	\item[(c)] Finally, for showing that no $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ are mentioned in $\varphi_i$ with $\bar{z}$ and $\bar{w}$ equivalent in the ordered partition (i.e. $\varphi_i$ is inconsistent), we do the following. If there exists an instance of $X_j(\bar{z})$ in $\varphi^{+}_i$, an instance of $\neg X_j(\bar{w})$ in $\varphi^{-}_i$ and the ordered partition in $\varphi^{\fo}_i$ satisfies $\bar{z} = \bar{w}$, then the entire formula $\varphi_i$ is removed from $\varphi$.
 \end{itemize}
-It is important to notice that the resulting $\varphi$ is equivalent to the initial one, and it is still a formula in $\eqso(\logex{1})$. From now on, we assume that each $\varphi_i(\bar{X},\bar{x}) = \exists \bar{y} \;  \varphi_i'(\bar{X},\bar{x}, \bar{y}) $ satisfies conditions (a), (b) and (c), and $\varphi_i'(\bar{X},\bar{x}, \bar{y})$ has the following~form:
+It is important to notice that the resulting $\varphi$ is equivalent to the initial one, and it is still a formula in $\eqso(\logex{1})$. From now on, we assume that each $\varphi_i(\bar{X},\bar{x}) = \ex{\bar{y}}  \varphi_i'(\bar{X},\bar{x}, \bar{y}) $ satisfies conditions (a), (b) and (c), and $\varphi_i'(\bar{X},\bar{x}, \bar{y})$ has the following~form:
 $$
 \varphi_i'(\bar{X},\bar{x}, \bar{y}) \; = \; \varphi^{\fo}_i(\bar{x},\bar{y}) \wedge \varphi^{+}_i(\bar{X}, \bar{y}) \wedge \varphi^{-}_i(\bar{X},\bar{y}) 
 $$
 where $\varphi^{+}$ and $\varphi^{-}_i$ do not depend on  $\bar{x}$.
 \begin{clm}\label{claim:minusone}
-	For a given ordered structure $\A$ and a first-order assignment $v$ for $\A$, $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ if, and only if, there exists a second-order assignment $V$ for $\A$ such that $(\A,V,v)\models \varphi_i'(\bar{X},\bar{x}, \bar{y})$.
+	For an ordered structure $\A$ and a first-order assignment $v$ for $\A$, $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$ if, and only if, there exists an assignment $V$ for $\A$ such that $(\A,V,v)\models \varphi_i'(\bar{X},\bar{x}, \bar{y})$.
 \end{clm}
 \proof
 	Let $\A$ be an ordered structure with domain $A$ and let $v$ be a first-order assignment for $\A$, such that $(\A,v)\models\varphi^{\fo}_i(\bar{x},\bar{y})$.
@@ -82,7 +91,7 @@ One can easily check that for every assignments $(V, v)$ such that $(\A,V,v)\mod
 Therefore, by choosing one particular $v$ the plan is to remove $\bar{B}^v$ as an assignment over $\bar{X}$ in $\varphi_i$. 
 For this, the idea is to choose the minimal $v$ that satisfies $\varphi^{\fo}_i(\bar{x},\bar{y})$ which can be defined with the following formula:
 \[
-\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge\forall\bar{x}'\forall\bar{y}'(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')).
+\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge \fa{\bar{x}'} \fa{\bar{y}'}(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')).
 \] 
 If $\varphi^{\fo}_i$ is satisfiable, let $v$ be the only assignment such that  $(\A,v)\models \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y})$. 
 Furthermore, let $V^*$ the second order assignment and $v^*$ the first order assignment that satisfy $V^*(\bar{X}) = \bar{B}^{v}$ and $v^*(\bar{x}) = v(\bar{x})$.
@@ -94,13 +103,13 @@ Towards this goal, we can define a formula $\psi_i(\bar{X},\bar{x})$ such that $
 $V \neq V^*$ or $v \neq v^*$ whenever $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 This property can be defined as follows:
 \begin{align}
-\psi_i(\bar{X},\bar{x}) = &\big( \, \exists\bar{x}\exists\bar{y}\, \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
+\psi_i(\bar{X},\bar{x}) = &\big( \, \ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
 &\Big( \; 
-\exists\bar{y}~\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \bigvee_{X \in \bar{X}} \exists\bar{z}\, ( \, X(\bar{z}) \wedge \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{v})}\bar{w}\neq\bar{z} \, ) \big)  \;\;\;\;  \vee   \label{eq:part2} \\ 
-&(\; \exists\bar{x}'\exists\bar{y}\; \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x} \; ) \;\; \Big)  \label{eq:part3}
+\ex{\bar{y}} \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \bigvee_{X \in \bar{X}} \ex{\bar{z}} ( \, X(\bar{z}) \wedge \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{v})}\bar{w}\neq\bar{z} \, ) \big)  \;\;\;\;  \vee   \label{eq:part2} \\ 
+&(\; \ex{\bar{x}'} \ex{\bar{y}} \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x} \; ) \;\; \Big)  \label{eq:part3}
 \end{align}
 To understand the formula, first notice that the premise of the implication at (\ref{eq:part1}) is true if, and only if, $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
-Indeed, by Claim~\ref{claim:minusone} we know that if $\exists\bar{x}\exists\bar{y}\, \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exists assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
+Indeed, by Claim~\ref{claim:minusone} we know that if $\ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exists assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
 Then, the conclusion of the implication (divided into (\ref{eq:part2}) and (\ref{eq:part3})), take care that $V(\bar{X}) \neq V^*(\bar{X})$ or $v(\bar{x}) \neq v^*(\bar{x})$.
 Here, the first disjunct (\ref{eq:part2}) checks that $V(\bar{X}) \neq V^*(\bar{X})$ by defining that if $\varphi_i'(\bar{X},\bar{x}, \bar{y})$ is satisfied then $V^*(\bar{X}) \subsetneq V(\bar{X})$. 
 The second disjunct (\ref{eq:part3}) is satisfied when $v(\bar{x})$ is not the lexicographically smallest tuple that satisfies $\varphi_i$ (i.e. $v(\bar{x}) \neq v^*(\bar{x})$).
@@ -108,7 +117,7 @@ Finally, from the previous discussion one can easily check that $\psi_i(\bar{X},
 
 We are ready to define the formula  $\kappa(\alpha)$ as $\sa{\bar{X}}\sa{\bar{x}} \bigvee_{i = 1}^m\varphi_i^*(\bar{X},\bar{x})$
 where each modified disjunct $\varphi_i^*(\bar{X},\bar{x})$ is constructed as follows. 
-For the sake of simplification, define the auxiliary formula $\chi_i = \neg\exists\bar{x}\exists\bar{y}\,\varphi^{\fo}_i(\bar{x},\bar{y})$. 
+For the sake of simplification, define the auxiliary formula $\chi_i = \neg \ex{\bar{x}} \ex{\bar{y}}\varphi^{\fo}_i(\bar{x},\bar{y})$. 
 This formula basically checks if $\varphi_i$ is not satisfiable (recall Claim~\ref{claim:minusone}).
 Define the first formula $\varphi_1^*$ as:
 \[
@@ -126,12 +135,12 @@ One can easily generalize this construction for each $\varphi_i$ as follows:
 \end{multline*}
 From the construction of $\kappa(\alpha)$, one can easily check that  $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A)-1$ for each $\A$.
 
-\vspace{1em}
+\smallskip
 
 {\em Part (2).} Let $\alpha = (\beta + \sa{\bar{X}}\sa{\bar{x}} \varphi(\bar{X},\bar{x})$ for some $\eqso(\logex{1})$ formula $\beta$. We define $\kappa(\alpha)$ as follows.
 First, rewrite $\varphi(\bar{X},\bar{x})$ as in the previous section. Let $\varphi = \bigvee_{i = 1}^m\varphi_i(\bar{X},\bar{x})$ where each $\varphi_i$ satisfies conditions (a), (b) and (c). Also, consider the previously defined formulas $\chi_i$ and $\psi_i$, for each $i$. 
 
-We construct a function $\lambda$ that receives a quantitative formula $\beta$ and produces a logic formula $\lambda(\beta)$ that satisfies $\A\models\lambda(\beta)$ if, and only if, $\sem{\beta}(\A) = 0$. If $\beta = \sa{\bar{x}} \varphi(\bar{x})$, then $\lambda(\beta) = \neg\exists\bar{x}'\varphi(\bar{x}')$. If $\beta = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$, then let $\varphi = \bigvee_{i = 1}^{m}\varphi_i$ where each $\varphi_i$ satisfies conditions (a), (b) and (c) of the previous section, and define $\lambda(\beta) = \chi_1\wedge \cdots\wedge\chi_m$. If $\beta = (\beta_1 + \beta_2)$, then $\lambda(\beta) = \lambda(\beta_1) \wedge \lambda(\beta_2)$.
+We construct a function $\lambda$ that receives a quantitative formula $\beta$ and produces a logic formula $\lambda(\beta)$ that satisfies $\A\models\lambda(\beta)$ if, and only if, $\sem{\beta}(\A) = 0$. If $\beta = \sa{\bar{x}} \varphi(\bar{x})$, then $\lambda(\beta) = \neg \ex{\bar{x}'} \varphi(\bar{x}')$. If $\beta = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$, then let $\varphi = \bigvee_{i = 1}^{m}\varphi_i$ where each $\varphi_i$ satisfies conditions (a), (b) and (c) of the previous section, and define $\lambda(\beta) = \chi_1\wedge \cdots\wedge\chi_m$. If $\beta = (\beta_1 + \beta_2)$, then $\lambda(\beta) = \lambda(\beta_1) \wedge \lambda(\beta_2)$.
 Now, for each $\varphi_i$ we define:
 \begin{multline*}
 \varphi_i^*(\bar{X},\bar{x}) = \varphi_i(\bar{X},\bar{x})\wedge\Big(\lambda(\beta)\to\Big(\psi_1(\bar{X},\bar{x})\,\wedge \\
