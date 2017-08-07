@@ -8,7 +8,7 @@ defines $\chsat$. In order to encode $\shdhsat$, we extend $\psi(\pT,\pA)$ by ad
 & \fa{c} \fa{x}  (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
 & \fa{c} \fa{x} (\neg \pD(c,d)\vee\textit{A}(c,x) \vee \neg\textit{T}(x)) \ \big]
 \end{align*}
-One can check that $\psi'(T,A)'$ effectively defines $\shdhsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi'(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
+One can check that $\psi'(T,A)$ effectively defines $\shdhsat$ as for every disjunction of Horn formulas $\theta = \theta_1\vee\cdots\vee\theta_m$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \sa{\pA} \psi'(\pT,\pA)}(\A)$.  Therefore, we conclude that $\shdhsat \in \eqso(\ehorn)$.
 
 Next, we will prove that $\shdhsat$ is hard for $\eqso(\ehorn)$ over a signature~$\R$ under parsimonious reductions. For each $\eqso(\ehorn)$ formula $\alpha$ over $\R$, we will define a polynomial-time function $g_{\alpha}$ that  receives an $\R$-structure $\A$ and outputs an instance of $\shdhsat$ such that $\sem{\alpha}(\A) = \shdhsat(g_{\alpha}(\A))$. By Proposition~\ref{theo-pnf-snf}, we can assume that $\alpha$ is of the form:
 $$
