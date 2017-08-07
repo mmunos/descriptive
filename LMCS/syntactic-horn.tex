@@ -58,9 +58,8 @@ Formally, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\ex{\b
 \begin{prop}\label{prop:ehorn-pe}
 $\eqso(\ehorn) \subseteq \totp$.
 \end{prop}
-\proof
-\input{proof-ehorn-pe}
-\qed
+For the sake of simplification, we postpone the proof the previous proposition after the proof of Theorem~\ref{sigma2hard}.
+
 Interestingly, we have that both $\chsat$ and $\cdnf$ belong to $\eqso(\ehorn)$. 
 An imperative question at this point is whether in the definitions of $\uhorn$ and $\ehorn$, it is necessary to allow negative literals of the form $\ex{\v} \neg X(\u,\v)$. Actually, this forces our Horn classes to be included in $\eqso(\logu{2})$ and not necessarily in $\eqso(\loge{2})$. The following result shows that this is indeed the case.
 
@@ -78,4 +77,8 @@ $\shdhsat$ as the problem of counting the satisfying assignments of a formula $\
 \end{thm}
 \proof
 \input{proof-sigma2hard}
+\qed
+
+\noindent{\emph{Proof of Proposition~\ref{prop:ehorn-pe}.}}
+\input{proof-ehorn-pe}
 \qed
