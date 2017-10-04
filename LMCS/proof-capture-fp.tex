@@ -1,10 +1,13 @@
-In this proof and the followings, we will reuse the symbol $<$ to denote the lexicographic order over same-sized tuples. Formally, for $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ we denote by $\bar{x} < \bar{y}$ the formula:
+In this and the following proofs, we will reuse the symbol $<$ to denote the lexicographic order over same-sized tuples. 
+Formally, for $\bar{x} = (x_1,\ldots,x_m)$ and $\bar{y} = (y_1,\ldots,y_m)$ we denote by $\bar{x} < \bar{y}$ the formula:
 $$
 \bigvee_{i = 1}^m \, \bigwedge_{j = 1}^{i-1} \, (x_j = y_j \wedge x_i < y_i).
 $$
 Similarly, we use $\bar{x} = \bar{y}$ to denote equality between tuples and $\bar{x} \leq \bar{y}$  to denote $\bar{x} < \bar{y} \vee \bar{x} = \bar{y}$.
 %Furthermore, If $\bar{x} = (x_1,\ldots,x_m)$ ($\bar{X} = (X_1,\ldots,X_m)$) is a tuple of first-order (second-order) variables, we denote $\sa{\bar{x}}\alpha$ for $\sa{x_1}\cdots\sa{x_m}\alpha$ and $\sa{\bar{X}}\alpha$ for $\sa{X_1}\cdots\sa{X_m}\alpha$ for each $\qso$ formula $\alpha$.
-We will also use some syntactic sugar in $\qso$ to simplify formulas. Specifically, we will use the {\em conditional count} symbol $(\varphi \mapsto \alpha)$ defined as $ (\varphi\cdot\alpha) + \neg\varphi$ for any Boolean formula $\varphi$ and any quantitative formula $\alpha$. Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$:
+We will also use some syntactic sugar in $\qso$ to simplify formulas. 
+Specifically, we will use the {\em conditional count} symbol $(\varphi \mapsto \alpha)$ defined as $ (\varphi\cdot\alpha) + \neg\varphi$ for any Boolean formula $\varphi$ and any quantitative formula $\alpha$. 
+Note that for each $\A \in \ostr[\R]$, and each first-order (second-order) assignment $v$ ($V$) over $\A$:
 \[
 \sem{(\varphi \mapsto \alpha)}(\A,v,V) = 
 \begin{cases}
@@ -12,8 +15,9 @@ We will also use some syntactic sugar in $\qso$ to simplify formulas. Specifical
 1 &\text{otherwise}.
 \end{cases}
 \]
-
-Now we prove Theorem~\ref{theo:capture-fp}. For condition (1), recall that checking whether $\A\models\varphi$ for any $\lfp$ formula $\varphi$ can be done in deterministic polynomial time on the size of $\A$\cite{I83}. 
+Furthermore, we use $\size{\A}$ to denote the size of an $\R$-structure $\A$.
+Now we prove Theorem~\ref{theo:capture-fp}. 
+For condition (1), recall that checking whether $\A\models\varphi$ for any $\lfp$ formula $\varphi$ can be done in deterministic polynomial time on the size of $\A$\cite{I83}. 
 %Also, the constant function $s$ can be trivially simulated in $\fp$. 
 Furthermore, it is easy to check that $\fp$ is closed under polynomial sum and multiplication. 
 We conclude then that any formula in $\qfo(\lfp)$ can be computed in $\fp$.	
@@ -29,6 +33,6 @@ Clearly, the language $L$ is in $\ptime$ and by \cite{I83} there exists a formul
 We use then the following formula to encode $f$:
 $$
 \alpha = \sa{\bar{x}} \Phi(\bar{x})\cdot \pa{\bar{y}}(\bar{y} < \bar{x}) \mapsto 2)$$
-Note that the subformula $\pa{\bar{y}}(\bar{y} < \bar{x}) \mapsto 2$ takes the value $2^m$ if there exist $m$ tuples in $A^{\ell}$ that are smaller than $\bar{x}$. Summing these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. 
+Note that the subformula $\pa{\bar{y}}(\bar{y} < \bar{x}) \mapsto 2$ takes the value $2^m$ if there exist $m$ tuples in $A^{\ell}$ that are smaller than $\bar{x}$. Adding these values for each $\bar{a}\in A^{\ell}$ gives exactly $f(\enc(\A))$. 
 In other words, $\Phi(\bar{x})$ simulates the behavior of the $\fp$-machine and the formula $\alpha$ reconstructs the binary output bit by bit.
 Then $\alpha$ is in $\qfo(\lfp)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.

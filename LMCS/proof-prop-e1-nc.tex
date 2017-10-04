@@ -1,9 +1,18 @@
-Towards a contradiction, assume that the statement is false, namely, $\E{1}$ is closed under binary sum. Consider the formula $\sa{x}(x = x) \in \E{1}$ over some signature $\R$. Clearly, for every finite $\R$-structure $\A$ with $n$ elements it holds that $\alpha(\enc(\A)) = n$. From our assumption, there exists some formula in $\E{1}$ equivalent to the formula $\alpha \add \alpha$, which describes the function $2n$. Let $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ be this formula, where $\varphi$ is a quantifier-free first-order formula. Note that the function defined by this formula is equal or greater than the one defined by $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ divided by a polynomial factor. More specifically, for each ordered structure $\A$ with $n$ elements, we have the following inequality:
+Towards a contradiction, assume that $\E{1}$ is closed under binary sum. 
+Consider the formula $\alpha = \sa{x}(x = x) \in \E{1}$ over some signature $\R$. 
+This defines the function $\sem{\alpha}(\A) = \size{\A}$. 
+From our assumption, there exists some formula in $\E{1}$ equivalent to the formula $\alpha \add \alpha$, which describes the function $2\size{\A}$. 
+Let $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ be this formula, where $\varphi$ is in first-order and quantifier-free. 
+For each $\R$-structure $\A$, we have the following inequality:
 $$
 \sem{\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A)
 \leq 
-\sem{\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A) \cdot  n^{\length{\bar{y}}} \leq 2n^{\length{\bar{y}}+1} 
+\sem{\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A) \cdot  \size{\A}^{\length{\bar{y}}} \leq 2\size{\A}^{\length{\bar{y}}+1} 
 $$
-Note that the formula $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ defines a function in $\E{0}$ and it was shown by the authors in \cite{SalujaST95} that every function in $\E{0}$ grows exponentially over the size of the structure for large enough structures, when $\length{\bar{X}} > 0$. This contradict the above inequality and, therefore, for $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ we have that $\length{\bar{X}} = 0$.
+Note that the formula $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ defines a function in $\E{0}$. 
+Therefore, as it was proven in \cite{SalujaST95}, if $\length{\bar{X}} > 0$ then the function is in $\Omega(2^{\size{\A}})$, which violates the inequality.
 
-Now, if the formula for defining $\alpha + \alpha$ is of the form $\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})$ consider a structure $\mathfrak{1}$ with only one element $a$. We have that $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) = 2$, but the only possible assignment to $\bar{x}$ is the tuple $(a,\ldots,a)$ so $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) \leq 1$, which leads to a contradiction.
+We now have that $\length{\bar{X}} = 0$. 
+Consider a structure $\mathfrak{1}$ with only one element. 
+We have that $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) = 2$, but since the structure has only one element, there is only one possible assignment to $\bar{x}$. 
+And so, $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) \leq 1$, which leads to a contradiction.
