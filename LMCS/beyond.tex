@@ -7,7 +7,7 @@ To this end, we show first how to extend $\qso$ with function symbols that are l
 used 
 to define a natural generalization for functions of 
 the notion of least fixed point of LFP.
- As a proof of concept, we show that how this notion can be used to captures $\fp$.
+ As a proof of concept, we show that this notion can be used to captures $\fp$.
 Moreover, we use this concept
 to define an operator for counting paths in a graph, a natural generalization of the transitive closure operator~\cite{immerman1999descriptive}, and show that this gives rise to a logic that captures~$\shl$. 
 
@@ -30,7 +30,7 @@ As for the case of $\qfo$, we define $\fqfo$ disallowing quantifiers $\Sigma X$ 
 
 It is worth noting that function symbols in $\fqso$ represent functions from tuples to natural numbers, so they are different from the classical notion of function symbol in $\fo$~\cite{L04}. 
 Furthermore, a function symbol can be seen as an ``oracle'' that is instantiated by the function assignment. 
-To the best of our knowledge, this is the first paper to propose this extension on weighted logics, which should be further investigated. 
+To the best of our knowledge, this is the first article to propose this extension on weighted logics, which we think should be further investigated. 
 
 We define an extension of LFP \cite{I86,vardi1982complexity} to allow counting. 
 More precisely, the set of $\rqfo(\fo)$ formulae over a signature $\R$, where $\rqfo$ stands for recursive $\qfo$, is defined as an extension of $\qfo(\fo)$ that includes the formula $\clfp{\beta(\x, h)}$, where (1) $\x = (x_1, \ldots, x_\ell)$ is a sequence of $\ell$ distinct first-order variables, (2) $\beta(\x, h)$ is an $\fqfo(\fo)$-formula over $\R$ whose only function symbol is $h$, and (3) $\arity(h) = \ell$. The free variables of the formula $\clfp{\beta(\x,h)}$ are $x_1, \ldots, x_\ell$; in particular, $h$ is not considered to be free.
@@ -47,24 +47,28 @@ We can view $T$ as an operator on functions if we consider the characteristic fu
 (a) $\support(T^\star(\chi_R)) = \support(\chi_R)$, and  (b) $\support(\chi_R) \subseteq \support(\chi_S)$ for every $S$ such that  $\support(T^\star(\chi_{S})) = \support(\chi_S)$.
 To define a notion of fixed point for $T_\beta$ we simply generalized these conditions. More precisely, a function $f \in \F$ is a {\em s-fixed point} of $T_{\beta}$ if $\support(T_\beta(f)) = \support(f)$, and $f$ is a {\em least s-fixed point} of $T_{\beta}$ if $f$ is a s-fixed point of $T_\beta$ and for every s-fixed point $g$ of $T_\beta$ it holds that $\support(f) \subseteq \support(g)$. The existence of such fixed point is ensured by the following lemma:
 \begin{lem}\label{lem-support}
-If $f,g \in \F$ and $\support(f) \subseteq \support(g)$, then $\support(T_\beta(f)) \subseteq \support(T_\beta(g))$.
+Let $h \in \fs$ such that $\arity(h) = \ell$, and $\beta$ be an $\fqfo(\fo)$-formula over a signature $\R$ such that only $h$ can occur as a function symbol in $\beta$. Moreover, let $\A$ be an $\R$-structure with domain $A$, $f,g : A^\ell \to \mathbb{N}$ and $F,G$ be function assignments such that $F(h) = f$ and $F(h) = g$. If $\support(f) \subseteq \support(g)$, then for every first-order and second-order assignments $v$ and $V$, respectively, it holds that:
+\begin{center}
+if $\sem{\beta}(\A,v,V,F) > 0$, then $\sem{\beta}(\A,v,V,G) > 0$.
+\end{center}
 \end{lem}
 \proof
 \input{proof-lem-support}
 \qed
-In fact, as for the case of LFP, this lemma gives us a simple way to compute a least s-fixed point of $T_\beta$. Let $f_0 \in \F$ be a function such that $f_0(\bar a) = 0$ for every $\bar a \in A^\ell$ (i.e. $f_0$ is the only function with empty support), and let function $f_{i+1}$ be defined as $T_\beta(f_i)$ for every $i \in \N$. Then there exists $j \geq 0$ such that $\support(f_j) = \support(T_\beta(f_j))$. Let $k$ be the smallest natural number such that $\support(f_{k}) = \support(T_\beta(f_k))$. We have that $f_k$ is a least s-fixed point of $T_\beta$, which is used to defined the semantics of $\clfp{\beta(\x, h)}$. More specifically, for an arbitrary first-order assignment $v$ for $\A$:
+
+In the particular case of an $\rqfo(\fo)$-formula $\clfp{\beta(\x, h)}$, Lemma  \ref{lem-support} tell us that if $f,g \in \F$ and $\support(f) \subseteq \support(g)$, then $\support(T_\beta(f)) \subseteq \support(T_\beta(g))$. Hence, as for the case of LFP, this lemma gives us a simple way to compute a least s-fixed point of $T_\beta$. Let $f_0 \in \F$ be a function such that $f_0(\bar a) = 0$ for every $\bar a \in A^\ell$ (i.e. $f_0$ is the only function with empty support), and let function $f_{i+1}$ be defined as $T_\beta(f_i)$ for every $i \in \N$. Then there exists $j \geq 0$ such that $\support(f_j) = \support(T_\beta(f_j))$. Let $k$ be the smallest natural number such that $\support(f_{k}) = \support(T_\beta(f_k))$. We have that $f_k$ is a least s-fixed point of $T_\beta$, which is used to defined the semantics of $\clfp{\beta(\x, h)}$. More specifically, for an arbitrary first-order assignment $v$ for $\A$:
 \begin{align*}
 \sem{\clfp{\beta(\x, h)}}(\A,v) &= f_{k}(v(\x))
 \end{align*}
 
 \begin{exa} \label{ex:count-path}
-We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot), < \}$, and then define formula $\alpha(x, y, f)$ as follows:
+We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length at most $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot)\}$, and then define formula $\alpha(x, y, f)$ as follows:
 $$ 
 E(x,y) + \sa{z} f(x,z)\cdot E(z,y).
 $$
 We have that $\clfp{\alpha(x,y,f)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain encoding an acyclic directed graph. Moreover, assume that $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\clfp{\alpha(x,y,f)}}(\A,v)$ is equal to the  number of paths in $\A$ from $b$ to $c$ of length at most $n$.
 
-Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are the $\fo$-formulae for defining the first and successor predicates, respectively, of $<$. Moreover, define formula $\beta(x, y, t, g)$ as follows:
+Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are $\fo$-formulae defining the first element of $<$ and the successor relation associated to $<$, respectively.\footnote{Recall that in this paper we consider ordered $\R$-structures.} Moreover, define formula $\beta(x, y, t, g)$ as follows:
 \begin{align*}
 (E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t) \ +
 \sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)
@@ -73,10 +77,10 @@ Then our extended counting function is defined by:
 $$
 \sa{t} (\varphi_{\text{\rm first}}(t) \cdot \clfp{\beta(x,y,t,g)}).
 $$ 
-In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain.
+In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain. \qed
 \end{exa}
 In contrast with $\lfp$, to reach a fixed point we do not need to impose any positive restriction on the formula $\beta(\x,h)$.
-Indeed, since $\beta$ is constructed from monotones operations (i.e. sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.
+In fact, since $\beta$ is constructed from monotones operations (sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.
 
 Now that a least fixed point operator over functions is defined, the next step is to understand its expressive power.
 In the following theorem, we show that this operator can be used to capture $\fp$.
@@ -89,7 +93,7 @@ In the following theorem, we show that this operator can be used to capture $\fp
 Our last goal in this section is to use the new characterization of $\fp$ to explore classes below it.
 It was shown in \cite{I86,I88} that $\fo$ extended with a transitive closure operator captures $\nlog$. 
 Inspired by this work, we show that a restricted version of $\rqfo$ can be used to capture $\shl$, the counting version of $\nlog$. 
-Specifically, we use $\rqfo$ to define an operator for counting the number of paths in a directed graph, which is what is needed to capture $\shl$.
+Specifically, we use $\rqfo$ to define an operator for counting the number of paths in a directed graph, which is what is needed to capture~$\shl$.
 
 Given a relation signature $\R$, the set of transitive $\qfo$ formulae ($\tqfo$-formulae) is defined as an extension of $\qfo$ with the formula $[\pth \psi(\bar{x},\bar{y})]$, where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, and $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined in terms of $\rqfo(\fo)$ as follows. 
 Given an $\R$-structure $\A$ with domain $A$, define a (directed) graph $\cG_{\psi}(\A) = (N,E)$ such that $N = A^k$ and for every pair $\bar b, \bar c \in N$, it holds that $(\bar b, \bar c) \in E$ if, and only if, $\A \models \psi(\bar b, \bar c)$.
@@ -100,18 +104,24 @@ Similar than for Example~\ref{ex:count-path}, we can count the paths of length a
 \end{align*}
 where $\varphi_{\text{\rm first-lex}}$ and $\varphi_{\text{succ-lex}}$ are $\fo$-formulae defining the first and successor predicates over tuples in $A^k$, following the lexicographic order induced by~$<$.
 Then the semantics of the path operator can be defined by using the following definition of $[\pth \psi(\bar{x},\bar{y})]$ in $\rqfo$:
-\[
-[\pth \psi(\bar{x}, \bar{y})] \ :=\ \sa{\t} (\varphi_{\text{\rm first}}(\t) \cdot \clfp{\beta_{\psi(\bar{x},\bar{y})}(\x,\y,\t,g)}).
-\]
+\begin{eqnarray*}
+[\pth \psi(\bar{x}, \bar{y})] & := & \sa{\t} (\varphi_{\text{\rm first}}(\t) \cdot \clfp{\beta_{\psi(\bar{x},\bar{y})}(\x,\y,\t,g)}).
+\end{eqnarray*}
 In other words, $\sem{[\pth \psi(\bar{x}, \bar{y})]}(\A,v)$ counts the number of paths from $v(\bar x)$ to $v(\bar y)$ in the graph $\cG_{\psi}(\A)$ whose length is at most~$|A^k|$.
-As it was previously said, the operator for counting paths is exactly what we need to capture $\shl$.
+As it was mentioned, the operator for counting paths is exactly what we need to capture $\shl$.
 \begin{thm} \label{tqfo-shl}
 	$\tqfo(\fo)$ captures $\shl$ over ordered structures.
 \end{thm}
 \proof
 \input{proof-tqfo-shl}
 \qed
-This last result perfectly illustrates the benefits of our logical framework for the development of descriptive complexity for counting complexity classes.  
-The distinction in the language between the Boolean and the quantitative level allows us to define operators at the later level that cannot be defined at the former. 
-As a example showing how fundamental this separation is, consider the issue of extending $\qfo(\fo)$ at the Boolean level in order to capture $\shl$. The natural alternative to do this is to use $\fo$ extended with a transitive closure operator, which is denoted by $\tc$. But then the problem is that for every language $L \in \nlog$, it holds that its characteristic function $\chi_L$ is in $\qfo(\tc)$, where $\chi_L(x) = 1$ if $x \in L$, and $\chi_L(x) = 0$ otherwise. Thus, if we assume that $\qfo(\tc)$ captures $\shl$ (over ordered structures), then we have that $\chi_L \in \nlog$ for every $L \in \nlog$. This implies that $\nlog = \ulog$,\footnote{A decision language $L$ is in $\ulog$ is there exists a logarithmic-space NTM $M$ accepting $L$ and satisfying that $\tma_M(x) = 1$ for every $x \in L$.} 
-and thus contradicts the widely believed assumption that $\ulog \subsetneq \nlog$.
+%This last result perfectly illustrates the benefits of our logical framework for the development of descriptive complexity for counting complexity classes.  
+%The distinction in the language between the Boolean and the quantitative level allows us to define operators at the later level that cannot be defined at the former. 
+%As a example showing how fundamental this separation is, consider the issue of extending $\qfo(\fo)$ at the Boolean level in order to capture $\shl$. The natural alternative to do this is to use $\fo$ extended with a transitive closure operator, which is denoted by $\tc$. But then the problem is that for every language $L \in \nlog$, it holds that its characteristic function $\chi_L$ is in $\qfo(\tc)$, where $\chi_L(x) = 1$ if $x \in L$, and $\chi_L(x) = 0$ otherwise. Thus, if we assume that $\qfo(\tc)$ captures $\shl$ (over ordered structures), then we have that $\chi_L \in \nlog$ for every $L \in \nlog$. This implies that $\nlog = \ulog$,\footnote{A decision language $L$ is in $\ulog$ is there exists a logarithmic-space NTM $M$ accepting $L$ and satisfying that $\tma_M(x) = 1$ for every $x \in L$.} 
+%and thus contradicts the widely believed assumption that $\ulog \subsetneq \nlog$.
+This last result 
+perfectly 
+illustrates the benefits of our logical framework for the development of descriptive complexity for counting %functions.
+complexity classes.  
+The distinction in the language between the Boolean and the quantitative level allows us to define operators at the latter level that cannot be defined at the former. 
+As a example showing how fundamental this separation is, consider the issue of extending $\qfo(\fo)$ at the Boolean level in order to capture $\shl$. The natural alternative to do this is to use $\fo$ extended with a transitive closure operator, which is denoted by $\tc$. But then the problem is that for every language $L \in \nlog$, it holds that its characteristic function $\chi_L$ is in $\qfo(\tc)$, where $\chi_L(x) = 1$ if $x \in L$, and $\chi_L(x) = 0$ otherwise. Thus, if we assume that $\qfo(\tc)$ captures $\shl$ (over ordered structures), then we have that $\chi_L \in \shl$ for every $L \in \nlog$. This would imply that $\nlog = \ulog$,\footnote{A decision language $L$ is in $\ulog$ is there exists a logarithmic-space NTM $M$ accepting $L$ and satisfying that $\tma_M(x) = 1$ for every $x \in L$.} solving an outstanding open problem \cite{Reinhardt97}.

@@ -45,7 +45,7 @@ More precisely, we have that:
 \begin{align*}
 \sem{\sa{\pT} \varphi(\pT)}(\A) &= \sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A),
 \end{align*}
- for every $\R$-structure $\A$ encoding a Horn formula. Therefore, the formula $\psi(\pT,\pA)$ also defines $\chsat$. More importantly, $\psi(\pT,\pA)$ resembles a conjunction of Horn clauses except for the use of negative literals of the form $\ex{v} \neg \textit{A}(u,v)$.
+ for every $\R$-structure $\A$ encoding a Horn formula. Therefore, the formula $\psi(\pT,\pA)$ also defines $\chsat$. More importantly, $\psi(\pT,\pA)$ resembles a conjunction of Horn clauses except for the use of negative literals of the form $\ex{v} \neg \textit{A}(u,v)$. \qed
 \end{exa}
 The previous example suggests that to define $\chsat$, we can use Horn formulae defined as follows. 
 A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order variable and $\x$ is a tuple of first-order variables, and a negative literal is a formula of the form $\ex{\v} \neg X(\u,\v)$, where $\u$ and $\v$ are tuples of first-order variables. Given a signature $\R$, a clause over $\R$ is a formula of the form $\fa{\x} (\varphi_1 \vee \cdots \vee \varphi_n)$, 
