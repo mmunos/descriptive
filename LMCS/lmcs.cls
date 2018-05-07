@@ -243,16 +243,16 @@
 \hbox{%
   \vbox{\fontsize{6}{8 pt}\baselineskip=6 pt\vss
     \hbox{\hbox to 20 pt{\hfill}
-          \textsf{LOGICAL METHODS}\hfil}
+          \textsf{}\hfil}
     \hbox{\hbox to 20 pt{\phantom{x}}
-          \textsf{IN COMPUTER SCIENCE}}}}
-\hfill\textsf{DOI:10.2168/LMCS-???}
+          \textsf{}}}}
+\hfill\textsf{}
 %\hfill\textsf{\copyright\shortauthors}
 \hfill
 \hbox{%
   \vbox{\fontsize{6}{8 pt}\baselineskip=6 pt\vss
-    \hbox{\textsf{\,\,\copyright\quad \shortauthors}\hfil}
-    \hbox{\textsf{Creative Commons}\hfil}}}
+    \hbox{\textsf{\,\,}\hfil}
+    \hbox{\textsf{}\hfil}}}
 \par\kern\z@}%
 }
 %\def\endfront@text{}
@@ -263,11 +263,7 @@
       \fontsize{6}{7\p@}\normalfont\upshape
       \everypar{}%
       \noindent\fontencoding{T1}%
-  \textsf{This work is licensed under the Creative Commons
-  Attribution-NoDerivs License. To view a copy of this license, visit
-  \texttt{http://creativecommons.org/licenses/by-nd/2.0/} or send a
-  letter to Creative Commons, 171 Second St, Suite 300, San Francisco,
-    CA 94105, USA, or Eisenacher Strasse 2, 10777 Berlin, Germany}\vss}
+  \textsf{}\vss}
       \par
       \kern\z@}%
 }
