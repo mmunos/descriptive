@@ -10,11 +10,11 @@ Let $\R$ be a relational signature and $\alpha$ a formula over $\R$ in $\tqfo(\f
 Second, we show that every function in $\shl$ can be encoded by a formula in $\tqfo(\fo)$.
 Let $f$ be a function in $\shl$ and $M$ a logarithmic-space nondeterministic  Turing Machine such that $\tma_M(\enc(\A)) = f(\enc(\A))$. We assume that $M$ has only one accepting state, and that no transition is defined for this state. Moreover, we assume that there exists only one accepting configuration. We make use of transitive closure logic ($\tc$) to simplify our proof~\cite{G07}. We have that $\tc$ captures $\nlog$\cite{I83}, so that there exists a formula $\varphi$ in $\tc$ such that $\A\models\varphi$ if and only if $M$ accepts $\enc(\A)$. This formula can be expressed as:
 $$
-\varphi = \exists\bar{u}\exists\bar{z}(\first(\bar{u})\wedge \psi_{\bf acc}(\bar{z})\wedge[{\bf tc}_{\bar{x},\bar{y}}\,\psi_{\bf next}(\bar{x},\bar{y})](\bar{u},\bar{z})),
+\varphi = \exists\bar{u}\exists\bar{z}(\psi_{\text{initial}}(\bar{u})\wedge \psi_{\text{acc}}(\bar{z})\wedge[{\bf tc}_{\bar{x},\bar{y}}\,\psi_{\text{next}}(\bar{x},\bar{y})](\bar{u},\bar{z})),
 $$
-where $\psi_{\bf acc}(\bar{z})$ is an $\fo$-formula that indicates that $\bar{z}$ is an accepting configuration, and $\psi_{\bf next}(\bar{x},\bar{y})$ is an $\fo$-formula that indicates that $\bar{y}$ is a successor configuration of $\bar{x}$~\cite{G07}. Here, there is a one-to-one correspondence between configurations of $M$ and assignments to $\bar{z}$. As a consequence, given a structure $\A$ and a first-order assignment $v$ for $\A$, where $v(\bar{x})$ is the starting configuration and $v(\bar{y})$ is the sole accepting configuration, the value of $\sem{[\pth\psi_{\bf next}(\bar{x},\bar{y})]}(\A,v)$ is equal to $\tma_M(\enc(\A))$.
+where $\psi_{\text{initial}}(\bar{u})$ is an $\fo$-formula that indicates that $\bar{u}$ is the initial configuration, $\psi_{\text{acc}}(\bar{z})$ is an $\fo$-formula that indicates that $\bar{z}$ is an accepting configuration, and $\psi_{\text{next}}(\bar{x},\bar{y})$ is an $\fo$-formula that indicates that $\bar{y}$ is a successor configuration of $\bar{x}$~\cite{G07}. Here, there is a one-to-one correspondence between configurations of $M$ and assignments to $\bar{z}$. As a consequence, given a structure $\A$ and a first-order assignment $v$ for $\A$, where $v(\bar{x})$ is the starting configuration and $v(\bar{y})$ is the sole accepting configuration, the value of $\sem{[\pth\psi_{\text{next}}(\bar{x},\bar{y})]}(\A,v)$ is equal to $\tma_M(\enc(\A))$.
 Therefore, the $\tqfo(\fo)$-formula
 $
-\alpha = \sa{\bar{u}}\sa{\bar{z}}(\first(\bar{u})\mult\psi_{\bf acc}(\bar{z})\mult[\pth \psi_{\bf next}(\bar{u},\bar{z})])
+\alpha = \sa{\bar{u}}\sa{\bar{z}}(\psi_{\text{initial}}(\bar{u})\mult\psi_{\text{acc}}(\bar{z})\mult[\pth \psi_{\text{next}}(\bar{u},\bar{z})])
 $
 satisfies that $\sem{\alpha}(\A) = f(\enc(\A))$. This concludes the proof of the theorem.
