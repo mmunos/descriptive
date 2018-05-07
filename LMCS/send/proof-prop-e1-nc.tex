@@ -1,0 +1,18 @@
+Towards a contradiction, assume that $\E{1}$ is closed under binary sum. 
+Consider the formula $\alpha = \sa{x}(x = x) \in \E{1}$ over some signature $\R$. 
+This defines the function $\sem{\alpha}(\A) = \size{\A}$. 
+From our assumption, there exists some formula in $\E{1}$ equivalent to the formula $\alpha \add \alpha$, which describes the function $2\size{\A}$. 
+Let $\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})$ be this formula, where $\varphi$ is in first-order and quantifier-free. 
+For each $\R$-structure $\A$, we have the following inequality:
+$$
+\sem{\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A)
+\leq 
+\sem{\sa{\bar{X}}\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{X},\bar{x},\bar{y})}(\A) \cdot  \size{\A}^{\length{\bar{y}}} \leq 2\size{\A}^{\length{\bar{y}}+1} 
+$$
+Note that the formula $\sa{\bar{X}}\sa{\bar{x}}\sa{\bar{y}}\,\varphi(\bar{X},\bar{x},\bar{y})$ defines a function in $\E{0}$. 
+Therefore, as it was proven in \cite{SalujaST95}, if $\length{\bar{X}} > 0$ then the function is in $\Omega(2^{\size{\A}})$, which violates the inequality.
+
+We now have that $\length{\bar{X}} = 0$. 
+Consider a structure $\mathfrak{1}$ with only one element. 
+We have that $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) = 2$, but since the structure has only one element, there is only one possible assignment to $\bar{x}$. 
+And so, $\sem{\sa{\bar{x}}\exists\bar{y}\,\varphi(\bar{x},\bar{y})}(\mathfrak{1}) \leq 1$, which leads to a contradiction.
