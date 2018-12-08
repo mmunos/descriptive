@@ -1,0 +1,457 @@
+%!TEX root = main.tex
+
+\usepackage{mathrsfs}
+
+\usetikzlibrary{chains,fit,shapes}
+\usetikzlibrary{arrows,positioning} 
+
+\newcommand{\op}[1]{\operatorname{#1}}
+
+% domains
+\newcommand{\bbB}{\mathbb{B}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbJ}{\mathbb{J}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbNp}{\mathbb{N}_{>0}}
+\newcommand{\bbNinf}{\mathbb{N}\cup\{\infty\}}
+\newcommand{\bbNpinf}{\mathbb{N}_{>0}\cup\{\infty\}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbQp}{\mathbb{Q}_{>0}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbRp}{\mathbb{R}_{>0}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbS}{\mathbb{S}}
+
+% classes
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+%\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cW}{\mathcal{W}}
+
+% languages
+%%\newcommand{\sA}{\mathscr{A}}
+%\newcommand{\sB}{\mathscr{B}}
+%\newcommand{\sC}{\mathscr{C}}
+%\newcommand{\sD}{\mathscr{D}}
+%\newcommand{\sE}{\mathscr{E}}
+%\newcommand{\sF}{\mathscr{F}}
+%\newcommand{\sG}{\mathscr{G}}
+%\newcommand{\sH}{\mathscr{H}}
+%\newcommand{\sI}{\mathscr{I}}
+%\newcommand{\sJ}{\mathscr{J}}
+%\newcommand{\sK}{\mathscr{K}}
+%\newcommand{\sL}{\mathscr{L}}
+%\newcommand{\sM}{\mathscr{M}}
+%\newcommand{\sN}{\mathscr{N}}
+%\newcommand{\sO}{\mathscr{O}}
+%\newcommand{\sP}{\mathscr{P}}
+%\newcommand{\sQ}{\mathscr{Q}}
+%\newcommand{\sR}{\mathscr{R}}
+%\newcommand{\sS}{\mathscr{S}}
+%\newcommand{\sT}{\mathscr{T}}
+%\newcommand{\sU}{\mathscr{U}}
+%\newcommand{\sV}{\mathscr{V}}
+%\newcommand{\sX}{\mathscr{X}}
+%\newcommand{\sY}{\mathscr{Y}}
+%\newcommand{\sZ}{\mathscr{Z}}
+%\newcommand{\sW}{\mathscr{W}}
+
+% structures
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fC}{\mathfrak{C}}
+\newcommand{\fD}{\mathfrak{D}}
+\newcommand{\fE}{\mathfrak{E}}
+\newcommand{\fF}{\mathfrak{F}}
+\newcommand{\fG}{\mathfrak{G}}
+\newcommand{\fH}{\mathfrak{H}}
+\newcommand{\fI}{\mathfrak{I}}
+\newcommand{\fJ}{\mathfrak{J}}
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fL}{\mathfrak{L}}
+\newcommand{\fM}{\mathfrak{M}}
+\newcommand{\fN}{\mathfrak{N}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fQ}{\mathfrak{Q}}
+\newcommand{\fR}{\mathfrak{R}}
+\newcommand{\fS}{\mathfrak{S}}
+\newcommand{\fT}{\mathfrak{T}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fV}{\mathfrak{V}}
+\newcommand{\fX}{\mathfrak{X}}
+\newcommand{\fY}{\mathfrak{Y}}
+\newcommand{\fZ}{\mathfrak{Z}}
+\newcommand{\fW}{\mathfrak{W}}
+
+% objects
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+\newcommand{\bW}{\mathbf{W}}
+
+% other objects
+\newcommand{\tA}{\mathtt{A}}
+\newcommand{\tB}{\mathtt{B}}
+\newcommand{\tC}{\mathtt{C}}
+\newcommand{\tD}{\mathtt{D}}
+\newcommand{\tE}{\mathtt{E}}
+\newcommand{\tF}{\mathtt{F}}
+\newcommand{\tG}{\mathtt{G}}
+\newcommand{\tH}{\mathtt{H}}
+\newcommand{\tI}{\mathtt{I}}
+\newcommand{\tJ}{\mathtt{J}}
+\newcommand{\tK}{\mathtt{K}}
+\newcommand{\tL}{\mathtt{L}}
+\newcommand{\tM}{\mathtt{M}}
+\newcommand{\tN}{\mathtt{N}}
+\newcommand{\tO}{\mathtt{O}}
+\newcommand{\tP}{\mathtt{P}}
+\newcommand{\tQ}{\mathtt{Q}}
+\newcommand{\tR}{\mathtt{R}}
+\newcommand{\tS}{\mathtt{S}}
+\newcommand{\tT}{\mathtt{T}}
+\newcommand{\tU}{\mathtt{U}}
+\newcommand{\tV}{\mathtt{V}}
+\newcommand{\tX}{\mathtt{X}}
+\newcommand{\tY}{\mathtt{Y}}
+\newcommand{\tZ}{\mathtt{Z}}
+\newcommand{\tW}{\mathtt{W}}
+
+
+\newcommand\loge[1]{\Sigma_{#1}} %Existential logic
+\newcommand\logu[1]{\Pi_{#1}} %Universal logic
+\newcommand\logex[1]{\Sigma_{#1}\textsc{[FO]}} %Existential extended logic
+\newcommand\logux[1]{\Pi_{#1}\textsc{[FO]}} %Universal extended logic
+\newcommand\logeh[1]{\Sigma_{#1}\textsc{[FO]-Horn}} %Existential extended Horn logic
+\newcommand\loguh[1]{\Pi_{#1}\textsc{[FO]-Horn}} %Universal extended Horn logic
+\newcommand\ehorn{\Sigma_2\textsc{-Horn}} 
+\newcommand\uhorn{\Pi_1\textsc{-Horn}} 
+\newcommand\E[1]{\#\Sigma_{#1}} %Existential
+\newcommand\U[1]{\#\Pi_{#1}} %Universal
+\newcommand\sfo{\#\fo} %#FO
+\newcommand\seso{\text{\sc \#($\eso$)}} %#FO
+\newcommand\sh[1]{\##1} %Universal
+\newcommand\QE[1]{\eqso(\Sigma_{#1})} %Existential
+\newcommand\QU[1]{\eqso(\Pi_{#1})} %Universal
+\newcommand\XE[1]{\#\Sigma_{#1}\textsc{[FO]}} %Extended Existential
+\newcommand\XU[1]{\#\Pi_{#1}\textsc{[FO]}} %Extended Universal
+\newcommand\HE[1]{\#\Sigma_{#1}\textsc{[FO]-Horn}} %Horn Existential
+\newcommand\HU[1]{\#\Pi_{#1}\textsc{[FO]-Horn}} %Horn Universal
+
+\def\dhsat{\textsc{DisjHornSAT}}
+\def\shdhsat{\textsc{\#DisjHornSAT}}
+\def\cpm{\textsc{\#PerfectMatching}}
+\def\chsat{\textsc{\#HornSAT}}
+\def\cdnf{\textsc{\#DNF}}
+\def\ctdnf{\textsc{\#3-DNF}}
+\def\ccnf{\textsc{\#CNF}}
+\def\ctcnf{\textsc{\#3-CNF}}
+\def\ctwcnf{\textsc{\#2-CNF}}
+\def\csp{\textsc{\#SimplePath}}
+\def\csat{\textsc{\#SAT}}
+
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
+			\mathsurround=0pt$-$}}}
+
+%\def\A{{\frak A}}
+\def\B{{\frak B}}
+\def\C{\mathcal{C}}
+\def\F{\mathcal{F}}
+\def\L{\mathcal{L}}
+\def\cG{\mathcal{G}}
+\def\N{\mathbb{N}}
+\def\P{\bar{P}}
+\def\Q{\bar{Q}}
+%\def\R{\bar{R}}
+\def\S{\bar{S}}
+\def\X{\bar{X}}
+\def\Y{\bar{Y}}
+\def\Z{\bar{Z}}
+%% a - arity of \X / arity of assignments \P to \X
+\def\a{\bar{a}}
+%% b - arity of predicates in \S
+\def\b{\bar{b}}
+%% c - arity of auxiliar predicates/variables
+\def\c{\bar{c}} %% super auxiliar elements
+\def\d{\bar{d}} %% counted elements
+\def\e{\bar{e}} %% counted elements
+%% f - counting function
+%% g - other functions
+%% h - other functions
+%% i - index
+%% j - index
+%% k - emergency index / size of tuple
+%% l - emergency index / size of tuple
+\def\l{\bar{\ell}}
+%% m - size of variable tuple
+%% n - size of predicate tuple
+%% o - not used
+\def\p{\bar{p}}
+%% q - 
+%% r - size of \X / \P
+\def\s{\bar{s}}
+%% t - size of \S
+\def\t{\bar{t}}
+\def\u{\bar{u}} %% auxiliary variables
+\def\v{\bar{v}} %% auxiliary variables
+\def\w{\bar{w}} %% auxiliary variables
+\def\x{\bar{x}} %% quantified variables
+\def\y{\bar{y}} %% auxiliary variables
+\def\z{\bar{z}} %% open variables
+\def\ep{\bar{o}}
+\def\ga{\bar{p}}
+
+% formulas
+\newcommand{\sat}{\vDash}
+\newcommand{\nsat}{\nvDash}
+\newcommand{\et}{\;\wedge\;}
+\newcommand{\vel}{\;\vee\;}
+\newcommand{\then}{\;\rightarrow\;}
+\newcommand{\Then}{\;\Rightarrow\;}
+\renewcommand{\iff}{\;\leftrightarrow\;}
+\newcommand{\Iff}{\;\Leftrightarrow\;}
+\newcommand{\fa}[1]{\forall{#1}.\:}
+\newcommand{\ex}[1]{\exists{#1}.\:}
+\newcommand{\exinfinite}[1]{\exists^{\omega}{\:#1}.\:}
+\newcommand{\exfinite}[1]{\exists^{<\omega}{\:#1}.\:}
+\newcommand{\nex}[1]{\nexists{\:#1}.\:}
+
+
+\newcommand{\fo}{{\rm FO}}
+\newcommand{\so}{{\rm SO}}
+\newcommand{\lfp}{{\rm LFP}}
+\newcommand{\lfpop}{{\bf lfp} \,\, }
+\newcommand{\alfp}{{\bf alfp} \,\, }
+\newcommand{\clfp}[1]{[{\bf lsfp} \, #1]}
+\newcommand{\fqfo}{{\rm FQFO}}
+\newcommand{\fqso}{{\rm FQSO}}
+\newcommand{\pth}{{\bf path} \,\, }
+\newcommand{\tc}{{\rm TC}}
+\newcommand{\dtc}{{\rm DTC}}
+\newcommand{\pfp}{{\rm PFP}}
+\newcommand{\eso}{\exists\so}
+\newcommand{\first}{\operatorname{first}}
+\newcommand{\last}{\operatorname{last}}
+\newcommand{\succesor}{\operatorname{succ}}
+\newcommand{\partition}{\operatorname{partition}}
+
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\all}{\text{\sc All}}
+\newcommand{\allo}{\text{\sc AllOrd}}
+\newcommand{\qso}{{\rm QSO}}
+\newcommand{\qsoz}{\qso_{\bbZ}}
+\newcommand{\optqso}{{\rm OptQSO}}
+\newcommand{\maxqso}{{\rm MaxQSO}}
+\newcommand{\minqso}{{\rm MinQSO}}
+\newcommand{\rqfo}{{\rm RQFO}}
+\newcommand{\tqfo}{{\rm TQFO}}
+\newcommand{\tqso}{{\rm TQSO}}
+\newcommand{\tqsos}{{\rm TQSO}_{\rm succ}}
+\newcommand{\qfo}{{\rm QFO}}
+\newcommand{\qfoz}{\qfo_{\bbZ}}
+\newcommand{\eqfo}{\Sigma\qfo}
+\newcommand{\eqso}{\Sigma\qso}
+\newcommand{\eqsoz}{\eqso_{\bbZ}}
+\newcommand{\sqso}{\text{\rm Saluja}\qso}
+\newcommand{\fv}{\mathbf{FV}}
+\newcommand{\sv}{\mathbf{SV}}
+\newcommand{\fs}{\mathbf{FS}}
+\newcommand{\arity}{{\rm arity}}
+\newcommand{\length}[1]{\vert #1 \vert}
+\newcommand{\size}[1]{\vert #1 \vert}
+\newcommand{\shp}{\text{\sc \#P}}
+\newcommand{\ptime}{\text{\sc P}}
+\newcommand{\np}{\text{\sc NP}}
+\newcommand{\bpp}{\text{\sc BPP}}
+\newcommand{\cspp}{\text{\sc SPP}}
+\newcommand{\pp}{\text{\sc PP}}
+\newcommand{\rp}{\text{\sc RP}}
+\newcommand{\pspace}{\text{\sc PSPACE}}
+\newcommand{\nlog}{\text{\sc NL}}
+\newcommand{\ulog}{\text{\sc UL}}
+\newcommand{\conp}{\text{\sc NP}}
+\newcommand{\pe}{\text{\sc \#PE}}
+\newcommand{\shl}{\text{\sc \#L}}
+\newcommand{\spp}{\text{\sc SpanP}}
+\newcommand{\spanl}{\text{\sc SpanL}}
+\newcommand{\gp}{\text{\sc GapP}}
+\newcommand{\optp}{\text{\sc OptP}}
+\newcommand{\maxp}{\text{\sc MaxP}}
+\newcommand{\minp}{\text{\sc MinP}}
+\newcommand{\maxpb}{\text{\sc MaxPB}}
+\newcommand{\minpb}{\text{\sc MinPB}}
+\newcommand{\fp}{\text{\sc FP}}
+\newcommand{\totp}{\text{\sc TotP}}
+\newcommand{\shpspace}{\text{\sc \#PSPACE}}
+\newcommand{\fpspace}{\text{\sc FPSPACE}}
+\newcommand{\nfpspace}{\text{\sc FPSPACE(poly)}}
+\newcommand{\acc}{\textbf{acc}}
+
+\newcommand{\CC}{\mathscr{C}}
+\newcommand{\KK}{\mathscr{K}}
+\newcommand{\FF}{\mathscr{F}}
+\newcommand{\GG}{\mathscr{G}}
+\newcommand{\LL}{\mathscr{L}}
+\newcommand{\QQ}{\mathscr{Q}}
+\newcommand{\enc}{{\rm enc}}
+%\newcommand{\str}{\text{\sc Struct}}
+\newcommand{\ostr}{\text{\sc OrdStruct}}
+\newcommand{\Func}{\text{\sc Func}}
+\newcommand{\res}[2]{#1|_{#2}}
+
+%semiring
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\natinf}{\mathbb{N}_\infty}
+\newcommand{\trop}{\mathbb{N}_{\min,+}}
+\newcommand{\integ}{\mathbb{Z}}
+\newcommand{\bln}{\mathbb{B}}
+\newcommand{\pwset}[1]{2^{#1}}
+\newcommand{\true}{\operatorname{true}}
+\newcommand{\false}{\operatorname{false}}
+
+\newcommand{\SR}{\bbS}
+\newcommand{\add}{+}
+\newcommand{\bigadd}{\sum}
+\newcommand{\mult}{\cdot}
+\newcommand{\bigmult}{\prod}
+\newcommand{\adds}{\oplus}
+\newcommand{\bigadds}{\bigoplus}
+\newcommand{\mults}{\odot}
+\newcommand{\bigmults}{\bigodot}
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+
+%quantitative logic
+\newcommand{\QL}{\operatorname{QL}}
+\newcommand{\QMSO}{\operatorname{QMSO}}
+\newcommand{\Op}{\operatorname{O}}
+\newcommand{\sem}[1]{{\llbracket{}{#1}\rrbracket}}
+\newcommand{\pa}[1]{\Pi{#1}.\,}
+%\newcommand{\pa}[1]{\Pi{#1}}
+\newcommand{\pas}{\Pi}
+\newcommand{\paq}[1]{\Pi{#1}}
+\renewcommand{\sa}[1]{\Sigma{#1}.\,}
+%\renewcommand{\sa}[1]{\Sigma{#1}}
+\newcommand{\sas}{\Sigma}
+\newcommand{\saq}[1]{\Sigma{#1}}
+\newcommand{\fpa}[1]{\overrightarrow{\prod}{#1}.\:}
+\newcommand{\lmid}{\;\mid\;}
+
+\newcommand{\maxa}[1]{\operatorname{Max}{#1}.\,}
+\newcommand{\mina}[1]{\operatorname{Min}{#1}.\,}
+\newcommand{\clique}{\operatorname{clique}}
+
+%tikz definition
+\tikzset{
+	defaultstyle/.style={>=stealth,semithick, auto,font=\small,
+		initial text= {},
+		initial distance= {3.5mm},
+		accepting distance= {3.5mm}},
+	accepting/.style=accepting by arrow,
+	nstate/.style={circle, semithick,inner sep=1pt, minimum size=4mm}}
+
+\tikzset{
+	rect/.style={
+		rectangle,
+		rounded corners,
+		draw=black, 
+		thick,
+		text centered},
+	rectw/.style={
+		rectangle,
+		rounded corners,
+		draw=white, 
+		thick,
+		text centered},
+	sq/.style={
+		rectangle,
+		draw=black, 
+		thick,
+		text centered},
+	sqw/.style={
+		rectangle,
+		draw=white, 
+		thick,
+		text centered},
+	arrout/.style={
+		->,
+		-latex,
+		thick,
+	},
+	arrin/.style={
+		<-,
+		latex-,
+		thick,
+		El         },
+	arrd/.style={
+		<->,
+		>=latex,
+		thick,
+	},
+	arrw/.style={
+		thick,
+	}
+}
+
+
+%Turing machine
+\newcommand{\tmo}{\text{\rm \#output}}
+\newcommand{\tma}{\text{\rm \#accept}}
+\newcommand{\tmr}{\text{\rm \#reject}}
+\newcommand{\tmg}{\text{\rm gap}}
+\newcommand{\tmt}{\text{\rm \#total}}
+
+\newcommand{\support}{\text{\rm supp}}
+\newcommand{\supp}{\text{\rm supp}}
+\newcommand{\val}{\text{\rm val}}

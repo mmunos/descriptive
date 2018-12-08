@@ -1,0 +1,39 @@
+The authors in \cite{SalujaST95} proved that there exists a {\em product reduction} from every function in $\E{1}$ to a restricted version of $\cdnf$. 
+This is, if $\alpha\in\E{1}$ over some signature $\R$, there exist polynomially computable functions $g:\ostr[\R]\to\ostr[\R_{\text{DNF}}]$ and $h:\nat\to\nat$ such that for every $\R$-structure $\A$, it holds that $\sem{\alpha}(\A) = \cdnf(\enc(g(\A)))\cdot h(\size{\A})$. We use this fact in the following arguments. 
+
+To show that $\eqso(\loge{1})$ is contained  in \textsc{TotP}, let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that it is in $\loge{1}$-SNF. 
+This is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
+Consider the following nondeterministic procedure that on input $\enc(\A)$ generates $\sem{\alpha}(\A)$ branches. 
+For each $\alpha_i = \varphi$, where $\varphi$ is a $\loge{1}$ formula, it checks if $\A\models\varphi$ in polynomial time and generates a new branch if that is the case. 
+For each $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\varphi$, this formula is also in $\E{1}$. 
+We use the reduction to $\cdnf$ provided in \cite{SalujaST95} and we obtain $g(\enc(\A))$, which is an instance to $\cdnf$. 
+Since $\cdnf$ is also in $\totp$ \cite{PagourtzisZ06}, we simulate the corresponding nondeterministic procedure that generates exactly $\cdnf(\enc(g(\A)))$ branches. 
+Since, $\fp\subseteq\totp$\cite{PagourtzisZ06}, each polynomially computable function is also in $\totp$, and then on each of these branches we simulate the corresponding nondeterministic procedure to generate $h(\size{\A})$ more. 
+The number of branches for each $\alpha_i$ is $\sem{\alpha_i}(\A) = \cdnf(\enc(g(\A)))\cdot h(\size{\A})$, and the total number of branches is equal to $\sem{\alpha}(\A)$. 
+We conclude that $\alpha\in\totp$.
+
+To show that every function in $\eqso(\loge{1})$ has an FPRAS,  let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that it is in $\loge{1}$-SNF. 
+This is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
+Note that each $\alpha_i$ that is equal to some $\loge{1}$ formula $\varphi$ has an FPRAS given by the procedure that simply checks if $\A\models\varphi$ and returns 1 if it does and 0 otherwise. 
+Also, each remaining $\alpha_i$ has an FPRAS since $\alpha_i\in \E{1}$ \cite{SalujaST95}. 
+If two functions have an FPRAS, then their sum also has one given by the procedure that simulates them both and sums the results. 
+We conclude that $\alpha$ has an FPRAS.
+
+Finally, we show that $\eqso(\loge{1})$ is closed under sum and multiplication. 
+Since $\eqso(\loge{1})$ is closed under sum by definition, we focus only in proving that it is closed under multiplication. 
+We prove this for a more general case for $\eqso(\LL)$ where $\LL$ is a fragment of $\so$.
+
+\begin{lem} \label{conj-mult}
+	If $\LL$ is a fragment closed under conjunction, then $\eqso(\LL)$ is closed under binary multiplication.
+\end{lem}
+\proof
+	Given two formulas $\alpha, \beta$ in $\eqso(\LL)$ we will show a formula in the grammar which is equivalent to $(\alpha\mult \beta)$. 
+	From what was proven in Proposition \ref{theo-pnf-snf}, we may assume that $\alpha$ and $\beta$ are in $\LL$-SNF. 
+	Let $\alpha = \sum_{i = 1}^n\sa{\bar{X}_i}\sa{\bar{x}_i}\varphi_i(\bar{X}_i,\bar{x}_i)$, and $\beta = \sum_{i = 1}^m\sa{\bar{Y}_i}\sa{\bar{y}_i}\psi_i(\bar{Y}_i,\bar{y}_i)$. Expanding the product in $(\alpha\mult \beta)$ and reorganizing results in the equivalent formula
+	$$
+	\sum_{i = 1}^n\sum_{j = 1}^m\sa{\bar{X}_i}\sa{\bar{Y}_j}\sa{\bar{x}_i}\sa{\bar{y}_j}(\varphi_i(\bar{X}_i,\bar{x}_i)\wedge\psi_i(\bar{Y}_j,\bar{y}_j)),
+	$$
+	which is in $\LL$-SNF, and therefore, in $\eqso(\LL)$.
+\qed
+Since $\loge{1}$ is closed under conjunction, then Lemma~\ref{conj-mult} holds for $\eqso(\loge{1})$. 
+This concludes the proof.

@@ -1,0 +1,64 @@
+%!TEX root = main.tex
+
+%In this section, 
+%We introduce here the main terminology used in the paper.
+
+\subsection{Second-order logic, LFP and PFP}
+A relational signature $\R$ (or just signature) is a finite set $\{R_1, \ldots, R_k\}$, where each $R_i$ ($1 \leq i \leq k$) is a relation name with an associated arity greater than 0, which is denoted by $\arity(R_i)$. A finite structure over $\R$ (or just finite $\R$-structure) is a tuple $\A = \langle A, R_1^\A, \ldots, R_k^\A \rangle$ such that $A$ is a finite set and $R_i^\A \subseteq A^{\arity(R_i)}$ for every $i \in \{1, \ldots, k\}$. Further, an $\R$-structure $\A$ is said to be ordered if $<$ is a binary predicate name in $\R$ and $<^\A$ is a linear order on $A$.
+We denote by $\ostr[\R]$ the class of all finite ordered $\R$-structures. 
+In this paper we only consider finite ordered structures, so we will usually omit the word finite or ordered when referring to them.
+
+From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order variables and second-order variables, respectively. Notice that every variable in $\sv$ has an associated arity, which is denoted by $\arity(X)$. Then given a  signature $\R$, the set of second-order logic formulae ($\so$-formulae) over $\R$ is given by the following grammar:
+\begin{align*}\ 
+	\varphi \ &:= \ x = y \ \mid \ R(\bar u) \ \mid \ \top  \ \mid\  
+	X(\bar v)  \ \mid
+	\neg \varphi \ \mid\ 
+	(\varphi \vee \varphi) \ \mid\ 
+	\ex{x} \varphi \ \mid\ 
+	\ex{X} \varphi
+ \end{align*}
+where $x,y \in \fv$, $R \in \R$, $\bar u$ is a tuple of (not necessarily distinct) variables from $\fv$ whose length is $\arity(R)$, $\top$ is a reserved symbol to represent a tautology, $X \in \sv$, $\bar v$ is a tuple of (not necessarily distinct) variables from $\fv$ whose length is $\arity(X)$, and $x \in \fv$. 
+
+%\marcelo{Tenemos una definicion muy detallada de $\fo$ y $\so$, no es necesario para esta conferencia. Por otro lado seria bueno mencionar las definiciones de $\Sigma_i$ y $\Pi_i$, aunque son estandar es bueno decir que estamos considerando restricciones de $\fo$.}
+
+%\martin{Decir que $\LL$ incluye tautología y decir que Saluja no lo menciona}
+
+We assume that the reader is familiar with the semantics of $\so$, so we only introduce here some notation that will be used in this paper. 
+%To define the semantics of $\so$, we need to introduce some terminology. 
+Given a signature $\R$ and an $\R$-structure $\A$ with domain $A$, a first-order assignment $v$ for $\A$ is a total function from $\fv$ to $A$, while a second-order assignment $V$ for $\A$ is a total function with domain $\sv$ that maps each $X \in \sv$ to a subset of $A^{\arity(X)}$. Moreover, given a first-order assignment $v$ for $\A$, $x \in \fv$ and $a \in A$, we denote by $v[a/x]$ a first-order assignment such that $v[a/x](x) = a$ and $v[a/x](y) = v(y)$ for every $y \in \fv$ distinct from $x$. Similarly, given a second-order assignment $V$ for $\A$, $X \in \sv$ and $B  \subseteq A^{\arity(X)}$, we denote by $V[B/X]$ a second-order assignment such that $V[B/X](X) = B$ and $V[B/X](Y) = V(Y)$ for every $Y \in \sv$ distinct from $X$. We use notation $(\A, v, V) \models \varphi$ to indicate that structure $\A$ satisfies $\varphi$ under $v$ and $V$.
+% In particular, we have that $(\A, v, V) \models \top$.
+%\martin{En vez de decir "for every $y\in \fv$ distinct from $x$" podría ser "for every $y\in\fv\setminus\{x\}$", y lo mismo con $Y\in\sv$.}
+
+In this paper, we consider several fragments or extensions of $\so$ like first-order logic~($\fo$), least fixed point logic (LFP) and partial fixed point logic (PFP) \cite{L04}. Moreover, for every $i \in \N$, we consider the fragment $\Sigma_i$ (resp., $\Pi_i$) of $\fo$, which is the set of $\fo$-formulae of the form 
+$\exists \bar x_1 \forall \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i} \, \psi$ (resp., 
+$\forall \bar x_1 \exists \bar x_2 \cdots \forall \bar x_{i-1} \exists \bar x_{i} \, \psi$) if $i$ is even, and of the form
+$\exists \bar x_1 \forall \bar x_2 \cdots \forall \bar x_{i-1} \exists \bar x_{i} \, \psi$ (resp., 
+$\forall \bar x_1 \exists \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i} \, \psi$) if $i$ is odd, where $\psi$ is a quantifier-free formula. Finally, we say that a fragment $\L_1$ is contained in a fragment $\L_2$, denoted by $\L_1 \subseteq \L_2$, if for every formula $\varphi$ in $\L_1$, there exists a formula $\psi$ in $\L_2$ such that $\varphi$ is logically equivalent to $\psi$.  Besides, we say that $\L_1$ is properly contained in $\L_2$, denoted by $\L_1 \subsetneq \L_2$, if $\L_1 \subseteq \L_2$ and $\L_2 \not\subseteq \L_1$.
+
+
+%Assume that $\varphi$ is an $\so$-formula over a signature $\R$. Then given an ordered finite $\R$-structure $\A$ with domain $A$, a first-order assignment $v$ for $\A$ and a second-order assignment $V$ for $\A$, we say that $(\A, v, V)$ satisfies $\varphi$, denoted by $(\A, v, V) \models \varphi$, if: (1) $\varphi$ is the formula $R(x_1, \ldots, x_\ell)$ and $(v(x_1), \ldots, v(x_\ell)) \in R^\A$; (2) $\varphi$ is the formula $X(x_1, \ldots, x_m)$ and $(v(x_1), \ldots, v(x_m)) \in V(X)$; (3) $\varphi$ is the formula $\neg \psi$ and $(\A, v, V)$ does not satisfy $\psi$; (4) $\varphi$ is the formula $(\varphi_1 \vee \varphi_2)$, and $(\A, v, V) \models \varphi_1$ or $(\A, v, V) \models \varphi_2$; (5) $\varphi$ is the formula $\exists x \, \psi$ and there exists $a \in A$ such that $(\A, v[a/x], V) \models \psi$; or (6) $\varphi$ is the formula $\exists X \, \psi$ and there exists $B \subseteq A^{\arity(X)}$ such that $(\A, v, V[B/X]) \models \psi$.  As usual, we consider the propositional operators $\wedge$, $\rightarrow$, and $\leftrightarrow$ that can be obtained from $\vee$ and $\neg$. 
+%Moreover, we use the abbreviations $x \not \leq y$ and $x \notin X$ for the negation of the atoms $\leq$ and $\in$. 
+%Finally, we consider standard abbreviations of formulae that can be defined in $\so$-logic (actually, $\fo$-logic) like $\first(x) := \fa{x} y \leq x$ and $\last(x) := \fa{x} x \leq y$ to denote the first and last element of the linear order $\leq$, respectively, and $\succesor(x,y) := x \leq y \wedge y \not\leq x \wedge \fa{z} ( z \leq x \vee y \leq z)$ to denote the successor relation.
+
+%\cristian{Agregar que la igualdad $=$ esta en nuestra lógica.}
+
+%\cristian{Agregar acá que usamos las abreviaciones de $<$ o $\subset$.}
+
+%\marcelo{Agregar las definiciones de LFP y PFP}
+
+%\cristian{Explicar acá que significa el containment de lógicas booleans, esto es, la notación $\U{1} \subseteq \LL$.}
+
+\subsection{Counting complexity classes}
+
+We consider several counting complexity classes in this paper, some of the are recalled here~(see \cite{F97,hemaspaandra2013complexity}).
+%We define the following function complexity classes: 
+$\fp$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial time, while $\fpspace$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial space. 
+%Moreover, $\nfpspace$ is the class of functions computable in polynomial space with output length bounded by a polynomial. 
+Given a nondeterministic Turing Machine (NTM) $M$, let $\tma_M(x)$ be the number of accepting runs of $M$ with input $x$. Then $\shp$ is the class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tma_M(x)$ for every input $x$, while $\shl$ is the class of functions $f$ for which there exists a logarithmic-space NTM $M$ such that $f(x) = \tma_M(x)$ for every input $x$.  Given an NTM $M$ with output tape, let $\tmo_M(x)$ be the number of distinct outputs of $M$ with input $x$ (notice that  $M$ produces an output if it halts in an accepting state). Then $\spp$ is the  class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tmo_M(x)$ for every input $x$. Notice that $\shp \subseteq \spp$, and this inclusion is believed to be strict. 
+
+%as the class of functions that on an input are equal to the number of different outputs of an $\np$ transducer on that input. . $\shpspace$ is defined analogously to $\shp$ but in polynomial space. $\nfpspace$ is the class of single-exponentially bounded functions computable in polynomial space. 
+
+%\marcelo{La notacion $\tma_M(x)$ se usa en el paper, hay que definirla aqui. Donde vamos a usar la clase $\gp$? Para definir esta clase tambien necesitamos la notacion $\tmr_M(x)$, podriamos definirla aqui. }
+
+%If $\KK$ is a class of finite structures and $f$ is a function from a signature $\R$ to $\bbD$, we denote by $\res{f}{\KK}$ the restriction of $f$ to $\KK$, that is, a function such that: the domain of $\res{f}{\KK}$ is $\{ \enc(\A) \mid \A \in \str[\R] \cap \KK\}$, and 
+%$\res{f}{\KK}(\enc(\A)) = f(\enc(\A))$ for every $\A \in \str[\R] \cap \KK$.
