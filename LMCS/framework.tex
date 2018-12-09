@@ -23,7 +23,7 @@ The first level is composed by $\so$-formulae over $\R$ (called Boolean formulae
 For this reason, the quantifiers in $\so$ (e.g. $\exists x$ or $\exists X$) are called Boolean quantifiers and the quantifiers that make use of addition and multiplication (e.g. $\Sigma x$ or $\Pi X$) are called {\em quantitative quantifiers}.
 Furthermore, $\Sigma x$ and $\Sigma X$ are called first- and second-order sum, and $\Pi x$ and $\Pi X$ are called first- and second-order product, respectively.
 This division between Boolean and quantitative level is essential for understanding the difference between the logic and the quantitative part. 
-Furthermore, this will allow us later to parametrize both levels of the logic in order to capture different counting complexity classes.
+Furthermore, this will later allow us to parametrize both levels of the logic in order to capture different counting complexity classes.
 
 \begin{table}
 	\addtolength{\jot}{0.5em}
@@ -70,7 +70,7 @@ complexity of evaluating each formula:
 $\alpha_1$ defines an $\fp$-function while $\alpha_2$ defines a $\shp$-complete function. \qed
 \end{exa}
 \begin{exa}\label{exa-perm}
-For an example that includes multiplication, let $\bM = \{M(\cdot,\cdot),<\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i.j)$ is false.
+For an example that includes multiplication, let $\bM = \{M(\cdot,\cdot),<\}$ be a vocabulary for storing 0-1 matrices; in particular, a structure $\fM$ over $\bM$ encodes a 0-1 matrix $A$ as follows: if $A[i,j] = 1$, then $M(i,j)$ is true, otherwise $M(i,j)$ is false.
 Suppose now that we want to compute the permanent of an $n$-by-$n$ 0-1 matrix $A$, that is:
 \begin{align*}
 \op{perm}(A) &= \sum_{\sigma \in S_n} \prod_{i=1}^n A[i, \sigma(i)],  
@@ -91,12 +91,12 @@ Then the following is a $\qso$-formula defining the permanent of a matrix:
 Intuitively, the subformula $\beta(S) := \pa{x} (\ex{y} S(x,y) \wedge M(x,y))$ calculates the value \linebreak $\prod_{i=1}^n A[i, \sigma(i)]$ whenever $S$ encodes a permutation $\sigma$.
 Moreover, the subformula $\op{permut}(S) \cdot \beta(S)$ returns $\beta(S)$ when $S$ is a permutation, and returns $0$ otherwise (i.e. $\op{permut}(S)$ behaves like a filter). 
 Finally, the second order sum aggregates these values iterating over all binary relations and calculating the permanent of the matrix.
-We would like to finish with this example by highlighting the similarity of $\alpha_3$ with the permanent formula. 
+We would like to finish with this example by highlighting the similarity of $\alpha_3$ to the permanent formula. 
 Indeed, an advantage of $\qso$-formulae is that the first- and second-order quantifiers in the quantitative level naturally reflect the operations used to define mathematical formulae. \qed
 \end{exa}
 
 We consider several fragments or extensions of $\qso$, which are obtained by restricting the syntax of the Boolean formulae or the use of the quantitative quantifiers.
-In this direction, we denote by $\qfo$ the fragment of $\qso$ where second-order sum and product are not allowed. 
+In this regard, we denote by $\qfo$ the fragment of $\qso$ where second-order sum and product are not allowed. 
 For instance, for the $\qso$-formulae defined in Example \ref{ex:cliques}, we have that $\alpha_1$ is in $\qfo$ and $\alpha_2$ is not.
 Another interesting fragment of $\qso$ consists of the $\qso$-formulae where only sum operators and sum quantifiers are allowed. 
 Formally, we denote by $\eqso$ the fragment of $\qso$ where first- and second-order products (i.e. $\pa{x}$ and $\pa{X}$) are not allowed.
@@ -105,7 +105,7 @@ We also consider fragments of $\qso$ by further restricting the Boolean part of 
 If $\LL$ is a fragment of $\so$, then we define the quantitative logic $\qso(\LL)$ to be the fragment of $\qso$ obtained by restricting $\varphi$ in \eqref{syntax} to be a formula in $\LL$. Moreover, we also restrict other fragments of $\qso$ by using the same idea. 
 For example, we define $\qfo(\fo)$ to be the fragment of $\qfo$ obtained by restricting $\varphi$ in \eqref{syntax} to be an $\fo$-formula, and likewise for $\eqso(\fo)$.
 
-In the following section, we use different fragments or extensions of $\qso$ to capture counting complexity classes. But before doing this, we show the connection of $\qso$ with previous frameworks for defining functions over relational structures.
+In the following section, we use different fragments or extensions of $\qso$ to capture counting complexity classes. But before doing this, we show the connection of $\qso$ to previous frameworks for defining functions over relational structures.
 
 \subsection{Previous frameworks for quantitative functions} \label{sec:previous}
 
@@ -113,7 +113,7 @@ In this section, we discuss some previous frameworks proposed in the literature 
 We start by discussing the connection between $\qso$ and weighted logics (WL)~\cite{DrosteG07}. 
 As it was previously discussed, $\qso$ is a fragment of WL.
 The main difference is that we restrict the semiring used in WL to natural numbers in order to study counting complexity classes.
-Another difference of WL with our approach is that, to the best of our knowledge, this is the first paper to study weighted logics over general relational signatures, in order  to do descriptive complexity for counting complexity classes. 
+Another difference between WL and our approach is that, to the best of our knowledge, this is the first paper to study weighted logics over general relational signatures, in order  to do descriptive complexity for counting complexity classes. 
 Previous works on WL usually restrict the signature of the logic to strings, trees, and other specific structures (see \cite{droste2009handbook} for more examples), and they did not study the logic over general structures. 
 Furthermore, in this paper we propose further extensions for $\qso$ (see Section~\ref{sec:beyond}) which differ from previous approaches in WL.
 

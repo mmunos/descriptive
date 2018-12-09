@@ -22,16 +22,14 @@ We conclude our proof with the following claim.
 	If $k = 1$, then $\binom{\size{\A}}{k} = \size{\A}$, and if $k \geq 2$, then $\binom{\size{\A}}{k} \in \Omega(\size{\A}^2)$, which proves the claim.
 \qed
 
-Now we show that $\QE{0} \not\subseteq \E{1}$. 
-In Theorem \ref{theo-pi1-pnf} we proved that there is no formula in $\loge{1}$-PNF equivalent to the formula $\alpha = 2$. 
-Every formula in $\E{1}$ can be expressed in $\loge{1}$-PNF, which implies that $2 \in \QE{0}$ and $2 \not\in \E{1}$.
+Now we show that $\QE{0} \not\subseteq \E{1}$. Note that every formula in $\E{1}$ can be expressed in $\loge{1}$-PNF. However, in Theorem \ref{theo-pi1-pnf} we proved that there is no formula in $\loge{1}$-PNF equivalent to the formula $\alpha = 2$. We obtain that $2 \in \QE{0}$ and $2 \not\in \E{1}$.
 
 Finally, we prove that $\eqso(\loge{1})\subsetneq\eqso(\logu{1})$. 
 For inclusion, let $\alpha$ be a formula in $\eqso(\loge{1})$. 
-Suppose that it is in $\loge{1}$-SNF, namely, $\alpha = c + \sum_{i = 1}^{n}\alpha_i$. 
-Let $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$, where $\varphi_i$ is quantifier-free for each $\alpha_i$. 
-We use the same construction used in \cite{SalujaST95}, and we obtain that the formula $\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$ is equivalent to $\sa{\bar{y}}\,[\varphi_i(\bar{X},\bar{x},\bar{y}) \wedge \fa{\bar{y}'}(\varphi_i(\bar{X},\bar{x},\bar{y}')\to\bar{y}\leq\bar{y}')]$ for every assignment to $(\bar{X},\bar{x})$. 
-Doing this replacement for each $\alpha_i$ renders an equivalent formula in $\eqso(\logu{1})$.
+Suppose that it is in $\loge{1}$-SNF, namely, $\alpha = \sum_{i = 1}^{n}\alpha_i$. 
+Let $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$, where each $\varphi_i$ is quantifier-free. 
+We use the same construction used in \cite{SalujaST95} for each $\alpha_i$, and we obtain that the formula $\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$ is equivalent to $\sa{\bar{y}}\,[\varphi_i(\bar{X},\bar{x},\bar{y}) \wedge \fa{\bar{y}'}(\varphi_i(\bar{X},\bar{x},\bar{y}')\to\bar{y}\leq\bar{y}')]$ for every assignment to $(\bar{X},\bar{x})$. 
+We do this replacement for each $\alpha_i$, and we obtain an equivalent formula to $\alpha$ in $\eqso(\logu{1})$.
 
 To prove that the inclusion is proper, consider the $\eqso(\logu{1})$ formula $\sa{x} \fa{y}(y = x)$. 
 This formula defines the following function over each ordered structure $\A$:
@@ -43,7 +41,7 @@ $$
 \end{cases}
 $$
 Suppose that there exists an equivalent formula $\alpha$ in $\eqso(\loge{1})$. 
-Also, suppose that it is in $\L$-PNF, so $\alpha = \sum_{i = 1}^n\sa{\bar{X}}\sa{\bar{x}}\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$. 
+Also, suppose that it is in $\LL$-SNF, so $\alpha = \sum_{i = 1}^n\sa{\bar{X}}\sa{\bar{x}}\ex{\bar{y}}\varphi_i(\bar{X},\bar{x},\bar{y})$. 
 Consider a structure $\A'$ with one element. 
 We have that for some $i$, there exists an assignment $(\bar{B},\bar{b},\bar{a})$ for $(\bar{X},\bar{x},\bar{y})$ such that $\A' \models\varphi_i(\bar{B},\bar{b},\bar{a})$. 
 Consider now the structure $\A''$ that is obtained by duplicating $\A'$, as we did for Theorem \ref{theo-pi1-pnf}. 

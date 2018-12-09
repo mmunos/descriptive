@@ -6,7 +6,7 @@
 \subsection{Second-order logic, LFP and PFP}
 A relational signature $\R$ (or just signature) is a finite set $\{R_1, \ldots, R_k\}$, where each $R_i$ ($1 \leq i \leq k$) is a relation name with an associated arity greater than 0, which is denoted by $\arity(R_i)$. A finite structure over $\R$ (or just finite $\R$-structure) is a tuple $\A = \langle A, R_1^\A, \ldots, R_k^\A \rangle$ such that $A$ is a finite set and $R_i^\A \subseteq A^{\arity(R_i)}$ for every $i \in \{1, \ldots, k\}$. Further, an $\R$-structure $\A$ is said to be ordered if $<$ is a binary predicate name in $\R$ and $<^\A$ is a linear order on $A$.
 We denote by $\ostr[\R]$ the class of all finite ordered $\R$-structures. 
-In this paper we only consider finite ordered structures, so we will usually omit the word finite or ordered when referring to them.
+In this paper we only consider finite ordered structures, so we will usually omit the words finite and ordered when referring to them.
 
 From now on, assume given disjoint infinite sets $\fv$ and $\sv$ of first-order variables and second-order variables, respectively. Notice that every variable in $\sv$ has an associated arity, which is denoted by $\arity(X)$. Then given a  signature $\R$, the set of second-order logic formulae ($\so$-formulae) over $\R$ is given by the following grammar:
 \begin{align*}\ 
@@ -50,7 +50,7 @@ $\forall \bar x_1 \exists \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i
 
 \subsection{Counting complexity classes}
 
-We consider several counting complexity classes in this paper, some of the are recalled here~(see \cite{F97,hemaspaandra2013complexity}).
+We consider several counting complexity classes in this paper, some of them are recalled here~(see \cite{F97,hemaspaandra2013complexity}).
 %We define the following function complexity classes: 
 $\fp$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial time, while $\fpspace$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial space. 
 %Moreover, $\nfpspace$ is the class of functions computable in polynomial space with output length bounded by a polynomial. 
