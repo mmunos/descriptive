@@ -17,7 +17,7 @@ $$
 \alpha \ = \ \sum_{i = 1}^{m} \sa{\bar{X}_{i}}\sa{\bar{x}} \ex{\bar{y}} \bigwedge_{j = 1}^{n} \fa{\bar{z}} \varphi^i_j(\bar{X}_{i},\bar{x},\bar{y},\bar{z}),
 $$
 where each $\varphi^i_j$ is a Horn-clause, and each $\bar{X}_{i}$ is a sequence of second-order variables.
-Consider $\bar{X}$ as the union of all $\bar{X}_{i}$. We replace each of the $m$ addends in $\alpha$ for
+Consider $\bar{X}$ as the union of all $\bar{X}_{i}$. We replace each of the $m$ addends in $\alpha$ with
 $$
 \sa{\bar{X}}\sa{\bar{x}} \ex{\bar{y}} \bigwedge_{j = 1}^{n} \fa{\bar{z}} \varphi^i_j(\bar{X}_{i},\bar{x},\bar{y},\bar{z})\wedge\bigwedge_{X\not\in\bar{X}_{i}}\fa{\bar{u}}X(\bar{u}),
 $$
@@ -27,7 +27,7 @@ The next transformation of $\alpha$ and $\A$ towards a disjunction of Horn-formu
 $$
 \alpha_{\A} \ = \ \sum_{i = 1}^{m} \sum_{\bar{a}\,\in A^{\length{\bar{x}}}} \sa{\bar{X}}\bigvee_{\bar{b}\,\in A^{\length{\bar{y}}}}\bigwedge_{j = 1}^{n'}\bigwedge_{\bar{c}\,\in A^{\length{\bar{z}}}}\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c}).
 $$
-Note that each first-order sub-formula in $\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c})$ has no free variables and, therefore, we can evaluate each of them in polynomial time and replace by $\perp$ and $\top$ wherever it corresponds. In other words, in polynomial time we can replace $\varphi^i_j$ by a disjunction of $\neg X_{h}$ and at most one $X_{h}$, evaluated on constants.
+Note that each first-order sub-formula in $\varphi^i_j(\bar{X},\bar{a},\bar{b},\bar{c})$ has no free variables and, therefore, we can evaluate each of them in polynomial time and replace with $\perp$ and $\top$ wherever it corresponds. In other words, in polynomial time we can replace $\varphi^i_j$ with a disjunction of $\neg X_{h}$ and at most one $X_{h}$, evaluated on constants.
 After simplifying, grouping and reordering the previous formula, we can obtain an equivalent formula $\alpha_{\A}'$ of the form:
 $$
 \alpha_{\A}' \ := \ \sum_{i = 1}^{m'}\sa{\bar{X}}\bigvee_{j = 1}^{n_1'}\bigwedge_{k = 1}^{n_2'}\psi^{i}_{j,k}(\bar{X})

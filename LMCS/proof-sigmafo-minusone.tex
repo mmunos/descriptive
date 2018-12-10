@@ -18,7 +18,7 @@ To show that $\alpha$ is in $\totp$, we can convert $\alpha$ and $\enc(\A)$ into
 
 \noindent {\bf Closed under subtraction by one.} We prove here that $\eqso(\logex{1})$ is closed under subtraction by one. 
 For this, given $\alpha \in \eqso(\logex{1})$ over a signature $\R$, we will define a $\eqso(\logex{1})$-formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. 
-Without loss of generality, we assume that $\alpha$ is in $\logex{1}$-SNF, that is, $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length{\bar{x}} > 0$  since, if this is not the case, we can replace $\sa{\bar{X}}\varphi_i$ for the equivalent formula $\sa{\bar{X}} \sa{y} \varphi_i \wedge\first(y)$.
+Without loss of generality, we assume that $\alpha$ is in $\logex{1}$-SNF, that is, $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length{\bar{x}} > 0$  since, if this is not the case, we can replace $\sa{\bar{X}}\varphi_i$ with the equivalent formula $\sa{\bar{X}} \sa{y} \varphi_i \wedge\first(y)$.
 
 The proof will be separated in two parts. In the first part, we will assume that  $\alpha$ is in $\logex{1}$-PNF, namely, $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi$ for some $\varphi$ in $\logex{1}$. We will show how to define a formula $\varphi'$ that satisfies the following condition: for each $\A$, if $(\A,V,v)\models \varphi(\bar{X},\bar{x})$ for some $V$ and $v$ over $\A$, then there exists exactly one assignment to $(\bar{X},\bar{x})$ that satisfies $\varphi$ and not $\varphi'$. 
 From this, we clearly have that $\kappa(\alpha) = \sa{\bar{X}}\sa{\bar{x}}\varphi'$ will be the desired formula. In the second part, we suppose that $\alpha$ is of the form $\beta + \sa{\bar{X}}\sa{\bar{x}}\varphi$ with $\beta$ the sum of one or more formulas in $\logex{1}$-PNF. 
@@ -99,8 +99,7 @@ By the previous discussion, $(\A,V^*,v^*)\models\varphi_i(\bar{X},\bar{x})$.
 
 Now, we have all the ingredients in order to define $\kappa(\alpha)$. 
 Intuitively, we want to exclude the assignment $(V^*, v^*)$ from the satisfying assignments of $\varphi_i(\bar{X},\bar{x})$.
-Towards this goal, we can define a formula $\psi_i(\bar{X},\bar{x})$ such that $(\A, V, v) \models \psi_i(\bar{X},\bar{x})$ if, and only if, if $\varphi_i(\bar{X}, \bar{x})$ is satisfiable, then
-$V \neq V^*$ or $v \neq v^*$. 
+Towards this goal, we can define a formula $\psi_i(\bar{X},\bar{x})$ such that, if $\varphi_i(\bar{X}, \bar{x})$ is satisfiable, $(\A, V, v) \models \psi_i(\bar{X},\bar{x})$ if, and only if either $V \neq V^*$ or $v \neq v^*$. 
 This property can be defined as follows:
 \begin{align}
 \psi_i(\bar{X},\bar{x}) \; := \;  &\big( \, \ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
