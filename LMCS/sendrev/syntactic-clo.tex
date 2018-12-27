@@ -22,14 +22,14 @@ $\QE{1} \subseteq \totp$ and every function in $\QE{1}$ has an FPRAS. Moreover, 
 \input{proof-qe0-fp-qe1-totp-fptras}
 \qed
 Hence, it only remains to prove that $\QE{1}$ is closed under subtraction by one. Unfortunately, it is not clear whether this property holds; in fact, we conjecture that it is not the case. Thus, we need to find an extension of $\QE{1}$ that keeps all the previous properties and is closed under subtraction by one. It is important to notice that $\shp$ is believed not to be closed under subtraction by one by some complexity-theoretical assumption\footnote{A decision problem $L$ is in the randomized complexity class $\cspp$ if there exists a polynomial-time NTM $M$ such that for every $x \in L$ it holds that $\tma_M(x) - \tmr_M(x) = 2$, and for every $x \not\in L$ it holds that $\tma_M(x) = \tmr_M(x)$ \cite{OH93,FFK94}. It is believed that $\np \not\subseteq \cspp$.
-However, if $\shp$ is closed under subtraction by one, then it holds that $\np \subseteq \cspp$ \cite{OH93}.}. So, the following proposition rules out any logic that extends $\Pi_1$ for a possible extension of~$\QE{1}$ with the desired closure property.
+However, if $\shp$ is closed under subtraction by one, then it holds that $\np \subseteq \cspp$ \cite{OH93}.}. So, the following proposition rules out any logic that extends $\Pi_1$ as a possible extension of~$\QE{1}$ with the desired closure property.
 \begin{prop} \label{pi-minusone}
 If $\Pi_1 \subseteq \LL \subseteq \fo$ and $\eqso(\LL)$ is closed under subtraction by one, then $\shp$ is closed under subtraction by~one. 
 \end{prop}
 \proof
 \input{proof-pi-minusone}
 \qed
-Therefore, the desired extension has to be achieved by allowing some local extensions to~$\Sigma_1$. More precisely, we define $\logex{1}$ as $\Sigma_1$ but allowing atomic formulae over a signature~$\R$ to be of the form either $u = v$ or $X(\bar u)$, where $X$ is a second-order variable, or $\varphi(\bar u)$, where $\varphi(\bar u)$ is a first-order formula over $\R$ (in particular, it does not mentioned any second-order variable). With this extension we obtain a class with the desired properties.
+Therefore, the desired extension has to be achieved by allowing some local extensions to~$\Sigma_1$. More precisely, we define $\logex{1}$ as $\Sigma_1$ but allowing atomic formulae over a signature~$\R$ to be of the form either $u = v$ or $X(\bar u)$, where $X$ is a second-order variable, or $\varphi(\bar u)$, where $\varphi(\bar u)$ is a first-order formula over $\R$ (in particular, it does not mention any second-order variable). With this extension we obtain a class with the desired properties.
 \begin{thm}\label{sigmafo-minusone}
 The class $\eqso(\logex{1})$ is closed under sum, multiplication and subtraction by one. Moreover, $\eqso(\logex{1}) \subseteq \totp$ and every function in $\eqso(\logex{1})$ has an FPRAS.
 \end{thm}

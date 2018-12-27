@@ -1,5 +1,5 @@
 It is straightforward to prove that $\maxp$ can compute any $\fo$-formula, is closed under first-order sum and product, and second-order maximization. 
-Therefore, condition (1) in Definition~\ref{def:cap} follows similar than in the previous characterizations. Furthermore, one can easily see that the same holds with $\minqso(\fo)$.
+Therefore, condition (1) in Definition~\ref{def:cap} follows similar than in the previous characterizations. Furthermore, one can easily see that the same holds for $\minqso(\fo)$.
 The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of Theorem~\ref{theo:capture-fp}. Let $f\in \maxp$ be a function defined over some signature $\R$ and
 $\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq |\A|^\ell$ for each $\A\in\ostr[\R]$.
 For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$ ($\enc(U)$) as the binary encoding of a number with $|\A|^\ell$-bits. We denote this value by $\val(\enc(U))$.
@@ -9,11 +9,11 @@ Then we can describe $f$ by the following $\maxqso$ formula:
 $$
 \alpha = \maxa{\bar{X}} \maxa{Y} \ \Phi(\bar{X}, Y) \cdot \big( \sa{\bar{x}} Y(\bar{x}) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2) \big).
 $$
-Note that, in contrast with previous proofs, we use $\bar{x} < \bar{y}$ instead of $\bar{y} < \bar{x}$ because the most significant bit in $\enc(U)$ correspond to the smallest tuple in $U$.  
+Note that, in contrast to previous proofs, we use $\bar{x} < \bar{y}$ instead of $\bar{y} < \bar{x}$ because the most significant bit in $\enc(U)$ correspond to the smallest tuple in $U$.  
 It is easy to check that $\Phi(\bar{X}, Y)$ simulates the NP-machine and, if $\Phi(\bar{X}, Y)$ holds, the formula to the right  reconstructs the binary output from the relation in $Y$.
 Then, $\alpha$ is in $\maxqso(\fo)$ over $\R$ and $\sem{\alpha}(\A) = f(\enc(\A))$. 
 
-For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow the same approach but considering the $\np$-problem of checking whether $f(\enc(\A)) \leq \val(\enc(U))$. Then, the formula for describing $f$ is the following:
+For the case of $\minqso(\fo)$ and a function $f \in \minp$, one has to follow the same approach but consider the $\np$-problem of checking whether $f(\enc(\A)) \leq \val(\enc(U))$. Then, the formula for describing $f$ is the following:
 $$
 \alpha = \mina{\bar{X}} \mina{Y} \ \sa{\bar{x}} \big( (\Phi(\bar{X}, Y) \rightarrow Y(\bar{x})) \cdot \pa{\bar{y}}(\bar{x} < \bar{y} \mapsto 2)  \big).
 $$
