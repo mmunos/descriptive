@@ -1,0 +1,12 @@
+Recall that a formula in $\eqso(\LL)$ is defined by the following grammar:
+\[
+\alpha = \varphi \ \mid \ s \ \mid \ (\alpha + \alpha) \ \mid \ \sa{x} \alpha \ \mid \ \sa{X} \alpha
+\]
+where $\varphi$ is a formula in $\LL$ and $s\in\nat$. 
+To find an equivalent formula in $\LL$-SNF for every $\alpha \in \eqso(\LL)$, we give a recursive function $\tau$ such that $\tau(\alpha)$ is in $\LL$-SNF and $\tau(\alpha) \equiv \alpha$. 
+Specifically, if $\alpha = \varphi$, define $\tau(\alpha) = \alpha$; 
+if $\alpha = s$, define $\tau(\alpha) = (\top \add \overset{\text{$s $ times}}{\ldots} \add \top)$;
+if $\alpha = (\alpha_1 + \alpha_2)$, define $\tau(\alpha) = (\tau(\alpha_1) + \tau(\alpha_2))$;
+if $\alpha = \sa{x}\beta$, assume $\tau(\beta) = \sum_{i = 1}^{k}\beta_i$ such that each $\beta_i$ is in $\LL$-PNF, and define $\tau(\alpha) = \sum_{i = 1}^{k}\sa{x}\beta_i$;
+and if $\alpha = \sa{X}\beta$, then we proceed analogously as in the previous case.
+This covers all possible cases for $\alpha$ and we conclude the proof by taking $\tau(\alpha)$ as the desired rewrite of $\alpha$.

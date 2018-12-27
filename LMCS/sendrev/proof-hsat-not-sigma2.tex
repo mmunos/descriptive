@@ -1,0 +1,12 @@
+%We use a similar proof to the one provided by the authors in \cite{SalujaST95} to separate the classes $\E{2}$ and $\U{2}$. 
+Suppose that the statement is false, this is, $\chsat \in \eqso(\loge{2})$. Consider the signature $\R$ from Example~\ref{ex-hornsat-esop1} and let $\alpha \in \eqso(\loge{2})$ be a formula over $\R$ that defines $\chsat$. By Proposition~\ref{theo-pnf-snf} we know that every formula in $\eqso(\loge{2})$ can be rewritten in $\loge{2}$-PNF, so we can assume that $\alpha$ is of the form $\sa{\bar{X}}\sa{\bar{x}} \ex{\bar{y}} \fa{\bar{z}}\varphi(\bar{X},\bar{x},\bar{y},\bar{z})$. Now, consider the following Horn formula:
+$$
+\Phi \ = \ p \wedge \bigwedge_{i = 1}^n (t_i \wedge p \to q) \wedge \neg q,
+$$
+such that $n = \length{\bar{x}} + \length{\bar{y}} + 1$ and let $\A_{\Phi}$ be the encoding of this formula over $\R$. 
+%In the encoding, each variable appears as an element in the domain of $\A$. 
+One can easily check that $\Phi$ is satisfiable, so $\sem{\alpha}(\A_{\Phi}) \geq 1$. Let $(\bar{B},\bar{b},\bar{a})$ be an assignment to $(\bar{X},\bar{x},\bar{y})$ such that $\A_{\Phi} \models \fa{\bar{z}} \varphi(\bar{B},\bar{b},\bar{a},\bar{z})$ and let $t_{\ell}$ be such that it does not appear in $\bar{b}$ or $\bar{a}$ (recall that $n > \length{\bar{x}} + \length{\bar{y}}$). Consider the induced substructure $\A_{\Phi}'$ that is obtained by removing $t_{\ell}$ from $\A_{\Phi}$ and $\bar{B}'$ as the subset of $\bar{B}$ obtained by deleting each appearance of $t_{\ell}$ in $\bar{B}$. We have that $\A_{\Phi}'\models \fa{\bar{z}}\varphi(\bar{B}',\bar{b},\bar{a},\bar{z})$ since universal formulas are monotone over induced substructures. Then it follows that $\sem{\alpha}(\A_{\Phi}') \geq 1$ which is not possible since $\A_{\Phi}'$ encodes the formula
+$$
+\Phi' = p \wedge \bigwedge_{i = 1}^{\ell-1} (t_i \wedge p \to q) \wedge (p\to q) \wedge \bigwedge_{i = \ell+1}^{n} (t_i \wedge p \to q) \wedge \neg q,
+$$
+which is unsatisfiable. This leads to a contradiction and we conclude that $\chsat$ is not in $\eqso(\ehorn)$.

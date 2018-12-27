@@ -1,0 +1,41 @@
+%{\bf For }$\boldsymbol{\fqfo(\fo).}$ Let $\R$ be a signature. We prove the statement for $\fqfo(\fo)$ over $\R$.
+
+We prove the lemma by induction on the structure of $\beta$. First we need to consider the base cases.
+% inductively that for each formula $\beta(\bar{x},h)$ in $\fqfo(\fo)$ over $\R$, for a given pair of functions $f,g$ such that $\supp(f)\subseteq\supp(g)$, it holds that $\supp(T_{\beta}(f))\subseteq\supp(T_{\beta}(g))$. Let $\length{\bar{x}} = \ell$.
+%We separate the proof in each case determined by the $\fqfo$ grammar. For each of the following cases.
+\begin{enumerate}
+\item Assume that $\beta$ is either a constant $s \in \mathbb{N}$ or an $\fo$-formula $\varphi$. In both cases, function symbol $h$ is not mentioned, so $\sem{\beta}(\A,v,V,F) = \sem{\beta}(\A,v,V,G)$ and it trivially holds that if $\sem{\beta}(\A,v,V,F) > 0$, then $\sem{\beta}(\A,v,V,G) > 0$.
+%Then $h$ does not appear. Then, for each structure $\A$, each first-order assignment $v$ and functional assignments $F,G$ over $\A$, we have that $\sem{\beta(\bar{x},h)}(\A,v,F) = \sem{\beta(\bar{x},h)}(\A,v,G)$. As a result, $\supp(T_{\beta}(f)) = \supp(T_{\beta}(g))$ for every pair of functions $f,g$.
+
+\item Assume that $\beta$ is equal to $h(y_1, \ldots, y_\ell)$, where $y_1$, $\ldots$, $y_\ell$ is a sequence of (non-necessarily pairwise distinct) variables. Let $\bar a = (v(y_1), \ldots, v(y_\ell))$. Then we have that $\sem{\beta}(\A,v,V,F) = F(h)(v(y_1), \ldots, v(y_\ell)) = f(\bar a)$ and $\sem{\beta}(\A,v,V,G) = g(\bar a)$. Given that $\supp(f) \subseteq \supp(g)$, if $f(\bar a) > 0$, then $g(\bar a) > 0$. Hence, we conclude that if $\sem{\beta}(\A,v,V,F) > 0$, then $\sem{\beta}(\A,v,V,G) > 0$.
+\end{enumerate}
+We now consider the inductive steps. Assume that the property holds for $\fqfo(\fo)$-formulae $\beta_1$, $\beta_2$ and $\delta$
+%Suppose that the statement holds for each formula smaller than $\beta$.
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Assume that $\beta = (\beta_1 + \beta_2)$. If $\sem{\beta}(\A,v,V,F) > 0$, then 
+$\sem{\beta_1}(\A,v,V,F) > 0$ or $\sem{\beta_2}(\A,v,V,F) > 0$. Thus, by induction hypothesis we conclude that $\sem{\beta_1}(\A,v,V,G) > 0$ or $\sem{\beta_2}(\A,v,V,G) > 0$. Hence, we have that $\sem{\beta}(\A,v,V,G) > 0$.
+%It is easy to see that for each $\bar{a} \in A^{\ell}$ and function $f:A^{\ell}\to\nat$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) + T_{\beta_2}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a} \in \supp(T_{\beta}(f))$, or in other words, $T_{\beta}(f)(\bar{a}) > 0$. Then, for some $\beta_i$ it holds that $T_{\beta_i}(f)(\bar{a}) > 0$. From the supposition we have that $T_{\beta_i}(g)(\bar{a}) > 0$ from which the statement follows.
+
+\item Assume that $\beta = (\beta_1 \mult \beta_2)$. If $\sem{\beta}(\A,v,V,F) > 0$, then 
+$\sem{\beta_1}(\A,v,V,F) > 0$ and $\sem{\beta_2}(\A,v,V,F) > 0$. Thus, by induction hypothesis we conclude that $\sem{\beta_1}(\A,v,V,G) > 0$ and $\sem{\beta_2}(\A,v,V,G) > 0$. Hence, we have that $\sem{\beta}(\A,v,V,G) > 0$.
+
+%\item[4.] $\beta = (\beta_1 \mult \beta_2)$. It is easy to see that for each $\bar{a}$ in $A^{\ell}$ and function $f:A^{\ell}\to\nat$: $T_{\beta}(f)(\bar{a}) = T_{\beta_1}(f)(\bar{a}) \mult T_{\beta_2}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a}$ be such that $T_{\beta}(f)(\bar{a}) > 0$. Then $T_{\beta_i}(f)(\bar{a}) > 0$ for both $\beta_i$. From the supposition we have that $T_{\beta_i}(g)(\bar{a}) > 0$ for both $\beta_i$ and the statement holds.
+
+\item Suppose that $\beta = \sa{x} \delta$. Then we have that $\sem{\beta}(\A,v,V,F) = \sum_{a \in A} \sem{\delta}(\A,v[a/x],V,F)$ and $\sem{\beta}(\A,v,V,G) = \sum_{a \in A} \sem{\delta}(\A,v[a/x],V,G)$. Thus, if we assume that $\sem{\beta}(\A,v,V,F) > 0$, then there exists $a \in A$ such that $\sem{\delta}(\A,v[a/x],V,F) > 0$. Hence, by induction hypothesis we have that $\sem{\delta}(\A,v[a/x],V,G) > 0$ and, therefore, we conclude that $\sem{\beta}(\A,v,V,G) >0$.
+
+
+%Here we extend the grammar slightly to allow constants, and we use the notation $\delta[a/y]$ to denote the formula obtained by replacing each instance of $y$ by the constant $a$. It can be seen that $T_{\beta}(f)(\bar{a}) = \sum_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. Suppose $\supp(f)\subseteq\supp(g)$ and let $\bar{a}$ be such that $T_{\beta}(f)(\bar{a}) > 0$. Then for some $a\in A$ we have $T_{\delta[y/a]}(f)(\bar{a}) > 0$. The statement now follows as in the case 3.
+
+\item Suppose that $\beta = \pa{x} \delta$. Then we have that $\sem{\beta}(\A,v,V,F) = \prod_{a \in A} \sem{\delta}(\A,v[a/x],V,F)$ and $\sem{\beta}(\A,v,V,G) = \prod_{a \in A} \sem{\delta}(\A,v[a/x],V,G)$. Thus, if we assume that $\sem{\beta}(\A,v,V,F) > 0$, then $\sem{\delta}(\A,v[a/x],V,F) > 0$ for every $a \in A$. Hence, by induction hypothesis we have that $\sem{\delta}(\A,v[a/x],V,G) > 0$ for every $a \in A$, and, therefore, we conclude that $\sem{\beta}(\A,v,V,G) >0$.
+
+
+%\item[6.] $\beta = \pa{y}\delta(y,\bar{x},h)$. 
+%It can be seen that $T_{\beta}(f)(\bar{a}) = \prod_{a \in A} T_{\delta[a/y]}(f)(\bar{a})$. 
+%If $T_{\beta}(f)(\bar{a}) > 0$, then $T_{\delta[y/a]}(f)(\bar{a}) > 0$ for each $a\in A$. As in the $\mult$ case, the statement follows directly.
+%The statement follows using the same argument from cases 4 and 5.
+\end{enumerate}
+%This covers all possible cases for $\beta$ and we finish the proof of the statement for $\fqfo(\fo)$.
+%
+%\vspace{1em}
+%{\bf For} $\boldsymbol{\rqfo(\fo).}$ The only additional case is where $\beta = \clfp{\delta(\bar{y},h')}$ for some subtuple $\bar{y}$ of $\bar{x}$. We have that $\beta$ does not mention $h$, and so, the statement follows directly as we showed in the previous part of the proof.

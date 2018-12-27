@@ -1,0 +1,84 @@
+%!TEX root = main.tex
+\newcommand{\pP}{\textit{P}}
+\newcommand{\pN}{\textit{N}}
+\newcommand{\pV}{\textit{V}}
+\newcommand{\pT}{\textit{T}}
+\newcommand{\pA}{\textit{A}}
+\newcommand{\pNC}{\textit{NC}}
+\newcommand{\pD}{\textit{D}}
+
+The goal of this section is to define a class of functions in $\shp$ with easy decision counterparts and natural complete problems. To this end, we consider the notion of parsimonious reduction. Formally, a function $f : \Sigma^* \to \N$ is parsimoniously reducible to a function $g : \Sigma^* \to \N$ if there exists a function $h: \Sigma^* \to \Sigma^*$ such that $h$ is computable in polynomial time and $f(x) = g(h(x))$ for every $x \in \Sigma^*$. As mentioned at the beginning of this section, if $f$ can be parsimoniously reduced to $g$, then $L_g \in \ptime$ implies that $L_f \in \ptime$ and the existence of an FPRAS for $g$ implies the existence of an FPRAS for $f$. 
+
+In the previous section, we show that the class $\eqso(\logex{1})$ has good closure and approximation properties. Unfortunately, it is not clear whether it admits a {\em natural} complete problem under parsimonious reductions, where {\em natural} means any of the counting problems defined in this section or any other well-known counting problem (not one specifically designed to be complete for the class). Hence, in this section we follow a different approach to find a class of functions in $\shp$ with easy decision counterparts and natural complete problems, which is inspired by the approach followed in \cite{G92} that uses a restriction of second-order logic to Horn clauses for capturing $\ptime$ (over ordered structures). The following example shows how our approach works.
+\begin{exa} \label{ex-hornsat-esop1}
+Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot),<\}$. This vocabulary is used as follows to encode a Horn formula. A fact $\pP(c,x)$ indicates that propositional variable $x$ is a disjunct in a clause $c$, while $\pN(c,x)$ indicates that $\neg x$ is a disjunct in $c$. Furthermore, $\pV(x)$ holds if  $x$ is a propositional variable, and $\pNC(c)$ holds if $c$ is a clause containing only negative literals, that is, $c$ is of the form $(\neg x_1 \vee \cdots \vee \neg x_n)$.
+
+To define $\chsat$, we consider an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if, and only if, $x$ is a propositional variable that is assigned value true.  More specifically, 
+%$\varphi(\pT)$ is defined as follows:
+\begin{align*}
+\varphi(\pT) \; :=\;\;  & \fa{x} (\pT(x) \to \pV(x)) \ \wedge\\
+& \fa{c}  (\pNC(c) \to \ex{x} (\pN(c,x) \wedge \neg \pT(x))) \ \wedge\\
+& \fa{c} \fa{x} ([\pP(c,x) \wedge \fa{y} (\pN(c,y) \to \pT(y))] \to \pT(x)).
+\end{align*}
+%Given that $\uhorn$ is designed with the goal in mind of capturing $\chsat$, we expect $\varphi(\pT)$ to be a formula in $\uhorn$. However, if we rewrite it as a conjunction of clauses we obtain the following:
+We can rewrite $\varphi(\pT)$ in the following way:
+\begin{align*}
+& \fa{x}  (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+& \fa{c}  (\neg \pNC(c) \vee \ex{x} (\pN(c,x) \wedge \neg \pT(x)))\ \wedge\\
+& \fa{c} \fa{x}  (\neg \pP(c,x) \vee \ex{y} (\pN(c,y) \wedge \neg \pT(y)) \vee \pT(x)).
+\end{align*}
+%The resulting formula $\varphi(\pT)$ is not in $\uhorn$, but it can be easily transformed into a formula in this class  by introducing an auxiliary binary predicate $\pA$ defined as follows:
+Moreover, by introducing an auxiliary predicate $\pA$ defined as:
+\begin{align*}
+\fa{c} \fa{x}  (\neg \pA(c,x) \leftrightarrow [\pN(c,x) \wedge \neg \pT(x)]),
+\end{align*}
+we can translate $\varphi(\pT)$ into the following equivalent formula:
+\begin{align*}
+\psi(\pT,\pA) \; := \;\;  & \fa{x} (\neg \pT(x) \vee \pV(x)) \ \wedge\\
+& \fa{c} (\neg \textit{NC}(c) \vee \ex{x} \neg \textit{A}(c,x)) \ \wedge\\
+& \fa{c} \fa{x}  (\neg \textit{P}(c,x) \vee \ex{y} \neg \textit{A}(c,y) \vee \textit{T}(x)) \ \wedge\\
+& \fa{c} \fa{x} (\neg \textit{N}(c,x) \vee \textit{T}(x) \vee \neg \textit{A}(c,x)) \ \wedge \\
+& \fa{c} \fa{x} (\textit{A}(c,x) \vee \textit{N}(c,x)) \ \wedge\\
+& \fa{c} \fa{x} (\textit{A}(c,x) \vee \neg\textit{T}(x)).
+\end{align*}
+More precisely, we have that:
+\begin{align*}
+\sem{\sa{\pT} \varphi(\pT)}(\A) &= \sem{\sa{\pT} \sa{\pA} \psi(\pT,\pA)}(\A),
+\end{align*}
+ for every $\R$-structure $\A$ encoding a Horn formula. Therefore, the formula $\psi(\pT,\pA)$ also defines $\chsat$. More importantly, $\psi(\pT,\pA)$ resembles a conjunction of Horn clauses except for the use of negative literals of the form $\ex{v} \neg \textit{A}(u,v)$. \qed
+\end{exa}
+The previous example suggests that to define $\chsat$, we can use Horn formulae defined as follows. 
+A positive literal is a formula of the form $X(\x)$, where $X$ is a second-order variable and $\x$ is a tuple of first-order variables, and a negative literal is a formula of the form $\ex{\v} \neg X(\u,\v)$, where $\u$ and $\v$ are tuples of first-order variables. Given a signature $\R$, a clause over $\R$ is a formula of the form $\fa{\x} (\varphi_1 \vee \cdots \vee \varphi_n)$, 
+where each $\varphi_i$ ($1 \leq i \leq n$) is either a positive literal, a negative literal or an \fo-formula over $\R$.  A clause is said to be Horn if it contains at most one positive literal, and a formula is said to be Horn if it is a conjunction of Horn clauses. With this terminology, we define $\uhorn$ as the set of formulae $\psi$ such that $\psi$ is a Horn formula over a signature $\R$. 
+
+As we have seen, we have that $\chsat \in \eqso(\uhorn)$. Moreover, one can show that $\eqso(\uhorn)$ forms a class of functions with easy decision counterparts, namely, $\eqso(\uhorn) \subseteq \totp$.
+Thus, $\eqso(\uhorn)$ is a new alternative in our search for a class of functions in $\shp$ with easy decision counterparts and natural complete problems. Moreover, an even larger class for our search can be generated by extending the definition of $\uhorn$ with outermost existential quantification. 
+Formally, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\ex{\bar x} \psi$ with $\psi$ a Horn formula. 
+
+\begin{prop}\label{prop:ehorn-pe}
+$\eqso(\ehorn) \subseteq \totp$.
+\end{prop}
+For the sake of simplification, we postpone the proof the previous proposition after the proof of Theorem~\ref{sigma2hard}.
+
+Interestingly, we have that both $\chsat$ and $\cdnf$ belong to $\eqso(\ehorn)$. 
+An imperative question at this point is whether in the definitions of $\uhorn$ and $\ehorn$, it is necessary to allow negative literals of the form $\ex{\v} \neg X(\u,\v)$. Actually, this forces our Horn classes to be included in $\eqso(\logu{2})$ and not necessarily in $\eqso(\loge{2})$. The following result shows that this is indeed the case.
+
+\begin{prop}\label{prop:hsat-not-sigma2}	
+$\chsat \not\in \eqso(\loge{2})$.
+\end{prop}
+\proof
+\input{proof-hsat-not-sigma2}
+\qed
+We conclude this section by showing that $\eqso(\ehorn)$ is the class we were looking for, as not only every function in $\eqso(\ehorn)$ has an easy decision counterpart, but also $\eqso(\ehorn)$ admits a natural complete problem under parsimonious reductions. More precisely, define 
+$\shdhsat$ as the problem of counting the satisfying assignments of a formula $\Phi$ that is a disjunction of Horn formulae. Then we have that:
+
+\begin{thm} \label{sigma2hard}
+	$\shdhsat$ is $\eqso(\ehorn)$-complete under parsimonious reductions. 
+\end{thm}
+\proof
+\input{proof-sigma2hard}
+\qed
+
+\noindent{\emph{Proof of Proposition~\ref{prop:ehorn-pe}.}}
+\input{proof-ehorn-pe}
+\qed
