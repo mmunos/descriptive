@@ -1,8 +1,10 @@
+% !TeX root = main.tex
+
 The authors in \cite{SalujaST95} proved that there exists a {\em product reduction} from every function in $\E{1}$ to a restricted version of $\cdnf$. 
-This is, if $\alpha\in\E{1}$ over some signature $\R$, there exist polynomially computable functions $g:\ostr[\R]\to\ostr[\R_{\text{DNF}}]$ and $h:\nat\to\nat$ such that for every $\R$-structure $\A$, it holds that $\sem{\alpha}(\A) = \cdnf(\enc(g(\A)))\cdot h(\size{\A})$. We use this fact in the following arguments. 
+That is, if $\alpha\in\E{1}$ over some signature $\R$, there exist polynomially computable functions $g:\ostr[\R]\to\ostr[\R_{\text{DNF}}]$ and $h:\nat\to\nat$ such that for every $\R$-structure $\A$, it holds that $\sem{\alpha}(\A) = \cdnf(\enc(g(\A)))\cdot h(\size{\A})$. We use this fact in the following arguments. 
 
 To show that $\eqso(\loge{1})$ is contained  in \textsc{TotP}, let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that it is in $\loge{1}$-SNF. 
-This is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
+That is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
 Consider the following nondeterministic procedure that on input $\enc(\A)$ generates $\sem{\alpha}(\A)$ branches. 
 For each $\alpha_i = \varphi$, where $\varphi$ is a $\loge{1}$ formula, it checks if $\A\models\varphi$ in polynomial time and generates a new branch if that is the case. 
 For each $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\varphi$, this formula is also in $\E{1}$. 
@@ -13,7 +15,7 @@ The number of branches for each $\alpha_i$ is $\sem{\alpha_i}(\A) = \cdnf(\enc(g
 We conclude that $\alpha\in\totp$.
 
 To show that every function in $\eqso(\loge{1})$ has an FPRAS,  let $\alpha$ be a $\eqso(\loge{1})$ formula and assume that it is in $\loge{1}$-SNF. 
-This is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
+That is, $\alpha = \sum_{i = 1}^n\alpha_i$ where each $\alpha_i$ is in $\loge{1}$-PNF. 
 Note that each $\alpha_i$ that is equal to some $\loge{1}$ formula $\varphi$ has an FPRAS given by the procedure that simply checks if $\A\models\varphi$ and returns 1 if it does and 0 otherwise. 
 Also, each remaining $\alpha_i$ has an FPRAS since $\alpha_i\in \E{1}$ \cite{SalujaST95}. 
 If two functions have an FPRAS, then their sum also has one given by the procedure that simulates them both and sums the results. 

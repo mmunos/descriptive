@@ -1,0 +1,319 @@
+% !TeX root = main.tex
+
+\section*{\LARGE \textbf{TODO LIST}}
+
+\bigskip
+
+{\bf Reviewer 1}
+
+\bigskip
+
+{\bf Technical}
+
+\begin{itemize}
+	\setlength\itemsep{0.5em}
+\item p.2, first paragraph: ``However, other function classes have emerged from the need to understand
+the complexity of some computation problems for which little can be said if their
+decision counterparts are considered.'' Why can only little be said about the decision counterparts
+of the examples mentionend afterwards?
+\item p.7, first sentence: ``fragments or extensions [...] obtained by restricting'': extensions are not
+obtained by restricting something
+\item p.10, before Thm. 4.5: ``by considering second-order product'': We need both second-order
+product and sum (at least both are used in Thm. 4.5)
+\item p.10, last line: ``$B$-th bit'': mention in what way $B$ is interpreted as a number
+\item[$\checkmark$] p.12: ``To formalize this set of optimization problems'': class instead of set
+\item p.14: ``we have to concentrate on the class of counting problems with easy decision versions'':
+here, easy decision version means ``in \bpp''. Before, it was defined as ``in P''. Should be
+consistent.
+\item p.14: ``as expected, $\Sigma \bar{X}$ is the respective nesting of $\Sigma X.$’s'': why is this explained for secondorder
+quantifiers but not for first-order quantifiers?
+\item p.14: $\sum_{i=1}^n\alpha_i$: explain that this is notation for $\alpha_1+\cdots+\alpha_n$
+\item p.17: ``Since $\alpha$ is not null'' $\to$ ``Since $\sem{\alpha}$ is not the identically zero function'' (or similar)
+\item p.17/18: In the proof of Prop 5.3, the vocabulary only contains the numerical predicate $<$. When encoding structures as binary words, numerical predicates are implicit (and not
+encoded), though. What is the intended meaning here?
+\item p.18, after proof of Claim 5.4: ``which implies that 2 $\in \eqso(\Sigma_0)$ and $2 \not\in \E{1}$'': $2 \in \eqso(\Sigma_0)$
+does not follow from the argument before as stated in this sentence, but is trivial
+\item[$\checkmark$] p.18: ``Also, suppose that it is in $\L$-PNF'': $\L$ should be $\LL$ , PNF should be SNF
+\item[$\checkmark$] p.19, end of proof of Prop. 5.5: ``which violates the inequality'' $\to$ ``which violates the inequality
+for large structures''
+\item[$\checkmark$] p.20: ``we will show a formula in the grammar'' $\to$ ``... in the logic''
+\item p.20: ``Since $\Sigma_1$ is closed under conjunction, then Lemma 5.7 holds for ...'' $\to$ ``Since $\Sigma_1$ is
+closed under cnojunction, Lemma 5.7 can be applied to ...'' (or similar)
+\item[$\checkmark$] p.22: ``and leaving each $R_{\psi}^{\A}$ empty'' $\to$ $R_{\psi}^{\A'}$
+\item p.22: ``To show that $\alpha$ is in \totp'' $\to$ ``To show that the function defined by $\alpha$ ...'' (or similar)
+\item[$\checkmark$] p.22: ``Let $\alpha$ = ... where $\varphi$ is an FO-formula'' $\to$ ``... where $\varphi$ is an $\Sigma_1$[FO]-formula''
+\item p.23, formulae: Maybe put (large) parantheses around the relativization of quantifiers, for
+example the part of formula $\varphi_i$ after the quantifiers
+\item[$\checkmark$] p.24, formula 5.6: subscript of large conjunction: $\varphi_i^{+}(\bar{X},\bar{v})$ $\to$ $\varphi_i^{+}(\bar{X},\bar{y})$
+\item[$\checkmark$] p.25: ``We construct a function $\lambda$ that receives a quantitative formula $\beta$ ...'' $\to$ ``... that receives
+a formula $\beta \in \eqso(\logex{1})$ ...''
+\item p.25, last sentence: ``which is based on considering some witnesses of logarithmic size'' could
+be explained a little more / made more clear
+\item p.26: ``... auxiliary predicate $A$ defined as'' $\to$ ``... auxiliary predicate $A$ which will be defined
+as ... in the formula'' (or similar)
+\item p.28: ``since universal formulas are monotone over induced substructures'': ``monotone over
+induced substructures'' should be reformulated
+\item p.28: ``Next we prove that ... is hard for ... over a signature $\R$ ...'' sounds like it only works
+for one specific vocabulary. Maybe simply ``over any signature $\R$''
+\item p.28, formula $\alpha_{\A}$: second big conjunction should have $\bar{z}'$ in the subscript instead of $\bar{z}$ (because
+the quantifier $\forall u$ is handled by this as well if I understand correctly)
+\item p.29: ``In other words, in poly time we can replace $\varphi_j^i$ by a disjunction of ....'': Some of these
+formulae might evaluate to $\perp$ or $\top$ altogether and can be removed (potentially together with
+the surrounding conjunction)
+\item p.29: ``Intuitively $t_1,\ldots,t_{m'}$ are used to count from 1 to $m'$ each subformula ...'': Should be
+reformulated, maybe rather write that they are used to have disjoint sets of propositional
+assignments for the different disjuncts of the outermost disjunction (corresponding to the
+summands in the original formula)
+\item p.30, proof of Prop. 5.12: For $\dhsat \in \totp$, [35] is cited. It’s stated that a \totp-procedure
+for DNF-SAT is given there and it can be adapted to \dhsat. While the
+cited paper contains the result for DNF-SAT, the procedure is not explicitly given as far as
+I can see, so I can't check whether it is adaptable. On the other hand, membership of any
+function counting the number of satisfying assignments for a class of propositional formulae
+with poly-time decision version in \totp should hold by a similar argument as membership in
+DelayP. Maybe change the citation or give a short proof sketch.
+\item[$\checkmark$] p.31, definition of $\leq$ on $\F$: ``$f(i) \leq g(i)$ for every $i \in \{1,\ldots,\ell\}$'': Inputs for $f$ and $g$ should be
+elements of $A^{\ell}$, not $\{1,\ldots,\ell\}$
+\item p.32/33, example 6.2: I don't see why the formula given for dag's does not work for arbitrary
+graphs: In arbitrary graphs, the fixpoint is still reached after at most $n-1$ steps, since the
+maximal length of any shortest path in any graph is $n-1$. On the other hand, assuming that
+I am mistaken and the support does not become stable within $n-1$ steps: Using the formula
+given for arbitrary graphs, the support of the constructed function restricted to those tuples
+that have first in their last component is the same as the support of the constructed function
+using the formula for dags in each step of the recursion. Hence, the formula should not be
+able to fix such a problem.
+\item p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' → ``executes exactly $n^k$
+steps on large
+inputs for a fixed $k \geq 1$'' (at least it does not work for $n = 1$) (small inputs can be handled
+seperately)
+\item p.35 and p.36: While $\sum$ was used for finite sums in \qso-formulae throughout the paper, now
+a large +-sign is used. This might be confusing
+\item p.36: $\alpha_{q_i}$ used instead of $\alpha_{s_{q_{i}}}$
+\item p.36: ``Clearly, at each iteration of the fixed point operator, the tuple $\bar{t}$ represents the step the
+machine is currently in.'': This is quite vague. Maybe something like ``Clearly, tuple $\bar{t}$ encodes
+the number of steps the machine has done and in each iteration of the fixed point operator,
+one timestep of the machine is executed''
+\item p.36: ``at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a}, \bar{b}) \leq 1$ and $f(\bar{a}', \bar{b}) = 0$ for every $\bar{b} \in A^k$. 
+In the same way, it can be seen that for each function $g \in \ldots$ it holds that $g(\bar{a}) \leq 1$ and $g(\bar{a}')= 0$. 
+I think that more properties of these functions should be mentioned
+in order to argue that the defined function is the function computed by the machine:
+\begin{itemize}
+\item[-] For each $\bar{b}$, only one of the functions $T_0$,$T_1$,$T_B$,$T_{\vdash}$ outputs 1 on input ($\bar{a}, \bar{b})$
+\item[-] For each $\bar{b}$, only one of the functions $h,\hat{h}$ outputs 1 on input $(\bar{a}, \bar{b})$
+\item[-] There is exactly one $\bar{b}$ with $h(\bar{a}, \bar{b}) = 1$
+\item[–] There is exatcly one $i$ such that $s_{q_i}(\bar{a}) = 1$
+\end{itemize}
+(It could also generally be argued that the functions are 0/1-functions encoding the intended
+predicates and are 0 when the timestep is the successor of the current timestep)
+\item p.36: ``is defined as an extension of QFO with the formula ...'' $\to$	 ``is defined as the extension
+of QFO by the additional operator ...'' (or similar)
+\end{itemize}
+\vspace{1em}
+{\bf Grammatical/Language}
+\begin{itemize}
+	\setlength\itemsep{0.5em}
+	\item generally: both formulae and formulas are used as plural of formula---should be consistent
+	\item p.2, in the middle: we propose a restriction: Should be something like ``we propose to restrict
+	WL to the natural numbers as fixed semiring, calling this restriction ...''
+	\item[$\checkmark$] p.3, first paragraph of 2.1: ``omit the word finite or ordered'' $\to$ ``omit the words finite and
+	ordered''
+	\item p5, description of syntax of QSO: ``This division between Boolean and quantitative level
+	is essential for understanding the difference between the logic and the quantitative part.''
+	reformulate this?
+	\item[$\checkmark$] p.5, next sentence: ``this will allow us later'' $\to$ ``this will later allow us''
+	\item[$\checkmark$] p.6, second to last sentence: ``similarity of $\alpha_3$ with'': ``similarity to'' is much more common
+	than ``similarity with''
+	\item[$\checkmark$] p.7, next sentence: ''in this direction'' $\to$ ``in this regard''
+	\item[$\checkmark$] p.7, last sentence before 3.1: ''connection of QSO with'' $\to$ ``connection of QSO to''
+	\item[$\checkmark$] p.7, middle: ``Another difference of WL with our approach'' $\to$ ``Another difference between
+	WL and our approach''
+	\item p.9, first sentence: ``then condition (2) holds'': omit the word then or reformulate the sentence
+	\item[$\checkmark$] p.9, first paragraph: ``the constant function $s$ can be trivially simulated'' $\to$ ``any constant
+	function $s$ can be trivially simulated''
+	\item[$\checkmark$] p.9, proof of Prop. 4.3: ``To prove the condition (2)'' $\to$ ``To prove condition (2)''
+	\item throughout the paper: ``similar than'' $\to$ ``similar to'' / ``similar than for X, we do Y'' $\to$
+	``similarly as for''. Examples:
+	\begin{itemize}
+	\item[-] p.10, proof of Thm. 4.5: ``the proof is similar than in Theorem 4.4'' $\to$ ``the proof is
+	similar to the proof of Theorem 4.4''	
+	\item[-] p.10, second sentence: ``similar than the previous proof'' $\to$ ``similar as in the previous
+	proof''
+	\item[-] p.11, last sentence before example 4.7: ``Similar than for QSO'' $\to$ ``Similarly as for QSO''
+	\end{itemize}
+	\item p.11, end of proof of Thm. 4.5: ``Using an analogous argument'': state what the argument is
+	analogous to (the argument in Thm. 4.4)
+	\item[$\checkmark$] p.12, after Corollary 4.8: ``shows how robust and versatile is QSO'' $\to$ ``shows how robust and
+	versatile QSO is''
+	\item p.12, after Corollary 4.8: ``counting complexity classes [...] even beyond $\nat$'' - make more precise
+	what ``beyond $\nat$'' refers to
+	\item[$\checkmark$] p.12, ``given CNF propositional formula, that can be made true'': no comma
+	\item p.12: ``in [43] they defined'' $\to$ something like ``$<$authors$>$ [43] defined''
+	\item[$\checkmark$] p.12: ``we extend as follows QSO'' $\to$ ``we extend QSO by max and min quantifiers as follows''
+	\item[$\checkmark$] p.12: ``MinQSO is defined analogously changing max with min'' $\to$ ``replacing max by min''
+	\item[$\checkmark$] p.12: ``the same holds with MinQSO(FO)'' $\to$ ``the same holds for ...''
+	\item[$\checkmark$] p.13: ``in contrast with'' $\to$ ``in contrast to''
+	\item[$\checkmark$] p.13: ``follow the same approach but considering'' $\to$ ``but consider''
+	\item[$\checkmark$] p.13: ``in the search of efficient approximation algorithms'' $\to$ ``in the search for''
+	\item[$\checkmark$] p.14: ``the search of robust classes'' $\to$ ''the search for robust classes''
+	\item p.14: ''the first desirable condition has to do with the closure properties satisfied by the class'':
+	Reformulate this sentence
+	\item[$\checkmark$] p.14: ``As in the cases of P and NP that are closed'' $\to$ ``Analogously to the cases of P and
+	NP, which are closed under intersection and union, ...''
+	\item[$\checkmark$] p.16: ``such that for both, $A\mod\varphi(\bar{B}_i,\bar{b}_i,\bar{a}_i)$'' $\to$ ''such that for $i \in \{1,2\}$: ... ''
+	\item[$\checkmark$] p.16: ``Similarly to Theorem 5.1, we show ..'' $\to$ ``Similarly as in the proof of Theorem 5.1, we
+	show''
+	\item p.19: ``However, this class is not closed under sum, and then it is not robust under basic
+	closure properties'': Should be reformulated
+	\item[$\checkmark$] p.19: ``Let ... be this formula, where $\varphi$ is in first-order and quantifier-free'' $\to$ ``... where $\varphi$ is
+	first-order and quantifier-free''
+	\item[$\checkmark$] several occurrences: ``This is, ...'' $\to$ ``That is, ...'', for example two times on p.20
+	\item[$\checkmark$] p.20: ``we focus only in proving'' $\to$ ``we focus only on proving''
+	\item[$\checkmark$] p.20: ``We prove this for a more general case for $\eqso(\LL)$ where $\LL$ is a fragment of FO.''
+	$\to$ ``We prove this for the more general case of $\eqso(\LL)$ with $\LL$ being a fragment of SO.''
+	(or similar)
+	
+	\item[$\checkmark$] p.20: ``we will show a formula'' $\to$ ``give'' or ``construct'' instead of ``show''
+	\item[$\checkmark$] p.20/21: ``$\shp$ is believed not to be closed under subtraction by one by some complexitytheoretic
+	assumption'' $\to$ ``... due to some complexity-theoretic assumption'' (or similar)
+	\item[$\checkmark$] p.21, next sentence: ``for a possible extension'' $\to$ ``as a possible extension''
+	\item p.21: ``the desired extension has to be achieved by ... . More precisely, we define...'': The second
+	sentence doesn’t make the statement of the first one more precise, but rather explains the
+	actual definiton (which is chosen in accordance with the sentence before)
+	\item[$\checkmark$] p.21: ``a parsimonious reduction from a function'' $\to$ ``a parsimonious reduction from any
+	function''
+	\item[$\checkmark$] p.21: ``we define a function that converts a formula $\alpha$ in...'' $\to$ ``that converts a given formula
+	$\alpha$...''
+	\item[$\checkmark$] p.22: ``we iterate for every tuple'' $\to$ ``we iterate over all tuples''
+	\item[$\checkmark$] p.22: ``Then we will show how to define a formula $\varphi'$
+	...'' $\to$ ``We will show how to define ...''
+	\item[$\checkmark$] p.22: ''no variable from $\bar{x}$ are mentioned'' $\to$ ``... is mentioned''
+	\item[$\checkmark$] p.24: ``if, and only if, if X, then Y'': This construction makes it unneccesarily hard to parse
+	the sentence
+	\item[$\checkmark$] p.24: ``Then, the conclusion of the implication...'' $\to$ ``The conclusion of the implication...''
+	\item[$\checkmark$] p.25: ``For the sake of simplification...'' $\to$ ``For the sake of simplicity...''
+	\item[$\checkmark$] p.26: ``In the previous section, we show ...'' $\to$ ``In the previous section we showed ...''
+	\item[$\checkmark$] p.27: ``we postpone the proof the previous proposition after ...'' $\to$ ``we postpone the proof of
+	the previous proposition to after ...''
+	\item p.29: ``replace by $\perp$ and $\top$ \underline{wherever it corresponds}'': Should be reformulated
+	\item[$\checkmark$] p.30: ``consist in computing $g_{\alpha}(\enc(\A))$ for each input ...'' $\to$ ``... on input ...''
+	\item[$\checkmark$] p.30, same sentence: ``and then simulate'' $\to$ ``and then simulating''
+	\item[$\checkmark$] p.33: ``In contrast with LFP'' $\to$ ``In contrast to LFP''
+	\item[$\checkmark$] p.33: ``These operations are represented by the set $\{0,1,\emptyset\}$, respectively.'' $\to$ ``... by 0, 1 and
+	$\emptyset$, respectively''
+	\item[$\checkmark$] p.34: ``Notice that the values of each function $f$ in $\alpha$'' $\to$ ``Notice that the values of each
+	function in $\alpha$''
+	\item[$\checkmark$] p.34: ``that is why we talk about ...'' $\to$ ``which is why we talk about''
+	\item[$\checkmark$] p.34: ``Besides, notice that notation ...'' $\to$ ``Besides, notice that the notation ...''
+	\item[$\checkmark$] p.34: ``Function $h$ is used to indicate whether the head of the working tape is in some position
+	at some point of time'' $\to$ ``... whether the head of the working tape is in a specific position
+	at a certain point of time'' (or similar)
+	\item[$\checkmark$] p.36: ``Given a relation signature $\R$'' $\to$ ``... relational signature ...''
+	\item[$\checkmark$] p.37: ``As it was mentioned before'' $\to$ ``As mentioned before''
+	\item[$\checkmark$] p.37: ``Next we construct a logarithmic-space ....'' $\to$ ``We construct a logarithmic-space ...''
+	6
+	\item[?] p.38: ``In this sense, there are several directions for future research'' $\to$ ``Consequently, there
+	are ...'' (or similar)
+	\item[$\checkmark$] p.38: ``In the same direction, ...'' $\to$ ``Similarly, ...'' (or similar)
+	\item[$\checkmark$] p.38: ``so to have'' $\to$ ``in order to have'' (or similar)
+\end{itemize}
+\vspace{1em}
+{\bf Grammatical/Language}
+\begin{itemize}
+	\setlength\itemsep{0.5em}
+	\item p.1, footnote: ``clases'' should be ``classes''
+	\item throughout the paper: plural used with verb ending on s. Examples:
+	\begin{itemize}
+	\item[-] p.2, middle: ``fragments of QSO captures''
+	\item[-] p.6, example 3.1: ``the sum quantifiers in $\alpha_1$ aggregates''
+	\end{itemize}
+	\item[$\checkmark$] p4, beginning of 2.2: ``some of \underline{the} are recalled here''
+	\item[$\checkmark$] p6, example 3.2, first paragraph: ``otherwise $M(i.j)$'', dot used instead of comma
+	\item[$\checkmark$] throughout the paper: a instead of an (espacially: a FO formula/assignment, a SO formula/assignment).
+	Example:
+	\begin{itemize}
+		\item[-] p.9, third sentence: ``Given a FO formula'' $\to$ ``Given an FO formula''
+	\item[-] p.38: ``As a example'' $\to$ ``As an example''
+\end{itemize}
+	\item throughout the paper: singular used with verb not ending on s. Examples:
+	\begin{itemize}
+	\item[-] p.9, after proof of Prop. 4.3: ``use of a fragment [...] that capture''
+	\item[-] p.11, end of proof of Thm. 4.5: ``and $\alpha$ reconstruct''
+\end{itemize}
+	\item[$\checkmark$] p.9, middle: ``A second attempt could be based then'' $\to$ ``A second attempt could then be
+	based''
+	\item[$\checkmark$] p.11, 4.1: ``output of a function \underline{in} not a natural number''
+	\item[$\checkmark$] p.12: ``we have to dinstinguished''
+	\item[$\checkmark$] p.14, beginning of 5.1: ``subclases''
+	\item[$\checkmark$] p.21: ``it does not mentioned'' $\to$ ``it does not mention''
+	\item[$\checkmark$] p.22: ``Without lost of generality'' $\to$ ``Without loss of generality''
+	\item[$\checkmark$] p.24: ``The previous claim and proof motivates the following definitions.'' $\to$ ``The previous
+	claim and proof motivate the following definition.''
+	\item p.30: ``to define a natural generalization for functions of the notion of least fixed point of
+	LFP'' $\to$ ``to define a natural generalization of LFP to functions'' (or similar)
+	\item[$\checkmark$] p.30: ``this notion can be used to captures FP'' $\to$ ``... to capture FP''
+	\item[$\checkmark$] p.31: ``we simply generalized these conditions'' $\to$ ``we simply generalize these conditions''
+	\item[$\checkmark$] p.32: ``which is used to defined'' $\to$ ``which is used to define''
+	\item[$\checkmark$] p.33: ``since $\beta$ is constructed from monotones operations'' $\to$ ``... monotone ...''
+	\item[$\checkmark$] p.35: ``Formulas $\alpha_h$ is defined ...'' $\to$ ``Formula $\alpha_h$ is defined ...''
+	7
+	\item[$\checkmark$] p.37: ``we simulate $M_\beta$ on input $v[1/n]$'' $\to$ ``... with input $v[1/x]$''
+\end{itemize}
+\vspace{1em}
+{\bf Other}
+\begin{itemize}
+	\setlength\itemsep{0.5em}
+	\item[$\checkmark$] running title is ``COUNTING''
+	\item on definition of functions, \verb|\colon| should be used instead of :
+	\item In [1], a similar hierarchy to the one by Saluja et al. was introduced and studied. This work
+	should be cited.
+\end{itemize}
+
+\bigskip
+
+{\bf Reviewer 2}
+
+\begin{itemize}
+		\setlength\itemsep{0.5em}
+\item In several proofs, you rely on disjoint union of solutions and cartesian product of solutions. Indeed, its gives a polynomial time counting reduction. Can you make connections with (+,*) circuits ? It would be similar to what is done in A Circuit-Based Approach to Efficient Enumeration (Antoine Amarilli, Pierre Bourhis, Louis Jachiet, Stefan Mengel) where simple circuits (dDNNF, which are basically disjoint unions and cartesian products) are used to capture the solutions of MSO queries.
+
+\item In general I would be interested to know the relationship of your couting classes with their enumeration counterpart. 
+For instance there is a paper adapting [39] to enumeration: Enumeration Complexity of Logical Query Problems with Second-order Variables (Arnaud Durand and Yann Strozecki). In particular they consider class with some Horn structure to capture easy enumeration problems, it may have some connection with the class $\sigma$ QSO($\Pi_1$ Horn) you introduce.
+
+\item For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).
+
+\item[$\checkmark$] page 4:
+-some of the $\to$ some of them 
+\item[$\checkmark$] page 10: 
+-$2^{|A|^l}$-bits $\to$ $2^{|A|^l}$ bits
+\item[$\checkmark$] page 21:
+-it does not mentioned $\to$ it does not mention
+\item page 22: 
+-you make a long proof about some closure under subtraction by one.
+You should put the result in a theorem envirpnment to make what you are
+proving more evident.
+\item[$\checkmark$] -replace .... for $\to$ replace ... by;  there are several instances of
+that
+\item[$\checkmark$] -$\phi$ is an FO-formula $\to$ a $\Sigma_1[FO]$ formula
+\item -you explain that you rewrite your formula to obtain conditions a,b and c, 
+you should give an idea how these conditions will be used
+\item[$\checkmark$] page 23:
+a SO, a FO  an SO, an FO
+\item page 24: 
+if, if $\phi$$\to$ $\phi$
+\item page 25: 
+-you explain that the proof relies on witnesses of logarithmic size.
+It was not clear to me while reading the proof. Can you explain more ?
+\item page 28:
+-the complete problem for $\Sigma$ QSO($\Sigma_2$ Horn) would be complete also for $\#\Sigma-2$ Horn. You should mention here that you do not need sum here
+and that the framework of [39] is enough for this result.
+\item[?] page 30:
+-not, trivial $\to$ not trivial
+\item[$\checkmark$] page 32: 
+- paths of length at most n $\to$ in an acylic graph, all paths are of size less than n
+\item page 33:
+-there is a proof symbol \verb|\qed| but it does not end a well defined proof environment
+
+\item page 38: 
+the last sentence on fixed point operator is to vague. Either expand it to 
+say what king of question on fixed point operator you want to investigate or remove it	
+\end{itemize}
+	
