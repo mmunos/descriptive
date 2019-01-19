@@ -11,7 +11,7 @@ For the sake of readability, we divide the proof in three parts. The last part, 
 
 Let $\alpha$ be in $\eqso(\logex{1})$. The signature $\R_{\alpha}$ is obtained by adding the symbol $R_{\psi}$ to $\R$ for every $\fo$ formula $\psi(\bar{z})$ in $\alpha$. Each symbol $R_{\psi}$ represents a predicate with arity $\length{\bar{z}}$. Then, $\lambda(\alpha)$ is defined as $\alpha$ where each $\fo$ formula $\psi(\bar{z})$ has been replaced by $R_{\psi}(\bar{z})$. We now define the function $g_{\alpha}$ with a polynomial time procedure. Let $\A$ be a $\R$-structure with domain $A$. Let $\A'$ be an $\R_{\alpha}$-structure obtained by copying $\A$ and leaving each $R_{\psi}^{\A'}$ empty. For each $\fo$-formula $\psi(\z)$ with $\length{\bar{z}}$ open first-order variables, we iterate over all tuples $\bar{a} \in A^{\length{\bar{z}}}$. If $\A\models\psi(\bar{a})$ (this can be done in $\ptime$), then the tuple $\bar{a}$ is added to $R_{\psi}^{\A'}$ . This concludes the construction of $\A'$. Note that the number of $\fo$ subformulas, arity and tuple size is fixed in $\alpha$, so computing this function takes polynomial time over the size of the structure. Moreover, the encoding of $\A'$ has polynomial size over the size of $\enc(\A)$. We define $g_{\alpha}(\A) = \A'$ and we have that for each $\R$-structure $\A$: $\sem{\alpha}(\A) = \sem{\lambda(\alpha)}(g_{\alpha}(\A))$. Therefore, we have a parsimonious reduction from $\alpha$ to the $\eqso(\loge{1})$ formula $\lambda(\alpha)$.
 
-To show that $\alpha$ is in $\totp$, we can convert $\alpha$ and $\enc(\A)$ into $\lambda(\alpha)$ and $\enc(g_{\alpha}(\A))$, respectively, and run the procedure in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. Similarly, to show that $\alpha$ has an FPRAS, we do the same as before and simulates the FPRAS for $\lambda(\alpha)$ in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. These procedures also takes polynomial time and satisfies the required conditions.
+To show that the function defined by $\alpha$ is in $\totp$, we can convert $\alpha$ and $\enc(\A)$ into $\lambda(\alpha)$ and $\enc(g_{\alpha}(\A))$, respectively, and run the procedure in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. Similarly, to show that $\alpha$ has an FPRAS, we do the same as before and simulates the FPRAS for $\lambda(\alpha)$ in Proposition~\ref{prop:qe0-fp-qe1-totp-fptras}. These procedures also takes polynomial time and satisfies the required conditions.
 
 \medskip
 
@@ -44,16 +44,16 @@ We explain below how to rewrite $\varphi_i$ in order to satisfy each condition.
 \begin{itemize} \itemsep1mm
 	\item[(a)] In order to satisfy the first condition, consider some instance of a $X_j(\bar{w})$ in $\varphi_i$, where $\bar{w}$ is a subtuple of $(\bar{x},\bar{y})$. We add $\length{\bar{w}}$ new variables $z_1,\ldots,z_{\length{\bar{w}}}$ to the formula and let $\bar{z} = (z_1,\ldots,z_{\length{\bar{w}}})$. We redefine $\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$ by replacing $X_j(\bar{w})$ with $X_j(\bar{z})$ (denoted by $\varphi_i^{+}(\bar{X},\bar{x},\bar{y})[X_j(\bar{w}) \leftarrow X_j(\bar{z})]$ and then the formula $\varphi_i$ is equivalently defined as:
 	$$
-	\varphi_i(\bar{X},\bar{x}) \ := \ \ex{\bar{y}} \ex{\bar{z}} (\bar{z} = \bar{w} \wedge \varphi_i^{\fo}(\bar{x},\bar{y})) \wedge \varphi_i^{+}(\bar{X},\bar{x},\bar{y})[X_j(\bar{w}) \leftarrow X_j(\bar{z})] \wedge
-	\varphi_i^{-}(\bar{X},\bar{x},\bar{y}).
+	\varphi_i(\bar{X},\bar{x}) \ := \ \ex{\bar{y}} \ex{\bar{z}} \big( \bar{z} = \bar{w} \wedge \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{x},\bar{y})[X_j(\bar{w}) \leftarrow X_j(\bar{z})] \wedge
+	\varphi_i^{-}(\bar{X},\bar{x},\bar{y}) \big).
 	$$
 	We repeat this process for each instance of a $X_j(\bar{w})$ in $\varphi_i$, and we obtain a formula where none of the $X_j$'s acts over any variable in $\bar{x}$. We add the new first-order variables to $\bar{y}$ and we redefine $\varphi_i$ as:
 	$$
-	\varphi_i(\bar{X},\bar{x}) \ := \  \ex{\bar{y}} \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y}).
+	\varphi_i(\bar{X},\bar{x}) \ := \  \ex{\bar{y}} [ \varphi_i^{\fo}(\bar{x},\bar{y}) \wedge \varphi_i^{-}(\bar{X},\bar{y}) \wedge \varphi_i^{+}(\bar{X},\bar{y})].
 	$$
-	For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = \ex{\bar{y}}  x < y \wedge  X(x,y)\wedge \neg X(x,x)$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and:
+	For example, if $\bar{x} = x$, $\bar{y} = y$ and $\varphi_i = \ex{\bar{y}} [ x < y \wedge  X(x,y)\wedge \neg X(x,x)]$, then we redefine $\bar{y} = (y,v_1,v_2,v_3,v_4)$ and:
 	$$
-	\varphi_i \ := \ \ex{\bar{y}} v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x \wedge x < y  \wedge  X(v_1,v_2) \wedge \neg X(v_3,v_4).
+	\varphi_i \ := \ \ex{\bar{y}}[ v_1 = x \wedge v_2 = y \wedge v_3 = x \wedge v_4 = x \wedge x < y  \wedge  X(v_1,v_2) \wedge \neg X(v_3,v_4)].
 	$$ 
 	\item[(b)] An ordered partition on a set $S$ is defined by an equivalence relation $\sim$ over $S$, and a linear order over $S/\!\sim$. For example, let $\bar{x} = (x_1,x_2,x_3,x_4)$. A possible ordered partition would be defined by the formula $\theta(\bar{x}) = x_2 < x_1 \wedge x_1 = x_4 \wedge x_4 < x_3$. On the other hand, the formula $\theta'(\bar{x}) = x_1 < x_2 \wedge x_1 < x_4 \wedge x_2 = x_3$ does not define an ordered partition since both $\{x_1\}<\{x_2,x_3\}<\{x_4\}$ and $\{x_1\} < \{x_2,x_3,x_4\}$ satisfy $\theta'$.
 	For a given $k$, let $\cB_k$ be the number of possible ordered partitions for a set of size $k$. For $1 \leq j \leq \cB_{\length{(\bar{x},\bar{y})}}$ 
@@ -91,7 +91,7 @@ One can easily check that for every assignments $(V, v)$ such that $(\A,V,v)\mod
 This motivates the main idea of Part (1): by choosing one particular $v$ the plan is to remove $\bar{B}^v$ as an assignment over $\bar{X}$ in $\varphi_i$. 
 For this, we choose the minimal $v$ that satisfies $\varphi^{\fo}_i(\bar{x},\bar{y})$ which can be defined with the following formula:
 \[
-\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge \fa{\bar{x}'} \fa{\bar{y}'}(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')).
+\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge \fa{\bar{x}'} \fa{\bar{y}'}[\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')].
 \] 
 If $\varphi^{\fo}_i$ is satisfiable, let $v$ be the only assignment such that  $(\A,v)\models \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y})$. 
 Furthermore, let $V^*$ be the second order assignment and $v^*$ the first order assignment that satisfy $V^*(\bar{X}) = \bar{B}^{v}$ and $v^*(\bar{x}) = v(\bar{x})$.
@@ -104,9 +104,10 @@ This property can be defined as follows:
 \begin{align}
 \psi_i(\bar{X},\bar{x}) \; := \;  &\big( \, \ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
 &\Big( \; 
-\ex{\bar{y}} \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \; \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}} \ex{\bar{z}} [ \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ] \; \big) \;  \vee   \label{eq:part2} \\ 
-&(\; \ex{\bar{x}'} \ex{\bar{y}} \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x} \; ) \;\; \Big)  \label{eq:part3}
+\ex{\bar{y}}[ \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \; \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}} \ex{\bar{z}} [ \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ] \; \big)] \;  \vee   \label{eq:part2} \\ 
+&(\; \ex{\bar{x}'} \ex{\bar{y}}[ \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x}] \; ) \;\; \Big)  \label{eq:part3}
 \end{align}
+\martin{agregu\'e parentesis de aqui hacia arriba}
 To understand the formula, first notice that the premise of the implication at (\ref{eq:part1}) is true if, and only if, $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 Indeed, by Claim~\ref{claim:minusone} we know that if $\ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exists assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
 The conclusion of the implication (divided into (\ref{eq:part2}) and (\ref{eq:part3})), take care that $V(\bar{X}) \neq V^*(\bar{X})$ or $v(\bar{x}) \neq v^*(\bar{x})$.

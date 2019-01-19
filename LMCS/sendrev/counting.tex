@@ -5,7 +5,7 @@ In other words, by using $\qso$ we can extend the theory of descriptive complexi
 For this, we first formalize the notion of \emph{capturing} a complexity class of functions.
 %, and then show how to capture classes like $\shp$, $\fp$, and $\fpspace$.
 
-Fix a signature $\R = \{R_1, \ldots, R_k\}$ and assume that $\A$ is an ordered $\R$-structure with a domain $A = \{a_1, \ldots, a_n\}$ and $a_1 < a_2 < \ldots < a_n$. For every $i \in \{1, \ldots, k\}$, define the encoding of $R_i^\A$, denoted by $\enc(R_i^\A)$, as the following binary string. Assume that $\ell = \arity(R_i)$ and consider an enumeration of the $\ell$-tuples over $A$ in the lexicographic order induced by $<$. 
+Fix a signature $\R = \{R_1, \ldots, R_k\}$ and assume that $\A$ is an ordered $\R$-structure with a domain $A = \{a_1, \ldots, a_n\}$, $R_k =\, <$, and $a_1 <^{\A} a_2 <^{\A} \ldots <^{\A} a_n$. For every $i \in \{1, \ldots, k-1\}$, define the encoding of $R_i^\A$, denoted by $\enc(R_i^\A)$, as the following binary string. Assume that $\ell = \arity(R_i)$ and consider an enumeration of the $\ell$-tuples over $A$ in the lexicographic order induced by $<$. 
 %(that is, $(a_1, \ldots, a_1, a_1)$, $(a_1, \ldots, a_1, a_2)$, $\ldots$, $(a_n, \ldots, a_n, a_{n-1})$, $(a_n, \ldots, a_n, a_n)$). 
 Then let $\enc(R_i^\A)$ be a binary string of length $n^\ell$ such that the $i$-th bit of $\enc(R_i^\A)$ is 1 if the $i$-th tuple in the previous enumeration belongs to $R_i^\A$, and 0 otherwise. Moreover, define the encoding of $\A$, denoted by $\enc(\A)$, as the string~\cite{L04}:
 %following binary string~\cite{L04}:
@@ -13,8 +13,9 @@ Then let $\enc(R_i^\A)$ be a binary string of length $n^\ell$ such that the $i$-
 	%\enc(\A) & = & 0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
 %\end{eqnarray*}
 $$
-0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_k^\A).
+0^n \, 1 \, \enc(R_1^\A) \, \cdots \, \enc(R_{k-1}^\A).
 $$
+\martin{modifique la definicion para que no sea necesario codificar el $<$.}
 %We define the class of all $\R$-functions, denoted by $\Func(\R)$, as the class of all functions $f: \ostr \rightarrow \bbN$.
 %Given a function complexity class $\CC$ (i.e. $f: \Sigma^* \rightarrow \bbN$ for every $f \in \CC$), we say that a function $f \in \Func(\R)$ can be computed in $\CC$ if there exists $g \in \CC$ such that $f(\A) = g(\enc(\A))$ for every $\A \in \ostr$. 
 %Note that the function $g$ outputs $f$ for encodings of structures and can behave arbitrarily otherwise.

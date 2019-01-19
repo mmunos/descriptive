@@ -1,12 +1,14 @@
-% !TeX root = main.tex
+%!TEX root = main.tex
 
 We give this proof in three parts.
 First, we show that $\E{1} \not\subseteq \QE{0}$. 
-Towards a contradiction, let $\R = \{ < \}$ and suppose that there is a $\QE{0}$ formula $\alpha$ over $\R$ which is equivalent to the $\E{1}$ formula $\sa{x} \ex{y} (x < y)$. 
+For this inclusion to be true, it is required to hold for an arbitrary ordered relational signature $\R$, so it suffices to show it is not for at least one.
+Let $\R$ be the minimal ordered signature that contains only the relation name $<$.
+Suppose that there is a $\QE{0}$ formula $\alpha$ over $\R$ which is equivalent to the $\E{1}$ formula $\sa{x} \ex{y} (x < y)$. 
 That is, for every finite $\R$-structure $\A$, $\sem{\alpha}(\A) = \size{\A} - 1$.
-
+\martin{reformul\'e por qu\'e elijo ese R}
 Suppose that $\alpha$ is in SNF, namely, $\alpha = \sum_{i = 1}^k \alpha_i$ for some fixed $k$. 
-Since $\alpha$ is not null, consider some $\alpha_i$ that describes a non-null function. 
+Since $\sem{\alpha}$ is not the identically zero function, consider some $\alpha_i$ that describes a non-null function. 
 Let $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ where $\varphi$ is quantifier-free. 
 Note that if $\length{\bar{X}} > 0$, then the function $\sem{\alpha}$ is in $\Omega(2^{\size{\A}})$, as it was proven in~\cite{SalujaST95}. 
 Therefore, we have that $\alpha_i = \sa{\bar{x}}\varphi(\bar{x})$. 
@@ -19,14 +21,14 @@ We conclude our proof with the following claim.
 	Note that each atomic sub-formula in $\varphi(\bar{x})$ is either $(x = y)$, $(x < y)$, $\top$ or a negation thereof, where $x,y\in\bar{x}$. 
 	Suppose $\sem{\alpha}$ is not null and consider some $\R$-structure $\A$ such that $\sem{\alpha}(\A) > 0$. 
 	Let $\bar{a}$ be an assignment to $\bar{x}$ such that $\A\models\varphi(\bar{a})$. 
-	It can be seen that each assignment $\bar{a}'$ that has the same order over its variables\footnote{For example, if $\bar{a} = (a_1,a_2,a_3,a_4)$, such order may be $a_1 > a_3 = a_4 > a_2$, which has tree partitions.}	as $\bar{a}$ also satisfies $\A\models\varphi(\bar{a}')$. 
-	If this order has $k$ partitions then $\binom{\size{\A}}{k}$ assignments for $\bar{x}$ satisfy this order, and therefore, $\sem{\alpha} \geq \binom{\size{\A}}{k}$. 
+	It can be seen that each assignment $\bar{a}'$ that has the same ordering over its variables\footnote{For example, if $\bar{a} = (a_1,a_2,a_3,a_4)$, such ordering may be $a_1 > a_3 = a_4 > a_2$, which has tree partitions.}	as $\bar{a}$ also satisfies $\A\models\varphi(\bar{a}')$. 
+	If this ordering has $k$ partitions then $\binom{\size{\A}}{k}$ assignments for $\bar{x}$ will satisfy it, and therefore, $\sem{\alpha} \geq \binom{\size{\A}}{k}$. 
 	If $k = 1$, then $\binom{\size{\A}}{k} = \size{\A}$, and if $k \geq 2$, then $\binom{\size{\A}}{k} \in \Omega(\size{\A}^2)$, which proves the claim.
 \qed
-
+\martin{cambie order por ordering, creo que se entiende mejor}
 Now we show that $\QE{0} \not\subseteq \E{1}$. 
 In Theorem \ref{theo-pi1-pnf} we proved that there is no formula in $\loge{1}$-PNF equivalent to the formula $\alpha = 2$. 
-Every formula in $\E{1}$ can be expressed in $\loge{1}$-PNF, which implies that $2 \in \QE{0}$ and $2 \not\in \E{1}$.
+Every formula in $\E{1}$ can be expressed in $\loge{1}$-PNF, which implies that $2 \not\in \E{1}$. Therefore, given that $2 \in \QE{0}$ by the definition of this logic, we conclude that $\QE{0} \not\subseteq \E{1}$.
 
 Finally, we prove that $\eqso(\loge{1})\subsetneq\eqso(\logu{1})$. 
 For inclusion, let $\alpha$ be a formula in $\eqso(\loge{1})$. 
