@@ -16,6 +16,20 @@
 \usepackage{stmaryrd}
 \usepackage[textwidth=2cm,textsize=small]{todonotes}
 \usepackage{enumitem}
+
+\usepackage{framed}
+\renewenvironment{leftbar}[1][\hsize]
+{%
+	\def\FrameCommand
+	{%
+		{\color{black}\vrule width 1pt}%
+		\hspace{7pt}%must no space.
+		%\fboxsep=\FrameSep\colorbox{white}
+	}%
+	\MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+}
+{\endMakeFramed}
+
 \input{macros}
 %% define non-standard environments BEYOND the ones already supplied 
 %% here, for example
@@ -25,6 +39,7 @@
 
 \def\eg{{\em e.g.}}
 \def\cf{{\em cf.}}
+
 
 %\allowdisplaybreaks
 

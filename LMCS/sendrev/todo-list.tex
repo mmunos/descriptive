@@ -6,7 +6,7 @@
 \usepackage{stmaryrd}
 \usepackage[textwidth=2cm,textsize=small]{todonotes}
 \usepackage{enumitem}
-\input{macros}
+\input{macrosplain}
 
 \def\eg{{\em e.g.}}
 \def\cf{{\em cf.}}
@@ -41,7 +41,7 @@ consistent.
 quantifiers but not for first-order quantifiers?
 \item[$\checkmark$] p.14: $\sum_{i=1}^n\alpha_i$: explain that this is notation for $\alpha_1+\cdots+\alpha_n$
 \item[$\checkmark$] p.17: ``Since $\alpha$ is not null'' $\to$ ``Since $\sem{\alpha}$ is not the identically zero function'' (or similar)
-\item p.17/18: In the proof of Prop 5.3, the vocabulary only contains the numerical predicate $<$. When encoding structures as binary words, numerical predicates are implicit (and not
+\item[$\checkmark$] p.17/18: In the proof of Prop 5.3, the vocabulary only contains the numerical predicate $<$. When encoding structures as binary words, numerical predicates are implicit (and not
 encoded), though. What is the intended meaning here?
 \item[$\checkmark$] p.18, after proof of Claim 5.4: ``which implies that 2 $\in \eqso(\Sigma_0)$ and $2 \not\in \E{1}$'': $2 \in \eqso(\Sigma_0)$
 does not follow from the argument before as stated in this sentence, but is trivial
@@ -54,29 +54,29 @@ closed under cnojunction, Lemma 5.7 can be applied to ...'' (or similar)
 \item[$\checkmark$] p.22: ``and leaving each $R_{\psi}^{\A}$ empty'' $\to$ $R_{\psi}^{\A'}$
 \item[$\checkmark$] p.22: ``To show that $\alpha$ is in \totp'' $\to$ ``To show that the function defined by $\alpha$ ...'' (or similar)
 \item[$\checkmark$] p.22: ``Let $\alpha$ = ... where $\varphi$ is an FO-formula'' $\to$ ``... where $\varphi$ is an $\Sigma_1$[FO]-formula''
-\item p.23, formulae: Maybe put (large) parantheses around the relativization of quantifiers, for
+\item[$\checkmark$] p.23, formulae: Maybe put (large) parantheses around the relativization of quantifiers, for
 example the part of formula $\varphi_i$ after the quantifiers
 \item[$\checkmark$] p.24, formula 5.6: subscript of large conjunction: $\varphi_i^{+}(\bar{X},\bar{v})$ $\to$ $\varphi_i^{+}(\bar{X},\bar{y})$
 \item[$\checkmark$] p.25: ``We construct a function $\lambda$ that receives a quantitative formula $\beta$ ...'' $\to$ ``... that receives
 a formula $\beta \in \eqso(\logex{1})$ ...''
 \item p.25, last sentence: ``which is based on considering some witnesses of logarithmic size'' could
 be explained a little more / made more clear
-\item p.26: ``... auxiliary predicate $A$ defined as'' $\to$ ``... auxiliary predicate $A$ which will be defined
+\item[$\checkmark$] p.26: ``... auxiliary predicate $A$ defined as'' $\to$ ``... auxiliary predicate $A$ which will be defined
 as ... in the formula'' (or similar)
-\item p.28: ``since universal formulas are monotone over induced substructures'': ``monotone over
+\item[$\checkmark$] p.28: ``since universal formulas are monotone over induced substructures'': ``monotone over
 induced substructures'' should be reformulated
-\item p.28: ``Next we prove that ... is hard for ... over a signature $\R$ ...'' sounds like it only works
+\item[$\checkmark$] p.28: ``Next we prove that ... is hard for ... over a signature $\R$ ...'' sounds like it only works
 for one specific vocabulary. Maybe simply ``over any signature $\R$''
-\item p.28, formula $\alpha_{\A}$: second big conjunction should have $\bar{z}'$ in the subscript instead of $\bar{z}$ (because
+\item[$\checkmark$] p.28, formula $\alpha_{\A}$: second big conjunction should have $\bar{z}'$ in the subscript instead of $\bar{z}$ (because
 the quantifier $\forall u$ is handled by this as well if I understand correctly)
-\item p.29: ``In other words, in poly time we can replace $\varphi_j^i$ by a disjunction of ....'': Some of these
+\item[$\checkmark$] p.29: ``In other words, in poly time we can replace $\varphi_j^i$ by a disjunction of ....'': Some of these
 formulae might evaluate to $\perp$ or $\top$ altogether and can be removed (potentially together with
 the surrounding conjunction)
-\item p.29: ``Intuitively $t_1,\ldots,t_{m'}$ are used to count from 1 to $m'$ each subformula ...'': Should be
+\item[$\checkmark$] p.29: ``Intuitively $t_1,\ldots,t_{m'}$ are used to count from 1 to $m'$ each subformula ...'': Should be
 reformulated, maybe rather write that they are used to have disjoint sets of propositional
 assignments for the different disjuncts of the outermost disjunction (corresponding to the
 summands in the original formula)
-\item p.30, proof of Prop. 5.12: For $\dhsat \in \totp$, [35] is cited. It’s stated that a \totp-procedure
+\item[$\checkmark$] p.30, proof of Prop. 5.12: For $\dhsat \in \totp$, [35] is cited. It’s stated that a \totp-procedure
 for DNF-SAT is given there and it can be adapted to \dhsat. While the
 cited paper contains the result for DNF-SAT, the procedure is not explicitly given as far as
 I can see, so I can't check whether it is adaptable. On the other hand, membership of any
@@ -93,18 +93,18 @@ given for arbitrary graphs, the support of the constructed function restricted t
 that have first in their last component is the same as the support of the constructed function
 using the formula for dags in each step of the recursion. Hence, the formula should not be
 able to fix such a problem.
-\item p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' → ``executes exactly $n^k$
+\item[$\checkmark$] p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' → ``executes exactly $n^k$
 steps on large
 inputs for a fixed $k \geq 1$'' (at least it does not work for $n = 1$) (small inputs can be handled
 seperately)
-\item p.35 and p.36: While $\sum$ was used for finite sums in \qso-formulae throughout the paper, now
+\item[$\checkmark$] p.35 and p.36: While $\sum$ was used for finite sums in \qso-formulae throughout the paper, now
 a large +-sign is used. This might be confusing
-\item p.36: $\alpha_{q_i}$ used instead of $\alpha_{s_{q_{i}}}$
-\item p.36: ``Clearly, at each iteration of the fixed point operator, the tuple $\bar{t}$ represents the step the
+\item[$\checkmark$] p.36: $\alpha_{q_i}$ used instead of $\alpha_{s_{q_{i}}}$
+\item[$\checkmark$] p.36: ``Clearly, at each iteration of the fixed point operator, the tuple $\bar{t}$ represents the step the
 machine is currently in.'': This is quite vague. Maybe something like ``Clearly, tuple $\bar{t}$ encodes
 the number of steps the machine has done and in each iteration of the fixed point operator,
 one timestep of the machine is executed''
-\item p.36: ``at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a}, \bar{b}) \leq 1$ and $f(\bar{a}', \bar{b}) = 0$ for every $\bar{b} \in A^k$. 
+\item[$\checkmark$] p.36: ``at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a}, \bar{b}) \leq 1$ and $f(\bar{a}', \bar{b}) = 0$ for every $\bar{b} \in A^k$. 
 In the same way, it can be seen that for each function $g \in \ldots$ it holds that $g(\bar{a}) \leq 1$ and $g(\bar{a}')= 0$. 
 I think that more properties of these functions should be mentioned
 in order to argue that the defined function is the function computed by the machine:
@@ -116,7 +116,7 @@ in order to argue that the defined function is the function computed by the mach
 \end{itemize}
 (It could also generally be argued that the functions are 0/1-functions encoding the intended
 predicates and are 0 when the timestep is the successor of the current timestep)
-\item p.36: ``is defined as an extension of QFO with the formula ...'' $\to$	 ``is defined as the extension
+\item[$\checkmark$] p.36: ``is defined as an extension of QFO with the formula ...'' $\to$	 ``is defined as the extension
 of QFO by the additional operator ...'' (or similar)
 \end{itemize}
 \vspace{1em}

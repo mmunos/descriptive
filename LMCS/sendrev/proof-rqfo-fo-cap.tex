@@ -13,7 +13,8 @@ Let $f$ be a function in $\fp$. We address the case when $f$ is defined for the 
  %without final states, 
  where $Q = \{q_0,\ldots,q_{\ell}\}$, and $\delta:Q\times\{0,1,\ttB, \vdash\}\to Q\times\{0,1,\ttB, \vdash\}\times \{\leftarrow,\rightarrow\}\times\{0,1,\emptyset\}$ is a partial function. In particular, the tapes of $M$ are infinite to the right so the symbol $\vdash$ is used to indicate the first position in each tape, and $M$ does not have any final states, as it produces an output for each input. Moreover, the only allowed operations in the output tape are: 
  %The machine has an output tape and the only allowed operations in that tape on each step are 
- (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. These operations are represented by 0, 1, and $\emptyset$, respectively. Finally, assume that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, executes exactly $n^k$ steps for a fixed $k \geq 1$.
+ (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. These operations are represented by 0, 1, and $\emptyset$, respectively. Finally, assume that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, executes exactly $n^k$ steps on large inputs for a fixed $k \geq 1$. We ignore small inputs since they can be handled separately.
+ \martin{tom\'e esta correcci\'on}
 
 We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$. This extension allows defining the operator ${\bf lsfp}$ for multiple functions, analogously to the notion of simultaneous LFP~\cite{L04}.
 %generalization of fixed-point operator with multiple predicates. 
@@ -41,61 +42,64 @@ $\first(\bar t)$ holds if $\bar t$ is the first step and $\succesor(\bar{t},\bar
 \alpha_{T_{\vdash}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) = \\
 (\first(\bar{t}) \wedge \first(\bar{x})) +
 \sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\vdash}(\bar{t}',\bar{x})) \ + \\
-\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
+\sum_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
 \end{multline*}
-Notation $\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}$ in this formula is used to indicate that we are considering a sum over all pairs $(q,a) \in Q \times \{0,1,\ttB,\vdash\}$ such that $\delta(q,a) = (q',\vdash,u,v)$ for some $q' \in Q$, $u \in \{\leftarrow,\rightarrow\}$ and $v \in \{0,1,\emptyset\}$.
+Notation $\sum_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}$ in this formula is used to indicate that we are considering a sum over all pairs $(q,a) \in Q \times \{0,1,\ttB,\vdash\}$ such that $\delta(q,a) = (q',\vdash,u,v)$ for some $q' \in Q$, $u \in \{\leftarrow,\rightarrow\}$ and $v \in \{0,1,\emptyset\}$.
 Formulas $\alpha_{T_0}$, $\alpha_{T_1}$ and $\alpha_{T_{\ttB}}$ are defined analogously; for the sake of presentation, we only show here how $\alpha_{T_0}$ is defined, assuming that $\bar y = (y_1, \ldots, y_k)$:
 \begin{multline*}
 \alpha_{T_0}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) = \\ 
 (\first(\bar{t}) \wedge \exists\bar{y}(\varphi_{\text{\rm first}}(y_1) \wedge \cdots \wedge \varphi_{\text{\rm first}}(y_{k-2}) \wedge\neg E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) ))\ + \\
 \sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_0(\bar{t}',\bar{x})) + \\
-\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,0,\_,\_)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
+\sum_{(q,a) \,:\, \delta(q,a) = (\_,0,\_,\_)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
 %\alpha_{T_1}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\
 %&(\first(\bar{t}) \wedge \exists\bar{y}(\first(y_1,\ldots,y_{k-2})\wedge E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) ))+ \\
 %&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_1(\bar{t}',\bar{x})) + \\
-%&\bigplus_{\delta(q,a) = (q',1,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
+%&\sum_{\delta(q,a) = (q',1,op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
 %\alpha_{T_{\ttB}}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\
 %&(\first(\bar{t})\wedge\exists\bar{y}\exists\bar{y}'(\first(y_1,\ldots,y_{k-2})\wedge\last(y_{k-1},y_k)\wedge\successor(\bar{y},\bar{y}')\wedge\bar{y}' < \bar{x})) + \\
 %&\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult \hat{h}(\bar{t}',\bar{x}) \mult T_{\ttB}(\bar{t}',\bar{x})) + \\
-%&\bigplus_{\delta(q,a) = (q',{\ttB},op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
+%&\sum_{\delta(q,a) = (q',{\ttB},op,v)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')),\\
 \end{multline*}
 Notice that in the initial step, the encoding of the structure $\A$ has to be placed on the working tape of $M$ from the second position since the symbol $\vdash$ is placed in the first position. This is the reason why we use tuple $\bar y$ and define $\bar x$ as the successor of $\bar y$.
 Formula $\alpha_{h}$ is defined as follows:
 \begin{align*}
 \alpha_{h}(\bar{t},\bar{x},&T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) = \\
 &(\first(\bar{t}) \wedge \successor(\bar{t},\bar{x})) + \\
-&\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\_,\leftarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x},\bar{x}')\mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')) \ + \\
-&\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\_,\rightarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x}',\bar{x})\mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
+&\sum_{(q,a) \,:\, \delta(q,a) = (\_,\_,\leftarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x},\bar{x}')\mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')) \ + \\
+&\sum_{(q,a) \,:\, \delta(q,a) = (\_,\_,\rightarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult \successor(\bar{x}',\bar{x})\mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
 \end{align*}
 Similarly, formula $\alpha_{\hat{h}}$ is defined as follows:
 \begin{align*}
 \alpha_{\hat{h}}(\bar{t},\bar{x},&T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) = \\
 &(\first(\bar{t}) \wedge \neg\successor(\bar{t},\bar{x})) + \\
-&\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\_,\leftarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \, \mult \\
+&\sum_{(q,a) \,:\, \delta(q,a) = (\_,\_,\leftarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \, \mult \\
 &\hspace{250pt} \successor(\bar{x}'',\bar{x}') \mult (\bar{x} \neq \bar{x}'')) \ + \\
-&\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\_,\rightarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \, \mult \\
+&\sum_{(q,a) \,:\, \delta(q,a) = (\_,\_,\rightarrow,\_)}\sa{\bar{t}'}\sa{\bar{x}'}\sa{\bar{x}''}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \, \mult \\
 &\hspace{250pt} \successor(\bar{x}',\bar{x}'') \mult (\bar{x} \neq \bar{x}'')).
 \end{align*}
 Notice that in the definition of $\alpha_{\hat{h}}$, $\fo$-formula $\bar{x} \neq \bar{x}''$ is used to indicate that tuples $\bar{x}$ and $\bar{x}''$ are distinct (that is, there exists $i \in \{1, \ldots, k\}$ such that the $i$-th components of $\bar{x}$ and $\bar{x}''$ are distinct). 
-Formula $\alpha_{q_0}$ is defined as:
+Formula $\alpha_{s_{q_0}}$ is defined as:
 \begin{multline*}
-\alpha_{q_0}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) \ = \\ 
+\alpha_{s_{q_0}}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) \ = \\ 
 \first(\bar{t}) \ + \
-\bigplus_{(q,a) \,:\, \delta(q,a) = (q_0,\_,\_,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult  s_{q}(\bar{t}')).
+\sum_{(q,a) \,:\, \delta(q,a) = (q_0,\_,\_,\_)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult  s_{q}(\bar{t}')).
 \end{multline*}
-Moreover, for every $i \in \{1, \ldots, \ell\}$, formula $\alpha_{q_i}$ is defined analogously.
+Moreover, for every $i \in \{1, \ldots, \ell\}$, formula $\alpha_{s_{q_i}}$ is defined analogously.
 %\begin{align*}
-%\alpha_{q_i}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\ &\bigplus_{\delta(q,a) = (q_i,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
+%\alpha_{q_i}(\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},&h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},out) = \\ &\sum_{\delta(q,a) = (q_i,b,op,v)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult T_a(\bar{t}',\bar{x}') \mult h(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}')).
 %\end{align*}
 Finally, formula $\alpha_{\out}$ is defined as:
 \begin{align*}
 \alpha_{\out}(&\bar{t},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) =\\
-&\bigplus_{(q,a) \,:\, \delta(q,a) = (\_,\_,\_,0)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult 2\mult \out(\bar{t}')) \ + \\
-&\bigplus_{(q,a) \,:\,\delta(q,a) = (\_,\_,\_,1)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult (2\mult \out(\bar{t}')+1)) \ + \\ 
-&\bigplus_{(q,a) \,:\,\delta(q,a) = (\_,\_,\_,\emptyset)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \out(\bar{t}')).
+&\sum_{(q,a) \,:\, \delta(q,a) = (\_,\_,\_,0)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult 2\mult \out(\bar{t}')) \ + \\
+&\sum_{(q,a) \,:\,\delta(q,a) = (\_,\_,\_,1)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult (2\mult \out(\bar{t}')+1)) \ + \\ 
+&\sum_{(q,a) \,:\,\delta(q,a) = (\_,\_,\_,\emptyset)}\sa{\bar{t}'}\sa{\bar{x}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}') \mult T_a(\bar{t}',\bar{x}') \mult s_{q}(\bar{t}') \mult \out(\bar{t}')).
 \end{align*}
-Clearly, at each iteration of the fixed point operator, the tuple $\bar{t}$ represents the step the machine is currently in. Assume that $\bar{a}$, $\bar{a}'$ are tuples with $k$ elements such that $\bar{a}'$ is the successor of $\bar{a}$. 
-From the construction of the formula, and since the machine is deterministic, it can be seen that for each function $f \in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a},\bar{b}) \leq 1$ and  $f(\bar{a}',\bar{b}) = 0$ for every $\bar{b}\in A^k$. In the same way, it can be seen that for each function $g \in\{s_{q_1},\ldots,s_{q_{\ell}}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $g(\bar{a}) \leq 1$ and $g(\bar{a}') = 0$. From this, we have that at the iteration $\bar{a}'$ of the fixed point operator, $\out(\bar{a}')$ is equal to either $2\cdot \out(\bar{a})$, $2\cdot \out(\bar{a}) + 1$, or $\out(\bar{a})$, which represents precisely the value in the output tape at each step of $M$ running on the input $\enc(\A)$. From this argument, it can be seen that $\sem{\alpha}(\A) = f(\enc(\A))$, which concludes the proof of the theorem. 
+%Clearly, at each iteration of the fixed point operator, the tuple $\bar{t}$ represents the step the machine is currently in. 
+Clearly, tuple $\bar{t}$ encodes the number of steps the machine has done and in each iteration of the fixed point operator, one timestep of the machine is executed.
+Assume that $\bar{a}$, $\bar{a}'$ are tuples with $k$ elements such that $\bar{a}'$ is the successor of $\bar{a}$. 
+From the construction of the formula, and since the machine is deterministic, it can be seen that for each function $f \in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a},\bar{b}) \leq 1$ and  $f(\bar{a}',\bar{b}) = 0$ for every $\bar{b}\in A^k$. In the same way, it can be seen that (1) for each function $g \in\{s_{q_1},\ldots,s_{q_{\ell}}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $g(\bar{a}) \leq 1$ and $g(\bar{a}') = 0$, that (2) for each $\bar{b}$, only one of the functions $T_0$,$T_1$,$T_B$,$T_{\vdash}$ outputs 1 on input ($\bar{a}, \bar{b})$, (3) for each $\bar{b}$, only one of the functions $h,\hat{h}$ outputs 1 on input $(\bar{a}, \bar{b})$, (4) there is exactly one $\bar{b}$ with $h(\bar{a}, \bar{b}) = 1$, and (5) there is exactly one $i$ such that $s_{q_i}(\bar{a}) = 1$. From this, we have that at the iteration $\bar{a}'$ of the fixed point operator, $\out(\bar{a}')$ is equal to either $2\cdot \out(\bar{a})$, $2\cdot \out(\bar{a}) + 1$, or $\out(\bar{a})$, which represents precisely the value in the output tape at each step of $M$ running on the input $\enc(\A)$. From this argument, it can be seen that $\sem{\alpha}(\A) = f(\enc(\A))$, which concludes the proof of the theorem.
+\martin{agregue la correccion verbatim}
 %
 %\medskip
 %
