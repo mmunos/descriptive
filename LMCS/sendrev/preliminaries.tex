@@ -52,7 +52,7 @@ $\forall \bar x_1 \exists \bar x_2 \cdots \exists \bar x_{i-1} \forall \bar x_{i
 
 We consider several counting complexity classes in this paper, some of them are recalled here~(see \cite{F97,hemaspaandra2013complexity}).
 %We define the following function complexity classes: 
-$\fp$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial time, while $\fpspace$ is the class of functions $f : \Sigma^* \to \N$ computable in polynomial space. 
+$\fp$ is the class of functions $f \colon \Sigma^* \to \N$ computable in polynomial time, while $\fpspace$ is the class of functions $f \colon \Sigma^* \to \N$ computable in polynomial space. 
 %Moreover, $\nfpspace$ is the class of functions computable in polynomial space with output length bounded by a polynomial. 
 Given a nondeterministic Turing Machine (NTM) $M$, let $\tma_M(x)$ be the number of accepting runs of $M$ with input $x$. Then $\shp$ is the class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tma_M(x)$ for every input $x$, while $\shl$ is the class of functions $f$ for which there exists a logarithmic-space NTM $M$ such that $f(x) = \tma_M(x)$ for every input $x$.  Given an NTM $M$ with output tape, let $\tmo_M(x)$ be the number of distinct outputs of $M$ with input $x$ (notice that  $M$ produces an output if it halts in an accepting state). Then $\spp$ is the  class of functions $f$ for which there exists a polynomial-time NTM $M$ such that $f(x) = \tmo_M(x)$ for every input $x$. Notice that $\shp \subseteq \spp$, and this inclusion is believed to be strict. 
 
