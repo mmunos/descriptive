@@ -28,15 +28,15 @@ $$
 Now we begin describing the function $\tau$. 
 If $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$, then the formula is already in $\LL$-PNF so we define $\tau(\alpha) = \alpha$. 
 If $\alpha = \alpha_1 + \alpha_2$, then we assume that $\tau(\alpha_1) = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ and $\tau(\alpha_2) = \sa{\bar{Y}}\sa{\bar{y}}\psi(\bar{Y},\bar{y})$. 
-Our construction works by identifying a ``first'' assignment for both $(\bar{X},\bar{x})$ and $(\bar{Y},\bar{y})$ and a ``last'' assignment for both $(\bar{X},\bar{x})$ and $(\bar{Y},\bar{y})$ using the following formulas:
+Our construction works by identifying a ``first'' assignment for both $(\bar{X},\bar{x})$ and $(\bar{Y},\bar{y})$ and a ``last'' assignment for both $(\bar{X},\bar{x})$ and $(\bar{Y},\bar{y})$ using the following formulae:
 \begin{align*}
 \gamma_{\text{first}}(\bar{X},\bar{x}) & \; = \;  \bigwedge_{i = 1}^{\length{\bar{X}}} \fa{\bar{z}}\neg X_i(\bar{z}) \wedge \fa{\bar{z}}(\bar{x}\leq\bar{z}), \\
 \gamma_{\text{last}}(\bar{X},\bar{x}) & \; = \;  \bigwedge_{i = 1}^{\length{\bar{X}}} \fa{\bar{z}} X_i(\bar{z}) \wedge \fa{\bar{z}}(\bar{z}\leq\bar{x}).
 \end{align*}
-Similarly, we can define the formulas $\gamma_{\text{first}}(\bar{Y},\bar{y})$ and $\gamma_{\text{last}}(\bar{Y},\bar{y})$.
+Similarly, we can define the formulae $\gamma_{\text{first}}(\bar{Y},\bar{y})$ and $\gamma_{\text{last}}(\bar{Y},\bar{y})$.
 In other words, the ``first'' assignment is the one where every second-order predicate is empty and the first-order assignment is the lexicographically smallest, and the ``last'' assignment is the one where every second-order predicate is full and the first-order assignment is the lexicographically greatest. 
 We also need to identify the assignments that are not first and the ones that are not last. 
-We do this by negating the two formulas above and grouping together the first-order variables:
+We do this by negating the two formulae above and grouping together the first-order variables:
 \begin{align*}
 \gamma_{\text{not-first}}(\bar{X},\bar{x}) & \; = \; \ex{\bar{z}}(\bar{z}_0 < \bar{x} \vee \bigvee_{i = 1}^{\length{\bar{X}}}X(\bar{z}_i)), \\
 \gamma_{\text{not-last}}(\bar{X},\bar{x}) & \; = \; \ex{\bar{z}}(\bar{x} < \bar{z}_0 \vee \bigvee_{i = 1}^{\length{\bar{X}}}\neg X(\bar{z}_i)),
@@ -49,10 +49,10 @@ where $\bar{z} = (\bar{z}_0,\bar{z}_1,\ldots,\bar{z}_{\length{\bar{X}}})$. Then 
 &(\psi(\bar{Y},\bar{y})\wedge\gamma_{\text{last}}(\bar{X},\bar{x})\wedge\gamma_{\text{last}}(\bar{Y},\bar{y}))]. \label{eq:partition4}
 \end{align}
 
-To show that the formula is indeed equivalent to $\alpha$, note that the formulas in lines (\ref{eq:partition1}) and (\ref{eq:partition2}) form a partition over the assignments of $(\bar{X},\bar{x})$, while fixing an assignment for $(\bar{Y},\bar{y})$, and the formulas in lines (\ref{eq:partition3}) and (\ref{eq:partition4}) form a partition over the assignments of $(\bar{Y},\bar{y})$, while fixing an assignment for $(\bar{X},\bar{x})$. 
+To show that the formula is indeed equivalent to $\alpha$, note that the formulae in lines (\ref{eq:partition1}) and (\ref{eq:partition2}) form a partition over the assignments of $(\bar{X},\bar{x})$, while fixing an assignment for $(\bar{Y},\bar{y})$, and the formulae in lines (\ref{eq:partition3}) and (\ref{eq:partition4}) form a partition over the assignments of $(\bar{Y},\bar{y})$, while fixing an assignment for $(\bar{X},\bar{x})$. 
 Altogether the four lines define pairwise disjoint assignments for $(\bar{X},\bar{x}),(\bar{Y},\bar{y})$. 
 With this, it is straightforward to show that the above formula is equivalent to $\alpha$. 
-However, the formula is not yet in the correct form since it has existential quantifiers in the sub-formulas $\gamma_{\text{not-first}}$ and $\gamma_{\text{not-last}}$. 
+However, the formula is not yet in the correct form since it has existential quantifiers in the sub-formulae $\gamma_{\text{not-first}}$ and $\gamma_{\text{not-last}}$. 
 To solve this, we can replace each existential quantifier by a first order sum that counts just the first assignment that satisfies the inner formula and this can be defined in $\logu{1}$. 
 A similar construction was used in \cite{SalujaST95}. 
 

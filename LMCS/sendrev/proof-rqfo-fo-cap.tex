@@ -45,7 +45,7 @@ $\first(\bar t)$ holds if $\bar t$ is the first step and $\succesor(\bar{t},\bar
 \sum_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}\sa{\bar{t}'}(\successor(\bar{t}',\bar{t}) \mult h(\bar{t}',\bar{x}) \mult T_a(\bar{t}',\bar{x}) \mult s_{q}(\bar{t}')).
 \end{multline*}
 Notation $\sum_{(q,a) \,:\, \delta(q,a) = (\_,\vdash,\_,\_)}$ in this formula is used to indicate that we are considering a sum over all pairs $(q,a) \in Q \times \{0,1,\ttB,\vdash\}$ such that $\delta(q,a) = (q',\vdash,u,v)$ for some $q' \in Q$, $u \in \{\leftarrow,\rightarrow\}$ and $v \in \{0,1,\emptyset\}$.
-Formulas $\alpha_{T_0}$, $\alpha_{T_1}$ and $\alpha_{T_{\ttB}}$ are defined analogously; for the sake of presentation, we only show here how $\alpha_{T_0}$ is defined, assuming that $\bar y = (y_1, \ldots, y_k)$:
+Formulae $\alpha_{T_0}$, $\alpha_{T_1}$ and $\alpha_{T_{\ttB}}$ are defined analogously; for the sake of presentation, we only show here how $\alpha_{T_0}$ is defined, assuming that $\bar y = (y_1, \ldots, y_k)$:
 \begin{multline*}
 \alpha_{T_0}(\bar{t},\bar{x},T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h},s_{q_0},\ldots,s_{q_{\ell}},\out) = \\ 
 (\first(\bar{t}) \wedge \exists\bar{y}(\varphi_{\text{\rm first}}(y_1) \wedge \cdots \wedge \varphi_{\text{\rm first}}(y_{k-2}) \wedge\neg E(y_{k-1},y_k) \wedge \successor(\bar{y},\bar{x}) ))\ + \\
