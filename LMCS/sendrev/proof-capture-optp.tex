@@ -1,6 +1,6 @@
 It is straightforward to prove that $\maxp$ can compute any $\fo$-formula, is closed under first-order sum and product, and second-order maximization. 
-Therefore, condition (1) in Definition~\ref{def:cap} follows similar than in the previous characterizations. Furthermore, one can easily see that the same holds for $\minqso(\fo)$.
-The proof for the other direction is similar than in \cite{kolaitis1994logical} extended with the ideas of Theorem~\ref{theo:capture-fp}. Let $f\in \maxp$ be a function defined over some signature $\R$ and
+Therefore, condition (1) in Definition~\ref{def:cap} follows similarly as in the previous characterizations. Furthermore, one can easily see that the same holds for $\minqso(\fo)$.
+The proof for the other direction is similar to the one described in \cite{kolaitis1994logical} extended with the ideas of Theorem~\ref{theo:capture-fp}. Let $f\in \maxp$ be a function defined over some signature $\R$ and
 $\ell\in\nat$ such that $\lceil\log_2 f(\enc(\A)) \rceil \leq |\A|^\ell$ for each $\A\in\ostr[\R]$.
 For $U \subseteq A^{\ell}$, we can interpret the encoding of $U$ ($\enc(U)$) as the binary encoding of a number with $|\A|^\ell$-bits. We denote this value by $\val(\enc(U))$.
 Then, given $\A\in\ostr[\R]$ and $U \subseteq A^{\ell}$, consider the problem of checking whether $f(\enc(\A)) \geq \val(\enc(U))$. 
@@ -19,4 +19,4 @@ $$
 $$
 In this case, if the formula $\Phi(\bar{X}, Y)$ is false, then the output produced by the subformula inside the $\min$-quantifiers will be the biggest possible value (i.e. $2^{{|\A|}^\ell}$).
 On the other hand, if $\Phi(\bar{X}, Y)$ holds, the subformula will produce $\val(\enc(U))$. 
-Similar than for $\max$, we conclude that $\alpha$ is in $\minqso(\fo)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.
+In a similar way as in $\max$, we conclude that $\alpha$ is in $\minqso(\fo)$ and $\sem{\alpha}(\A) = f(\enc(\A))$.

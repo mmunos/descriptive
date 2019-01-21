@@ -97,7 +97,7 @@ Specifically, we use $\rqfo$ to define an operator for counting the number of pa
 
 Given a relational signature $\R$, the set of transitive $\qfo$ formulae ($\tqfo$-formulae) is defined as the extension of $\qfo$ by the additional operator $[\pth \psi(\bar{x},\bar{y})]$, where $\psi(\x, \y)$ is an $\fo$-formula over $\R$, and $\bar{x} = (x_1, \ldots, x_k)$, $\bar{y} = (y_1, \ldots, y_k)$ are tuples of pairwise distinct first-order variables. The semantics of $[\pth \psi(\bar{x},\bar{y})]$ can easily be defined in terms of $\rqfo(\fo)$ as follows. 
 Given an $\R$-structure $\A$ with domain $A$, define a (directed) graph $\cG_{\psi}(\A) = (N,E)$ such that $N = A^k$ and for every pair $\bar b, \bar c \in N$, it holds that $(\bar b, \bar c) \in E$ if, and only if, $\A \models \psi(\bar b, \bar c)$.
-Similar than for Example~\ref{ex:count-path}, we can count the paths of length at most $|A^k|$ in $ \cG_{\psi}(\A)$ with the formula $\beta_{\psi(\bar{x},\bar{y})}(\x, \y, \t, g)$:
+As was the case for Example~\ref{ex:count-path}, we can count the paths of length at most $|A^k|$ in $ \cG_{\psi}(\A)$ with the formula $\beta_{\psi(\bar{x},\bar{y})}(\x, \y, \t, g)$:
 \begin{align*}
 (\psi(\bar{x},\bar{y}) + \sa{\z} g(\x,\z,\t)\cdot \psi(\z,\y)) \cdot \varphi_{\text{\rm first-lex}}(\t) \ +
 \sa{\t'} \varphi_{\text{succ-lex}}(\t',\t) \cdot \left(\sa{\x'} \sa{\y'} g(\x',\y',\t') \right),

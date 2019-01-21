@@ -9,7 +9,7 @@ That is, $\gp$ is the closure of $\shp$ functions under subtraction, and its fun
 Given that our logical framework was built on top of the natural numbers, we need to extend $\qso$ in order to capture $\gp$. 
 The most elegant way to do this is by allowing constants coming from $\bbZ$ instead of just $\bbN$. 
 Formally, we define the logic $\qsoz$ whose syntax is the same as in \eqref{syntax} and whose semantics is the same as in Table~\ref{tab-semantics} except that the atomic formula $s$ (i.e. a constant) comes from $\bbZ$.  
-Similar than for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with constants in $\bbZ$.
+Similarly as for $\qso$, we define the fragment $\eqsoz$ as the extension of $\eqso$ with constants in $\bbZ$.
 \begin{exa}
 	Recall the setting of Example~\ref{ex:cliques} and suppose now that we want to compute the number of cliques in a graph that are not triangles. This can be easily done in $\qsoz$ with the formula:
 	$
@@ -21,12 +21,12 @@ It follows from our characterization of $\shp$ that this is exactly what we need
 \begin{cor} \label{prop:capture-gapp}
 	$\eqsoz(\fo)$ captures $\gp$ over ordered structures.
 \end{cor}
-This is an interesting result that shows how robust and versatile $\qso$ is for capturing different counting complexity classes even beyond $\bbN$.
+This is an interesting result that shows how robust and versatile $\qso$ is for capturing different counting complexity classes whose functions are not restricted to $\bbN$.
 
 A different class of functions comes from considering the optimization version of a decision problem. For example, one can define MAX-SAT as the problem of determining the maximum number of clauses, of a given CNF propositional formula that can be made true by an assignment. Here, MAX-SAT is defined in terms of a maximization problem which in its essence differs from the functions in $\shp$. 
 To formalize this class of optimization problems, Krentel defined $\optp$~\cite{krentel1988complexity} as the class of functions computable by taking the maximum or minimum of the output values over all runs of a polynomial-time NTM machine with output tape (i.e. each run produces a binary string which is interpreted as a number). 
 For instance, MAX-SAT is in $\optp$ as many other optimization versions of $\np$-problems.
-Given that in~\cite{krentel1988complexity} Krentel did not make the distinction between $\max$ and $\min$, in~\cite{vollmer1995complexity} they defined the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
+Given that in~\cite{krentel1988complexity} Krentel did not make the distinction between $\max$ and $\min$, Vollmer and Wagner~\cite{vollmer1995complexity} defined the classes $\maxp$ and $\minp$ as the max and min version of the problems in $\optp$ (i.e. $\optp = \maxp \cup \minp$).
 
 In order to capture classes of optimization functions, we extend $\qso$ with $\max$ and $\min$ quantifiers as follows (called $\optqso$). 
 Given a signature $\R$, the set of $\optqso$-formulae over $\R$ is given by extending the syntax in (\ref{syntax}) with the following operators:
@@ -41,7 +41,7 @@ where $x \in \fv$ and $X \in \sv$. The semantics of the $\qso$-operators in $\op
 	\]
 	Notice that formula $\sa{z} X(z)$ is used to compute the number of nodes in a set $X$.  \qed
 \end{exa}
-Similar than for $\maxp$ and $\minp$, we have to distinguish between the $\max$ and $\min$ fragments of $\optqso$. For this, we define the fragment $\maxqso$ of all $\optqso$ formulae constructed from $\qfo$ operators and $\max$-formulae $\max\{\alpha,\alpha\}$, $\maxa{x} \alpha$ and  $\maxa{X} \alpha$.
+Similarly as for $\maxp$ and $\minp$, we have to distinguish between the $\max$ and $\min$ fragments of $\optqso$. For this, we define the fragment $\maxqso$ of all $\optqso$ formulae constructed from $\qfo$ operators and $\max$-formulae $\max\{\alpha,\alpha\}$, $\maxa{x} \alpha$ and  $\maxa{X} \alpha$.
 The class $\minqso$ is defined analogously replacing $\max$ by $\min$. Notice that in $\maxqso$ and $\minqso$, second-order sum and product are not allowed. For instance, formula $\alpha_6$ in Example \ref{ex:optqso} is in $\maxqso$.
 As one could expect, $\maxqso$ and $\minqso$ are the needed logics to capture $\maxp$ and $\minp$.
 \begin{thm} \label{theo:capture-optp}
