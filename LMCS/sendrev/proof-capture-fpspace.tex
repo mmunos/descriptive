@@ -1,4 +1,4 @@
-% !TeX root = main.tex
+%!TEX root = main.tex
 
 For the first condition of Definition~\ref{def:cap}, notice that each $\pfp$ formula can be evaluated in deterministic polynomial space, the constant function $s$ can be trivially simulated in $\fpspace$, and $\fpspace$ is closed under exponential sum and multiplication. This suffices to show that the condition holds.
 For the second condition, the proof is similar to the proof of Theorem~\ref{theo:capture-fp}. Let $f\in \fpspace$ defined over some $\R$ and $\ell\in\nat$ such that $\log_2\left( f(\enc(\A)) \right) \leq 2^{{|\A|}^\ell}$ for every $\A\in\ostr[\R]$  (i.e. $2^{{|\A|}^\ell}$ is an upper bound for the size of the output). Let $X$ be a second-order variable of arity $\ell$. Consider the linear order induced by $<$ over predicates of arity $\ell$ which can be defined by the following formula:

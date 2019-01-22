@@ -1,4 +1,4 @@
-% !TeX root = main.tex
+%!TEX root = main.tex
 
 We have used weighted logics to give a framework for descriptive complexity of counting complexity~classes. Here, we go beyond weighted logics and give the first steps on defining recursion at the quantitative level.
 This goal is not trivial not only because we want to add recursion over functions, but also because 
@@ -78,6 +78,7 @@ $$
 $$ 
 In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain.
 \end{exa}
+\martin{El Reviewer 1 hizo un comentario de este ejemplo, lo respond\'i en la carta}
 In contrast to $\lfp$, to reach a fixed point we do not need to impose any positive restriction on the formula $\beta(\x,h)$.
 In fact, since $\beta$ is constructed from monotone operations (sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.
 
