@@ -65,7 +65,7 @@ We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic g
 $$ 
 E(x,y) + \sa{z} f(x,z)\cdot E(z,y).
 $$
-We have that $\clfp{\alpha(x,y,f)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain encoding an acyclic directed graph. Moreover, assume that $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\clfp{\alpha(x,y,f)}}(\A,v)$ is equal to the  number of paths in $\A$ from $b$ to $c$ of length at most $n$.
+We have that $\clfp{\alpha(x,y,f)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain encoding an acyclic directed graph. Moreover, assume that $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\clfp{\alpha(x,y,f)}}(\A,v)$ is equal to the number of paths in $\A$ from $b$ to $c$ of length at most $n-1$.
 
 Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are $\fo$-formulae defining the first element of $<$ and the successor relation associated to $<$, respectively.\footnote{Recall that in this paper we consider ordered $\R$-structures.} Moreover, define formula $\beta(x, y, t, g)$ as follows:
 \begin{align*}
@@ -76,7 +76,7 @@ Then our extended counting function is defined by:
 $$
 \sa{t} (\varphi_{\text{\rm first}}(t) \cdot \clfp{\beta(x,y,t,g)}).
 $$ 
-In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain. \qed
+In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain.
 \end{exa}
 In contrast to $\lfp$, to reach a fixed point we do not need to impose any positive restriction on the formula $\beta(\x,h)$.
 In fact, since $\beta$ is constructed from monotone operations (sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.

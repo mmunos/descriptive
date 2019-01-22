@@ -61,6 +61,7 @@ example the part of formula $\varphi_i$ after the quantifiers
 a formula $\beta \in \eqso(\logex{1})$ ...''
 \item p.25, last sentence: ``which is based on considering some witnesses of logarithmic size'' could
 be explained a little more / made more clear
+\martin{no logr\'e completar esta correcci\'on}
 \item[$\checkmark$] p.26: ``... auxiliary predicate $A$ defined as'' $\to$ ``... auxiliary predicate $A$ which will be defined
 as ... in the formula'' (or similar)
 \item[$\checkmark$] p.28: ``since universal formulas are monotone over induced substructures'': ``monotone over
@@ -85,7 +86,7 @@ with poly-time decision version in \totp should hold by a similar argument as me
 DelayP. Maybe change the citation or give a short proof sketch.
 \item[$\checkmark$] p.31, definition of $\leq$ on $\F$: ``$f(i) \leq g(i)$ for every $i \in \{1,\ldots,\ell\}$'': Inputs for $f$ and $g$ should be
 elements of $A^{\ell}$, not $\{1,\ldots,\ell\}$
-\item p.32/33, example 6.2: I don't see why the formula given for dag's does not work for arbitrary
+\item[?] p.32/33, example 6.2: I don't see why the formula given for dag's does not work for arbitrary
 graphs: In arbitrary graphs, the fixpoint is still reached after at most $n-1$ steps, since the
 maximal length of any shortest path in any graph is $n-1$. On the other hand, assuming that
 I am mistaken and the support does not become stable within $n-1$ steps: Using the formula
@@ -93,6 +94,7 @@ given for arbitrary graphs, the support of the constructed function restricted t
 that have first in their last component is the same as the support of the constructed function
 using the formula for dags in each step of the recursion. Hence, the formula should not be
 able to fix such a problem.
+\martin{me gustar\'ia tener feedback para saber si mi correcci\'on est\'a bien}
 \item[$\checkmark$] p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' → ``executes exactly $n^k$
 steps on large
 inputs for a fixed $k \geq 1$'' (at least it does not work for $n = 1$) (small inputs can be handled
@@ -234,6 +236,7 @@ of QFO by the additional operator ...'' (or similar)
 	\item[-] p.2, middle: ``fragments of QSO captures''
 	\item[-] p.6, example 3.1: ``the sum quantifiers in $\alpha_1$ aggregates''
 	\end{itemize}
+	\martin{no alcanc\'e a revisar esta ni la de cuatro puntos m\'as adelante}
 	\item[$\checkmark$] p4, beginning of 2.2: ``some of \underline{the} are recalled here''
 	\item[$\checkmark$] p6, example 3.2, first paragraph: ``otherwise $M(i.j)$'', dot used instead of comma
 	\item[$\checkmark$] throughout the paper: a instead of an (espacially: a FO formula/assignment, a SO formula/assignment).
@@ -247,6 +250,7 @@ of QFO by the additional operator ...'' (or similar)
 	\item[-] p.9, after proof of Prop. 4.3: ``use of a fragment [...] that capture''
 	\item[-] p.11, end of proof of Thm. 4.5: ``and $\alpha$ reconstruct''
 \end{itemize}
+	\martin{lo que menciono arriba}
 	\item[$\checkmark$] p.9, middle: ``A second attempt could be based then'' $\to$ ``A second attempt could then be
 	based''
 	\item[$\checkmark$] p.11, 4.1: ``output of a function \underline{in} not a natural number''
@@ -272,8 +276,7 @@ of QFO by the additional operator ...'' (or similar)
 	\setlength\itemsep{0.5em}
 	\item[$\checkmark$] running title is ``COUNTING''
 	\item[$\checkmark$] on definition of functions, \verb|\colon| should be used instead of :
-	\item In [1], a similar hierarchy to the one by Saluja et al. was introduced and studied. This work
-	should be cited.
+	\item In [1], a similar hierarchy to the one by Saluja et al. was introduced and studied. This work should be cited.
 \end{itemize}
 
 \bigskip
@@ -288,6 +291,7 @@ of QFO by the additional operator ...'' (or similar)
 For instance there is a paper adapting [39] to enumeration: Enumeration Complexity of Logical Query Problems with Second-order Variables (Arnaud Durand and Yann Strozecki). In particular they consider class with some Horn structure to capture easy enumeration problems, it may have some connection with the class $\sigma$ QSO($\Pi_1$ Horn) you introduce.
 
 \item For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).
+\martin{me gustar\'ia que conversemos qu\'e demostraciones necesitan esto, y si el outline de la demostraci\'on de -1 basta. Tambi\'en qu\'e fragmentos de QSO necesitan un ejemplo.}
 
 \item[$\checkmark$] page 4:
 -some of the $\to$ some of them 
@@ -302,28 +306,31 @@ proving more evident.
 \item[$\checkmark$] -replace .... for $\to$ replace ... by;  there are several instances of
 that
 \item[$\checkmark$] -$\phi$ is an FO-formula $\to$ a $\Sigma_1[FO]$ formula
-\item -you explain that you rewrite your formula to obtain conditions a,b and c, 
+\item[$\checkmark$] -you explain that you rewrite your formula to obtain conditions a,b and c, 
 you should give an idea how these conditions will be used
 \item[$\checkmark$] page 23:
 a SO, a FO  an SO, an FO
-\item page 24: 
+\item[$\checkmark$] page 24: 
 if, if $\phi$$\to$ $\phi$
 \item page 25: 
 -you explain that the proof relies on witnesses of logarithmic size.
 It was not clear to me while reading the proof. Can you explain more ?
+\martin{no logr\'e corregir esto, es la misma acotaci\'on que el Reviewer 1}
 \item page 28:
 -the complete problem for $\Sigma$ QSO($\Sigma_2$ Horn) would be complete also for $\#\Sigma-2$ Horn. You should mention here that you do not need sum here
 and that the framework of [39] is enough for this result.
-\item[?] page 30: ``this notion can be used to captures FP'' $\to$ ``... to capture FP''
+\martin{conversemos esto}
+\item[$\checkmark$] page 30: ``this notion can be used to captures FP'' $\to$ ``... to capture FP''
 
 \item[$\checkmark$] page 32: 
 - paths of length at most n $\to$ in an acylic graph, all paths are of size less than n
-\item page 33:
+\item[$\checkmark$] page 33:
 -there is a proof symbol \verb|\qed| but it does not end a well defined proof environment
 
 \item page 38: 
 the last sentence on fixed point operator is to vague. Either expand it to 
 say what king of question on fixed point operator you want to investigate or remove it	
+\martin{conversemos esto}
 \end{itemize}
 	
 \end{document}
