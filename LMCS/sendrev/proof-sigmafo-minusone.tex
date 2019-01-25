@@ -110,7 +110,7 @@ Intuitively, we want to exclude the assignment $(V^*, v^*)$ from the satisfying 
 Towards this goal, we can define a formula $\psi_i(\bar{X},\bar{x})$ such that, if $\varphi_i(\bar{X}, \bar{x})$ is satisfiable, $(\A, V, v) \models \psi_i(\bar{X},\bar{x})$ if, and only if either $V \neq V^*$ or $v \neq v^*$. 
 This property can be defined as follows:
 \begin{align}
-\psi_i(\bar{X},\bar{x}) \; := \;  &\big( \, \ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
+\psi_i(\bar{X},\bar{x}) \; := \;  &\big( \, \ex{\bar{x}'} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x}',\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
 &\Big( 
 \ex{\bar{y}}\!\big[ \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \, \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}}\! \ex{\bar{z}}\!( \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ) \, \big)\big] \;  \vee \!  \label{eq:part2} \\ 
 &\; \ex{\bar{x}'} \ex{\bar{y}}\big( \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x}\big) \; \;\; \Big)  \label{eq:part3}

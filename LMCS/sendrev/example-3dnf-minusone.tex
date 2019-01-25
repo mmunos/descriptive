@@ -1,0 +1,30 @@
+%!TEX root = main.tex
+
+Let $\R = \{P_0(\cdot,\cdot,\cdot), P_1(\cdot,\cdot,\cdot), P_2(\cdot,\cdot,\cdot), P_3(\cdot,\cdot,\cdot)\}$. This vocabulary is used as follows to encode a 3-DNF formula. Relations $P_0,P_1,P_2,P_3$ evaluated on a tuple $(x,y,z)$ hold if the disjuncts $(x\wedge y \wedge z),(x\wedge y \wedge \neg z),(x\wedge \neg y \wedge \neg z),(\neg x\wedge\neg y \wedge\neg z)$ are present in the formula, respectively.
+To define $\ctdnf$, we consider an $\so$-formula $\varphi(T)$ over $\R$, where $T$ is an unary predicate, such that for every 3-DNF formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sa{T}\varphi(T)$. Particularly, $T(x)$ holds if, and only if, $x$ is assigned value true. In detail,
+\begin{align*}
+\varphi(T) = \ex{x}\ex{y}\ex{z}\big(\,
+&(P_0(x,y,z)\wedge \ \; T(x)\wedge \ \; T(y)\wedge \ \; T(z))\,\vee\\
+&(P_1(x,y,z)\wedge \ \; T(x)\wedge \ \; T(y)\wedge \!\neg T(z))\,\vee\\
+&(P_2(x,y,z)\wedge \ \; T(x)\wedge\!\neg T(y)\wedge \!\neg T(z))\,\vee\\
+&(P_3(x,y,z)\wedge \!\neg T(x)\wedge \!\neg T(y)\wedge \!\neg T(z))\,\big).
+\end{align*}
+This formula is in $\loge{1}$, so $\ctdnf$ is in $\eqso(\loge{1})$, and indeed, also in $\eqso(\logex{1})$. 
+
+We will apply a simplified version of our construction to $\varphi$ to illustrate how it restricts a single assignment to $T$. First, note that we assumed the formula had the form $\sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ where $\bar{x}$ was not empty, so we start by doing the corresponding replacement. Consider the formula is $\varphi(T,u)$ and in each disjunct the expression $\wedge \first(u)$ is added. The next step of our construction was rewriting each disjunct so a sequence of conditions (that we called {\em a, b} and {\em c}) held. After the rewritings have been done, one of the disjuncts will be
+\[
+\varphi'_{\ell}(T,u,x,y,z) = \underbrace{P_0(x,y,z)\wedge \theta(u,x,y,z)\wedge \first(u)}_{\varphi^{\fo}_{\ell}(u,x,y,z)}\wedge \underbrace{T(x)\wedge T(y)\wedge T(z)}_{\varphi^{+}_{\ell}(T,x,y,z)},
+\]
+Where $\theta(u,x,y,z)$ is a weak ordering for $(u,x,y,z)$. Furthermore,
+\begin{multline*}
+\text{$min$-}\varphi^{\fo}_{\ell}(u,x,y,z) = P_0(x,y,z)\wedge \theta(u,x,y,z)\wedge \first(u)\, \wedge \\ \fa{u'}\fa{x'}\fa{y'}\fa{z'}\big(P_0(x',y',z')\wedge \theta(u',x',y',z')\wedge \first(u')\to(u\leq u' \wedge \langle x,y,z\rangle\leq \langle x',y',z'\rangle)\big),
+\end{multline*}
+and lastly,
+\begin{align*}
+\psi_{\ell}(T,u) = \; &\ex{u'}\ex{x}\ex{y}\ex{z}(P_0(x,y,z)\wedge \theta(u',x,y,z)\wedge \first(u'))\,\to \\
+&\bigg(\ex{x}\ex{y}\ex{z}\Big[\text{$min$-}\varphi^{\fo}_{\ell}(u,x,y,z)\,\wedge \\ 
+&\hspace{5em}\big(\,T(x)\wedge T(y)\wedge T(z)\to\ex{w}(T(w)\wedge w \neq x \wedge w\neq y \wedge w\neq z)\big)\Big]\, \vee\\
+&\ex{u'}\ex{x}\ex{y}\ex{z}(\varphi'_{\ell}(T,u',x,y,z)\wedge u' < u)\bigg).
+\end{align*}
+Note that we omitted the $\varphi^{\fo}_{\ell}(u,x,y,z)$ part around the beginning of the third line of the formula because it is redundant. The crux of our construction are the second and third lines in the formula. Given a first-order assignment $v$ that satisfies $\text{$min$-}\varphi^{\fo}_{\ell}(u,x,y,z)$, consider the tuple $\langle v(x),v(y),v(z)\rangle$. We end our example by bringing attention to the fact that this tuple is a logarithmic-sized witness which effectively identifies, and lets us restrict our desired assignment to $T$.
+\martin{este ejemplo sirve para ayudar a entender la idea del testigo de tama\~no logar\'itmico}
