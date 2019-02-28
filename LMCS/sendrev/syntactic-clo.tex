@@ -53,9 +53,9 @@ A key insight in this proof is the fact that if a formula in $\eqso(\logex{1})$ 
 (ii) $P_1(a,b,c)$ holds if $(a\wedge b \wedge \neg c)$ is a disjunct in $\theta$;
 (iii) $P_2(a,b,c)$ holds if $(a\wedge \neg b \wedge \neg c)$ is a disjunct in $\theta$; and 
 (iv) $P_3(a,b,c)$ holds if $(\neg a \wedge \neg b \wedge \neg c)$ is a disjunct in $\theta$.
-Moreover, to define $\ctdnf$, we consider a fixed $\so$-formula $\varphi(T)$ over $\R$, where $T$ is a unary predicate, such that the number of satisfying assignments of $\theta$ is equal to the evaluation of $\sa{T}\varphi(T)$ over $\A_\theta$. More specifically, $T(a)$ holds if and only if  $a$ is assigned value true, so that $\varphi(T)$ is defined as follows:
+Moreover, to define $\ctdnf$, we consider a fixed $\so$-formula $\varphi(T)$ over $\R$, where $T$ is a unary predicate, such that the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{T}\varphi(T)}(\A_\theta)$. More specifically, $T(a)$ holds if and only if  $a$ is assigned value true, so that $\varphi(T)$ is defined as:
 \begin{align*}
-\varphi(T) = \ex{x}\ex{y}\ex{z}\big(\,
+\varphi(T) \ := \ \ex{x}\ex{y}\ex{z}\big(\,
 &(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z))\ \vee\\
 &(P_1(x,y,z)\wedge T(x)\wedge  T(y)\wedge \neg T(z))\ \vee\\
 &(P_2(x,y,z)\wedge T(x)\wedge \neg T(y)\wedge \neg T(z))\ \vee\\
@@ -64,12 +64,12 @@ Moreover, to define $\ctdnf$, we consider a fixed $\so$-formula $\varphi(T)$ ove
 Let us now focus on the first disjunct $(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z))$ of $\varphi(T)$. Assuming that a propositional formula $(a\wedge b \wedge c)$ is a disjunct in $\theta$, we have that $(\A_\theta,V) \models \varphi(T)$ for every assignment $V$ for $T$ such that $\{a,b,c\} \subseteq V(T)$. 
 Notice that some of these assignments, such as the one that assigns to $T$ all the variables occurring in $\theta$, are of linear size in the size of $\A_\theta$. However, $\varphi(T)$ also admits satisfying assignments of logarithmic size in the size of $\A_\theta$, such as $V(T) = \{a,b,c\}$. A key idea in the proof is the fact that the minimum of such small witnesses (under the lexicographic order induced by~$<$) can be identified by using a fixed formula in $\logex{1}$:
 \begin{multline*}
-\alpha(x,y,z) \ = \ P_0(x,y,z) \wedge  \fa{x'}\fa{y'}\fa{z'} \big(P_0(x',y',z')\ \to\\
+\alpha(x,y,z) \ := \ P_0(x,y,z) \wedge  \fa{x'}\fa{y'}\fa{z'} \big(P_0(x',y',z')\ \to\\
 \big((x < x') \vee (x = x' \wedge y < y') \vee (x = x' \wedge y = y' \wedge z < z')\big)\big),
 \end{multline*}
 and then it can be removed also by using a fixed formula in $\logex{1}$:
 \begin{align*}
-\beta(T) \ = \ \, & \ex{x} \ex{y} \ex{z} \big(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z)\big)\ \wedge \\
+\beta(T) \ := \ \, & \ex{x} \ex{y} \ex{z} \big(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z)\big)\ \wedge \\
 & \ex{x'}\ex{y'}\ex{z'} \big(\alpha(x',y',z')\ \wedge \\
 & \hspace{23mm} (T(x')\wedge T(y')\wedge T(z')\to \ex{w}(T(w) \wedge w \neq x' \wedge w\neq y' \wedge w'\neq z))\big).
 \end{align*}

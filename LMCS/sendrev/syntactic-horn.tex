@@ -13,7 +13,7 @@ In the previous section, we showed that the class $\eqso(\logex{1})$ has good cl
 \begin{exa} \label{ex-hornsat-esop1}
 Let $\R = \{\pP(\cdot,\cdot), \pN(\cdot,\cdot), \pV(\cdot), \pNC(\cdot),<\}$. This vocabulary is used as follows to encode a Horn formula. A fact $\pP(c,x)$ indicates that propositional variable $x$ is a disjunct in a clause $c$, while $\pN(c,x)$ indicates that $\neg x$ is a disjunct in $c$. Furthermore, $\pV(x)$ holds if  $x$ is a propositional variable, and $\pNC(c)$ holds if $c$ is a clause containing only negative literals, that is, $c$ is of the form $(\neg x_1 \vee \cdots \vee \neg x_n)$.
 
-To define $\chsat$, we consider an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if, and only if, $x$ is a propositional variable that is assigned value true.  More specifically, 
+To define $\chsat$, we consider an \so-formula $\varphi(\pT)$ over $\R$, where $\pT$ is a unary predicate, such that for every Horn formula $\theta$ encoded by an $\R$-structure $\A$, the number of satisfying assignments of $\theta$ is equal to $\sem{\sa{\pT} \varphi(\pT)}(\A)$. In particular, $\pT(x)$ holds if and only if $x$ is a propositional variable that is assigned value true.  More specifically, 
 %$\varphi(\pT)$ is defined as follows:
 \begin{align*}
 \varphi(\pT) \; :=\;\;  & \fa{x} (\pT(x) \to \pV(x)) \ \wedge\\
@@ -28,7 +28,7 @@ We can rewrite $\varphi(\pT)$ in the following way:
 & \fa{c} \fa{x}  (\neg \pP(c,x) \vee \ex{y} (\pN(c,y) \wedge \neg \pT(y)) \vee \pT(x)).
 \end{align*}
 %The resulting formula $\varphi(\pT)$ is not in $\uhorn$, but it can be easily transformed into a formula in this class  by introducing an auxiliary binary predicate $\pA$ defined as follows:
-Moreover, by introducing an auxiliary predicate $\pA$ which will be defined as it appears in the formula
+Moreover, by introducing an auxiliary predicate $\pA$ defined as 
 \begin{align*}
 \fa{c} \fa{x}  (\neg \pA(c,x) \leftrightarrow [\pN(c,x) \wedge \neg \pT(x)]),
 \end{align*}
@@ -58,7 +58,8 @@ Formally, a formula $\varphi$ is in $\ehorn$ if $\varphi$ is of the form $\ex{\b
 \begin{prop}\label{prop:ehorn-pe}
 $\eqso(\ehorn) \subseteq \totp$.
 \end{prop}
-For the sake of simplicity, we postpone the proof of the previous proposition to after the proof of Theorem~\ref{sigma2hard}.
+In this section, we identify a complete problem for $\eqso(\ehorn)$ under parsimonious reductions. Hence, to prove that $\eqso(\ehorn) \subseteq \totp$, it is enough to prove that such a problem is in $\totp$, as $\totp$ is closed under parsimonious reductions. We give this proof at the end of this section, after the complete problem has been identified.
+%For the sake of simplicity, we postpone the proof of the previous proposition to after the proof of Theorem~\ref{sigma2hard}.
 
 Interestingly, we have that both $\chsat$ and $\cdnf$ belong to $\eqso(\ehorn)$. 
 An imperative question at this point is whether in the definitions of $\uhorn$ and $\ehorn$, it is necessary to allow negative literals of the form $\ex{\v} \neg X(\u,\v)$. Actually, this forces our Horn classes to be included in $\eqso(\logu{2})$ and not necessarily in $\eqso(\loge{2})$. The following result shows that this is indeed the case.
@@ -69,7 +70,8 @@ $\chsat \not\in \eqso(\loge{2})$.
 \proof
 \input{proof-hsat-not-sigma2}
 \qed
-We conclude this section by showing that $\eqso(\ehorn)$ is the class we were looking for, as not only every function in $\eqso(\ehorn)$ has an easy decision counterpart, but also $\eqso(\ehorn)$ admits a natural complete problem under parsimonious reductions. More precisely, define 
+%We conclude this section by showing 
+Next we show that $\eqso(\ehorn)$ is the class we were looking for, as not only every function in $\eqso(\ehorn)$ has an easy decision counterpart, but also $\eqso(\ehorn)$ admits a natural complete problem under parsimonious reductions. More precisely, define 
 $\shdhsat$ as the problem of counting the satisfying assignments of a formula $\Phi$ that is a disjunction of Horn formulae. Then we have that:
 
 \begin{thm} \label{sigma2hard}
@@ -78,6 +80,9 @@ $\shdhsat$ as the problem of counting the satisfying assignments of a formula $\
 \proof
 \input{proof-sigma2hard}
 \qed
+Now that we have a complete problem for $\eqso(\ehorn)$, we can provide a simple proof of Proposition~\ref{prop:ehorn-pe}.
+
+\medskip
 
 \noindent{\emph{Proof of Proposition~\ref{prop:ehorn-pe}.}}
 \input{proof-ehorn-pe}
