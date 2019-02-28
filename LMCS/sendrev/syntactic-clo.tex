@@ -38,10 +38,42 @@ The class $\eqso(\logex{1})$ is closed under sum, multiplication and subtraction
 \input{proof-sigmafo-minusone}
 \qed
 \end{leftbar}
-The proof that $\eqso(\logex{1})$ is closed under subtraction by one is the most involved of the paper.
+%The proof that $\eqso(\logex{1})$ is closed under subtraction by one is the most involved of the paper.
+%%We think the main technique used in this proof, which is based on considering some witnesses of logarithmic size, is of independent interest.
+%The main technique in this proof involves using witnesses of logarithmic size, namely $v^{*}(\bar{y})$, which we believe could prove to be useful by itself. 
+%We will now borrow an example from Saluja et. al~\cite{SalujaST95} to illustrate how the construction described in the proof effectively restricts the desired assignments on a formula.
+%\begin{exa}
+%\input{example-3dnf-minusone}
+%\end{exa}
+%
+%
+The proof that $\eqso(\logex{1})$ is closed under subtraction by one is the most involved in the paper.
 %We think the main technique used in this proof, which is based on considering some witnesses of logarithmic size, is of independent interest.
-The main technique in this proof involves using witnesses of logarithmic size, namely $v^{*}(\bar{y})$, which we believe could prove to be useful by itself. 
-We will now borrow an example from Saluja et. al~\cite{SalujaST95} to illustrate how the construction described in the proof effectively restricts the desired assignments on a formula.
-\begin{exa}
-\input{example-3dnf-minusone}
-\end{exa}
+A key insight in this proof is the fact that if a formula in $\eqso(\logex{1})$ has a satisfying assignment over a structure, then it also has a satisfying assignment over this structure that is of logarithmic size, and which can be characterized and removed by using some fixed formulae. To give more intuition about this idea, let us consider the case of $\ctdnf$, and the way Saluja et\text{.} al \cite{SalujaST95}  propose to encode this problem in $\E{1}$ and, thus, also in $\eqso(\logex{1})$. Let $\R = \{P_0(\cdot,\cdot,\cdot), P_1(\cdot,\cdot,\cdot), P_2(\cdot,\cdot,\cdot), P_3(\cdot,\cdot,\cdot),<\}$ and $\theta$ be a propositional formula in 3-DNF. Then $\theta$ is encoded as an $\R$-structure $\A_\theta$ as follows. The domain of $\A_\theta$ is the set of propositional variables occurring in $\theta$, and for every tuple $(a,b,c)$ of propositional variables occurring in $\theta$, we have that: (i) $P_0(a,b,c)$ holds if $(a\wedge b \wedge c)$ is a disjunct in $\theta$;
+(ii) $P_1(a,b,c)$ holds if $(a\wedge b \wedge \neg c)$ is a disjunct in $\theta$;
+(iii) $P_2(a,b,c)$ holds if $(a\wedge \neg b \wedge \neg c)$ is a disjunct in $\theta$; and 
+(iv) $P_3(a,b,c)$ holds if $(\neg a \wedge \neg b \wedge \neg c)$ is a disjunct in $\theta$.
+Moreover, to define $\ctdnf$, we consider a fixed $\so$-formula $\varphi(T)$ over $\R$, where $T$ is a unary predicate, such that the number of satisfying assignments of $\theta$ is equal to the evaluation of $\sa{T}\varphi(T)$ over $\A_\theta$. More specifically, $T(a)$ holds if and only if  $a$ is assigned value true, so that $\varphi(T)$ is defined as follows:
+\begin{align*}
+\varphi(T) = \ex{x}\ex{y}\ex{z}\big(\,
+&(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z))\ \vee\\
+&(P_1(x,y,z)\wedge T(x)\wedge  T(y)\wedge \neg T(z))\ \vee\\
+&(P_2(x,y,z)\wedge T(x)\wedge \neg T(y)\wedge \neg T(z))\ \vee\\
+&(P_3(x,y,z)\wedge \neg T(x)\wedge \neg T(y)\wedge \neg T(z))\big).
+\end{align*}
+Let us now focus on the first disjunct $(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z))$ of $\varphi(T)$. Assuming that a propositional formula $(a\wedge b \wedge c)$ is a disjunct in $\theta$, we have that $(\A_\theta,V) \models \varphi(T)$ for every assignment $V$ for $T$ such that $\{a,b,c\} \subseteq V(T)$. 
+Notice that some of these assignments, such as the one that assigns to $T$ all the variables occurring in $\theta$, are of linear size in the size of $\A_\theta$. However, $\varphi(T)$ also admits satisfying assignments of logarithmic size in the size of $\A_\theta$, such as $V(T) = \{a,b,c\}$. A key idea in the proof is the fact that the minimum of such small witnesses (under the lexicographic order induced by~$<$) can be identified by using a fixed formula:
+\begin{multline*}
+\alpha(x,y,z) \ = \ P_0(x,y,z) \wedge  \fa{x'}\fa{y'}\fa{z'} \big(P_0(x',y',z')\ \to\\
+\big((x < x') \vee (x = x' \wedge y < y') \vee (x = x' \wedge y = y' \wedge z < z')\big)\big),
+\end{multline*}
+and then it can be removed also by using a fixed formula:
+\begin{align*}
+\beta(T) \ = \ \, & \ex{x} \ex{y} \ex{z} \big(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z)\big)\ \wedge \\
+& \ex{x'}\ex{y'}\ex{z'} \big(\alpha(x',y',z')\ \wedge \\
+& \hspace{23mm} (T(x')\wedge T(y')\wedge T(z')\to \ex{w}(T(w) \wedge w \neq x' \wedge w\neq y' \wedge w'\neq z))\big)
+\end{align*}
+In particular, the combination of these two formulae forces $T$ to represent a satisfying assignment for $\theta$ that is different from the set $\{a_0,b_0,c_0\}$, where $(a_0,b_0,c_0)$ is the minimum tuple under the lexicographic order induced by~$<$ on the set of tuples $(a,b,c)$ such that $(a \wedge b \wedge c)$ is a disjunct of $\theta$. In the proof we generalize and properly formalize this idea, thus using the existence of logarithmic size witnesses for the formulae in $\eqso(\logex{1})$ to prove that this class is closed under subtraction by one. We think that the existence of such witnesses is a fundamental property of this class that deserves to be further investigated. 
+
+\martin{este ejemplo sirve para ayudar a entender la idea del testigo de tama\~no logar\'itmico}
+\marcelo{reescribi el ejemplo para hacerlo mas simple y concentrarnos en la propiedad de los testigos de tama\~no logaritmico, por favor verificar si se entiende}

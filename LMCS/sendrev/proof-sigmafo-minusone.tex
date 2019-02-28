@@ -1,7 +1,8 @@
 %!TEX root = main.tex
 
-For the sake of readability, we divide the proof in three parts. The last part, i.e. subtraction by one, is probably the most technical proof of the paper. Furthermore, since this proof is several pages long, a line was drawn on the left margin to visually differentiate the proof from the rest of the paper.
+For the sake of readability, we divide the proof into three parts. The last part, i.e. subtraction by one, is the most technical proof in the paper. Since this proof is several pages long, a line was drawn on the left margin to visually differentiate it from the rest of the paper.
 \martin{Ac\'a menciono la l\'inea del margen izquierdo}
+\marcelo{OK}
 
 \medskip
 
@@ -18,7 +19,7 @@ To show that the function defined by $\alpha$ is in $\totp$, we can convert $\al
 
 
 \noindent {\bf Closed under subtraction by one.} We prove here that $\eqso(\logex{1})$ is closed under subtraction by one. 
-For this, given $\alpha \in \eqso(\logex{1})$ over a signature $\R$, we will define a $\eqso(\logex{1})$-formula $\kappa(\alpha)$ such that for each finite structure $A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. 
+For this, given $\alpha \in \eqso(\logex{1})$ over a signature $\R$, we will define a $\eqso(\logex{1})$-formula $\kappa(\alpha)$ such that for each finite structure $\A$ over $\R$: $\sem{\kappa(\alpha)}(\A) = \sem{\alpha}(\A) \dotminus 1$. 
 Without loss of generality, we assume that $\alpha$ is in $\logex{1}$-SNF, that is, $\alpha = \sum_{i = 1}^{n}\sa{\bar{X}}\sa{\bar{x}}\varphi_i$ where each $\varphi_i$ is in $\logex{1}$. Moreover, we assume that $\length{\bar{x}} > 0$  since, if this is not the case, we can replace $\sa{\bar{X}}\varphi_i$ with the equivalent formula $\sa{\bar{X}} \sa{y} \varphi_i \wedge\first(y)$.
 
 {\em Proof outline:} The proof will be separated in two parts. In the first part, we will assume that  $\alpha$ is in $\logex{1}$-PNF, namely, $\alpha = \sa{\bar{X}}\sa{\bar{x}}\varphi$ for some $\varphi$ in $\logex{1}$. We will show how to define a formula $\varphi'$ that satisfies the following condition: for each $\A$, if $(\A,V,v)\models \varphi(\bar{X},\bar{x})$ for some $V$ and $v$ over $\A$, then there exists exactly one assignment to $(\bar{X},\bar{x})$ that satisfies $\varphi$ and not $\varphi'$. 
@@ -44,6 +45,7 @@ Now, we define a series of rewrites of $\varphi$ that will make each formula $\v
 When these conditions are met, $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ will be satisfiable if and only if $\varphi_i^{\fo}(\bar{x},\bar{y})$ is satisfiable. This is proven in Claim~\ref{claim:minusone}.
 We explain below how to rewrite $\varphi_i$ in order to satisfy each condition.
 \martin{Peque\~na explicaci\'on de para qu\'e sirven las condiciones a b y c}
+\marcelo{OK}
 
 \medskip
 
@@ -99,9 +101,9 @@ Namely, $\bar{B}^v$ is a valid candidate for $\bar{X}$ and, furthermore, it is c
 This offers an insight into the main idea of Part (1): by choosing one particular $v$ the plan is to remove $\bar{B}^v$ as an assignment over $\bar{X}$ in $\varphi_i$. 
 For this, we choose the minimal $v$ that satisfies $\varphi^{\fo}_i(\bar{x},\bar{y})$ which can be defined with the following formula:
 \[
-\text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge \fa{\bar{x}'} \fa{\bar{y}'}\big(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')\big).
+\text{{\it min}-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \; = \;  \,\varphi_i^{\fo}(\bar{x},\bar{y})\wedge \fa{\bar{x}'} \fa{\bar{y}'}\big(\varphi_i^{\fo}(\bar{x}',\bar{y}')\to ( \bar{x}\leq\bar{x}' \wedge  \bar{y}\leq\bar{y}')\big).
 \] 
-If $\varphi^{\fo}_i$ is satisfiable, let $v$ be the only assignment such that  $(\A,v)\models \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y})$. 
+If $\varphi^{\fo}_i$ is satisfiable, let $v$ be the only assignment such that  $(\A,v)\models \text{{\it min}-}\varphi^{\fo}_i(\bar{x}, \bar{y})$. 
 Furthermore, let $V^*$ be the second-order assignment and $v^*$ the first-order assignment that satisfy $V^*(\bar{X}) = \bar{B}^{v}$ and $v^*(\bar{x}) = v(\bar{x})$.
 By the previous discussion, $(\A,V^*,v^*)\models\varphi_i(\bar{X},\bar{x})$.
 
@@ -112,10 +114,11 @@ This property can be defined as follows:
 \begin{align}
 \psi_i(\bar{X},\bar{x}) \; := \;  &\big( \, \ex{\bar{x}'} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x}',\bar{y}) \,\big) \rightarrow  \label{eq:part1} \\
 &\Big( 
-\ex{\bar{y}}\!\big[ \text{$min$-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \, \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}}\! \ex{\bar{z}}\!( \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ) \, \big)\big] \;  \vee \!  \label{eq:part2} \\ 
+\ex{\bar{y}}\!\big[ \text{{\it min}-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \, \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}}\! \ex{\bar{z}}\!( \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ) \, \big)\big] \;  \vee \!  \label{eq:part2} \\ 
 &\; \ex{\bar{x}'} \ex{\bar{y}}\big( \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x}\big) \; \;\; \Big)  \label{eq:part3}
 \end{align}
 \martin{agregu\'e par\'entesis en varias f\'ormulas en esta p\'agina y las anteriores}
+\marcelo{OK}
 To understand the formula, first notice that the premise of the implication at (\ref{eq:part1}) is true if, and only if, $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 Indeed, by Claim~\ref{claim:minusone} we know that if $\ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exist assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
 The conclusion of the implication (divided into (\ref{eq:part2}) and (\ref{eq:part3})), takes care that $V(\bar{X}) \neq V^*(\bar{X})$ or $v(\bar{x}) \neq v^*(\bar{x})$.
