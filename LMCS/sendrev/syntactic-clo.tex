@@ -62,18 +62,18 @@ Moreover, to define $\ctdnf$, we consider a fixed $\so$-formula $\varphi(T)$ ove
 &(P_3(x,y,z)\wedge \neg T(x)\wedge \neg T(y)\wedge \neg T(z))\big).
 \end{align*}
 Let us now focus on the first disjunct $(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z))$ of $\varphi(T)$. Assuming that a propositional formula $(a\wedge b \wedge c)$ is a disjunct in $\theta$, we have that $(\A_\theta,V) \models \varphi(T)$ for every assignment $V$ for $T$ such that $\{a,b,c\} \subseteq V(T)$. 
-Notice that some of these assignments, such as the one that assigns to $T$ all the variables occurring in $\theta$, are of linear size in the size of $\A_\theta$. However, $\varphi(T)$ also admits satisfying assignments of logarithmic size in the size of $\A_\theta$, such as $V(T) = \{a,b,c\}$. A key idea in the proof is the fact that the minimum of such small witnesses (under the lexicographic order induced by~$<$) can be identified by using a fixed formula:
+Notice that some of these assignments, such as the one that assigns to $T$ all the variables occurring in $\theta$, are of linear size in the size of $\A_\theta$. However, $\varphi(T)$ also admits satisfying assignments of logarithmic size in the size of $\A_\theta$, such as $V(T) = \{a,b,c\}$. A key idea in the proof is the fact that the minimum of such small witnesses (under the lexicographic order induced by~$<$) can be identified by using a fixed formula in $\logex{1}$:
 \begin{multline*}
 \alpha(x,y,z) \ = \ P_0(x,y,z) \wedge  \fa{x'}\fa{y'}\fa{z'} \big(P_0(x',y',z')\ \to\\
 \big((x < x') \vee (x = x' \wedge y < y') \vee (x = x' \wedge y = y' \wedge z < z')\big)\big),
 \end{multline*}
-and then it can be removed also by using a fixed formula:
+and then it can be removed also by using a fixed formula in $\logex{1}$:
 \begin{align*}
 \beta(T) \ = \ \, & \ex{x} \ex{y} \ex{z} \big(P_0(x,y,z)\wedge T(x)\wedge  T(y)\wedge T(z)\big)\ \wedge \\
 & \ex{x'}\ex{y'}\ex{z'} \big(\alpha(x',y',z')\ \wedge \\
-& \hspace{23mm} (T(x')\wedge T(y')\wedge T(z')\to \ex{w}(T(w) \wedge w \neq x' \wedge w\neq y' \wedge w'\neq z))\big)
+& \hspace{23mm} (T(x')\wedge T(y')\wedge T(z')\to \ex{w}(T(w) \wedge w \neq x' \wedge w\neq y' \wedge w'\neq z))\big).
 \end{align*}
-In particular, the combination of these two formulae forces $T$ to represent a satisfying assignment for $\theta$ that is different from the set $\{a_0,b_0,c_0\}$, where $(a_0,b_0,c_0)$ is the minimum tuple under the lexicographic order induced by~$<$ on the set of tuples $(a,b,c)$ such that $(a \wedge b \wedge c)$ is a disjunct of $\theta$. In the proof we generalize and properly formalize this idea, thus using the existence of logarithmic size witnesses for the formulae in $\eqso(\logex{1})$ to prove that this class is closed under subtraction by one. We think that the existence of such witnesses is a fundamental property of this class that deserves to be further investigated. 
+In particular, the combination of these two formulae forces $T$ to represent a satisfying assignment for $\theta$ that is different from the set $\{a_0,b_0,c_0\}$, where $(a_0,b_0,c_0)$ is the minimum tuple under the lexicographic order induced by~$<$ on the set of tuples $(a,b,c)$ such that $(a \wedge b \wedge c)$ is a disjunct of $\theta$. In the proof, we generalize and properly formalize this idea, thus using the existence of logarithmic size witnesses for the formulae in $\eqso(\logex{1})$ to prove that this class is closed under subtraction by one. We think that the existence of such witnesses is a fundamental property of this class that deserves to be further investigated. 
 
 \martin{este ejemplo sirve para ayudar a entender la idea del testigo de tama\~no logar\'itmico}
 \marcelo{reescribi el ejemplo para hacerlo mas simple y concentrarnos en la propiedad de los testigos de tama\~no logaritmico, por favor verificar si se entiende}
