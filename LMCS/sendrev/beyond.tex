@@ -61,7 +61,7 @@ In the particular case of an $\rqfo(\fo)$-formula $\clfp{\beta(\x, h)}$, Lemma  
 \end{align*}
 
 \begin{exa} \label{ex:count-path}
-We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length less than $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot)\}$, and then define formula $\alpha(x, y, f)$ as follows:
+We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length less than $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot),<\}$, and then define formula $\alpha(x, y, f)$ as follows:
 $$ 
 E(x,y) + \sa{z} f(x,z)\cdot E(z,y).
 $$

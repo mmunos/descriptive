@@ -58,7 +58,7 @@ Suppose that we want to count the number of triangles in $\fG$. Then this can be
 \end{align*}
 We encode a triangle in $\alpha_1$ as an increasing sequence of nodes $\{x, y, z\}$, in order to count each triangle once. Then the Boolean subformula  $E(x,y) \wedge E(y,z) \wedge E(z,x) \wedge
 x < y \wedge y < z$ is checking the triangle property, by returning $1$ if $\{x, y, z\}$ forms a triangle in $\fG$ and $0$ otherwise.
-Finally, the sum quantifiers in $\alpha_1$ aggregates all the values, counting the number of triangles in $\fG$.
+Finally, the sum quantifiers in $\alpha_1$ aggregate all the values, counting the number of triangles in $\fG$.
 
 Suppose now that we want to count the number of cliques in~$\fG$. We can define this function with the following formula:
 \[
