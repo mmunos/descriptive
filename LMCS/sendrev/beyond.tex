@@ -62,12 +62,19 @@ In the particular case of an $\rqfo(\fo)$-formula $\clfp{\beta(\x, h)}$, Lemma  
 
 \begin{exa} \label{ex:count-path}
 We would like to define an $\rqfo(\fo)$-formula that, given a directed acyclic graph $G$ with $n$ nodes and a pair of nodes $b$, $c$ in $G$, counts the number of paths of length less than $n$ from $b$ to $c$ in $G$. To this end, assume that graphs are encoded using the signature $\R = \{ E(\cdot,\cdot),<\}$, and then define formula $\alpha(x, y, f)$ as follows:
-$$ 
+\begin{eqnarray}\label{eq-count-paths-acyclic}
 E(x,y) + \sa{z} f(x,z)\cdot E(z,y).
-$$
+\end{eqnarray}
 We have that $\clfp{\alpha(x,y,f)}$ defines our counting function. In fact, assume that $\A$ is an $\R$-structure with $n$ elements in its domain encoding an acyclic directed graph. Moreover, assume that $b,c$ are elements of $\A$ and $v$ is a first-order assignment over $\A$ such that $v(x) = b$ and $v(y) = c$. Then we have that $\sem{\clfp{\alpha(x,y,f)}}(\A,v)$ is equal to the number of paths in $\A$ from $b$ to $c$ of length at most $n-1$.
 
-Assume now that we need to extend our previous counting function to the case of arbitrary directed graphs. To this end, suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are $\fo$-formulae defining the first element of $<$ and the successor relation associated to $<$, respectively.\footnote{Recall that in this paper we consider ordered $\R$-structures.} Moreover, define formula $\beta(x, y, t, g)$ as follows:
+Assume now that we need to count the number of paths of length less than $n$ from a node $b$ to a node $c$ in a directed graph that is not necessarily acyclic. 
+%extend our previous counting function to the case of arbitrary directed graphs. 
+Then we cannot use formula \eqref{eq-count-paths-acyclic}, as the fixed point could be reached too soon without counting all paths of length at most $n-1$. The fixed point of \eqref{eq-count-paths-acyclic} is always reached after $k$ steps, where $k$ is the size of the maximum shortest path between two vertices in the graph. If the graph has a cycle in it, there might be paths of size $k' \in \{k+1,\ldots,n-1\}$ that would not be counted because the fixed point was reached earlier. Thus, we need a more involved formula in the general case, which is given below. 
+
+%To this end, 
+Suppose that $\varphi_{\text{\rm first}}(x)$ and $\varphi_{\text{succ}}(x,y)$ are $\fo$-formulae defining the first element of $<$ and the successor relation associated to $<$, respectively.
+%\footnote{Recall that in this paper we consider ordered $\R$-structures.} 
+Moreover, define formula $\beta(x, y, t, g)$ as follows:
 \begin{align*}
 (E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t) \ +
 \sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)
@@ -77,8 +84,10 @@ $$
 \sa{t} (\varphi_{\text{\rm first}}(t) \cdot \clfp{\beta(x,y,t,g)}).
 $$ 
 In fact, the number of paths of length at most $n$ from a node $x$ to a node $y$ is recursively computed by using the formula $(E(x,y) + \sa{z} g(x,z,t)\cdot E(z,y)) \cdot \varphi_{\text{\rm first}}(t)$, which stores this value in $g(x,y,t)$ with $t$ the first element in the domain.  The other formula $\sa{t'} \varphi_{\text{succ}}(t',t) \cdot \left(\sa{x'} \sa{y'} g(x',y',t') \right)$ is just an auxiliary artifact that is used as a counter to allow reaching a fixed point in the support of $g$ in $n$ steps. Notice that the use of the filter $\varphi_{\text{succ}}(t',t)$ prevents this formula for incrementing the value of $g(x,y,t)$ when $t$ is the first element in the domain.
+\qed
 \end{exa}
 \martin{El Reviewer 1 hizo un comentario de este ejemplo, lo respond\'i en la carta}
+\marcelo{Me parece bien la respuesta en la carta. Agregue esta respuesta en el paper, ayuda a entender mejor el ejemplo.}
 In contrast to $\lfp$, to reach a fixed point we do not need to impose any positive restriction on the formula $\beta(\x,h)$.
 In fact, since $\beta$ is constructed from monotone operations (sum and product) over the natural numbers, the resulting operator $T_{\beta}$ is monotone as well.
 
