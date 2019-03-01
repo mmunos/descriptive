@@ -1,5 +1,7 @@
 \documentclass[a4paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 \usepackage{fullpage}
 \usepackage{cite}
 \usepackage{amsmath,amsfonts,amssymb,mathabx}
@@ -96,7 +98,7 @@ that have first in their last component is the same as the support of the constr
 using the formula for dags in each step of the recursion. Hence, the formula should not be
 able to fix such a problem.
 \martin{me gustar\'ia tener feedback para saber si mi correcci\'on est\'a bien}
-\item[$\checkmark$] p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' → ``executes exactly $n^k$
+\item[$\checkmark$] p.33: ``executes exactly $n^k$ steps for a fixed $k \geq 1$'' $\rightarrow$ ``executes exactly $n^k$
 steps on large
 inputs for a fixed $k \geq 1$'' (at least it does not work for $n = 1$) (small inputs can be handled
 seperately)
@@ -288,13 +290,17 @@ of QFO by the additional operator ...'' (or similar)
 
 \begin{itemize}
 		\setlength\itemsep{0.5em}
-\item In several proofs, you rely on disjoint union of solutions and cartesian product of solutions. Indeed, its gives a polynomial time counting reduction. Can you make connections with (+,*) circuits ? It would be similar to what is done in A Circuit-Based Approach to Efficient Enumeration (Antoine Amarilli, Pierre Bourhis, Louis Jachiet, Stefan Mengel) where simple circuits (dDNNF, which are basically disjoint unions and cartesian products) are used to capture the solutions of MSO queries.
+\item[$\checkmark$] In several proofs, you rely on disjoint union of solutions and cartesian product of solutions. Indeed, its gives a polynomial time counting reduction. Can you make connections with (+,*) circuits ? It would be similar to what is done in A Circuit-Based Approach to Efficient Enumeration (Antoine Amarilli, Pierre Bourhis, Louis Jachiet, Stefan Mengel) where simple circuits (dDNNF, which are basically disjoint unions and cartesian products) are used to capture the solutions of MSO queries.
 
-\item In general I would be interested to know the relationship of your couting classes with their enumeration counterpart. 
+\item[$\checkmark$] In general I would be interested to know the relationship of your couting classes with their enumeration counterpart. 
 For instance there is a paper adapting [39] to enumeration: Enumeration Complexity of Logical Query Problems with Second-order Variables (Arnaud Durand and Yann Strozecki). In particular they consider class with some Horn structure to capture easy enumeration problems, it may have some connection with the class $\sigma$ QSO($\Pi_1$ Horn) you introduce.
 
-\item For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).
+\cristian{No tiene mucho sentido estos comentarios del reviewer ya que va más alla del paper. Para dejarlo tranquilo, agregue un último comentario en las conclusiones diciendo que sería interesante estudiar estos problemas en el contexto de enumeración. También agregue la respuesta a la carta.}
+
+\item[$\checkmark$] For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).
 \martin{me gustar\'ia que conversemos qu\'e demostraciones necesitan esto, y si el outline de la demostraci\'on de -1 basta. Tambi\'en qu\'e fragmentos de QSO necesitan un ejemplo.}
+
+\cristian{El paper ya tiene demasiados ejemplos y ya esta demasiado largo. En la carta le respondí que lamentablemente, debido a que el paper esta demasiado largo, decidimos no agregar mas ejemplos.}
 
 \item[$\checkmark$] page 4:
 -some of the $\to$ some of them 
@@ -315,14 +321,16 @@ you should give an idea how these conditions will be used
 a SO, a FO  an SO, an FO
 \item[$\checkmark$] page 24: 
 if, if $\phi$$\to$ $\phi$
-\item page 25: 
+\item[$\checkmark$] page 25: 
 -you explain that the proof relies on witnesses of logarithmic size.
 It was not clear to me while reading the proof. Can you explain more ?
 \martin{no logr\'e corregir esto, es la misma acotaci\'on que el Reviewer 1}
-\item page 28:
+\cristian{Le respondí diciendo que es mencionado en la respuesta al otro reviewer.}
+\item[$\checkmark$] page 28:
 -the complete problem for $\Sigma$ QSO($\Sigma_2$ Horn) would be complete also for $\#\Sigma-2$ Horn. You should mention here that you do not need sum here
 and that the framework of [39] is enough for this result.
 \martin{conversemos esto}
+\cristian{Agregue un parrafo al final de la sección 5 mencionando esto. De hecho, desde la demostración uno puede demostrar que las dos classes son iguales (la suma de afuera no te agrega expresividad). Le respondí esto mismo en la carta.}
 \item[$\checkmark$] page 30: ``this notion can be used to captures FP'' $\to$ ``... to capture FP''
 
 \item[$\checkmark$] page 32: 
@@ -330,10 +338,11 @@ and that the framework of [39] is enough for this result.
 \item[$\checkmark$] page 33:
 -there is a proof symbol \verb|\qed| but it does not end a well defined proof environment
 
-\item page 38: 
+\item[$\checkmark$] page 38: 
 the last sentence on fixed point operator is to vague. Either expand it to 
 say what king of question on fixed point operator you want to investigate or remove it	
 \martin{conversemos esto}
+\cristian{Tiene razón y eliminé esta oración al final del paper.}
 \end{itemize}
 
 \bibliographystyle{plain}

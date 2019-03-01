@@ -223,12 +223,14 @@ We highlight the reviewer comment in red and then write our answer.
 
 \begin{itemize}
 	\setlength\itemsep{0.5em}
-	\item In several proofs, you rely on disjoint union of solutions and cartesian product of solutions. Indeed, its gives a polynomial time counting reduction. Can you make connections with (+,*) circuits ? It would be similar to what is done in A Circuit-Based Approach to Efficient Enumeration (Antoine Amarilli, Pierre Bourhis, Louis Jachiet, Stefan Mengel) where simple circuits (dDNNF, which are basically disjoint unions and cartesian products) are used to capture the solutions of MSO queries.
+	\item \red{In several proofs, you rely on disjoint union of solutions and cartesian product of solutions. Indeed, its gives a polynomial time counting reduction. Can you make connections with (+,*) circuits ? It would be similar to what is done in A Circuit-Based Approach to Efficient Enumeration (Antoine Amarilli, Pierre Bourhis, Louis Jachiet, Stefan Mengel) where simple circuits (dDNNF, which are basically disjoint unions and cartesian products) are used to capture the solutions of MSO queries. In general I would be interested to know the relationship of your couting classes with their enumeration counterpart. 
+	For instance there is a paper adapting [39] to enumeration: Enumeration Complexity of Logical Query Problems with Second-order Variables (Arnaud Durand and Yann Strozecki). In particular they consider class with some Horn structure to capture easy enumeration problems, it may have some connection with the class $\sigma$ QSO($\Pi_1$ Horn) you introduce.}
+
+	We thank the reviewer for showing us the literature regarding enumeration problems, in particular, for the paper from Durand and Strozecki. Unfortunately, the relation between our framework with enumeration complexity classes goes beyond the scope of the paper. Nevertheless, in the last section we added a final paragraph pointing out this connection as an interesting open question. 
 	
-	\item In general I would be interested to know the relationship of your couting classes with their enumeration counterpart. 
-	For instance there is a paper adapting [39] to enumeration: Enumeration Complexity of Logical Query Problems with Second-order Variables (Arnaud Durand and Yann Strozecki). In particular they consider class with some Horn structure to capture easy enumeration problems, it may have some connection with the class $\sigma$ QSO($\Pi_1$ Horn) you introduce.
+	\item \red{For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).}
 	
-	\item For the most involved proofs, you could describe informally your proof strategy in a few lines to help the reader. You may also add some example to illustrate the different fragment of QSO (you already do it sometimes and it is very helpful).
+	Although we agree that adding more proof sketches and examples would help, the paper is already too long for adding more additional content. Furthermore, as the reviewer mentioned we already have this for the main definitions and proofs (e.g. proof of substraction by 1 at Theorem 5.9). For this reason, we decided to keep the paper as it is in terms of more examples and proof sketches. 
 	
 %	\item[$\checkmark$] page 4: -some of the $\to$ some of them 
 %	\item[$\checkmark$] page 10:  -$2^{|A|^l}$-bits $\to$ $2^{|A|^l}$ bits
@@ -239,12 +241,20 @@ We highlight the reviewer comment in red and then write our answer.
 %	\item -you explain that you rewrite your formula to obtain conditions a,b and c, you should give an idea how these conditions will be used
 %	\item[$\checkmark$] page 23: a SO, a FO  an SO, an FO
 %	\item page 24: 	if, if $\phi$$\to$ $\phi$
-%	\item page 25: 	-you explain that the proof relies on witnesses of logarithmic size.	It was not clear to me while reading the proof. Can you explain more ?
-	\item page 28:	-the complete problem for $\Sigma$ QSO($\Sigma_2$ Horn) would be complete also for $\#\Sigma-2$ Horn. You should mention here that you do not need sum here	and that the framework of [39] is enough for this result.
+	\item \red{page 25: 	-you explain that the proof relies on witnesses of logarithmic size.	It was not clear to me while reading the proof. Can you explain more ?}
+	
+	This is discussed in the response to Reviewer 1. 
+	
+	\item \red{page 28:	The complete problem for $\Sigma\text{QSO}(\Sigma_2\text{-Horn})$ would be complete also for $\#(\Sigma_2\text{-Horn})$. You should mention here that you do not need sum here and that the framework of [39] is enough for this result.}
+	
+	Indeed, from the proof of Theorem 5.14 one can also derive that $\#(\Sigma_2\text{-Horn})$ is equivalent to $\Sigma\text{QSO}(\Sigma_2\text{-Horn})$ and, thus, the framework of [39] is enough for defining this class of problems. At the end of Section 5, we added a paragraph mentioning this. 
+	
 %	\item[?] page 30: ``this notion can be used to captures FP'' $\to$ ``... to capture FP''
 %	\item[$\checkmark$] page 32: - paths of length at most n $\to$ in an acylic graph, all paths are of size less than n
 %	\item page 33: 	-there is a proof symbol \verb|\qed| but it does not end a well defined proof environment
-	\item page 38: the last sentence on fixed point operator is to vague. Either expand it to say what king of question on fixed point operator you want to investigate or remove it	
+	\item \red{page 38: the last sentence on fixed point operator is to vague. Either expand it to say what king of question on fixed point operator you want to investigate or remove it.}
+	
+	We agree with the reviewer and we decided to remove this sentence. 
 \end{itemize}
 
 \bibliographystyle{plain}
