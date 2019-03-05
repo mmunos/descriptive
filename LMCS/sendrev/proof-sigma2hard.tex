@@ -29,8 +29,9 @@ More specifically, we obtain the following formula that defines the same functio
 $$
 \alpha_{\A} \ = \ \sum_{i = 1}^{m} \sum_{\bar{a}\,\in A^{\length{\bar{x}}}} \sa{\bar{X}}\bigvee_{\bar{b}\,\in A^{\length{\bar{y}}}}\bigg(\bigwedge_{j = 1}^n\bigwedge_{\bar{c}\,\in A^{\length{\bar{z}}}}\varphi^i_j(\bar{X}_i,\bar{a},\bar{b},\bar{c})\wedge \bigwedge_{X \not\in \bar{X}_i}\bigwedge_{\bar{e}\,\in A^{\arity(X)}}\!\!\!\!\!\!\! X(\bar{e})\bigg).
 $$
-\martin{reescribi esta formula}
-\marcelo{OK. Le agregue los parentesis grandes a esta formula y la anterior para que quedara mas claro el scope del cuantificador existencial y la disyuncion}
+%\martin{reescribi esta formula}
+%\marcelo{OK. Le agregue los parentesis grandes a esta formula y la anterior para que quedara mas claro el scope del cuantificador existencial y la disyuncion}
+
 Notice that each first-order subformula in $\varphi^i_j(\bar{X}_i,\bar{a},\bar{b},\bar{c})$ has no free variables and, therefore, we can evaluate each of them in polynomial time and easily rewrite $\alpha_{\A}$ to an equivalent formula that does not have any first-order subformula. In other words, in polynomial time we can replace $\varphi^i_j$ with a disjunction of negative literals of the form $\neg X_{\ell}(\bar d)$ and at most one positive literal of the form $X_{\ell}(\bar d)$, where $\bar d$ is a tuple of constants. After simplifying, grouping and reordering the previous formula, we can obtain an equivalent formula $\alpha_{\A}'$ of the form:
 $$
 \alpha_{\A}' \ = \ \sum_{i = 1}^{m'}\sa{\bar{X}}\bigvee_{j = 1}^{n_1'}\bigwedge_{k = 1}^{n_2'}\psi^{i}_{j,k}(\bar{X}),
@@ -51,4 +52,4 @@ over the propositional alphabet $\{X(\bar{e}) \mid X \in \bar{X} \text{ and } \b
 Variables $t_1,\ldots,t_{m'}$ are used to have disjoint sets of propositional assignments for the different disjuncts of the outermost disjunction, which correspond to the summands in the original formula.
 One can easily check that $g_{\alpha}(\A)$ is a disjunction of Horn formulae, and that the number of satisfying assignments of $g_{\alpha}(\A)$ is exactly $\sem{\alpha}(\A)$. This covers all possible cases for $\alpha$, and the entire procedure takes polynomial time.
 
-\marcelo{Hice algunos cambios en esta demostracion (teorema \ref{sigma2hard}), por favor revisen con cuidado si todo esta bien}
+%\marcelo{Hice algunos cambios en esta demostracion (teorema \ref{sigma2hard}), por favor revisen con cuidado si todo esta bien}

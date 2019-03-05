@@ -1,9 +1,6 @@
 %!TEX root = main.tex
 
 For the sake of readability, we divide the proof into three parts. The last part, i.e. subtraction by one, is the most technical proof in the paper. Since this proof is several pages long, a line was drawn on the left margin to visually differentiate it from the rest of the paper.
-\martin{Ac\'a menciono la l\'inea del margen izquierdo}
-\marcelo{OK}
-
 \medskip
 
 \noindent {\bf Closed under sum and multiplication.} By the previous results, it is straightforward to prove that $\eqso(\logex{1})$ is closed under sum and multiplication. Indeed, $\eqso(\LL)$ is closed under sum by definition for every fragment $\LL$, and since $\logex{1}$ is closed under conjunction, from Lemma \ref{conj-mult} it follows that $\eqso(\logex{1})$ is closed under multiplication.
@@ -44,8 +41,8 @@ Note that atomic formulae, like $R(\bar{z})$ for $R \in \R$, will appear in the 
 Now, we define a series of rewrites of $\varphi$ that will make each formula $\varphi_i$ satisfy the following three conditions: (a) no variable from $\bar{x}$ appears in $\varphi_i^{-}(\bar{X},\bar{x},\bar{y})\wedge\varphi_i^{+}(\bar{X},\bar{x},\bar{y})$, (b) $\varphi_i^{\fo}(\bar{x},\bar{y})$ defines a weak ordering over the variables in $(\bar{x},\bar{y})$ (the precise definition of a weak ordering is detailed below) and (c) if both $X_j(\bar{z})$ and $\neg X_j(\bar{w})$ appear in the formula, the weak ordering should not satisfy $\bar{z} = \bar{w}$.
 When these conditions are met, $\varphi_i'(\bar{X}, \bar{x}, \bar{y})$ will be satisfiable if and only if $\varphi_i^{\fo}(\bar{x},\bar{y})$ is satisfiable. This is proven in Claim~\ref{claim:minusone}.
 We explain below how to rewrite $\varphi_i$ in order to satisfy each condition.
-\martin{Peque\~na explicaci\'on de para qu\'e sirven las condiciones a b y c}
-\marcelo{OK}
+%\martin{Peque\~na explicaci\'on de para qu\'e sirven las condiciones a b y c}
+%\marcelo{OK}
 
 \medskip
 
@@ -117,8 +114,9 @@ This property can be defined as follows:
 \ex{\bar{y}}\!\big[ \text{{\it min}-}\varphi^{\fo}_i(\bar{x}, \bar{y}) \wedge \big( \, \varphi_i'(\bar{X},\bar{x}, \bar{y})  \rightarrow \!\! \bigvee_{X \in \bar{X}}\! \ex{\bar{z}}\!( \, X(\bar{z}) \wedge   \!\!\!\!\!\!\!\!\!\!\!\! \bigwedge\limits_{X(\bar{w}) \, \in \, \varphi^{+}_i(\bar{X},\bar{y})} \!\!\!\!\!\!\!\!\!\!\!\! \bar{w}\neq\bar{z} \, ) \, \big)\big] \;  \vee \!  \label{eq:part2} \\ 
 &\; \ex{\bar{x}'} \ex{\bar{y}}\big( \varphi_i'(\bar{X},\bar{x}',\bar{y})\wedge \bar{x}' < \bar{x}\big) \; \;\; \Big)  \label{eq:part3}
 \end{align}
-\martin{agregu\'e par\'entesis en varias f\'ormulas en esta p\'agina y las anteriores}
-\marcelo{OK}
+%\martin{agregu\'e par\'entesis en varias f\'ormulas en esta p\'agina y las anteriores}
+%\marcelo{OK}
+
 To understand the formula, first notice that the premise of the implication at (\ref{eq:part1}) is true if, and only if, $\varphi_i(\bar{X}, \bar{x})$ is satisfiable. 
 Indeed, by Claim~\ref{claim:minusone} we know that if $\ex{\bar{x}} \ex{\bar{y}} \varphi^{\fo}_i(\bar{x},\bar{y})$ is true, then there exist assignments $V$ and $v$ such that $(\A,V,v) \models\varphi_i'(\bar{X},\bar{x},\bar{y})$.
 The conclusion of the implication (divided into (\ref{eq:part2}) and (\ref{eq:part3})), takes care that $V(\bar{X}) \neq V^*(\bar{X})$ or $v(\bar{x}) \neq v^*(\bar{x})$.

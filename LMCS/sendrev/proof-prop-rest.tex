@@ -6,8 +6,9 @@ For this inclusion to be true, it is required to hold for an arbitrary ordered r
 Let $\R$ be the ordered signature that contains only the relation name $<$.
 Suppose that there is a $\QE{0}$ formula $\alpha$ over $\R$ which is equivalent to the $\E{1}$-formula $\sa{x} \ex{y} (x < y)$. 
 That is, for every finite $\R$-structure $\A$, $\sem{\alpha}(\A) = \size{\A} - 1$.
-\martin{reformul\'e por qu\'e elijo ese R}
-\marcelo{OK}
+%\martin{reformul\'e por qu\'e elijo ese R}
+%\marcelo{OK}
+
 Suppose that $\alpha$ is in SNF, namely, $\alpha = \sum_{i = 1}^k \alpha_i$ for some fixed $k$. 
 Since $\sem{\alpha}$ is not the identically zero function, consider some $\alpha_i$ that describes a non-null function. 
 Let $\alpha_i = \sa{\bar{X}}\sa{\bar{x}}\varphi(\bar{X},\bar{x})$ where $\varphi$ is quantifier-free. 
@@ -28,8 +29,9 @@ Assume that $\bar x = (x_1, \ldots, x_m)$, and notice that each atomic sub-formu
 %	If this ordering has $k$ partitions then $\binom{\size{\A}}{k}$ assignments for $\bar{x}$ will satisfy it, and therefore, $\sem{\beta} \geq \binom{\size{\A}}{k}$. 
 Then we have that there exist at least $\binom{\size{\A}}{\ell}$ assignments $\bar b$ for $\bar{x}$ such that $\A\models\varphi(\bar{b})$. Thus, given that if $\ell = 1$, then $\binom{\size{\A}}{\ell} = \size{\A}$, and if $\ell \geq 2$, then $\binom{\size{\A}}{\ell} \in \Omega(\size{\A}^2)$, we conclude that the claim holds.
 \qed
-\martin{cambie order por ordering, creo que se entiende mejor}
-\marcelo{me parece que las nociones de ordering y particion no quedaban claras, por esto defini de manera precisa la nocion de particion y cambie la demostracion}
+%\martin{cambie order por ordering, creo que se entiende mejor}
+%\marcelo{me parece que las nociones de ordering y particion no quedaban claras, por esto defini de manera precisa la nocion de particion y cambie la demostracion}
+
 Now we show that $\QE{0} \not\subseteq \E{1}$. 
 In Theorem \ref{theo-pi1-pnf} we proved that there is no formula in $\loge{1}$-PNF equivalent to the formula $\alpha = 2$. 
 Every formula in $\E{1}$ can be expressed in $\loge{1}$-PNF, which implies that $2 \not\in \E{1}$. Therefore, given that $2 \in \QE{0}$ by the definition of this logic, we conclude that $\QE{0} \not\subseteq \E{1}$.

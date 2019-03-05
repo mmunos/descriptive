@@ -14,7 +14,7 @@ Let $f$ be a function in $\fp$. We address the case when $f$ is defined for the 
  where $Q = \{q_0,\ldots,q_{\ell}\}$, and $\delta\colon Q\times\{0,1,\ttB, \vdash\}\to Q\times\{0,1,\ttB, \vdash\}\times \{\leftarrow,\rightarrow\}\times\{0,1,\emptyset\}$ is a partial function. In particular, the tapes of $M$ are infinite to the right so the symbol $\vdash$ is used to indicate the first position in each tape, and $M$ does not have any final states, as it produces an output for each input. Moreover, the only allowed operations in the output tape are: 
  %The machine has an output tape and the only allowed operations in that tape on each step are 
  (1) writing 0 and moving the head one cell to the right, (2) writing 1 and moving the head one cell to the right, or (3) doing nothing. These operations are represented by 0, 1, and $\emptyset$, respectively. Finally, assume that $M$, on input $\enc(\A)$ with domain $A = \{1,\dots,n\}$, executes exactly $n^k$ steps on large inputs for a fixed $k \geq 1$. We ignore small inputs since they can be handled separately.
- \martin{tom\'e esta correcci\'on}
+% \martin{tom\'e esta correcci\'on}
 
 We construct a formula $\alpha$ in an extension of the grammar of $\rqfo(\fo)$ such that $\sem{\alpha}(\A) = f(\enc(\A))$ for each $\R$-structure $\A$. This extension allows defining the operator ${\bf lsfp}$ for multiple functions, analogously to the notion of simultaneous LFP~\cite{L04}.
 %generalization of fixed-point operator with multiple predicates. 
@@ -99,7 +99,7 @@ Finally, formula $\alpha_{\out}$ is defined as:
 Clearly, tuple $\bar{t}$ encodes the number of steps the machine has done and in each iteration of the fixed point operator, one timestep of the machine is executed.
 Assume that $\bar{a}$, $\bar{a}'$ are tuples with $k$ elements such that $\bar{a}'$ is the successor of $\bar{a}$. 
 From the construction of the formula, and since the machine is deterministic, it can be seen that for each function $f \in\{T_0,T_1,T_{\ttB},T_{\vdash},h,\hat{h}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $f(\bar{a},\bar{b}) \leq 1$ and  $f(\bar{a}',\bar{b}) = 0$ for every $\bar{b}\in A^k$. In the same way, it can be seen that (1) for each function $g \in\{s_{q_1},\ldots,s_{q_{\ell}}\}$, at the $\bar{a}$-th iteration of the fixed point operator, it holds that $g(\bar{a}) \leq 1$ and $g(\bar{a}') = 0$, that (2) for each $\bar{b}$, only one of the functions $T_0$,$T_1$,$T_B$,$T_{\vdash}$ outputs 1 on input ($\bar{a}, \bar{b})$, (3) for each $\bar{b}$, only one of the functions $h,\hat{h}$ outputs 1 on input $(\bar{a}, \bar{b})$, (4) there is exactly one $\bar{b}$ with $h(\bar{a}, \bar{b}) = 1$, and (5) there is exactly one $i$ such that $s_{q_i}(\bar{a}) = 1$. From this, we have that at the iteration $\bar{a}'$ of the fixed point operator, $\out(\bar{a}')$ is equal to either $2\cdot \out(\bar{a})$, $2\cdot \out(\bar{a}) + 1$, or $\out(\bar{a})$, which represents precisely the value in the output tape at each step of $M$ running on the input $\enc(\A)$. From this argument, it can be seen that $\sem{\alpha}(\A) = f(\enc(\A))$, which concludes the proof of the theorem.
-\martin{agregue la correccion verbatim}
+%\martin{agregue la correccion verbatim}
 %
 %\medskip
 %
